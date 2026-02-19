@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rob Logic</title>
+  <meta name="description" content="Rob Logic — music, art, and digital presence.">
+  <meta property="og:title" content="Rob Logic">
+  <meta property="og:description" content="Rob Logic — music, art, and digital presence.">
+  <meta property="og:image" content="https://roblogic.org/bg-hero.jpg">
+  <meta property="og:url" content="https://roblogic.org">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a1a2a;
+      font-family: 'Audiowide', sans-serif;
+    }
+
+    .hero {
+      position: fixed;
+      inset: 0;
+      background: url('bg-hero.jpg') center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 20, 30, 0.4);
+    }
+
+    .title {
+      position: relative;
+      z-index: 1;
+      color: #f5f0e8;
+      font-size: clamp(3rem, 10vw, 8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-shadow:
+        0 0 40px rgba(232, 124, 42, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero"></div>
+  <h1 class="title">Rob Logic</h1>
+</body>
+</html>
