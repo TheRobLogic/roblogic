@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desert Shores Media — Instagram Growth Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #faf9f7;
+    --accent: #c4622a;
+    --accent-light: #e8d5c4;
+    --accent-dark: #8b3e14;
+    --mid: #6b6560;
+    --light: #e8e5e0;
+    --blue: #2a5c7e;
+    --blue-light: #d4e4ef;
+  }
+
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.6in 0.7in;
+    position: relative;
+    page-break-after: always;
+    background: var(--paper);
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 11in;
+    padding: 0;
+    background: linear-gradient(160deg, #1a1a1a 0%, #2d2520 40%, #3d2e1e 100%);
+    color: white;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(ellipse, rgba(196,98,42,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark), transparent);
+  }
+
+  .cover-top {
+    padding: 0.8in 0.8in 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cover-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .cover-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .cover-main {
+    padding: 0 0.8in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.3in;
+  }
+
+  .cover-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38pt;
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 0.25in;
+    max-width: 5.5in;
+  }
+
+  .cover-subtitle {
+    font-size: 13pt;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    max-width: 4.5in;
+    line-height: 1.5;
+  }
+
+  .cover-bottom {
+    padding: 0 0.8in 0.8in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .cover-client {
+    font-size: 10pt;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .cover-client strong {
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+
+  .cover-confidential {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22pt;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.15in;
+    color: var(--ink);
+  }
+
+  h3 {
+    font-size: 11pt;
+    font-weight: 600;
+    margin-top: 0.2in;
+    margin-bottom: 0.06in;
+    color: var(--ink);
+  }
+
+  h4 {
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--accent-dark);
+    margin-top: 0.15in;
+    margin-bottom: 0.04in;
+  }
+
+  .section-intro {
+    font-size: 11pt;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 0.2in;
+    max-width: 6in;
+  }
+
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--light));
+    margin: 0.2in 0 0.25in;
+    border: none;
+  }
+
+  .divider-thin {
+    height: 1px;
+    background: var(--light);
+    margin: 0.15in 0;
+    border: none;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.12in;
+    border-bottom: 1px solid var(--light);
+    margin-bottom: 0.3in;
+  }
+
+  .page-header-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .page-header-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt;
+    color: var(--mid);
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.12in 0 0.15in;
+    font-size: 9.5pt;
+  }
+
+  thead th {
+    background: var(--ink);
+    color: white;
+    font-weight: 500;
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 8.5pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  thead th:first-child { border-radius: 4px 0 0 0; }
+  thead th:last-child { border-radius: 0 4px 0 0; }
+
+  tbody td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--light);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+  tbody tr:last-child td { border-bottom: 2px solid var(--light); }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    background: linear-gradient(135deg, rgba(196,98,42,0.06), rgba(196,98,42,0.02));
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 0.15in 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .callout-title {
+    font-weight: 600;
+    font-size: 9.5pt;
+    color: var(--accent-dark);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .callout p {
+    font-size: 10pt;
+    line-height: 1.5;
+  }
+
+  .callout-blue {
+    background: linear-gradient(135deg, rgba(42,92,126,0.06), rgba(42,92,126,0.02));
+    border-left-color: var(--blue);
+  }
+
+  .callout-blue .callout-title { color: var(--blue); }
+
+  /* ── STAT BLOCKS ── */
+  .stats-row {
+    display: flex;
+    gap: 0.15in;
+    margin: 0.15in 0;
+  }
+
+  .stat-block {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--light);
+    border-radius: 6px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22pt;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+    margin-top: 2px;
+  }
+
+  /* ── LISTS ── */
+  ul, ol {
+    margin: 0.06in 0 0.1in 0.25in;
+  }
+
+  li {
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
+
+  li strong { color: var(--ink); }
+
+  /* ── HASHTAGS ── */
+  .hashtag-group {
+    margin: 0.06in 0 0.12in;
+  }
+
+  .hashtag-label {
+    font-size: 8.5pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--mid);
+    margin-bottom: 4px;
+  }
+
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    background: var(--ink);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .tag.local {
+    background: var(--accent);
+  }
+
+  .tag.lifestyle {
+    background: var(--blue);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin: 0.15in 0 0.15in 0.15in;
+    padding-left: 0.25in;
+    border-left: 2px solid var(--light);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 0.12in;
+    padding-bottom: 0.05in;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -0.315in;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+  }
+
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-text {
+    font-size: 10pt;
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+
+  /* ── FORMULA BOX ── */
+  .formula {
+    background: var(--ink);
+    color: white;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 0.12in 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt;
+    line-height: 1.7;
+  }
+
+  .formula .arrow { color: var(--accent); }
+
+  /* ── CONTENT MIX BARS ── */
+  .mix-bar {
+    display: flex;
+    height: 28px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.1in 0;
+  }
+
+  .mix-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.03em;
+  }
+
+  .mix-segment.property { background: var(--ink); flex: 60; }
+  .mix-segment.lifestyle { background: var(--accent); flex: 20; }
+  .mix-segment.bts { background: var(--blue); flex: 20; }
+
+  .mix-legend {
+    display: flex;
+    gap: 0.2in;
+    margin-top: 6px;
+  }
+
+  .mix-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 8.5pt;
+    color: var(--mid);
+  }
+
+  .mix-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+
+  /* ── BIO MOCKUP ── */
+  .bio-mockup {
+    background: white;
+    border: 1px solid var(--light);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 0.12in 0;
+    max-width: 3.8in;
+  }
+
+  .bio-name {
+    font-weight: 700;
+    font-size: 11pt;
+    margin-bottom: 2px;
+  }
+
+  .bio-text {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .bio-link {
+    font-size: 9pt;
+    color: var(--blue);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* ── TOOLS TABLE ── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0.12in 0;
+  }
+
+  .tool-card {
+    background: white;
+    border: 1px solid var(--light);
+    border-radius: 6px;
+    padding: 10px 14px;
+  }
+
+  .tool-name {
+    font-weight: 600;
+    font-size: 10pt;
+  }
+
+  .tool-purpose {
+    font-size: 8.5pt;
+    color: var(--mid);
+    margin-top: 1px;
+  }
+
+  .tool-cost {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    color: var(--accent);
+    margin-top: 3px;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.7in;
+    right: 0.7in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid var(--light);
+    font-size: 7.5pt;
+    color: var(--mid);
+  }
+
+  .page-footer-brand {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── TWO COLUMN ── */
+  .two-col {
+    display: flex;
+    gap: 0.25in;
+  }
+
+  .two-col > * { flex: 1; }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .checklist li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 5px;
+  }
+
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid var(--mid);
+    border-radius: 3px;
+  }
+
+  @media print {
+    body { background: white; }
+    .page {
+      padding: 0.5in 0.6in;
+      box-shadow: none;
+    }
+    .cover { padding: 0; }
+  }
+
+  @media screen {
+    .page {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+    body { background: #e0ddd8; padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-brand">Rob Logic</div>
+    <div class="cover-date">March 2026</div>
+  </div>
+  <div class="cover-main">
+    <div class="cover-label">Instagram Growth Strategy</div>
+    <h1 class="cover-title">Desert Shores Media</h1>
+    <p class="cover-subtitle">An organic content strategy to build Travis's Instagram into the go-to real estate photography portfolio for Lake Havasu City — and beyond.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-client">
+      Prepared for <strong>Travis — Desert Shores Media</strong><br>
+      @desert_shores_media
+    </div>
+    <div class="cover-confidential">Strategy Document</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE 2: PREAMBLE ═══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Rob Logic</span>
+    <span class="page-header-title">Desert Shores Media — Instagram Strategy</span>
+  </div>
+
+  <div class="section-num">The Short Version</div>
+  <h2>Here's What We're Doing</h2>
+
+  <p style="font-size:11.5pt; line-height:1.7; margin-bottom:0.18in;">Your videos and photos are already good. The problem is nobody sees them because you're only posting a couple times a month, and most of your best work ends up on the agent's feed instead of yours.</p>
+
+  <p style="font-size:11.5pt; line-height:1.7; margin-bottom:0.18in;">We're going to fix that by turning your Instagram into your portfolio. Every property you shoot goes up. Not just the ones you're proud of, all of them. Mixed in with some Lake Havasu lifestyle stuff, First Friday, lake sunsets, local events. That way your feed shows off both your work and the place you're selling.</p>
+
+  <p style="font-size:11.5pt; line-height:1.7; margin-bottom:0.18in;">The whole thing runs on about 3 hours a week. One batch session where you knock out all your posts, then 15 minutes a day replying to comments and liking other people's stuff. That's it.</p>
+
+  <p style="font-size:11.5pt; line-height:1.7; margin-bottom:0.25in;">The rest of this doc is the playbook. Hashtags, captions, templates, the whole thing. You don't need to memorize it, just use it as a reference when you're posting. We'll circle back and adjust as we go.</p>
+
+  <hr class="divider">
+
+  <div class="section-num">First Things First</div>
+  <h2>Your Next 5 Steps</h2>
+  <p style="font-size:10.5pt; color:var(--mid); margin-bottom:0.15in;">Do these in order. Each one takes 15-30 minutes tops.</p>
+
+  <div style="margin-bottom:0.12in;">
+    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:9pt; color:var(--accent); font-weight:600;">Step 1</span>
+      <span style="font-weight:600;">Update your bio and name field</span>
+    </div>
+    <p style="font-size:10pt; color:var(--mid); margin-left:52px;">Copy the bio from page 5. Change your name field to include "RE Photo & Video" so people searching for that find you.</p>
+  </div>
+
+  <div style="margin-bottom:0.12in;">
+    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:9pt; color:var(--accent); font-weight:600;">Step 2</span>
+      <span style="font-weight:600;">Set up a link-in-bio page</span>
+    </div>
+    <p style="font-size:10pt; color:var(--mid); margin-left:52px;">Go to beacons.ai, make a free page. Add your HD Photohub portfolio link, a pricing page if you have one, and a way to contact you. Put that link in your Instagram bio.</p>
+  </div>
+
+  <div style="margin-bottom:0.12in;">
+    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:9pt; color:var(--accent); font-weight:600;">Step 3</span>
+      <span style="font-weight:600;">Build your CapCut Reel template</span>
+    </div>
+    <p style="font-size:10pt; color:var(--mid); margin-left:52px;">Make one Reel with the formula on page 4: text hook at the start, property footage in the middle, your logo at the end. Save it as a template so you can just swap footage next time.</p>
+  </div>
+
+  <div style="margin-bottom:0.12in;">
+    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:9pt; color:var(--accent); font-weight:600;">Step 4</span>
+      <span style="font-weight:600;">Post your first week of content</span>
+    </div>
+    <p style="font-size:10pt; color:var(--mid); margin-left:52px;">Pick your best recent shoots. Make 3 Reels, 1 carousel, and 1 hero shot. Use the hashtags from page 5. Post them or schedule them with Later (free).</p>
+  </div>
+
+  <div style="margin-bottom:0.12in;">
+    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:6px;">
+      <span style="font-family:'JetBrains Mono',monospace; font-size:9pt; color:var(--accent); font-weight:600;">Step 5</span>
+      <span style="font-weight:600;">Start the daily 15 minutes</span>
+    </div>
+    <p style="font-size:10pt; color:var(--mid); margin-left:52px;">Reply to any comments, like some local real estate posts, and see what's getting views. That's all.</p>
+  </div>
+
+  <div class="callout" style="margin-top:0.2in;">
+    <div class="callout-title">That's the whole system</div>
+    <p>Once you've done those 5 things, you're in the rhythm. The rest of this doc is reference material for when you need to look up hashtags, caption ideas, or what to post next. We'll check in and see how it's going.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer-brand">Rob Logic</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE 3: SNAPSHOT ═══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Rob Logic</span>
+    <span class="page-header-title">Desert Shores Media — Instagram Strategy</span>
+  </div>
+
+  <div class="section-num">01 — Where We're Starting</div>
+  <h2>Current Snapshot</h2>
+  <p class="section-intro">Your Instagram has good bones. Real content, agent tagging, clear niche. The gap isn't quality, it's volume and consistency.</p>
+
+  <div class="stats-row">
+    <div class="stat-block">
+      <div class="stat-value">42</div>
+      <div class="stat-label">Followers</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value">18</div>
+      <div class="stat-label">Posts</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value">~2/mo</div>
+      <div class="stat-label">Post Frequency</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value">5</div>
+      <div class="stat-label">Reels</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">The Core Problem</div>
+    <p>You're shooting great content and handing it to agents who post it under <em>their</em> brand. Every property you shoot is a Reel, a carousel, a portfolio piece — and right now, most of that value is invisible. Your Instagram should be the central hub for everything you create.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-num">02 — The Strategy</div>
+  <h2>What We're Building</h2>
+  <p class="section-intro">A self-powered Instagram engine. No dependency on agents, partnerships, or paid ads. Travis posts, Travis grows. If agents engage — bonus, not requirement.</p>
+
+  <div class="callout-blue callout">
+    <div class="callout-title">Key Insight</div>
+    <p>Buyers aren't locals moving around Lake Havasu — they're relocating from all over the country. Your content needs to travel beyond LHC. The Reels algorithm doesn't care about follower count; it cares about watch time and engagement. One well-hooked drone reveal can reach 50K+ people from a 42-follower account.</p>
+  </div>
+
+  <h3>Three Pillars</h3>
+  <ol>
+    <li><strong>Post everything.</strong> If you shoot it, it goes on Instagram. The grid is the portfolio. Volume + consistency beats perfection.</li>
+    <li><strong>Mix in lifestyle.</strong> First Friday, lake life, local events — this is what out-of-state buyers are actually shopping for. It also reaches people outside real estate hashtags.</li>
+    <li><strong>Go broad.</strong> National real estate hashtags + Arizona lifestyle tags + local LHC tags. Cast a wide net, let the algorithm find your audience.</li>
+  </ol>
+
+  <div class="page-footer">
+    <span class="page-footer-brand">Rob Logic</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE 4: CONTENT ═══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Rob Logic</span>
+    <span class="page-header-title">Desert Shores Media — Instagram Strategy</span>
+  </div>
+
+  <div class="section-num">03 — Content Plan</div>
+  <h2>What to Post &amp; When</h2>
+
+  <h3>Weekly Posting Schedule: 4-5x/week</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Format</th>
+        <th>Frequency</th>
+        <th>What It Is</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Reels</strong> (15-30 sec)</td>
+        <td>3x/week</td>
+        <td>Property walkthroughs, drone reveals, before/afters — the growth engine</td>
+      </tr>
+      <tr>
+        <td><strong>Carousel</strong> (5-10 slides)</td>
+        <td>1x/week</td>
+        <td>Multi-photo walkthrough or editing before/after</td>
+      </tr>
+      <tr>
+        <td><strong>Hero Image</strong></td>
+        <td>1x/week</td>
+        <td>Best single shot of the week — the stunner</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Content Mix</h3>
+  <div class="mix-bar">
+    <div class="mix-segment property">60% Property</div>
+    <div class="mix-segment lifestyle">20% Lifestyle</div>
+    <div class="mix-segment bts">20% BTS</div>
+  </div>
+  <div class="mix-legend">
+    <div class="mix-legend-item"><div class="mix-dot" style="background:var(--ink)"></div> Property (Reels, carousels, hero shots)</div>
+    <div class="mix-legend-item"><div class="mix-dot" style="background:var(--accent)"></div> Lifestyle (First Friday, events, lake life)</div>
+    <div class="mix-legend-item"><div class="mix-dot" style="background:var(--blue)"></div> Behind-the-scenes (gear, editing, shoot days)</div>
+  </div>
+
+  <hr class="divider-thin">
+
+  <h3>Reel Formula (CapCut Template)</h3>
+  <div class="formula">
+    <strong>1.</strong> Hook text overlay <span class="arrow">(first 1 sec)</span> — "This lake house was listed with iPhone photos..."<br>
+    <strong>2.</strong> Property footage <span class="arrow">(15-25 sec)</span> — walkthrough, drone, or reveal<br>
+    <strong>3.</strong> End card — logo + "Desert Shores Media" + location<br>
+    <span class="arrow">+</span> Text overlays throughout (85% of video is watched on mute)<br>
+    <span class="arrow">+</span> Trending audio from Instagram's Creative Audio library
+  </div>
+
+  <h3>Caption Formula</h3>
+  <ol>
+    <li><strong>Hook (line 1):</strong> Earn the "more" tap — <em>"This listing sat on Zillow with 4 iPhone photos. Here's what happened after."</em></li>
+    <li><strong>Story:</strong> What the shoot delivered — <em>"Delivered full gallery + drone by 5pm same day."</em></li>
+    <li><strong>Soft CTA:</strong> "DM me for pricing" or "Link in bio for packages"</li>
+  </ol>
+
+  <h3>Lifestyle Content Ideas</h3>
+  <ul>
+    <li><strong>First Friday</strong> — short Reel walking the event, vendors, vibe</li>
+    <li><strong>Local events</strong> — boat shows, lake sunsets, downtown, seasonal happenings</li>
+    <li><strong>"Why Havasu" moments</strong> — 15-second clips that sell the town, not a property</li>
+    <li>Can be shot on phone anytime — zero dependency on having a booking that week</li>
+  </ul>
+
+  <div class="page-footer">
+    <span class="page-footer-brand">Rob Logic</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE 5: HASHTAGS + PROFILE ═══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Rob Logic</span>
+    <span class="page-header-title">Desert Shores Media — Instagram Strategy</span>
+  </div>
+
+  <div class="section-num">04 — Hashtags</div>
+  <h2>Hashtag Strategy</h2>
+  <p class="section-intro">20-30 hashtags per post. Tilted national to reach out-of-state buyers. Always geotag — 79% more engagement from local audiences.</p>
+
+  <div class="hashtag-group">
+    <div class="hashtag-label">40% National Real Estate (8-12 per post)</div>
+    <div class="hashtags">
+      <span class="tag">#realestatephotography</span>
+      <span class="tag">#realestatephotographer</span>
+      <span class="tag">#listingphotos</span>
+      <span class="tag">#dronerealestate</span>
+      <span class="tag">#realestatevideo</span>
+      <span class="tag">#propertyphotography</span>
+      <span class="tag">#aerialrealestate</span>
+      <span class="tag">#realestate</span>
+      <span class="tag">#homesforsale</span>
+      <span class="tag">#twilightphotography</span>
+    </div>
+  </div>
+
+  <div class="hashtag-group">
+    <div class="hashtag-label">30% Arizona Lifestyle (6-9 per post)</div>
+    <div class="hashtags">
+      <span class="tag lifestyle">#ArizonaLiving</span>
+      <span class="tag lifestyle">#LakeHavasuLife</span>
+      <span class="tag lifestyle">#DesertLiving</span>
+      <span class="tag lifestyle">#ArizonaHomes</span>
+      <span class="tag lifestyle">#ArizonaLifestyle</span>
+      <span class="tag lifestyle">#HavasuLife</span>
+      <span class="tag lifestyle">#LakeLife</span>
+      <span class="tag lifestyle">#ArizonaRealestate</span>
+    </div>
+  </div>
+
+  <div class="hashtag-group">
+    <div class="hashtag-label">30% Local (6-9 per post)</div>
+    <div class="hashtags">
+      <span class="tag local">#LakeHavasuCity</span>
+      <span class="tag local">#LakeHavasuRealEstate</span>
+      <span class="tag local">#LakeHavasuHomes</span>
+      <span class="tag local">#MohaveCounty</span>
+      <span class="tag local">#LHCRealtor</span>
+      <span class="tag local">#LakeHavasuPhotographer</span>
+      <span class="tag local">#LakeHavasuLiving</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-num">05 — Profile Optimization</div>
+  <h2>Your Central Hub</h2>
+  <p class="section-intro">Anyone who lands on your profile should get the full picture in 5 seconds.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>Bio</h3>
+      <div class="bio-mockup">
+        <div class="bio-name">Desert Shores Media | RE Photo & Video</div>
+        <div class="bio-text">
+          Real Estate Photo | Video | Drone<br>
+          Lake Havasu City, AZ<br>
+          Every property deserves to look its best
+        </div>
+        <div class="bio-link">beacons.ai/desertshores</div>
+      </div>
+    </div>
+    <div>
+      <h3>Link in Bio</h3>
+      <ol>
+        <li>Portfolio (HD Photohub page)</li>
+        <li>Packages & Pricing</li>
+        <li>Contact / DM me</li>
+      </ol>
+
+      <h3>Story Highlights</h3>
+      <ul>
+        <li><strong>Portfolio</strong> — best property shots</li>
+        <li><strong>Drone</strong> — aerial work</li>
+        <li><strong>Before/After</strong> — transformations</li>
+        <li><strong>Pricing</strong> — 1-2 slides</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer-brand">Rob Logic</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE 6: WORKFLOW + TIMELINE ═══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Rob Logic</span>
+    <span class="page-header-title">Desert Shores Media — Instagram Strategy</span>
+  </div>
+
+  <div class="section-num">06 — Weekly Workflow</div>
+  <h2>The 3-Hour Week</h2>
+  <p class="section-intro">Everything fits in a few hours. One batch session plus short daily check-ins.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>Batch Day — 1.5 hours</h3>
+      <p style="font-size:9pt;color:var(--mid);margin-bottom:6px;">Pick one day per week</p>
+      <ol>
+        <li>Pull footage/photos from that week's shoots</li>
+        <li>Cut 3 Reels in CapCut using your template (~15 min each)</li>
+        <li>Pick 1 carousel set + 1 hero image</li>
+        <li>Write captions (hook + property + location + CTA)</li>
+        <li>Schedule all 5 posts for the week</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Daily Micro-Sessions — 15 min/day</h3>
+      <p style="font-size:9pt;color:var(--mid);margin-bottom:6px;">5 days = 1.25 hours total</p>
+      <ol>
+        <li>Reply to comments and DMs</li>
+        <li>Like/comment on 5-10 posts in LHC real estate hashtags</li>
+        <li>Note what's performing — what gets views, saves, shares</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Mindset Shift</div>
+    <p>This isn't a creative project where only the best work goes up. It's a marketing machine. The algorithm rewards accounts that post regularly — 5x/week tells Instagram "this account is active, show it to people." Volume + consistency beats perfection every time.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-num">07 — Timeline</div>
+  <h2>What to Expect</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-period">Weeks 1-2</div>
+      <div class="timeline-text">Profile optimized. Bio, highlights, link in bio set up. First batch of posts scheduled. Content rhythm starts.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Month 1</div>
+      <div class="timeline-text">Grid filled with 20+ posts. Posting rhythm locked in. Daily engagement habit established.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Months 2-3</div>
+      <div class="timeline-text">Algorithm picks up consistent posting. Follower growth accelerates. First Reels with viral potential start reaching wider audiences.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Months 3-6</div>
+      <div class="timeline-text">Meaningful follower growth. DMs coming in. Name recognition building among agents and buyers browsing Havasu properties.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">Month 6+</div>
+      <div class="timeline-text">Evaluate adding Phase 2 features: Stories, DM automation, agent collabs, and properly targeted paid ads.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer-brand">Rob Logic</span>
+    <span>Page 6</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE 7: TOOLS + FUTURE ═══════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-brand">Rob Logic</span>
+    <span class="page-header-title">Desert Shores Media — Instagram Strategy</span>
+  </div>
+
+  <div class="section-num">08 — Tools</div>
+  <h2>What You Need</h2>
+  <p class="section-intro">Everything here is free or already in your toolkit.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">CapCut</div>
+      <div class="tool-purpose">Reel editing — you already use this</div>
+      <div class="tool-cost">Free</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Later or Buffer</div>
+      <div class="tool-purpose">Schedule posts for the week in one batch</div>
+      <div class="tool-cost">Free tier</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Beacons.ai</div>
+      <div class="tool-purpose">Link-in-bio with portfolio, pricing, contact</div>
+      <div class="tool-cost">Free</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">HD Photohub</div>
+      <div class="tool-purpose">Portfolio delivery — marketing kit pages</div>
+      <div class="tool-cost">Already have</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-num">09 — Phase 2: Future Additions</div>
+  <h2>When You're Ready to Level Up</h2>
+  <p class="section-intro">Once the foundation is solid (3+ months of consistent posting), these additions accelerate growth.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Addition</th>
+        <th>What It Does</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Daily Stories</strong></td>
+        <td>BTS, polls, behind-the-edit — keeps you top of feed</td>
+        <td>Free (time)</td>
+      </tr>
+      <tr>
+        <td><strong>ManyChat DM Automation</strong></td>
+        <td>Someone comments "PRICING" → auto-DM with rate card</td>
+        <td>$15/mo</td>
+      </tr>
+      <tr>
+        <td><strong>Instagram Collab Feature</strong></td>
+        <td>Listing posts appear on both your AND the agent's profile</td>
+        <td>Free</td>
+      </tr>
+      <tr>
+        <td><strong>Agent Testimonial Campaign</strong></td>
+        <td>Screenshot reviews → Highlight reel of social proof</td>
+        <td>Free</td>
+      </tr>
+      <tr>
+        <td><strong>Meta Ads Manager</strong></td>
+        <td>Proper paid ads (not boosting from app) — geo-targeted to LHC + AZ + SoCal + Phoenix</td>
+        <td>$150-300/mo</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout-blue callout">
+    <div class="callout-title">About Paid Ads</div>
+    <p>Boosting from the Instagram app is Meta's worst ad product — it burns money with minimal targeting. When you're ready for paid, we'll use Meta Ads Manager with proper targeting: Lake Havasu + 15-mile radius, real estate occupation, Zillow/Realtor Magazine interests, and custom audiences from your client list. At $150-300/month in a 60K-population city, you'd get near-total name recognition among active agents in 60-90 days.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-num">Next Steps</div>
+  <h2>Getting Started</h2>
+
+  <ul class="checklist">
+    <li>Update profile: name field, bio, and link in bio</li>
+    <li>Set up Story Highlights (Portfolio, Drone, Before/After, Pricing)</li>
+    <li>Create CapCut Reel template (hook → footage → end card)</li>
+    <li>Pull backlog content and schedule first week of posts</li>
+    <li>Start 15-min daily engagement routine</li>
+    <li>Circle back with Rob to review progress and adjust</li>
+  </ul>
+
+  <div style="margin-top: 0.4in; padding-top: 0.15in; border-top: 2px solid var(--light); display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid);">Prepared by</div>
+      <div style="font-family: 'DM Serif Display', serif; font-size: 16pt; margin-top: 2px;">Rob Logic</div>
+    </div>
+    <div style="text-align: right;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: var(--mid);">March 2026</div>
+      <div style="font-size: 9pt; color: var(--mid); margin-top: 2px;">Questions? Let's talk.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="page-footer-brand">Rob Logic</span>
+    <span>Page 7</span>
+  </div>
+</div>
+
+</body>
+</html>
