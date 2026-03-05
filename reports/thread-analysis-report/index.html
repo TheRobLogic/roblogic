@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thread Analysis — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar — Booking Thread Analysis Report</h1>
+<p><strong>Generated:</strong> 2026-03-04<br />
+<strong>Data source:</strong> <code>2025_emails.json</code> (4461 emails)</p>
+<hr />
+<h2>1. Thread Statistics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>All Threads</th>
+<th>Booking Threads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total threads</td>
+<td>2198</td>
+<td>415</td>
+</tr>
+<tr>
+<td>Total emails</td>
+<td>4461</td>
+<td>1779</td>
+</tr>
+<tr>
+<td>Avg thread length</td>
+<td>2.0</td>
+<td>4.3</td>
+</tr>
+<tr>
+<td>Median thread length</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<h3>Thread Length Distribution</h3>
+<table>
+<thead>
+<tr>
+<th>Length</th>
+<th>All Threads</th>
+<th>%</th>
+<th>Booking Threads</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 email</td>
+<td>1838</td>
+<td>83.6%</td>
+<td>239</td>
+<td>57.6%</td>
+</tr>
+<tr>
+<td>2-3 emails</td>
+<td>159</td>
+<td>7.2%</td>
+<td>56</td>
+<td>13.5%</td>
+</tr>
+<tr>
+<td>4-6 emails</td>
+<td>81</td>
+<td>3.7%</td>
+<td>42</td>
+<td>10.1%</td>
+</tr>
+<tr>
+<td>7+ emails</td>
+<td>120</td>
+<td>5.5%</td>
+<td>78</td>
+<td>18.8%</td>
+</tr>
+</tbody>
+</table>
+<h2>2. Booking Pipeline Stages</h2>
+<p>Stage detection based on keyword/pattern matching in thread bodies.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Threads</th>
+<th>% of Booking Threads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial inquiry (inbound to Bancroft)</td>
+<td>411</td>
+<td>99.0%</td>
+</tr>
+<tr>
+<td>Bancroft replied</td>
+<td>176</td>
+<td>42.4%</td>
+</tr>
+<tr>
+<td>Date negotiation detected</td>
+<td>149</td>
+<td>35.9%</td>
+</tr>
+<tr>
+<td>Confirmation language detected</td>
+<td>80</td>
+<td>19.3%</td>
+</tr>
+<tr>
+<td>Advance/logistics discussed</td>
+<td>122</td>
+<td>29.4%</td>
+</tr>
+</tbody>
+</table>
+<h3>Booking Funnel (cumulative — threads reaching each stage)</h3>
+<table>
+<thead>
+<tr>
+<th>Funnel Stage</th>
+<th>Threads</th>
+<th>Conversion from Previous</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inquiry received</td>
+<td>401</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Bancroft replied</td>
+<td>172</td>
+<td>42.9%</td>
+</tr>
+<tr>
+<td>Confirmed booking</td>
+<td>44</td>
+<td>25.6%</td>
+</tr>
+<tr>
+<td>Advanced to logistics</td>
+<td>34</td>
+<td>77.3%</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Ghost Rate (Unanswered Inquiries)</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Count</th>
+<th>Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Booking inquiries received</td>
+<td>401</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Bancroft replied</td>
+<td>172</td>
+<td>42.9%</td>
+</tr>
+<tr>
+<td><strong>No reply (ghosted)</strong></td>
+<td><strong>229</strong></td>
+<td><strong>57.1%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Ghost Rate by Source</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Inquiries</th>
+<th>Replied</th>
+<th>Ghosted</th>
+<th>Ghost Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wix Booking Form</td>
+<td>133</td>
+<td>78</td>
+<td>55</td>
+<td>41.4%</td>
+</tr>
+<tr>
+<td>Cold emails / IOTM / other</td>
+<td>268</td>
+<td>94</td>
+<td>174</td>
+<td>64.9%</td>
+</tr>
+</tbody>
+</table>
+<h3>Ghosted Wix Form Submissions</h3>
+<table>
+<thead>
+<tr>
+<th>Subject</th>
+<th>From</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Max Muscato Alea Conte</td>
+<td>2025-01-02</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Draculin Andrew Candy</td>
+<td>2025-01-13</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Draculin Andrew Candy</td>
+<td>2025-01-13</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Kingstide Drew</td>
+<td>2025-01-15</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Joe Bojarski Joe Bojarski</td>
+<td>2025-01-17</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>MaverickSD Ralph 951-204-9099</td>
+<td>2025-01-20</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Pat Shanley Band Patshanleyband@gmail.com"</td>
+<td>2025-01-22</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"G.T. Arpe G.T. Arpe"</td>
+<td>2025-01-28</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Changing Channels Chris</td>
+<td>2025-02-06</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Faye Faye Williams</td>
+<td>2025-02-09</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Ari Shiller Julia Shiller</td>
+<td>2025-02-11</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Illintention Aaron S."</td>
+<td>2025-02-11</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Max Muscato Alea Conte</td>
+<td>2025-02-14</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Jesse Black Dea Meeks</td>
+<td>2025-02-21</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"The Hipocrats w/ Izzy Burns Cale Brown"</td>
+<td>2025-02-22</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>FastTrax Luke</td>
+<td>2025-02-24</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Red Velvette Julia Shiller</td>
+<td>2025-03-01</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Elysha Jerry 3045258102</td>
+<td>2025-03-12</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Mysidia Eric Seal</td>
+<td>2025-03-24</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Trash n Privilege Steve Shepard</td>
+<td>2025-03-27</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Meridian Girl 7603102120</td>
+<td>2025-04-01</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Sea Moss Noa Ver</td>
+<td>2025-04-02</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>RoseThorne Wil Lopez</td>
+<td>2025-04-03</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Bo &amp; the HoBos Amber Dewar"</td>
+<td>2025-04-03</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>The Spiral Electric Clay Andrews</td>
+<td>2025-04-06</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Necking, Ryan Ebaugh Ryan Ebaugh"</td>
+<td>2025-04-10</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Ryan Ebaugh (Ryan) 619 576 8604"</td>
+<td>2025-04-10</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"St. Doom Joey"</td>
+<td>2025-04-21</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Eye Mind Jon Ohnstad</td>
+<td>2025-04-26</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>The Mice Rob Logic</td>
+<td>2025-05-04</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"The Mice` Rob Logic"</td>
+<td>2025-05-06</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>The Mice Rob</td>
+<td>2025-05-12</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>YoSoyDonRigo Rodney Penny</td>
+<td>2025-05-19</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"xovenus @xovenusblu"</td>
+<td>2025-05-27</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Dams Chung</td>
+<td>2025-06-25</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>KingsTide Drew</td>
+<td>2025-07-26</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>The Love Darts Jeff Jensen</td>
+<td>2025-07-30</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>ulyssescfm Devyn</td>
+<td>2025-08-07</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>The Paw Bob Kostlan</td>
+<td>2025-08-30</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>KOAT Records Tre 442-439-0348</td>
+<td>2025-08-31</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Fernando Fidanza Fernando</td>
+<td>2025-09-02</td>
+</tr>
+<tr>
+<td>RE Re: [Bancroft Bar] Band Booking Form - new submission</td>
+<td>Rattlesnake Suitcase</td>
+<td>2025-09-04</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Jesse Black Dea Meeks</td>
+<td>2025-09-12</td>
+</tr>
+<tr>
+<td>RE Re: [Bancroft Bar] Band Booking Form - new submission</td>
+<td>Rattlesnake Suitcase</td>
+<td>2025-09-30</td>
+</tr>
+<tr>
+<td>RE Re: [Bancroft Bar] Band Booking Form - new submission</td>
+<td>Rattlesnake Suitcase</td>
+<td>2025-10-07</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>SMOR Julia Shiller</td>
+<td>2025-10-14</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Bo &amp; the HoBos Amber"</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>LeRev 6464770083</td>
+<td>2025-11-05</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Van Death 7578057454 (Cole)"</td>
+<td>2025-11-06</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>"Fight Naked Joshua @ 619-851-4979"</td>
+<td>2025-11-16</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Doctor Steevo Steevo</td>
+<td>2025-11-20</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>The Classic Rock Band Dan Armentrout</td>
+<td>2025-12-04</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Ellis Marcel Ellis Marcel</td>
+<td>2025-12-07</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>Candy Whips Micah</td>
+<td>2025-12-08</td>
+</tr>
+<tr>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>June Rain Michael Yiu</td>
+<td>2025-12-12</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Response Time</h2>
+<p>For the 162 booking threads where Bancroft replied:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Hours</th>
+<th>Days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Average response time</td>
+<td>130.6h</td>
+<td>5.4d</td>
+</tr>
+<tr>
+<td>Median response time</td>
+<td>49.6h</td>
+<td>2.1d</td>
+</tr>
+<tr>
+<td>Fastest response</td>
+<td>0.0h</td>
+<td>0.00d</td>
+</tr>
+<tr>
+<td>Slowest response</td>
+<td>1411.9h</td>
+<td>58.8d</td>
+</tr>
+</tbody>
+</table>
+<h3>Response Time Distribution</h3>
+<table>
+<thead>
+<tr>
+<th>Window</th>
+<th>Count</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under 1 hour</td>
+<td>11</td>
+<td>6.8%</td>
+</tr>
+<tr>
+<td>1-4 hours</td>
+<td>7</td>
+<td>4.3%</td>
+</tr>
+<tr>
+<td>4-24 hours</td>
+<td>33</td>
+<td>20.4%</td>
+</tr>
+<tr>
+<td>1-3 days</td>
+<td>41</td>
+<td>25.3%</td>
+</tr>
+<tr>
+<td>3-7 days</td>
+<td>36</td>
+<td>22.2%</td>
+</tr>
+<tr>
+<td>7+ days</td>
+<td>34</td>
+<td>21.0%</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Thread Duration (Booking Threads)</h2>
+<p>For 176 multi-message booking threads:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Average duration</td>
+<td>37.0</td>
+</tr>
+<tr>
+<td>Median duration</td>
+<td>14.3</td>
+</tr>
+<tr>
+<td>Shortest</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Longest</td>
+<td>288.1</td>
+</tr>
+</tbody>
+</table>
+<h3>Duration Distribution</h3>
+<table>
+<thead>
+<tr>
+<th>Duration</th>
+<th>Count</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under 1 day</td>
+<td>27</td>
+<td>15.3%</td>
+</tr>
+<tr>
+<td>1-7 days</td>
+<td>41</td>
+<td>23.3%</td>
+</tr>
+<tr>
+<td>1-2 weeks</td>
+<td>19</td>
+<td>10.8%</td>
+</tr>
+<tr>
+<td>2-4 weeks</td>
+<td>16</td>
+<td>9.1%</td>
+</tr>
+<tr>
+<td>30+ days</td>
+<td>73</td>
+<td>41.5%</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Top 20 Longest Threads</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Subject</th>
+<th>Msgs</th>
+<th>Participants</th>
+<th>Date Range</th>
+<th>Booking?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Tour</td>
+<td>51</td>
+<td>The Bancroft, Tom Kuntz</td>
+<td>2025-01-21 to 2025-07-04</td>
+<td>No</td>
+</tr>
+<tr>
+<td>2</td>
+<td>July August</td>
+<td>36</td>
+<td>Jeff Clark, The Bancroft</td>
+<td>2025-07-11 to 2025-08-27</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Re: [Bancroft Bar] Band Booking Form - new submission</td>
+<td>35</td>
+<td>Rattlesnake Suitcase, The Bancroft</td>
+<td>2025-03-20 to 2025-10-07</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>(no subject)</td>
+<td>34</td>
+<td>Seasame King, The Bancroft</td>
+<td>2025-03-16 to 2025-05-28</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Re: [Bancroft Bar] Band Booking Form - new submission</td>
+<td>33</td>
+<td>Garrett Stollar, The Bancroft</td>
+<td>2025-01-07 to 2025-04-17</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>32</td>
+<td>Super Weapon, Superweapon Minister Merciless, The</td>
+<td>2025-05-10 to 2025-08-19</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>April 12th</td>
+<td>32</td>
+<td>Corporate Citizen, The Bancroft</td>
+<td>2025-03-08 to 2025-07-19</td>
+<td>No</td>
+</tr>
+<tr>
+<td>8</td>
+<td>The Fountain Of Youth band</td>
+<td>31</td>
+<td>Roberto Marin, The Bancroft</td>
+<td>2025-02-02 to 2025-04-12</td>
+<td>No</td>
+</tr>
+<tr>
+<td>9</td>
+<td>booking september 6</td>
+<td>28</td>
+<td>PLUR Factory Collective, The Bancroft</td>
+<td>2025-08-13 to 2025-10-07</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>10</td>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>28</td>
+<td>Bloodbelly Blues, Bloodbelly Blues Jamie, The Banc</td>
+<td>2025-03-24 to 2025-07-04</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Re: Booking Deeptrees Saturday, March 8th at Bancroft Bar</td>
+<td>27</td>
+<td>Brady Distractions, The Bancroft</td>
+<td>2025-01-29 to 2025-07-14</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Re: [Bancroft Bar] Band Booking Form - new submission</td>
+<td>27</td>
+<td>The Bancroft, pat818</td>
+<td>2025-01-02 to 2025-01-17</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>13</td>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>26</td>
+<td>Hooch Band, Hooch Scott, The Bancroft</td>
+<td>2025-09-04 to 2025-10-22</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Re: Booking</td>
+<td>26</td>
+<td>Jordi Hereu, The Bancroft</td>
+<td>2025-01-01 to 2025-03-12</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>15</td>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>25</td>
+<td>New casino morgan, The Bancroft, new casino</td>
+<td>2025-03-08 to 2025-05-29</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Re: How are you?/Booking at Bancroft</td>
+<td>24</td>
+<td>FractoFlow Productions, The Bancroft</td>
+<td>2025-02-17 to 2025-04-11</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>17</td>
+<td>VOLUME</td>
+<td>24</td>
+<td>Patrick, The Bancroft</td>
+<td>2025-03-21 to 2025-07-11</td>
+<td>No</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Deathwish/Retox A.D. show inquiry</td>
+<td>24</td>
+<td>The Bancroft, toban terrio</td>
+<td>2025-02-10 to 2025-09-18</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>19</td>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>23</td>
+<td>Dream Desire Steven Arnett, Steven Arnett, The Ban</td>
+<td>2025-01-15 to 2025-03-20</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>20</td>
+<td>[Bancroft Bar] Band Booking Form - new submission</td>
+<td>23</td>
+<td>Old Moon, Old Moon Michael Priest, The Bancroft</td>
+<td>2025-04-01 to 2025-05-26</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2>7. Monthly Thread Activity</h2>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>New Threads</th>
+<th>Replies</th>
+<th>Total Emails</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-12</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2025-01</td>
+<td>246</td>
+<td>186</td>
+<td>432</td>
+</tr>
+<tr>
+<td>2025-02</td>
+<td>178</td>
+<td>119</td>
+<td>297</td>
+</tr>
+<tr>
+<td>2025-03</td>
+<td>194</td>
+<td>289</td>
+<td>483</td>
+</tr>
+<tr>
+<td>2025-04</td>
+<td>204</td>
+<td>256</td>
+<td>460</td>
+</tr>
+<tr>
+<td>2025-05</td>
+<td>225</td>
+<td>298</td>
+<td>523</td>
+</tr>
+<tr>
+<td>2025-06</td>
+<td>162</td>
+<td>207</td>
+<td>369</td>
+</tr>
+<tr>
+<td>2025-07</td>
+<td>195</td>
+<td>205</td>
+<td>400</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>171</td>
+<td>193</td>
+<td>364</td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td>167</td>
+<td>177</td>
+<td>344</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>145</td>
+<td>149</td>
+<td>294</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>136</td>
+<td>68</td>
+<td>204</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>174</td>
+<td>116</td>
+<td>290</td>
+</tr>
+</tbody>
+</table>
+<h3>New Booking Threads by Month</h3>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>New Booking Threads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-12</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2025-01</td>
+<td>47</td>
+</tr>
+<tr>
+<td>2025-02</td>
+<td>32</td>
+</tr>
+<tr>
+<td>2025-03</td>
+<td>40</td>
+</tr>
+<tr>
+<td>2025-04</td>
+<td>43</td>
+</tr>
+<tr>
+<td>2025-05</td>
+<td>48</td>
+</tr>
+<tr>
+<td>2025-06</td>
+<td>35</td>
+</tr>
+<tr>
+<td>2025-07</td>
+<td>26</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>31</td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td>30</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>30</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>25</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+<h2>8. Wix Booking Form Submissions</h2>
+<p>Threads starting with <code>[Bancroft Bar] Band Booking Form - new submission</code></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Wix Form</th>
+<th>Cold Email/Other</th>
+<th>All Booking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total threads</td>
+<td>134</td>
+<td>281</td>
+<td>415</td>
+</tr>
+<tr>
+<td>With inbound inquiry</td>
+<td>133</td>
+<td>268</td>
+<td>401</td>
+</tr>
+<tr>
+<td>Bancroft replied</td>
+<td>78</td>
+<td>94</td>
+<td>172</td>
+</tr>
+<tr>
+<td>Response rate</td>
+<td>58.6%</td>
+<td>35.1%</td>
+<td>42.9%</td>
+</tr>
+<tr>
+<td>Avg thread length</td>
+<td>6.7</td>
+<td>3.2</td>
+<td>4.3</td>
+</tr>
+</tbody>
+</table>
+<h3>Wix Form Submissions by Month</h3>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Submissions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-01</td>
+<td>25</td>
+</tr>
+<tr>
+<td>2025-02</td>
+<td>13</td>
+</tr>
+<tr>
+<td>2025-03</td>
+<td>16</td>
+</tr>
+<tr>
+<td>2025-04</td>
+<td>13</td>
+</tr>
+<tr>
+<td>2025-05</td>
+<td>15</td>
+</tr>
+<tr>
+<td>2025-06</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2025-07</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>6</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Key Findings</h2>
+<ol>
+<li><strong>Volume:</strong> 4461 emails across 2198 threads. 415 threads (18.9%) are booking-related.</li>
+<li><strong>Ghost rate is 57%</strong> — 229 of 401 booking inquiries received no reply from Bancroft.</li>
+<li><strong>Wix form response rate (59%)</strong> vs cold email response rate (35%) — form submissions get more attention.</li>
+<li><strong>Median response time is 49.6 hours (2.1 days).</strong> 85/162 replies took more than 48 hours.</li>
+<li><strong>Most booking threads are short:</strong> 239 (58%) are single-email (likely unanswered inquiries), 56 (13%) are 2-3 messages.</li>
+<li><strong>Active booking threads last a median of 14 days</strong> from first to last message.</li>
+</ol>
+</body>
+</html>

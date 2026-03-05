@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Patterns — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar — 2025 Booking Email Pattern Analysis</h1>
+<p><strong>Data source:</strong> <code>2025_emails.json</code> — 4,461 emails from the bancroftbar@gmail.com inbox, January 1 through December 31, 2025.</p>
+<p><strong>Booking emails identified:</strong> 2,285 emails across 591 distinct booking-related threads (51% of all inbox traffic). Classification used Gmail's booking label (<code>Label_4807396872324777615</code>), subject-line keywords, sender domains, and thread membership.</p>
+<hr />
+<h2>1. Intake Channels</h2>
+<p>Booking inquiries arrive through five primary channels. Direct email and the Wix booking form dominate in terms of volume, but engagement rates differ sharply.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align: right;">Threads</th>
+<th style="text-align: right;">% of Total</th>
+<th style="text-align: right;">Threads with Follow-up</th>
+<th style="text-align: right;">Follow-up Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct Email (cold)</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">32.7%</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">63%</td>
+</tr>
+<tr>
+<td>Wix Booking Form</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">20.3%</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">57%</td>
+</tr>
+<tr>
+<td>Indie on the Move (IOTM)</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">10.7%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>White Mountain Agency</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">8.6%</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2%</td>
+</tr>
+<tr>
+<td>Panda Artist Management</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">7.6%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>Bancroft Outbound</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">5.6%</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">70%</td>
+</tr>
+<tr>
+<td>U4RIK Entertainment</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2.9%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>Giggs</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2.7%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>Universal Attractions</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">2.4%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>Gainrep</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">2.2%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>Sirsy (direct)</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1.9%</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0%</td>
+</tr>
+<tr>
+<td>AFM Entertainment</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1.9%</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">18%</td>
+</tr>
+<tr>
+<td>Satellite Touring</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.3%</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr>
+<td>Woke Up On A Throne</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.3%</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">100%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key takeaway:</strong> The only channels that actually produce conversations are direct email (63%), the Wix form (57%), and Bancroft outbound (70%). Every other channel -- representing 245 threads (41% of all inquiries) -- is almost entirely ignored. Indie on the Move's 63 inquiries generated zero follow-ups.</p>
+<h3>Bancroft Outbound</h3>
+<p>The Bancroft proactively reaches out to bands roughly 33 times during the year, typically to fill bills. These outbound emails use the template pattern "Playing a show at The Bancroft" and reference a headliner already booked, with a Spotify link for the band to check out. Signature: "The Bancroft Booking Team: Kayla / Rob." Outbound threads convert at 70%, the highest of any channel.</p>
+<hr />
+<h2>2. Inquiry Volume and Seasonality</h2>
+<h3>Monthly New Inquiries</h3>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th style="text-align: right;">New Threads</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January</td>
+<td style="text-align: right;">66</td>
+<td>Peak month</td>
+</tr>
+<tr>
+<td>February</td>
+<td style="text-align: right;">47</td>
+<td></td>
+</tr>
+<tr>
+<td>March</td>
+<td style="text-align: right;">54</td>
+<td></td>
+</tr>
+<tr>
+<td>April</td>
+<td style="text-align: right;">57</td>
+<td></td>
+</tr>
+<tr>
+<td>May</td>
+<td style="text-align: right;">60</td>
+<td>Second highest</td>
+</tr>
+<tr>
+<td>June</td>
+<td style="text-align: right;">50</td>
+<td></td>
+</tr>
+<tr>
+<td>July</td>
+<td style="text-align: right;">38</td>
+<td>Summer dip begins</td>
+</tr>
+<tr>
+<td>August</td>
+<td style="text-align: right;">47</td>
+<td></td>
+</tr>
+<tr>
+<td>September</td>
+<td style="text-align: right;">55</td>
+<td>Fall rebound</td>
+</tr>
+<tr>
+<td>October</td>
+<td style="text-align: right;">42</td>
+<td></td>
+</tr>
+<tr>
+<td>November</td>
+<td style="text-align: right;">42</td>
+<td></td>
+</tr>
+<tr>
+<td>December</td>
+<td style="text-align: right;">33</td>
+<td>Lowest month</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Seasonality pattern:</strong> January is the busiest month for new inquiries (bands planning the year ahead). May is the second peak. July and December are the slowest -- likely due to holiday periods and summer touring schedules already being locked in. The year averages roughly 50 new booking threads per month.</p>
+<h3>Lead Time</h3>
+<p>From 58 inquiries with detectable requested dates in the subject line:</p>
+<table>
+<thead>
+<tr>
+<th>Lead Time</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under 1 week</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7%</td>
+</tr>
+<tr>
+<td>1-4 weeks</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">26%</td>
+</tr>
+<tr>
+<td>1-2 months</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">21%</td>
+</tr>
+<tr>
+<td>2-3 months</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">22%</td>
+</tr>
+<tr>
+<td>3-6 months</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">19%</td>
+</tr>
+<tr>
+<td>6+ months</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Median lead time:</strong> 58 days (~2 months)</li>
+<li><strong>Mean lead time:</strong> 66 days</li>
+<li>A third of inquiries are for dates less than a month out. Touring bands tend to book 2-3 months ahead; local bands often ask with 1-4 weeks' notice.</li>
+</ul>
+<hr />
+<h2>3. Band Types</h2>
+<h3>Source Type</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align: right;">Threads</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct from band/artist</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">30.8%</td>
+</tr>
+<tr>
+<td>Agency / Promoter</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">30.1%</td>
+</tr>
+<tr>
+<td>Direct via Wix form</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">20.3%</td>
+</tr>
+<tr>
+<td>Platform: Indie on the Move</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">10.7%</td>
+</tr>
+<tr>
+<td>Bancroft outbound</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">5.4%</td>
+</tr>
+<tr>
+<td>Platform: Giggs</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2.7%</td>
+</tr>
+</tbody>
+</table>
+<p>Half of all inquiries (51%) come directly from bands -- either by cold email or the Wix form. The other half comes through agencies and platforms, but as shown above, almost none of those convert to actual conversations.</p>
+<h3>Genre Distribution</h3>
+<p>Genres detected from subject lines and email body text (threads can match multiple):</p>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th style="text-align: right;">Threads Mentioning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rock (garage, psych, indie, surf, alt)</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr>
+<td>Hip-hop / Rap</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr>
+<td>Metal (doom, sludge, thrash, death, stoner)</td>
+<td style="text-align: right;">26</td>
+</tr>
+<tr>
+<td>Country / Americana</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>Punk / Hardcore</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td>Electronic / DJ</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td>Blues</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td>Pop-punk / Pop-rock / Indie Pop</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td>Ska / Reggae</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>Rockabilly</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Comedy</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>Noise / Experimental</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table>
+<p>Rock dominates. Metal and punk are strong, consistent with the dive bar identity. The hip-hop count is inflated by White Mountain Agency pitches (Dave East, Waka Flocka Flame, etc.) that never go anywhere.</p>
+<h3>Touring vs. Local</h3>
+<table>
+<thead>
+<tr>
+<th>Classification</th>
+<th style="text-align: right;">Threads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Touring acts</td>
+<td style="text-align: right;">117</td>
+</tr>
+<tr>
+<td>Local acts</td>
+<td style="text-align: right;">103</td>
+</tr>
+<tr>
+<td>Undetectable</td>
+<td style="text-align: right;">371</td>
+</tr>
+</tbody>
+</table>
+<p>Of the 220 acts where touring/local status could be determined, the split is roughly even. Most inquiries lack explicit geographic markers, so the true ratio is likely weighted more local based on the confirmed bookings data.</p>
+<hr />
+<h2>4. Thread Depth</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-email threads (no reply ever)</td>
+<td>372 (62.9%)</td>
+</tr>
+<tr>
+<td>Multi-email threads (conversation)</td>
+<td>219 (37.1%)</td>
+</tr>
+<tr>
+<td>Mean thread depth</td>
+<td>3.9 emails</td>
+</tr>
+<tr>
+<td>Median thread depth</td>
+<td>1.0 emails</td>
+</tr>
+<tr>
+<td>Maximum thread depth</td>
+<td>35 emails</td>
+</tr>
+</tbody>
+</table>
+<h3>Depth Distribution</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Emails in Thread</th>
+<th style="text-align: right;">Thread Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">372</td>
+</tr>
+<tr>
+<td style="text-align: right;">2-3</td>
+<td style="text-align: right;">74</td>
+</tr>
+<tr>
+<td style="text-align: right;">4-5</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr>
+<td style="text-align: right;">6-10</td>
+<td style="text-align: right;">46</td>
+</tr>
+<tr>
+<td style="text-align: right;">11-15</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr>
+<td style="text-align: right;">16-20</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr>
+<td style="text-align: right;">21-25</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td style="text-align: right;">26-35</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+<p>Nearly two-thirds of all booking threads are one-and-done (a single inbound email that never gets a reply). Among threads that do become conversations, the typical exchange is 6-10 emails: initial inquiry, Bancroft reply with artist info sheet, band confirms interest, date negotiation, flyer exchange, ticket link, and day-of logistics.</p>
+<h3>Longest Threads (Top 15)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Emails</th>
+<th>Band / Subject</th>
+<th>Key Participants</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">35</td>
+<td>Rattlesnake Suitcase</td>
+<td>Rattlesnake Suitcase</td>
+</tr>
+<tr>
+<td style="text-align: right;">34</td>
+<td>(no subject)</td>
+<td>Seasame King</td>
+</tr>
+<tr>
+<td style="text-align: right;">33</td>
+<td>(Wix form)</td>
+<td>Garrett Stollar</td>
+</tr>
+<tr>
+<td style="text-align: right;">32</td>
+<td>Superweapon</td>
+<td>Super Weapon, Minister Merciless</td>
+</tr>
+<tr>
+<td style="text-align: right;">31</td>
+<td>The Fountain Of Youth band</td>
+<td>Roberto Marin</td>
+</tr>
+<tr>
+<td style="text-align: right;">28</td>
+<td>"booking september 6"</td>
+<td>PLUR Factory Collective</td>
+</tr>
+<tr>
+<td style="text-align: right;">28</td>
+<td>(Wix form) Bloodbelly Blues</td>
+<td>Bloodbelly Blues</td>
+</tr>
+<tr>
+<td style="text-align: right;">27</td>
+<td>Booking Deeptrees</td>
+<td>Brady Distractions</td>
+</tr>
+<tr>
+<td style="text-align: right;">27</td>
+<td>(Wix form)</td>
+<td>pat818</td>
+</tr>
+<tr>
+<td style="text-align: right;">26</td>
+<td>(Wix form) Hooch</td>
+<td>Hooch Band</td>
+</tr>
+<tr>
+<td style="text-align: right;">26</td>
+<td>"Booking"</td>
+<td>Jordi Hereu</td>
+</tr>
+<tr>
+<td style="text-align: right;">25</td>
+<td>(Wix form) new casino</td>
+<td>new casino</td>
+</tr>
+<tr>
+<td style="text-align: right;">24</td>
+<td>"How are you?/Booking at Bancroft"</td>
+<td>FractoFlow Productions</td>
+</tr>
+<tr>
+<td style="text-align: right;">24</td>
+<td>"VOLUME"</td>
+<td>Patrick (Superkool Booking)</td>
+</tr>
+<tr>
+<td style="text-align: right;">24</td>
+<td>"Deathwish/Retox A.D. show inquiry"</td>
+<td>toban terrio</td>
+</tr>
+</tbody>
+</table>
+<p>Long threads tend to be local/regional bands where the Bancroft and band are working through logistics, bill-building, flyer creation, and ticket setup over weeks.</p>
+<hr />
+<h2>5. Key Contacts</h2>
+<h3>Top Correspondents (excluding Bancroft)</h3>
+<table>
+<thead>
+<tr>
+<th>Contact</th>
+<th style="text-align: right;">Emails</th>
+<th style="text-align: right;">Threads</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vilos Cohaagen (Admiral Atlas)</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">10</td>
+<td>Local promoter/DJ. Books multi-act shows, sends flyers. Handles DJing + curated events.</td>
+</tr>
+<tr>
+<td>Jordi Hereu</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">4</td>
+<td>Band contact. Deep engagement, repeat booker.</td>
+</tr>
+<tr>
+<td>FractoFlow Productions</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">3</td>
+<td>Local promoter. Organizes multi-band shows.</td>
+</tr>
+<tr>
+<td>Gaute Halvorsen (Woke Up On A Throne)</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">2</td>
+<td>Touring act/label. Deep 2-thread engagement.</td>
+</tr>
+<tr>
+<td>Donald Aguayo</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">4</td>
+<td>Local musician. Repeat booker across the year.</td>
+</tr>
+<tr>
+<td>Rattlesnake Suitcase</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">4</td>
+<td>Band. Most emails of any single band.</td>
+</tr>
+<tr>
+<td>Seasame King</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">2</td>
+<td>Band. Very deep threads.</td>
+</tr>
+<tr>
+<td>Garrett Stollar</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">4</td>
+<td>Band. Repeat local act.</td>
+</tr>
+<tr>
+<td>Sean Padilla (Happy Nomad Booking)</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">22</td>
+<td>Touring band agent. 22 separate pitches, zero follow-up -- a blast sender.</td>
+</tr>
+<tr>
+<td>Kublai Kwon (White Mountain Agency)</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">21</td>
+<td>Agency. 21 separate artist pitches year-round, 1 follow-up. Mostly hip-hop acts too large for venue.</td>
+</tr>
+<tr>
+<td>PLUR Factory Collective</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">3</td>
+<td>Local EDM/electronic promoter.</td>
+</tr>
+<tr>
+<td>Super Weapon</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td>Band. Repeat local act.</td>
+</tr>
+<tr>
+<td>Carlos Zamora (All Metal United)</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">6</td>
+<td>Local metal show organizer.</td>
+</tr>
+<tr>
+<td>Roberto Marin</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">1</td>
+<td>Band (Fountain Of Youth). Single deep thread.</td>
+</tr>
+<tr>
+<td>pat818</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">2</td>
+<td>Local band contact.</td>
+</tr>
+<tr>
+<td>Brady Distractions</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">3</td>
+<td>Band (Deeptrees). Repeat booker.</td>
+</tr>
+<tr>
+<td>Giggs</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">16</td>
+<td>Platform. 16 pitches, zero engagement.</td>
+</tr>
+<tr>
+<td>Patrick (Superkool Booking)</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">2</td>
+<td>Local promoter (Black Moon Cult, VOLUME events).</td>
+</tr>
+</tbody>
+</table>
+<h3>Notable Roles</h3>
+<ul>
+<li><strong>Kayla / Rob:</strong> The Bancroft's booking team. 678 outbound emails carry the "Kayla / Rob" signature. Kayla appears to handle day-to-day booking communications; Rob is involved in oversight.</li>
+<li><strong>Jeff Clark</strong> (jeff@clarkcoms.com): 37 emails across multiple threads. Subjects like "July August", "Tonight", "Help", "30th flyer" -- appears to be an internal/calendar collaborator rather than a booking inquiry sender.</li>
+<li><strong>Tom Kuntz</strong> (Jet Fuel Soda): 32 emails in a deep "Tour" thread. Likely a confirmed touring act with extensive logistics coordination.</li>
+<li><strong>Stay Strange San Diego</strong>: 33 emails across 9 threads. Local show promoter organizing themed events ("Post-Rock", "June Gloom").</li>
+<li><strong>Jerry Flack</strong>: 28 emails across 5 threads. Band contact / local promoter (Rogues of Chaos shows).</li>
+</ul>
+<hr />
+<h2>6. Response Patterns</h2>
+<h3>Reply Rate</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inbound booking threads</td>
+<td>558</td>
+</tr>
+<tr>
+<td>Never replied to</td>
+<td>373 (66.8%)</td>
+</tr>
+<tr>
+<td>Replied to at least once</td>
+<td>185 (33.2%)</td>
+</tr>
+<tr>
+<td>Bancroft emails in booking threads</td>
+<td>807 (35.3% of all booking emails)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two-thirds of all inbound booking inquiries receive no reply.</strong> However, this is heavily skewed by agency blasts and IOTM pitches that are intentionally ignored. Among Wix form submissions, 57% get a reply. Among cold emails from bands, 63% get a reply.</p>
+<h3>Response Speed</h3>
+<p>From 182 threads where response time was measurable:</p>
+<table>
+<thead>
+<tr>
+<th>Speed</th>
+<th style="text-align: right;">Count</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Under 1 hour</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">5%</td>
+</tr>
+<tr>
+<td>1-4 hours</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">9%</td>
+</tr>
+<tr>
+<td>4-24 hours</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">21%</td>
+</tr>
+<tr>
+<td>1-2 days</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">14%</td>
+</tr>
+<tr>
+<td>2-3 days</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">12%</td>
+</tr>
+<tr>
+<td>3-7 days</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">23%</td>
+</tr>
+<tr>
+<td>7+ days</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">16%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Median response time:</strong> 2.0 days (47.8 hours)</li>
+<li><strong>Mean response time:</strong> 3.9 days (93.2 hours)</li>
+<li>35% of replies go out within 24 hours. Another 26% take 1-3 days. 16% take over a week.</li>
+</ul>
+<h3>When Does Bancroft Reply?</h3>
+<p><strong>Time of day (Pacific):</strong> Activity peaks from 9 AM through 6 PM, with the highest concentration at 5 PM (100 emails). There is a notable secondary peak at 8-9 PM. Very little activity between 2-6 AM.</p>
+<p><strong>Day of week:</strong> Tuesday is by far the busiest day for outbound emails (351), followed by Wednesday (208) and Monday (187). Weekend activity drops to ~42 emails/day.</p>
+<h3>Reply Content Patterns</h3>
+<p>The most common elements in Bancroft replies:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th style="text-align: right;">Occurrences</th>
+<th>Context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"thanks"</td>
+<td style="text-align: right;">273</td>
+<td>Standard courtesy</td>
+</tr>
+<tr>
+<td>"attached"</td>
+<td style="text-align: right;">112</td>
+<td>Sending artist info sheet</td>
+</tr>
+<tr>
+<td>"ticket link"</td>
+<td style="text-align: right;">106</td>
+<td>Sharing TickPick event URL</td>
+</tr>
+<tr>
+<td>"let me know"</td>
+<td style="text-align: right;">90</td>
+<td>Awaiting band confirmation</td>
+</tr>
+<tr>
+<td>"flyer"</td>
+<td style="text-align: right;">85</td>
+<td>Requesting/sharing show flyer</td>
+</tr>
+<tr>
+<td>"door"</td>
+<td style="text-align: right;">74</td>
+<td>Discussing door deal terms</td>
+</tr>
+<tr>
+<td>"cover"</td>
+<td style="text-align: right;">72</td>
+<td>Setting cover charge</td>
+</tr>
+<tr>
+<td>"calendar"</td>
+<td style="text-align: right;">70</td>
+<td>Checking date availability</td>
+</tr>
+<tr>
+<td>"here is"</td>
+<td style="text-align: right;">66</td>
+<td>Sending info/links</td>
+</tr>
+<tr>
+<td>"website"</td>
+<td style="text-align: right;">62</td>
+<td>Referencing bancroftbar.com</td>
+</tr>
+<tr>
+<td>"sounds good"</td>
+<td style="text-align: right;">59</td>
+<td>Confirming plans</td>
+</tr>
+<tr>
+<td>"100%"</td>
+<td style="text-align: right;">25</td>
+<td>"100% of the door goes directly to the bands"</td>
+</tr>
+<tr>
+<td>"load in"</td>
+<td style="text-align: right;">22</td>
+<td>Day-of logistics</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Standard booking flow in replies:</strong><br />
+1. Reply with "Hi," + attached artist info sheet<br />
+2. Check calendar availability: "we do have [date]"<br />
+3. Discuss door deal: "100% of the door goes directly to the bands"<br />
+4. Cover amount set by bands (typically $5 or $10)<br />
+5. Flyer request: "Just wanted to check in and see if you guys had a flyer for the show?"<br />
+6. Ticket link creation via TickPick<br />
+7. Day-of details: load-in time (after 7pm when sound guy arrives), set times (30-45 min sets)</p>
+<hr />
+<h2>7. Repeat Bands</h2>
+<h3>Bands Appearing in Multiple Threads with Actual Engagement</h3>
+<table>
+<thead>
+<tr>
+<th>Band / Contact</th>
+<th style="text-align: right;">Threads</th>
+<th style="text-align: right;">Total Emails</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vilos Cohaagen / Admiral Atlas</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">49</td>
+<td>Promoter/DJ. Multiple curated shows.</td>
+</tr>
+<tr>
+<td>Jerry Flack</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">41</td>
+<td>Repeat show organizer (Rogues of Chaos).</td>
+</tr>
+<tr>
+<td>Carlos Zamora / All Metal United</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">27</td>
+<td>Metal show organizer.</td>
+</tr>
+<tr>
+<td>Rattlesnake Suitcase</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">38</td>
+<td>Band. Very active across Mar-Oct.</td>
+</tr>
+<tr>
+<td>James Cripps / Blind Anxiety Ent.</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">12</td>
+<td>Booking agent. Multiple acts.</td>
+</tr>
+<tr>
+<td>Deadbrokedown</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">18</td>
+<td>Band. Played multiple dates.</td>
+</tr>
+<tr>
+<td>Super Weapon</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">37</td>
+<td>Band. Deep engagement.</td>
+</tr>
+<tr>
+<td>FractoFlow Productions</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">45</td>
+<td>Local promoter. Feb, Jun, Sep.</td>
+</tr>
+<tr>
+<td>PLUR Factory Collective</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">30</td>
+<td>Electronic/EDM promoter.</td>
+</tr>
+<tr>
+<td>Garrett Stollar</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">39</td>
+<td>Band (via Wix form and follow-ups).</td>
+</tr>
+<tr>
+<td>Brady Distractions / Deeptrees</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">29</td>
+<td>Band. Jan, Sep, Dec.</td>
+</tr>
+<tr>
+<td>Stay Strange San Diego</td>
+<td style="text-align: right;">4+</td>
+<td style="text-align: right;">33</td>
+<td>Show promoter (themed nights).</td>
+</tr>
+<tr>
+<td>Go Go Dance Arts / Sunny Moon</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">18</td>
+<td>Recurring event organizer.</td>
+</tr>
+<tr>
+<td>Donald Aguayo</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">30</td>
+<td>Local musician. Jan-Dec spread.</td>
+</tr>
+<tr>
+<td>Seasame King</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">26</td>
+<td>Band. Mar and Nov.</td>
+</tr>
+<tr>
+<td>Patrick / Superkool Booking</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">31</td>
+<td>Promoter (Black Moon Cult, VOLUME).</td>
+</tr>
+</tbody>
+</table>
+<p>109 unique bands submitted through the Wix form alone. 10 of those submitted twice (e.g., Jesse Black, Draculin, FastTrax, The Love Darts, Bo &amp; the HoBos).</p>
+<hr />
+<h2>8. Offer Sheet and Artist Info References</h2>
+<h3>Reference Documents</h3>
+<p>The <code>/reference/</code> directory contains:<br />
+- <code>Bancroft BAND OFFER SHEET 2023.xlsx</code><br />
+- <code>Bancroft Bar General Artist Info 2022.pdf</code><br />
+- <code>Bancroft Bar General Artist Info.docx</code></p>
+<h3>Usage in Emails</h3>
+<p>57 emails reference "offer sheet," "artist info," or "band offer" -- primarily in Bancroft outbound replies where the info sheet is attached. The standard pattern is:</p>
+<blockquote>
+<p>"Hey I have attached the basic bar info to look over, it covers a lot of the basics on how the night of the show will run."</p>
+</blockquote>
+<p>The artist info document appears to cover:<br />
+- Load-in time (after bar opens; nothing on stage until sound engineer arrives ~7 PM)<br />
+- Payment structure (100% of door to bands)<br />
+- Cover amount (set by the bands, typically $5-$10)<br />
+- Ticket system (TickPick for online presale + cash at door)<br />
+- Set length (30-45 minutes depending on number of acts)<br />
+- Presale ticket reconciliation (list needed for door staff)</p>
+<p><strong>Note:</strong> The reference docs are dated 2022-2023 and may be overdue for an update.</p>
+<hr />
+<h2>9. Pain Points and Opportunities</h2>
+<h3>1. Agency Spam Overwhelms the Inbox</h3>
+<p><strong>245 threads (41% of all booking inquiries) come from agencies/platforms that are almost entirely ignored.</strong> The response rate to agency pitches is 7.4%. In particular:</p>
+<ul>
+<li><strong>White Mountain Agency</strong> sends 51 pitches for acts like Dave East, Waka Flocka Flame, CupcakKe, and Sada Baby -- hip-hop arena-level acts completely wrong for a 130-capacity dive bar. Zero engagement.</li>
+<li><strong>Panda Artist Management</strong> sends 45 emails, mostly in Spanish, promoting European artists with major-label profiles. Zero engagement.</li>
+<li><strong>Indie on the Move</strong> generates 63 form-letter pitches. Zero follow-ups. Subjects like "Top 10 Billboard Recording Artist Booking" and "Farewell Tour Booking" suggest acts mismatched for the venue.</li>
+<li><strong>Giggs</strong> platform sends 16 pitches. Zero engagement.</li>
+<li><strong>AFM Entertainment</strong> pitches tribute acts (Bon Jovi, Def Leppard, American Idol finalists) -- all wrong for the venue. 2 of 11 get replies.</li>
+<li><strong>Gainrep</strong> sends 13 blast pitches. Zero engagement.</li>
+</ul>
+<p>At least 22 agency emails reference "Billboard," "Grammy," "platinum," or "American Idol" -- signals of acts far too large for a 130-cap room.</p>
+<p><strong>Opportunity:</strong> An auto-filter or auto-reply for known blast agencies would save significant inbox scanning time. A clear "venue specs" page (capacity: 130, no guarantee, door deal only, DIY/punk/rock focus) on Indie on the Move and other platform listings could reduce mismatched pitches.</p>
+<h3>2. Two-Thirds of Inbound Inquiries Get No Reply</h3>
+<p>373 of 558 inbound threads (66.8%) receive no response from the Bancroft. Even discounting agency spam, there are genuine band inquiries in that number -- Wix form submissions (43% unreplied) and cold emails from bands that may be legitimate fits.</p>
+<p><strong>Opportunity:</strong> A structured auto-reply for Wix form submissions ("Thanks for your inquiry. We'll review and get back to you within a week. Here's our artist info sheet.") would set expectations and reduce the appearance of being unresponsive.</p>
+<h3>3. The Wix Form Is Not the Primary Intake Channel</h3>
+<p>Despite having a dedicated booking form on the website, only 20% of inquiries come through it. Direct cold email (33%) is more common. This means booking requests arrive in unstructured formats with inconsistent information.</p>
+<p>The Wix form captures: Band Name, Contact, Email, Music Link, and Notes -- a good minimum dataset. Cold emails often lack one or more of these fields, requiring follow-up just to gather basics.</p>
+<p><strong>Opportunity:</strong> Driving more traffic to the Wix form (or replacing it with a more visible intake flow) would standardize inquiries and make triage faster. An auto-response could immediately send back the artist info sheet.</p>
+<h3>4. Threads That Die Without Resolution</h3>
+<p>118 multi-email threads (54% of all conversations) end with the last message NOT from the Bancroft -- meaning the ball was in the bar's court and the conversation appears to have stalled. Some of these are bands who simply stopped replying, but others may be dropped bookings.</p>
+<p><strong>Opportunity:</strong> A follow-up reminder system ("This thread hasn't been replied to in X days") would catch threads falling through the cracks.</p>
+<h3>5. Response Time Is Inconsistent</h3>
+<p>While 35% of replies go out within 24 hours, 16% take over a week. One reply explicitly notes: "Sorry for the late reply, this email got lost in the mix." With 50+ new booking threads per month plus ongoing conversations, inbox overload is clearly a factor.</p>
+<h3>6. Tuesday Concentration</h3>
+<p>352 of 1,045 Bancroft outbound emails (34%) are sent on Tuesdays. This suggests a weekly batch-processing pattern where booking emails pile up and are handled in one sitting. This works, but means inquiries arriving Wednesday-Friday may wait 5+ days.</p>
+<h3>7. Duplicate Form Submissions</h3>
+<p>10 bands submitted the Wix form twice (e.g., Jesse Black, Draculin, FastTrax). This likely indicates either impatience from not hearing back, or confusion about whether the form worked. An auto-acknowledgment would eliminate this.</p>
+<h3>8. Bill-Building Is Manual and Time-Consuming</h3>
+<p>The longest threads (25-35 emails) are dominated by the process of building a multi-band bill: finding local openers/support acts, coordinating dates, exchanging flyers, setting up ticket links. The Bancroft proactively reaches out to fill bills 33 times during the year. This manual matchmaking consumes significant email volume.</p>
+<p><strong>Opportunity:</strong> A simple database of local bands (genre, availability, past shows) would speed up bill-building. The "repeat bands" list above is a natural starting roster.</p>
+<hr />
+<h2>Summary Statistics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total emails in inbox</td>
+<td>4,461</td>
+</tr>
+<tr>
+<td>Booking-related emails</td>
+<td>2,285 (51%)</td>
+</tr>
+<tr>
+<td>Booking threads</td>
+<td>591</td>
+</tr>
+<tr>
+<td>Avg. new inquiries/month</td>
+<td>49</td>
+</tr>
+<tr>
+<td>Wix form submissions</td>
+<td>120 (109 unique bands)</td>
+</tr>
+<tr>
+<td>Unique Indie on the Move pitches</td>
+<td>63</td>
+</tr>
+<tr>
+<td>Agency blast threads (never engaged)</td>
+<td>238</td>
+</tr>
+<tr>
+<td>Likely confirmed bookings</td>
+<td>~78</td>
+</tr>
+<tr>
+<td>Threads with Bancroft rejection</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Repeat bands (2+ threads with engagement)</td>
+<td>31</td>
+</tr>
+<tr>
+<td>Median response time</td>
+<td>2.0 days</td>
+</tr>
+<tr>
+<td>Overall reply rate (inbound threads)</td>
+<td>33.2%</td>
+</tr>
+<tr>
+<td>Reply rate (Wix form)</td>
+<td>56.7%</td>
+</tr>
+<tr>
+<td>Reply rate (direct cold email)</td>
+<td>63.0%</td>
+</tr>
+<tr>
+<td>Reply rate (agencies/platforms)</td>
+<td>7.4%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Report generated 2026-03-04 from 2025 email data. Analysis by Claude.</em></p>
+</body>
+</html>

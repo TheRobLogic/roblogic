@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venue Context — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar — Venue Context for Booking Agent</h1>
+<h2>Revenue Model</h2>
+<ul>
+<li><strong>All door/ticket money goes to the bands</strong> — the bar takes zero from ticket sales</li>
+<li>The bar makes money on DRINKS — more bodies in the room = more bar revenue</li>
+<li>Therefore: the #1 metric for a "good booking" is DRAW (how many people show up)</li>
+<li>Average spend per guest: ~$16 (stable across years)</li>
+<li>Free shows can still be great if the band brings a crowd</li>
+</ul>
+<h2>Venue Details</h2>
+<ul>
+<li><strong>130 person capacity</strong> (can push to 150), dive bar in Spring Valley, San Diego</li>
+<li>Live music venue — punk, metal, stoner/doom, garage/psych, goth/darkwave, indie rock, hip-hop</li>
+<li>Ticketing through TickPick (online advance sales)</li>
+<li>Also has door sales (cash/card at the door) — NOT captured in TickPick data</li>
+<li>POS: Toast (Standard API Access, read-only, credentials in bancroft-bar.md)</li>
+</ul>
+<h2>Booking Process (current)</h2>
+<ul>
+<li><strong>Email is the primary channel</strong> — ~85-91% of booked shows have email trail</li>
+<li>One band/promoter books the night via email, then brings the rest of the bill</li>
+<li>Wix form on website ("Band Booking Form") — highest converting channel (23%)</li>
+<li>Cold emails from bands/promoters — ~16% conversion</li>
+<li>Indie on the Move platform — 2% conversion</li>
+<li>Agency pitches — 0% conversion (auto-reject)</li>
+<li>Local promoters/curators who build multi-band bills</li>
+<li>Main booking email: bancroftbar@gmail.com</li>
+</ul>
+<h2>Business Goal</h2>
+<ul>
+<li><strong>Increase bar revenue by 30%</strong> — from ~$227K net (2024) to ~$295K</li>
+<li><strong>Automate booking</strong> — take most of the work off Kayla's plate, Rob + AI booker handle it</li>
+<li>Revenue declined ~9% from 2023 ($250K net) to 2024 ($227K net)</li>
+<li>Guest counts dropped 15% (16,654 → 14,112) — this is a foot traffic problem</li>
+<li>Show-night revenue holds steady at ~$948/night. Non-show nights: ~$443</li>
+<li>Shows add $505 incremental revenue per night — the lifeline</li>
+</ul>
+<h2>Revenue Levers (from data, QA-verified)</h2>
+<ol>
+<li><strong>Fill empty Fri/Sat nights</strong> — 15 unfilled in 2025 × $505 incremental = ~$5K</li>
+<li><strong>Expand Thu bookings</strong> — only 36% fill rate, $355/show lift = ~$8.5K/year at 77%</li>
+<li><strong>Kill the blues jam</strong> — losing ~$200/week vs a dark Wednesday = +$9.4K</li>
+<li><strong>4-band bills standard</strong> — $1,106 avg vs $819 solo (+35%)</li>
+<li><strong>Auto-reject agency spam</strong> — 40% of inbound, 0% converts, wastes time</li>
+<li><strong>Faster replies on real inquiries</strong> — 41% of Wix form leads get ghosted</li>
+<li><strong>Proactive outreach</strong> — 39 bands identified that played on good nights but never contacted us</li>
+</ol>
+<h2>Key People</h2>
+<ul>
+<li><strong>Rob</strong> — owner, handles booking with AI booker</li>
+<li><strong>Kayla</strong> — primary internal booker (79+ shows), Tuesday is her reply day</li>
+<li><strong>Vilos Cohaagen / Admiral Atlas</strong> — most active local promoter</li>
+<li><strong>Jeff Clark</strong> — heavy calendar coordination</li>
+<li><strong>FractoFlow, Stay Strange SD, Superkool Booking</strong> — external promoters</li>
+</ul>
+<h2>Key Documents</h2>
+<ul>
+<li>Band Offer Sheet (reference/Bancroft BAND OFFER SHEET 2023.xlsx) — sent to bands when booked</li>
+<li>General Artist Info (reference/Bancroft Bar General Artist Info.docx) — venue info for bands</li>
+</ul>
+<h2>Data Notes</h2>
+<ul>
+<li>Toast POS "Net Sales" in toast-daily-sales-full.csv = Gross minus Discounts (INCLUDES tax and tips)</li>
+<li>True bar revenue = use year-specific CSVs or subtract ~25-30% from full CSV figures</li>
+<li>Year CSVs have Guest counts; full CSV does not</li>
+</ul>
+</body>
+</html>

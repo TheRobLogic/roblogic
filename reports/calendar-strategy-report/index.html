@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Strategy — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar: Calendar Strategy Report</h1>
+<p><strong>Analysis Period:</strong> January 2022 -- February 2026 (1,442 days of Toast sales data, 617 music shows, 200+ dart tournaments)<br />
+<strong>Baseline Revenue:</strong> $295,325/year (2023-2024 average)<br />
+<strong>Target Revenue:</strong> $346,000/year (+30% from ~$266K historical average)<br />
+<strong>Revenue Gap:</strong> $50,675/year</p>
+<hr />
+<h2>Data Notes</h2>
+<ul>
+<li><strong>2022</strong> is incomplete (missing most of Jan-Feb) and was a ramp-up year ($220K). Used for trend analysis, not baseline.</li>
+<li><strong>2023</strong> ($298,607) and <strong>2024</strong> ($292,043) are the cleanest full years. These form the baseline.</li>
+<li><strong>2025</strong> is missing most of September (3 of 30 days recorded). Adjusted annual would be ~$286K.</li>
+<li><strong>Sunday "shows"</strong> are overwhelmingly dart tournaments (177 of 227 Sunday events), not music. This report separates them.</li>
+<li>All revenue figures are <strong>Net Sales</strong> (after discounts, excludes tips).</li>
+</ul>
+<hr />
+<h2>1. Day-of-Week Heat Map</h2>
+<h3>Average Daily Net Sales by Day, by Year</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday</td>
+<td>$485</td>
+<td>$662</td>
+<td>$474</td>
+<td>$709</td>
+<td>GROWING +46%</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>$410</td>
+<td>$650</td>
+<td>$537</td>
+<td>$532</td>
+<td>GROWING +30%</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>$377</td>
+<td>$537</td>
+<td>$442</td>
+<td>$478</td>
+<td>GROWING +27%</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>$628</td>
+<td>$847</td>
+<td>$596</td>
+<td>$694</td>
+<td>GROWING +11%</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>$1,205</td>
+<td>$1,457</td>
+<td>$1,071</td>
+<td>$1,170</td>
+<td>FLAT -3%</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>$772</td>
+<td>$1,200</td>
+<td>$1,397</td>
+<td>$1,136</td>
+<td>GROWING +47%</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>$722</td>
+<td>$796</td>
+<td>$1,079</td>
+<td>$794</td>
+<td>FLAT +10%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Finding:</strong> Monday through Thursday are all growing. Friday is flat -- it was the highest-performing day in 2022 and hasn't kept pace. Saturday has grown dramatically (+47%). The early-week growth suggests the bar's overall audience is expanding, not just show attendance.</p>
+<h3>Music Show Night vs Dark Night by Day (2022-2025 average)</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Show Night</th>
+<th>Dark Night</th>
+<th>Lift</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday</td>
+<td>$847</td>
+<td>$494</td>
+<td>+$353 (+71%)</td>
+<td>33 shows</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>$782</td>
+<td>$498</td>
+<td>+$284 (+57%)</td>
+<td>14 shows</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>$505</td>
+<td>$432</td>
+<td>+$73 (+17%)</td>
+<td>41 shows*</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>$925</td>
+<td>$570</td>
+<td>+$355 (+62%)</td>
+<td>66 shows</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>$1,394</td>
+<td>$734</td>
+<td>+$660 (+90%)</td>
+<td>146 shows</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>$1,269</td>
+<td>$605</td>
+<td>+$665 (+110%)</td>
+<td>156 shows</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>$1,183</td>
+<td>$671</td>
+<td>+$513 (+76%)</td>
+<td>41 shows</td>
+</tr>
+</tbody>
+</table>
+<p>*Wednesday's low lift is an artifact: 18 of 41 "shows" were blues jams averaging $200-250. Actual booked shows on Wednesday averaged $700+ when the jams are excluded. The top Wednesday show (MC Chris, Jun 2024) hit $2,107.</p>
+<p><strong>Bottom Line:</strong> Music shows reliably double revenue on any night. Friday and Saturday show the highest absolute lift ($660+). Thursday is the strongest mid-week performer. Wednesday's apparent weakness is entirely due to low-draw jams dragging the average.</p>
+<hr />
+<h2>2. Monthly Revenue Curves</h2>
+<h3>Total Monthly Net Sales by Year</h3>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>2022</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>4-Year Avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan</td>
+<td>$8,166</td>
+<td>$4,988</td>
+<td>$22,120</td>
+<td>$22,347</td>
+<td>$14,405</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>$2,055</td>
+<td>$30,699</td>
+<td>$23,676</td>
+<td>$21,836</td>
+<td>$19,566</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>$15,459</td>
+<td>$30,213</td>
+<td>$28,801</td>
+<td>$27,298</td>
+<td>$25,443</td>
+</tr>
+<tr>
+<td>Apr</td>
+<td>$17,515</td>
+<td>$27,508</td>
+<td>$21,203</td>
+<td>$21,207</td>
+<td>$21,858</td>
+</tr>
+<tr>
+<td>May</td>
+<td>$19,102</td>
+<td>$23,161</td>
+<td>$28,379</td>
+<td>$26,546</td>
+<td>$24,297</td>
+</tr>
+<tr>
+<td>Jun</td>
+<td>$19,510</td>
+<td>$29,275</td>
+<td>$26,813</td>
+<td>$24,547</td>
+<td>$25,036</td>
+</tr>
+<tr>
+<td>Jul</td>
+<td>$21,737</td>
+<td>$26,593</td>
+<td>$23,015</td>
+<td>$22,394</td>
+<td>$23,435</td>
+</tr>
+<tr>
+<td>Aug</td>
+<td>$22,709</td>
+<td>$25,613</td>
+<td>$29,172</td>
+<td>$25,548</td>
+<td>$25,761</td>
+</tr>
+<tr>
+<td>Sep</td>
+<td>$21,840</td>
+<td>$23,626</td>
+<td>$19,171</td>
+<td>$1,168*</td>
+<td>$16,451</td>
+</tr>
+<tr>
+<td>Oct</td>
+<td>$21,751</td>
+<td>$22,702</td>
+<td>$19,291</td>
+<td>$25,324</td>
+<td>$22,267</td>
+</tr>
+<tr>
+<td>Nov</td>
+<td>$27,240</td>
+<td>$27,912</td>
+<td>$24,092</td>
+<td>$19,838</td>
+<td>$24,771</td>
+</tr>
+<tr>
+<td>Dec</td>
+<td>$23,631</td>
+<td>$26,318</td>
+<td>$26,309</td>
+<td>$27,862</td>
+<td>$26,030</td>
+</tr>
+</tbody>
+</table>
+<p>*Sep 2025 has only 3 days of data.</p>
+<h3>Monthly Tiers (based on 4-year averages)</h3>
+<p><strong>Tier 1 -- Book Heavy (&gt;$25K/month):</strong><br />
+- December ($26,030), August ($25,761), March ($25,443), June ($25,036), November ($24,771)</p>
+<p><strong>Tier 2 -- Solid (&gt;$22K/month):</strong><br />
+- May ($24,297), July ($23,435), October ($22,267)</p>
+<p><strong>Tier 3 -- Slow (&lt; $22K/month):</strong><br />
+- April ($21,858), February ($19,566), September ($16,451), January ($14,405)</p>
+<p><strong>Important:</strong> Jan and Feb 2022 are heavily undercounted (data gaps). Using 2023-2025 only, January averages $16,485 and February averages $25,404 -- February is actually a Tier 1 month.</p>
+<h3>Do Shows Help Every Month?</h3>
+<p>Yes. Every single month shows a 79-137% revenue lift on show nights vs dark nights. There is no month where shows don't help. The weakest lift months (September at +79%, October at +87%) still show massive improvement over dark nights.</p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Show Night Avg</th>
+<th>Dark Night Avg</th>
+<th>Lift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan</td>
+<td>$1,042</td>
+<td>$439</td>
+<td>+137%</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>$1,257</td>
+<td>$562</td>
+<td>+124%</td>
+</tr>
+<tr>
+<td>Nov</td>
+<td>$1,160</td>
+<td>$491</td>
+<td>+136%</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>$1,245</td>
+<td>$596</td>
+<td>+109%</td>
+</tr>
+<tr>
+<td>Sep</td>
+<td>$900</td>
+<td>$502</td>
+<td>+79%</td>
+</tr>
+<tr>
+<td>Oct</td>
+<td>$923</td>
+<td>$493</td>
+<td>+87%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The "slow months" aren't slow because shows don't work -- they're slow because of fewer shows and lower walk-in traffic.</strong> January and September are prime candidates for targeted booking pushes.</p>
+<hr />
+<h2>3. Optimal Show Count -- Diminishing Returns Analysis</h2>
+<h3>Weekly Revenue by Number of Shows That Week</h3>
+<table>
+<thead>
+<tr>
+<th>Shows/Week</th>
+<th>Avg Weekly Revenue</th>
+<th>Marginal per Show</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>$3,383</td>
+<td>--</td>
+<td>6 wks</td>
+</tr>
+<tr>
+<td>1</td>
+<td>$4,431</td>
+<td>+$1,048</td>
+<td>11 wks</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$4,922</td>
+<td>+$491</td>
+<td>35 wks</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$5,422</td>
+<td>+$500</td>
+<td>59 wks</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$5,993</td>
+<td>+$571</td>
+<td>67 wks</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$6,164</td>
+<td>+$172</td>
+<td>13 wks</td>
+</tr>
+<tr>
+<td>6</td>
+<td>$7,056</td>
+<td>+$891</td>
+<td>3 wks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Diminishing returns kick in at 5 shows/week.</strong> The jump from 4 to 5 shows adds only $172/week -- not worth the booking effort and band costs. The 6-show weeks look great but the sample (n=3) is too small to be reliable.</p>
+<p><strong>Sweet spot: 3-4 shows per week.</strong> This generates $5,400-$6,000/week ($280K-$312K annualized) with strong marginal returns on each show.</p>
+<h3>Monthly Show Count vs Revenue</h3>
+<table>
+<thead>
+<tr>
+<th>Shows/Month</th>
+<th>Avg Monthly Revenue</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5-7</td>
+<td>$15,000-$17,500</td>
+<td>7 months</td>
+</tr>
+<tr>
+<td>8-10</td>
+<td>$19,000-$23,000</td>
+<td>6 months</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td>$22,000-$24,500</td>
+<td>11 months</td>
+</tr>
+<tr>
+<td>14-15</td>
+<td>$25,000-$28,000</td>
+<td>5 months</td>
+</tr>
+<tr>
+<td>16-18</td>
+<td>$24,000-$25,500</td>
+<td>19 months</td>
+</tr>
+</tbody>
+</table>
+<p>Revenue plateaus at 15-16 shows/month. Going above 16 shows/month actually shows slightly lower revenue -- evidence of audience fatigue or inventory cannibalization.</p>
+<p><strong>Optimal: 13-15 music shows per month.</strong> Below 13, you're leaving money on the table. Above 16, you're getting diminishing returns.</p>
+<hr />
+<h2>4. Holiday/Event Impact</h2>
+<h3>Individual Holiday Performance vs Daily Average ($782)</h3>
+<table>
+<thead>
+<tr>
+<th>Holiday</th>
+<th>Avg Revenue</th>
+<th>vs Average</th>
+<th>Shows Booked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New Year's Eve</td>
+<td>$1,142</td>
+<td>+46%</td>
+<td>2 of 4 years</td>
+</tr>
+<tr>
+<td>Christmas Day</td>
+<td>$895</td>
+<td>+15%</td>
+<td>1 of 4 years</td>
+</tr>
+<tr>
+<td>St Patrick's Day</td>
+<td>$899</td>
+<td>+15%</td>
+<td>2 of 4 years</td>
+</tr>
+<tr>
+<td>Cinco de Mayo</td>
+<td>$722</td>
+<td>-8%</td>
+<td>1 of 4 years</td>
+</tr>
+<tr>
+<td>Halloween</td>
+<td>$734</td>
+<td>-6%</td>
+<td>1 of 4 years</td>
+</tr>
+<tr>
+<td>Valentine's Day</td>
+<td>$651</td>
+<td>-17%</td>
+<td>1 of 3 years</td>
+</tr>
+<tr>
+<td>Christmas Eve</td>
+<td>$596</td>
+<td>-24%</td>
+<td>1 of 4 years</td>
+</tr>
+<tr>
+<td>New Year's Day</td>
+<td>$439</td>
+<td>-44%</td>
+<td>0 of 3 years</td>
+</tr>
+<tr>
+<td>July 4th</td>
+<td>$341</td>
+<td>-56%</td>
+<td>1 of 4 years</td>
+</tr>
+</tbody>
+</table>
+<h3>Holiday Weekend Windows</h3>
+<table>
+<thead>
+<tr>
+<th>Window</th>
+<th>Avg Revenue</th>
+<th>vs Average</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>St Patty's (Mar 15-18)</td>
+<td>$931</td>
+<td>+19%</td>
+</tr>
+<tr>
+<td>Cinco Week (May 3-6)</td>
+<td>$728</td>
+<td>-7%</td>
+</tr>
+<tr>
+<td>NYE/NY (Dec 30-Jan 2)</td>
+<td>$709</td>
+<td>-9%</td>
+</tr>
+<tr>
+<td>July 4th (Jul 1-5)</td>
+<td>$653</td>
+<td>-16%</td>
+</tr>
+<tr>
+<td>Halloween (Oct 28-31)</td>
+<td>$653</td>
+<td>-16%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Findings:</strong><br />
+- <strong>NYE is the only holiday worth a premium booking.</strong> It's the highest single-night performer.<br />
+- <strong>St Patrick's Day is the only holiday WEEKEND that lifts revenue</strong> -- lean into this with a themed event.<br />
+- <strong>July 4th is a graveyard.</strong> People leave town or go to outdoor events. Don't fight it -- close early or run a low-cost event.<br />
+- <strong>Halloween underperforms</strong> despite being a "bar holiday." The data suggests people go to larger venues/events for Halloween. Consider a low-cost themed party rather than paying for a band.<br />
+- <strong>Most holidays HURT revenue.</strong> The bar does better on regular weekends. Don't overspend on holiday bookings expecting a bonanza -- it rarely materializes.</p>
+<hr />
+<h2>5. Seasonal/Weather Analysis</h2>
+<h3>Average Daily Revenue by Season</h3>
+<table>
+<thead>
+<tr>
+<th>Season</th>
+<th>All Days</th>
+<th>Show Nights</th>
+<th>Dark Nights</th>
+<th>Show Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Winter (Dec-Feb)</td>
+<td>$787</td>
+<td>$1,160</td>
+<td>$541</td>
+<td>121/305 days</td>
+</tr>
+<tr>
+<td>Spring (Mar-May)</td>
+<td>$778</td>
+<td>$1,137</td>
+<td>$553</td>
+<td>142/368 days</td>
+</tr>
+<tr>
+<td>Summer (Jun-Aug)</td>
+<td>$807</td>
+<td>$1,090</td>
+<td>$533</td>
+<td>181/368 days</td>
+</tr>
+<tr>
+<td>Fall (Sep-Nov)</td>
+<td>$754</td>
+<td>$999</td>
+<td>$495</td>
+<td>173/337 days</td>
+</tr>
+</tbody>
+</table>
+<h3>Summer Heat Impact</h3>
+<ul>
+<li>Summer show nights: <strong>$1,090</strong> average</li>
+<li>Winter show nights: <strong>$1,160</strong> average</li>
+<li>Difference: <strong>-6%</strong> (summer slightly underperforms)</li>
+</ul>
+<p>The summer heat penalty exists but is modest. Spring Valley's inland heat does not significantly deter bar attendance. The real seasonal weakness is <strong>Fall</strong> -- September and October are the worst show-night months ($900-$923 avg), likely due to post-summer burnout and the gap before holiday season energy kicks in.</p>
+<h3>Monthly Show-Night Revenue Pattern</h3>
+<pre><code>Jan: $1,042  ####################################################
+Feb: $1,257  ##############################################################
+Mar: $1,245  ##############################################################
+Apr: $1,078  #####################################################
+May: $1,100  #######################################################
+Jun: $1,170  ##########################################################
+Jul: $1,044  ####################################################
+Aug: $1,068  #####################################################
+Sep: $  900  #############################################
+Oct: $  923  ##############################################
+Nov: $1,160  ##########################################################
+Dec: $1,156  #########################################################
+</code></pre>
+<p><strong>September-October is the valley.</strong> Show-night revenue drops ~15% below the annual average. February-March is the peak for show-night revenue.</p>
+<hr />
+<h2>6. Consecutive Show Fatigue</h2>
+<h3>Saturday: Does a Multi-Night Streak Hurt?</h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Avg Net Sales</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone Saturday (no Thu/Fri show)</td>
+<td>$1,088</td>
+<td>23</td>
+</tr>
+<tr>
+<td>Saturday after Friday show only</td>
+<td>$1,308</td>
+<td>76</td>
+</tr>
+<tr>
+<td>Saturday after Thu+Fri (3-night streak)</td>
+<td>$1,295</td>
+<td>42</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No fatigue effect on Saturday.</strong> In fact, Saturday does BETTER after a Friday show (+20%). The data suggests momentum: a Friday show may prime the audience, and Saturday benefits from word-of-mouth or overlap crowds. Three-night streaks (Thu-Fri-Sat) perform essentially the same as Fri-Sat pairs.</p>
+<h3>Friday: Does a Thursday Show Hurt?</h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Avg Net Sales</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone Friday</td>
+<td>$1,438</td>
+<td>97</td>
+</tr>
+<tr>
+<td>Friday after Thursday show</td>
+<td>$1,299</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mild Friday fatigue after Thursday: -10%.</strong> This is the only measurable fatigue effect in the data. However, $1,299 is still far above a dark night ($734), so Thursday shows are still worth booking even considering the slight Friday impact.</p>
+<h3>Sunday: Does a Saturday Show Hurt?</h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Avg Net Sales</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone Sunday show</td>
+<td>$854</td>
+<td>33</td>
+</tr>
+<tr>
+<td>Sunday after Saturday show</td>
+<td>$884</td>
+<td>140</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No fatigue effect.</strong> Sunday performs the same regardless of Saturday activity.</p>
+<h3>Overall Streak Analysis</h3>
+<table>
+<thead>
+<tr>
+<th>Position in Streak</th>
+<th>Avg Revenue</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First night of streak</td>
+<td>$1,104</td>
+<td>256</td>
+</tr>
+<tr>
+<td>Second night</td>
+<td>$1,157</td>
+<td>172</td>
+</tr>
+<tr>
+<td>Third+ night</td>
+<td>$1,007</td>
+<td>189</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Verdict:</strong> A slight dip on the third consecutive night (-9% vs first night), but it's still nearly double a dark night. <strong>Consecutive shows are not a problem.</strong> Book freely on Thu-Fri-Sat without fear of cannibalization.</p>
+<hr />
+<h2>7. Tuesday/Wednesday Opportunity</h2>
+<h3>Tuesday</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Avg Net Sales</th>
+<th>Sample</th>
+<th>Orders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dark night</td>
+<td>$498</td>
+<td>158</td>
+<td>29</td>
+</tr>
+<tr>
+<td>Karaoke night</td>
+<td>$688</td>
+<td>25</td>
+<td>45</td>
+</tr>
+<tr>
+<td>Music show</td>
+<td>$782</td>
+<td>14</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Music shows lift Tuesday by +$284 (+57%)</li>
+<li>But only 14 shows in 4 years -- very small sample</li>
+<li>Revenue distribution: Median $763, range $165-$1,533</li>
+<li>Karaoke provides a cheaper lift: +$190 per night with no band costs</li>
+<li><strong>Verdict:</strong> Karaoke is the better play for Tuesday. It costs nothing and reliably adds ~$190/night. Music shows can work but are inconsistent with such a thin audience base.</li>
+</ul>
+<h3>Wednesday</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Avg Net Sales</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dark night</td>
+<td>$432</td>
+<td>151</td>
+</tr>
+<tr>
+<td>Blues jam</td>
+<td>$200-$253</td>
+<td>18</td>
+</tr>
+<tr>
+<td>Booked show</td>
+<td>$700+</td>
+<td>23</td>
+</tr>
+<tr>
+<td>All "shows"</td>
+<td>$505</td>
+<td>41</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The Wednesday average is dragged down by blues jams that perform WORSE than dark nights</li>
+<li>When an actual booked show plays Wednesday, average revenue is ~$700 -- a $268 lift</li>
+<li>Top Wednesday shows hit $1,000-$2,100 -- proving the night CAN work</li>
+<li><strong>Verdict:</strong> Kill the blues jam. It's losing money. If booking Wednesday, only do it for touring acts that need a midweek date or high-draw locals. Don't book it as a habit.</li>
+</ul>
+<h3>Monday (for comparison)</h3>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Avg Net Sales</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dark night</td>
+<td>$494</td>
+<td>102</td>
+</tr>
+<tr>
+<td>Bingo night</td>
+<td>$577</td>
+<td>63</td>
+</tr>
+<tr>
+<td>Music show</td>
+<td>$847</td>
+<td>33</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Monday shows deliver a solid +$353 lift (71%)</li>
+<li>Bingo adds a modest +$83 per night -- low but zero-cost</li>
+<li><strong>Verdict:</strong> Book Monday shows selectively (1-2/month for touring acts). Keep bingo running on other Mondays -- it's free money.</li>
+</ul>
+<hr />
+<h2>8. Ideal Booking Calendar Template</h2>
+<h3>Weekly Template</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Recommendation</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Monday</strong></td>
+<td>Bingo (default) + 1 show/month</td>
+<td>Bingo is free revenue. Monthly show for touring acts that need a Monday.</td>
+</tr>
+<tr>
+<td><strong>Tuesday</strong></td>
+<td>Karaoke (2x/month)</td>
+<td>Cheap, reliable +$190/night. No band costs.</td>
+</tr>
+<tr>
+<td><strong>Wednesday</strong></td>
+<td>DARK (default)</td>
+<td>Not worth the booking effort. Only book for touring acts passing through or special one-offs.</td>
+</tr>
+<tr>
+<td><strong>Thursday</strong></td>
+<td>SHOW (3x/month)</td>
+<td>Strong $355 lift. Biggest untapped opportunity. Currently only booked 36% of weeks.</td>
+</tr>
+<tr>
+<td><strong>Friday</strong></td>
+<td>SHOW (every week)</td>
+<td>Highest absolute revenue day. Never leave this dark.</td>
+</tr>
+<tr>
+<td><strong>Saturday</strong></td>
+<td>SHOW (every week)</td>
+<td>Highest lift percentage. Never leave this dark.</td>
+</tr>
+<tr>
+<td><strong>Sunday</strong></td>
+<td>Darts (default) + 1 music show/month</td>
+<td>Darts are a reliable draw ($877 avg). Monthly music show adds variety.</td>
+</tr>
+</tbody>
+</table>
+<h3>Optimal Monthly Counts</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Current (2023-24 avg)</th>
+<th>Proposed</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Music shows</td>
+<td>14/month</td>
+<td>16/month</td>
+<td>+2</td>
+</tr>
+<tr>
+<td>Dart tournaments</td>
+<td>4/month</td>
+<td>4/month</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Bingo nights</td>
+<td>3/month</td>
+<td>3/month</td>
+<td>same</td>
+</tr>
+<tr>
+<td>Karaoke nights</td>
+<td>1/month</td>
+<td>2/month</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>Dark nights</td>
+<td>8/month</td>
+<td>5/month</td>
+<td>-3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Annual show target: 192 music shows/year</strong> (up from ~168). This stays in the 15-16 shows/month sweet spot identified in Section 3.</p>
+<h3>Seasonal Adjustments</h3>
+<table>
+<thead>
+<tr>
+<th>Season</th>
+<th>Adjustment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jan-Feb</strong></td>
+<td>Book Thursday aggressively. These months are slow but shows deliver the highest percentage lift (+124-137%). Fill the calendar.</td>
+</tr>
+<tr>
+<td><strong>Mar-Jun</strong></td>
+<td>Peak booking season. Aim for 4 shows/week. Book the best acts here -- this is when show revenue is highest ($1,170-$1,257/night).</td>
+</tr>
+<tr>
+<td><strong>Jul-Aug</strong></td>
+<td>Maintain 3-4 shows/week. Slight summer heat penalty but not enough to cut back. Outdoor patio events could offset.</td>
+</tr>
+<tr>
+<td><strong>Sep-Oct</strong></td>
+<td>Reduce to 3 shows/week. This is the dead zone. Book cheaper acts, run promotions (2-for-1, industry nights). Don't overspend on talent.</td>
+</tr>
+<tr>
+<td><strong>Nov-Dec</strong></td>
+<td>Book heavy. Holiday energy + football season lifts all boats. NYE is the single biggest show night of the year -- book a headliner.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9. Revenue Gap Analysis</h2>
+<h3>Where the Bar Stands</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-2024 average annual revenue</td>
+<td>$295,325</td>
+</tr>
+<tr>
+<td>Target (30% growth)</td>
+<td>$346,000</td>
+</tr>
+<tr>
+<td>Gap</td>
+<td>$50,675</td>
+</tr>
+</tbody>
+</table>
+<h3>What Calendar Optimization Delivers</h3>
+<p>Adding 52 music shows/year (from ~168 to ~220), concentrated on Thursday and filling gaps on Friday/Saturday:</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Additional Shows</th>
+<th>Revenue/Show</th>
+<th>Revenue Add</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thursday (16 to 40/yr)</td>
+<td>+24</td>
+<td>$355</td>
+<td>+$8,509</td>
+</tr>
+<tr>
+<td>Friday (38 to 48/yr)</td>
+<td>+10</td>
+<td>$660</td>
+<td>+$6,598</td>
+</tr>
+<tr>
+<td>Saturday (43 to 49/yr)</td>
+<td>+6</td>
+<td>$656</td>
+<td>+$3,935</td>
+</tr>
+<tr>
+<td>Sunday music (13 to 19/yr)</td>
+<td>+6</td>
+<td>$513</td>
+<td>+$3,076</td>
+</tr>
+<tr>
+<td>Monday (7 to 13/yr)</td>
+<td>+6</td>
+<td>$321</td>
+<td>+$1,926</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>+52</strong></td>
+<td></td>
+<td><strong>+$24,044</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>The Full Picture</h3>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Revenue Impact</th>
+<th>% of Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calendar optimization alone</td>
+<td>+$24,044</td>
+<td>47%</td>
+</tr>
+<tr>
+<td>+ Average check growth 5%</td>
+<td>+$15,969*</td>
+<td>31%</td>
+</tr>
+<tr>
+<td>+ Average check growth 8%</td>
+<td>+$25,550*</td>
+<td>50%</td>
+</tr>
+<tr>
+<td><strong>Combined: Calendar + 8% check</strong></td>
+<td><strong>+$49,594</strong></td>
+<td><strong>98%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>*Applied to the new projected baseline of $319,369.</p>
+<h3>Projected Revenue Under Combined Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Annual Revenue</th>
+<th>vs Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Do nothing (current trajectory)</td>
+<td>$295,325</td>
+<td>-$50,675</td>
+</tr>
+<tr>
+<td>Calendar optimization only</td>
+<td>$319,369</td>
+<td>-$26,631</td>
+</tr>
+<tr>
+<td>Calendar + 5% avg check growth</td>
+<td>$335,337</td>
+<td>-$10,663</td>
+</tr>
+<tr>
+<td>Calendar + 8% avg check growth</td>
+<td>$344,918</td>
+<td>-$1,082</td>
+</tr>
+<tr>
+<td>Calendar + 10% avg check growth</td>
+<td>$351,306</td>
+<td><strong>+$5,306</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Calendar optimization alone closes ~47% of the gap.</strong> To close the remaining gap, the bar needs to increase average check size (currently $20.13) by 8-10%. This can be achieved through menu engineering (featured cocktails, shot specials during shows, food partnerships), not just price increases.</p>
+<h3>Revenue Attribution: Show Nights Drive the Business</h3>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Show Days</th>
+<th>Show Day Revenue</th>
+<th>% of Total Revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td>109 (33%)</td>
+<td>$110,455</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>169 (50%)</td>
+<td>$189,635</td>
+<td>64%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>168 (46%)</td>
+<td>$198,784</td>
+<td>68%</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>171 (51%)</td>
+<td>$172,993</td>
+<td>65%</td>
+</tr>
+</tbody>
+</table>
+<p>Show nights are less than half the days but generate two-thirds of revenue. Every additional show night is high-leverage.</p>
+<h3>Growth Decomposition</h3>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Avg Daily Orders</th>
+<th>Avg Check</th>
+<th>Avg Daily Net Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td>54</td>
+<td>$12.57</td>
+<td>$659</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>48</td>
+<td>$18.70</td>
+<td>$881</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>40</td>
+<td>$20.13</td>
+<td>$798</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>40</td>
+<td>$20.13</td>
+<td>$787</td>
+</tr>
+</tbody>
+</table>
+<p>Revenue grew 34% from 2022 to 2023 while orders actually DECLINED. The growth came entirely from average check increasing 49% ($12.57 to $18.70). Orders have since stabilized at 40/day and average check has plateaued at $20.13. <strong>The next growth lever must be either more show nights (more customers through the door) or higher check average (menu engineering).</strong> The easy check-size gains have already been captured.</p>
+<hr />
+<h2>Summary: The $346K Playbook</h2>
+<ol>
+<li>
+<p><strong>Thursday is the #1 opportunity.</strong> Go from booking 36% of Thursdays to 77%. This alone adds ~$8,500/year.</p>
+</li>
+<li>
+<p><strong>Never leave Friday or Saturday dark.</strong> Fill the remaining gaps. Combined: +$10,500/year.</p>
+</li>
+<li>
+<p><strong>Kill the blues jam.</strong> It performs worse than a dark night. Replace with nothing or an occasional booked show.</p>
+</li>
+<li>
+<p><strong>Keep darts on Sunday.</strong> They're a reliable $877/night draw that requires zero booking effort. Add one music show/month on top.</p>
+</li>
+<li>
+<p><strong>Run karaoke on Tuesday 2x/month.</strong> Free revenue, no band costs. +$190/night.</p>
+</li>
+<li>
+<p><strong>Book 13-15 music shows per month.</strong> Below 13 leaves money on the table. Above 16 shows diminishing returns.</p>
+</li>
+<li>
+<p><strong>Don't chase holidays.</strong> Only NYE and St Patrick's Day justify premium booking. July 4th and Halloween are money losers.</p>
+</li>
+<li>
+<p><strong>Lean into Jan-Feb.</strong> These months have the highest show-night lift percentage. A $200 show on a January Thursday generates more marginal revenue than an expensive act in September.</p>
+</li>
+<li>
+<p><strong>Accept the September dip.</strong> It's the worst month no matter what you do. Book cheap acts, run promotions, focus energy elsewhere.</p>
+</li>
+<li>
+<p><strong>Grow average check 8-10%.</strong> Calendar optimization closes half the gap. The rest comes from getting each customer to spend ~$2 more per visit. Featured cocktails, shot specials during sets, food truck partnerships.</p>
+</li>
+</ol>
+<p><strong>Calendar optimization + 8% check growth = $345K.</strong> That's 98% of the way to target.</p>
+</body>
+</html>

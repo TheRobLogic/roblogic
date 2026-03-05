@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Band Cross-Reference — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar: Band Cross-Reference Report</h1>
+<h2>2025 Email Inbox vs. Show History</h2>
+<p><strong>Analysis date:</strong> 2026-03-04<br />
+<strong>Email corpus:</strong> 4,461 emails in 2025 inbox<br />
+<strong>Show history:</strong> 5,745 total events (2014--2026), 197 in 2025<br />
+<strong>Band directory:</strong> 2,981 unique bands</p>
+<hr />
+<h2>1. Extraction Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Booking-related email extractions</td>
+<td style="text-align: right;">973</td>
+</tr>
+<tr>
+<td>Unique band/artist names extracted</td>
+<td style="text-align: right;">342</td>
+</tr>
+<tr>
+<td>Matched to 2025 calendar (booked)</td>
+<td style="text-align: right;">44</td>
+</tr>
+<tr>
+<td>Known from prior years, not booked 2025</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>Inquired but never booked (no calendar match)</td>
+<td style="text-align: right;">273</td>
+</tr>
+</tbody>
+</table>
+<h3>Extraction by Source Channel</h3>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align: center;">Unique Bands</th>
+<th style="text-align: center;">Booked</th>
+<th style="text-align: center;">Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">109</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">23%</td>
+</tr>
+<tr>
+<td>Indie on the Move</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2%</td>
+</tr>
+<tr>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">152</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">16%</td>
+</tr>
+<tr>
+<td>Independent Booking Agents</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">18%</td>
+</tr>
+<tr>
+<td>White Mountain Agency</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0%</td>
+</tr>
+<tr>
+<td>Universal Attractions Agency</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0%</td>
+</tr>
+<tr>
+<td>Promoter Direct (WUOAT)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">100%</td>
+</tr>
+<tr>
+<td><strong>Total (deduplicated)</strong></td>
+<td style="text-align: center;"><strong>342</strong></td>
+<td style="text-align: center;"><strong>44</strong></td>
+<td style="text-align: center;"><strong>12.9%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: Some bands appear in multiple channels, so channel rows sum to more than the deduplicated total.</em></p>
+<hr />
+<h2>2. Conversion Rate</h2>
+<p><strong>Overall:</strong> 44 of 342 unique band inquiries led to a 2025 show = <strong>12.9%</strong> conversion.</p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th style="text-align: center;">Count</th>
+<th style="text-align: center;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repeat band, booked 2025</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">3.8%</td>
+</tr>
+<tr>
+<td>New band, booked 2025</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">9.1%</td>
+</tr>
+<tr>
+<td>Repeat band, NOT booked 2025</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">7.3%</td>
+</tr>
+<tr>
+<td>Inquired, never appeared in calendar</td>
+<td style="text-align: center;">273</td>
+<td style="text-align: center;">79.8%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 2025 Calendar Coverage</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total 2025 calendar events</td>
+<td style="text-align: right;">197</td>
+</tr>
+<tr>
+<td>Recurring non-music (Dart Tournament, etc.)</td>
+<td style="text-align: right;">53</td>
+</tr>
+<tr>
+<td>Music shows / events</td>
+<td style="text-align: right;">144</td>
+</tr>
+<tr>
+<td>Unique music show dates</td>
+<td style="text-align: right;">140</td>
+</tr>
+<tr>
+<td>Show dates with a matching email thread</td>
+<td style="text-align: right;">44</td>
+</tr>
+<tr>
+<td>Shows booked via invisible channels</td>
+<td style="text-align: right;">96</td>
+</tr>
+<tr>
+<td>Email-traceable booking rate</td>
+<td style="text-align: right;">31%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>69%</strong> of 2025 music shows have no matching email trail -- booked via phone, text, Instagram DM, Facebook, or standing arrangements with regulars.</p>
+<hr />
+<h2>4. Repeat Bands -- Emailed AND Played in 2025</h2>
+<p>Bands with prior Bancroft history that emailed in 2025 and appeared on the calendar.</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th style="text-align: center;">Lifetime Shows</th>
+<th style="text-align: center;">First Played</th>
+<th>2025 Show Dates</th>
+<th>Channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matters Most</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">2022-08-26</td>
+<td>2025-02-21, 2025-12-12</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">2024-05-27</td>
+<td>2025-01-30, 2025-05-29, 2025-06-14, 2025-08-29, 2025-09-12, 2025-10-18, 2025-11-27</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Phantoms with Fangs</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2025-01-30</td>
+<td>2025-01-30, 2025-06-14, 2025-10-18</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Gunner Gunner</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2025-07-18</td>
+<td>2025-07-18, 2025-08-23</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Bloodbelly Blues</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2024-12-23</td>
+<td>2025-06-27</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Hooch</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2025-11-14</td>
+<td>2025-11-14</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Trip to the Morgue/ LocJaw</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2024-12-01</td>
+<td>2025-05-17</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Gunner Gunner Band</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2025-07-18</td>
+<td>2025-07-18, 2025-08-23</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Deadbrokedown</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2024-11-14</td>
+<td>2025-06-27</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Crashing Wayward</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2025-09-26</td>
+<td>2025-09-26</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>FANTOM FIRE</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2025-02-28</td>
+<td>2025-02-28, 2025-10-31</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Beast Fiend</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2024-05-18</td>
+<td>2025-01-25</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2022-07-29</td>
+<td>2025-02-23</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. New Bands -- First Bancroft Show via Email in 2025</h2>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>2025 Show Dates</th>
+<th>Channel</th>
+<th style="text-align: center;">Match Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Woke Up On a Throne</td>
+<td>2025-05-24, 2025-10-04, 2025-12-13</td>
+<td>Promoter Direct (WUOAT)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>June Rain</td>
+<td>2025-10-18</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Black Moon Cult</td>
+<td>2025-09-13</td>
+<td>Independent Booking Agents, Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>UNLEVEL</td>
+<td>2025-06-06</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>TIGERS EYE</td>
+<td>2025-03-27</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>In Parallel With You</td>
+<td>2025-10-03</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>courtside betty</td>
+<td>2025-05-23</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Michael Barrios</td>
+<td>2025-06-14</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Bvrt Bacharach</td>
+<td>2025-10-26</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>new casino</td>
+<td>2025-05-31</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Superweapon</td>
+<td>2025-08-23</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>OMNIATICS</td>
+<td>2025-11-07</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Eye Mind</td>
+<td>2025-04-25</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>The Paw</td>
+<td>2025-08-29</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>BitterGlow</td>
+<td>2025-11-08</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>No Home</td>
+<td>2025-05-03</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Raul Ayala Band</td>
+<td>2025-07-31</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Sea Moss</td>
+<td>2025-06-25</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Dream Desire</td>
+<td>2025-03-29</td>
+<td>Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Rogues of Chaos</td>
+<td>2025-09-12</td>
+<td>Independent Booking Agents, Wix Booking Form</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Jeddy Knox</td>
+<td>2025-07-25</td>
+<td>Indie on the Move</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Deeptrees</td>
+<td>2025-07-25</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">95</td>
+</tr>
+<tr>
+<td>Obsidian Tongue</td>
+<td>2025-09-27</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Super Weapon</td>
+<td>2025-08-23</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">96</td>
+</tr>
+<tr>
+<td>Go Scarlet</td>
+<td>2025-03-15</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Rattlesnake Suitcase</td>
+<td>2025-10-11</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>SH!TOMATO</td>
+<td>2025-08-06</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Skull Riot</td>
+<td>2025-05-03</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Kane James</td>
+<td>2025-09-19</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>DESTARD</td>
+<td>2025-02-01</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr>
+<td>Palmavera</td>
+<td>2025-04-18</td>
+<td>Direct Email (band/promoter)</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Repeat Bands -- Emailed But NOT Booked in 2025</h2>
+<p>Bands that have played before and emailed in 2025 but do not appear on the 2025 calendar.</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th style="text-align: center;">Lifetime Shows</th>
+<th style="text-align: center;">Last Played</th>
+<th>Channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Mice</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">2020-05-22</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>The Mice`</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">2020-05-22</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>In Lessons</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2019-08-22</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Silent Vice SD</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2019-12-07</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Auroras Hope</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2026-02-21</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Comedy</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2015-12-20</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Deviation</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-03-06</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Ivory Daze</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2023-07-12</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>King Kyote</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-01-30</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>None</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-03-19</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>The Goddamn Ranchhand Band</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-03-30</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Gannondorf</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-01-17</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Fudosa</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-03-15</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Fight Naked</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-02-14</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>RoseThorne</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2024-10-27</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Pinfall</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-01-10</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>SETTLERS</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2017-07-13</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>BipolArte</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2016-06-24</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>GHOST CITY REBELS</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2026-05-16</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Graffick</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2024-08-29</td>
+<td>Indie on the Move</td>
+</tr>
+<tr>
+<td>mc chris</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2024-06-12</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Rickety Cliffs</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2024-04-27</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Red Room</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2018-12-02</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Tyler berd</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2020-04-04</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Social Cues</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2024-08-17</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. Inquired But Never Booked</h2>
+<p><strong>273</strong> bands/artists emailed but have no match in the show calendar (any year).</p>
+<p>Top inquiries by email volume:</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th style="text-align: center;">Emails</th>
+<th>Channel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Garrett Stollar</td>
+<td style="text-align: center;">23</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>PLUR Factory Collective</td>
+<td style="text-align: center;">19</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Brady Distractions</td>
+<td style="text-align: center;">16</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Old Moon</td>
+<td style="text-align: center;">14</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Deeptrees Saturday, March 8th</td>
+<td style="text-align: center;">14</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Booking Deeptrees Saturday, March 8th</td>
+<td style="text-align: center;">14</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>VOLUME</td>
+<td style="text-align: center;">13</td>
+<td>Independent Booking Agents</td>
+</tr>
+<tr>
+<td>Hooch Band</td>
+<td style="text-align: center;">13</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Roman Terenzini</td>
+<td style="text-align: center;">13</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Shidd Fardd</td>
+<td style="text-align: center;">12</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Deathwish/Retox A.D</td>
+<td style="text-align: center;">12</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Mike Yakouba</td>
+<td style="text-align: center;">12</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>SD Metal Massacre</td>
+<td style="text-align: center;">11</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Jeremy Baker</td>
+<td style="text-align: center;">11</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Santtu Winter</td>
+<td style="text-align: center;">9</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Matthew Martinez</td>
+<td style="text-align: center;">9</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Koat Records</td>
+<td style="text-align: center;">8</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>K•R•X•S</td>
+<td style="text-align: center;">8</td>
+<td>Independent Booking Agents</td>
+</tr>
+<tr>
+<td>Art Partida</td>
+<td style="text-align: center;">8</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Bitterglow The Band</td>
+<td style="text-align: center;">8</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>MARY CHICKEN SOUP &amp; RICE</td>
+<td style="text-align: center;">7</td>
+<td>Independent Booking Agents</td>
+</tr>
+<tr>
+<td>Ceasefire Productions</td>
+<td style="text-align: center;">7</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>LLOYD ROBINSON</td>
+<td style="text-align: center;">7</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Nocturnal Overlord</td>
+<td style="text-align: center;">7</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Joseph Gallo</td>
+<td style="text-align: center;">7</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>DogTooth Booking</td>
+<td style="text-align: center;">7</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Alonna Medina</td>
+<td style="text-align: center;">6</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Dave East</td>
+<td style="text-align: center;">5</td>
+<td>White Mountain Agency</td>
+</tr>
+<tr>
+<td>The Lovedarts</td>
+<td style="text-align: center;">5</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Tony All</td>
+<td style="text-align: center;">5</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Josh Rosipko</td>
+<td style="text-align: center;">5</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Trash n Privilege</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Peezy</td>
+<td style="text-align: center;">4</td>
+<td>White Mountain Agency</td>
+</tr>
+<tr>
+<td>BUFFALO</td>
+<td style="text-align: center;">4</td>
+<td>Independent Booking Agents</td>
+</tr>
+<tr>
+<td>Ben</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Jerry Flack</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>upnow</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Statue</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Muzak</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Possible Solar Barges</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Stay Strange</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Christopher Avila</td>
+<td style="text-align: center;">4</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>The Sundering</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter), Wix Booking Form</td>
+</tr>
+<tr>
+<td>Seetrees</td>
+<td style="text-align: center;">3</td>
+<td>Indie on the Move, Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>No Named (LA-Chilean Classic Rock)</td>
+<td style="text-align: center;">3</td>
+<td>Indie on the Move</td>
+</tr>
+<tr>
+<td>Sada Baby</td>
+<td style="text-align: center;">3</td>
+<td>White Mountain Agency</td>
+</tr>
+<tr>
+<td>Stay Strange San Diego</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Nick Reyna</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Luis Romero</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Rhythm Collision / For Closure</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Rhythm Collision / For Closure show</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Kaleo A</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Upcoming</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Stoney Blue Fish C</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Dave Oshann</td>
+<td style="text-align: center;">3</td>
+<td>Direct Email (band/promoter)</td>
+</tr>
+<tr>
+<td>Jesse Black</td>
+<td style="text-align: center;">2</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Max Muscato</td>
+<td style="text-align: center;">2</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>Draculin</td>
+<td style="text-align: center;">2</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>FastTrax</td>
+<td style="text-align: center;">2</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td>The Love Darts</td>
+<td style="text-align: center;">2</td>
+<td>Wix Booking Form</td>
+</tr>
+<tr>
+<td><em>(+213 more)</em></td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. Agency Mismatch -- Too Big for a 100-Cap Dive Bar</h2>
+<p>Artists pitched by national agencies that are obviously inappropriate for a 100-capacity dive bar:</p>
+<table>
+<thead>
+<tr>
+<th>Artist</th>
+<th>Agency</th>
+<th>Why It's a Mismatch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Afroman</td>
+<td>Universal Attractions Agency</td>
+<td>Multi-platinum novelty rapper, theater circuit</td>
+</tr>
+<tr>
+<td>B-Real (Cypress Hill) x Psycho Les</td>
+<td>White Mountain Agency</td>
+<td>Cypress Hill MC, festival/theater headliner</td>
+</tr>
+<tr>
+<td>Banda El Recodo</td>
+<td>Universal Attractions Agency</td>
+<td>Legendary Mexican banda, stadium-level</td>
+</tr>
+<tr>
+<td>Charly Black "Good Times" album release</td>
+<td>White Mountain Agency</td>
+<td>International dancehall star, large venues</td>
+</tr>
+<tr>
+<td>Charly Black (dancehall reggae)</td>
+<td>White Mountain Agency</td>
+<td>International dancehall star, large venues</td>
+</tr>
+<tr>
+<td>Charly Black (dancehall)</td>
+<td>White Mountain Agency</td>
+<td>International dancehall star, large venues</td>
+</tr>
+<tr>
+<td>CHARLY BLACK album release</td>
+<td>White Mountain Agency</td>
+<td>International dancehall star, large venues</td>
+</tr>
+<tr>
+<td>CupcakKe</td>
+<td>White Mountain Agency</td>
+<td>Viral rapper, 500+ cap rooms</td>
+</tr>
+<tr>
+<td>Danileigh</td>
+<td>White Mountain Agency</td>
+<td>Def Jam R&amp;B artist, millions of streams</td>
+</tr>
+<tr>
+<td>Dave East</td>
+<td>White Mountain Agency</td>
+<td>Def Jam / Mass Appeal rapper, arena-level</td>
+</tr>
+<tr>
+<td>Dave East "Karma 4" album release</td>
+<td>White Mountain Agency</td>
+<td>Def Jam / Mass Appeal rapper, arena-level</td>
+</tr>
+<tr>
+<td>Dave East routed</td>
+<td>White Mountain Agency</td>
+<td>Def Jam / Mass Appeal rapper, arena-level</td>
+</tr>
+<tr>
+<td>Dead Prez</td>
+<td>White Mountain Agency</td>
+<td>Legendary political hip-hop, theater circuit</td>
+</tr>
+<tr>
+<td>Dizzy Wright</td>
+<td>White Mountain Agency</td>
+<td>Major label rapper, tours 1000+ cap venues</td>
+</tr>
+<tr>
+<td>G Herbo</td>
+<td>White Mountain Agency</td>
+<td>Major label rapper, 1000+ cap rooms</td>
+</tr>
+<tr>
+<td>G Herbo routed</td>
+<td>White Mountain Agency</td>
+<td>Major label rapper, 1000+ cap rooms</td>
+</tr>
+<tr>
+<td>Gilsons</td>
+<td>Universal Attractions Agency</td>
+<td>Brazilian MPB, theater circuit</td>
+</tr>
+<tr>
+<td>IZA</td>
+<td>Universal Attractions Agency</td>
+<td>Brazilian pop superstar, arena tours</td>
+</tr>
+<tr>
+<td>Jennifer Holliday</td>
+<td>Universal Attractions Agency</td>
+<td>Tony/Grammy winner, theater headliner</td>
+</tr>
+<tr>
+<td>K. Michelle</td>
+<td>Universal Attractions Agency</td>
+<td>R&amp;B star, theater headliner</td>
+</tr>
+<tr>
+<td>Marsha Ambrosius</td>
+<td>Universal Attractions Agency</td>
+<td>Grammy-nominated R&amp;B, theater circuit</td>
+</tr>
+<tr>
+<td>MKTO</td>
+<td>Universal Attractions Agency</td>
+<td>Multi-platinum pop duo, arena tours</td>
+</tr>
+<tr>
+<td>Peezy</td>
+<td>White Mountain Agency</td>
+<td>Detroit rapper with major label distribution</td>
+</tr>
+<tr>
+<td>Proyecto Uno</td>
+<td>Universal Attractions Agency</td>
+<td>Latin pop/merengue group, theater-level</td>
+</tr>
+<tr>
+<td>Rich The Kid</td>
+<td>White Mountain Agency</td>
+<td>Multi-platinum rapper, arena tours</td>
+</tr>
+<tr>
+<td>Sada Baby</td>
+<td>White Mountain Agency</td>
+<td>Major-buzz Detroit rapper, 500+ cap rooms</td>
+</tr>
+<tr>
+<td>Smif-N-Wessun x Ras Kass</td>
+<td>White Mountain Agency</td>
+<td>Legendary hip-hop MCs, 500+ cap rooms</td>
+</tr>
+<tr>
+<td>Talib Kweli</td>
+<td>Universal Attractions Agency</td>
+<td>Legendary hip-hop MC, 500+ cap rooms</td>
+</tr>
+<tr>
+<td>The Game</td>
+<td>White Mountain Agency</td>
+<td>Multi-platinum West Coast rapper, arena tours</td>
+</tr>
+<tr>
+<td>Waka Flocka Flame</td>
+<td>White Mountain Agency</td>
+<td>Multi-platinum rapper, festival headliner</td>
+</tr>
+</tbody>
+</table>
+<p><strong>30</strong> of <strong>35</strong> agency-pitched artists are clearly too large for the venue.</p>
+<p>Remaining agency pitches that may be venue-appropriate:</p>
+<ul>
+<li>Stella Standingbear</li>
+<li>Chicken P</li>
+<li>UAA's New Client: Talking Dreads</li>
+<li>New Client: Carolina Liar</li>
+<li>7Horse</li>
+</ul>
+<hr />
+<h2>9. Repeat Band Deep Dive</h2>
+<ul>
+<li><strong>13</strong> repeat bands emailed AND played in 2025</li>
+<li><strong>25</strong> repeat bands emailed but did NOT play in 2025</li>
+<li><strong>72</strong> bands have 5+ lifetime shows at Bancroft</li>
+<li>Of those, only <strong>4</strong> used email to book in 2025</li>
+</ul>
+<p>Most regulars book through channels invisible to email analysis (phone, text, DM, standing arrangements).</p>
+<h3>Regulars (5+ lifetime shows) Who Used Email in 2025</h3>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th style="text-align: center;">Lifetime Shows</th>
+<th style="text-align: center;">First Played</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Mice</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">2016-07-28</td>
+</tr>
+<tr>
+<td>Matters Most</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">2022-08-26</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">2024-05-27</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2023-04-01</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Methodology</h2>
+<h3>Band Name Extraction</h3>
+<ul>
+<li><strong>Wix Forms:</strong> Parsed <code>Band Name:</code> field from @wixforms.com form submissions</li>
+<li><strong>Indie on the Move:</strong> Extracted from subject/body patterns (booking requests, hold requests, tour routing, artist pitches)</li>
+<li><strong>Agency emails:</strong> Parsed artist names from White Mountain Agency and Universal Attractions subject lines</li>
+<li><strong>Booking agents:</strong> Matched emails from known indie booking agents (Happy Nomad, Road Dog, SuperKool, Dream Desire, FractoFlow)</li>
+<li><strong>Promoter direct:</strong> Woke Up On a Throne -- recurring promoter/band with own domain</li>
+<li><strong>Cold/direct email:</strong> Identified booking-related subjects/body from all other senders; extracted names from subject patterns and sender display names</li>
+</ul>
+<h3>Fuzzy Matching</h3>
+<ul>
+<li><code>thefuzz</code> library, <code>token_sort_ratio</code> scorer, threshold 82</li>
+<li>Matched against 2025 show titles (split on <code>/</code> delimiter) and full band directory</li>
+<li>Leading articles (<code>the/a/an</code>) tested both with and without</li>
+</ul>
+<h3>Noise Filtering</h3>
+<ul>
+<li>Extracted names filtered against patterns for subject-line fragments (e.g., "Playing a", "Booking a", "Availability for", date strings)</li>
+<li>Spam/commercial domains excluded (Amazon, TickPick, LinkedIn, Uber, BMI, etc.)</li>
+<li>Panda Artist Management excluded (Spanish-language PR newsletter)</li>
+<li>Giggs.live excluded (platform marketing)</li>
+<li>Wix marketing emails (pb01.wixemails.com) excluded; only form submissions included</li>
+<li>Bancroft's own outgoing emails excluded</li>
+</ul>
+<h3>Limitations</h3>
+<ul>
+<li>Heuristic extraction: some false positives and false negatives remain</li>
+<li>Multi-band lineups may only match one act from an email thread</li>
+<li>Phone, text, Instagram DM, and Facebook bookings are invisible to this analysis</li>
+<li>Agency blast emails are mass-sent to hundreds of venues and do not represent genuine booking interest</li>
+<li>Some Wix submissions use event names rather than band names</li>
+<li>Fuzzy matching may produce incorrect matches at boundary scores (82-85)</li>
+</ul>
+</body>
+</html>

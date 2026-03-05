@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bancroft Booking Agent — Reports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  
+    <h1>Bancroft Booking Agent</h1>
+    <p class="report-date">Analysis reports — March 5, 2026</p>
+    <p>13 reports analyzing 9,909 emails, 1,442 days of POS sales, 5,745 calendar events, and 2,981 unique bands.</p>
+    <h2>Reports</h2>
+    <div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);" style="border-left: 3px solid var(--accent); padding-left: 0.8rem;"><a href="/reports/morning-briefing/" style="font-size: 1.1rem; font-weight: 600;">Morning Briefing</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Executive summary with corrected numbers and Phase 2 plan</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/review-and-corrections/" style="font-size: 1.1rem; font-weight: 600;">QA Review & Corrections</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Every error found across all reports, with verified fixes</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/booking-patterns-report/" style="font-size: 1.1rem; font-weight: 600;">Booking Patterns</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Intake channels, seasonality, key contacts, response patterns</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/thread-analysis-report/" style="font-size: 1.1rem; font-weight: 600;">Thread Analysis</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Conversation structure, ghost rate, response times, pipeline stages</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/band-crossref-report/" style="font-size: 1.1rem; font-weight: 600;">Band Cross-Reference</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Email inquiries matched to actual booked shows</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/bar-revenue-vs-shows-report/" style="font-size: 1.1rem; font-weight: 600;">Bar Revenue vs Shows</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Toast POS sales correlated with show calendar</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/revenue-analysis-report/" style="font-size: 1.1rem; font-weight: 600;">TickPick Revenue</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Ticket presale revenue analysis</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/booking-decisions-report/" style="font-size: 1.1rem; font-weight: 600;">Booking Decisions</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">What gets booked vs rejected, scoring matrix for AI booker</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/calendar-strategy-report/" style="font-size: 1.1rem; font-weight: 600;">Calendar Strategy</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Day/week/month/season optimization, ideal show calendar</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/genre-analysis-report/" style="font-size: 1.1rem; font-weight: 600;">Genre Analysis</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Genre patterns, revenue by genre, booking filter recommendations</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/outreach-targets-report/" style="font-size: 1.1rem; font-weight: 600;">Outreach Targets</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">39 bands on high-revenue nights we never contacted</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/promoter-network-report/" style="font-size: 1.1rem; font-weight: 600;">Promoter Network</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">44 promoters mapped with revenue and band connections</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/master-band-directory-report/" style="font-size: 1.1rem; font-weight: 600;">Master Band Directory</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">3,438 bands with contact info summary</p></div><div style="margin: 1rem 0; padding: 0.8rem; background: var(--surface); border-radius: 8px; border: 1px solid var(--border);"><a href="/reports/venue-context/" style="font-size: 1.1rem; font-weight: 600;">Venue Context</a><p style="color: var(--text-muted); margin: 0.3rem 0 0; font-size: 0.9rem;">Business context, goals, and revenue levers for the AI booker</p></div>
+    <hr>
+    <p style="color: var(--text-muted); font-size: 0.85rem;">Generated by the Bancroft Booking Agent project.
+    Data sources: Gmail API (read-only), Toast POS API, Google Calendar, TickPick.</p>
+    
+</body>
+</html>

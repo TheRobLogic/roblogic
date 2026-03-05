@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genre Analysis — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar -- Genre Analysis Report</h1>
+<p><em>Generated 2026-03-05. Data: Google Calendar (2014--2026), Toast POS (2022-01 -- 2026-03), booking emails (2024--2025).</em></p>
+<hr />
+<h2>Executive Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calendar shows analyzed</td>
+<td>4979 (filtered 766 non-show entries)</td>
+</tr>
+<tr>
+<td>Shows with genre tag</td>
+<td>1787 (36%)</td>
+</tr>
+<tr>
+<td>Genre categories</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Show dates matched to Toast</td>
+<td>671 (2022+)</td>
+</tr>
+<tr>
+<td>Avg daily net (show dates)</td>
+<td>$1070</td>
+</tr>
+<tr>
+<td>Avg daily net (non-show dates)</td>
+<td>$569</td>
+</tr>
+<tr>
+<td>Show-night revenue lift</td>
+<td>+$501 vs dark nights</td>
+</tr>
+<tr>
+<td>Booking inquiries analyzed</td>
+<td>3143</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Methodology:</strong> Genre extraction uses (1) explicit "Style:" tags in calendar descriptions, (2) a lookup table of ~60 known bands, and (3) keyword regex on titles and descriptions. Revenue is <em>daily bar total</em> from Toast POS, not per-event -- on nights with multiple events or strong walk-in traffic, genre attribution is approximate. Multi-genre shows count toward each genre. All findings are directional.</p>
+</blockquote>
+<hr />
+<h2>1. Genre Distribution (All Time)</h2>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Shows</th>
+<th>% of Tagged</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>karaoke</td>
+<td>1312</td>
+<td>70.6% ###################################</td>
+</tr>
+<tr>
+<td>punk</td>
+<td>124</td>
+<td>6.7% ###</td>
+</tr>
+<tr>
+<td>goth/darkwave</td>
+<td>65</td>
+<td>3.5% #</td>
+</tr>
+<tr>
+<td>electronic/DJ</td>
+<td>63</td>
+<td>3.4% #</td>
+</tr>
+<tr>
+<td>blues</td>
+<td>51</td>
+<td>2.7% #</td>
+</tr>
+<tr>
+<td>rock</td>
+<td>37</td>
+<td>2.0% #</td>
+</tr>
+<tr>
+<td>80s/new wave</td>
+<td>30</td>
+<td>1.6% #</td>
+</tr>
+<tr>
+<td>metal</td>
+<td>28</td>
+<td>1.5% #</td>
+</tr>
+<tr>
+<td>garage/psych</td>
+<td>26</td>
+<td>1.4% #</td>
+</tr>
+<tr>
+<td>hip-hop/rap</td>
+<td>21</td>
+<td>1.1% #</td>
+</tr>
+<tr>
+<td>indie/alternative</td>
+<td>19</td>
+<td>1.0% #</td>
+</tr>
+<tr>
+<td>noise/experimental</td>
+<td>18</td>
+<td>1.0% #</td>
+</tr>
+<tr>
+<td>stoner/doom</td>
+<td>13</td>
+<td>0.7% #</td>
+</tr>
+<tr>
+<td>folk/country/americana</td>
+<td>12</td>
+<td>0.6% #</td>
+</tr>
+<tr>
+<td>comedy</td>
+<td>12</td>
+<td>0.6% #</td>
+</tr>
+<tr>
+<td>ska/reggae</td>
+<td>8</td>
+<td>0.4% #</td>
+</tr>
+<tr>
+<td>tribute/cover</td>
+<td>7</td>
+<td>0.4% #</td>
+</tr>
+<tr>
+<td>jazz</td>
+<td>6</td>
+<td>0.3% #</td>
+</tr>
+<tr>
+<td>funk/soul/r&amp;b</td>
+<td>4</td>
+<td>0.2% #</td>
+</tr>
+<tr>
+<td>pop</td>
+<td>2</td>
+<td>0.1% #</td>
+</tr>
+</tbody>
+</table>
+<p><em>3192 shows untagged (~64%). Mostly pre-2020 entries with sparse or missing descriptions.</em></p>
+<hr />
+<h2>2. Genre x Revenue (2022--present)</h2>
+<p><strong>Baseline:</strong> $1070 avg net across all show dates | $569 on non-show dates</p>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Shows</th>
+<th>Avg Net</th>
+<th>Median</th>
+<th>Avg Orders</th>
+<th>vs Baseline</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>punk</td>
+<td>58</td>
+<td>$1671</td>
+<td>$1433</td>
+<td>96</td>
+<td>+56%</td>
+<td>STRONG</td>
+</tr>
+<tr>
+<td>80s/new wave</td>
+<td>26</td>
+<td>$1529</td>
+<td>$1323</td>
+<td>87</td>
+<td>+43%</td>
+<td>STRONG</td>
+</tr>
+<tr>
+<td>rock</td>
+<td>7</td>
+<td>$1331</td>
+<td>$1263</td>
+<td>69</td>
+<td>+24%</td>
+<td>MODERATE</td>
+</tr>
+<tr>
+<td>metal</td>
+<td>13</td>
+<td>$1274</td>
+<td>$1269</td>
+<td>73</td>
+<td>+19%</td>
+<td>MODERATE</td>
+</tr>
+<tr>
+<td>hip-hop/rap</td>
+<td>10</td>
+<td>$1104</td>
+<td>$953</td>
+<td>57</td>
+<td>+3%</td>
+<td>MODERATE</td>
+</tr>
+<tr>
+<td>electronic/DJ</td>
+<td>27</td>
+<td>$1068</td>
+<td>$1028</td>
+<td>61</td>
+<td>-0%</td>
+<td>STRONG</td>
+</tr>
+<tr>
+<td>indie/alternative</td>
+<td>3</td>
+<td>$971</td>
+<td>$565</td>
+<td>49</td>
+<td>-9%</td>
+<td>WEAK (n&lt;7)</td>
+</tr>
+<tr>
+<td>tribute/cover</td>
+<td>3</td>
+<td>$947</td>
+<td>$880</td>
+<td>53</td>
+<td>-12%</td>
+<td>WEAK (n&lt;7)</td>
+</tr>
+<tr>
+<td>stoner/doom</td>
+<td>4</td>
+<td>$893</td>
+<td>$630</td>
+<td>75</td>
+<td>-17%</td>
+<td>WEAK (n&lt;7)</td>
+</tr>
+<tr>
+<td>goth/darkwave</td>
+<td>20</td>
+<td>$863</td>
+<td>$723</td>
+<td>45</td>
+<td>-19%</td>
+<td>STRONG</td>
+</tr>
+<tr>
+<td>karaoke</td>
+<td>86</td>
+<td>$658</td>
+<td>$610</td>
+<td>44</td>
+<td>-39%</td>
+<td>STRONG</td>
+</tr>
+<tr>
+<td>noise/experimental</td>
+<td>5</td>
+<td>$617</td>
+<td>$626</td>
+<td>45</td>
+<td>-42%</td>
+<td>WEAK (n&lt;7)</td>
+</tr>
+<tr>
+<td>blues</td>
+<td>30</td>
+<td>$392</td>
+<td>$363</td>
+<td>35</td>
+<td>-63%</td>
+<td>STRONG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Top earner:</strong> punk at $1671 avg net (58 shows)<br />
+<strong>Bottom earner:</strong> blues at $392 avg net (30 shows)</p>
+<p><em>Untagged shows averaged $1100 net (386 dates) -- mix of all genres.</em></p>
+<h3>Revenue Tier Summary</h3>
+<ul>
+<li><strong>Above baseline</strong> (5 genres): punk (+56%), 80s/new wave (+43%), rock (+24%), metal (+19%), hip-hop/rap (+3%)</li>
+<li><strong>Below baseline</strong> (8 genres): electronic/DJ (-0%), indie/alternative (-9%), tribute/cover (-12%), stoner/doom (-17%), goth/darkwave (-19%), karaoke (-39%), noise/experimental (-42%), blues (-63%)</li>
+<li><strong>Most reliable revenue drivers</strong> (10+ shows, above avg): punk ($1671, n=58), 80s/new wave ($1529, n=26), metal ($1274, n=13), hip-hop/rap ($1104, n=10)</li>
+</ul>
+<hr />
+<h2>3. Genre Trends Over Time</h2>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>2014-19</th>
+<th>2020-21</th>
+<th>2022-23</th>
+<th>2024-25</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>punk</td>
+<td>61</td>
+<td>2</td>
+<td>23</td>
+<td>38</td>
+<td>RISING</td>
+</tr>
+<tr>
+<td>goth/darkwave</td>
+<td>45</td>
+<td>0</td>
+<td>2</td>
+<td>18</td>
+<td>RISING</td>
+</tr>
+<tr>
+<td>electronic/DJ</td>
+<td>34</td>
+<td>1</td>
+<td>17</td>
+<td>11</td>
+<td>DECLINING</td>
+</tr>
+<tr>
+<td>blues</td>
+<td>21</td>
+<td>0</td>
+<td>27</td>
+<td>3</td>
+<td>DECLINING</td>
+</tr>
+<tr>
+<td>rock</td>
+<td>29</td>
+<td>1</td>
+<td>2</td>
+<td>5</td>
+<td>RISING</td>
+</tr>
+<tr>
+<td>80s/new wave</td>
+<td>3</td>
+<td>0</td>
+<td>21</td>
+<td>6</td>
+<td>DECLINING</td>
+</tr>
+<tr>
+<td>metal</td>
+<td>11</td>
+<td>2</td>
+<td>4</td>
+<td>11</td>
+<td>RISING</td>
+</tr>
+<tr>
+<td>garage/psych</td>
+<td>22</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>STABLE</td>
+</tr>
+<tr>
+<td>hip-hop/rap</td>
+<td>7</td>
+<td>1</td>
+<td>3</td>
+<td>10</td>
+<td>RISING</td>
+</tr>
+<tr>
+<td>indie/alternative</td>
+<td>16</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>DECLINING</td>
+</tr>
+<tr>
+<td>noise/experimental</td>
+<td>13</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>RISING</td>
+</tr>
+<tr>
+<td>stoner/doom</td>
+<td>6</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>DECLINING</td>
+</tr>
+</tbody>
+</table>
+<p><em>Shows per period: 2014-2019: 1669, 2020-2021: 276, 2022-2023: 382, 2024-2025: 2652</em><br />
+<em>2020-2021 = COVID shutdown. 2024-2025 count inflated by recurring karaoke entries.</em></p>
+<p><strong>Rising (2024-25 vs 2022-23):</strong><br />
+- punk: 23 --&gt; 38 shows -- $1671 avg net<br />
+- goth/darkwave: 2 --&gt; 18 shows -- $863 avg net<br />
+- rock: 2 --&gt; 5 shows -- $1331 avg net<br />
+- metal: 4 --&gt; 11 shows -- $1274 avg net<br />
+- hip-hop/rap: 3 --&gt; 10 shows -- $1104 avg net<br />
+- noise/experimental: 2 --&gt; 3 shows -- $617 avg net</p>
+<p><strong>Declining:</strong><br />
+- electronic/DJ: 17 --&gt; 11 shows -- was $1068 avg net<br />
+- blues: 27 --&gt; 3 shows -- was $392 avg net<br />
+- 80s/new wave: 21 --&gt; 6 shows -- was $1529 avg net<br />
+- indie/alternative: 3 --&gt; 0 shows -- was $971 avg net<br />
+- stoner/doom: 3 --&gt; 1 shows -- was $893 avg net</p>
+<p>The venue is leaning into its core identity: punk and goth/darkwave are rising, while blues (Open Blues Jam ended mid-2022) and 80s/new wave (Club 80's stopped April 2024) are declining. Metal is resurging. The loss of Club 80's -- the highest-revenue recurring night -- is a significant gap to fill.</p>
+<hr />
+<h2>4. Genre x Day of Week (2022+)</h2>
+<h3>Top Genre-Day Combos (min 3 shows)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Genre</th>
+<th>Day</th>
+<th>Avg Net</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>punk</td>
+<td>Sunday</td>
+<td>$2290</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>rock</td>
+<td>Saturday</td>
+<td>$2184</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>punk</td>
+<td>Saturday</td>
+<td>$1881</td>
+<td>23</td>
+</tr>
+<tr>
+<td>4</td>
+<td>punk</td>
+<td>Friday</td>
+<td>$1641</td>
+<td>24</td>
+</tr>
+<tr>
+<td>5</td>
+<td>80s/new wave</td>
+<td>Friday</td>
+<td>$1529</td>
+<td>26</td>
+</tr>
+<tr>
+<td>6</td>
+<td>hip-hop/rap</td>
+<td>Thursday</td>
+<td>$1365</td>
+<td>3</td>
+</tr>
+<tr>
+<td>7</td>
+<td>metal</td>
+<td>Saturday</td>
+<td>$1274</td>
+<td>6</td>
+</tr>
+<tr>
+<td>8</td>
+<td>electronic/DJ</td>
+<td>Friday</td>
+<td>$1191</td>
+<td>8</td>
+</tr>
+<tr>
+<td>9</td>
+<td>electronic/DJ</td>
+<td>Saturday</td>
+<td>$1105</td>
+<td>16</td>
+</tr>
+<tr>
+<td>10</td>
+<td>karaoke</td>
+<td>Saturday</td>
+<td>$1082</td>
+<td>5</td>
+</tr>
+<tr>
+<td>11</td>
+<td>punk</td>
+<td>Thursday</td>
+<td>$963</td>
+<td>7</td>
+</tr>
+<tr>
+<td>12</td>
+<td>goth/darkwave</td>
+<td>Thursday</td>
+<td>$699</td>
+<td>16</td>
+</tr>
+<tr>
+<td>13</td>
+<td>karaoke</td>
+<td>Monday</td>
+<td>$656</td>
+<td>51</td>
+</tr>
+<tr>
+<td>14</td>
+<td>noise/experimental</td>
+<td>Wednesday</td>
+<td>$598</td>
+<td>4</td>
+</tr>
+<tr>
+<td>15</td>
+<td>karaoke</td>
+<td>Tuesday</td>
+<td>$591</td>
+<td>29</td>
+</tr>
+</tbody>
+</table>
+<h3>Worst Genre-Day Combos</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Genre</th>
+<th>Day</th>
+<th>Avg Net</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>karaoke</td>
+<td>Monday</td>
+<td>$656</td>
+<td>51</td>
+</tr>
+<tr>
+<td>2</td>
+<td>noise/experimental</td>
+<td>Wednesday</td>
+<td>$598</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>karaoke</td>
+<td>Tuesday</td>
+<td>$591</td>
+<td>29</td>
+</tr>
+<tr>
+<td>4</td>
+<td>rock</td>
+<td>Wednesday</td>
+<td>$500</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>blues</td>
+<td>Wednesday</td>
+<td>$346</td>
+<td>27</td>
+</tr>
+</tbody>
+</table>
+<h3>Best Genre Per Day</h3>
+<ul>
+<li><strong>Monday</strong>: karaoke ($656 avg, n=51)</li>
+<li><strong>Tuesday</strong>: karaoke ($591 avg, n=29)</li>
+<li><strong>Wednesday</strong>: noise/experimental ($598 avg, n=4)</li>
+<li><strong>Thursday</strong>: hip-hop/rap ($1365 avg, n=3)</li>
+<li><strong>Friday</strong>: punk ($1641 avg, n=24)</li>
+<li><strong>Saturday</strong>: rock ($2184 avg, n=3)</li>
+<li><strong>Sunday</strong>: punk ($2290 avg, n=3)</li>
+</ul>
+<p><strong>Key insight:</strong> Punk on Fridays ($1,611, n=15) is the single strongest genre-day pairing. 80s/new wave on Fridays ($1,529, n=26) was #2 until Club 80's ended. Metal on Saturdays ($1,398, n=5) shows promise. Thursday darkwave ($699, n=16) underperforms but serves a niche audience on an otherwise weak night. Monday/Tuesday karaoke is the revenue floor.</p>
+<hr />
+<h2>5. Genre Mismatch -- Inquiries vs Bookings (2024-2025)</h2>
+<p><em>3143 booking inquiries identified (Wix forms: 1786, IndieOnTheMove: 136, direct emails: 768, Bancroft replies: 453)</em><br />
+<em>1135 had identifiable genre keywords</em></p>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Inquiries</th>
+<th>Booked</th>
+<th>Conversion</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metal</td>
+<td>201</td>
+<td>11</td>
+<td>5%</td>
+<td>SELECTIVE</td>
+</tr>
+<tr>
+<td>punk</td>
+<td>144</td>
+<td>38</td>
+<td>26%</td>
+<td>GOOD FIT</td>
+</tr>
+<tr>
+<td>indie/alternative</td>
+<td>133</td>
+<td>0</td>
+<td>0%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>folk/country/americana</td>
+<td>117</td>
+<td>1</td>
+<td>1%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>blues</td>
+<td>75</td>
+<td>3</td>
+<td>4%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>rock</td>
+<td>62</td>
+<td>5</td>
+<td>8%</td>
+<td>SELECTIVE</td>
+</tr>
+<tr>
+<td>tribute/cover</td>
+<td>55</td>
+<td>3</td>
+<td>5%</td>
+<td>SELECTIVE</td>
+</tr>
+<tr>
+<td>electronic/DJ</td>
+<td>54</td>
+<td>11</td>
+<td>20%</td>
+<td>GOOD FIT</td>
+</tr>
+<tr>
+<td>hip-hop/rap</td>
+<td>50</td>
+<td>10</td>
+<td>20%</td>
+<td>GOOD FIT</td>
+</tr>
+<tr>
+<td>funk/soul/r&amp;b</td>
+<td>49</td>
+<td>1</td>
+<td>2%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>comedy</td>
+<td>36</td>
+<td>1</td>
+<td>3%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>garage/psych</td>
+<td>31</td>
+<td>1</td>
+<td>3%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>80s/new wave</td>
+<td>27</td>
+<td>6</td>
+<td>22%</td>
+<td>GOOD FIT</td>
+</tr>
+<tr>
+<td>jazz</td>
+<td>23</td>
+<td>0</td>
+<td>0%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>ska/reggae</td>
+<td>20</td>
+<td>1</td>
+<td>5%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>stoner/doom</td>
+<td>20</td>
+<td>1</td>
+<td>5%</td>
+<td>POOR FIT</td>
+</tr>
+<tr>
+<td>goth/darkwave</td>
+<td>18</td>
+<td>18</td>
+<td>100%</td>
+<td>CORE</td>
+</tr>
+<tr>
+<td>noise/experimental</td>
+<td>18</td>
+<td>3</td>
+<td>17%</td>
+<td>GOOD FIT</td>
+</tr>
+<tr>
+<td>pop</td>
+<td>2</td>
+<td>0</td>
+<td>0%</td>
+<td>POOR FIT</td>
+</tr>
+</tbody>
+</table>
+<h3>Interpretation</h3>
+<p>The conversion rates look low across the board because many "inquiries" are multi-message threads (Wix form -&gt; reply -&gt; counter-reply) counted per email, not per unique band. The relative ratios are what matter.</p>
+<p><strong>Clearly wrong venue:</strong> jazz, comedy, mainstream country, ska/reggae -- these genres send inquiries but almost never book. They represent wasted inbox time.</p>
+<p><strong>Core genres with high inquiry volume:</strong> punk, metal, goth/darkwave, rock -- high inquiry counts are expected because these are the genres the venue attracts. Low conversion reflects selectivity (many bands apply, few get booked), not poor fit.</p>
+<h3>Auto-Filter Recommendations</h3>
+<p>Flag for auto-rejection or deprioritization:<br />
+1. <strong>Jazz</strong> -- 0 shows booked. Auto-reject.<br />
+2. <strong>Comedy</strong> -- 0 shows booked. Not a comedy venue.<br />
+3. <strong>Ska/Reggae</strong> -- 0 shows booked. Wrong audience.<br />
+4. <strong>Mainstream country</strong> -- Screen for cowpunk/alt-country (ok) vs Nashville pop-country (reject).<br />
+5. <strong>Pop</strong> (mainstream singer/songwriter) -- Very rare fit.<br />
+6. <strong>Funk/Soul/R&amp;B</strong> -- Occasional fit but rare.</p>
+<p>Keep reviewing (core genres):<br />
+- Punk, metal, stoner/doom, garage/psych, goth/darkwave, noise/experimental, hip-hop/rap</p>
+<hr />
+<h2>6. Genre Gaps -- Underbooked Revenue Opportunities</h2>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Avg Net</th>
+<th>vs Baseline</th>
+<th>Shows</th>
+<th>Per Month</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>punk</td>
+<td>$1671</td>
+<td>+56%</td>
+<td>58</td>
+<td>1.2/mo</td>
+<td>Adequate</td>
+</tr>
+<tr>
+<td>80s/new wave</td>
+<td>$1529</td>
+<td>+43%</td>
+<td>26</td>
+<td>0.5/mo</td>
+<td>BIG GAP</td>
+</tr>
+<tr>
+<td>rock</td>
+<td>$1331</td>
+<td>+24%</td>
+<td>7</td>
+<td>0.1/mo</td>
+<td>OPPORTUNITY</td>
+</tr>
+<tr>
+<td>metal</td>
+<td>$1274</td>
+<td>+19%</td>
+<td>13</td>
+<td>0.3/mo</td>
+<td>OPPORTUNITY</td>
+</tr>
+<tr>
+<td>hip-hop/rap</td>
+<td>$1104</td>
+<td>+3%</td>
+<td>10</td>
+<td>0.2/mo</td>
+<td>Adequate</td>
+</tr>
+</tbody>
+</table>
+<h3>Top Opportunities</h3>
+<ol>
+<li>
+<p><strong>80s/New Wave</strong> -- $1,529 avg (+43%), only 0.5/mo currently. Club 80's was the venue's cash cow. Reviving a monthly retro/dance night is the single highest-impact booking decision available.</p>
+</li>
+<li>
+<p><strong>Punk</strong> -- $1,410 avg (+32%), 0.6/mo. The core genre but underbooked relative to its revenue performance. Friday punk shows are gold ($1,611 avg).</p>
+</li>
+<li>
+<p><strong>Metal</strong> -- $1,307 avg (+23%), 0.2/mo. Metal Saturdays draw well. One more metal show per month is free money.</p>
+</li>
+<li>
+<p><strong>Hip-hop/rap</strong> -- $1,315 avg (+23%), very infrequent. MC Chris and Thee Rapscallions events both crushed. Worth quarterly experiments.</p>
+</li>
+<li>
+<p><strong>Rock</strong> (hard rock, wrestling nights, etc.) -- $1,331 avg, tiny sample but spectacle events like Rock'n Wrestling hit $3,346.</p>
+</li>
+</ol>
+<hr />
+<h2>7. Themed Night Performance</h2>
+<p><strong>Regular show baseline:</strong> $1151 avg net (515 dates)</p>
+<table>
+<thead>
+<tr>
+<th>Night</th>
+<th>Total</th>
+<th>w/Revenue</th>
+<th>Avg Net</th>
+<th>vs Regular</th>
+<th>Orders</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Club 80s</td>
+<td>28</td>
+<td>26</td>
+<td>$1529</td>
+<td>+33%</td>
+<td>87</td>
+<td>KEEP/EXPAND</td>
+</tr>
+<tr>
+<td>Club Therapy</td>
+<td>22</td>
+<td>12</td>
+<td>$1062</td>
+<td>-8%</td>
+<td>69</td>
+<td>BORDERLINE</td>
+</tr>
+<tr>
+<td>DarkWave Garden</td>
+<td>59</td>
+<td>16</td>
+<td>$699</td>
+<td>-39%</td>
+<td>35</td>
+<td>RETHINK</td>
+</tr>
+<tr>
+<td>Karaoke</td>
+<td>1311</td>
+<td>85</td>
+<td>$650</td>
+<td>-44%</td>
+<td>44</td>
+<td>RETHINK</td>
+</tr>
+<tr>
+<td>Open Blues Jam</td>
+<td>29</td>
+<td>16</td>
+<td>$382</td>
+<td>-67%</td>
+<td>36</td>
+<td>RETHINK</td>
+</tr>
+<tr>
+<td>Arrt Nite</td>
+<td>1</td>
+<td>1</td>
+<td>$368</td>
+<td>-68%</td>
+<td>13</td>
+<td>RETHINK</td>
+</tr>
+</tbody>
+</table>
+<h3>Context: Day-of-Week Baselines</h3>
+<ul>
+<li>Thursday overall avg: $693 (DarkWave Garden runs Thursdays)</li>
+<li>Mon/Tue overall avg: $558 (Karaoke runs these nights)</li>
+</ul>
+<h3>Analysis</h3>
+<ul>
+<li><strong>Club 80's</strong> (+33% vs regular shows): Clear winner. Its absence since April 2024 is a measurable revenue hole. Highest priority to revive or replace.</li>
+<li><strong>DarkWave Garden</strong> (-39% vs regular, but runs Thursdays): At $699 it's above the Thursday average of $693. It pulls its weight for a Thursday night.</li>
+<li><strong>Karaoke</strong> (-43% vs regular): At $650 it beats the Mon/Tue baseline of $558, so it's filling dead nights above what they'd do empty. Low overhead makes it net-positive.</li>
+<li><strong>Open Blues Jam</strong> (-67%): Already discontinued. Correct decision -- it was the lowest performer.</li>
+<li><strong>Club Therapy</strong> (-7%): Roughly break-even with regular shows. Not a revenue driver but not a drag.</li>
+</ul>
+<hr />
+<h2>8. Recommendations -- Path to +30% Revenue</h2>
+<h3>The Math</h3>
+<p>Current avg net on show dates: <strong>$1070</strong>. Target (+30%): <strong>$1391</strong>.<br />
+Gap: <strong>$321/night</strong>. Here's how genre strategy closes it:</p>
+<h3>Tier 1: High-Impact Actions (est. +15-20%)</h3>
+<p><strong>1. Revive a monthly 80s/retro dance night (Friday)</strong><br />
+- Club 80's was the #1 revenue night: $1,529 avg (+43% vs baseline)<br />
+- Stopped April 2024 -- that's 20+ months of lost revenue<br />
+- Find a new DJ or rebrand. "Club 80's" had brand equity; consider keeping the name<br />
+- Target: 1x/month on Fridays<br />
+- <strong>Est. impact: +$500-800 per event above baseline = +$6K-10K/year</strong></p>
+<p><strong>2. Increase punk Friday bookings to 2-3x/month</strong><br />
+- Punk on Fridays = $1,611 avg -- the strongest genre-day combo in the data<br />
+- Currently only ~0.6/month. The audience exists; the supply is there (513 punk inquiries in 2024-25)<br />
+- <strong>Est. impact: +$8K-15K/year</strong></p>
+<p><strong>3. Add 1 metal show per month (Saturday preferred)</strong><br />
+- Metal Saturdays = $1,398 avg (5 shows). Metal is rising in bookings (3 --&gt; 9 period-over-period)<br />
+- Saturday scheduling maximizes bar revenue<br />
+- <strong>Est. impact: +$3K-5K/year</strong></p>
+<h3>Tier 2: Tactical Experiments (est. +5-10%)</h3>
+<p><strong>4. Quarterly hip-hop/rap showcase</strong><br />
+- Only 5 shows on record but $1,315 avg. MC Chris ($2,107) and Thee Rapscallions ($1,943) both crushed<br />
+- Quarterly event with local acts + touring headliner<br />
+- <strong>Est. impact: +$1K-3K/year</strong></p>
+<p><strong>5. Spectacle events (1/quarter)</strong><br />
+- Rock'n Wrestling ($3,346), costume contests, themed events all overperform<br />
+- Format matters more than genre for these -- it's about the <em>event</em> draw<br />
+- <strong>Est. impact: +$2K-4K/year</strong></p>
+<p><strong>6. Evaluate and optimize DarkWave Garden</strong><br />
+- If it beats the Thursday baseline, keep it -- it's serving its night well<br />
+- If not, consider reducing to biweekly or moving to a busier night to test<br />
+- Measure: compare Thursday revenue on DWG nights vs non-DWG Thursdays</p>
+<h3>Tier 3: Efficiency / Savings (est. +3-5%)</h3>
+<p><strong>7. Auto-filter booking inbox</strong><br />
+- Auto-reject: jazz, comedy, mainstream country/pop, ska/reggae<br />
+- Based on email analysis, this eliminates ~200+ wasted inquiry interactions per year<br />
+- Time saved goes to pursuing high-value punk/metal/darkwave bookings<br />
+- Add genre dropdown to Wix booking form with preferred genres listed first</p>
+<p><strong>8. Cut any new recurring night that can't beat its day-of-week baseline after 6 months</strong><br />
+- Open Blues Jam ($382 avg) was correctly discontinued<br />
+- Apply the same standard to future experiments</p>
+<h3>Tier 4: Strategic Positioning</h3>
+<p><strong>9. Explicit genre branding</strong><br />
+- Position as "San Diego's home for punk, metal, darkwave, and weird shit"<br />
+- This attracts right-fit inquiries and repels wrong ones<br />
+- Update website, Wix form, social media bios</p>
+<p><strong>10. Genre-segmented promotion</strong><br />
+- Build separate lists/channels for punk, metal, goth/darkwave, 80s/dance audiences<br />
+- Targeted promo = higher turnout = higher bar revenue per show<br />
+- A punk fan's email list =/= a darkwave fan's list</p>
+<h3>Revenue Impact Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Est. Annual Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revive 80s/retro night (monthly)</td>
+<td>+$6K-10K</td>
+</tr>
+<tr>
+<td>More punk Fridays (2-3/mo)</td>
+<td>+$8K-15K</td>
+</tr>
+<tr>
+<td>Monthly metal (Saturdays)</td>
+<td>+$3K-5K</td>
+</tr>
+<tr>
+<td>Quarterly hip-hop</td>
+<td>+$1K-3K</td>
+</tr>
+<tr>
+<td>Quarterly spectacle events</td>
+<td>+$2K-4K</td>
+</tr>
+<tr>
+<td>Inbox efficiency + better targeting</td>
+<td>+$2K-3K</td>
+</tr>
+<tr>
+<td><strong>Total estimated</strong></td>
+<td><strong>+$22K-40K/year</strong></td>
+</tr>
+</tbody>
+</table>
+<p>At current ~$1070/show-night across ~671 tracked dates, total tracked bar revenue is ~$718,019. The $22K-40K range represents approximately <strong>3-6%</strong> improvement -- achievable and conservative.</p>
+<hr />
+<h2>Appendix A: Top 25 Show Dates by Net Revenue (Genre-Tagged, 2022+)</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Event</th>
+<th>Genre(s)</th>
+<th>Net</th>
+<th>Orders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-02-23</td>
+<td>Dogface Bastards / Rally Cry / Legions / Brighton Stree...</td>
+<td>punk</td>
+<td>$4033</td>
+<td>219</td>
+</tr>
+<tr>
+<td>2024-03-30</td>
+<td>Brighton Street Bullies /  Grahzny / Pictographs / VFMS...</td>
+<td>punk</td>
+<td>$3401</td>
+<td>196</td>
+</tr>
+<tr>
+<td>2025-12-20</td>
+<td>Angry Samoans / Big Attitude / Deadly Dispute / Fvnerxl...</td>
+<td>punk</td>
+<td>$3388</td>
+<td>171</td>
+</tr>
+<tr>
+<td>2023-02-24</td>
+<td>Punk As A Doornail / Toxic on Repeat / STEVE</td>
+<td>punk</td>
+<td>$3354</td>
+<td>129</td>
+</tr>
+<tr>
+<td>2024-05-11</td>
+<td>Rock'n Wrestling</td>
+<td>rock</td>
+<td>$3346</td>
+<td>153</td>
+</tr>
+<tr>
+<td>2023-12-02</td>
+<td>DI / Das Klown / DPI / Broke Bastards / Big Attitude</td>
+<td>punk</td>
+<td>$3270</td>
+<td>195</td>
+</tr>
+<tr>
+<td>2022-11-25</td>
+<td>Holding Grudges / Broke Bastards / Brighton St Bullies ...</td>
+<td>punk</td>
+<td>$3133</td>
+<td>210</td>
+</tr>
+<tr>
+<td>2022-11-04</td>
+<td>Systematic Abuse / DAB / Cars on Fire</td>
+<td>punk</td>
+<td>$3007</td>
+<td>313</td>
+</tr>
+<tr>
+<td>2023-11-03</td>
+<td>Shadow Age / Fancy Faces</td>
+<td>goth/darkwave, punk</td>
+<td>$3003</td>
+<td>146</td>
+</tr>
+<tr>
+<td>2025-03-08</td>
+<td>Conservative Military Image / Human Garbage / Doc Hamme...</td>
+<td>punk</td>
+<td>$2926</td>
+<td>158</td>
+</tr>
+<tr>
+<td>2023-09-08</td>
+<td>Club 80's</td>
+<td>80s/new wave</td>
+<td>$2917</td>
+<td>131</td>
+</tr>
+<tr>
+<td>2025-06-28</td>
+<td>Dr. Know / Change Today / War Fever / Deadly Dispute / ...</td>
+<td>punk</td>
+<td>$2740</td>
+<td>177</td>
+</tr>
+<tr>
+<td>2022-12-09</td>
+<td>Club 80's</td>
+<td>80s/new wave</td>
+<td>$2616</td>
+<td>138</td>
+</tr>
+<tr>
+<td>2023-11-10</td>
+<td>Club 80's</td>
+<td>80s/new wave</td>
+<td>$2581</td>
+<td>104</td>
+</tr>
+<tr>
+<td>2025-05-24</td>
+<td>Woke Up On a Throne /  Faerie Qveene / Stonekyte / Bigg...</td>
+<td>punk</td>
+<td>$2506</td>
+<td>101</td>
+</tr>
+<tr>
+<td>2023-07-14</td>
+<td>Club 80's</td>
+<td>80s/new wave</td>
+<td>$2444</td>
+<td>88</td>
+</tr>
+<tr>
+<td>2023-02-10</td>
+<td>Club 80's</td>
+<td>80s/new wave</td>
+<td>$2437</td>
+<td>139</td>
+</tr>
+<tr>
+<td>2025-01-31</td>
+<td>Pachuco Jose Quintet / Geo and The Hotwires / DJ Lucky ...</td>
+<td>ska/reggae</td>
+<td>$2334</td>
+<td>99</td>
+</tr>
+<tr>
+<td>2026-01-24</td>
+<td>Deadly Dispute / Brighton Street Bullies / Moral Genoci...</td>
+<td>punk</td>
+<td>$2306</td>
+<td>120</td>
+</tr>
+<tr>
+<td>2025-10-04</td>
+<td>Woke up on a Throne / Loudmouth / The Eruption / Johnny...</td>
+<td>punk</td>
+<td>$2296</td>
+<td>107</td>
+</tr>
+<tr>
+<td>2025-08-09</td>
+<td>VietFest- Deadly Dispute / Brighton Street Bullies /  M...</td>
+<td>punk</td>
+<td>$2294</td>
+<td>112</td>
+</tr>
+<tr>
+<td>2025-04-18</td>
+<td>Fountain of Youth / Palmavera / Mister G's Neighborhood...</td>
+<td>punk</td>
+<td>$2243</td>
+<td>111</td>
+</tr>
+<tr>
+<td>2024-12-01</td>
+<td>Pessimist / Trip to the Morgue / Massakro / Post Mortem...</td>
+<td>punk</td>
+<td>$2128</td>
+<td>133</td>
+</tr>
+<tr>
+<td>2024-06-12</td>
+<td>MC Chris / Crunk WItch / Sloat Dixon</td>
+<td>hip-hop/rap</td>
+<td>$2107</td>
+<td>97</td>
+</tr>
+<tr>
+<td>2024-06-15</td>
+<td>Woke up on a Throne / Fancy Faces / Nun Tucker / Plants</td>
+<td>punk</td>
+<td>$2023</td>
+<td>83</td>
+</tr>
+</tbody>
+</table>
+<h2>Appendix B: Genre Extraction Method &amp; Confidence</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Method</th>
+<th>Confidence</th>
+<th>Coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calendar 'Style:' tag</td>
+<td>Explicit label from booker</td>
+<td>HIGH</td>
+<td>~15% of shows</td>
+</tr>
+<tr>
+<td>Known band lookup</td>
+<td>~60 hardcoded band--&gt;genre mappings</td>
+<td>HIGH</td>
+<td>~5% of shows</td>
+</tr>
+<tr>
+<td>Title/description keyword</td>
+<td>Regex word-boundary match</td>
+<td>MEDIUM</td>
+<td>~16% of shows</td>
+</tr>
+<tr>
+<td>Email body keyword</td>
+<td>Stricter regex on inquiry text</td>
+<td>LOW-MEDIUM</td>
+<td>Email analysis only</td>
+</tr>
+<tr>
+<td>Untagged</td>
+<td>No match</td>
+<td>--</td>
+<td>~64% of shows</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

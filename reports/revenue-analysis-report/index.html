@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TickPick Revenue — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar -- 2025 Ticket Revenue Analysis</h1>
+<p><strong>Report Date:</strong> 2026-03-04<br />
+<strong>Data Sources:</strong> 2025 Gmail inbox (4,461 emails), Google Calendar shows.json (197 events in 2025), band_directory.json<br />
+<strong>Period Covered:</strong> January 1 -- December 31, 2025</p>
+<hr />
+<h2>Executive Summary</h2>
+<p>The Bancroft Bar generated <strong>$8,376.46</strong> in ticket revenue through the TickPick/Fanimal platform across 39 weekly payout cycles in 2025. This revenue was distributed across approximately 96 ticketed shows out of 114 total music events (84% ticketing rate). The remaining shows were either canceled, walk-up only, privately promoted, or used other platforms.</p>
+<p>Revenue was heavily concentrated in a small number of high-draw shows. The top 3 shows accounted for roughly <strong>$3,790 (45%)</strong> of total annual revenue. The median ticketed show generated approximately <strong>$20-30</strong> in TickPick revenue.</p>
+<p><strong>Key finding:</strong> The Bancroft operates on a <strong>100% door-to-bands model</strong> -- all ticket/cover revenue goes directly to performers. The bar retains only the TickPick service fee markup. Bar revenue comes from drink sales driven by show attendance, not ticket revenue. This report therefore tracks <em>throughput</em> that the bar facilitated, not bar income.</p>
+<hr />
+<h2>1. TickPick Payment Data</h2>
+<h3>Payment Source</h3>
+<p>Revenue data was extracted from <strong>39 "Tipalti payment processed" emails</strong> from accounting@tickpick.com. These ACH payments contain explicit USD amounts and invoice numbers. The platform transitioned from Fanimal to TickPick in early 2025 (Fanimal payments through mid-February, TickPick/Tipalti thereafter).</p>
+<h3>Complete Payment Timeline</h3>
+<table>
+<thead>
+<tr>
+<th>Doc Date</th>
+<th>Invoice</th>
+<th>Amount</th>
+<th>Shows in Period</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1/13/2025</td>
+<td>254</td>
+<td>$39.76</td>
+<td>Ramblin Outlaws / The Imbeskulls (1/11)</td>
+</tr>
+<tr>
+<td>1/20/2025</td>
+<td>273</td>
+<td>$18.94</td>
+<td>Solar Barges (1/17)</td>
+</tr>
+<tr>
+<td>2/3/2025</td>
+<td>318</td>
+<td>$197.06</td>
+<td>Beast Fiend + Cotton Brain + Pachuco Jose (1/25-1/31)</td>
+</tr>
+<tr>
+<td>2/10/2025</td>
+<td>337</td>
+<td>$14.20</td>
+<td>Nightshadow + Red Room (2/7-2/8)</td>
+</tr>
+<tr>
+<td>2/25/2025</td>
+<td>387</td>
+<td>$58.74</td>
+<td>Fire the Driver + Putrid Invocation (2/21-2/22)</td>
+</tr>
+<tr>
+<td>3/10/2025</td>
+<td>440</td>
+<td><strong>$2,770.43</strong></td>
+<td>CMI + Chasing Wind + backlog (2/28-3/8)</td>
+</tr>
+<tr>
+<td>3/24/2025</td>
+<td>569</td>
+<td>$14.68</td>
+<td>The Letdown + Rock Invasion Fest II (3/21-3/22)</td>
+</tr>
+<tr>
+<td>3/31/2025</td>
+<td>601</td>
+<td>$40.00</td>
+<td>Bunny The Bear + Tigers Eye + Dream Desire + Ocean Harvest (3/26-3/30)</td>
+</tr>
+<tr>
+<td>4/7/2025</td>
+<td>614</td>
+<td>$5.00</td>
+<td>Whatever68 Radio Festival (4/5)</td>
+</tr>
+<tr>
+<td>4/14/2025</td>
+<td>641</td>
+<td><strong>$724.88</strong></td>
+<td>Born to Run + Psyattica (4/11-4/12)</td>
+</tr>
+<tr>
+<td>4/21/2025</td>
+<td>660</td>
+<td>$54.98</td>
+<td>Fountain of Youth + Kissing Candice (4/18-4/19)</td>
+</tr>
+<tr>
+<td>4/28/2025</td>
+<td>684</td>
+<td>$125.00</td>
+<td>DTA + Space Wax + Veriteras (4/24-4/26)</td>
+</tr>
+<tr>
+<td>5/6/2025</td>
+<td>709</td>
+<td>$95.00</td>
+<td>Bone Crown + Rockabilly Shakeout + No Home (5/1-5/3)</td>
+</tr>
+<tr>
+<td>5/12/2025</td>
+<td>732</td>
+<td>$49.96</td>
+<td>Apocalypse Dudes (5/9)</td>
+</tr>
+<tr>
+<td>5/19/2025</td>
+<td>763</td>
+<td>$70.00</td>
+<td>Kid in the Pit + Trip to the Morgue (5/16-5/17)</td>
+</tr>
+<tr>
+<td>5/27/2025</td>
+<td>781</td>
+<td>$69.96</td>
+<td>Courtside Betty + Woke Up On a Throne (5/23-5/24)</td>
+</tr>
+<tr>
+<td>6/2/2025</td>
+<td>822</td>
+<td>$60.00</td>
+<td>Close Enough + Contortion + New Casino (5/29-5/31)</td>
+</tr>
+<tr>
+<td>6/9/2025</td>
+<td>843</td>
+<td>$10.00</td>
+<td>Insolence / Packing Lead (6/6)</td>
+</tr>
+<tr>
+<td>6/30/2025</td>
+<td>1039</td>
+<td><strong>$1,870.00</strong></td>
+<td>6 shows incl. Dr. Know + Phantoms w/ Fangs (6/14-6/28)</td>
+</tr>
+<tr>
+<td>7/7/2025</td>
+<td>1057</td>
+<td>$160.00</td>
+<td>Lady Strange + Jet Fuel Soda + Soda Crackers (7/3-7/5)</td>
+</tr>
+<tr>
+<td>7/14/2025</td>
+<td>1096</td>
+<td>$10.00</td>
+<td>Fadegreen + Bourdain Cobain (7/11-7/12)</td>
+</tr>
+<tr>
+<td>7/21</td>
+<td>--</td>
+<td>$10.00</td>
+<td>Volume + Freedom High (7/18-7/19)</td>
+</tr>
+<tr>
+<td>7/28</td>
+<td>--</td>
+<td>$43.99</td>
+<td>Deep Trees + Chronicle 3 (7/25-7/26)</td>
+</tr>
+<tr>
+<td>8/4</td>
+<td>--</td>
+<td>$5.00</td>
+<td>Corporate Citizen + Raul Ayala (7/31-8/2)</td>
+</tr>
+<tr>
+<td>8/11</td>
+<td>--</td>
+<td><strong>$229.99</strong></td>
+<td>VietFest + SH!TOMATO (8/6-8/8)</td>
+</tr>
+<tr>
+<td>8/18</td>
+<td>--</td>
+<td>$20.00</td>
+<td>The Imbeskulls / Breakaway State (8/15)</td>
+</tr>
+<tr>
+<td>8/25</td>
+<td>--</td>
+<td>$109.58</td>
+<td>City Soul + Prophetess + Superweapon + Rapscallions (8/20-8/23)</td>
+</tr>
+<tr>
+<td>9/2</td>
+<td>--</td>
+<td>$29.37</td>
+<td>Fungal Mirage + Imbeskulls (8/29-8/30)</td>
+</tr>
+<tr>
+<td>9/15</td>
+<td>--</td>
+<td>$30.00</td>
+<td>Rogues of Chaos + Black Moon Cult (9/12-9/13)</td>
+</tr>
+<tr>
+<td>9/29</td>
+<td>--</td>
+<td>$40.00</td>
+<td>The Almas + Obsidian Tongue (9/26-9/27)</td>
+</tr>
+<tr>
+<td>10/6</td>
+<td>--</td>
+<td>$29.98</td>
+<td>Woke Up On a Throne + Eric Baylies + DarkWave Garden (10/2-10/5)</td>
+</tr>
+<tr>
+<td>10/13</td>
+<td>--</td>
+<td>$10.00</td>
+<td>Rattlesnake Suitcase (10/11)</td>
+</tr>
+<tr>
+<td>10/20</td>
+<td>--</td>
+<td>$80.00</td>
+<td>Phantoms with Fangs / Transient Penguins (10/18)</td>
+</tr>
+<tr>
+<td>10/27</td>
+<td>--</td>
+<td>$199.96</td>
+<td>Admiral Atlas Halloween + Bvrt Bacharach (10/24-10/26)</td>
+</tr>
+<tr>
+<td>11/3</td>
+<td>--</td>
+<td>$20.00</td>
+<td>Fantom Fire / Second Shooter (10/31)</td>
+</tr>
+<tr>
+<td>11/10</td>
+<td>--</td>
+<td>$5.00</td>
+<td>Fancy Faces + BitterGlow (11/7-11/8)</td>
+</tr>
+<tr>
+<td>12/1</td>
+<td>--</td>
+<td>$5.00</td>
+<td>Close Enough / Hemo / Fungal Mirage (11/27)</td>
+</tr>
+<tr>
+<td>12/15</td>
+<td>--</td>
+<td>$30.00</td>
+<td>Fourth Section + Faerie Qveene (12/12-12/13)</td>
+</tr>
+<tr>
+<td>12/22</td>
+<td>--</td>
+<td><strong>$1,020.00</strong></td>
+<td>Angry Samoans / Big Attitude (12/20)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note on large payments:</strong> The $2,770.43 (March 10), $1,870.00 (June 30), and $1,020.00 (December 22) payments represent accumulated multi-week payouts, likely due to the Fanimal-to-TickPick platform transition (March) and holiday processing delays (June, December).</p>
+<hr />
+<h2>2. Revenue by Show (Top 20 Highest-Grossing)</h2>
+<p>Revenue was estimated per show using price-weighted attribution for multi-show payment periods. Shows with higher ticket prices and weekend dates received proportionally more of shared payments.</p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Date</th>
+<th>Day</th>
+<th>Est. Revenue</th>
+<th>Ticket Price</th>
+<th>Est. Tickets</th>
+<th>Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2025-03-08</td>
+<td>Sat</td>
+<td><strong>$1,955</strong></td>
+<td>$20-25</td>
+<td>~85-98</td>
+<td>Conservative Military Image / Human Garbage / Doc Hammer / Brighton Street Bullies</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2025-12-20</td>
+<td>Sat</td>
+<td><strong>$1,020</strong></td>
+<td>$20</td>
+<td>~51</td>
+<td>Angry Samoans / Big Attitude / Deadly Dispute / Fvnerxl Mxrch / Strega13 / Infernal Tide Riders</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2025-03-07</td>
+<td>Fri</td>
+<td><strong>$815</strong></td>
+<td>$10-12</td>
+<td>~70-81</td>
+<td>Chasing Wind / Divide / Annelida / Cursed Bloodlines / He Films the Clouds</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2025-06-28</td>
+<td>Sat</td>
+<td><strong>$736</strong></td>
+<td>$20</td>
+<td>~37</td>
+<td>Dr. Know / Change Today / War Fever / Deadly Dispute / Brighton Street Bullies / Shot Out Hoods</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2025-04-11</td>
+<td>Fri</td>
+<td><strong>$403</strong></td>
+<td>$15</td>
+<td>~27</td>
+<td>Born to Run / Cut Loose</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2025-06-14</td>
+<td>Sat</td>
+<td><strong>$368</strong></td>
+<td>$10</td>
+<td>~37</td>
+<td>Phantoms with Fangs / Mitzino Cherrie / Fungal Mirage / Chump Hearts / Michael Barrios</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2025-04-12</td>
+<td>Sat</td>
+<td><strong>$322</strong></td>
+<td>$10</td>
+<td>~32</td>
+<td>Psyattica / Kitty Plague / A New Day Due</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2025-06-20</td>
+<td>Fri</td>
+<td><strong>$307</strong></td>
+<td>$10</td>
+<td>~31</td>
+<td>Admiral Atlas / Sloat Dixon ft. DJ Chief Sweat / Hemo the Person / Riquested</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2025-06-27</td>
+<td>Fri</td>
+<td><strong>$307</strong></td>
+<td>$10*</td>
+<td>~31</td>
+<td>Bloodbelly Blues / DeadBrokeDown / The Rollin Ramblers</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2025-08-08</td>
+<td>Fri</td>
+<td><strong>$230</strong></td>
+<td>$10</td>
+<td>~23</td>
+<td>VietFest Day 1 -- Downs Family / Screamin Yeehaws / The Touchies / Unsteady</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2025-08-06</td>
+<td>Wed</td>
+<td><strong>$115</strong></td>
+<td>$10</td>
+<td>~12</td>
+<td>SH!TOMATO / Peopling / Cop Funeral (LA) / Cime / Berlinguette\Ebaugh</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2025-10-24</td>
+<td>Fri</td>
+<td><strong>$100</strong></td>
+<td>$5</td>
+<td>~20</td>
+<td>Take the Mic Back -- Admiral Atlas Halloween B-Day Bash</td>
+</tr>
+<tr>
+<td>13</td>
+<td>2025-10-26</td>
+<td>Sun</td>
+<td><strong>$100</strong></td>
+<td>$12-16</td>
+<td>~7</td>
+<td>Bvrt Bacharach / RxBxFx / Slumpt707 / Phobia / Corrupt Dead</td>
+</tr>
+<tr>
+<td>14</td>
+<td>2025-01-25</td>
+<td>Sat</td>
+<td><strong>$85</strong></td>
+<td>$10*</td>
+<td>~8</td>
+<td>Beast Fiend / T.V. Static / The Imbeskulls / The Letdown</td>
+</tr>
+<tr>
+<td>15</td>
+<td>2025-10-18</td>
+<td>Sat</td>
+<td><strong>$80</strong></td>
+<td>$10</td>
+<td>~8</td>
+<td>Phantoms with Fangs / Fungal Mirage / Transient Penguins / June Rain</td>
+</tr>
+<tr>
+<td>16</td>
+<td>2025-06-24</td>
+<td>Tue</td>
+<td><strong>$77</strong></td>
+<td>$5</td>
+<td>~15</td>
+<td>Language Stain / Riot Knight / The Plants / GTG</td>
+</tr>
+<tr>
+<td>17</td>
+<td>2025-06-25</td>
+<td>Wed</td>
+<td><strong>$77</strong></td>
+<td>$5</td>
+<td>~15</td>
+<td>Sea Moss / Spring Breeding / Year of the Dead Bird / Tardigarde</td>
+</tr>
+<tr>
+<td>18</td>
+<td>2025-01-31</td>
+<td>Fri</td>
+<td><strong>$70</strong></td>
+<td>$15</td>
+<td>~5</td>
+<td>Pachuco Jose Quintet / Geo and The Hotwires / DJ Lucky Ritz</td>
+</tr>
+<tr>
+<td>19</td>
+<td>2025-07-05</td>
+<td>Sat</td>
+<td><strong>$69</strong></td>
+<td>$10</td>
+<td>~7</td>
+<td>The Soda Crackers / Roy Rapid &amp; The Rhythm Rock Trio</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2025-01-30</td>
+<td>Thu</td>
+<td><strong>$66</strong></td>
+<td>$10</td>
+<td>~7</td>
+<td>Cotton Brain / Close Enough / Waldo Oswaldo / Andy Burns / Jim E. Brown / Phantoms with Fangs / Fungal Mirage</td>
+</tr>
+</tbody>
+</table>
+<p><em>Prices marked with * are estimates where no calendar description confirmed the amount.</em></p>
+<h3>What Made the Top Shows Different</h3>
+<p><strong>Conservative Military Image (3/8, $1,955):</strong> Highest-grossing show of the year. $20 presale / $25 day-of pricing -- the highest ticket price at the Bancroft in 2025. The booking thread shows 150 total presale tickets allocated (100 at $20 + 50 at $25). As of March 3, 60 tickets remained, suggesting strong early sales. Booked via text with "Nino," not through the standard booking form.</p>
+<p><strong>Angry Samoans (12/20, $1,020):</strong> National-level punk act. $20 tickets. The organizer (El Hefe) coordinated a stacked 6-band bill. The Bancroft created 120+ comp/hold tickets through TickPick (4 separate organizer orders for 30-60 blocks), suggesting near-capacity anticipated attendance.</p>
+<p><strong>Chasing Wind (3/7, $815):</strong> Unusually high for a $10 show -- possibly benefiting from CMI hype the following night. This show was part of the same accumulated $2,770 payment period so the exact split is estimated.</p>
+<p><strong>Dr. Know (6/28, $736):</strong> Birthday show for James Head. $20 tickets. The booking thread shows the promoter asked for presale money before the show to "pay the bands" -- 18-email thread. Stacked bill with 6+ bands.</p>
+<p><strong>Born to Run (4/11, $403):</strong> $15 cover. Had the longest booking thread in the dataset (51 emails in the "Re: Tour" thread), suggesting significant coordination effort.</p>
+<hr />
+<h2>3. Revenue by Band</h2>
+<p>Since the Bancroft model is multi-band bills (typically 3-5 acts per show), revenue is attributed to the full bill, not individual performers. The following shows which <em>headliners</em> draw.</p>
+<h3>Top 20 Headliner Acts by Associated Revenue</h3>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Band</th>
+<th>Shows</th>
+<th>Total Revenue</th>
+<th>Avg per Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Conservative Military Image</td>
+<td>1</td>
+<td>$1,956</td>
+<td>$1,956</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Angry Samoans</td>
+<td>1</td>
+<td>$1,020</td>
+<td>$1,020</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Chasing Wind</td>
+<td>1</td>
+<td>$815</td>
+<td>$815</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Dr. Know</td>
+<td>1</td>
+<td>$736</td>
+<td>$736</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Brighton Street Bullies</td>
+<td>2</td>
+<td>$2,691</td>
+<td>$1,346</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fungal Mirage</td>
+<td>6</td>
+<td>$512</td>
+<td>$85</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Phantoms with Fangs</td>
+<td>3</td>
+<td>$490</td>
+<td>$163</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Born to Run</td>
+<td>1</td>
+<td>$403</td>
+<td>$403</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Psyattica</td>
+<td>1</td>
+<td>$322</td>
+<td>$322</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Admiral Atlas</td>
+<td>3</td>
+<td>$313</td>
+<td>$104</td>
+</tr>
+<tr>
+<td>11</td>
+<td>VietFest (Downs Family etc.)</td>
+<td>1</td>
+<td>$230</td>
+<td>$230</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Bvrt Bacharach / Phobia</td>
+<td>1</td>
+<td>$100</td>
+<td>$100</td>
+</tr>
+<tr>
+<td>13</td>
+<td>The Imbeskulls</td>
+<td>4</td>
+<td>$160</td>
+<td>$40</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Fancy Faces</td>
+<td>6</td>
+<td>$91</td>
+<td>$15</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Close Enough</td>
+<td>4</td>
+<td>$60</td>
+<td>$15</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Cotton Brain</td>
+<td>4</td>
+<td>$72</td>
+<td>$18</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Age of Darkness</td>
+<td>4</td>
+<td>$49</td>
+<td>$12</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Deadly Dispute</td>
+<td>2</td>
+<td>$1,756</td>
+<td>$878</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Fvnerxl Mxrch</td>
+<td>2</td>
+<td>$1,047</td>
+<td>$524</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Superweapon</td>
+<td>1</td>
+<td>$57</td>
+<td>$57</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Brighton Street Bullies and Deadly Dispute appear on multiple high-grossing bills (CMI, Dr. Know, Angry Samoans) -- they are strong support acts that get booked onto big shows. Fungal Mirage and Fancy Faces are the most frequently booked bands (6 appearances each) but generate modest per-show revenue.</p>
+<hr />
+<h2>4. Monthly Revenue Trends</h2>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Revenue</th>
+<th>Shows*</th>
+<th>Avg/Show</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January</td>
+<td>$256</td>
+<td>5</td>
+<td>$51</td>
+<td>Slow start, Fanimal platform</td>
+</tr>
+<tr>
+<td>February</td>
+<td>$73</td>
+<td>4</td>
+<td>$18</td>
+<td>Fanimal-&gt;TickPick transition, low volume</td>
+</tr>
+<tr>
+<td>March</td>
+<td><strong>$2,825</strong></td>
+<td>8</td>
+<td>$353</td>
+<td>CMI show ($1,956) drives the spike</td>
+</tr>
+<tr>
+<td>April</td>
+<td>$910</td>
+<td>8</td>
+<td>$114</td>
+<td>Born to Run ($403) + Psyattica ($322)</td>
+</tr>
+<tr>
+<td>May</td>
+<td>$345</td>
+<td>8</td>
+<td>$43</td>
+<td>Steady mid-range shows</td>
+</tr>
+<tr>
+<td>June</td>
+<td><strong>$1,880</strong></td>
+<td>8</td>
+<td>$235</td>
+<td>Dr. Know ($736) + batch payout</td>
+</tr>
+<tr>
+<td>July</td>
+<td>$225</td>
+<td>8</td>
+<td>$28</td>
+<td>Summer slump despite full calendar</td>
+</tr>
+<tr>
+<td>August</td>
+<td>$393</td>
+<td>8</td>
+<td>$49</td>
+<td>VietFest ($230) stands out</td>
+</tr>
+<tr>
+<td>September</td>
+<td>$70</td>
+<td>6</td>
+<td>$12</td>
+<td>Worst per-show month</td>
+</tr>
+<tr>
+<td>October</td>
+<td>$340</td>
+<td>7</td>
+<td>$49</td>
+<td>Halloween bash + Bvrt Bacharach</td>
+</tr>
+<tr>
+<td>November</td>
+<td>$10</td>
+<td>4</td>
+<td>$3</td>
+<td>Near-zero ticket revenue</td>
+</tr>
+<tr>
+<td>December</td>
+<td><strong>$1,050</strong></td>
+<td>4</td>
+<td>$263</td>
+<td>Angry Samoans ($1,020) dominates</td>
+</tr>
+</tbody>
+</table>
+<p><em>Ticketed shows only.</em></p>
+<h3>Seasonal Pattern</h3>
+<p>Revenue is <strong>extremely event-driven</strong>, not seasonal. Three individual shows (CMI in March, Dr. Know in June, Angry Samoans in December) account for roughly 44% of annual revenue. Removing those three, the remaining ~91 shows generated about $4,665 total, averaging ~$51 per show.</p>
+<p>The summer months (July-September) were unexpectedly weak despite a full show calendar. September and November were the worst months. There is no clear seasonal trend -- revenue spikes are driven by nationally known or regionally famous headliners, not time of year.</p>
+<hr />
+<h2>5. Day-of-Week Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Total Revenue</th>
+<th>Shows</th>
+<th>Avg/Show</th>
+<th>% of Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Saturday</td>
+<td><strong>$5,219</strong></td>
+<td>39</td>
+<td><strong>$134</strong></td>
+<td>62.3%</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>$2,623</td>
+<td>34</td>
+<td>$77</td>
+<td>31.3%</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>$176</td>
+<td>11</td>
+<td>$16</td>
+<td>2.1%</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>$77</td>
+<td>1</td>
+<td>$77</td>
+<td>0.9%</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>$78</td>
+<td>2</td>
+<td>$39</td>
+<td>0.9%</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>$155</td>
+<td>6</td>
+<td>$26</td>
+<td>1.9%</td>
+</tr>
+<tr>
+<td>Monday</td>
+<td>$0</td>
+<td>0</td>
+<td>$0</td>
+<td>0.0%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Saturday is king</strong>, generating 62% of all ticket revenue at $134 average per show. Friday is a solid second at $77 average. Weeknight shows (Thu/Tue/Wed) generate minimal ticket revenue ($16-$39 average). The venue does not book ticketed music shows on Mondays (those are reserved for Daygo Pong / Vinyl Knights).</p>
+<hr />
+<h2>6. Revenue vs. Booking Thread Activity</h2>
+<table>
+<thead>
+<tr>
+<th>Show</th>
+<th>Revenue</th>
+<th>Thread Emails</th>
+<th>Thread Subject</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Born to Run / Cut Loose (4/11)</td>
+<td>$403</td>
+<td><strong>51</strong></td>
+<td>Re: Tour</td>
+</tr>
+<tr>
+<td>VietFest (8/8)</td>
+<td>$230</td>
+<td>18</td>
+<td>VietFest</td>
+</tr>
+<tr>
+<td>Dr. Know (6/28)</td>
+<td>$736</td>
+<td><strong>18</strong></td>
+<td>Show for James Head B-day June 28th</td>
+</tr>
+<tr>
+<td>Angry Samoans (12/20)</td>
+<td>$1,020</td>
+<td><strong>26</strong></td>
+<td>Re: [Bancroft Bar] Band Booking Form</td>
+</tr>
+<tr>
+<td>Chasing Wind (3/7)</td>
+<td>$815</td>
+<td>28</td>
+<td>Re: [Bancroft Bar] Band Booking Form</td>
+</tr>
+<tr>
+<td>Age of Darkness (9/6)</td>
+<td>$5</td>
+<td><strong>28</strong></td>
+<td>Re: booking september 6</td>
+</tr>
+<tr>
+<td>Fountain of Youth (4/18)</td>
+<td>$55</td>
+<td><strong>31</strong></td>
+<td>Re: The Fountain Of Youth band</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Findings:</strong><br />
+- High-revenue shows tend to have longer booking threads (18-51 emails), reflecting more coordination with touring acts or promoters.<br />
+- However, long threads do not guarantee revenue: Age of Darkness had a 28-email thread but only $5 in TickPick revenue; Fountain of Youth had 31 emails but $55.<br />
+- The most profitable bookings came through <strong>external promoters</strong> or <strong>birthday show organizers</strong> (CMI via "Nino," Dr. Know via Leila Head, Angry Samoans via El Hefe) rather than through the standard booking form.<br />
+- Low-revenue shows typically had short threads (1-5 emails) and were booked through the standard form or by "Kayla" directly.</p>
+<hr />
+<h2>7. Top 20 Highest-Grossing Shows (Summary Table)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Date</th>
+<th>Bands</th>
+<th>Revenue</th>
+<th>Tix Price</th>
+<th>Est. Attendance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>03/08 Sat</td>
+<td>Conservative Military Image / Human Garbage / Doc Hammer / BSB</td>
+<td><strong>$1,956</strong></td>
+<td>$20-25</td>
+<td>~85-98</td>
+</tr>
+<tr>
+<td>2</td>
+<td>12/20 Sat</td>
+<td>Angry Samoans / Big Attitude / Deadly Dispute / Fvnerxl Mxrch / Strega13 / Infernal Tide Riders</td>
+<td><strong>$1,020</strong></td>
+<td>$20</td>
+<td>~51</td>
+</tr>
+<tr>
+<td>3</td>
+<td>03/07 Fri</td>
+<td>Chasing Wind / Divide / Annelida / Cursed Bloodlines / He Films the Clouds</td>
+<td><strong>$815</strong></td>
+<td>$10-12</td>
+<td>~70-81</td>
+</tr>
+<tr>
+<td>4</td>
+<td>06/28 Sat</td>
+<td>Dr. Know / Change Today / War Fever / Deadly Dispute / BSB / Shot Out Hoods / Disauthority</td>
+<td><strong>$736</strong></td>
+<td>$20</td>
+<td>~37</td>
+</tr>
+<tr>
+<td>5</td>
+<td>04/11 Fri</td>
+<td>Born to Run / Cut Loose</td>
+<td><strong>$403</strong></td>
+<td>$15</td>
+<td>~27</td>
+</tr>
+<tr>
+<td>6</td>
+<td>06/14 Sat</td>
+<td>Phantoms with Fangs / Mitzino Cherrie / Fungal Mirage / Chump Hearts / Michael Barrios</td>
+<td><strong>$368</strong></td>
+<td>$10</td>
+<td>~37</td>
+</tr>
+<tr>
+<td>7</td>
+<td>04/12 Sat</td>
+<td>Psyattica / Kitty Plague / A New Day Due</td>
+<td><strong>$322</strong></td>
+<td>$10</td>
+<td>~32</td>
+</tr>
+<tr>
+<td>8</td>
+<td>06/20 Fri</td>
+<td>Admiral Atlas / Sloat Dixon ft. Chief Sweat / Hemo the Person / Riquested</td>
+<td><strong>$307</strong></td>
+<td>$10</td>
+<td>~31</td>
+</tr>
+<tr>
+<td>9</td>
+<td>06/27 Fri</td>
+<td>Bloodbelly Blues / DeadBrokeDown / The Rollin Ramblers</td>
+<td><strong>$307</strong></td>
+<td>$10</td>
+<td>~31</td>
+</tr>
+<tr>
+<td>10</td>
+<td>08/08 Fri</td>
+<td>VietFest Day 1 -- Downs Family / Screamin Yeehaws / The Touchies / Unsteady</td>
+<td><strong>$230</strong></td>
+<td>$10</td>
+<td>~23</td>
+</tr>
+<tr>
+<td>11</td>
+<td>08/06 Wed</td>
+<td>SH!TOMATO / Peopling / Cop Funeral (LA) / Cime</td>
+<td><strong>$115</strong></td>
+<td>$10</td>
+<td>~12</td>
+</tr>
+<tr>
+<td>12</td>
+<td>10/24 Fri</td>
+<td>Take the Mic Back -- Admiral Atlas Halloween Bash</td>
+<td><strong>$100</strong></td>
+<td>$5</td>
+<td>~20</td>
+</tr>
+<tr>
+<td>13</td>
+<td>10/26 Sun</td>
+<td>Bvrt Bacharach / RxBxFx / Slumpt707 / Phobia / Corrupt Dead</td>
+<td><strong>$100</strong></td>
+<td>$12-16</td>
+<td>~7</td>
+</tr>
+<tr>
+<td>14</td>
+<td>01/25 Sat</td>
+<td>Beast Fiend / T.V. Static / The Imbeskulls / The Letdown</td>
+<td><strong>$85</strong></td>
+<td>$10</td>
+<td>~8</td>
+</tr>
+<tr>
+<td>15</td>
+<td>10/18 Sat</td>
+<td>Phantoms with Fangs / Fungal Mirage / Transient Penguins / June Rain</td>
+<td><strong>$80</strong></td>
+<td>$10</td>
+<td>~8</td>
+</tr>
+<tr>
+<td>16</td>
+<td>06/24 Tue</td>
+<td>Language Stain / Riot Knight / The Plants / GTG</td>
+<td><strong>$77</strong></td>
+<td>$5</td>
+<td>~15</td>
+</tr>
+<tr>
+<td>17</td>
+<td>06/25 Wed</td>
+<td>Sea Moss / Spring Breeding / Year of the Dead Bird / Tardigarde</td>
+<td><strong>$77</strong></td>
+<td>$5</td>
+<td>~15</td>
+</tr>
+<tr>
+<td>18</td>
+<td>01/31 Fri</td>
+<td>Pachuco Jose Quintet / Geo and The Hotwires / DJ Lucky Ritz</td>
+<td><strong>$70</strong></td>
+<td>$15</td>
+<td>~5</td>
+</tr>
+<tr>
+<td>19</td>
+<td>07/05 Sat</td>
+<td>The Soda Crackers / Roy Rapid &amp; The Rhythm Rock Trio</td>
+<td><strong>$69</strong></td>
+<td>$10</td>
+<td>~7</td>
+</tr>
+<tr>
+<td>20</td>
+<td>01/30 Thu</td>
+<td>Cotton Brain / Close Enough / Waldo Oswaldo / Andy Burns / Phantoms w/ Fangs / Fungal Mirage</td>
+<td><strong>$66</strong></td>
+<td>$10</td>
+<td>~7</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. Bottom Performers -- Shows with Zero or Minimal TickPick Revenue</h2>
+<h3>Shows on TickPick with Near-Zero Revenue ($10 or less)</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Show</th>
+<th>Revenue</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11/07 Fri</td>
+<td>Fancy Faces / Better Before / Omniatics</td>
+<td>~$3</td>
+<td>$10</td>
+<td></td>
+</tr>
+<tr>
+<td>11/08 Sat</td>
+<td>BitterGlow / Fuklempt / Cotton Brain / Promised Paradigm</td>
+<td>~$3</td>
+<td>$10</td>
+<td></td>
+</tr>
+<tr>
+<td>11/27 Thu</td>
+<td>Close Enough / Hemo the Person / Fungal Mirage</td>
+<td>$5</td>
+<td>$5</td>
+<td>Thanksgiving Day</td>
+</tr>
+<tr>
+<td>04/05 Sat</td>
+<td>Whatever68 Radio Festival</td>
+<td>$5</td>
+<td>$5</td>
+<td></td>
+</tr>
+<tr>
+<td>06/06 Fri</td>
+<td>Insolence / Packing Lead / Unlevel / Blood Sigil</td>
+<td>$10</td>
+<td>$10</td>
+<td>Only 1 ticket sold online</td>
+</tr>
+<tr>
+<td>07/11 Fri</td>
+<td>Fadegreen / Shadowfigure / Hemo The Person / Admiral Atlas</td>
+<td>~$5</td>
+<td>$5</td>
+<td></td>
+</tr>
+<tr>
+<td>07/12 Sat</td>
+<td>Bourdain Cobain / Master Villain / Kenjiii / Ghostvolume / Trust One / Chef Jeff</td>
+<td>~$5</td>
+<td>$10</td>
+<td></td>
+</tr>
+<tr>
+<td>10/11 Sat</td>
+<td>Rattlesnake Suitcase / Abigail Circus / Fancy Faces</td>
+<td>$10</td>
+<td>$10</td>
+<td>Only 1 ticket</td>
+</tr>
+</tbody>
+</table>
+<h3>Calendar Shows Not on TickPick (22 shows)</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Show</th>
+<th>Likely Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01/10 Fri</td>
+<td>Beth &amp; The Baysides</td>
+<td><strong>Canceled</strong></td>
+</tr>
+<tr>
+<td>01/18 Sat</td>
+<td>Hoots Memorial</td>
+<td>Memorial event -- likely free</td>
+</tr>
+<tr>
+<td>02/01 Sat</td>
+<td>Destard</td>
+<td><strong>Canceled</strong></td>
+</tr>
+<tr>
+<td>02/23 Sun</td>
+<td>Dogface Bastards / Rally Cry / Legions / BSB / Wabash Cannons</td>
+<td>Matinee show, walk-up $10 cover</td>
+</tr>
+<tr>
+<td>02/28 Fri</td>
+<td>Fantom Fire / Cheese Bergen / Dang / Thinky Flesh</td>
+<td>No description -- possibly walk-up only</td>
+</tr>
+<tr>
+<td>03/31 Mon</td>
+<td>Happy birthday!</td>
+<td>Private/social event</td>
+</tr>
+<tr>
+<td>04/05 Sat</td>
+<td>Whatever68 Radio Festival</td>
+<td>Used Fanimal link, $5 cover</td>
+</tr>
+<tr>
+<td>05/10 Sat</td>
+<td>Karaoke w/ KJ Lenny -- 12th Anniversary</td>
+<td>Special event, no cover</td>
+</tr>
+<tr>
+<td>05/11 Sun</td>
+<td>Hold for Bancroft Anniversary</td>
+<td>Private event hold</td>
+</tr>
+<tr>
+<td>05/22 Thu</td>
+<td>Chuze annual $40</td>
+<td>Corporate/private event</td>
+</tr>
+<tr>
+<td>06/07 Sat</td>
+<td>Bancroft Gear Swap &amp; Open Jam</td>
+<td>Community event, likely free</td>
+</tr>
+<tr>
+<td>06/21 Sat</td>
+<td>The Golden Ratio</td>
+<td>Battle rap event at $20, separate promoter</td>
+</tr>
+<tr>
+<td>07/09 Wed</td>
+<td>Admiral Atlas Arrt Nite</td>
+<td>Art night, not a ticketed music show</td>
+</tr>
+<tr>
+<td>07/17 Thu</td>
+<td>Words of Concrete / Legions / Far Below</td>
+<td>Walk-up only</td>
+</tr>
+<tr>
+<td>07/29 Tue</td>
+<td>Hold for Bobcat</td>
+<td>Hold/private</td>
+</tr>
+<tr>
+<td>08/09 Sat</td>
+<td>VietFest Day 2</td>
+<td>$10 cover, walk-up (Day 1 was on TickPick)</td>
+</tr>
+<tr>
+<td>08/16 Sat</td>
+<td>Mama Frida and The Boys</td>
+<td>Walk-up only</td>
+</tr>
+<tr>
+<td>10/03 Fri</td>
+<td>In Parallel with You / The Hypocrites Club / Fancy Faces</td>
+<td>Walk-up only</td>
+</tr>
+<tr>
+<td>10/10 Fri</td>
+<td>PLUR Factory -- RAVEYARD Shift</td>
+<td>External promoter, likely own ticketing</td>
+</tr>
+<tr>
+<td>11/22 Sat</td>
+<td>Admiral Atlas / Sinja the Architect / Super-Mid</td>
+<td>Walk-up only</td>
+</tr>
+<tr>
+<td>11/29 Sat</td>
+<td>Karaoke with Lenny</td>
+<td>Karaoke, $15 seats / donation</td>
+</tr>
+<tr>
+<td>12/05 Fri</td>
+<td>PsyXBeam / Fancy Faces</td>
+<td>Walk-up only</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pattern:</strong> Most non-TickPick shows fall into three categories: (1) canceled shows, (2) special/private events, (3) regular shows where the booker opted for walk-up-only or used a different platform (Humanitix was used for at least one show in Feb 2025).</p>
+<hr />
+<h2>9. Repeat Band Revenue Trends</h2>
+<p>Bands that played 2+ ticketed shows in 2025, showing their revenue trajectory:</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Shows</th>
+<th>Revenue Trend</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fungal Mirage</strong></td>
+<td>6</td>
+<td>$42 -&gt; $368 -&gt; $13 -&gt; $8 -&gt; $80 -&gt; $0</td>
+<td>Volatile, peaked June</td>
+</tr>
+<tr>
+<td><strong>Fancy Faces</strong></td>
+<td>6</td>
+<td>$6 -&gt; $15 -&gt; $57 -&gt; $1 -&gt; $10 -&gt; $2</td>
+<td>Consistently low</td>
+</tr>
+<tr>
+<td><strong>The Imbeskulls</strong></td>
+<td>4</td>
+<td>$40 -&gt; $84 -&gt; $20 -&gt; $16</td>
+<td>Declining</td>
+</tr>
+<tr>
+<td><strong>Close Enough</strong></td>
+<td>4</td>
+<td>$42 -&gt; $5 -&gt; $13 -&gt; $0</td>
+<td>Declining to zero</td>
+</tr>
+<tr>
+<td><strong>Cotton Brain</strong></td>
+<td>4</td>
+<td>$42 -&gt; $13 -&gt; $3 -&gt; $14</td>
+<td>Low and flat</td>
+</tr>
+<tr>
+<td><strong>Age of Darkness</strong></td>
+<td>4</td>
+<td>$3 -&gt; $20 -&gt; $21 -&gt; $5</td>
+<td>Peaked mid-year</td>
+</tr>
+<tr>
+<td><strong>Admiral Atlas</strong></td>
+<td>3</td>
+<td>$307 -&gt; $2 -&gt; $4</td>
+<td>Sharp decline after 6/20</td>
+</tr>
+<tr>
+<td><strong>Phantoms with Fangs</strong></td>
+<td>3</td>
+<td>$42 -&gt; $368 -&gt; $80</td>
+<td>Peaked June, strong</td>
+</tr>
+<tr>
+<td><strong>Kid in the Pit</strong></td>
+<td>3</td>
+<td>$3 -&gt; $21 -&gt; $5</td>
+<td>Low throughout</td>
+</tr>
+<tr>
+<td><strong>Hemo the Person</strong></td>
+<td>3</td>
+<td>$307 -&gt; $2 -&gt; $0</td>
+<td>Sharp decline</td>
+</tr>
+<tr>
+<td><strong>Brighton Street Bullies</strong></td>
+<td>2</td>
+<td>$1,956 -&gt; $736</td>
+<td>Still high, support act</td>
+</tr>
+<tr>
+<td><strong>Deadly Dispute</strong></td>
+<td>2</td>
+<td>$736 -&gt; $1,020</td>
+<td>Increasing (high-profile bills)</td>
+</tr>
+<tr>
+<td><strong>Woke Up On a Throne</strong></td>
+<td>2</td>
+<td>$13 -&gt; $16</td>
+<td>Flat, low</td>
+</tr>
+<tr>
+<td><strong>Gunner Gunner</strong></td>
+<td>2</td>
+<td>$5 -&gt; $57</td>
+<td>Increasing</td>
+</tr>
+<tr>
+<td><strong>Faerie Qveene</strong></td>
+<td>2</td>
+<td>$38 -&gt; $16</td>
+<td>Declining</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key observations:</strong><br />
+- <strong>Fungal Mirage</strong> is the Bancroft's most-booked band (6 shows) but revenue is wildly inconsistent -- their $368 peak was driven by being on the Phantoms with Fangs bill (6/14), not their own draw.<br />
+- <strong>Fancy Faces</strong> plays frequently but never generates significant presale. They appear to be a reliable local fill act.<br />
+- <strong>Admiral Atlas</strong> had one great night (6/20, $307) but subsequent shows generated almost nothing in presale. Their draw may be walk-up rather than advance tickets.<br />
+- <strong>Brighton Street Bullies</strong> and <strong>Deadly Dispute</strong> show high revenue but that is because they get booked as support for the big headliners (CMI, Dr. Know, Angry Samoans). Their revenue reflects the headliner's draw, not their own.</p>
+<hr />
+<h2>10. Financial Model &amp; Door Policy</h2>
+<h3>The Bancroft's Standard Terms</h3>
+<p>From multiple booking emails, the Bancroft's consistent policy is:</p>
+<blockquote>
+<p><em>"100% of the door (Online &amp; in person ticket sales) go directly to the bands, the only thing the bar takes is the service fee amount that is added to online ticket sales."</em></p>
+</blockquote>
+<ul>
+<li><strong>No guarantees.</strong> When asked for a $150 guarantee (by touring act via booking form), the Bancroft responded: <em>"I can't do a guarantee unfortunately, but 100% of the door goes to the bands."</em></li>
+<li><strong>Bands set their own cover price.</strong> The booker (Kayla/Rob) asks bands: <em>"What you want to set the cover amount at?"</em></li>
+<li><strong>The bar's revenue model is drink sales.</strong> Show attendance drives bar revenue, not ticket revenue.</li>
+</ul>
+<h3>Ticket Price Distribution (73 shows with confirmed prices)</h3>
+<table>
+<thead>
+<tr>
+<th>Price</th>
+<th>Shows</th>
+<th>% of Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$3</td>
+<td>2</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>$5</td>
+<td>20</td>
+<td>27%</td>
+</tr>
+<tr>
+<td>$8</td>
+<td>1</td>
+<td>1%</td>
+</tr>
+<tr>
+<td>$10</td>
+<td>36</td>
+<td><strong>49%</strong></td>
+</tr>
+<tr>
+<td>$12</td>
+<td>2</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>$15</td>
+<td>7</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>$20</td>
+<td>4</td>
+<td><strong>5%</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>$10 is the standard cover</strong> -- used by nearly half of all shows.</li>
+<li><strong>$5 is the budget option</strong> -- used for smaller/local-only bills.</li>
+<li><strong>$15-$20 shows are the revenue drivers</strong> -- only 15% of shows but account for ~75% of total ticket revenue.</li>
+<li>Average ticket price: <strong>$9.44</strong>. Median: <strong>$10</strong>.</li>
+</ul>
+<h3>TickPick Service Fee Impact</h3>
+<p>TickPick/Fanimal takes a service fee on online sales (added on top of the ticket price, not deducted from it). The payout amounts to the Bancroft represent the face value of tickets sold. Since 100% goes to bands, the Bancroft's direct revenue from this is $0, but the bar benefits from:<br />
+1. Higher attendance from advance ticket commitment<br />
+2. Drink sales from attendees<br />
+3. Guest list management (85 guest list emails sent in 2025)</p>
+<hr />
+<h2>11. Other Financial Signals in Email</h2>
+<h3>Guarantee Requests (76 emails mentioning "guarantee")</h3>
+<p>Most guarantee requests came from touring acts via the booking form. The Bancroft consistently declines, offering 100% door instead. One notable exchange:</p>
+<ul>
+<li>A touring band requested a <strong>$150 guarantee</strong> via their booking agent (Mike Yakouba, Last Light Presents NW).</li>
+<li>The Bancroft responded: <em>"I can't do a the guarantee unfortunately, but 100% of the door goes to the bands."</em></li>
+<li>The agent asked: <em>"If so what would the door split be?"</em></li>
+</ul>
+<p>This is the standard dynamic -- touring acts want guarantees, the Bancroft counters with 100% door.</p>
+<h3>Presale Money Requests</h3>
+<p>The Dr. Know birthday show promoter (Leila Head) asked: <em>"Would we be able to get the presale money before the show to pay the bands?"</em> This suggests that for externally promoted shows, the promoter collects the door money and distributes it to bands, with the Bancroft acting as venue/ticketing intermediary.</p>
+<h3>Cover Charge Discussions (85 emails)</h3>
+<p>Most common discussion points:<br />
+- $10 cover: 134 mentions (the default)<br />
+- $5 cover: 57 mentions (budget shows)<br />
+- $15 cover: 32 mentions (touring acts)</p>
+<h3>Pay Structure Mentions</h3>
+<ul>
+<li>"100% of the door" appears in 58 outgoing Bancroft emails (it is the standard boilerplate).</li>
+<li>"Pay the bands" appears in 19 emails, always in the context of door money going to performers.</li>
+<li>No evidence of any venue cut from ticket/door revenue.</li>
+</ul>
+<hr />
+<h2>12. Key Takeaways</h2>
+<ol>
+<li>
+<p><strong>Revenue concentration is extreme.</strong> Three shows generated 44% of all ticket revenue. The typical show generates $20-50 in TickPick presale.</p>
+</li>
+<li>
+<p><strong>Nationally/regionally known acts are the only reliable revenue drivers.</strong> Conservative Military Image, Angry Samoans, and Dr. Know -- all established punk/hardcore acts -- were the only shows to crack $700+.</p>
+</li>
+<li>
+<p><strong>$20 ticket price is the sweet spot for high-revenue shows.</strong> The four $20 shows averaged $930 in revenue vs. $34 average for $10 shows and $19 for $5 shows.</p>
+</li>
+<li>
+<p><strong>Saturday night is essential.</strong> 62% of revenue comes from Saturday shows despite being only ~34% of the calendar.</p>
+</li>
+<li>
+<p><strong>TickPick presale captures only a fraction of door revenue.</strong> Many shows have walk-up attendance that far exceeds presale. The $5-$10 shows with only 1-8 presale tickets likely had 20-50+ walk-up attendees.</p>
+</li>
+<li>
+<p><strong>Repeat local bands do not build presale audiences.</strong> Fungal Mirage, Fancy Faces, Close Enough, and others play frequently but their presale numbers do not grow. Their audiences come walk-up.</p>
+</li>
+<li>
+<p><strong>External promoters drive the biggest shows.</strong> The top 3 shows were all booked through external promoters/organizers, not the standard booking form. Investing in promoter relationships may be more effective than booking more frequent small shows.</p>
+</li>
+<li>
+<p><strong>November is dead.</strong> Only $10 in ticket revenue across the entire month -- the worst performer by a wide margin.</p>
+</li>
+</ol>
+<hr />
+<p><em>Analysis generated from 4,461 emails and 197 calendar events. Revenue figures are from TickPick/Tipalti payment confirmations. Per-show estimates for multi-show payment periods use price-weighted attribution and should be treated as approximations, not exact figures.</em></p>
+</body>
+</html>

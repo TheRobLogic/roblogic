@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Revenue vs Shows — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar: Revenue vs. Shows Analysis</h1>
+<p><strong>Data sources:</strong> Toast POS daily sales (2023-2025), Google Calendar show bookings (2014-2026)<br />
+<strong>Analysis period:</strong> Jan 2023 -- May 2025 (871 business days, 303 music show nights)<br />
+<strong>Key metric:</strong> Toast POS Net Sales = bar drink revenue. All door/ticket money goes to bands.</p>
+<hr />
+<h2>1. Show Nights vs. Non-Show Nights</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Nights</th>
+<th>Avg Net Sales</th>
+<th>Median</th>
+<th>Total Revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Music Show</td>
+<td>303</td>
+<td>$948</td>
+<td>$878</td>
+<td>$287,269</td>
+</tr>
+<tr>
+<td>Dart Tournament</td>
+<td>93</td>
+<td>$605</td>
+<td>$587</td>
+<td>$56,276</td>
+</tr>
+<tr>
+<td>Other Event (karaoke, bingo, etc.)</td>
+<td>49</td>
+<td>$554</td>
+<td>$514</td>
+<td>$27,141</td>
+</tr>
+<tr>
+<td>No Event</td>
+<td>426</td>
+<td>$443</td>
+<td>$406</td>
+<td>$188,831</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A music show night generates $948 in average bar sales vs. $443 on nights with no event -- a 114% lift ($505 per night).</strong></p>
+<h3>Breakdown by Day of Week</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Show Night Avg</th>
+<th>No-Show Avg</th>
+<th>Lift</th>
+<th>Show Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday</td>
+<td>$639 (n=14)</td>
+<td>$398 (n=80)</td>
+<td>+61%</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>$717 (n=10)</td>
+<td>$444 (n=98)</td>
+<td>+62%</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>$612 (n=13)</td>
+<td>$351 (n=108)</td>
+<td>+74%</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>$799 (n=41)</td>
+<td>$451 (n=83)</td>
+<td>+77%</td>
+<td>41</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>$996 (n=88)</td>
+<td>$719 (n=35)</td>
+<td>+38%</td>
+<td>88</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>$1,110 (n=101)</td>
+<td>$588 (n=22)</td>
+<td>+89%</td>
+<td>101</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>$854 (n=36)</td>
+<td>$0 (n=0)</td>
+<td>+0%</td>
+<td>36</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> Shows boost revenue every night of the week. Saturday shows deliver the biggest absolute dollars ($1,110 avg). Wednesday shows have the biggest relative lift (+74%) because the baseline is so low. Friday/Saturday are the workhorse nights with 88 and 101 shows respectively.</p>
+<h2>2. Best and Worst Show Nights (2024 + Jan-May 2025)</h2>
+<h3>Top 20 Highest-Grossing Show Nights</h3>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Date</th>
+<th>Day</th>
+<th>Net Sales</th>
+<th>Guests</th>
+<th>Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2024-07-20</td>
+<td>Sat</td>
+<td>$2,881.26</td>
+<td>176</td>
+<td>Hillbilly moon explosion / 3LH / Wendaze / Heartbreak Hustlers</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2024-02-03</td>
+<td>Sat</td>
+<td>$2,872.21</td>
+<td>152</td>
+<td>Wabash Cannons / Broke Bastards / Wicked Echos / The Pictographs / Chad Mar</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2024-03-30</td>
+<td>Sat</td>
+<td>$2,855.07</td>
+<td>195</td>
+<td>Brighton Street Bullies /  Grahzny / Pictographs / VFMS / The Yucks / The C</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2024-01-13</td>
+<td>Sat</td>
+<td>$2,781.92</td>
+<td>152</td>
+<td>Ramblin Outlaws / Razor Nights / Dying Species</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2024-05-11</td>
+<td>Sat</td>
+<td>$2,685.41</td>
+<td>153</td>
+<td>Rock'n Wrestling</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2025-03-08</td>
+<td>Sat</td>
+<td>$2,358.53</td>
+<td>156</td>
+<td>Conservative Military Image / Human Garbage / Doc Hammer / Brighton Street</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2024-04-13</td>
+<td>Sat</td>
+<td>$2,260.25</td>
+<td>128</td>
+<td>MATINEE-Revolt Chix/Wabash Cannons/Sleeping Faceless/Middle Finger</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2025-01-31</td>
+<td>Fri</td>
+<td>$1,855.53</td>
+<td>99</td>
+<td>Pachuco Jose Quintet / Geo and The Hotwires / DJ Lucky Ritz</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2025-02-23</td>
+<td>Sun</td>
+<td>$1,802.32</td>
+<td>128</td>
+<td>Dogface Bastards / Rally Cry / Legions / Brighton Street Bullies / Wabash C</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2025-04-18</td>
+<td>Fri</td>
+<td>$1,792.35</td>
+<td>110</td>
+<td>Fountain of Youth / Palmavera / Mister G's Neighborhood / Friends of Cesar</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2024-06-29</td>
+<td>Sat</td>
+<td>$1,687.40</td>
+<td>106</td>
+<td>Occupier / Mezzoa</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2024-06-06</td>
+<td>Thu</td>
+<td>$1,668.07</td>
+<td>112</td>
+<td>SHAM 69</td>
+</tr>
+<tr>
+<td>13</td>
+<td>2024-06-12</td>
+<td>Wed</td>
+<td>$1,647.54</td>
+<td>95</td>
+<td>MC Chris / Crunk WItch / Sloat Dixon</td>
+</tr>
+<tr>
+<td>14</td>
+<td>2024-03-02</td>
+<td>Sat</td>
+<td>$1,602.15</td>
+<td>84</td>
+<td>Louis on Tour / Daddy / Moon Talk / Echinacea</td>
+</tr>
+<tr>
+<td>15</td>
+<td>2025-04-05</td>
+<td>Sat</td>
+<td>$1,597.38</td>
+<td>124</td>
+<td>whatever68 radio festival</td>
+</tr>
+<tr>
+<td>16</td>
+<td>2024-06-15</td>
+<td>Sat</td>
+<td>$1,576.89</td>
+<td>83</td>
+<td>Woke up on a Throne / Fancy Faces / Nun Tucker / Plants</td>
+</tr>
+<tr>
+<td>17</td>
+<td>2024-09-21</td>
+<td>Sat</td>
+<td>$1,573.44</td>
+<td>120</td>
+<td>Barefoot Hockey Goalie / Wabash Cannons / Holding Grudges / Glass Parade /</td>
+</tr>
+<tr>
+<td>18</td>
+<td>2024-12-07</td>
+<td>Sat</td>
+<td>$1,530.54</td>
+<td>100</td>
+<td>Ramblin Outlaws / Brighton Street Bullies / Razor Nights / Baked Religion</td>
+</tr>
+<tr>
+<td>19</td>
+<td>2024-11-02</td>
+<td>Sat</td>
+<td>$1,524.00</td>
+<td>124</td>
+<td>Bonnie’s wedding reception</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2024-05-04</td>
+<td>Sat</td>
+<td>$1,489.65</td>
+<td>91</td>
+<td>Klub Therapy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> The biggest bar nights correlate with multi-band bills featuring local heavy-hitters (Wabash Cannons, Brighton Street Bullies, Ramblin Outlaws, Dying Species). The top night ($2,881 -- Hillbilly Moon Explosion) was a touring headliner. Saturday dominates the top 20. Several of these drew 120-195 guests.</p>
+<h3>Bottom 20 Lowest-Grossing Show Nights</h3>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Date</th>
+<th>Day</th>
+<th>Net Sales</th>
+<th>Guests</th>
+<th>Show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2024-08-31</td>
+<td>Sat</td>
+<td>$240.39</td>
+<td>9</td>
+<td>Pire / Nebula Drag / 16</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2024-05-15</td>
+<td>Wed</td>
+<td>$264.54</td>
+<td>17</td>
+<td>Dispersed / Wolfblizer / Find Local</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2025-01-18</td>
+<td>Sat</td>
+<td>$270.09</td>
+<td>24</td>
+<td>Hoots Memorial</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2024-11-01</td>
+<td>Fri</td>
+<td>$271.08</td>
+<td>16</td>
+<td>Strange Legends RESCHEDULED</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2025-03-26</td>
+<td>Wed</td>
+<td>$284.04</td>
+<td>19</td>
+<td>The Bunny The Bear / Goat vs Fish</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2024-12-02</td>
+<td>Mon</td>
+<td>$289.54</td>
+<td>26</td>
+<td>Vinyl Knights</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2024-05-02</td>
+<td>Thu</td>
+<td>$309.08</td>
+<td>24</td>
+<td>Mikey Reece</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2024-11-18</td>
+<td>Mon</td>
+<td>$316.48</td>
+<td>19</td>
+<td>Vinyl Knights</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2024-07-07</td>
+<td>Sun</td>
+<td>$334.14</td>
+<td>31</td>
+<td>Beer Pong Tournament</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2025-02-01</td>
+<td>Sat</td>
+<td>$335.05</td>
+<td>20</td>
+<td>Destard (Canceled)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2024-11-14</td>
+<td>Thu</td>
+<td>$337.81</td>
+<td>22</td>
+<td>Colt Lightnin / DeadBrokeDown</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2024-07-10</td>
+<td>Wed</td>
+<td>$347.10</td>
+<td>32</td>
+<td>Jerm / The Ams / Eric Schroeder</td>
+</tr>
+<tr>
+<td>13</td>
+<td>2024-08-29</td>
+<td>Thu</td>
+<td>$351.75</td>
+<td>24</td>
+<td>Chainsaw Rainbow / Graffick / Zelledelphia</td>
+</tr>
+<tr>
+<td>14</td>
+<td>2024-07-26</td>
+<td>Fri</td>
+<td>$354.61</td>
+<td>27</td>
+<td>Billy Batts and The Made Men / Round Eye (China) / OLDS</td>
+</tr>
+<tr>
+<td>15</td>
+<td>2025-01-10</td>
+<td>Fri</td>
+<td>$356.46</td>
+<td>27</td>
+<td>Beth &amp; The Baysides ( Canceled)</td>
+</tr>
+<tr>
+<td>16</td>
+<td>2024-08-14</td>
+<td>Wed</td>
+<td>$390.77</td>
+<td>20</td>
+<td>Snailmate / The Varas / Discount Cadavers</td>
+</tr>
+<tr>
+<td>17</td>
+<td>2024-12-12</td>
+<td>Thu</td>
+<td>$399.13</td>
+<td>33</td>
+<td>Psyattica / Kitty Plague / Fancy Faces</td>
+</tr>
+<tr>
+<td>18</td>
+<td>2024-12-28</td>
+<td>Sat</td>
+<td>$417.62</td>
+<td>35</td>
+<td>Go Scarlet  (RESCHEDULING)</td>
+</tr>
+<tr>
+<td>19</td>
+<td>2025-05-03</td>
+<td>Sat</td>
+<td>$432.62</td>
+<td>31</td>
+<td>No Home / Skull Riot</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2024-09-13</td>
+<td>Fri</td>
+<td>$435.37</td>
+<td>26</td>
+<td>Supernaut / TBA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> The worst show nights include cancellations/reschedules (Beth &amp; The Baysides, Destard, Go Scarlet, Strange Legends), mid-week shows, and some Saturday nights that simply didn't draw. The worst night ever ($240 -- Pire/Nebula Drag/16) had only 9 guests on a Saturday. Several bottom-dwellers are niche/heavy genres on off-nights.</p>
+<h2>3. Band Revenue Impact</h2>
+<p>Bands that played 3+ times in the analysis period, ranked by average bar net sales on their show nights. Since multiple bands share a bill, the same night's revenue is credited to every band on the bill.</p>
+<h3>Top Revenue-Driving Bands (3+ shows)</h3>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Shows</th>
+<th>Avg Bar Sales</th>
+<th>Total Bar Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wabash Cannons</td>
+<td>6</td>
+<td>$1,803</td>
+<td>$10,817</td>
+</tr>
+<tr>
+<td>Dying Species</td>
+<td>5</td>
+<td>$1,694</td>
+<td>$8,469</td>
+</tr>
+<tr>
+<td>Brighton Street Bullies</td>
+<td>7</td>
+<td>$1,669</td>
+<td>$11,681</td>
+</tr>
+<tr>
+<td>Grahzny</td>
+<td>3</td>
+<td>$1,660</td>
+<td>$4,981</td>
+</tr>
+<tr>
+<td>Ramblin Outlaws</td>
+<td>4</td>
+<td>$1,512</td>
+<td>$6,047</td>
+</tr>
+<tr>
+<td>Legions</td>
+<td>5</td>
+<td>$1,362</td>
+<td>$6,809</td>
+</tr>
+<tr>
+<td>Sideshow</td>
+<td>3</td>
+<td>$1,248</td>
+<td>$3,745</td>
+</tr>
+<tr>
+<td>Primortus</td>
+<td>3</td>
+<td>$1,192</td>
+<td>$3,577</td>
+</tr>
+<tr>
+<td>Plants</td>
+<td>4</td>
+<td>$1,170</td>
+<td>$4,679</td>
+</tr>
+<tr>
+<td>Cotton Brain</td>
+<td>3</td>
+<td>$1,155</td>
+<td>$3,464</td>
+</tr>
+<tr>
+<td>Baked Religion</td>
+<td>3</td>
+<td>$1,145</td>
+<td>$3,436</td>
+</tr>
+<tr>
+<td>The Letdown</td>
+<td>4</td>
+<td>$1,121</td>
+<td>$4,483</td>
+</tr>
+<tr>
+<td>Klub Therapy</td>
+<td>3</td>
+<td>$1,106</td>
+<td>$3,318</td>
+</tr>
+<tr>
+<td>Club 80's</td>
+<td>15</td>
+<td>$1,093</td>
+<td>$16,397</td>
+</tr>
+<tr>
+<td>The Provoked</td>
+<td>3</td>
+<td>$1,074</td>
+<td>$3,223</td>
+</tr>
+<tr>
+<td>Spring Passing</td>
+<td>4</td>
+<td>$1,062</td>
+<td>$4,249</td>
+</tr>
+<tr>
+<td>Fancy Faces</td>
+<td>9</td>
+<td>$1,050</td>
+<td>$9,451</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td>3</td>
+<td>$1,045</td>
+<td>$3,135</td>
+</tr>
+<tr>
+<td>Lovemask</td>
+<td>4</td>
+<td>$1,044</td>
+<td>$4,174</td>
+</tr>
+<tr>
+<td>Matters Most</td>
+<td>6</td>
+<td>$1,010</td>
+<td>$6,060</td>
+</tr>
+<tr>
+<td>Roseking</td>
+<td>4</td>
+<td>$999</td>
+<td>$3,996</td>
+</tr>
+<tr>
+<td>Club Therapy</td>
+<td>9</td>
+<td>$957</td>
+<td>$8,610</td>
+</tr>
+<tr>
+<td>OLDS</td>
+<td>4</td>
+<td>$945</td>
+<td>$3,779</td>
+</tr>
+<tr>
+<td>Age of Darkness</td>
+<td>4</td>
+<td>$931</td>
+<td>$3,723</td>
+</tr>
+<tr>
+<td>Loopy Lew</td>
+<td>3</td>
+<td>$928</td>
+<td>$2,785</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Club Therapy and Klub Therapy are the same recurring event (DJ night). Combined: 12 shows, $994 avg.</p>
+<h3>Lowest Revenue-Driving Bands (3+ shows)</h3>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Shows</th>
+<th>Avg Bar Sales</th>
+<th>Total Bar Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OLDS</td>
+<td>4</td>
+<td>$945</td>
+<td>$3,779</td>
+</tr>
+<tr>
+<td>Age of Darkness</td>
+<td>4</td>
+<td>$931</td>
+<td>$3,723</td>
+</tr>
+<tr>
+<td>Loopy Lew</td>
+<td>3</td>
+<td>$928</td>
+<td>$2,785</td>
+</tr>
+<tr>
+<td>Savage and the Witch</td>
+<td>3</td>
+<td>$899</td>
+<td>$2,696</td>
+</tr>
+<tr>
+<td>Close Enough</td>
+<td>6</td>
+<td>$892</td>
+<td>$5,355</td>
+</tr>
+<tr>
+<td>Discount Cadavers</td>
+<td>6</td>
+<td>$867</td>
+<td>$5,201</td>
+</tr>
+<tr>
+<td>Kavana</td>
+<td>3</td>
+<td>$840</td>
+<td>$2,521</td>
+</tr>
+<tr>
+<td>Faerie Qveene</td>
+<td>3</td>
+<td>$836</td>
+<td>$2,509</td>
+</tr>
+<tr>
+<td>Admiral Atlas</td>
+<td>5</td>
+<td>$812</td>
+<td>$4,062</td>
+</tr>
+<tr>
+<td>Thee Rapscallions</td>
+<td>3</td>
+<td>$789</td>
+<td>$2,368</td>
+</tr>
+<tr>
+<td>Beer Pong Tournament</td>
+<td>8</td>
+<td>$766</td>
+<td>$6,131</td>
+</tr>
+<tr>
+<td>Psyattica</td>
+<td>3</td>
+<td>$761</td>
+<td>$2,283</td>
+</tr>
+<tr>
+<td>The Varas</td>
+<td>3</td>
+<td>$696</td>
+<td>$2,088</td>
+</tr>
+<tr>
+<td>Bobcat</td>
+<td>3</td>
+<td>$645</td>
+<td>$1,936</td>
+</tr>
+<tr>
+<td>Nonverbal Expression</td>
+<td>3</td>
+<td>$624</td>
+<td>$1,872</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> The bands that "bring the dough" are Wabash Cannons ($1,803/show), Dying Species ($1,694), Brighton Street Bullies ($1,669), Grahzny ($1,660), and Ramblin Outlaws ($1,512). These are the acts to prioritize for big nights. At the bottom, Nonverbal Expression ($624), Bobcat ($645), and The Varas ($696) don't move the needle much -- though they may still serve a programming purpose on slow nights.</p>
+<h3>Workhorses: Bands with 5+ Appearances</h3>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Shows</th>
+<th>Avg Bar Sales</th>
+<th>Total Bar Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Club 80's</td>
+<td>15</td>
+<td>$1,093</td>
+<td>$16,397</td>
+</tr>
+<tr>
+<td>Fancy Faces</td>
+<td>9</td>
+<td>$1,050</td>
+<td>$9,451</td>
+</tr>
+<tr>
+<td>Club Therapy</td>
+<td>9</td>
+<td>$957</td>
+<td>$8,610</td>
+</tr>
+<tr>
+<td>Beer Pong Tournament</td>
+<td>8</td>
+<td>$766</td>
+<td>$6,131</td>
+</tr>
+<tr>
+<td>Brighton Street Bullies</td>
+<td>7</td>
+<td>$1,669</td>
+<td>$11,681</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td>6</td>
+<td>$1,803</td>
+<td>$10,817</td>
+</tr>
+<tr>
+<td>Matters Most</td>
+<td>6</td>
+<td>$1,010</td>
+<td>$6,060</td>
+</tr>
+<tr>
+<td>Close Enough</td>
+<td>6</td>
+<td>$892</td>
+<td>$5,355</td>
+</tr>
+<tr>
+<td>Discount Cadavers</td>
+<td>6</td>
+<td>$867</td>
+<td>$5,201</td>
+</tr>
+<tr>
+<td>Dying Species</td>
+<td>5</td>
+<td>$1,694</td>
+<td>$8,469</td>
+</tr>
+<tr>
+<td>Legions</td>
+<td>5</td>
+<td>$1,362</td>
+<td>$6,809</td>
+</tr>
+<tr>
+<td>Admiral Atlas</td>
+<td>5</td>
+<td>$812</td>
+<td>$4,062</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> Club 80's/Klub Therapy (combined 24 shows) is the most-booked recurring event at ~$1,000-1,100/night. Fancy Faces (9 shows) and Brighton Street Bullies (7 shows) are the most-booked music acts. Beer Pong Tournament (8 shows at $766 avg) underperforms music shows.</p>
+<h2>4. Multi-Band vs. Solo Shows</h2>
+<table>
+<thead>
+<tr>
+<th>Bands on Bill</th>
+<th>Shows</th>
+<th>Avg Net Sales</th>
+<th>Median</th>
+<th>vs. 1-Band</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>77</td>
+<td>$818</td>
+<td>$709</td>
+<td>+0%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>41</td>
+<td>$927</td>
+<td>$846</td>
+<td>+13%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>83</td>
+<td>$873</td>
+<td>$826</td>
+<td>+7%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>61</td>
+<td>$1,106</td>
+<td>$1,073</td>
+<td>+35%</td>
+</tr>
+<tr>
+<td>5+</td>
+<td>41</td>
+<td>$1,131</td>
+<td>$987</td>
+<td>+38%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> More bands = more money. Four-band bills average $1,106 (35% above solo acts). Five+ band bills hit $1,131. The jump from 1 to 2 bands adds $109 (+13%), and from 2 to 4 adds another $179. The sweet spot appears to be 4 bands -- enough draw without the complexity of 5+.</p>
+<h2>5. Day of Week Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Overall Avg</th>
+<th>Show Night Avg</th>
+<th>No-Show Avg</th>
+<th>Show Count</th>
+<th>Best Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday</td>
+<td>$467</td>
+<td>$639 (n=14)</td>
+<td>$446 (n=111)</td>
+<td>14</td>
+<td>Low traffic</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>$473</td>
+<td>$717 (n=10)</td>
+<td>$452 (n=115)</td>
+<td>10</td>
+<td>Low traffic</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>$384</td>
+<td>$612 (n=13)</td>
+<td>$357 (n=111)</td>
+<td>13</td>
+<td>Low traffic</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>$566</td>
+<td>$799 (n=41)</td>
+<td>$451 (n=83)</td>
+<td>41</td>
+<td>Strong for shows</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>$916</td>
+<td>$996 (n=88)</td>
+<td>$720 (n=36)</td>
+<td>88</td>
+<td>Prime booking</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>$1,017</td>
+<td>$1,110 (n=101)</td>
+<td>$610 (n=23)</td>
+<td>101</td>
+<td>Prime booking</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>$677</td>
+<td>$854 (n=36)</td>
+<td>$605 (n=89)</td>
+<td>36</td>
+<td>Darts + occasional show</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> Friday and Saturday are the clear winners with $996 and $1,110 avg show-night sales. Thursday is a solid third at $799. Sunday shows ($854) outperform Sunday darts ($605), but Sunday is the workhorse for dart tournaments (89 of 93 dart nights). Mon-Wed shows are rare and modest ($612-$717).</p>
+<p><strong>Best booking strategy:</strong> Saturdays first, Fridays second, Thursdays for overflow. Avoid Mon-Wed unless the band has proven draw.</p>
+<h2>6. Seasonal Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Show Night Avg</th>
+<th>All Days Avg</th>
+<th>Show Count</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan</td>
+<td>$1,045</td>
+<td>$600</td>
+<td>23</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>$1,082</td>
+<td>$690</td>
+<td>26</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>$1,127</td>
+<td>$725</td>
+<td>30</td>
+<td>Peak season</td>
+</tr>
+<tr>
+<td>Apr</td>
+<td>$966</td>
+<td>$611</td>
+<td>24</td>
+<td>Solid</td>
+</tr>
+<tr>
+<td>May</td>
+<td>$907</td>
+<td>$626</td>
+<td>27</td>
+<td>Solid</td>
+</tr>
+<tr>
+<td>Jun</td>
+<td>$1,055</td>
+<td>$725</td>
+<td>27</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td>Jul</td>
+<td>$920</td>
+<td>$616</td>
+<td>25</td>
+<td>Solid</td>
+</tr>
+<tr>
+<td>Aug</td>
+<td>$813</td>
+<td>$691</td>
+<td>30</td>
+<td>Average</td>
+</tr>
+<tr>
+<td>Sep</td>
+<td>$742</td>
+<td>$540</td>
+<td>23</td>
+<td>Below average</td>
+</tr>
+<tr>
+<td>Oct</td>
+<td>$708</td>
+<td>$528</td>
+<td>23</td>
+<td>Below average</td>
+</tr>
+<tr>
+<td>Nov</td>
+<td>$995</td>
+<td>$663</td>
+<td>27</td>
+<td>Solid</td>
+</tr>
+<tr>
+<td>Dec</td>
+<td>$973</td>
+<td>$674</td>
+<td>18</td>
+<td>Solid</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> March is the best month for show-night bar revenue ($1,127 avg), followed by February ($1,082) and June ($1,055). September and October are the weakest months ($742 and $708). The late winter/early spring bump may reflect people being more willing to go out after holiday spending settles. The fall dip may reflect competition from outdoor events and nice weather keeping people away from dark dive bars.</p>
+<h2>7. Guest Count Correlation</h2>
+<p><strong>Correlation between guest count and net sales on show nights: r = 0.94</strong> (very strong positive)</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Show Nights</th>
+<th>Non-Show Nights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Avg guests</td>
+<td>61</td>
+<td>31</td>
+</tr>
+<tr>
+<td>Avg spend per guest</td>
+<td>$15.75</td>
+<td>$15.56</td>
+</tr>
+<tr>
+<td>Median spend per guest</td>
+<td>$15.40</td>
+<td>$15.17</td>
+</tr>
+</tbody>
+</table>
+<h3>Revenue by Guest Count Bracket (Show Nights)</h3>
+<table>
+<thead>
+<tr>
+<th>Guests</th>
+<th>Avg Net Sales</th>
+<th>Avg Spend/Guest</th>
+<th>Nights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-20</td>
+<td>$263</td>
+<td>$16.74</td>
+<td>8</td>
+</tr>
+<tr>
+<td>20-30</td>
+<td>$409</td>
+<td>$16.10</td>
+<td>22</td>
+</tr>
+<tr>
+<td>30-40</td>
+<td>$565</td>
+<td>$15.82</td>
+<td>30</td>
+</tr>
+<tr>
+<td>40-50</td>
+<td>$711</td>
+<td>$15.93</td>
+<td>65</td>
+</tr>
+<tr>
+<td>50-75</td>
+<td>$940</td>
+<td>$15.78</td>
+<td>105</td>
+</tr>
+<tr>
+<td>75-100</td>
+<td>$1,329</td>
+<td>$15.67</td>
+<td>45</td>
+</tr>
+<tr>
+<td>100-150</td>
+<td>$1,664</td>
+<td>$14.20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>150-200</td>
+<td>$2,648</td>
+<td>$16.09</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> Guest count is the #1 predictor of bar revenue (r=0.94). Every guest spends roughly $15-16 on average regardless of whether it's a show night -- the difference is that shows bring 2x the guests. Getting people through the door is what matters. Spend per guest is remarkably consistent across brackets, so there's no evidence of "big spender" vs "cheapskate" crowds -- just get more bodies in.</p>
+<h2>8. Free Shows vs. Ticketed Shows</h2>
+<p>Ticketed shows identified from calendar descriptions containing dollar amounts, Eventbrite links, or TickPick references. TickPick "Event is Live" emails confirmed 46 additional ticketed events (mostly 2025, outside our sales data window).</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Nights</th>
+<th>Avg Net Sales</th>
+<th>Median</th>
+<th>Avg Guests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ticketed (confirmed)</td>
+<td>57</td>
+<td>$1,084</td>
+<td>$955</td>
+<td>71</td>
+</tr>
+<tr>
+<td>Free / Unmarked</td>
+<td>246</td>
+<td>$917</td>
+<td>$861</td>
+<td>58</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> Ticketed shows average $1,084 in bar sales vs. $917 for free/unmarked shows -- a $167 premium (18% higher). Ticketed shows also draw more guests (71 vs 58). This makes sense: a ticket price signals a "real" show that draws a committed audience. The bar benefits even though the door money goes to bands.</p>
+<p><strong>Caveat:</strong> Many shows lack price data in the calendar, so the "free" category includes shows that may have had a cover charge. The ticketed sample is biased toward shows the promoter/booker bothered to annotate.</p>
+<h2>9. Dart Tournament Nights</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Nights</th>
+<th>Avg Net Sales</th>
+<th>Median</th>
+<th>Avg Guests</th>
+<th>Avg Spend/Guest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dart Tournament</td>
+<td>93</td>
+<td>$605</td>
+<td>$587</td>
+<td>38</td>
+<td>$15.94</td>
+</tr>
+<tr>
+<td>Music Show</td>
+<td>303</td>
+<td>$948</td>
+<td>$878</td>
+<td>61</td>
+<td>$15.75</td>
+</tr>
+<tr>
+<td>No Event</td>
+<td>426</td>
+<td>$443</td>
+<td>$406</td>
+<td>--</td>
+<td>--</td>
+</tr>
+</tbody>
+</table>
+<p>Darts are overwhelmingly a Sunday event (89 of 93 dart nights).</p>
+<h3>Sunday Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Sunday Type</th>
+<th>Count</th>
+<th>Avg Net Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Music Show</td>
+<td>36</td>
+<td>$854</td>
+</tr>
+<tr>
+<td>Dart Tournament</td>
+<td>89</td>
+<td>$605</td>
+</tr>
+<tr>
+<td>No Event</td>
+<td>0</td>
+<td>$0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> Dart tournaments bring in $605 avg -- well above a dead night ($443) but below music shows ($948). On Sundays specifically, darts beat no-event by $605. Darts are a reliable, low-effort revenue stream for an otherwise quiet night. They should not be replaced by music unless the band has a proven draw of 50+ guests.</p>
+<h2>10. Year-over-Year Trends</h2>
+<h3>Full-Year Comparison (2023 vs 2024)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>2023</th>
+<th>2024</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Revenue</td>
+<td>$249,749</td>
+<td>$226,841</td>
+<td>-9.2%</td>
+</tr>
+<tr>
+<td>Daily Average</td>
+<td>$684</td>
+<td>$620</td>
+<td>-9.4%</td>
+</tr>
+<tr>
+<td>Total Guests</td>
+<td>16,654</td>
+<td>14,112</td>
+<td>-15.3%</td>
+</tr>
+<tr>
+<td>Music Show Nights</td>
+<td>131</td>
+<td>133</td>
+<td>+1.5%</td>
+</tr>
+<tr>
+<td>Avg Show Night Sales</td>
+<td>$952</td>
+<td>$945</td>
+<td>-0.7%</td>
+</tr>
+</tbody>
+</table>
+<h3>Jan-May Apples-to-Apples (2023 vs 2024 vs 2025)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>2023 (Jan-May)</th>
+<th>2024 (Jan-May)</th>
+<th>2025 (Jan-May)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Days</td>
+<td>151</td>
+<td>152</td>
+<td>140</td>
+</tr>
+<tr>
+<td>Total Revenue</td>
+<td>$107,611</td>
+<td>$97,739</td>
+<td>$82,927</td>
+</tr>
+<tr>
+<td>Daily Average</td>
+<td>$713</td>
+<td>$643</td>
+<td>$592</td>
+</tr>
+<tr>
+<td>Total Guests</td>
+<td>7,484</td>
+<td>6,044</td>
+<td>5,258</td>
+</tr>
+<tr>
+<td>Show Nights</td>
+<td>45</td>
+<td>46</td>
+<td>39</td>
+</tr>
+<tr>
+<td>Show Night Avg</td>
+<td>$1,027</td>
+<td>$1,098</td>
+<td>$946</td>
+</tr>
+</tbody>
+</table>
+<h3>Monthly Average Daily Sales by Year</h3>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan</td>
+<td>$664</td>
+<td>$579</td>
+<td>$557</td>
+<td>-16%</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>$855</td>
+<td>$647</td>
+<td>$571</td>
+<td>-33%</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>$772</td>
+<td>$719</td>
+<td>$685</td>
+<td>-11%</td>
+</tr>
+<tr>
+<td>Apr</td>
+<td>$723</td>
+<td>$554</td>
+<td>$555</td>
+<td>-23%</td>
+</tr>
+<tr>
+<td>May</td>
+<td>$563</td>
+<td>$714</td>
+<td>$590</td>
+<td>+5%</td>
+</tr>
+<tr>
+<td>Jun</td>
+<td>$751</td>
+<td>$698</td>
+<td>--</td>
+<td>-7%</td>
+</tr>
+<tr>
+<td>Jul</td>
+<td>$658</td>
+<td>$575</td>
+<td>--</td>
+<td>-13%</td>
+</tr>
+<tr>
+<td>Aug</td>
+<td>$643</td>
+<td>$739</td>
+<td>--</td>
+<td>+15%</td>
+</tr>
+<tr>
+<td>Sep</td>
+<td>$597</td>
+<td>$483</td>
+<td>--</td>
+<td>-19%</td>
+</tr>
+<tr>
+<td>Oct</td>
+<td>$583</td>
+<td>$474</td>
+<td>--</td>
+<td>-19%</td>
+</tr>
+<tr>
+<td>Nov</td>
+<td>$724</td>
+<td>$601</td>
+<td>--</td>
+<td>-17%</td>
+</tr>
+<tr>
+<td>Dec</td>
+<td>$697</td>
+<td>$652</td>
+<td>--</td>
+<td>-7%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Takeaway:</strong> The bar's overall daily revenue has declined from $684/day (2023) to $620/day (2024) to $592/day (Jan-May 2025) -- a 13% drop over 2 years. However, show-night revenue has held remarkably steady at ~$945-950/show across all three years. The decline is driven by weaker non-show days and fewer total guests. The bar books roughly the same number of shows (~130/year), but overall foot traffic is down 15%.</p>
+<p><strong>The shows are keeping the lights on.</strong> Without music, the bar's daily average would be closer to $443, which is not sustainable. The gap between show nights ($948) and no-show nights ($443) has effectively doubled the bar's importance of booking.</p>
+<hr />
+<h2>Executive Summary: Key Findings</h2>
+<h3>The numbers that matter</h3>
+<ol>
+<li><strong>Shows add $505/night</strong> -- music shows average $948 vs. $443 without (114% lift)</li>
+<li><strong>Guest count is everything</strong> -- r=0.94 correlation with revenue. Each guest spends ~$16 regardless of event type</li>
+<li><strong>4 bands is the sweet spot</strong> -- $1,106 avg vs. $818 for solo acts (+35%)</li>
+<li><strong>Saturday is king</strong> -- $1,110 avg show night, 101 shows booked</li>
+<li><strong>Revenue is declining</strong> -- overall daily avg down 13% over 2 years, but show-night revenue is flat</li>
+</ol>
+<h3>Who to book</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Bands</th>
+<th>Avg Bar Sales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A-tier (book anytime)</td>
+<td>Wabash Cannons, Dying Species, Brighton Street Bullies, Grahzny, Ramblin Outlaws</td>
+<td>$1,500-1,800</td>
+</tr>
+<tr>
+<td>B-tier (strong draws)</td>
+<td>Legions, Club 80's/Klub Therapy, Inciting Riots, Plants, Sideshow, Baked Religion</td>
+<td>$1,100-1,400</td>
+</tr>
+<tr>
+<td>C-tier (reliable filler)</td>
+<td>Fancy Faces, Matters Most, Lovemask, Close Enough, Discount Cadavers</td>
+<td>$850-1,050</td>
+</tr>
+<tr>
+<td>D-tier (doesn't move needle)</td>
+<td>Vinyl Knights, New Age Affair, Lights on The Coast, Nonverbal Expression</td>
+<td>&lt;$650</td>
+</tr>
+</tbody>
+</table>
+<h3>What to do</h3>
+<ul>
+<li><strong>Book 4-band bills on Fri/Sat</strong> -- this is the formula that generates $1,100+ nights</li>
+<li><strong>Protect the dart tournaments</strong> -- they're reliable $605/night on Sundays with zero booking effort</li>
+<li><strong>Ticketed shows outperform free shows</strong> -- the ticket creates commitment and draws a bigger crowd</li>
+<li><strong>March is the best booking month</strong> -- $1,127 avg show night. September/October are weakest</li>
+<li><strong>Fill the calendar</strong> -- every non-show day is a $443 day. Even a mediocre show beats that</li>
+<li><strong>Address the traffic decline</strong> -- overall guests down 15% YoY. Shows are holding but the base is eroding</li>
+</ul>
+</body>
+</html>

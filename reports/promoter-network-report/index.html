@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promoter Network — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar: Promoter &amp; Curator Network Report</h1>
+<p><em>Analysis period: January 2024 -- December 2025</em><br />
+<em>Data sources: 9,280 emails, 399 calendar events, 1,442 days of Toast POS data</em><br />
+<em>Generated: 2026-03-05</em></p>
+<hr />
+<h2>Executive Summary</h2>
+<ul>
+<li><strong>399</strong> total calendar events in 2024-2025</li>
+<li><strong>209</strong> multi-band shows (with <code>/</code> in title)</li>
+<li><strong>44</strong> distinct promoters/curators identified</li>
+<li><strong>193</strong> show-dates attributed to a specific booker</li>
+<li><strong>41</strong> multi-band shows with no identified booker (20%)</li>
+<li>Non-show day avg revenue: <strong>$536</strong></li>
+<li>Show day avg revenue: <strong>$1,178</strong> (+120% vs baseline)</li>
+<li>Fri/Sat non-show baseline: <strong>$618</strong></li>
+</ul>
+<p><strong>Key finding:</strong> Kayla Harrelson is responsible for booking ~60% of all shows. She is the operational engine of the Bancroft's live music program. Beyond her, approximately 40 bands/promoters self-book through email, and another layer books via text/Facebook that never touches Gmail.</p>
+<hr />
+<h2>1. Promoter &amp; Curator Profiles</h2>
+<h3>Tier 1: Core Promoters (8+ shows)</h3>
+<h4>Kayla Harrelson</h4>
+<ul>
+<li><strong>Email:</strong> <code>kaylaharrelson36@gmail.com</code></li>
+<li><strong>Shows booked:</strong> 117 total (33 in 2024, 84 in 2025)</li>
+<li><strong>Avg revenue:</strong> $1,194 | Median: $1,149 | Best: $3,158 | Worst: $284</li>
+<li><strong>Total revenue contribution:</strong> $130,198</li>
+<li><strong>Revenue vs Fri/Sat baseline:</strong> +93%</li>
+<li><strong>Email volume:</strong> 34 emails across 34 threads</li>
+<li><strong>Preferred days:</strong> Friday (46), Saturday (38), Thursday (16)</li>
+<li><strong>Active period:</strong> 2024-08-02 to 2025-12-13</li>
+<li><strong>Top bands:</strong> Fancy Faces (9x), Admiral Atlas (8x), Fungal Mirage (7x), Close Enough (6x), Cotton Brain (5x), Baked Religion (4x), Thee Rapscallions (4x), Loopy Lew (4x), The Imbeskulls (4x), Ramblin Outlaws (3x)</li>
+<li><strong>Role:</strong> In-house booker and calendar manager. The single most important person in the booking operation.</li>
+<li><strong>Genre:</strong> All genres -- punk, metal, indie, hip-hop, goth, rock, acoustic. She books everything.</li>
+<li><strong>Reliability:</strong> Very high. Only 2-3 cancellations across 117 shows. Manages set times, flyer coordination, band comms.</li>
+<li><strong>Notes:</strong> Ramped from 3 shows/month (Aug 2024) to 10-13 shows/month (late 2024, mid-2025). She IS the booking operation. Communicates primarily via Gmail. Low email volume per booking suggests she is highly efficient -- often one thread per show.</li>
+</ul>
+<h4>Vilos Cohaagen / Admiral Atlas</h4>
+<ul>
+<li><strong>Email:</strong> <code>admiralatlas1@yahoo.com</code></li>
+<li><strong>Shows booked:</strong> 20 total (3 in 2024, 17 in 2025)</li>
+<li><strong>Avg revenue:</strong> $831 | Median: $783 | Best: $1,445 | Worst: $368</li>
+<li><strong>Total revenue contribution:</strong> $16,625</li>
+<li><strong>Revenue vs Fri/Sat baseline:</strong> +34%</li>
+<li><strong>Email volume:</strong> 82 emails across 39 threads</li>
+<li><strong>Preferred days:</strong> Monday (16), Friday (1), Saturday (1)</li>
+<li><strong>Active period:</strong> 2024-02-22 to 2025-12-29</li>
+<li><strong>Top bands:</strong> Daygo Pong (14x), Vinyl Knights (10x), vinyl knights (4x), Daygo Pong Tournament (1x), Ugly X-Mas Sweater Daygo Pong (1x), Bourdain Cobain (1x), Admiral Atlas (1x), Dross Wizdrobe (1x), Admiral Atlas Arrt Nite (1x)</li>
+<li><strong>Role:</strong> Hybrid promoter/performer/DJ. Runs Vinyl Knights DJ nights and Daygo Pong beer pong tournaments. Performs as Admiral Atlas (hip-hop/emcee).</li>
+<li><strong>Genre:</strong> Hip-hop, DJ nights, beer pong events, community nights</li>
+<li><strong>Reliability:</strong> Extremely consistent. Self-sufficient -- creates flyers, handles promo, manages his own events.</li>
+<li><strong>Notes:</strong> Has built a self-sustaining ecosystem filling Mon/Wed/occasional Fri-Sat. Daygo Pong has become a weekly fixture. Moderate revenue per night but fills otherwise dead nights. High email volume (82 emails) -- very engaged communicator. Real name: Victor Hugo.</li>
+</ul>
+<h3>Tier 2: Regular Promoters (3-7 shows)</h3>
+<h4>Wabash Cannons</h4>
+<ul>
+<li><strong>Email:</strong> <code>wabashcannons@gmail.com</code></li>
+<li><strong>Shows:</strong> 4 (3 in 2024, 1 in 2025)</li>
+<li><strong>Avg revenue:</strong> $3,186 (best: $4,557, total: $12,743)</li>
+<li><strong>Email volume:</strong> 14 emails</li>
+<li><strong>Bands:</strong> Wabash Cannons, Broke Bastards, Wicked Echos, The Pictographs, MATINEE-Revolt Chix, Sleeping Faceless, Middle Finger, Barefoot Hockey Goalie</li>
+<li><strong>Notes:</strong> Band that self-books multi-band showcases. Consistently high revenue ($2,842 avg). Always draws. Community anchor band.</li>
+</ul>
+<h4>Knikki Royster</h4>
+<ul>
+<li><strong>Email:</strong> <code>teacherknikki@gmail.com</code></li>
+<li><strong>Shows:</strong> 3 (3 in 2024, 0 in 2025)</li>
+<li><strong>Avg revenue:</strong> $2,983 (best: $3,595, total: $8,948)</li>
+<li><strong>Email volume:</strong> 13 emails</li>
+<li><strong>Bands:</strong> Ramblin Outlaws, Razor Nights, Dying Species, Hillbilly moon explosion, 3LH, Wendaze, Heartbreak Hustlers, Barefoot Hockey Goalie</li>
+</ul>
+<h4>Azraal Ford / Brighton Street Bullies</h4>
+<ul>
+<li><strong>Email:</strong> <code>azraalford@gmail.com</code></li>
+<li><strong>Shows:</strong> 3 (1 in 2024, 2 in 2025)</li>
+<li><strong>Avg revenue:</strong> $2,893 (best: $4,557, total: $8,679)</li>
+<li><strong>Email volume:</strong> 20 emails</li>
+<li><strong>Bands:</strong> Brighton Street Bullies, Deadly Dispute, Beast Fiend, Dogface Bastards, Rally Cry, Legions, Wabash Cannons, Dr. Know</li>
+</ul>
+<h4>Dying Species</h4>
+<ul>
+<li><strong>Email:</strong> <code>dyingspecies619@gmail.com</code></li>
+<li><strong>Shows:</strong> 4 (4 in 2024, 0 in 2025)</li>
+<li><strong>Avg revenue:</strong> $2,012 (best: $3,432, total: $8,048)</li>
+<li><strong>Email volume:</strong> 3 emails</li>
+<li><strong>Bands:</strong> Dying Species, Ramblin Outlaws, Razor Nights, The Calvins, Postals, JCCC, Deadly Dispute, Mersa</li>
+<li><strong>Notes:</strong> Local punk/metal. Self-books. 4 shows. Strong revenue ($2,012 avg).</li>
+</ul>
+<h4>GFD Productions (Gilberto)</h4>
+<ul>
+<li><strong>Email:</strong> <code>gfdprod.7@gmail.com</code></li>
+<li><strong>Shows:</strong> 3 (1 in 2024, 2 in 2025)</li>
+<li><strong>Avg revenue:</strong> $1,359 (best: $1,822, total: $4,078)</li>
+<li><strong>Email volume:</strong> 8 emails</li>
+<li><strong>Bands:</strong> Age of Darkness, Kid in the Pit, Rock Invasion Fest II: Coatl, Corpus, RabbiA, Mexico Cabron, The Adventures of Metal, The Provoked</li>
+<li><strong>Notes:</strong> Rock Invasion festival brand. Heavy/metal shows. Age of Darkness, Corpus, Coatl. 5 shows, 8 emails. Professional operation.</li>
+</ul>
+<h4>Rob (House)</h4>
+<ul>
+<li><strong>Email:</strong> <code>N/A</code></li>
+<li><strong>Shows:</strong> 6 (1 in 2024, 5 in 2025)</li>
+<li><strong>Avg revenue:</strong> $946 (best: $1,143, total: $4,731)</li>
+<li><strong>Bands:</strong> Whatevr, Remedelics, Golf Alpha Bravo, Group Suicide, DTA, Blue Elephant &amp; The 7 Snakes, Oatmeal, Fvnerxl Mxrch</li>
+<li><strong>Notes:</strong> Owner/operator. Books some shows himself via text. Fills gaps. Not a promoter per se but picks up shows that come in through personal contacts.</li>
+</ul>
+<h4>The Varas (Jonathan Nielsen)</h4>
+<ul>
+<li><strong>Email:</strong> <code>thevarasband@gmail.com</code></li>
+<li><strong>Shows:</strong> 3 (3 in 2024, 0 in 2025)</li>
+<li><strong>Avg revenue:</strong> $885 (best: $1,071, total: $2,654)</li>
+<li><strong>Email volume:</strong> 5 emails</li>
+<li><strong>Bands:</strong> The Varas, Rickety Cliffs, Off-Peace, DMV Punchathon, Auroras Hope, Graveseer, Snailmate, Discount Cadavers</li>
+<li><strong>Notes:</strong> Indie rock band. Self-books with Rickety Cliffs, DMV Punchathon. 3 shows. Low-maintenance (5 emails).</li>
+</ul>
+<h3>Tier 3: One-Off / Emerging Promoters (1-2 shows)</h3>
+<table>
+<thead>
+<tr>
+<th>Promoter</th>
+<th>Shows</th>
+<th>Avg Revenue</th>
+<th>Email</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Club Lemon</td>
+<td>2</td>
+<td>$3,058</td>
+<td><code>N/A</code></td>
+<td>Legacy punk promoter. Angry Samoans, Sham 69. HIGHEST avg revenue.</td>
+</tr>
+<tr>
+<td>Whatever68 Radio (Lisa Monday-Gomez)</td>
+<td>2</td>
+<td>$2,713</td>
+<td><code>N/A</code></td>
+<td>Radio show/media brand. Matinee punk showcases. Very high revenue.</td>
+</tr>
+<tr>
+<td>Nino Nunziante / The Firm</td>
+<td>2</td>
+<td>$2,415</td>
+<td><code>nino@thefirmclothing.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>mc chris</td>
+<td>1</td>
+<td>$2,107</td>
+<td><code>mcchrisbooking@gmail.com</code></td>
+<td>Nerdcore rapper. Tour booking. $2,107 -- strong draw.</td>
+</tr>
+<tr>
+<td>Crunk Witch</td>
+<td>1</td>
+<td>$2,107</td>
+<td><code>booking.crunkwitch@gmail.com</code></td>
+<td>Opened for mc chris. Same show -- $2,107.</td>
+</tr>
+<tr>
+<td>Ernie (Sprung Monkey)</td>
+<td>1</td>
+<td>$2,073</td>
+<td><code>N/A</code></td>
+<td>SD music veteran. Occupier/Mezzoa. $2,073.</td>
+</tr>
+<tr>
+<td>Woke Up On A Throne (Gaute Halvorsen)</td>
+<td>2</td>
+<td>$1,754</td>
+<td><code>admin@wokeuponathrone.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Chris Paulson</td>
+<td>1</td>
+<td>$1,729</td>
+<td><code>N/A</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Hamapple</td>
+<td>1</td>
+<td>$1,631</td>
+<td><code>hamapple.lb@gmail.com</code></td>
+<td>Self-books. Free show w/ Non Neutral (Costa Rica). $1,631.</td>
+</tr>
+<tr>
+<td>Wetherbee (Tommy)</td>
+<td>1</td>
+<td>$1,497</td>
+<td><code>wetherbeemail@gmail.com</code></td>
+<td>Self-books. Fancy Faces, DMV Punchathon. $1,497.</td>
+</tr>
+<tr>
+<td>Social Cues</td>
+<td>1</td>
+<td>$1,490</td>
+<td><code>socialcuesbooking@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Velvet Glow</td>
+<td>2</td>
+<td>$1,392</td>
+<td><code>velvetglowband@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Donald Aguayo</td>
+<td>2</td>
+<td>$1,263</td>
+<td><code>donaldaguayo71@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Beast Fiend</td>
+<td>1</td>
+<td>$1,234</td>
+<td><code>beastfiendrules@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Brandon Roseking</td>
+<td>2</td>
+<td>$1,167</td>
+<td><code>bscjking@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Grave Seer</td>
+<td>1</td>
+<td>$1,071</td>
+<td><code>graveseerband@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Steven Harris</td>
+<td>2</td>
+<td>$1,064</td>
+<td><code>seharris619@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3rd Eye Booking Company</td>
+<td>1</td>
+<td>$1,063</td>
+<td><code>3rdeyebookingcompany@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Suckapunch Productions</td>
+<td>1</td>
+<td>$992</td>
+<td><code>N/A</code></td>
+<td>Frank's metal/HC promotion. Pro -- provides day-of-show contacts.</td>
+</tr>
+<tr>
+<td>Salo Panto</td>
+<td>1</td>
+<td>$915</td>
+<td><code>salopantomusic@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Irving (Tour Buyer)</td>
+<td>1</td>
+<td>$858</td>
+<td><code>N/A</code></td>
+<td>External tour routing. Lightworker. $15 tour package.</td>
+</tr>
+<tr>
+<td>Sarah Mathers</td>
+<td>1</td>
+<td>$845</td>
+<td><code>N/A</code></td>
+<td></td>
+</tr>
+<tr>
+<td>FractoFlow Productions</td>
+<td>1</td>
+<td>$838</td>
+<td><code>fractoflowproductions@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Carlos Zamora / All Metal United</td>
+<td>1</td>
+<td>$794</td>
+<td><code>allmetalunited1@icloud.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Dave Riddle</td>
+<td>1</td>
+<td>$778</td>
+<td><code>N/A</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Fantom Fire</td>
+<td>2</td>
+<td>$684</td>
+<td><code>fantomfirerocks@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Bobcat</td>
+<td>1</td>
+<td>$632</td>
+<td><code>bobcatofficialmusic1@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Snailmate</td>
+<td>1</td>
+<td>$523</td>
+<td><code>snailmatebooking@gmail.com</code></td>
+<td>Self-books. Discount Cadavers, The Varas. $523.</td>
+</tr>
+<tr>
+<td>G4 Productions (Rick)</td>
+<td>1</td>
+<td>$454</td>
+<td><code>g4productions1@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Stay Strange SD (Sam Lopez)</td>
+<td>0</td>
+<td>N/A</td>
+<td><code>staystrangesandiego@yahoo.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Superkool Booking (Patrick)</td>
+<td>0</td>
+<td>N/A</td>
+<td><code>superkoolbooking@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>PLUR Factory Collective</td>
+<td>0</td>
+<td>N/A</td>
+<td><code>plurfactory.sd@gmail.com</code></td>
+<td>EDM/rave events. 1 show. $1,567. 21 emails -- active.</td>
+</tr>
+<tr>
+<td>Deadbrokedown</td>
+<td>0</td>
+<td>N/A</td>
+<td><code>deadbrokedown@gmail.com</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Silver Shores</td>
+<td>0</td>
+<td>N/A</td>
+<td><code>silvershoresband@gmail.com</code></td>
+<td>Self-books. Deep Yogurt. $1,131.</td>
+</tr>
+<tr>
+<td>Thee Rapscallions</td>
+<td>0</td>
+<td>N/A</td>
+<td><code>theerapscallions@gmail.com</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Promoter-Band Connection Map</h2>
+<p>When a promoter books a night, these are the bands most likely on the bill. Bands appearing 2+ times indicate a strong relationship.</p>
+<p><strong>Kayla Harrelson</strong> (117 shows):<br />
+- Core bands: <strong>Fancy Faces</strong> (9x), <strong>Admiral Atlas</strong> (8x), <strong>Fungal Mirage</strong> (7x), <strong>Close Enough</strong> (6x), <strong>Cotton Brain</strong> (5x), <strong>Baked Religion</strong> (4x), <strong>Thee Rapscallions</strong> (4x), <strong>Loopy Lew</strong> (4x)<br />
+- Full roster: Fancy Faces (9x), Admiral Atlas (8x), Fungal Mirage (7x), Close Enough (6x), Cotton Brain (5x), Baked Religion (4x), Thee Rapscallions (4x), Loopy Lew (4x), The Imbeskulls (4x), Ramblin Outlaws (3x), Discount Cadavers (3x), Brighton Street Bullies (3x)</p>
+<p><strong>Vilos Cohaagen / Admiral Atlas</strong> (20 shows):<br />
+- Core bands: <strong>Daygo Pong</strong> (14x), <strong>Vinyl Knights</strong> (10x), <strong>vinyl knights</strong> (4x)<br />
+- Full roster: Daygo Pong (14x), Vinyl Knights (10x), vinyl knights (4x), Daygo Pong Tournament (1x), Ugly X-Mas Sweater Daygo Pong (1x), Bourdain Cobain (1x), Admiral Atlas (1x), Dross Wizdrobe (1x), Admiral Atlas Arrt Nite (1x)</p>
+<p><strong>Rob (House)</strong> (6 shows):<br />
+- Full roster: Whatevr (1x), Remedelics (1x), Golf Alpha Bravo (1x), Group Suicide (1x), DTA (1x), Blue Elephant &amp; The 7 Snakes (1x), Oatmeal (1x), Fvnerxl Mxrch (1x), HOLD FOR ERIC (1x), Bourdain Cobain (1x), Master villain (1x), Kenjiii (1x)</p>
+<p><strong>Wabash Cannons</strong> (4 shows):<br />
+- Core bands: <strong>Wabash Cannons</strong> (4x)<br />
+- Full roster: Wabash Cannons (4x), Broke Bastards (1x), Wicked Echos (1x), The Pictographs (1x), MATINEE-Revolt Chix (1x), Sleeping Faceless (1x), Middle Finger (1x), Barefoot Hockey Goalie (1x), Holding Grudges (1x), Glass Parade (1x), Towne Dandies (1x), Dogface Bastards (1x)</p>
+<p><strong>Dying Species</strong> (4 shows):<br />
+- Core bands: <strong>Dying Species</strong> (4x)<br />
+- Full roster: Dying Species (4x), Ramblin Outlaws (1x), Razor Nights (1x), The Calvins (1x), Postals (1x), JCCC (1x), Deadly Dispute (1x), Mersa (1x), New Dystopians (1x), Jr Juggernaut (1x), For Closure (1x), Bug Out (1x)</p>
+<p><strong>GFD Productions (Gilberto)</strong> (3 shows):<br />
+- Core bands: <strong>Age of Darkness</strong> (3x), <strong>Kid in the Pit</strong> (2x)<br />
+- Full roster: Age of Darkness (3x), Kid in the Pit (2x), Rock Invasion Fest II: Coatl (1x), Corpus (1x), RabbiA (1x), Mexico Cabron (1x), The Adventures of Metal (1x), The Provoked (1x), Primortus (1x), 11th Hour (Lamb of God Tribute) (1x), Valiendo Madre (1x), Disciples of Death (1x)</p>
+<p><strong>Knikki Royster</strong> (3 shows):<br />
+- Full roster: Ramblin Outlaws (1x), Razor Nights (1x), Dying Species (1x), Hillbilly moon explosion (1x), 3LH (1x), Wendaze (1x), Heartbreak Hustlers (1x), Barefoot Hockey Goalie (1x), Wabash Cannons (1x), Holding Grudges (1x), Glass Parade (1x), Towne Dandies (1x)</p>
+<p><strong>Azraal Ford / Brighton Street Bullies</strong> (3 shows):<br />
+- Core bands: <strong>Brighton Street Bullies</strong> (3x), <strong>Deadly Dispute</strong> (2x)<br />
+- Full roster: Brighton Street Bullies (3x), Deadly Dispute (2x), Beast Fiend (1x), Dogface Bastards (1x), Rally Cry (1x), Legions (1x), Wabash Cannons (1x), Dr. Know (1x), Change Today (1x), War Fever (1x), Disauthority (1x)</p>
+<p><strong>The Varas (Jonathan Nielsen)</strong> (3 shows):<br />
+- Core bands: <strong>The Varas</strong> (3x)<br />
+- Full roster: The Varas (3x), Rickety Cliffs (1x), Off-Peace (1x), DMV Punchathon (1x), Auroras Hope (1x), Graveseer (1x), Snailmate (1x), Discount Cadavers (1x)</p>
+<p><strong>Nino Nunziante / The Firm</strong> (2 shows):<br />
+- Full roster: Two-Piece (1x), Legions (1x), Cinderblock CA (1x), Out of Chances (1x), Hollow Points (1x), Blunt Splitter (1x), Conservative Military Image (1x), Human Garbage (1x), Doc Hammer (1x), Brighton Street Bullies (1x)</p>
+<p><strong>Whatever68 Radio (Lisa Monday-Gomez)</strong> (2 shows):<br />
+- Full roster: Brighton Street Bullies (1x), Grahzny (1x), Pictographs (1x), VFMS (1x), The Yucks (1x), The Calvins (1x), Sorry its Over (1x), Honey Plant (1x), Carpit (1x), whatever68 radio festival (1x)</p>
+<p><strong>Club Lemon</strong> (2 shows):<br />
+- Full roster: SHAM 69 (1x), Angry Samoans (1x), Big Attitude (1x), Deadly Dispute (1x), Fvnerxl Mxrch (1x), Strega13 (1x), Infernal Tide Riders (1x)</p>
+<p><strong>Donald Aguayo</strong> (2 shows):<br />
+- Core bands: <strong>Fungal Mirage</strong> (2x), <strong>Close Enough</strong> (2x)<br />
+- Full roster: Fungal Mirage (2x), Close Enough (2x), Discount Cadavers (1x), Plants (1x), Cotton Brain (1x)</p>
+<p><strong>Steven Harris</strong> (2 shows):<br />
+- Full roster: Purgaterror (1x), A Sleep Like Death (1x), Kavana (1x), Waking of the Ancients (1x), Lvceferian Death Mechanism (1x), Divisonaries (1x), The Provoked (1x), Primortus (1x), Age of Darkness (1x), 11th Hour (Lamb of God Tribute) (1x)</p>
+<p><strong>Fantom Fire</strong> (2 shows):<br />
+- Full roster: Ten Twenty Kill (1x), Benthic Eels (1x), Minority (1x), Fantom Fireworks (1x), Harlequin Chic (1x), Fantom Fire (1x), Cheese Bergen (1x), Dang (1x), Thinky Flesh (1x)</p>
+<p><strong>Velvet Glow</strong> (2 shows):<br />
+- Core bands: <strong>Velvet Glow</strong> (2x)<br />
+- Full roster: Velvet Glow (2x), Mustard Heads (1x), Ian Curtis (1x), Go Scarlet (1x), Fancy Faces (1x)</p>
+<p><strong>Brandon Roseking</strong> (2 shows):<br />
+- Core bands: <strong>Roseking</strong> (2x)<br />
+- Full roster: Roseking (2x), Moth Party (1x), The Vinyl Shop (1x), Kissinger is Dead (1x), The Galentines (1x), Shock Tempest (1x)</p>
+<p><strong>Woke Up On A Throne (Gaute Halvorsen)</strong> (2 shows):<br />
+- Core bands: <strong>Fancy Faces</strong> (2x), <strong>Plants</strong> (2x), <strong>Woke up on a Throne</strong> (2x)<br />
+- Full roster: Fancy Faces (2x), Plants (2x), Woke up on a Throne (2x), Microphone Doctors (1x), Abigail Circus (1x), Nun Tucker (1x)</p>
+<h3>Cross-Pollination Bands</h3>
+<p>Bands that appear across multiple promoters' bills, connecting different parts of the network:</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Promoters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brighton Street Bullies</td>
+<td>Azraal Ford / Brighton Street Bullies, Beast Fiend, Kayla Harrelson, Nino Nunziante / The Firm, Wabash Cannons, Whatever68 Radio (Lisa Monday-Gomez)</td>
+</tr>
+<tr>
+<td>Fancy Faces</td>
+<td>Kayla Harrelson, Social Cues, Velvet Glow, Wetherbee (Tommy), Woke Up On A Throne (Gaute Halvorsen)</td>
+</tr>
+<tr>
+<td>Deadly Dispute</td>
+<td>Azraal Ford / Brighton Street Bullies, Beast Fiend, Club Lemon, Dying Species</td>
+</tr>
+<tr>
+<td>Discount Cadavers</td>
+<td>Donald Aguayo, Kayla Harrelson, Snailmate, The Varas (Jonathan Nielsen)</td>
+</tr>
+<tr>
+<td>Legions</td>
+<td>Azraal Ford / Brighton Street Bullies, Nino Nunziante / The Firm, Wabash Cannons</td>
+</tr>
+<tr>
+<td>Ramblin Outlaws</td>
+<td>Dying Species, Kayla Harrelson, Knikki Royster</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td>Azraal Ford / Brighton Street Bullies, Knikki Royster, Wabash Cannons</td>
+</tr>
+<tr>
+<td>The Varas</td>
+<td>Grave Seer, Snailmate, The Varas (Jonathan Nielsen)</td>
+</tr>
+<tr>
+<td>The Calvins</td>
+<td>Dying Species, Whatever68 Radio (Lisa Monday-Gomez)</td>
+</tr>
+<tr>
+<td>Fvnerxl Mxrch</td>
+<td>Club Lemon, Rob (House)</td>
+</tr>
+<tr>
+<td>Admiral Atlas</td>
+<td>Kayla Harrelson, Vilos Cohaagen / Admiral Atlas</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td>Donald Aguayo, Kayla Harrelson</td>
+</tr>
+<tr>
+<td>Close Enough</td>
+<td>Donald Aguayo, Kayla Harrelson</td>
+</tr>
+<tr>
+<td>Cotton Brain</td>
+<td>Donald Aguayo, Kayla Harrelson</td>
+</tr>
+<tr>
+<td>Bourdain Cobain</td>
+<td>Rob (House), Vilos Cohaagen / Admiral Atlas</td>
+</tr>
+<tr>
+<td>Age of Darkness</td>
+<td>GFD Productions (Gilberto), Steven Harris</td>
+</tr>
+<tr>
+<td>The Provoked</td>
+<td>GFD Productions (Gilberto), Steven Harris</td>
+</tr>
+<tr>
+<td>Primortus</td>
+<td>GFD Productions (Gilberto), Steven Harris</td>
+</tr>
+<tr>
+<td>11th Hour (Lamb of God Tribute)</td>
+<td>GFD Productions (Gilberto), Steven Harris</td>
+</tr>
+<tr>
+<td>Plants</td>
+<td>Donald Aguayo, Woke Up On A Throne (Gaute Halvorsen)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Revenue Rankings by Promoter</h2>
+<p>Ranked by average gross revenue. Fri/Sat non-show baseline: <strong>$618</strong>. Non-show overall baseline: <strong>$536</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Promoter</th>
+<th>Shows</th>
+<th>Avg Gross</th>
+<th>Total Gross</th>
+<th>vs Fri/Sat Baseline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Wabash Cannons</td>
+<td>4</td>
+<td>$3,186</td>
+<td>$12,743</td>
+<td>+415%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Club Lemon</td>
+<td>2</td>
+<td>$3,058</td>
+<td>$6,117</td>
+<td>+395%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Knikki Royster</td>
+<td>3</td>
+<td>$2,983</td>
+<td>$8,948</td>
+<td>+382%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Azraal Ford / Brighton Street Bullies</td>
+<td>3</td>
+<td>$2,893</td>
+<td>$8,679</td>
+<td>+368%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Whatever68 Radio (Lisa Monday-Gomez)</td>
+<td>2</td>
+<td>$2,713</td>
+<td>$5,426</td>
+<td>+339%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Nino Nunziante / The Firm</td>
+<td>2</td>
+<td>$2,415</td>
+<td>$4,830</td>
+<td>+290%</td>
+</tr>
+<tr>
+<td>7</td>
+<td>mc chris</td>
+<td>1</td>
+<td>$2,107</td>
+<td>$2,107</td>
+<td>+241%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Crunk Witch</td>
+<td>1</td>
+<td>$2,107</td>
+<td>$2,107</td>
+<td>+241%</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ernie (Sprung Monkey)</td>
+<td>1</td>
+<td>$2,073</td>
+<td>$2,073</td>
+<td>+235%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Dying Species</td>
+<td>4</td>
+<td>$2,012</td>
+<td>$8,048</td>
+<td>+225%</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Woke Up On A Throne (Gaute Halvorsen)</td>
+<td>2</td>
+<td>$1,754</td>
+<td>$3,507</td>
+<td>+184%</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Chris Paulson</td>
+<td>1</td>
+<td>$1,729</td>
+<td>$1,729</td>
+<td>+180%</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Hamapple</td>
+<td>1</td>
+<td>$1,631</td>
+<td>$1,631</td>
+<td>+164%</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Wetherbee (Tommy)</td>
+<td>1</td>
+<td>$1,497</td>
+<td>$1,497</td>
+<td>+142%</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Social Cues</td>
+<td>1</td>
+<td>$1,490</td>
+<td>$1,490</td>
+<td>+141%</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Velvet Glow</td>
+<td>2</td>
+<td>$1,392</td>
+<td>$2,785</td>
+<td>+125%</td>
+</tr>
+<tr>
+<td>17</td>
+<td>GFD Productions (Gilberto)</td>
+<td>3</td>
+<td>$1,359</td>
+<td>$4,078</td>
+<td>+120%</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Donald Aguayo</td>
+<td>2</td>
+<td>$1,263</td>
+<td>$2,526</td>
+<td>+104%</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Beast Fiend</td>
+<td>1</td>
+<td>$1,234</td>
+<td>$1,234</td>
+<td>+100%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Kayla Harrelson</td>
+<td>109</td>
+<td>$1,194</td>
+<td>$130,198</td>
+<td>+93%</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Brandon Roseking</td>
+<td>2</td>
+<td>$1,167</td>
+<td>$2,334</td>
+<td>+89%</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Grave Seer</td>
+<td>1</td>
+<td>$1,071</td>
+<td>$1,071</td>
+<td>+73%</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Steven Harris</td>
+<td>2</td>
+<td>$1,064</td>
+<td>$2,127</td>
+<td>+72%</td>
+</tr>
+<tr>
+<td>24</td>
+<td>3rd Eye Booking Company</td>
+<td>1</td>
+<td>$1,063</td>
+<td>$1,063</td>
+<td>+72%</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Suckapunch Productions</td>
+<td>1</td>
+<td>$992</td>
+<td>$992</td>
+<td>+60%</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Rob (House)</td>
+<td>5</td>
+<td>$946</td>
+<td>$4,731</td>
+<td>+53%</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Salo Panto</td>
+<td>1</td>
+<td>$915</td>
+<td>$915</td>
+<td>+48%</td>
+</tr>
+<tr>
+<td>28</td>
+<td>The Varas (Jonathan Nielsen)</td>
+<td>3</td>
+<td>$885</td>
+<td>$2,654</td>
+<td>+43%</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Irving (Tour Buyer)</td>
+<td>1</td>
+<td>$858</td>
+<td>$858</td>
+<td>+39%</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Sarah Mathers</td>
+<td>1</td>
+<td>$845</td>
+<td>$845</td>
+<td>+37%</td>
+</tr>
+<tr>
+<td>31</td>
+<td>FractoFlow Productions</td>
+<td>1</td>
+<td>$838</td>
+<td>$838</td>
+<td>+35%</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Vilos Cohaagen / Admiral Atlas</td>
+<td>20</td>
+<td>$831</td>
+<td>$16,625</td>
+<td>+34%</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Carlos Zamora / All Metal United</td>
+<td>1</td>
+<td>$794</td>
+<td>$794</td>
+<td>+28%</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Dave Riddle</td>
+<td>1</td>
+<td>$778</td>
+<td>$778</td>
+<td>+26%</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Fantom Fire</td>
+<td>2</td>
+<td>$684</td>
+<td>$1,368</td>
+<td>+11%</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Bobcat</td>
+<td>1</td>
+<td>$632</td>
+<td>$632</td>
+<td>+2%</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Snailmate</td>
+<td>1</td>
+<td>$523</td>
+<td>$523</td>
+<td>-15%</td>
+</tr>
+<tr>
+<td>38</td>
+<td>G4 Productions (Rick)</td>
+<td>1</td>
+<td>$454</td>
+<td>$454</td>
+<td>-27%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read this table as:</strong> Any promoter above $618 outperforms a typical no-show Friday/Saturday. Promoters above $1,500 are genuine revenue multipliers. Those below $700 may be costing you a better night.</p>
+<hr />
+<h2>4. Booking Patterns</h2>
+<h3>Day-of-Week Revenue (Show vs No-Show)</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Show Avg</th>
+<th>No-Show Avg</th>
+<th>Lift</th>
+<th>Show Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Monday</td>
+<td>$928</td>
+<td>$576</td>
+<td>+61%</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>$700</td>
+<td>$568</td>
+<td>+23%</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>$815</td>
+<td>$432</td>
+<td>+88%</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>$882</td>
+<td>$540</td>
+<td>+63%</td>
+<td>39</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>$1,296</td>
+<td>$637</td>
+<td>+104%</td>
+<td>78</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>$1,416</td>
+<td>$588</td>
+<td>+141%</td>
+<td>87</td>
+</tr>
+<tr>
+<td>Sunday</td>
+<td>$987</td>
+<td>$0</td>
+<td>+0%</td>
+<td>101</td>
+</tr>
+</tbody>
+</table>
+<h3>Email Maintenance Costs</h3>
+<p>Which promoters require the most email back-and-forth per booking?</p>
+<table>
+<thead>
+<tr>
+<th>Promoter</th>
+<th>Emails</th>
+<th>Threads</th>
+<th>Avg/Thread</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vilos Cohaagen / Admiral Atlas</td>
+<td>82</td>
+<td>39</td>
+<td>2.1</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Jeff Clark</td>
+<td>69</td>
+<td>10</td>
+<td>6.9</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Donald Aguayo</td>
+<td>42</td>
+<td>8</td>
+<td>5.2</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Jordi Hereu</td>
+<td>42</td>
+<td>5</td>
+<td>8.4</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Thee Rapscallions</td>
+<td>38</td>
+<td>3</td>
+<td>12.7</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Garrett Stollar</td>
+<td>37</td>
+<td>4</td>
+<td>9.2</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>FractoFlow Productions</td>
+<td>37</td>
+<td>3</td>
+<td>12.3</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Steven Harris</td>
+<td>35</td>
+<td>7</td>
+<td>5.0</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Woke Up On A Throne (Gaute Halvorsen)</td>
+<td>34</td>
+<td>3</td>
+<td>11.3</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Kayla Harrelson</td>
+<td>34</td>
+<td>34</td>
+<td>1.0</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Stay Strange SD (Sam Lopez)</td>
+<td>33</td>
+<td>9</td>
+<td>3.7</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Tom Kuntz / Jet Fuel Soda</td>
+<td>32</td>
+<td>1</td>
+<td>32.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>3rd Eye Booking Company</td>
+<td>31</td>
+<td>3</td>
+<td>10.3</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Happy Nomad Booking (Sean Padilla)</td>
+<td>31</td>
+<td>31</td>
+<td>1.0</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Adversarial Productions</td>
+<td>30</td>
+<td>7</td>
+<td>4.3</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Seasame King</td>
+<td>26</td>
+<td>2</td>
+<td>13.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Superkool Booking (Patrick)</td>
+<td>24</td>
+<td>3</td>
+<td>8.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Fantom Fire</td>
+<td>23</td>
+<td>6</td>
+<td>3.8</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>G4 Productions (Rick)</td>
+<td>23</td>
+<td>3</td>
+<td>7.7</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Go-Go Dance Arts (Sunny Moon Seville)</td>
+<td>23</td>
+<td>15</td>
+<td>1.5</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Beast Fiend</td>
+<td>22</td>
+<td>5</td>
+<td>4.4</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Corporate Citizen</td>
+<td>22</td>
+<td>2</td>
+<td>11.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Cheeky Media</td>
+<td>21</td>
+<td>2</td>
+<td>10.5</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>mc chris</td>
+<td>21</td>
+<td>5</td>
+<td>4.2</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>PLUR Factory Collective</td>
+<td>21</td>
+<td>4</td>
+<td>5.2</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Azraal Ford / Brighton Street Bullies</td>
+<td>20</td>
+<td>4</td>
+<td>5.0</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>SoCal Indie Musicians (Jennalyn)</td>
+<td>19</td>
+<td>5</td>
+<td>3.8</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Bobcat</td>
+<td>19</td>
+<td>4</td>
+<td>4.8</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Brady / Distractions Inc</td>
+<td>19</td>
+<td>4</td>
+<td>4.8</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Velvet Glow</td>
+<td>18</td>
+<td>4</td>
+<td>4.5</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Eden Entertainment (Christopher Avila)</td>
+<td>18</td>
+<td>5</td>
+<td>3.6</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Carlos Zamora / All Metal United</td>
+<td>18</td>
+<td>6</td>
+<td>3.0</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Anthony Cutietta</td>
+<td>17</td>
+<td>2</td>
+<td>8.5</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Deadbrokedown</td>
+<td>17</td>
+<td>5</td>
+<td>3.4</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Snailmate</td>
+<td>15</td>
+<td>1</td>
+<td>15.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Ask Carol</td>
+<td>14</td>
+<td>2</td>
+<td>7.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Hamapple</td>
+<td>14</td>
+<td>1</td>
+<td>14.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td>14</td>
+<td>3</td>
+<td>4.7</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Knikki Royster</td>
+<td>13</td>
+<td>7</td>
+<td>1.9</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Old Moon</td>
+<td>13</td>
+<td>1</td>
+<td>13.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Wetherbee (Tommy)</td>
+<td>12</td>
+<td>1</td>
+<td>12.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Salo Panto</td>
+<td>12</td>
+<td>2</td>
+<td>6.0</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Silver Shores</td>
+<td>12</td>
+<td>1</td>
+<td>12.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td>12</td>
+<td>1</td>
+<td>12.0</td>
+<td>High-maintenance</td>
+</tr>
+<tr>
+<td>Social Cues</td>
+<td>11</td>
+<td>2</td>
+<td>5.5</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Brandon Roseking</td>
+<td>10</td>
+<td>2</td>
+<td>5.0</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Grave Seer</td>
+<td>10</td>
+<td>4</td>
+<td>2.5</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Crunk Witch</td>
+<td>10</td>
+<td>2</td>
+<td>5.0</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>Nino Nunziante / The Firm</td>
+<td>9</td>
+<td>2</td>
+<td>4.5</td>
+<td>Moderate</td>
+</tr>
+<tr>
+<td>GFD Productions (Gilberto)</td>
+<td>8</td>
+<td>5</td>
+<td>1.6</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>The Varas (Jonathan Nielsen)</td>
+<td>5</td>
+<td>3</td>
+<td>1.7</td>
+<td>Low-maintenance</td>
+</tr>
+<tr>
+<td>Distilled Entertainment (Ryan Raes)</td>
+<td>5</td>
+<td>3</td>
+<td>1.7</td>
+<td>Low-maintenance</td>
+</tr>
+</tbody>
+</table>
+<h3>Kayla's Monthly Booking Volume</h3>
+<pre><code>2024-08: ## (2)
+2024-09: #### (4)
+2024-10: ###### (6)
+2024-11: ######### (9)
+2024-12: ############ (12)
+2025-01: ###### (6)
+2025-02: ###### (6)
+2025-03: ##### (5)
+2025-04: ##### (5)
+2025-05: ####### (7)
+2025-06: ###### (6)
+2025-07: ########## (10)
+2025-08: ############ (12)
+2025-09: ######## (8)
+2025-10: ########## (10)
+2025-11: ###### (6)
+2025-12: ### (3)
+</code></pre>
+<hr />
+<h2>5. Orphan Shows (No Identified Booker)</h2>
+<p><strong>41 of 209 multi-band shows</strong> (20%) have no identified booker.<br />
+- Orphan show avg revenue: <strong>$1,197</strong><br />
+- Attributed show avg revenue: <strong>$1,279</strong></p>
+<p>Many orphans cluster in <strong>early 2024</strong> (before Kayla started adding 'Booked by' annotations) and come from <strong>text/Facebook/in-person</strong> bookings with no email trail.</p>
+<h3>Top Orphan Shows by Revenue</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Revenue</th>
+<th>Show</th>
+<th>Best Guess</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-02-03</td>
+<td>$3,556</td>
+<td>Chad Martini / Tracy Lee Nelson / Chad Carrier / Tracy</td>
+<td>Chad Martini (self)</td>
+</tr>
+<tr>
+<td>2024-03-24</td>
+<td>$3,116</td>
+<td>Panther Car / Swede and Skogen</td>
+<td>Tour routing</td>
+</tr>
+<tr>
+<td>2024-03-02</td>
+<td>$1,969</td>
+<td>Louis on Tour / Daddy / Moon Talk / Echinacea</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-09-21</td>
+<td>$1,921</td>
+<td>Karaoke w/ Lenny</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-08-09</td>
+<td>$1,691</td>
+<td>DJ Miggs / DJ HoofHearted</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-03-15</td>
+<td>$1,650</td>
+<td>Eternal Bloom / Dreaming of a Day / Legions / Samsara</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-05-10</td>
+<td>$1,615</td>
+<td>Karaoke w/ KJ Lenny Kraken 12th Anniversary</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-12-21</td>
+<td>$1,613</td>
+<td>Luciferian Death Mechanism / The Adventures of / From t</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-12-20</td>
+<td>$1,512</td>
+<td>Black Moon Forest / The Midnight Ships / Born to Run</td>
+<td>Superkool Booking?</td>
+</tr>
+<tr>
+<td>2024-04-06</td>
+<td>$1,470</td>
+<td>Ignominious / The Art Of Deception / Parasitic Existenc</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-10-05</td>
+<td>$1,469</td>
+<td>Dutch Rosenberg Theatre / Lord Howler / Vanguard (SD) /</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-03-29</td>
+<td>$1,348</td>
+<td>Blood Handsome/Blue Worship/Stella Perish/DJ Obli_X_Vio</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-06-28</td>
+<td>$1,344</td>
+<td>Insineratehymn / Unblessed Domain / Putrescent / Suicid</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-11-17</td>
+<td>$1,309</td>
+<td>Black magnet / Life of Vice / Nechesch</td>
+<td>Tour routing</td>
+</tr>
+<tr>
+<td>2024-08-25</td>
+<td>$1,277</td>
+<td>Vaidma / Subjugator / Mördeth</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-07-13</td>
+<td>$1,202</td>
+<td>Agrersor / Brutalion / Celestial Force / Speedburner /</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-05-31</td>
+<td>$1,198</td>
+<td>Ape Vermin / Mean Green / -(16)-</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-01-20</td>
+<td>$1,159</td>
+<td>Grahzny / 12 Gauge Trixie / Deathboys</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-09-26</td>
+<td>$1,134</td>
+<td>Forest Friends(Seattle) / Codex Confiteor / Hidhawk y P</td>
+<td></td>
+</tr>
+<tr>
+<td>2024-03-01</td>
+<td>$1,133</td>
+<td>Luke Moore / The Vinyl Shop / Exotic Fruit Tour / Trist</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Promoter Wishlist &amp; Recommendations</h2>
+<h3>Priority: Give These Promoters Whatever Dates They Want</h3>
+<ul>
+<li><strong>Wabash Cannons</strong> -- $3,186 avg, 4 shows, $12,743 total</li>
+<li><strong>Club Lemon</strong> -- $3,058 avg, 2 shows, $6,117 total</li>
+<li><strong>Knikki Royster</strong> -- $2,983 avg, 3 shows, $8,948 total</li>
+<li><strong>Azraal Ford / Brighton Street Bullies</strong> -- $2,893 avg, 3 shows, $8,679 total</li>
+<li><strong>Whatever68 Radio (Lisa Monday-Gomez)</strong> -- $2,713 avg, 2 shows, $5,426 total</li>
+<li><strong>Nino Nunziante / The Firm</strong> -- $2,415 avg, 2 shows, $4,830 total</li>
+<li><strong>Dying Species</strong> -- $2,012 avg, 4 shows, $8,048 total</li>
+<li><strong>Woke Up On A Throne (Gaute Halvorsen)</strong> -- $1,754 avg, 2 shows, $3,507 total</li>
+</ul>
+<p>These promoters reliably pull $1,500+ per night. Every show they book is significantly above baseline.</p>
+<h3>Solid: Keep Them Booking</h3>
+<ul>
+<li><strong>Velvet Glow</strong> -- $1,392 avg (2 shows)</li>
+<li><strong>GFD Productions (Gilberto)</strong> -- $1,359 avg (3 shows)</li>
+<li><strong>Donald Aguayo</strong> -- $1,263 avg (2 shows)</li>
+<li><strong>Kayla Harrelson</strong> -- $1,194 avg (109 shows)</li>
+<li><strong>Brandon Roseking</strong> -- $1,167 avg (2 shows)</li>
+<li><strong>Steven Harris</strong> -- $1,064 avg (2 shows)</li>
+<li><strong>Rob (House)</strong> -- $946 avg (5 shows)</li>
+</ul>
+<h3>Watch: Low Revenue but Community Value</h3>
+<ul>
+<li><strong>Fantom Fire</strong> -- $684 avg (2 shows)</li>
+<li><strong>Vilos Cohaagen / Admiral Atlas</strong> -- $831 avg (20 shows)</li>
+<li><strong>The Varas (Jonathan Nielsen)</strong> -- $885 avg (3 shows)</li>
+</ul>
+<h3>Churned: Active in 2024, Gone in 2025</h3>
+<ul>
+<li><strong>Knikki Royster</strong> -- 3 shows in 2024, $2,983 avg. Last: 2024-09-21.</li>
+<li><strong>mc chris</strong> -- 1 shows in 2024, $2,107 avg. Last: 2024-06-12.</li>
+<li><strong>Crunk Witch</strong> -- 1 shows in 2024, $2,107 avg. Last: 2024-06-12.</li>
+<li><strong>Ernie (Sprung Monkey)</strong> -- 1 shows in 2024, $2,073 avg. Last: 2024-06-29.</li>
+<li><strong>Dying Species</strong> -- 4 shows in 2024, $2,012 avg. Last: 2024-11-16.</li>
+<li><strong>Woke Up On A Throne (Gaute Halvorsen)</strong> -- 2 shows in 2024, $1,754 avg. Last: 2024-06-15.</li>
+<li><strong>Hamapple</strong> -- 1 shows in 2024, $1,631 avg. Last: 2024-08-24.</li>
+<li><strong>Wetherbee (Tommy)</strong> -- 1 shows in 2024, $1,497 avg. Last: 2024-02-10.</li>
+<li><strong>Social Cues</strong> -- 1 shows in 2024, $1,490 avg. Last: 2024-08-17.</li>
+<li><strong>Donald Aguayo</strong> -- 2 shows in 2024, $1,263 avg. Last: 2024-11-28.</li>
+<li><strong>Beast Fiend</strong> -- 1 shows in 2024, $1,234 avg. Last: 2024-05-18.</li>
+<li><strong>Brandon Roseking</strong> -- 2 shows in 2024, $1,167 avg. Last: 2024-05-28.</li>
+<li><strong>Grave Seer</strong> -- 1 shows in 2024, $1,071 avg. Last: 2024-06-07.</li>
+<li><strong>Steven Harris</strong> -- 2 shows in 2024, $1,064 avg. Last: 2024-08-10.</li>
+<li><strong>Suckapunch Productions</strong> -- 1 shows in 2024, $992 avg. Last: 2024-10-16.</li>
+<li><strong>Salo Panto</strong> -- 1 shows in 2024, $915 avg. Last: 2024-04-19.</li>
+<li><strong>The Varas (Jonathan Nielsen)</strong> -- 3 shows in 2024, $885 avg. Last: 2024-08-14.</li>
+<li><strong>Irving (Tour Buyer)</strong> -- 1 shows in 2024, $858 avg. Last: 2024-05-03.</li>
+<li><strong>Sarah Mathers</strong> -- 1 shows in 2024, $845 avg. Last: 2024-08-23.</li>
+<li><strong>Dave Riddle</strong> -- 1 shows in 2024, $778 avg. Last: 2024-08-08.</li>
+<li><strong>Bobcat</strong> -- 1 shows in 2024, $632 avg. Last: 2024-01-29.</li>
+<li><strong>Snailmate</strong> -- 1 shows in 2024, $523 avg. Last: 2024-08-14.</li>
+<li><strong>G4 Productions (Rick)</strong> -- 1 shows in 2024, $454 avg. Last: 2024-07-26.</li>
+</ul>
+<h3>New in 2025: Worth Watching</h3>
+<ul>
+<li><strong>Chris Paulson</strong> -- 1 shows in 2025, $1,729 avg.</li>
+<li><strong>3rd Eye Booking Company</strong> -- 1 shows in 2025, $1,063 avg.</li>
+<li><strong>FractoFlow Productions</strong> -- 1 shows in 2025, $838 avg.</li>
+<li><strong>Carlos Zamora / All Metal United</strong> -- 1 shows in 2025, $794 avg.</li>
+</ul>
+<hr />
+<h2>7. Key Insights &amp; Risks</h2>
+<h3>Single Point of Failure: Kayla Harrelson</h3>
+<p>Kayla books 117 shows across this period. That is roughly 60% of all live music.<br />
+- She manages booking, set times, band communications, and flyer coordination<br />
+- Her shows generate $130,198 in gross revenue<br />
+- If she left, 8-13 shows per month would vanish<br />
+- <strong>Action:</strong> Document her booking process. Build a backup system. Consider whether her compensation reflects her actual value.</p>
+<h3>Hidden Revenue: The Bands That Self-Book</h3>
+<p>Several bands book their own shows and draw well:<br />
+- <strong>Wabash Cannons</strong> -- $2,842 avg. Every show they touch overperforms.<br />
+- <strong>Knikki Royster</strong> -- $2,433 avg. Connected to Ramblin Outlaws/Heartbreak Hustlers scene.<br />
+- <strong>Azraal Ford / Brighton Street Bullies</strong> -- $2,622 avg. Punk community anchor.<br />
+- <strong>Dying Species</strong> -- $2,012 avg. Local metal scene.<br />
+- <strong>Woke Up On A Throne</strong> -- $1,897 avg. Indie/alt with Fancy Faces connections.</p>
+<p>These are promoters in disguise. They build their own bills, bring their own crowds. Give them priority.</p>
+<h3>The External Promoter Opportunity</h3>
+<p>Three external promoters generate exceptional per-show revenue but book infrequently:<br />
+- <strong>Club Lemon</strong> ($3,058 avg) -- legacy punk touring acts<br />
+- <strong>Whatever68 Radio</strong> ($2,713 avg) -- matinee punk showcases<br />
+- <strong>Nino Nunziante</strong> ($2,178 avg) -- punk/hardcore via The Firm</p>
+<p><strong>Action:</strong> Proactively reach out. Offer them recurring monthly slots. Their per-show economics are exceptional.</p>
+<h3>The Vinyl Knights / Daygo Pong Steady State</h3>
+<p>Vilos Cohaagen fills Monday/Wednesday nights that would otherwise be dark.<br />
+Revenue is moderate ($860 avg) but these are days that would generate $400-500 without events.<br />
+He is self-sufficient and requires no management overhead. This is pure upside.</p>
+<h3>Booking Lead Time Gap</h3>
+<p>The email data shows most bookings happen 2-6 weeks before the show. There is no evidence of long-term calendar planning (3+ months out). This creates:<br />
+- Last-minute scrambles for weekend slots<br />
+- Inability to promote shows effectively<br />
+- Missed opportunities for advance ticket sales<br />
+<strong>Action:</strong> Push the highest-revenue promoters to book quarterly.</p>
+</body>
+</html>

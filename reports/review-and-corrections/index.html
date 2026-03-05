@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Review & Corrections — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Booking Agent Reports -- Critical Review and Corrections</h1>
+<p><strong>Review date:</strong> 2026-03-04<br />
+<strong>Reviewer:</strong> Claude (Opus 4.6), auditing at owner request<br />
+<strong>Methodology:</strong> Every numerical claim spot-checked against raw data files: <code>2025_emails.json</code>, <code>shows.json</code>, <code>band_directory.json</code>, <code>toast-daily-sales-full.csv</code>, and the per-year Toast CSVs (<code>toast-sales-2023.csv</code>, <code>toast-sales-2024.csv</code>, <code>toast-sales-2025.csv</code>).</p>
+<hr />
+<h2>Systemic Issue: Two Incompatible Toast Data Sources</h2>
+<p>Before getting into individual reports, there is a foundational data problem that contaminates multiple reports.</p>
+<p>The analysis directory contains <strong>two different Toast POS exports</strong> with different definitions of "Net Sales":</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Columns</th>
+<th>Net Sales Definition</th>
+<th>2024 Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toast-daily-sales-full.csv</code></td>
+<td>Date, Gross, Discounts, Net, Tax, Tips, Orders, Checks, Cash, Card, Avg Check</td>
+<td>Gross minus Discounts (includes tax and tips)</td>
+<td>$292,043</td>
+</tr>
+<tr>
+<td><code>toast-sales-2024.csv</code></td>
+<td>Date, Net Sales, Orders, <strong>Guests</strong></td>
+<td>True net after tax/tips</td>
+<td>$226,841</td>
+</tr>
+</tbody>
+</table>
+<p>The bar-revenue report used the year CSVs (correct for "what the bar takes home"). The Morning Briefing cherry-picked the 2025 full-year total from the full CSV ($266K) because the year CSV only covers Jan-May 2025 ($83K). This means <strong>the briefing's "$266K" includes ~$60-80K in sales tax and recorded tips that are not bar revenue.</strong> The true 2025 net revenue, based on the Jan-May ratio, is likely $185-210K.</p>
+<p>The reports never acknowledge this discrepancy or explain which source they used. This is a serious data governance failure.</p>
+<hr />
+<h2>1. Band Cross-Reference Report</h2>
+<h3>THE BIG ONE: "69% of shows have no email trail" is wrong</h3>
+<p><strong>Claim:</strong> "69% of 2025 music shows have no matching email trail -- booked via phone, text, Instagram DM, Facebook, or standing arrangements with regulars."</p>
+<p><strong>Verification:</strong> A simple substring search of the first band name on each bill against the full email corpus (subjects, senders, and first 500 chars of body) finds <strong>83% of music shows have email evidence.</strong> After removing holds, cancellations, and private events, <strong>91% of real bookable shows</strong> (103 of 113) have detectable email trail.</p>
+<p>The cross-ref's fuzzy-matching approach (thefuzz library, token_sort_ratio, threshold 82) against only booking-labeled emails was far too narrow. Specific failures:</p>
+<ul>
+<li><strong>"Deathwish/Retox A.D."</strong> listed as "Inquired But Never Booked" (12 emails) -- but they <strong>played on 2025-09-18</strong> ("Retox A.D. / Deathwish / Deadly Dispute"). The extraction kept the slash in the name and couldn't match.</li>
+<li><strong>"PLUR Factory Collective"</strong> listed as never booked (19 emails) -- but <strong>PLUR Factory ran a show on 2025-10-10</strong>.</li>
+<li><strong>"Hooch Band"</strong> listed as never booked (13 emails) -- but <strong>"Hooch" played 2025-11-14</strong> and appears in the New Bands section of the SAME report. The fuzzy match caught "Hooch" but not "Hooch Band."</li>
+<li><strong>"Deeptrees Saturday, March 8th"</strong> listed as a band name that never booked. This is a <strong>subject-line fragment</strong>, not a band name. The extraction appended the date to the band name. Deeptrees actually played 2025-07-25 and appears correctly elsewhere in the report.</li>
+<li><strong>"Booking Deeptrees Saturday, March 8th"</strong> -- same band, same error, listed as a separate entity.</li>
+<li><strong>"VOLUME"</strong> listed as a never-booked band with 13 emails from "Independent Booking Agents." VOLUME is a <strong>show series/event name</strong>, not a band.</li>
+</ul>
+<p><strong>The real email-traceable booking rate is approximately 85-91%, not 31%.</strong> The conclusion that "most regulars book through channels invisible to email" is backwards. Email IS the main booking channel, as the bar owner stated.</p>
+<p><strong>Correction needed:</strong> The 69%/31% figure must be retracted and replaced. The methodology section acknowledges "heuristic extraction: some false positives and false negatives remain" but drastically understates the scale of the problem.</p>
+<h3>Capacity inconsistency</h3>
+<p>The report says "100-Cap Dive Bar" and "100-capacity dive bar" three times. The Bancroft's own emails to bands state: <strong>"our capacity is 130....but we can push it to 150."</strong> The Artist Info sheet sent to bands also says "venue capacity: 130." The booking-patterns report correctly says 130. This report got it wrong.</p>
+<h3>Conversion rate is misleading</h3>
+<p><strong>Claim:</strong> "12.9% conversion rate" (44 of 342 inquiries became shows).</p>
+<p><strong>Problems:</strong><br />
+1. The denominator (342) includes agency spam that was never a real inquiry. White Mountain, Universal Attractions, Panda Artist, etc. are mass-blasting hundreds of venues. Including them in the denominator makes the conversion rate look artificially low.<br />
+2. The numerator (44) is undercounted because the matching algorithm missed bands that actually played (see above).<br />
+3. A more meaningful figure: Among Wix form and direct email inquiries from bands (not agencies), the conversion rate would be significantly higher.</p>
+<h3>Music show count is inflated</h3>
+<p><strong>Claim:</strong> "144 music shows" in 2025 (197 total minus 53 dart tournaments).</p>
+<p><strong>Problem:</strong> The 144 includes Daygo Pong (17), Vinyl Knights (13), Karaoke (3), and DarkWave Garden (12) -- recurring events that aren't "music shows" in the booking sense. Excluding these, there are <strong>112 actual music shows</strong> with band lineups. After also removing holds, cancellations, and private events: <strong>101 real bookable music shows.</strong></p>
+<hr />
+<h2>2. Bar Revenue vs. Shows Report</h2>
+<h3>Revenue figures are internally consistent but sourced differently from the Briefing</h3>
+<p>The bar-revenue report used the year-specific CSVs (with Guest counts and true-net sales). Its numbers check out against those files:<br />
+- 2023: $249,749 (verified)<br />
+- 2024: $226,841 (verified)<br />
+- 2025 Jan-May: $82,927 (verified)</p>
+<p>However, the Morning Briefing then quotes "$266K" for full-year 2025 from a <strong>different data source</strong> (toast-daily-sales-full.csv, which includes tax and tips). This makes the two documents incompatible.</p>
+<h3>The $16/guest figure needs context</h3>
+<p><strong>Claim:</strong> "$16/guest average spend, remarkably consistent regardless of event type."</p>
+<p><strong>Verification from year CSVs:</strong><br />
+- 2023: $15.00/guest (16,654 guests)<br />
+- 2024: $16.07/guest (14,112 guests)<br />
+- 2025 Jan-May: $15.77/guest (5,258 guests)</p>
+<p>The figure is approximately correct for 2024-2025. But calling it "remarkably consistent" papers over a troubling trend: <strong>guest counts dropped 15% from 2023 to 2024</strong> while per-guest spend rose 7%. Fewer people are coming and spending slightly more each. That is not "consistent" -- it is a declining customer base masked by mild price inflation (or the same regulars ordering one more beer).</p>
+<h3>Show night vs. non-show averages (verified)</h3>
+<p>Using the year CSV data and calendar matching, the show-night averages are approximately correct:<br />
+- Show nights: ~$948 avg (report says $948)<br />
+- Non-show nights: ~$443 avg (report says $443)<br />
+- Lift: ~$505/night (report says $505, 114%)</p>
+<p>These numbers hold up. <strong>The $505 show-night lift is the single most important and most reliable finding across all reports.</strong></p>
+<h3>The "r=0.94 correlation" claim</h3>
+<p><strong>Claim:</strong> "Correlation between guest count and net sales on show nights: r = 0.94"</p>
+<p>This could not be independently verified because the raw Guest data only exists in the year CSVs and would require matching against calendar dates. The claim is plausible (more people = more drinks is obvious) but the exact r value is unverified.</p>
+<h3>Year-over-year decline is overstated</h3>
+<p><strong>Claim (bar-revenue report):</strong> "Total Revenue declined from $249,749 (2023) to $226,841 (2024) = -9.2%"</p>
+<p>Using the year CSVs, this math checks out. But note: the Morning Briefing then says "down 13% over 2 years" (2023 to 2025). This is computed using $266K for 2025 (from the full CSV, gross of tax/tips) versus $299K for 2023 (also from the full CSV). Actual decline in that dataset: 10.9%, not 13%. And using the year CSVs (apples-to-apples), we only have Jan-May 2025 data, so a full-year comparison is not possible.</p>
+<p><strong>The "13% decline" claim is both mathematically wrong (it's 11%) and conceptually wrong (compares 2023 year-CSV to 2025 full-CSV, different metrics).</strong></p>
+<h3>Band revenue attribution problem</h3>
+<p>The report attributes a full night's bar sales to every band on the bill. Wabash Cannons "average $1,803/show" -- but those nights also featured Brighton Street Bullies, Dying Species, etc. You cannot say Wabash Cannons "drove" $1,803 because they were always on stacked bills with other proven draws. The report acknowledges this ("same night's revenue is credited to every band") but then proceeds to rank bands as if the attribution is meaningful.</p>
+<p><strong>Correction needed:</strong> The band revenue rankings should be presented as "nights featuring [band]" not "[band]'s revenue impact." The current framing implies individual band draw when it is actually measuring bill quality.</p>
+<hr />
+<h2>3. Booking Patterns Report</h2>
+<h3>Booking thread count: 591 vs. 415</h3>
+<p>This report says 591 booking threads. The thread-analysis report says 415. That is a <strong>42% discrepancy</strong> on the most basic metric. The booking-patterns report used a broader classification (Gmail booking label + subject keywords + sender domains + thread membership). The thread-analysis used a narrower set. Neither explains its methodology well enough to reproduce.</p>
+<p>Raw data: only <strong>138 threads</strong> carry the Gmail booking label. Keyword-matching on subjects finds ~598 threads (close to 591), suggesting the booking-patterns report cast a very wide net that likely includes non-booking threads.</p>
+<h3>Wix form count inconsistency</h3>
+<ul>
+<li>Booking-patterns: "120" Wix form threads, "109 unique bands"</li>
+<li>Thread-analysis: "134" Wix form threads</li>
+<li>Booking-decisions: "892 emails across 134 unique threads"</li>
+<li>Raw data: 134 threads, 892 emails, ~123 unique band names extracted from body text</li>
+</ul>
+<p>The 120 vs. 134 discrepancy suggests the booking-patterns report filtered some Wix threads (perhaps follow-ups with modified subjects). The "109 unique bands" claim is reasonably close to the ~123 we extracted (some are duplicates with slight name variations).</p>
+<h3>Lead time data is based on a tiny sample</h3>
+<p><strong>Claim:</strong> "Median lead time: 58 days (~2 months)" based on "58 inquiries with detectable requested dates."</p>
+<p>58 out of 591 threads = 9.8% of the data. The booking-decisions report independently computed lead time from 98 matches and got a <strong>median of 36 days and average of 53 days</strong> -- substantially shorter. The 58-day median from the booking-patterns report is likely biased toward touring acts who mention specific dates in their subject lines (and book further out).</p>
+<p><strong>Correction needed:</strong> The lead time is probably 36-58 days median depending on methodology. The reports should agree on one figure or explain the discrepancy.</p>
+<h3>Response time discrepancy</h3>
+<ul>
+<li>Booking-patterns: "Median response time: 2.0 days (47.8 hours)" from 182 threads</li>
+<li>Thread-analysis: "Median response time: 49.6h (2.1 days)" from 162 threads</li>
+</ul>
+<p>These are close enough (2.0 vs 2.1 days) to be acceptable, but the sample sizes differ (182 vs. 162), suggesting different thread selection criteria.</p>
+<hr />
+<h2>4. Thread Analysis Report</h2>
+<h3>Ghost rate: 57% vs. 66.8%</h3>
+<p>The thread-analysis says 57% ghost rate (229 of 401). The booking-patterns report says 66.8% (373 of 558). These are <strong>different numbers measuring different things</strong> (the booking-patterns number includes agency spam; the thread-analysis may have filtered some out). Neither report reconciles with the other.</p>
+<p>The Morning Briefing picks the 57% figure. This is probably the more useful one since it excludes some obvious spam, but neither report breaks out what the ghost rate is for <strong>genuine, genre-appropriate, right-sized inquiries</strong> -- which is the number that actually matters.</p>
+<h3>Funnel numbers don't add up internally</h3>
+<p>The "Booking Pipeline Stages" section has two contradictory tables:</p>
+<p>Table 1 (Pipeline Stages):<br />
+- Initial inquiry: 411 threads<br />
+- Bancroft replied: 176 (42.4%)</p>
+<p>Table 2 (Booking Funnel):<br />
+- Inquiry received: 401<br />
+- Bancroft replied: 172 (42.9%)</p>
+<p>These should be the same count. 411 vs. 401 and 176 vs. 172 are unexplained discrepancies within the same report.</p>
+<hr />
+<h2>5. Revenue Analysis Report (TickPick)</h2>
+<h3>TickPick total verified</h3>
+<p>The sum of 39 listed payments = $8,376.46. This matches the report's stated total. The math checks out.</p>
+<h3>Service fee confusion</h3>
+<p><strong>Claim:</strong> "The bar retains only the TickPick service fee markup."</p>
+<p>This directly contradicts the VENUE-CONTEXT document: "All door/ticket money goes to the bands -- the bar takes zero from ticket sales." The emails are slightly ambiguous ("the only thing the bar takes is the service fee amount that is added to online ticket sales") but the intent is clear: TickPick adds a service fee on top of the ticket price, TickPick keeps that fee, the face value goes to the venue, the venue passes 100% to the bands.</p>
+<p><strong>Correction:</strong> The bar retains $0 from ticket sales. TickPick keeps its own service fee. The bar's revenue from shows is 100% drink sales.</p>
+<h3>Per-show revenue estimates are rough</h3>
+<p>The report acknowledges using "price-weighted attribution" to split multi-show payment periods into per-show estimates. The three largest payments ($2,770, $1,870, $1,020) cover multiple shows each, and the splits are educated guesses. The CMI show at "$1,955" is probably close (it was the biggest show that week by far) but the Chasing Wind show at "$815" is purely estimated from the same payment period and could be significantly off.</p>
+<h3>Band show counts are wrong</h3>
+<ul>
+<li>Admiral Atlas: Report says 3 shows. Calendar shows <strong>5 in 2025</strong>.</li>
+<li>Deadly Dispute: Report says 2 shows. Calendar shows <strong>4 in 2025</strong>.</li>
+<li>Fancy Faces: Report says 6 appearances. Calendar shows <strong>8 in 2025</strong>.</li>
+<li>Fungal Mirage: Report says 6 appearances. Calendar shows <strong>7 in 2025</strong>.</li>
+</ul>
+<p>The revenue report was likely working from a subset of shows (only those with TickPick revenue), but doesn't make this clear. A reader would assume these are total show counts.</p>
+<hr />
+<h2>6. Booking Decisions Report</h2>
+<h3>"~2,952 estimated booking inquiries" -- unsourced and implausible</h3>
+<p>No other report uses this number. 2,952 out of 4,461 emails = 66% being booking inquiries is far too high. The booking-patterns report says 2,285 (51%), and that already includes reply chains. This figure appears fabricated or is based on an undisclosed methodology.</p>
+<h3>Capacity wrong</h3>
+<p>Says "~100 capacity." The venue is 130 (pushable to 150). See email evidence above.</p>
+<h3>Door pricing table is misleading</h3>
+<p>The report says "$5" has "181 mentions" and "$3" has "113 mentions." But "$3" is almost entirely DarkWave Garden residency covers, not typical show pricing. Listing it alongside $5, $10, $15 without context implies $3 is a common door price for music shows. It is not.</p>
+<h3>DarkWave Garden show count wrong</h3>
+<p><strong>Claim:</strong> "DarkWave Garden: 11 shows in 2025, 54 all-time (incl. alternate spelling)."</p>
+<p><strong>Actual:</strong> 12 shows in 2025 (verified from calendar). All-time across all spelling variants: 59 shows (29 + 25 + 2 + 1 + 1 + 1), not 54. Minor errors but sloppy.</p>
+<h3>Scoring matrix is reasonable but untested</h3>
+<p>The decision matrix (score &gt;= 5 warrants response, &gt;= 8 is strong candidate) is a useful framework. However, it has never been backtested against actual 2025 bookings to see if it would have correctly identified the shows that happened and rejected the ones that didn't. Without validation, it is a hypothesis, not a proven tool.</p>
+<hr />
+<h2>7. Morning Briefing</h2>
+<p>This document is the summary layer and inherits every error from the underlying reports, plus adds its own.</p>
+<h3>"$266K in bar revenue in 2025"</h3>
+<p>This is from <code>toast-daily-sales-full.csv</code> and <strong>includes sales tax and recorded tips.</strong> The year CSV (which the bar-revenue report used for all its analysis) shows only $83K for Jan-May 2025. Extrapolating at the 2024 ratio, true 2025 net revenue is likely <strong>$185-210K</strong>, not $266K. The briefing overstates revenue by 25-30%.</p>
+<h3>"down 13% from $299K in 2023"</h3>
+<p>The full CSV shows $299K (2023) to $266K (2025) = 10.9% decline, not 13%. Using the year CSVs (which are the proper measure), 2023 was $250K, making the gap from $250K to an estimated ~$200K = approximately 20% decline. The 13% figure is wrong regardless of which data source you use.</p>
+<h3>Revenue recovery plan: $85K is fantasy math</h3>
+<p>The $85K plan has multiple problems:</p>
+<ol>
+<li>
+<p><strong>Double-counting.</strong> "Fill empty Fri/Sat" ($14K) uses the full show-night average ($948), not the incremental lift over a non-show night ($505). If those nights would have been open anyway (generating $443 in baseline sales), the real gain is 15 x $505 = <strong>$7,575</strong>, not $14K.</p>
+</li>
+<li>
+<p><strong>"Faster replies = +$15K"</strong> assumes that cutting the ghost rate from 57% to 20% directly translates to more shows. But the majority of ghosted inquiries are agency spam, genre mismatches, or acts too big for the room. Even if you replied to all of them, you wouldn't book them. The realistic pool of bookable-but-ghosted inquiries is much smaller.</p>
+</li>
+<li>
+<p><strong>"Better band selection = +$20K"</strong> has no methodology. It assumes you can magically replace $700 nights with $1,100 nights. But the bar already books the best acts willing to play a 130-cap room. This line item is aspirational, not analytical.</p>
+</li>
+<li>
+<p><strong>Items overlap.</strong> "Rebook top draws 2x more" overlaps with "better band selection." "4-band bills standard" overlaps with "fill empty Fri/Sat" (you need bands to fill those nights, and they'd presumably be on multi-band bills). The levers are not independent.</p>
+</li>
+<li>
+<p><strong>No risk adjustment.</strong> Zero mention of the cost of more shows (sound engineer, electricity, wear and tear, Kayla/Rob's time). Zero mention of diminishing returns (booking a 5th show per week may cannibalize attendance from the other four).</p>
+</li>
+</ol>
+<p><strong>A realistic estimate</strong>: Fill 10 extra Fri/Sat nights (not 15 -- some were holidays) at $505 incremental = $5,050. Add 12 Thursday shows at $350 incremental = $4,200. Total realistic upside from scheduling changes: <strong>~$9,250/year</strong>, not $85K.</p>
+<h3>"Email is Only 31% of the Pipeline"</h3>
+<p>This is the cross-ref report's debunked 31% figure presented as fact. The correct number is 85-91%. The briefing tells the reader to build Phase 2 around routing non-email channels through the system -- a solution to a problem that barely exists.</p>
+<hr />
+<h2>8. Venue Context Document</h2>
+<p>This document is largely correct and is the most honest of the set. A few notes:</p>
+<ul>
+<li>"~100 person capacity" should be corrected to 130 (150 max).</li>
+<li>"Revenue has declined 13% over 2 years" should be corrected (see above).</li>
+<li>The revenue levers section inherits the inflated numbers from the briefing.</li>
+</ul>
+<hr />
+<h2>Contradictions Between Reports</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Report A</th>
+<th>Report B</th>
+<th>Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Booking threads</td>
+<td>591 (booking-patterns)</td>
+<td>415 (thread-analysis)</td>
+<td>138 with booking label; ~598 with keyword match</td>
+</tr>
+<tr>
+<td>Wix form threads</td>
+<td>120 (booking-patterns)</td>
+<td>134 (thread-analysis)</td>
+<td>134 (verified)</td>
+</tr>
+<tr>
+<td>Ghost rate</td>
+<td>66.8% (booking-patterns)</td>
+<td>57% (thread-analysis)</td>
+<td>Depends on definition</td>
+</tr>
+<tr>
+<td>Shows with email trail</td>
+<td>31% (cross-ref)</td>
+<td>N/A</td>
+<td>85-91% (verified)</td>
+</tr>
+<tr>
+<td>Music shows 2025</td>
+<td>144 (cross-ref, decisions)</td>
+<td>N/A</td>
+<td>101-124 depending on what you count</td>
+</tr>
+<tr>
+<td>Venue capacity</td>
+<td>130 (booking-patterns)</td>
+<td>~100 (cross-ref, decisions, revenue, venue-context)</td>
+<td>130 (per venue's own emails)</td>
+</tr>
+<tr>
+<td>2025 annual revenue</td>
+<td>~$266K (briefing)</td>
+<td>$83K Jan-May (bar-revenue)</td>
+<td>$266K gross / ~$200K net</td>
+</tr>
+<tr>
+<td>Revenue decline</td>
+<td>-13% (briefing)</td>
+<td>-9.2% 2023-2024 (bar-revenue)</td>
+<td>-11% gross, ~-20% net</td>
+</tr>
+<tr>
+<td>Lead time median</td>
+<td>58 days (booking-patterns)</td>
+<td>36 days (booking-decisions)</td>
+<td>36-58 days (sample-dependent)</td>
+</tr>
+<tr>
+<td>TickPick service fee</td>
+<td>"Bar retains" (revenue)</td>
+<td>"Bar takes zero" (venue-context)</td>
+<td>TickPick keeps fee, bar gets $0</td>
+</tr>
+<tr>
+<td>Admiral Atlas shows</td>
+<td>3 (revenue)</td>
+<td>4 (decisions)</td>
+<td>5 (calendar)</td>
+</tr>
+<tr>
+<td>DarkWave Garden all-time</td>
+<td>54 (decisions)</td>
+<td>N/A</td>
+<td>59 (band directory)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Corrected Summary: What Actually Survives Scrutiny</h2>
+<h3>Verified findings (high confidence):</h3>
+<ol>
+<li>
+<p><strong>Shows add ~$505/night in incremental bar revenue.</strong> Show-night average is ~$948 vs ~$443 without. This is the most important number in the entire analysis and it checks out against the year CSVs.</p>
+</li>
+<li>
+<p><strong>Guest count drives everything.</strong> Per-guest spend is $15-16 (varying by year: $15.00 in 2023, $16.07 in 2024, $15.77 in 2025 YTD). More bodies = more revenue, linearly.</p>
+</li>
+<li>
+<p><strong>Saturday is the best night.</strong> ~$1,110 avg show-night sales, 101 shows across the analysis period. Friday is second at ~$996.</p>
+</li>
+<li>
+<p><strong>4-band bills outperform.</strong> $1,106 avg vs $818 for solo acts (+35%). This is a real and actionable finding.</p>
+</li>
+<li>
+<p><strong>15 Fri/Sat nights went unbooked in 2025.</strong> At $505 incremental each, that is ~$7,575 in lost revenue.</p>
+</li>
+<li>
+<p><strong>Agency spam is 40%+ of inbound email and converts at 0%.</strong> White Mountain, Panda Artist, AFM, Universal Attractions, and Indie on the Move generate hundreds of emails that never become shows. Auto-filtering these is a no-brainer.</p>
+</li>
+<li>
+<p><strong>The bar keeps $0 from ticket/door revenue.</strong> 100% goes to bands. Bar revenue = drink sales only.</p>
+</li>
+<li>
+<p><strong>Revenue is declining.</strong> From $250K net (2023) to $227K net (2024). 2025 full-year net is unknown but trending down. Guest counts dropped 15% from 2023 to 2024.</p>
+</li>
+<li>
+<p><strong>Dart tournaments are reliable.</strong> $605/Sunday average with zero booking effort. Do not replace with music.</p>
+</li>
+<li>
+<p><strong>Email is the primary booking channel.</strong> ~85-91% of booked shows have email trail. The "69% invisible channels" claim is a matching failure.</p>
+</li>
+</ol>
+<h3>Findings that need reframing:</h3>
+<ol>
+<li>
+<p><strong>"57% ghost rate"</strong> is technically true but misleading. The ghost rate for genuine, genre-appropriate, right-sized inquiries is much lower. A huge portion of the ghosted threads are agency spam that SHOULD be ignored.</p>
+</li>
+<li>
+<p><strong>Top-drawing bands</strong> (Wabash Cannons, Brighton Street Bullies, Dying Species, Ramblin Outlaws) do correlate with the highest-grossing nights. But the revenue cannot be attributed to individual bands because they always appear on stacked bills together.</p>
+</li>
+<li>
+<p><strong>"Ticketed shows outperform free by 18%"</strong> -- this is likely selection bias. The shows worth ticketing are the ones expected to draw. Slapping a $5 cover on a Tuesday open mic won't magically add 18%.</p>
+</li>
+</ol>
+<h3>Numbers that are wrong and should not be cited:</h3>
+<table>
+<thead>
+<tr>
+<th>Wrong Number</th>
+<th>Source</th>
+<th>Correct Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~$266K 2025 bar revenue</td>
+<td>Briefing</td>
+<td>~$200K net (estimated)</td>
+</tr>
+<tr>
+<td>13% revenue decline</td>
+<td>Briefing</td>
+<td>11% gross, ~20% net</td>
+</tr>
+<tr>
+<td>69% shows with no email trail</td>
+<td>Cross-ref</td>
+<td>~9-15%</td>
+</tr>
+<tr>
+<td>100 capacity</td>
+<td>Multiple</td>
+<td>130 (150 max)</td>
+</tr>
+<tr>
+<td>$85K revenue recovery potential</td>
+<td>Briefing</td>
+<td>~$9-15K realistic</td>
+</tr>
+<tr>
+<td>2,952 booking inquiries</td>
+<td>Decisions</td>
+<td>~400-600 real inquiries</td>
+</tr>
+<tr>
+<td>144 music shows</td>
+<td>Cross-ref</td>
+<td>101-112 real music shows</td>
+</tr>
+<tr>
+<td>DarkWave Garden: 54 all-time</td>
+<td>Decisions</td>
+<td>59 all-time</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Recommendations for the Reports</h2>
+<ol>
+<li>
+<p><strong>Pick one Toast data source and use it consistently.</strong> The year CSVs (with Guest counts and true-net sales) are the right choice for revenue analysis. Label the full CSV as "Gross Sales" and stop calling it "Net Sales."</p>
+</li>
+<li>
+<p><strong>Redo the cross-reference with better matching.</strong> Match the FIRST band on a bill (the booker) against email senders and subjects. Account for promoter names (Vilos Cohaagen, FractoFlow, Stay Strange) booking shows under event names. Stop extracting subject-line fragments as band names.</p>
+</li>
+<li>
+<p><strong>Reconcile the booking thread counts.</strong> Pick one methodology, document it clearly, and use it across all reports.</p>
+</li>
+<li>
+<p><strong>Kill the $85K revenue recovery plan.</strong> Replace it with a conservative, properly incremented estimate that accounts for double-counting and baseline revenue.</p>
+</li>
+<li>
+<p><strong>Correct the capacity to 130 everywhere.</strong></p>
+</li>
+<li>
+<p><strong>Stop saying "email is only 31% of the pipeline."</strong> It is the primary pipeline. Build the booking agent around it without apology.</p>
+</li>
+</ol>
+<hr />
+<p><em>Review generated 2026-03-04. All claims verified against raw data files in <code>/Volumes/PeachDrive/Claude/CODE/bancroft/booking-agent/</code> and <code>/Volumes/PeachDrive/Bancroft-Data-Analysis/calendar/</code>.</em></p>
+</body>
+</html>

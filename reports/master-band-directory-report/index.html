@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Band Directory — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar -- Master Band Directory Report</h1>
+<p>Generated: 2026-03-05 00:12</p>
+<h2>Summary Statistics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total bands in directory</td>
+<td>3438</td>
+</tr>
+<tr>
+<td>Bands that have played at the Bancroft</td>
+<td>2685</td>
+</tr>
+<tr>
+<td>Bands with email contact info</td>
+<td>865</td>
+</tr>
+<tr>
+<td>Bands with music links</td>
+<td>267</td>
+</tr>
+<tr>
+<td>Bands with phone numbers</td>
+<td>337</td>
+</tr>
+<tr>
+<td>Bands that have emailed</td>
+<td>890</td>
+</tr>
+<tr>
+<td>Played but NO contact info (gaps)</td>
+<td>2548</td>
+</tr>
+<tr>
+<td>Email-only (never played)</td>
+<td>753</td>
+</tr>
+</tbody>
+</table>
+<h2>Source Breakdown</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>calendar_only</td>
+<td>2548</td>
+</tr>
+<tr>
+<td>cold_email</td>
+<td>518</td>
+</tr>
+<tr>
+<td>wix_form</td>
+<td>214</td>
+</tr>
+<tr>
+<td>agency</td>
+<td>79</td>
+</tr>
+<tr>
+<td>indie_on_the_move</td>
+<td>79</td>
+</tr>
+</tbody>
+</table>
+<h2>Top 50 Most-Played Bands</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Band</th>
+<th>Shows</th>
+<th>First</th>
+<th>Last</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Has Links</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Darkwave Garden</td>
+<td>57</td>
+<td>2015-01-01</td>
+<td>2026-01-29</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Club 80's</td>
+<td>27</td>
+<td>2015-01-08</td>
+<td>2024-06-14</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Club Therapy</td>
+<td>18</td>
+<td>2015-08-15</td>
+<td>2024-07-06</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Open Blues Jam</td>
+<td>16</td>
+<td>2022-04-13</td>
+<td>2022-07-27</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sideshow</td>
+<td>16</td>
+<td>2016-06-05</td>
+<td>2025-05-09</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fancy Faces</td>
+<td>15</td>
+<td>2023-11-03</td>
+<td>2025-12-05</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>7</td>
+<td>The Mice</td>
+<td>15</td>
+<td>2016-07-28</td>
+<td>2020-05-22</td>
+<td>roblogic@gmail.com</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Fountain of Youth</td>
+<td>14</td>
+<td>2016-03-13</td>
+<td>2025-04-18</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Your Friendly Bartender</td>
+<td>13</td>
+<td>2018-04-06</td>
+<td>2020-04-03</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Brighton Street Bullies</td>
+<td>12</td>
+<td>2022-09-16</td>
+<td>2026-01-24</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Big City Blues Band Jam</td>
+<td>11</td>
+<td>2022-08-10</td>
+<td>2022-09-28</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Hyperactive Slackers</td>
+<td>11</td>
+<td>2017-01-13</td>
+<td>2022-04-15</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Kitty Plague</td>
+<td>11</td>
+<td>2015-06-19</td>
+<td>2025-04-12</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Legions</td>
+<td>11</td>
+<td>2017-12-10</td>
+<td>2025-07-17</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Nebula Drag</td>
+<td>11</td>
+<td>2016-03-04</td>
+<td>2025-09-13</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Batlords $3</td>
+<td>10</td>
+<td>2015-02-28</td>
+<td>2019-11-09</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Close Enough</td>
+<td>10</td>
+<td>2023-07-27</td>
+<td>2025-11-27</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Matters Most</td>
+<td>10</td>
+<td>2022-08-26</td>
+<td>2026-03-28</td>
+<td>mattersmostband@gmail.com</td>
+<td>-</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>19</td>
+<td>OLDS</td>
+<td>10</td>
+<td>2019-12-20</td>
+<td>2026-02-13</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Steel Toe</td>
+<td>10</td>
+<td>2016-04-30</td>
+<td>2019-12-19</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Wicked Echoes</td>
+<td>10</td>
+<td>2018-12-22</td>
+<td>2024-02-03</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Admiral Atlas</td>
+<td>9</td>
+<td>2024-02-22</td>
+<td>2025-11-22</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Fire &amp; Flesh</td>
+<td>9</td>
+<td>2019-02-07</td>
+<td>2019-11-23</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Fungal Mirage</td>
+<td>9</td>
+<td>2024-05-27</td>
+<td>2025-11-27</td>
+<td>fungalmirage@gmail.com</td>
+<td>(904) 562-0785</td>
+<td>no</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Red Room Burlesque</td>
+<td>9</td>
+<td>2019-05-19</td>
+<td>2025-05-31</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Systematic Abuse</td>
+<td>9</td>
+<td>2015-09-19</td>
+<td>2023-11-25</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>27</td>
+<td>8pm. $5 order in description</td>
+<td>8</td>
+<td>2020-03-06</td>
+<td>2020-04-03</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Deadly Dispute</td>
+<td>8</td>
+<td>2022-04-30</td>
+<td>2026-01-24</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Failing Up</td>
+<td>8</td>
+<td>2018-02-24</td>
+<td>2021-07-24</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Mood Of A Sinner</td>
+<td>8</td>
+<td>2019-03-24</td>
+<td>2025-04-19</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Reckless Disregard</td>
+<td>8</td>
+<td>2014-11-15</td>
+<td>2025-05-09</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Shantih</td>
+<td>8</td>
+<td>2016-08-15</td>
+<td>2018-07-02</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>33</td>
+<td>The Imbeskulls</td>
+<td>8</td>
+<td>2022-07-09</td>
+<td>2025-08-30</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>34</td>
+<td>The Letdown</td>
+<td>8</td>
+<td>2022-04-16</td>
+<td>2025-03-21</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>35</td>
+<td>Wabash Cannons</td>
+<td>8</td>
+<td>2022-07-29</td>
+<td>2025-02-23</td>
+<td>wabashcannons@gmail.com</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>36</td>
+<td>War Fever</td>
+<td>8</td>
+<td>2017-08-04</td>
+<td>2025-06-28</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Year of the Dead Bird</td>
+<td>8</td>
+<td>2017-12-29</td>
+<td>2025-06-25</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Bastard Saints</td>
+<td>7</td>
+<td>2015-11-27</td>
+<td>2022-09-17</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>39</td>
+<td>Crunk Witch</td>
+<td>7</td>
+<td>2019-03-30</td>
+<td>2026-01-20</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Dark Globe</td>
+<td>7</td>
+<td>2016-04-09</td>
+<td>2023-10-07</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Discount Cadavers</td>
+<td>7</td>
+<td>2023-08-03</td>
+<td>2025-12-12</td>
+<td>discountcadavers@gmail.com</td>
+<td>(619) 206-8902</td>
+<td>no</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Gimme Gimme Gimme 10pm</td>
+<td>7</td>
+<td>2016-07-03</td>
+<td>2016-12-04</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Horsefly</td>
+<td>7</td>
+<td>2015-05-19</td>
+<td>2018-01-25</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Little Heroine</td>
+<td>7</td>
+<td>2015-01-16</td>
+<td>2018-09-13</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Osmium</td>
+<td>7</td>
+<td>2019-02-21</td>
+<td>2019-10-04</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>46</td>
+<td>Punch Card</td>
+<td>7</td>
+<td>2016-06-05</td>
+<td>2019-08-03</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>47</td>
+<td>The Danger Field</td>
+<td>7</td>
+<td>2015-06-12</td>
+<td>2019-09-20</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>48</td>
+<td>The Yucks</td>
+<td>7</td>
+<td>2015-04-11</td>
+<td>2026-05-02</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Those Darn Gnomes</td>
+<td>7</td>
+<td>2017-06-29</td>
+<td>2019-08-24</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Vedic</td>
+<td>7</td>
+<td>2018-09-09</td>
+<td>2025-07-10</td>
+<td>NO CONTACT</td>
+<td>-</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2>Top Contact Gaps -- Most-Played Bands with NO Email</h2>
+<p>These bands have played multiple times but we have no email contact. Priority for outreach.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Band</th>
+<th>Shows</th>
+<th>First</th>
+<th>Last</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Darkwave Garden</td>
+<td>57</td>
+<td>2015-01-01</td>
+<td>2026-01-29</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Club 80's</td>
+<td>27</td>
+<td>2015-01-08</td>
+<td>2024-06-14</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Club Therapy</td>
+<td>18</td>
+<td>2015-08-15</td>
+<td>2024-07-06</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Open Blues Jam</td>
+<td>16</td>
+<td>2022-04-13</td>
+<td>2022-07-27</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sideshow</td>
+<td>16</td>
+<td>2016-06-05</td>
+<td>2025-05-09</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Fancy Faces</td>
+<td>15</td>
+<td>2023-11-03</td>
+<td>2025-12-05</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Fountain of Youth</td>
+<td>14</td>
+<td>2016-03-13</td>
+<td>2025-04-18</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Your Friendly Bartender</td>
+<td>13</td>
+<td>2018-04-06</td>
+<td>2020-04-03</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Brighton Street Bullies</td>
+<td>12</td>
+<td>2022-09-16</td>
+<td>2026-01-24</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Big City Blues Band Jam</td>
+<td>11</td>
+<td>2022-08-10</td>
+<td>2022-09-28</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Hyperactive Slackers</td>
+<td>11</td>
+<td>2017-01-13</td>
+<td>2022-04-15</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Kitty Plague</td>
+<td>11</td>
+<td>2015-06-19</td>
+<td>2025-04-12</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Legions</td>
+<td>11</td>
+<td>2017-12-10</td>
+<td>2025-07-17</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Nebula Drag</td>
+<td>11</td>
+<td>2016-03-04</td>
+<td>2025-09-13</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Batlords $3</td>
+<td>10</td>
+<td>2015-02-28</td>
+<td>2019-11-09</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Close Enough</td>
+<td>10</td>
+<td>2023-07-27</td>
+<td>2025-11-27</td>
+</tr>
+<tr>
+<td>17</td>
+<td>OLDS</td>
+<td>10</td>
+<td>2019-12-20</td>
+<td>2026-02-13</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Steel Toe</td>
+<td>10</td>
+<td>2016-04-30</td>
+<td>2019-12-19</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Wicked Echoes</td>
+<td>10</td>
+<td>2018-12-22</td>
+<td>2024-02-03</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Admiral Atlas</td>
+<td>9</td>
+<td>2024-02-22</td>
+<td>2025-11-22</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Fire &amp; Flesh</td>
+<td>9</td>
+<td>2019-02-07</td>
+<td>2019-11-23</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Red Room Burlesque</td>
+<td>9</td>
+<td>2019-05-19</td>
+<td>2025-05-31</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Systematic Abuse</td>
+<td>9</td>
+<td>2015-09-19</td>
+<td>2023-11-25</td>
+</tr>
+<tr>
+<td>24</td>
+<td>8pm. $5 order in description</td>
+<td>8</td>
+<td>2020-03-06</td>
+<td>2020-04-03</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Deadly Dispute</td>
+<td>8</td>
+<td>2022-04-30</td>
+<td>2026-01-24</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Failing Up</td>
+<td>8</td>
+<td>2018-02-24</td>
+<td>2021-07-24</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Mood Of A Sinner</td>
+<td>8</td>
+<td>2019-03-24</td>
+<td>2025-04-19</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Reckless Disregard</td>
+<td>8</td>
+<td>2014-11-15</td>
+<td>2025-05-09</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Shantih</td>
+<td>8</td>
+<td>2016-08-15</td>
+<td>2018-07-02</td>
+</tr>
+<tr>
+<td>30</td>
+<td>The Imbeskulls</td>
+<td>8</td>
+<td>2022-07-09</td>
+<td>2025-08-30</td>
+</tr>
+</tbody>
+</table>
+<h2>Recent Wix Form Submissions (2024-2025)</h2>
+<p>Total: 214</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Contact</th>
+<th>Email</th>
+<th>Date</th>
+<th>Played?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stoney Blue Fish</td>
+<td></td>
+<td>stoneyblu3fish@gmail.com</td>
+<td>2025-12-29</td>
+<td>never</td>
+</tr>
+<tr>
+<td>The Goddamn Ranchhand Band</td>
+<td>Justin Boot</td>
+<td>kickasshonkytonk@gmail.com</td>
+<td>2025-12-29</td>
+<td>never</td>
+</tr>
+<tr>
+<td>None!</td>
+<td>Anthony R.</td>
+<td>noneofficialaz@gmail.com</td>
+<td>2025-12-15</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Fudosa</td>
+<td>Stuart Cole</td>
+<td>scdsounds@gmail.com</td>
+<td>2025-12-13</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>June Rain</td>
+<td>Michael Yiu</td>
+<td>soymichaelyiu@gmail.com</td>
+<td>2025-12-12</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Fuck Fentanyl benefit show</td>
+<td>Luis</td>
+<td>luiscargs13@gmail.com</td>
+<td>2025-12-12</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Candy Whips</td>
+<td>Micah</td>
+<td>hailthewizard@gmail.com</td>
+<td>2025-12-08</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Ellis Marcel</td>
+<td>Ellis Marcel</td>
+<td>ellis.marcel.music@gmail.com</td>
+<td>2025-12-07</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Deviation</td>
+<td>Kaleo Astorga</td>
+<td>kaleokart@yahoo.com</td>
+<td>2025-12-05</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>The Classic Rock Band</td>
+<td>Dan Armentrout</td>
+<td>dan@classicrockband.info</td>
+<td>2025-12-04</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Doctor Steevo</td>
+<td>Steevo</td>
+<td>doctorsteevomusic@gmail.com</td>
+<td>2025-11-20</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Ghost City Rebels</td>
+<td>Mark Hall</td>
+<td>ghostcityrebels@gmail.com</td>
+<td>2025-11-19</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Hot Trunk</td>
+<td>Matt Koumaras</td>
+<td>mkoumaras@gmail.com</td>
+<td>2025-11-16</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Diana Death</td>
+<td>7578057454 (Cole)</td>
+<td>vandeathmusic@gmail.com</td>
+<td>2025-11-06</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>LeRev</td>
+<td></td>
+<td>lerevband@gmail.com</td>
+<td>2025-11-05</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Bo &amp; the HoBos</td>
+<td>Amber</td>
+<td>amberdewar@gmail.com</td>
+<td>2025-10-30</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Sifting Through Stars</td>
+<td></td>
+<td>siftingthroughemails@gmail.com</td>
+<td>2025-10-26</td>
+<td>never</td>
+</tr>
+<tr>
+<td>The O'Siders</td>
+<td>Justyn</td>
+<td>jbell101@gmail.com</td>
+<td>2025-10-19</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Omniatics</td>
+<td>Roman Terenzini</td>
+<td>roman.terenzini@gmail.com</td>
+<td>2025-10-18</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Pinfall</td>
+<td>Mike</td>
+<td>pinfallband@gmail.com</td>
+<td>2025-10-16</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>SD Metal Massacre</td>
+<td>Vince Overlord</td>
+<td>sdmetalmassacre@gmail.com</td>
+<td>2025-10-15</td>
+<td>never</td>
+</tr>
+<tr>
+<td>SMOR</td>
+<td>Julia Shiller</td>
+<td>juliamuse101@gmail.com</td>
+<td>2025-10-14</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Sound Siren</td>
+<td>Chris Poulson</td>
+<td>soundsirenofficial@gmail.com</td>
+<td>2025-09-18</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Deface The Dream</td>
+<td>Dea Meeks</td>
+<td>deavamusic@gmail.com</td>
+<td>2025-09-12</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Jesse Black</td>
+<td>Dea Meeks</td>
+<td>deavamusic@gmail.com</td>
+<td>2025-09-12</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Acidia</td>
+<td>Frank</td>
+<td>acidia.booking@gmail.com</td>
+<td>2025-09-09</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Metal Massacre Promotions</td>
+<td>Vince Overlord</td>
+<td>nocturnaloverlordofficial@gmail.com</td>
+<td>2025-09-07</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Hooch</td>
+<td>Scott</td>
+<td>hoochband@proton.me</td>
+<td>2025-09-04</td>
+<td>2 shows</td>
+</tr>
+<tr>
+<td>Fernando Fidanza</td>
+<td>Fernando</td>
+<td>soffwhat@yahoo.it</td>
+<td>2025-09-02</td>
+<td>never</td>
+</tr>
+<tr>
+<td>KOAT Records</td>
+<td>Tre 442-439-0348</td>
+<td>koatrecords@gmail.com</td>
+<td>2025-08-31</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Viscous</td>
+<td>Israel Garcia</td>
+<td>soliddrummer86@gmail.com</td>
+<td>2025-08-30</td>
+<td>never</td>
+</tr>
+<tr>
+<td>In Parallel with You</td>
+<td>Nick</td>
+<td>inparallelwithyou@gmail.com</td>
+<td>2025-08-11</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>ulyssescfm</td>
+<td>Devyn</td>
+<td>brokenfootbooking@gmail.com</td>
+<td>2025-08-07</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Jacob Blythe</td>
+<td></td>
+<td>lilvenus43@gmail.com</td>
+<td>2025-08-03</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Ninth Circle</td>
+<td>Richie Brooks</td>
+<td>capnjedi@rocketmail.com</td>
+<td>2025-08-03</td>
+<td>never</td>
+</tr>
+<tr>
+<td>The Love Darts</td>
+<td>Jeff Jensen</td>
+<td>thelovedarts@gmail.com</td>
+<td>2025-07-30</td>
+<td>never</td>
+</tr>
+<tr>
+<td>KingsTide</td>
+<td>Drew</td>
+<td>drewmc25@gmail.com</td>
+<td>2025-07-26</td>
+<td>never</td>
+</tr>
+<tr>
+<td>Superweapon</td>
+<td>Minister Merciless</td>
+<td>superweaponband@gmail.com</td>
+<td>2025-07-23</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>King Kyote</td>
+<td>Joe Gallo</td>
+<td>joe@catchbuzz.co</td>
+<td>2025-07-14</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td></td>
+<td>fungalmirage@gmail.com</td>
+<td>2025-07-13</td>
+<td>9 shows</td>
+</tr>
+<tr>
+<td>Phantoms with Fangs</td>
+<td>Alonna Medina</td>
+<td>alonnam121@gmail.com</td>
+<td>2025-07-07</td>
+<td>3 shows</td>
+</tr>
+<tr>
+<td>Vorcha</td>
+<td>Mike 5124970811</td>
+<td>vorchaband@gmail.com</td>
+<td>2025-06-29</td>
+<td>never</td>
+</tr>
+<tr>
+<td>The Ams</td>
+<td>Chung</td>
+<td>chungilkwon@gmail.com</td>
+<td>2025-06-25</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>GEARHEART</td>
+<td>Wil Deas</td>
+<td>gearheartband@hotmail.com</td>
+<td>2025-06-24</td>
+<td>never</td>
+</tr>
+<tr>
+<td>See Night</td>
+<td>Sarah harris</td>
+<td>sarahroaddogbooking@gmail.com</td>
+<td>2025-06-24</td>
+<td>never</td>
+</tr>
+<tr>
+<td>BipolArte</td>
+<td>Arte Delgado</td>
+<td>bipolartemusic@gmail.com</td>
+<td>2025-06-11</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Potterwatch</td>
+<td>Adam</td>
+<td>potterwatchband@gmail.com</td>
+<td>2025-06-05</td>
+<td>never</td>
+</tr>
+<tr>
+<td>BitterGlow</td>
+<td>Kyle Montilla</td>
+<td>bitterglow.combo@gmail.com</td>
+<td>2025-05-31</td>
+<td>1 shows</td>
+</tr>
+<tr>
+<td>Lurking Terror</td>
+<td>Vince Overlord</td>
+<td>nocturnaloverlordofficial@gmail.com</td>
+<td>2025-05-30</td>
+<td>never</td>
+</tr>
+<tr>
+<td>FastTrax</td>
+<td>Luke</td>
+<td>lukembandy@gmail.com</td>
+<td>2025-05-29</td>
+<td>never</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

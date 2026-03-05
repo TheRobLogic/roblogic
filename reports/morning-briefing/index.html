@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Briefing — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Booking Agent — Morning Briefing (v2, QA-reviewed)</h1>
+<p><strong>Date:</strong> March 5, 2026<br />
+<strong>Data:</strong> 9,909 emails (2024-2026), 1,442 days Toast POS sales (2022-Mar 2026), 5,745 calendar events (2014-2026), 2,981 unique bands<br />
+<strong>QA:</strong> All numbers verified against raw data. See REVIEW-AND-CORRECTIONS.md for methodology.</p>
+<hr />
+<h2>The Big Picture</h2>
+<p>The Bancroft did ~$227K in net bar revenue in 2024 (down from ~$250K in 2023). 2025 is tracking similarly or slightly lower. Guest counts dropped 15% from 2023 to 2024. Revenue per guest holds at ~$16.</p>
+<p><strong>Shows are the lifeline.</strong> Show nights average ~$948 vs ~$443 without — a $505 incremental lift per show night. The path to more revenue is more shows, better shows, and fewer empty nights.</p>
+<p><strong>Goal: +30% revenue. Current ~$227K → Target ~$295K = +$68K/year.</strong></p>
+<p>That's ambitious. Calendar optimization alone can realistically add $10-15K. The rest comes from booking better-drawing acts, building fuller bills, and not losing bookable inquiries to slow replies.</p>
+<hr />
+<h2>What the Data Says (verified)</h2>
+<h3>1. Shows Add $505/Night — Fill the Gaps</h3>
+<ul>
+<li>Show nights: ~$948 avg. Non-show: ~$443. <strong>Incremental lift: $505.</strong></li>
+<li><strong>15 unfilled Friday/Saturday nights</strong> in 2025 = ~$7,500 in lost revenue</li>
+<li>Thursday is only booked 36% of weeks but delivers $355/show lift. Going to 77% = ~$8,500/year</li>
+<li><strong>Realistic gain from calendar optimization: $10-15K/year</strong></li>
+</ul>
+<h3>2. 4-Band Bills Are the Sweet Spot</h3>
+<ul>
+<li>4-band bills average $1,106/night — <strong>35% more than solo acts</strong> ($819)</li>
+<li>Each band brings their own crowd. More bands = more bodies = more drinks.</li>
+<li>Diminishing returns above 5 bands on a bill.</li>
+</ul>
+<h3>3. Who Brings the Dough</h3>
+<p><strong>Nights featuring these bands have the highest bar revenue:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Band(s) on Bill</th>
+<th style="text-align: right;">Avg Night Revenue</th>
+<th style="text-align: right;">Appearances</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wabash Cannons</td>
+<td style="text-align: right;">$1,803</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td>Dying Species</td>
+<td style="text-align: right;">$1,694</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>Brighton Street Bullies</td>
+<td style="text-align: right;">$1,669</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td>Hillbilly Moon Explosion</td>
+<td style="text-align: right;">$2,881</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Caveat:</strong> These bands typically appear on stacked bills together, so revenue can't be attributed to any single act. What we can say: nights with these names on the bill consistently pack the room.</p>
+<p>39 bands were identified that played on high-revenue nights but never emailed us — they came as part of someone else's bill. These are outreach targets. (See outreach-targets-report.md)</p>
+<h3>4. The Response Problem</h3>
+<ul>
+<li><strong>57% of booking inquiry threads get no reply.</strong> But this includes agency spam that SHOULD be ignored.</li>
+<li>The real problem: even Wix form submissions (our best leads, 23% conversion rate) have a <strong>41% ghost rate</strong></li>
+<li>Median response time when we DO reply: <strong>2 days.</strong> 21% take over a week.</li>
+<li>Tuesday is reply day — 34% of all outbound goes out on Tuesdays</li>
+<li><strong>Fix:</strong> AI booker triages instantly. Real inquiries get a same-day draft. Spam gets auto-filtered. Nothing bookable falls through.</li>
+</ul>
+<h3>5. Email IS the Pipeline</h3>
+<ul>
+<li><strong>85-91% of booked shows have an email trail</strong> — email is the main booking channel</li>
+<li>One band/promoter emails to book the night, then brings the rest of the bill</li>
+<li>The Wix form is the highest-converting channel (23%)</li>
+<li>Direct cold emails convert at ~16%</li>
+<li>Indie on the Move: 2%. Agencies: 0%.</li>
+</ul>
+<h3>6. Agency Spam is 40%+ of Inbound — 0% Converts</h3>
+<ul>
+<li>White Mountain, Panda Artist, AFM, Universal Attractions — mass-blasting venues</li>
+<li>Rich The Kid, Waka Flocka Flame, Dave East, Banda El Recodo pitched to a 130-cap dive bar</li>
+<li><strong>Auto-reject. Instant filter. Don't waste a second on these.</strong></li>
+</ul>
+<h3>7. The Promoter Network</h3>
+<ul>
+<li><strong>Vilos Cohaagen / Admiral Atlas</strong>: most active local promoter (41 emails, 10+ threads, 5 shows in 2025)</li>
+<li><strong>Jeff Clark</strong>: heavy calendar coordination (15+ emails/month)</li>
+<li><strong>FractoFlow Productions, Stay Strange SD, Superkool Booking</strong>: external promoters who build bills</li>
+<li><strong>Kayla</strong>: primary internal booker (79+ shows)</li>
+<li>These people are the real booking engine. The AI booker needs to know them and prioritize them.</li>
+</ul>
+<h3>8. $16/Guest — It's a Bodies Game</h3>
+<ul>
+<li>Average spend per guest: $15-16 (stable across years)</li>
+<li>But <strong>guest counts dropped 15%</strong> from 2023 to 2024 (16,654 → 14,112)</li>
+<li>Revenue decline is a FOOT TRAFFIC problem, not a spending problem</li>
+<li>Every person through the door = ~$16 in bar sales. Period.</li>
+</ul>
+<h3>9. Ticketed Shows Likely Draw Better — But It's Selection Bias</h3>
+<ul>
+<li>Ticketed shows average $1,084 vs $917 for free (+18%)</li>
+<li>But the shows worth ticketing are already expected to draw well</li>
+<li>Still worth defaulting to ticketed — advance sales create commitment and give you a headcount prediction</li>
+</ul>
+<h3>10. Dart Tournaments Are Free Money</h3>
+<ul>
+<li>$605/Sunday average, zero booking effort</li>
+<li>89 of 93 Sundays in the data</li>
+<li>Don't touch this. It works.</li>
+</ul>
+<h3>11. The Blues Jam Is Losing Money</h3>
+<ul>
+<li>Calendar strategy analysis found the blues jam averages $200-253/night</li>
+<li>A dark Wednesday averages $432</li>
+<li>The blues jam is actively costing the bar ~$200/week vs doing nothing</li>
+</ul>
+<hr />
+<h2>Revenue Growth Plan (realistic, conservative)</h2>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Action</th>
+<th style="text-align: right;">Est. Annual Gain</th>
+<th style="text-align: center;">Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fill 10 more Fri/Sat nights</td>
+<td>Faster replies, proactive outreach</td>
+<td style="text-align: right;">+$5,000</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr>
+<td>Add 12 Thursday shows/year</td>
+<td>DarkWave Garden model, expand</td>
+<td style="text-align: right;">+$4,200</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr>
+<td>Kill the blues jam</td>
+<td>Stop losing $200/week</td>
+<td style="text-align: right;">+$9,400</td>
+<td style="text-align: center;">High</td>
+</tr>
+<tr>
+<td>Build 4-band bills (not 2-3)</td>
+<td>Match incoming inquiries to existing bills</td>
+<td style="text-align: right;">+$3,000</td>
+<td style="text-align: center;">Medium</td>
+</tr>
+<tr>
+<td>Rebook proven draws more often</td>
+<td>Use master band list for proactive outreach</td>
+<td style="text-align: right;">+$3,000</td>
+<td style="text-align: center;">Medium</td>
+</tr>
+<tr>
+<td>Reduce ghost rate on real inquiries</td>
+<td>AI triage, same-day draft replies</td>
+<td style="text-align: right;">+$2,000</td>
+<td style="text-align: center;">Medium</td>
+</tr>
+<tr>
+<td>Push ticketed on more shows</td>
+<td>Default $5-10 presale on TickPick</td>
+<td style="text-align: right;">+$1,500</td>
+<td style="text-align: center;">Low</td>
+</tr>
+<tr>
+<td><strong>Scheduling subtotal</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>~$28K</strong></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Average check growth (8% via menu/pricing)</td>
+<td>Per calendar strategy report</td>
+<td style="text-align: right;">+$25K</td>
+<td style="text-align: center;">Speculative</td>
+</tr>
+<tr>
+<td><strong>Grand total if both hit</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>~$53K (+23%)</strong></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Honest assessment:</strong> $28K from scheduling and booking improvements is achievable and mostly within the booker's control. Getting to the full 30% ($68K) requires pricing/menu changes beyond what the booking agent can do. The booker gets you 40-50% of the way there. The rest is bar operations.</p>
+<hr />
+<h2>Booker Phase 2 — What to Build</h2>
+<h3>Immediate (Week 1-2): Email Triage Bot</h3>
+<ul>
+<li>Monitor bancroftbar@gmail.com</li>
+<li>Auto-classify: booking inquiry / follow-up / agency spam / ops noise</li>
+<li>Auto-reject known spam senders (White Mountain, Panda, AFM, Universal, etc.)</li>
+<li>Draft reply for real inquiries → Rob reviews → send</li>
+<li>Auto-attach Artist Info doc on confirmed bookings</li>
+<li>Flag calendar gaps ("You have no show booked for Saturday April 12")</li>
+</ul>
+<h3>Short-term (Month 1): Pipeline Tracker</h3>
+<ul>
+<li>Every inquiry: new → responded → negotiating → booked → advanced → played</li>
+<li>Dashboard: open nights, pending inquiries, stale threads</li>
+<li>Weekly digest: "3 open Saturdays in the next 6 weeks. 5 bands asked for dates in that range."</li>
+<li>VIP list: known promoters get flagged for priority response</li>
+</ul>
+<h3>Medium-term (Month 2-3): Smart Booking</h3>
+<ul>
+<li>Band scoring: genre fit + local signal + play history + revenue correlation</li>
+<li>Bill builder: "Dying Species is booked Oct 18 — here are 3 local openers who inquired and fit"</li>
+<li>Proactive outreach: contact bands from the outreach target list when gaps appear</li>
+<li>Post-show tracking: actual revenue vs predicted, build the model over time</li>
+</ul>
+<h3>Longer-term: Full Booking Agent</h3>
+<ul>
+<li>Automated offer sheet generation from template</li>
+<li>Calendar optimization engine (suggest optimal show frequency per month)</li>
+<li>Seasonal pre-booking (lock down January shows in October)</li>
+<li>Revenue forecasting per show</li>
+</ul>
+<hr />
+<h2>Data Files</h2>
+<p>All in <code>/Volumes/PeachDrive/Claude/CODE/bancroft/booking-agent/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2024_emails.json</code></td>
+<td>Full 2024 inbox (4,819 emails)</td>
+</tr>
+<tr>
+<td><code>2025_emails.json</code></td>
+<td>Full 2025 inbox (4,461 emails)</td>
+</tr>
+<tr>
+<td><code>2026_emails.json</code></td>
+<td>2026 YTD (629 emails through Mar 4)</td>
+</tr>
+<tr>
+<td><code>analysis/toast-daily-sales-full.csv</code></td>
+<td>Daily bar sales Jan 2022 – Mar 4, 2026 (1,442 days)</td>
+</tr>
+<tr>
+<td><code>analysis/master-band-directory.csv</code></td>
+<td>Full band CRM (in progress)</td>
+</tr>
+<tr>
+<td><code>analysis/booking-patterns-report.md</code></td>
+<td>Channel analysis, seasonality, key contacts</td>
+</tr>
+<tr>
+<td><code>analysis/thread-analysis-report.md</code></td>
+<td>Conversation structure, ghost rate, response times</td>
+</tr>
+<tr>
+<td><code>analysis/band-crossref-report.md</code></td>
+<td>Email inquiries vs actual booked shows</td>
+</tr>
+<tr>
+<td><code>analysis/revenue-analysis-report.md</code></td>
+<td>TickPick ticket revenue analysis</td>
+</tr>
+<tr>
+<td><code>analysis/bar-revenue-vs-shows-report.md</code></td>
+<td>Toast POS sales correlated with show calendar</td>
+</tr>
+<tr>
+<td><code>analysis/booking-decisions-report.md</code></td>
+<td>What gets booked vs rejected, scoring matrix</td>
+</tr>
+<tr>
+<td><code>analysis/calendar-strategy-report.md</code></td>
+<td>Day/week/month/season optimization</td>
+</tr>
+<tr>
+<td><code>analysis/outreach-targets-report.md</code></td>
+<td>39 bands on good nights we never contacted</td>
+</tr>
+<tr>
+<td><code>analysis/promoter-network-report.md</code></td>
+<td>Who books shows and their track record (in progress)</td>
+</tr>
+<tr>
+<td><code>analysis/genre-analysis-report.md</code></td>
+<td>Genre patterns and revenue correlation (in progress)</td>
+</tr>
+<tr>
+<td><code>analysis/VENUE-CONTEXT.md</code></td>
+<td>Business context and goals</td>
+</tr>
+<tr>
+<td><code>analysis/REVIEW-AND-CORRECTIONS.md</code></td>
+<td>QA review — every error found and corrected</td>
+</tr>
+<tr>
+<td><code>reference/</code></td>
+<td>Band Offer Sheet, Artist Info docs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Next Steps</h2>
+<ol>
+<li><strong>Review this briefing</strong> — anything wrong, missing, or surprising?</li>
+<li><strong>Set up ANTHROPIC_API_KEY</strong> — needed for the live email classifier</li>
+<li><strong>Kill the blues jam?</strong> — data says it's costing ~$200/week vs a dark night</li>
+<li><strong>Pick first build target</strong> — email triage bot is the obvious start</li>
+<li><strong>Decide on Rob vs Kayla workflow</strong> — who reviews AI draft replies?</li>
+</ol>
+</body>
+</html>

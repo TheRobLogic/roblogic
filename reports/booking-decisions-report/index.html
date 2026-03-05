@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Decisions — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Bancroft Bar Booking Decision Analysis</h1>
+<p><strong>Venue Profile:</strong> The Bancroft Bar, 9143 Campo Rd, Spring Valley, CA 91977 -- dive bar / live music venue, ~100 capacity.</p>
+<p><strong>Data Sources:</strong><br />
+- Google Calendar show history: 2014--2026 (5,745 events, 2,981 unique band names)<br />
+- Gmail inbox: 4,461 emails from 2025<br />
+- Band directory: parsed from calendar (total shows, date ranges per band)</p>
+<p><strong>Purpose:</strong> Inform an AI booking agent about what makes a good booking at this specific venue, including patterns to accept, patterns to reject, and operational rules.</p>
+<hr />
+<h2>1. Show Frequency &amp; Calendar Density</h2>
+<h3>Venue Throughput (2025 Baseline)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total calendar events (2025)</td>
+<td>197</td>
+</tr>
+<tr>
+<td>Music shows (excluding Dart Tournaments)</td>
+<td>144</td>
+</tr>
+<tr>
+<td>Dart Tournaments (every Sunday)</td>
+<td>53</td>
+</tr>
+<tr>
+<td>Avg shows per week</td>
+<td>3.8 (total), ~2.8 (music only)</td>
+</tr>
+<tr>
+<td>Min/Max shows per week</td>
+<td>2 / 6</td>
+</tr>
+</tbody>
+</table>
+<h3>Monthly Volume (2025, Music Shows Only)</h3>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Total</th>
+<th>Fri/Sat</th>
+<th>Weekday</th>
+<th>Sunday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan</td>
+<td>7</td>
+<td>6</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>8</td>
+<td>7</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>10</td>
+<td>6</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Apr</td>
+<td>9</td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>May</td>
+<td>15</td>
+<td>11</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Jun</td>
+<td>13</td>
+<td>7</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Jul</td>
+<td>14</td>
+<td>8</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Aug</td>
+<td>13</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Sep</td>
+<td>10</td>
+<td>9</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Oct</td>
+<td>17</td>
+<td>8</td>
+<td>7</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Nov</td>
+<td>14</td>
+<td>6</td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dec</td>
+<td>14</td>
+<td>5</td>
+<td>8</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Summer months (May--Aug) and fall (Oct--Dec) are busiest. January and February are lighter.</p>
+<h3>Day-of-Week Distribution (2025, Music Shows Only)</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Shows</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Friday</strong></td>
+<td>42</td>
+<td>Primary show night</td>
+</tr>
+<tr>
+<td><strong>Saturday</strong></td>
+<td>50</td>
+<td>Primary show night</td>
+</tr>
+<tr>
+<td><strong>Thursday</strong></td>
+<td>25</td>
+<td>Growing -- DarkWave Garden residency, one-off shows</td>
+</tr>
+<tr>
+<td><strong>Sunday</strong></td>
+<td>5 (music) + 53 (darts)</td>
+<td>Sundays are Dart Tournament day; occasional matinee shows</td>
+</tr>
+<tr>
+<td><strong>Monday</strong></td>
+<td>15</td>
+<td>Vinyl Knights / Daygo Pong recurring events</td>
+</tr>
+<tr>
+<td><strong>Wednesday</strong></td>
+<td>5</td>
+<td>Rare, one-off shows (e.g., touring acts needing a midweek date)</td>
+</tr>
+<tr>
+<td><strong>Tuesday</strong></td>
+<td>2</td>
+<td>Almost never</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule: The core booking window is Friday and Saturday. Thursday is the next priority. Monday is reserved for Vinyl Knights/Daygo Pong. Sunday is Dart Tournament day (do not book music over darts). Tuesday and Wednesday are available but rare.</strong></p>
+<h3>Thu--Sat Fill Rate</h3>
+<p><strong>72% filled</strong> (113 of 156 possible Thu/Fri/Sat nights in 2025). There is room to grow, particularly on Thursdays.</p>
+<hr />
+<h2>2. Bill Structure</h2>
+<h3>Bands Per Show (2025)</h3>
+<table>
+<thead>
+<tr>
+<th>Acts on Bill</th>
+<th>Count</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 act (solo/single band)</td>
+<td>95</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>2 acts</td>
+<td>24</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>3 acts</td>
+<td>25</td>
+<td>13%</td>
+</tr>
+<tr>
+<td>4 acts</td>
+<td>31</td>
+<td>16%</td>
+</tr>
+<tr>
+<td>5 acts</td>
+<td>12</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>6+ acts</td>
+<td>10</td>
+<td>5%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The 48% "single act" figure is inflated by Dart Tournaments (53), DarkWave Garden (12), Vinyl Knights/Daygo Pong (15+), and Karaoke (3). Excluding recurring events, the typical live music show has <strong>3--4 bands</strong>.</p>
+<h3>Typical Bill Patterns</h3>
+<ol>
+<li><strong>Standard 3--4 band bill</strong> (most common for Fri/Sat): e.g., "Go Scarlet / Velvet Glow / Fancy Faces" or "Kissing Candice / Dead Things / Mood of a Sinner / Vertical Patrols / G://Anon"</li>
+<li><strong>Metal/punk fest format</strong> (5--7 bands): e.g., "Putrid Invocation / Naipes / Cemetery Rot / Bourn Ultra / Pagan Ritual / Demiseria" or "Rock Invasion Fest II: Coatl / Corpus / Age of Darkness / RabbiA / Mexico Cabron / Kid in the Pit"</li>
+<li><strong>Two-band bill</strong> (often a headliner + opener for ticketed shows): e.g., "Born to Run / Cut Loose" or "Bloodbelly Blues / DeadBrokeDown"</li>
+<li><strong>Recurring residencies</strong> (single name on calendar): DarkWave Garden (every Thursday Oct--Dec), Vinyl Knights / Daygo Pong (Mondays), Dart Tournament (Sundays)</li>
+<li><strong>Curated/hosted events</strong>: "Red Room Presents: Red Shades of Dance", "Chronicle 3 Hosted by Tha Speakerboxx", "whatever68 radio festival"</li>
+<li><strong>Community events</strong>: "Bancroft Gear Swap &amp; Open Jam", "Viet Fest", "Hoots Memorial"</li>
+</ol>
+<h3>Headliner/Opener Pattern</h3>
+<p>The Bancroft does <strong>not</strong> operate on a strict headliner/opener hierarchy for most shows. Bills are typically peer-level local bands sharing a night. Exceptions:</p>
+<ul>
+<li><strong>Touring acts</strong> are billed first (e.g., "The Bunny The Bear / Goat vs Fish", "Angry Samoans / Big Attitude / TBA", "Dayglo Abortions")</li>
+<li><strong>Fest-format shows</strong> with a named event (e.g., "Rock Invasion Fest II") may have a curated running order</li>
+<li><strong>Ticketed headliner shows</strong> via TickPick sometimes have a clear draw act</li>
+</ul>
+<h3>Door Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Price</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free / no cover</td>
+<td>Common for weeknight shows, residencies</td>
+</tr>
+<tr>
+<td>$5</td>
+<td>181 mentions (most common)</td>
+</tr>
+<tr>
+<td>$10</td>
+<td>95 mentions</td>
+</tr>
+<tr>
+<td>$15</td>
+<td>22 mentions</td>
+</tr>
+<tr>
+<td>$3</td>
+<td>113 mentions (likely DarkWave Garden)</td>
+</tr>
+<tr>
+<td>$20+</td>
+<td>Rare (7 at $20, 1 at $25)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule: Typical door is $5--$10. $15 is the high end for a stacked bill. Anything over $15 is unusual and reserved for special events or touring headliners (Angry Samoans at $20). Never price above what a 100-cap room can sustain.</strong></p>
+<hr />
+<h2>3. What Gets Booked vs. What Gets Rejected</h2>
+<h3>Booking Pipeline Overview (2025)</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total emails received</td>
+<td>4,461</td>
+</tr>
+<tr>
+<td>Estimated booking inquiries</td>
+<td>~2,952</td>
+</tr>
+<tr>
+<td>Booking form submissions ("[Bancroft Bar] Band Booking Form")</td>
+<td>892 emails across 134 unique threads</td>
+</tr>
+<tr>
+<td>Bands appearing in 2025 calendar</td>
+<td>~321 unique names</td>
+</tr>
+</tbody>
+</table>
+<h3>Bands That Emailed AND Appeared in Calendar</h3>
+<p>Fuzzy matching identified <strong>33 senders</strong> whose bands appeared in the 2025 calendar. These are confirmed successful bookings:</p>
+<table>
+<thead>
+<tr>
+<th>Band/Sender</th>
+<th>Emails</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fungal Mirage</td>
+<td>12</td>
+<td>7 shows in 2025</td>
+</tr>
+<tr>
+<td>Rattlesnake Suitcase</td>
+<td>26</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Super Weapon</td>
+<td>24</td>
+<td>Booked (as Superweapon)</td>
+</tr>
+<tr>
+<td>Corporate Citizen</td>
+<td>22</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Bloodbelly Blues</td>
+<td>17</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>New Casino</td>
+<td>15</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>In Parallel With You</td>
+<td>12</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Fantom Fire</td>
+<td>10</td>
+<td>2 shows</td>
+</tr>
+<tr>
+<td>Deadbrokedown</td>
+<td>10</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Sea Moss</td>
+<td>9</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Space Wax</td>
+<td>9</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Go Scarlet</td>
+<td>8</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Beast Fiend</td>
+<td>8</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td>12</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Skull Riot</td>
+<td>11</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Courtside Betty</td>
+<td>9</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Faerie Qveene</td>
+<td>7</td>
+<td>2 shows</td>
+</tr>
+<tr>
+<td>The Plants</td>
+<td>7</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>SH!TOMATO</td>
+<td>6</td>
+<td>Booked (touring act)</td>
+</tr>
+<tr>
+<td>Velvet Glow</td>
+<td>4</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Matters Most</td>
+<td>3</td>
+<td>2 shows</td>
+</tr>
+<tr>
+<td>Woke Up On a Throne (Gaute Halvorsen)</td>
+<td>28</td>
+<td>2 shows</td>
+</tr>
+<tr>
+<td>Gunner Gunner</td>
+<td>7</td>
+<td>2 shows</td>
+</tr>
+<tr>
+<td>Fountain of Youth (Roberto Marin)</td>
+<td>18</td>
+<td>Booked</td>
+</tr>
+<tr>
+<td>Rogues of Chaos (Jerry Flack / FractoFlow)</td>
+<td>27+</td>
+<td>Booked</td>
+</tr>
+</tbody>
+</table>
+<h3>Bands That Emailed But NEVER Appeared</h3>
+<p>Over <strong>200 senders</strong> with booking-related emails did not appear in the 2025 calendar. Key categories of rejection:</p>
+<p><strong>Agency mass-blasts (ALWAYS rejected):</strong><br />
+- <strong>White Mountain Agency</strong> (Kublai Kwon, 52 emails across 4+ email addresses): Dave East, CupcakKe, G Herbo, Boosie, Riff Raff, Waka Flocka Flame, The Game, etc. ZERO appeared in calendar.<br />
+- <strong>AFM Entertainment</strong> (Len Schmitzer, 13 emails): Dionne Warwick tribute, Def Leppard tribute, Casey James. ZERO booked.<br />
+- <strong>Indie On The Move</strong> platform (63 emails): Kate Watson (Texas country), Ghost Heart, Alta Avenue, Seetrees, Nu Skool, LYONS &amp; CO. Very low conversion -- these are form-letter pitches.<br />
+- <strong>Panda Artist</strong> (35--45 emails): Mass touring pitches. ZERO booked.</p>
+<p><strong>Genres that don't fit (see Section 5):</strong><br />
+- Country/Americana: Kate Watson (Texas country star), Jon Stork -- rejected<br />
+- Jazz/cabaret: APAP Showcases (GRAMMY artists) -- way too big and wrong genre<br />
+- Clean pop/singer-songwriter: Cassidy The Sun Dancer Topa, various -- rejected<br />
+- Tribute acts: Def Leppard, Bon Jovi, Dionne Warwick tributes -- rejected<br />
+- Latin reggae: Bachaco -- rejected</p>
+<p><strong>Touring acts that inquired but timing/fit didn't work:</strong><br />
+- SKW (alternative metal, Milan Italy) -- 13 emails, heavy correspondence but no booking<br />
+- KRONA (hardcore punk/reggae from Phoenix) -- inquired 189 days out<br />
+- Various Happy Nomad Booking acts (BUFFALO, K.R.X.S, Mary Chicken Soup &amp; Rice) -- touring acts from Phoenix/LA</p>
+<hr />
+<h2>4. Promoter/Curator Model</h2>
+<p>The Bancroft operates heavily on a <strong>curator/promoter model</strong>. Many shows are not booked directly by bands but assembled by local promoters who build full bills.</p>
+<h3>Internal Booker</h3>
+<p><strong>Kayla</strong> is the primary internal booker. Her name appears in 79 show descriptions ("Booked by Kayla") across 2025, covering shows from January through at least April. She handles:<br />
+- Processing booking form submissions<br />
+- Assembling multi-band bills<br />
+- Managing the TickPick ticketing pipeline<br />
+- Coordinating with bands on logistics</p>
+<p><strong>Rob</strong> appears on 3--5 shows across all years, handling occasional special bookings (e.g., "Chronicle 3 Hosted by Tha Speakerboxx").</p>
+<h3>External Promoters/Curators</h3>
+<table>
+<thead>
+<tr>
+<th>Promoter</th>
+<th>Emails</th>
+<th>Role</th>
+<th>Example Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vilos Cohaagen / Admiral Atlas</strong></td>
+<td>78</td>
+<td>Local promoter, DJ, band leader. Books multi-act shows, creates flyers, runs Daygo Pong and Vinyl Knights Monday residency. Most active single contact.</td>
+<td>Admiral Atlas shows, Daygo Pong, Vinyl Knights, Halloween B-Day Bash</td>
+</tr>
+<tr>
+<td><strong>Stay Strange San Diego</strong></td>
+<td>33</td>
+<td>Curates post-rock/experimental/indie shows. Books full bills.</td>
+<td>Sea Moss / Spring Breeding / Year Of The Dead Bird / Tardigrade (Jun 25 Wed show)</td>
+</tr>
+<tr>
+<td><strong>Jordi Hereu</strong></td>
+<td>31</td>
+<td>Books shows and creates flyers.</td>
+<td>Various 2025 shows</td>
+</tr>
+<tr>
+<td><strong>FractoFlow Productions</strong> (Jerry Flack)</td>
+<td>29</td>
+<td>Books Rogues of Chaos and associated acts</td>
+<td>Rogues of Chaos / Diva Crush (Sep 12)</td>
+</tr>
+<tr>
+<td><strong>Donald Aguayo</strong></td>
+<td>27</td>
+<td>Books multiple shows per year</td>
+<td>Various bookings</td>
+</tr>
+<tr>
+<td><strong>Patrick / Superkool Booking</strong></td>
+<td>24</td>
+<td>Books heavier shows -- "VOLUME", Black Moon Cult</td>
+<td>Black Moon Cult / Nebula Drag / Loom / The Freeks</td>
+</tr>
+<tr>
+<td><strong>Sean Padilla / Happy Nomad Booking</strong></td>
+<td>22</td>
+<td>Routes touring bands from Phoenix/LA through Bancroft. Well-formatted inquiries with genre/origin.</td>
+<td>BUFFALO, K.R.X.S, Mary Chicken Soup &amp; Rice</td>
+</tr>
+<tr>
+<td><strong>PLUR Factory Collective</strong></td>
+<td>21</td>
+<td>Electronic/hip-hop events</td>
+<td>Sep 6 booking</td>
+</tr>
+<tr>
+<td><strong>Bryan Pollard</strong></td>
+<td>11</td>
+<td>DarkWave Garden residency DJ/promoter</td>
+<td>DarkWave Garden every Thursday Oct--Dec</td>
+</tr>
+<tr>
+<td><strong>SD Metal Massacre</strong></td>
+<td>10</td>
+<td>Metal show promoter</td>
+<td>Metal bills</td>
+</tr>
+<tr>
+<td><strong>Crunk Witch</strong></td>
+<td>10</td>
+<td>Curated "presents" format shows</td>
+<td>Crunk Witch presents: HXNCLB</td>
+</tr>
+<tr>
+<td><strong>Adversarial Productions</strong></td>
+<td>9</td>
+<td>Metal/touring bookings</td>
+<td>Obsidian Tongue (Maine)</td>
+</tr>
+<tr>
+<td><strong>GFD Productions</strong></td>
+<td>8</td>
+<td>Fest-format shows</td>
+<td>Rock Invasion Fest II</td>
+</tr>
+<tr>
+<td><strong>Ceasefire Productions</strong></td>
+<td>7</td>
+<td>Books specific dates</td>
+<td>Jul 17 show</td>
+</tr>
+<tr>
+<td><strong>DogTooth Booking</strong></td>
+<td>7</td>
+<td></td>
+<td>Via booking form</td>
+</tr>
+<tr>
+<td><strong>Blind Anxiety Entertainment</strong> (James Cripps)</td>
+<td>10</td>
+<td>Touring act bookings</td>
+<td>The Almas / Crashing Wayward, KAZHA</td>
+</tr>
+<tr>
+<td><strong>Carlos Zamora / All Metal United</strong></td>
+<td>18</td>
+<td>Metal show promoter</td>
+<td>Booking various metal dates</td>
+</tr>
+<tr>
+<td><strong>Go-Go Dance Arts / Sunny Moon Seville</strong></td>
+<td>13</td>
+<td>Red Room Burlesque events</td>
+<td>Red Room Presents shows</td>
+</tr>
+<tr>
+<td><strong>Leila Head</strong></td>
+<td>11</td>
+<td>Community event organizer</td>
+<td>James Head B-day show (Jun 28)</td>
+</tr>
+<tr>
+<td><strong>Steven Harris</strong></td>
+<td>17</td>
+<td>Books Ocean Harvest and associated acts</td>
+<td>Ocean Harvest (Mar 30)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule: Promoters who bring complete bills are extremely valuable. They reduce the booker's workload by delivering a full show package -- a headliner, support acts, sometimes flyers and ticket setup. Prioritize emails from known promoters over cold band inquiries.</strong></p>
+<hr />
+<h2>5. Genre Fit</h2>
+<h3>What Works at the Bancroft</h3>
+<p>Based on analysis of 10+ years of show titles, descriptions, and booking emails, the Bancroft's genre identity is:</p>
+<p><strong>Core Genres (high booking rate):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Punk / hardcore</strong></td>
+<td>Angry Samoans, Dayglo Abortions, Conservative Military Image, Human Garbage, Brighton Street Bullies, Beast Fiend</td>
+</tr>
+<tr>
+<td><strong>Metal (all subgenres)</strong></td>
+<td>Putrid Invocation, Cemetery Rot, Titanskull, War Troll, Celestial Wizard, Obsidian Tongue, Nebula Drag</td>
+</tr>
+<tr>
+<td><strong>Stoner/doom/sludge</strong></td>
+<td>Nebula Drag, Black Moon Cult, The Freeks, Fungal Mirage</td>
+</tr>
+<tr>
+<td><strong>Garage/psych</strong></td>
+<td>Space Wax, Savage and the Witch, Eye Mind, Fuzz Huzzi</td>
+</tr>
+<tr>
+<td><strong>Alt-rock/indie</strong></td>
+<td>Fancy Faces, Go Scarlet, Velvet Glow, Courtside Betty, In Parallel With You</td>
+</tr>
+<tr>
+<td><strong>Goth/darkwave/deathrock</strong></td>
+<td>DarkWave Garden (recurring residency), Nightshadow, Grave Danger</td>
+</tr>
+<tr>
+<td><strong>Post-punk</strong></td>
+<td>The Letdown, Sideshow</td>
+</tr>
+<tr>
+<td><strong>Noise/experimental</strong></td>
+<td>Contortion, EYE, Stay Strange curated shows</td>
+</tr>
+<tr>
+<td><strong>Hip-hop (local/underground)</strong></td>
+<td>Chronicle series (Hosted by Tha Speakerboxx), PLUR Factory events</td>
+</tr>
+<tr>
+<td><strong>Surf/rockabilly</strong></td>
+<td>Solar Barges, Pachuco Jose, Roy Rapid &amp; The Rhythm Rock Trio, Soda Crackers</td>
+</tr>
+<tr>
+<td><strong>Ska</strong></td>
+<td>Referenced in emails, appears in catalog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Acceptable but less frequent:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Burlesque/variety</td>
+<td>Red Room Burlesque events (~1/month historically)</td>
+</tr>
+<tr>
+<td>Comedy</td>
+<td>Tommy Lucero comedy show inquiry</td>
+</tr>
+<tr>
+<td>DJ nights</td>
+<td>DarkWave Garden, DJ sets as part of live bills</td>
+</tr>
+</tbody>
+</table>
+<h3>What Does NOT Work</h3>
+<p><strong>Genres that get rejected (appear in emails, never in calendar):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th>Examples</th>
+<th>Why Rejected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Country/Americana</strong></td>
+<td>Kate Watson, Jon Stork, LYONS &amp; CO</td>
+<td>Wrong audience entirely</td>
+</tr>
+<tr>
+<td><strong>Jazz</strong></td>
+<td>APAP Showcases, Deep End Productions artists</td>
+<td>Wrong venue type</td>
+</tr>
+<tr>
+<td><strong>Clean pop / singer-songwriter</strong></td>
+<td>Cassidy The Sun Dancer, various</td>
+<td>Too soft for the room</td>
+</tr>
+<tr>
+<td><strong>Tribute acts</strong></td>
+<td>Def Leppard tribute, Bon Jovi tribute, Dionne Warwick tribute</td>
+<td>Doesn't fit the DIY ethos</td>
+</tr>
+<tr>
+<td><strong>Large hip-hop touring acts</strong></td>
+<td>Dave East, G Herbo, CupcakKe, Boosie, Waka Flocka, The Game</td>
+<td>WAY too big for 100-cap; these are arena/club acts</td>
+</tr>
+<tr>
+<td><strong>EDM (mainstream)</strong></td>
+<td>Not the right setup</td>
+<td>No proper DJ infrastructure for big electronic acts</td>
+</tr>
+<tr>
+<td><strong>Latin pop/reggae</strong></td>
+<td>Bachaco</td>
+<td>Wrong audience</td>
+</tr>
+<tr>
+<td><strong>K-pop</strong></td>
+<td>Wooah (from White Mountain)</td>
+<td>Wrong everything</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Genre keyword mapping for the booking agent:</strong></p>
+<pre><code>STRONG FIT: punk, hardcore, metal, doom, stoner, sludge, thrash, grindcore,
+            garage, psych, surf, goth, darkwave, deathrock, post-punk,
+            noise, experimental, indie rock, alt-rock, ska, oi
+
+MODERATE FIT: hip-hop (local/underground only), electronic (dark/industrial),
+              rockabilly, blues rock, folk punk, emo, screamo
+
+POOR FIT: country, americana, jazz, clean pop, R&amp;B, singer-songwriter (solo acoustic),
+          tribute, cover band, Latin, reggaeton, K-pop, EDM, classical
+</code></pre>
+<hr />
+<h2>6. Red Flags for Rejection</h2>
+<p>These signals in a booking inquiry predict it will NOT be booked:</p>
+<h3>Automatic Rejection Signals</h3>
+<table>
+<thead>
+<tr>
+<th>Red Flag</th>
+<th>Example</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agency mass-blast</strong></td>
+<td>White Mountain Agency, Panda Artist, AFM Entertainment</td>
+<td>These are copy-paste blasts to hundreds of venues. The acts are typically too big, wrong genre, or both.</td>
+</tr>
+<tr>
+<td><strong>Indie On The Move form letter</strong></td>
+<td>"Booking [BAND] [Day], [Date] at The Bancroft Bar"</td>
+<td>Low conversion platform. Most acts are genre mismatches or out-of-market.</td>
+</tr>
+<tr>
+<td><strong>Act too big for 100-cap</strong></td>
+<td>Dave East, CupcakKe, G Herbo, Boosie, Waka Flocka</td>
+<td>These acts draw 500--5000+. The Bancroft is 100-cap. Absurd mismatch.</td>
+</tr>
+<tr>
+<td><strong>Genre mismatch</strong></td>
+<td>Country at a punk bar; jazz trio at a dive bar</td>
+<td>See genre fit section above</td>
+</tr>
+<tr>
+<td><strong>Tribute/cover band</strong></td>
+<td>"The Ultimate DEF LEPPARD Concert Experience"</td>
+<td>Not the venue's identity</td>
+</tr>
+<tr>
+<td><strong>No music links and no local connection</strong></td>
+<td>Cold email with no Bandcamp/Spotify/YouTube</td>
+<td>If the booker can't hear you, you won't get booked</td>
+</tr>
+<tr>
+<td><strong>Asking for guarantee/fee</strong></td>
+<td>"Our rate is $X" or "We require a minimum guarantee"</td>
+<td>The Bancroft operates on door split, not guarantees. Acts demanding payment are typically agency-routed.</td>
+</tr>
+<tr>
+<td><strong>International cold pitch</strong></td>
+<td>SKW from Milan, Italy (13 emails, never booked)</td>
+<td>Unless a promoter is routing them, international unknowns don't convert</td>
+</tr>
+<tr>
+<td><strong>Confidentiality warnings in email</strong></td>
+<td>"This message contains confidential information... may result in legal action"</td>
+<td>Signals agency/corporate booking culture incompatible with DIY venue</td>
+</tr>
+<tr>
+<td><strong>"Now Booking" / roster blast</strong></td>
+<td>"Updated 2026/2027 Worldwide Artist Touring Roster"</td>
+<td>This is a catalog, not a booking request</td>
+</tr>
+</tbody>
+</table>
+<h3>Soft Rejection Signals</h3>
+<table>
+<thead>
+<tr>
+<th>Soft Red Flag</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No specific date request</td>
+<td>"We'd love to play sometime" is low-priority</td>
+</tr>
+<tr>
+<td>Solo acoustic act</td>
+<td>Unless it's part of a curated bill, solo acoustic doesn't draw at the Bancroft</td>
+</tr>
+<tr>
+<td>Email from a manager (not the band or a local promoter)</td>
+<td>More likely to be agency-style, less likely to understand the room</td>
+</tr>
+<tr>
+<td>Multiple follow-ups with no engagement</td>
+<td>If Kayla/Rob haven't responded after 3+ emails, the inquiry has been soft-rejected</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. Green Flags for Booking</h2>
+<p>These signals predict a successful booking:</p>
+<h3>Strong Green Flags</h3>
+<table>
+<thead>
+<tr>
+<th>Green Flag</th>
+<th>Evidence</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Local band with play history</strong></td>
+<td>Fancy Faces (8 shows 2025), Fungal Mirage (7), Close Enough (5), Brighton Street Bullies (4)</td>
+<td>Proven draws who know the room</td>
+</tr>
+<tr>
+<td><strong>Came through the booking form</strong></td>
+<td>134 unique threads via "[Bancroft Bar] Band Booking Form"</td>
+<td>This is the official intake channel. Form submissions get processed.</td>
+</tr>
+<tr>
+<td><strong>Known promoter vouches/assembles the bill</strong></td>
+<td>Vilos Cohaagen, Stay Strange, Superkool Booking, etc.</td>
+<td>Promoters bring complete packages and understand the venue</td>
+</tr>
+<tr>
+<td><strong>Specific date request matching an open slot</strong></td>
+<td>"Booking Sept 19th", "Show June 22 or 24"</td>
+<td>Shows the band has done homework and is ready to commit</td>
+</tr>
+<tr>
+<td><strong>Music links included</strong></td>
+<td>Bandcamp, Spotify, YouTube in email body</td>
+<td>40% of booking emails include music links. Those that do are taken more seriously.</td>
+</tr>
+<tr>
+<td><strong>Genre alignment</strong></td>
+<td>Self-describes as punk, metal, garage, psych, goth, etc.</td>
+<td>Immediately signals venue fit</td>
+</tr>
+<tr>
+<td><strong>Complete bill offered</strong></td>
+<td>"Fantom Fire and Second Shooter would like to book" (2 bands together)</td>
+<td>Reduces booker workload; ready-to-go package</td>
+</tr>
+<tr>
+<td><strong>Prior Bancroft history</strong></td>
+<td>Band directory shows previous appearances</td>
+<td>Return acts are almost always rebooked</td>
+</tr>
+</tbody>
+</table>
+<h3>Moderate Green Flags</h3>
+<table>
+<thead>
+<tr>
+<th>Green Flag</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Touring band with local support attached</td>
+<td>e.g., "Obsidian Tongue (Maine)" routed by Adversarial Productions with locals</td>
+</tr>
+<tr>
+<td>Community/birthday/memorial show</td>
+<td>"Show for James Head B-day June 28th" -- these fill the room with friends/family</td>
+</tr>
+<tr>
+<td>Well-formatted inquiry with genre, origin city, links</td>
+<td>Happy Nomad Booking style: "BUFFALO = instrumental post-rock from Phoenix"</td>
+</tr>
+<tr>
+<td>Flyer already designed</td>
+<td>Shows commitment and promotional readiness</td>
+</tr>
+<tr>
+<td>TickPick event already set up</td>
+<td>Indicates the show is essentially confirmed</td>
+</tr>
+</tbody>
+</table>
+<h3>The Repeat Band Effect</h3>
+<p>Bands that play the Bancroft tend to come back. Top repeaters in 2025:</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>2025 Shows</th>
+<th>Total All-Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DarkWave Garden</td>
+<td>11</td>
+<td>54 (incl. alternate spelling)</td>
+</tr>
+<tr>
+<td>Fancy Faces</td>
+<td>8</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Fungal Mirage</td>
+<td>7</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Close Enough</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Cotton Brain</td>
+<td>4</td>
+<td>4+</td>
+</tr>
+<tr>
+<td>Brighton Street Bullies</td>
+<td>4</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Admiral Atlas</td>
+<td>4</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Age of Darkness</td>
+<td>4</td>
+<td>4+</td>
+</tr>
+<tr>
+<td>The Imbeskulls</td>
+<td>4</td>
+<td>4+</td>
+</tr>
+<tr>
+<td>Phantoms with Fangs</td>
+<td>3</td>
+<td>3+</td>
+</tr>
+<tr>
+<td>Deadly Dispute</td>
+<td>3</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule: If a band has played the Bancroft before, they are a safe booking. Weight repeat acts heavily when filling open slots.</strong></p>
+<hr />
+<h2>8. Calendar Gaps &amp; Missed Opportunities</h2>
+<h3>Unfilled Nights in 2025</h3>
+<p><strong>Friday/Saturday nights with NO shows: 15 out of ~104</strong></p>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Day</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-01-03</td>
+<td>Friday</td>
+<td>New Year's recovery?</td>
+</tr>
+<tr>
+<td>2025-01-04</td>
+<td>Saturday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-01-24</td>
+<td>Friday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-02-14</td>
+<td>Friday</td>
+<td>Valentine's Day</td>
+</tr>
+<tr>
+<td>2025-03-01</td>
+<td>Saturday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-03-14</td>
+<td>Friday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-03-28</td>
+<td>Friday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-06-13</td>
+<td>Friday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-10-25</td>
+<td>Saturday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-11-01</td>
+<td>Saturday</td>
+<td>Day after Halloween</td>
+</tr>
+<tr>
+<td>2025-11-21</td>
+<td>Friday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-11-28</td>
+<td>Friday</td>
+<td>Thanksgiving</td>
+</tr>
+<tr>
+<td>2025-12-06</td>
+<td>Saturday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-12-19</td>
+<td>Friday</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-12-26</td>
+<td>Friday</td>
+<td>Christmas</td>
+</tr>
+</tbody>
+</table>
+<p>Some of these are explainable (holidays), but <strong>10+ open Fri/Sat nights per year is revenue left on the table</strong>.</p>
+<h3>Weeknight Gaps</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Empty Nights (2025)</th>
+<th>Opportunity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tuesday</td>
+<td>50 of 52</td>
+<td>Not a realistic booking night</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>48 of 53</td>
+<td>Occasional touring act that needs a midweek; Stay Strange booked a Wed show</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>28 of 52</td>
+<td>Strong growth opportunity -- DarkWave Garden proved Thursdays work (Oct--Dec). Could run more Thursday residencies.</td>
+</tr>
+<tr>
+<td>Monday</td>
+<td>37 of 52</td>
+<td>Vinyl Knights/Daygo Pong fills some; community events possible</td>
+</tr>
+</tbody>
+</table>
+<h3>Booking Agent Opportunity Zones</h3>
+<ol>
+<li><strong>Fill open Fridays and Saturdays first</strong> -- these are the highest-value slots and 15 went empty in 2025.</li>
+<li><strong>Expand Thursday programming</strong> -- the DarkWave Garden residency model works. Could replicate with other recurring acts (open mic, themed nights, another residency).</li>
+<li><strong>Holiday shows</strong> -- Valentine's Day, day-after-Halloween, post-Christmas could be special themed events.</li>
+<li><strong>January is the slowest month</strong> -- only 7 music shows. Proactively seek bookings in December for January dates.</li>
+</ol>
+<hr />
+<h2>9. Lead Time Analysis</h2>
+<p>How far in advance are shows booked?</p>
+<h3>Lead Time Distribution (98 email-to-show-date matches)</h3>
+<table>
+<thead>
+<tr>
+<th>Timeframe</th>
+<th>Count</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0--7 days (last minute)</td>
+<td>20</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>8--14 days (2 weeks out)</td>
+<td>5</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>15--30 days (month out)</td>
+<td>18</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>31--60 days (1--2 months)</td>
+<td>25</td>
+<td>26%</td>
+</tr>
+<tr>
+<td>61--90 days (quarter out)</td>
+<td>13</td>
+<td>13%</td>
+</tr>
+<tr>
+<td>90+ days (3+ months)</td>
+<td>17</td>
+<td>17%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Median lead time: 36 days. Average: 53 days.</strong></p>
+<h3>Key Observations</h3>
+<ul>
+<li><strong>Most shows are booked 1--2 months out</strong> (the 31--60 day bucket is the largest).</li>
+<li><strong>20% of shows are last-minute</strong> (under a week), suggesting ongoing scramble to fill dates.</li>
+<li><strong>Touring acts book furthest out</strong> (90--189 days): Obsidian Tongue (92 days), KRONA (189 days), mc chris (167 days).</li>
+<li><strong>Local bands often book 2--6 weeks out</strong>: corporate citizen, deadbrokedown, skull riot, etc.</li>
+</ul>
+<h3>Lead Time Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Lead Days</th>
+<th>Inquiry</th>
+<th>Show Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>189</td>
+<td>KRONA (hardcore punk/reggae from Phoenix)</td>
+<td>Jul 27</td>
+</tr>
+<tr>
+<td>167</td>
+<td>mc chris at the bancroft bar</td>
+<td>Sep 6</td>
+</tr>
+<tr>
+<td>138</td>
+<td>The Almas / Crashing Wayward</td>
+<td>Sep 25</td>
+</tr>
+<tr>
+<td>92</td>
+<td>Obsidian Tongue (Maine)</td>
+<td>Sep 27</td>
+</tr>
+<tr>
+<td>89</td>
+<td>Mary Chicken Soup &amp; Rice (theatrical psych-rock from LA)</td>
+<td>Apr 17</td>
+</tr>
+<tr>
+<td>63</td>
+<td>Carson Aday (full band)</td>
+<td>Apr 11</td>
+</tr>
+<tr>
+<td>36</td>
+<td>(median -- typical local band)</td>
+<td>~5 weeks out</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rule: The booking agent should start seeking to fill a date 6--8 weeks before it. Touring acts should be responded to immediately regardless of lead time. Last-minute fills (under 2 weeks) should prioritize known local bands who can mobilize quickly.</strong></p>
+<hr />
+<h2>10. Operational Rules for the Booking Agent</h2>
+<h3>Booking Pipeline</h3>
+<ol>
+<li><strong>Booking form submissions</strong> get highest priority -- these are from people who took the time to use the official form.</li>
+<li><strong>Known promoter emails</strong> get second priority -- they bring complete bills.</li>
+<li><strong>Direct band emails</strong> (to bancroftbar@gmail.com) get evaluated based on genre fit, links, and date specificity.</li>
+<li><strong>Platform/agency pitches</strong> (Indie On The Move, White Mountain, Panda Artist, AFM) get lowest priority or auto-rejection.</li>
+</ol>
+<h3>Ticketing</h3>
+<ul>
+<li>The venue uses <strong>TickPick</strong> for ticketing/guest lists. Most shows have TickPick events created.</li>
+<li>TickPick processes payments weekly via Tipalti.</li>
+<li>Guest lists are managed through TickPick.</li>
+</ul>
+<h3>Show Assembly Rules</h3>
+<ol>
+<li>A typical <strong>Friday or Saturday bill</strong> should have 3--4 bands.</li>
+<li><strong>Thursday shows</strong> can be 2--3 bands or a single residency act.</li>
+<li><strong>Touring headliners</strong> need 1--2 local openers. The promoter usually provides or the booker fills from the regular rotation.</li>
+<li><strong>Metal/punk fests</strong> can have 5--7 bands (shorter sets).</li>
+<li><strong>Never book over Dart Tournaments</strong> (every Sunday).</li>
+<li><strong>Vinyl Knights / Daygo Pong Mondays</strong> are an ongoing residency -- do not double-book.</li>
+<li><strong>DarkWave Garden Thursdays</strong> (Oct--Dec) are a recurring residency managed by Bryan Pollard.</li>
+</ol>
+<h3>Communication</h3>
+<ul>
+<li>Most booking communication happens over email (bancroftbar@gmail.com).</li>
+<li>Some bookings happen via text (noted in descriptions: "Via text with Nino").</li>
+<li>Flyers are exchanged via email, usually close to show date.</li>
+<li>The booking form generates threads with subject "[Bancroft Bar] Band Booking Form - new submission".</li>
+</ul>
+<h3>Financial Model</h3>
+<ul>
+<li><strong>Door split</strong> is the standard arrangement. No guarantees.</li>
+<li>Door prices range $3--$15, with $5--$10 being typical.</li>
+<li>TickPick handles online ticket sales; door handles walk-ups.</li>
+<li>The venue does NOT pay booking fees, guarantees, or appearance fees. Any inquiry mentioning these is likely an agency pitch and should be treated accordingly.</li>
+</ul>
+<hr />
+<h2>Appendix A: Quick-Reference Decision Matrix</h2>
+<p>For the AI booking agent to use when evaluating an incoming inquiry:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Score</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Band has played Bancroft before</td>
+<td>+10</td>
+<td>Fast-track</td>
+</tr>
+<tr>
+<td>Came through booking form</td>
+<td>+5</td>
+<td>Process normally</td>
+</tr>
+<tr>
+<td>Known promoter building a bill</td>
+<td>+8</td>
+<td>Fast-track</td>
+</tr>
+<tr>
+<td>Genre matches (punk/metal/garage/psych/goth/indie)</td>
+<td>+5</td>
+<td>Evaluate</td>
+</tr>
+<tr>
+<td>Specific date requested</td>
+<td>+3</td>
+<td>Check calendar</td>
+</tr>
+<tr>
+<td>Music links included (Bandcamp/Spotify/YouTube)</td>
+<td>+3</td>
+<td>Listen and evaluate</td>
+</tr>
+<tr>
+<td>Local SD band</td>
+<td>+3</td>
+<td>Good sign</td>
+</tr>
+<tr>
+<td>Touring act with genre fit + local support</td>
+<td>+4</td>
+<td>Evaluate timing</td>
+</tr>
+<tr>
+<td>Community event (birthday, memorial, fest)</td>
+<td>+3</td>
+<td>Flexible scheduling</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td>White Mountain / Panda Artist / AFM agency</td>
+<td>-10</td>
+<td>Auto-reject</td>
+</tr>
+<tr>
+<td>Genre mismatch (country/jazz/pop/tribute)</td>
+<td>-8</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Act too big for 100-cap</td>
+<td>-10</td>
+<td>Reject</td>
+</tr>
+<tr>
+<td>Demanding guarantee/fee</td>
+<td>-5</td>
+<td>Reject or clarify door-split model</td>
+</tr>
+<tr>
+<td>No music links, no local connection, no specific date</td>
+<td>-4</td>
+<td>Deprioritize</td>
+</tr>
+<tr>
+<td>Indie On The Move platform pitch</td>
+<td>-3</td>
+<td>Low priority, evaluate individually</td>
+</tr>
+<tr>
+<td>Solo acoustic / singer-songwriter</td>
+<td>-3</td>
+<td>Only if part of a curated bill</td>
+</tr>
+<tr>
+<td>International cold pitch with no local routing</td>
+<td>-5</td>
+<td>Likely reject</td>
+</tr>
+<tr>
+<td>Mass-blast / roster dump</td>
+<td>-10</td>
+<td>Auto-reject</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Threshold: Score &gt;= 5 warrants a response. Score &gt;= 8 is a strong booking candidate. Score &lt; 0 is an auto-reject or ignore.</strong></p>
+<hr />
+<h2>Appendix B: Key Email Addresses</h2>
+<p>Promoters and curators the booking agent should recognize and prioritize:</p>
+<table>
+<thead>
+<tr>
+<th>Contact</th>
+<th>Email</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vilos Cohaagen / Admiral Atlas</td>
+<td>admiralatlas1@yahoo.com</td>
+<td>#1 local promoter</td>
+</tr>
+<tr>
+<td>Stay Strange San Diego</td>
+<td>staystrangesandiego@yahoo.com</td>
+<td>Indie/post-rock curator</td>
+</tr>
+<tr>
+<td>Patrick / Superkool Booking</td>
+<td>superkoolbooking@gmail.com</td>
+<td>Heavy music booker</td>
+</tr>
+<tr>
+<td>Bryan Pollard</td>
+<td>djlatex69@aol.com</td>
+<td>DarkWave Garden</td>
+</tr>
+<tr>
+<td>FractoFlow Productions / Jerry Flack</td>
+<td>fractoflowproductions@gmail.com, jerry.j.flack@gmail.com</td>
+<td>Rogues of Chaos etc</td>
+</tr>
+<tr>
+<td>Donald Aguayo</td>
+<td>donaldaguayo71@gmail.com</td>
+<td>Multi-show booker</td>
+</tr>
+<tr>
+<td>Jordi Hereu</td>
+<td>jordihereu12.jh@gmail.com</td>
+<td>Show booker / flyer artist</td>
+</tr>
+<tr>
+<td>Sean Padilla / Happy Nomad Booking</td>
+<td>happynomadbooking@gmail.com</td>
+<td>Touring band routing</td>
+</tr>
+<tr>
+<td>PLUR Factory Collective</td>
+<td>plurfactory.sd@gmail.com</td>
+<td>Electronic/hip-hop events</td>
+</tr>
+<tr>
+<td>GFD Productions</td>
+<td>gfdprod.7@gmail.com</td>
+<td>Fest-format shows</td>
+</tr>
+<tr>
+<td>SD Metal Massacre</td>
+<td>sdmetalmassacre@gmail.com</td>
+<td>Metal shows</td>
+</tr>
+<tr>
+<td>Crunk Witch</td>
+<td>booking.crunkwitch@gmail.com</td>
+<td>Curated "presents" shows</td>
+</tr>
+<tr>
+<td>Adversarial Productions</td>
+<td>adversarialrecords@gmail.com</td>
+<td>Metal/touring</td>
+</tr>
+<tr>
+<td>Blind Anxiety Entertainment</td>
+<td>blindanxietyentertainment@yahoo.com</td>
+<td>Touring act bookings</td>
+</tr>
+<tr>
+<td>Carlos Zamora / All Metal United</td>
+<td>allmetalunited1@icloud.com</td>
+<td>Metal promoter</td>
+</tr>
+<tr>
+<td>Go-Go Dance Arts / Sunny Moon Seville</td>
+<td>sunnymoonseville@gmail.com</td>
+<td>Red Room Burlesque</td>
+</tr>
+<tr>
+<td>DogTooth Booking</td>
+<td>dogtoothbooking@gmail.com</td>
+<td>Booking agent</td>
+</tr>
+<tr>
+<td>Ceasefire Productions</td>
+<td>ceasefire.ent@gmail.com</td>
+<td>Show promoter</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Known auto-reject senders:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Contact</th>
+<th>Email Pattern</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>White Mountain Agency</td>
+<td>*@whitemountainagency.com</td>
+<td>Mass-blast, wrong acts</td>
+</tr>
+<tr>
+<td>Panda Artist</td>
+<td>panda artist in body</td>
+<td>Mass-blast platform</td>
+</tr>
+<tr>
+<td>AFM Entertainment</td>
+<td>len@afmentertainment.com</td>
+<td>Tribute acts, wrong genre</td>
+</tr>
+<tr>
+<td>Indie On The Move (most)</td>
+<td>member@indieonthemove.com</td>
+<td>Low conversion, usually genre mismatch</td>
+</tr>
+<tr>
+<td>Deep End Productions</td>
+<td>annabecker.thedeepend@*</td>
+<td>Jazz/cabaret, wrong venue</td>
+</tr>
+<tr>
+<td>Various tribute bookers</td>
+<td>Varies</td>
+<td>Tribute acts don't fit</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
