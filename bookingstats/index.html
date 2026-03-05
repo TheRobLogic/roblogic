@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bancroft Booking Agent — Reports</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <h1>Bancroft Bar — Booking Stats Overview</h1>
+<p><strong>Data through:</strong> March 4, 2026<br />
+<strong>Sources:</strong> Toast POS, Google Calendar, Gmail, TickPick</p>
+<hr />
+<h2>Venue Snapshot</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capacity</td>
+<td>130 (push to 150)</td>
+</tr>
+<tr>
+<td>Avg spend per guest</td>
+<td>~$16</td>
+</tr>
+<tr>
+<td>Show-night avg revenue</td>
+<td>$948</td>
+</tr>
+<tr>
+<td>Non-show-night avg revenue</td>
+<td>$443</td>
+</tr>
+<tr>
+<td>Incremental lift per show</td>
+<td><strong>$505</strong></td>
+</tr>
+<tr>
+<td>Shows in 2025</td>
+<td>115</td>
+</tr>
+<tr>
+<td>Shows per week (avg)</td>
+<td>2.2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Revenue by Day of Week</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th style="text-align: center;">Show Night Avg</th>
+<th style="text-align: center;">Dark Night Avg</th>
+<th style="text-align: center;">Lift</th>
+<th style="text-align: center;">Fill Rate (2025)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mon</td>
+<td style="text-align: center;">$1,022</td>
+<td style="text-align: center;">$594</td>
+<td style="text-align: center;">+$428</td>
+<td style="text-align: center;">0%</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td style="text-align: center;">$804</td>
+<td style="text-align: center;">$536</td>
+<td style="text-align: center;">+$268</td>
+<td style="text-align: center;">4%</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td style="text-align: center;">$527</td>
+<td style="text-align: center;">$450</td>
+<td style="text-align: center;">+$77</td>
+<td style="text-align: center;">8%</td>
+</tr>
+<tr>
+<td><strong>Thu</strong></td>
+<td style="text-align: center;"><strong>$984</strong></td>
+<td style="text-align: center;"><strong>$588</strong></td>
+<td style="text-align: center;"><strong>+$396</strong></td>
+<td style="text-align: center;"><strong>44%</strong></td>
+</tr>
+<tr>
+<td><strong>Fri</strong></td>
+<td style="text-align: center;"><strong>$1,428</strong></td>
+<td style="text-align: center;"><strong>$745</strong></td>
+<td style="text-align: center;"><strong>+$683</strong></td>
+<td style="text-align: center;"><strong>77%</strong></td>
+</tr>
+<tr>
+<td><strong>Sat</strong></td>
+<td style="text-align: center;"><strong>$1,299</strong></td>
+<td style="text-align: center;"><strong>$637</strong></td>
+<td style="text-align: center;"><strong>+$662</strong></td>
+<td style="text-align: center;"><strong>81%</strong></td>
+</tr>
+<tr>
+<td><strong>Sun</strong></td>
+<td style="text-align: center;"><strong>$1,298</strong></td>
+<td style="text-align: center;"><strong>$789</strong></td>
+<td style="text-align: center;"><strong>+$509</strong></td>
+<td style="text-align: center;">8%</td>
+</tr>
+</tbody>
+</table>
+<p>Friday and Saturday shows are worth $660-680 more than a dark night. Thursday is the biggest growth opportunity at only 44% filled.</p>
+<hr />
+<h2>Bill Size Matters</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Bands on Bill</th>
+<th style="text-align: center;">Avg Revenue</th>
+<th style="text-align: center;">Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1 (solo)</td>
+<td style="text-align: center;">$819</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">$906</td>
+<td style="text-align: center;">+11%</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">$1,014</td>
+<td style="text-align: center;">+24%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: center;"><strong>$1,106</strong></td>
+<td style="text-align: center;"><strong>+35%</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">5+</td>
+<td style="text-align: center;">$1,080</td>
+<td style="text-align: center;">+32%</td>
+</tr>
+</tbody>
+</table>
+<p>4-band bills are the sweet spot. Each band brings their own crowd.</p>
+<hr />
+<h2>Booking Pipeline (2024-2025)</h2>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th style="text-align: center;">Inquiries</th>
+<th style="text-align: center;">Booked</th>
+<th style="text-align: center;">Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wix booking form</td>
+<td style="text-align: center;">~165</td>
+<td style="text-align: center;">~38</td>
+<td style="text-align: center;">23%</td>
+</tr>
+<tr>
+<td>Direct email from bands</td>
+<td style="text-align: center;">~200</td>
+<td style="text-align: center;">~32</td>
+<td style="text-align: center;">16%</td>
+</tr>
+<tr>
+<td>Indie on the Move</td>
+<td style="text-align: center;">~130</td>
+<td style="text-align: center;">~3</td>
+<td style="text-align: center;">2%</td>
+</tr>
+<tr>
+<td>Agency pitches</td>
+<td style="text-align: center;">~100+</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0%</td>
+</tr>
+</tbody>
+</table>
+<p>The Wix form is the highest-converting channel. Agency pitches (White Mountain, Panda, AFM, Universal) are 40%+ of inbound volume but have never converted — these are mass-blasts for acts way too big for a 130-cap room.</p>
+<hr />
+<h2>Response Stats</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total booking inquiries (2024-2025)</td>
+<td>~610</td>
+</tr>
+<tr>
+<td>Replied</td>
+<td>235 (39%)</td>
+</tr>
+<tr>
+<td>No reply</td>
+<td>375 (61%)</td>
+</tr>
+<tr>
+<td>After filtering out spam/mismatches</td>
+<td>~341 real leads</td>
+</tr>
+<tr>
+<td>Median response time (when we reply)</td>
+<td>2 days</td>
+</tr>
+<tr>
+<td>Replies that go out on Tuesday</td>
+<td>34%</td>
+</tr>
+<tr>
+<td>Bands that played despite being ghosted</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<p>26 bands submitted through the booking form, got no reply, and found another way onto the calendar through other channels. The inbox is a bottleneck.</p>
+<hr />
+<h2>Genre Performance</h2>
+<table>
+<thead>
+<tr>
+<th>Genre</th>
+<th style="text-align: center;">Avg Revenue</th>
+<th style="text-align: center;">Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Punk</strong></td>
+<td style="text-align: center;"><strong>$1,848</strong></td>
+<td style="text-align: center;">Rising (+37%)</td>
+</tr>
+<tr>
+<td>80s/New Wave</td>
+<td style="text-align: center;">$1,518</td>
+<td style="text-align: center;">Declining (Club 80s ended)</td>
+</tr>
+<tr>
+<td>Metal</td>
+<td style="text-align: center;">$1,317</td>
+<td style="text-align: center;">Stable</td>
+</tr>
+<tr>
+<td>Electronic/DJ</td>
+<td style="text-align: center;">$1,195</td>
+<td style="text-align: center;">Stable</td>
+</tr>
+<tr>
+<td>Hip-hop</td>
+<td style="text-align: center;">$1,121</td>
+<td style="text-align: center;">Rising (+132%)</td>
+</tr>
+<tr>
+<td>Goth/Darkwave</td>
+<td style="text-align: center;">$983</td>
+<td style="text-align: center;">Diluted by weekly DWG</td>
+</tr>
+</tbody>
+</table>
+<p>Punk is the strongest genre and still climbing. Hip-hop is the emerging opportunity.</p>
+<hr />
+<h2>Calendar Gaps (2025)</h2>
+<h3>Unfilled Fridays</h3>
+<p>March 14, March 28, June 13, August 1, October 17, November 21, November 28, December 19, December 26</p>
+<h3>Unfilled Saturdays</h3>
+<p>May 10, June 7, October 25, November 1, November 15, November 29, December 6, December 27</p>
+<p>November and December are the worst months for gaps — multiple unfilled weekend nights.</p>
+<hr />
+<h2>Cancellation Stats</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th style="text-align: center;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No-shows (just didn't turn up)</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr>
+<td>Day-of cancellations</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr>
+<td>Cancellations with notice</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr>
+<td>Bands that dropped off bills</td>
+<td style="text-align: center;">20+</td>
+</tr>
+</tbody>
+</table>
+<p>Most cancellations are one-offs with legitimate reasons (injuries, tour logistics, band drama). Summer (July-August) is peak flake season. Bass players are responsible for at least 4 separate cancellations.</p>
+<hr />
+<h2>Top Promoters &amp; Bill-Builders (by bar revenue)</h2>
+<table>
+<thead>
+<tr>
+<th>Promoter / Act</th>
+<th style="text-align: center;">Shows</th>
+<th style="text-align: center;">Avg Revenue</th>
+<th style="text-align: center;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Club Lemon / Zak Prescott</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">$2,271</td>
+<td style="text-align: center;">Active — brings legacy punk headliners</td>
+</tr>
+<tr>
+<td>Knikki Royster / Strega13</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">$2,638</td>
+<td style="text-align: center;">Active — festival-style events</td>
+</tr>
+<tr>
+<td>Wabash Cannons</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">$2,734</td>
+<td style="text-align: center;">Idle since Feb 2025</td>
+</tr>
+<tr>
+<td>Whatever68 / Lisa Monday</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">$2,713</td>
+<td style="text-align: center;">Annual punk festival</td>
+</tr>
+<tr>
+<td>Woke Up on a Throne</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">$1,897</td>
+<td style="text-align: center;">Active</td>
+</tr>
+<tr>
+<td>Cotton Brain</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">$1,532</td>
+<td style="text-align: center;">Active — rising</td>
+</tr>
+<tr>
+<td>Matters Most</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">$1,504</td>
+<td style="text-align: center;">Active — rising</td>
+</tr>
+<tr>
+<td>Discount Cadavers</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">$1,213</td>
+<td style="text-align: center;">Active — fastest improving (+65%)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Quick Wins</h2>
+<ol>
+<li><strong>Fill every open Friday and Saturday</strong> — each empty weekend night = ~$660 in lost revenue</li>
+<li><strong>Book more Thursdays</strong> — only 44% filled, $396 lift per show</li>
+<li><strong>Push 4-band bills</strong> — 35% more revenue than solo acts</li>
+<li><strong>Respond to real inquiries faster</strong> — 26 bands played despite being ghosted, many more gave up</li>
+<li><strong>Auto-filter agency spam</strong> — 40% of inbound, 0% converts, wastes time</li>
+</ol>
+</body>
+</html>
