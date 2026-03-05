@@ -3,414 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Weekly — 2026-03-02</title>
+    <title>The Dig — March 2, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #171717;
+            --bg-row: #1e1e1e;
+            --bg-row-alt: #1a1a1a;
+            --bg-hover: #252525;
+            --orange: #ff6b1a;
+            --orange-dim: #cc5514;
+            --orange-glow: rgba(255, 107, 26, 0.08);
+            --text: #e0ddd8;
+            --text-dim: #807d78;
+            --text-faint: #5a5855;
+            --bc-blue: #1da0c3;
+            --bc-hover: #17869f;
+            --dc-gray: #444;
+            --dc-hover: #555;
+            --free-green: #4ade80;
+            --border: #2a2a2a;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
+            font-family: 'Barlow', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
-            padding: 2rem;
+            position: relative;
         }
-        .header {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            text-align: center;
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 256px;
         }
-        .header h1 {
-            font-size: 1.8rem;
-            color: #1db954;
-            margin-bottom: 0.3rem;
-        }
-        .header .meta {
-            color: #888;
-            font-size: 0.9rem;
-        }
-        .cards {
-            max-width: 700px;
+
+        .container {
+            max-width: 900px;
             margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        .header {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            align-items: flex-end;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--orange);
         }
-        .card {
+
+        .eq-bars {
             display: flex;
-            gap: 1rem;
-            padding: 1rem;
-            background: #161616;
-            border-radius: 8px;
-            border-left: 3px solid #1db954;
+            align-items: flex-end;
+            gap: 3px;
+            height: 36px;
+            flex-shrink: 0;
         }
-        .card:hover {
-            background: #1e1e1e;
+        .eq-bars span {
+            display: block;
+            width: 4px;
+            background: var(--orange);
+            border-radius: 1px;
+            animation: eq 1.2s ease-in-out infinite alternate;
         }
-        .num {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #555;
-            min-width: 2rem;
-            padding-top: 0.2rem;
+        .eq-bars span:nth-child(1) { height: 60%; animation-delay: 0s; }
+        .eq-bars span:nth-child(2) { height: 100%; animation-delay: 0.15s; }
+        .eq-bars span:nth-child(3) { height: 40%; animation-delay: 0.3s; }
+        .eq-bars span:nth-child(4) { height: 80%; animation-delay: 0.45s; }
+        .eq-bars span:nth-child(5) { height: 50%; animation-delay: 0.6s; }
+
+        @keyframes eq {
+            0% { transform: scaleY(1); }
+            100% { transform: scaleY(0.3); }
         }
-        .info { flex: 1; }
-        .title {
-            font-size: 1.1rem;
+
+        .header-text h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2.4rem;
+            color: var(--orange);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+        .header-text .meta {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 500;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .playlist {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .playlist thead th {
+            font-family: 'Barlow Condensed', sans-serif;
             font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-faint);
+            text-align: left;
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .playlist thead th:first-child { width: 3rem; text-align: center; }
+        .playlist thead th:last-child { text-align: right; }
+
+        .playlist tbody tr {
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: background 0.15s ease;
+            cursor: default;
+        }
+        .playlist tbody tr:nth-child(odd) { background: var(--bg-row-alt); }
+        .playlist tbody tr:nth-child(even) { background: var(--bg-row); }
+        .playlist tbody tr:hover {
+            background: var(--bg-hover);
+            box-shadow: inset 3px 0 0 var(--orange);
+        }
+
+        .playlist td {
+            padding: 0.75rem 0.8rem;
+            vertical-align: top;
+        }
+
+        .track-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--orange);
+            text-align: center;
+            width: 3rem;
+            opacity: 0.7;
+        }
+        tr:hover .track-num { opacity: 1; }
+
+        .track-info { min-width: 0; }
+        .track-title {
+            font-weight: 600;
+            font-size: 0.95rem;
             color: #fff;
-            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 380px;
         }
-        .album {
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: 0.4rem;
+        .track-album {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            margin-top: 0.15rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 380px;
         }
-        .reason {
-            color: #aaa;
-            font-size: 0.85rem;
+
+        .track-reason {
+            font-size: 0.78rem;
+            color: var(--text-faint);
             font-style: italic;
-            margin-bottom: 0.6rem;
+            margin-top: 0.3rem;
+            line-height: 1.4;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.3s ease;
         }
-        .links {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            flex-wrap: wrap;
+        tr:hover .track-reason {
+            max-height: 4rem;
+            opacity: 1;
+            margin-top: 0.4rem;
         }
+
+        .track-links {
+            text-align: right;
+            white-space: nowrap;
+        }
+
         .btn {
             display: inline-block;
-            padding: 0.3rem 0.7rem;
-            border-radius: 4px;
+            padding: 0.25rem 0.55rem;
+            border-radius: 3px;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-family: 'Barlow Condensed', sans-serif;
             font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: background 0.15s ease, transform 0.1s ease;
+            vertical-align: middle;
         }
+        .btn:active { transform: scale(0.95); }
+
         .btn-bc {
-            background: #1da0c3;
+            background: var(--bc-blue);
             color: #fff;
         }
-        .btn-bc:hover { background: #17869f; }
+        .btn-bc:hover { background: var(--bc-hover); }
+
         .btn-dc {
-            background: #333;
-            color: #fff;
+            background: var(--dc-gray);
+            color: #ccc;
+            margin-left: 0.3rem;
         }
-        .btn-dc:hover { background: #444; }
-        .free {
-            background: #1db954;
+        .btn-dc:hover { background: var(--dc-hover); color: #fff; }
+
+        .badge-free {
+            display: inline-block;
+            background: var(--free-green);
             color: #000;
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-left: 0.3rem;
+            vertical-align: middle;
         }
-        .price {
-            color: #888;
-            font-size: 0.8rem;
+
+        .badge-fmt {
+            display: inline-block;
+            background: rgba(255, 107, 26, 0.12);
+            color: var(--orange);
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 600;
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-left: 0.3rem;
+            vertical-align: middle;
         }
-        .badge {
-            background: #2a2a2a;
-            color: #888;
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.75rem;
-        }
+
         .footer {
-            max-width: 700px;
-            margin: 2rem auto;
-            text-align: center;
-            color: #555;
-            font-size: 0.8rem;
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-faint);
+            font-size: 0.78rem;
+        }
+        .footer-logo {
+            font-family: 'Archivo Black', sans-serif;
+            color: var(--orange-dim);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 1.5rem 0.8rem 3rem; }
+            .header-text h1 { font-size: 1.8rem; }
+            .track-title, .track-album { max-width: 200px; }
+            .playlist thead { display: none; }
+            .playlist td { padding: 0.6rem 0.5rem; }
+            .track-links { display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: flex-end; }
+            .btn { padding: 0.3rem 0.6rem; font-size: 0.72rem; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Discover Weekly</h1>
-        <div class="meta">2026-03-02 &middot; balanced &middot; 20 tracks</div>
-    </div>
-    <div class="cards">
-
-        <div class="card">
-            <div class="num">01</div>
-            <div class="info">
-                <div class="title">Mclusky — Lightsabre Cocksucking Blues</div>
-                <div class="album">Mclusky Do Dallas</div>
-                <div class="reason">Welsh noise rock trio with the raw intensity of Pixies meets the sardonic wit of Shellac, perfect for fans of abrasive post-punk.</div>
-                <div class="links">
-                    <a href="https://christianfitness.bandcamp.com/album/mclusky-do-dallas" target="_blank" class="btn btn-bc">Bandcamp</a>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
+    <div class="container">
+        <div class="header">
+            <div class="eq-bars">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="header-text">
+                <h1>The Dig</h1>
+                <div class="meta">March 2, 2026 &middot; 20 tracks &middot; balanced</div>
             </div>
         </div>
 
-        <div class="card">
-            <div class="num">02</div>
-            <div class="info">
-                <div class="title">Fugazi — Merchandise</div>
-                <div class="album">Repeater</div>
-                <div class="reason">DC post-hardcore legends with politically charged lyrics and angular rhythms that bridge the gap between Minor Threat and Built to Spill.</div>
-                <div class="links">
-                    <a href="https://fugazi.bandcamp.com/album/repeater-3-songs" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
+        <table class="playlist">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Track</th>
+                    <th style="text-align:right">Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="track-num">01</td>
+                    <td class="track-info">
+                        <div class="track-title">Mclusky &mdash; Lightsabre Cocksucking Blues</div>
+                        <div class="track-album">Mclusky Do Dallas</div>
+                        <div class="track-reason">Welsh noise rock trio with the raw intensity of Pixies meets the sardonic wit of Shellac, perfect for fans of abrasive post-punk.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://christianfitness.bandcamp.com/album/mclusky-do-dallas" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <a href="https://www.discogs.com/release/28258297" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">02</td>
+                    <td class="track-info">
+                        <div class="track-title">Fugazi &mdash; Merchandise</div>
+                        <div class="track-album">Repeater</div>
+                        <div class="track-reason">DC post-hardcore legends with politically charged lyrics and angular rhythms that bridge the gap between Minor Threat and Built to Spill.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://fugazi.bandcamp.com/album/repeater-3-songs" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/2704966" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">03</td>
+                    <td class="track-info">
+                        <div class="track-title">Orchid &mdash; Death Dance 1914</div>
+                        <div class="track-album">Dance Tonight! Revolution Tomorrow!</div>
+                        <div class="track-reason">Screamo pioneers with the emotional intensity of Jawbreaker but faster and more chaotic, appealing to fans of raw punk energy.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://chaosisorchid.bandcamp.com/album/dance-tonight-revolution-tomorrow" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/6949839" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">04</td>
+                    <td class="track-info">
+                        <div class="track-title">Don Caballero &mdash; The Peter Criss Jazz</div>
+                        <div class="track-album">What Burns Never Returns</div>
+                        <div class="track-reason">Math rock instrumentals with the technical prowess of Slint and the rhythmic complexity that Trans Am fans would appreciate.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://doncaballero.bandcamp.com/album/what-burns-never-returns" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/14576601" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">05</td>
+                    <td class="track-info">
+                        <div class="track-title">Milky Wimpshake &mdash; I Feel Lucky</div>
+                        <div class="track-album">Lovers Not Fighters</div>
+                        <div class="track-reason">UK indie pop punk with the DIY charm of Beat Happening and the political edge of Crass.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://milkywimpshake.bandcamp.com/album/lovers-not-fighters" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/2043472" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">06</td>
+                    <td class="track-info">
+                        <div class="track-title">Lightning Bolt &mdash; Crown of Storms</div>
+                        <div class="track-album">Wonderful Rainbow</div>
+                        <div class="track-reason">Brutal two-piece noise rock duo with the experimental edge of Melt-Banana and the raw power of Black Flag.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://lightningbolt.bandcamp.com/album/wonderful-rainbow" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/457841" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">07</td>
+                    <td class="track-info">
+                        <div class="track-title">Fred Wesley &amp; The J.B.&#x27;s &mdash; Damn Right I Am Somebody</div>
+                        <div class="track-album">Damn Right I Am Somebody</div>
+                        <div class="track-reason">James Brown&#x27;s former trombonist delivers Afrofunk grooves that complement your Antibalas and Fela Kuti collection.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://www.discogs.com/release/4953875" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">08</td>
+                    <td class="track-info">
+                        <div class="track-title">Drive By Truckers &mdash; The Southern Thing</div>
+                        <div class="track-album">Southern Rock Opera</div>
+                        <div class="track-reason">Alt-country with punk attitude and political commentary that bridges your Hank Williams appreciation with modern rock sensibilities.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://drivebytruckers.bandcamp.com/album/southern-rock-opera-deluxe-edition" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/28948555" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">09</td>
+                    <td class="track-info">
+                        <div class="track-title">Orthrelm &mdash; OV</div>
+                        <div class="track-album">OV</div>
+                        <div class="track-reason">Extreme experimental metal with the mathematical precision of Upsilon Acrux and the intensity of your noise rock favorites.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://orthrelm.bandcamp.com/album/ov" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/2254799" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">10</td>
+                    <td class="track-info">
+                        <div class="track-title">Les Savy Fav &mdash; The Sweat Descends</div>
+                        <div class="track-album">Go Forth</div>
+                        <div class="track-reason">NYC art punk with the dance-punk energy of LCD Soundsystem and the experimental edge of Arab on Radar.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://www.discogs.com/release/4371178" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">11</td>
+                    <td class="track-info">
+                        <div class="track-title">Shiner &mdash; The Egg</div>
+                        <div class="track-album">Lula Divinia</div>
+                        <div class="track-reason">Post-hardcore with the melodic sensibilities of Hum and the technical prowess that Sparta fans would love.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://shinerkc.bandcamp.com/album/lula-divinia-2016-remaster" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/9741410" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">12</td>
+                    <td class="track-info">
+                        <div class="track-title">Big Black &mdash; Kerosene</div>
+                        <div class="track-album">Songs About Fucking</div>
+                        <div class="track-reason">Steve Albini&#x27;s noise rock project with the industrial edge of Ministry and the punk aggression of Black Flag.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://bigblack.bandcamp.com/album/songs-about-fucking-remastered" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/6669736" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">13</td>
+                    <td class="track-info">
+                        <div class="track-title">The Fall &mdash; Paintwork</div>
+                        <div class="track-album">This Nation&#x27;s Saving Grace</div>
+                        <div class="track-reason">Manchester post-punk legends with the repetitive hypnotism of Can and Mark E. Smith&#x27;s confrontational vocals.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://thefallmusic.bandcamp.com/album/this-nations-saving-grace" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/10671561" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">14</td>
+                    <td class="track-info">
+                        <div class="track-title">Osees &mdash; Henchlock</div>
+                        <div class="track-album">Face Stabber</div>
+                        <div class="track-reason">Garage rock psych with the fuzzed-out intensity of Fu Manchu and the prolific energy that Ty Segall admirers crave.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://ohsees.bandcamp.com/album/face-stabber" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/14009547" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">15</td>
+                    <td class="track-info">
+                        <div class="track-title">Health &mdash; New Coke</div>
+                        <div class="track-album">Death Magic</div>
+                        <div class="track-reason">Noise rock meets electronic with the abrasive textures of Death From Above 1979 and experimental edge of Aphex Twin.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://youwillloveeachother.bandcamp.com/album/death-magic" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/7330554" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">16</td>
+                    <td class="track-info">
+                        <div class="track-title">Mulatu Astatke &mdash; Yegelle Tezeta</div>
+                        <div class="track-album">Mulatu of Ethiopia</div>
+                        <div class="track-reason">Ethiopian jazz pioneer whose Ethio-jazz fusion complements your William Onyeabor and Tony Allen collection perfectly.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://mulatuastatke.bandcamp.com/album/mulatu-of-ethiopia" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/16260053" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">17</td>
+                    <td class="track-info">
+                        <div class="track-title">Battles &mdash; Atlas</div>
+                        <div class="track-album">Mirrored</div>
+                        <div class="track-reason">Math rock supergroup featuring ex-Don Caballero members with the rhythmic complexity your Upsilon Acrux collection suggests you&#x27;d love.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://battles.bandcamp.com/album/mirrored" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/12891248" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">18</td>
+                    <td class="track-info">
+                        <div class="track-title">USA Is A Monster &mdash; Bobby Digital</div>
+                        <div class="track-album">Woot</div>
+                        <div class="track-reason">Cleveland art punk with the experimental chaos of Arab on Radar and the political edge of The Mekons.</div>
+                    </td>
+                    <td class="track-links">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">19</td>
+                    <td class="track-info">
+                        <div class="track-title">Tropical Fuck Storm &mdash; You Let My Tyres Down</div>
+                        <div class="track-album">Braindrops</div>
+                        <div class="track-reason">Australian post-punk with the surreal intensity of The Birthday Party and modern electronic elements.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://tropicalfstorm.bandcamp.com/album/braindrops" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/36541699" target="_blank" class="btn btn-dc">Discogs</a>
+                        <span class="badge-fmt">FLAC</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="track-num">20</td>
+                    <td class="track-info">
+                        <div class="track-title">Kool Keith &mdash; I&#x27;m Destructive</div>
+                        <div class="track-album">Sex Style</div>
+                        <div class="track-reason">Underground hip-hop with the experimental approach of Dr. Octagon and the raw energy that complements your Aesop Rock collection.</div>
+                    </td>
+                    <td class="track-links">
+                        <a href="https://koolkeith.bandcamp.com/album/sex-style" target="_blank" class="btn btn-bc">Bandcamp</a>
+                        <span class="badge-free">Free</span>
+                        <a href="https://www.discogs.com/release/832643" target="_blank" class="btn btn-dc">Discogs</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        <div class="card">
-            <div class="num">03</div>
-            <div class="info">
-                <div class="title">Orchid — Death Dance 1914</div>
-                <div class="album">Dance Tonight! Revolution Tomorrow!</div>
-                <div class="reason">Screamo pioneers with the emotional intensity of Jawbreaker but faster and more chaotic, appealing to fans of raw punk energy.</div>
-                <div class="links">
-                    <a href="https://chaosisorchid.bandcamp.com/album/dance-tonight-revolution-tomorrow" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
+        <div class="footer">
+            <span class="footer-logo">The Dig</span>
+            <span>Curated from 634 albums &middot; LAME pipeline</span>
         </div>
-
-        <div class="card">
-            <div class="num">04</div>
-            <div class="info">
-                <div class="title">Don Caballero — The Peter Criss Jazz</div>
-                <div class="album">What Burns Never Returns</div>
-                <div class="reason">Math rock instrumentals with the technical prowess of Slint and the rhythmic complexity that Trans Am fans would appreciate.</div>
-                <div class="links">
-                    <a href="https://doncaballero.bandcamp.com/album/what-burns-never-returns" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">05</div>
-            <div class="info">
-                <div class="title">Milky Wimpshake — I Feel Lucky</div>
-                <div class="album">Lovers Not Fighters</div>
-                <div class="reason">UK indie pop punk with the DIY charm of Beat Happening and the political edge of Crass.</div>
-                <div class="links">
-                    <a href="https://milkywimpshake.bandcamp.com/album/lovers-not-fighters" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">06</div>
-            <div class="info">
-                <div class="title">Lightning Bolt — Crown of Storms</div>
-                <div class="album">Wonderful Rainbow</div>
-                <div class="reason">Brutal two-piece noise rock duo with the experimental edge of Melt-Banana and the raw power of Black Flag.</div>
-                <div class="links">
-                    <a href="https://lightningbolt.bandcamp.com/album/wonderful-rainbow" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">07</div>
-            <div class="info">
-                <div class="title">Fred Wesley &amp; The J.B.&#x27;s — Damn Right I Am Somebody</div>
-                <div class="album">Damn Right I Am Somebody</div>
-                <div class="reason">James Brown&#x27;s former trombonist delivers Afrofunk grooves that complement your Antibalas and Fela Kuti collection.</div>
-                <div class="links">
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">08</div>
-            <div class="info">
-                <div class="title">Drive By Truckers — The Southern Thing</div>
-                <div class="album">Southern Rock Opera</div>
-                <div class="reason">Alt-country with punk attitude and political commentary that bridges your Hank Williams appreciation with modern rock sensibilities.</div>
-                <div class="links">
-                    <a href="https://drivebytruckers.bandcamp.com/album/southern-rock-opera-deluxe-edition" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">09</div>
-            <div class="info">
-                <div class="title">Orthrelm — OV</div>
-                <div class="album">OV</div>
-                <div class="reason">Extreme experimental metal with the mathematical precision of Upsilon Acrux and the intensity of your noise rock favorites.</div>
-                <div class="links">
-                    <a href="https://orthrelm.bandcamp.com/album/ov" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">10</div>
-            <div class="info">
-                <div class="title">Les Savy Fav — The Sweat Descends</div>
-                <div class="album">Go Forth</div>
-                <div class="reason">NYC art punk with the dance-punk energy of LCD Soundsystem and the experimental edge of Arab on Radar.</div>
-                <div class="links">
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">11</div>
-            <div class="info">
-                <div class="title">Shiner — The Egg</div>
-                <div class="album">Lula Divinia</div>
-                <div class="reason">Post-hardcore with the melodic sensibilities of Hum and the technical prowess that Sparta fans would love.</div>
-                <div class="links">
-                    <a href="https://shinerkc.bandcamp.com/album/lula-divinia-2016-remaster" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">12</div>
-            <div class="info">
-                <div class="title">Big Black — Kerosene</div>
-                <div class="album">Songs About Fucking</div>
-                <div class="reason">Steve Albini&#x27;s noise rock project with the industrial edge of Ministry and the punk aggression of Black Flag.</div>
-                <div class="links">
-                    <a href="https://bigblack.bandcamp.com/album/songs-about-fucking-remastered" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">13</div>
-            <div class="info">
-                <div class="title">The Fall — Paintwork</div>
-                <div class="album">This Nation&#x27;s Saving Grace</div>
-                <div class="reason">Manchester post-punk legends with the repetitive hypnotism of Can and Mark E. Smith&#x27;s confrontational vocals.</div>
-                <div class="links">
-                    <a href="https://thefallmusic.bandcamp.com/album/this-nations-saving-grace" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">14</div>
-            <div class="info">
-                <div class="title">Osees — Henchlock</div>
-                <div class="album">Face Stabber</div>
-                <div class="reason">Garage rock psych with the fuzzed-out intensity of Fu Manchu and the prolific energy that Ty Segall admirers crave.</div>
-                <div class="links">
-                    <a href="https://ohsees.bandcamp.com/album/face-stabber" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">15</div>
-            <div class="info">
-                <div class="title">Health — New Coke</div>
-                <div class="album">Death Magic</div>
-                <div class="reason">Noise rock meets electronic with the abrasive textures of Death From Above 1979 and experimental edge of Aphex Twin.</div>
-                <div class="links">
-                    <a href="https://youwillloveeachother.bandcamp.com/album/death-magic" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">16</div>
-            <div class="info">
-                <div class="title">Mulatu Astatke — Yegelle Tezeta</div>
-                <div class="album">Mulatu of Ethiopia</div>
-                <div class="reason">Ethiopian jazz pioneer whose Ethio-jazz fusion complements your William Onyeabor and Tony Allen collection perfectly.</div>
-                <div class="links">
-                    <a href="https://mulatuastatke.bandcamp.com/album/mulatu-of-ethiopia" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">17</div>
-            <div class="info">
-                <div class="title">Battles — Atlas</div>
-                <div class="album">Mirrored</div>
-                <div class="reason">Math rock supergroup featuring ex-Don Caballero members with the rhythmic complexity your Upsilon Acrux collection suggests you&#x27;d love.</div>
-                <div class="links">
-                    <a href="https://battles.bandcamp.com/album/mirrored" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">18</div>
-            <div class="info">
-                <div class="title">USA Is A Monster — Bobby Digital</div>
-                <div class="album">Woot</div>
-                <div class="reason">Cleveland art punk with the experimental chaos of Arab on Radar and the political edge of The Mekons.</div>
-                <div class="links">
-                    
-                    
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">19</div>
-            <div class="info">
-                <div class="title">Tropical Fuck Storm — You Let My Tyres Down</div>
-                <div class="album">Braindrops</div>
-                <div class="reason">Australian post-punk with the surreal intensity of The Birthday Party and modern electronic elements.</div>
-                <div class="links">
-                    <a href="https://tropicalfstorm.bandcamp.com/album/braindrops" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    <span class="badge">FLAC</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="num">20</div>
-            <div class="info">
-                <div class="title">Kool Keith — I&#x27;m Destructive</div>
-                <div class="album">Sex Style</div>
-                <div class="reason">Underground hip-hop with the experimental approach of Dr. Octagon and the raw energy that complements your Aesop Rock collection.</div>
-                <div class="links">
-                    <a href="https://koolkeith.bandcamp.com/album/sex-style" target="_blank" class="btn btn-bc">Bandcamp</a> <span class="free">FREE</span>
-                    
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        Generated by LAME Discover Weekly
     </div>
 </body>
 </html>
