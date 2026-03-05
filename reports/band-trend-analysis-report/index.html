@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Band Trends — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Band Trend Analysis — Who's Hot, Who's Not</h1>
+<p><strong>Generated:</strong> March 5, 2026<br />
+<strong>Data:</strong> Calendar events (2014-2026), Toast POS daily sales (2022-2026), 9,909 emails (2024-2026)<br />
+<strong>Method:</strong> Every band with 2+ appearances cross-referenced against bar revenue. Trends calculated by comparing recent (2025-2026) averages to historical (2022-2024).</p>
+<hr />
+<h2>Yearly Show-Night Averages (Context)</h2>
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th style="text-align: right;">Avg Show Revenue</th>
+<th style="text-align: right;">Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td style="text-align: right;">$833</td>
+<td style="text-align: right;">172</td>
+</tr>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">$1,051</td>
+<td style="text-align: right;">208</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">$1,211</td>
+<td style="text-align: right;">168</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align: right;">$1,073</td>
+<td style="text-align: right;">175</td>
+</tr>
+<tr>
+<td>2026 YTD</td>
+<td style="text-align: right;">$1,045</td>
+<td style="text-align: right;">39</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Tier 1 — Hot Right Now (Active 2025-2026, consistently $2,000+)</h2>
+<table>
+<thead>
+<tr>
+<th>Act</th>
+<th>Recent Avg</th>
+<th>Appearances</th>
+<th>Key Dates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Brighton Street Bullies</strong></td>
+<td>$2,715 (7 recent)</td>
+<td>11 total</td>
+<td>$4,557 (2/23/25), $3,044 (3/8/25), $2,888 (6/28/25), $2,658 (1/24/26)</td>
+</tr>
+<tr>
+<td><strong>Deadly Dispute</strong></td>
+<td>$3,146 (3 recent)</td>
+<td>7 total</td>
+<td>$3,893 (12/20/25), $2,888 (6/28/25), $2,658 (1/24/26)</td>
+</tr>
+<tr>
+<td><strong>Wabash Cannons</strong></td>
+<td>$4,557 (1 recent)</td>
+<td>7 total</td>
+<td>$4,557 (2/23/25) — historical avg $2,143, UP 113%</td>
+</tr>
+<tr>
+<td><strong>Big Attitude</strong></td>
+<td>$3,893 (1 recent)</td>
+<td>2 total</td>
+<td>$3,893 (12/20/25), $3,270 (12/2/23)</td>
+</tr>
+<tr>
+<td><strong>Moral Genocide</strong></td>
+<td>$2,535 (2 recent)</td>
+<td>2 total</td>
+<td>$2,412 (8/9/25), $2,658 (1/24/26)</td>
+</tr>
+<tr>
+<td><strong>Woke Up on a Throne</strong></td>
+<td>$1,993 (3 recent)</td>
+<td>6 total</td>
+<td>$2,506 (5/24/25), $2,296 (10/4/25)</td>
+</tr>
+</tbody>
+</table>
+<h2>Tier 2 — Reliable Above-Average ($1,200-2,000)</h2>
+<table>
+<thead>
+<tr>
+<th>Act</th>
+<th>Recent Avg</th>
+<th>Appearances</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cotton Brain</strong></td>
+<td>$1,633 (6 recent)</td>
+<td>6 total</td>
+<td>New act, every show since Nov 2024, peaked $2,274</td>
+</tr>
+<tr>
+<td><strong>Matters Most</strong></td>
+<td>$1,777 (3 recent)</td>
+<td>9 total</td>
+<td>Long track record, trending UP +31%</td>
+</tr>
+<tr>
+<td><strong>Discount Cadavers</strong></td>
+<td>$1,944 (2 recent)</td>
+<td>7 total</td>
+<td>UP 88% from historical</td>
+</tr>
+<tr>
+<td><strong>Baked Religion</strong></td>
+<td>$1,940 (3 recent)</td>
+<td>4 total</td>
+<td>UP 111% from historical</td>
+</tr>
+<tr>
+<td><strong>Insolence</strong></td>
+<td>$1,438 (3 recent)</td>
+<td>3 total</td>
+<td>Consistent — $1,459, $1,492, $1,363</td>
+</tr>
+<tr>
+<td><strong>Sideshow</strong></td>
+<td>$1,544 (3 recent)</td>
+<td>3 total</td>
+<td>New, consistent $1,433-$1,729</td>
+</tr>
+<tr>
+<td><strong>Born to Run</strong></td>
+<td>$1,604 (2 recent)</td>
+<td>2 total</td>
+<td>$1,512 (12/20/24), $1,695 (4/11/25)</td>
+</tr>
+<tr>
+<td><strong>Loopy Lew</strong></td>
+<td>$1,571 (3 recent)</td>
+<td>4 total</td>
+<td>UP 71%, peaked $2,058</td>
+</tr>
+<tr>
+<td><strong>The Letdown</strong></td>
+<td>$1,277 (3 recent)</td>
+<td>7 total</td>
+<td>UP 37% from historical</td>
+</tr>
+<tr>
+<td><strong>Phantoms with Fangs</strong></td>
+<td>$1,410 (3 recent)</td>
+<td>3 total</td>
+<td>New, peaked $1,698</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Rising — Revenue Trend Going UP</h2>
+<table>
+<thead>
+<tr>
+<th>Act</th>
+<th>Historical Avg</th>
+<th>Recent Avg</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wabash Cannons</strong></td>
+<td>$2,143</td>
+<td>$4,557</td>
+<td>+113%</td>
+</tr>
+<tr>
+<td><strong>One Square Mile</strong></td>
+<td>$946</td>
+<td>$2,202</td>
+<td>+133%</td>
+</tr>
+<tr>
+<td><strong>Baked Religion</strong></td>
+<td>$921</td>
+<td>$1,940</td>
+<td>+111%</td>
+</tr>
+<tr>
+<td><strong>Discount Cadavers</strong></td>
+<td>$1,034</td>
+<td>$1,944</td>
+<td>+88%</td>
+</tr>
+<tr>
+<td><strong>Post Mortem Superstar</strong></td>
+<td>$1,235</td>
+<td>$2,288</td>
+<td>+85%</td>
+</tr>
+<tr>
+<td><strong>Loopy Lew</strong></td>
+<td>$918</td>
+<td>$1,571</td>
+<td>+71%</td>
+</tr>
+<tr>
+<td><strong>Deadly Dispute</strong></td>
+<td>$1,889</td>
+<td>$3,146</td>
+<td>+67%</td>
+</tr>
+<tr>
+<td><strong>Thee Rapscallions</strong></td>
+<td>$918</td>
+<td>$1,414</td>
+<td>+54%</td>
+</tr>
+<tr>
+<td><strong>Brighton Street Bullies</strong></td>
+<td>$1,784</td>
+<td>$2,715</td>
+<td>+52%</td>
+</tr>
+<tr>
+<td><strong>The Letdown</strong></td>
+<td>$931</td>
+<td>$1,277</td>
+<td>+37%</td>
+</tr>
+<tr>
+<td><strong>Matters Most</strong></td>
+<td>$1,353</td>
+<td>$1,777</td>
+<td>+31%</td>
+</tr>
+<tr>
+<td><strong>Woke Up on a Throne</strong></td>
+<td>$1,540</td>
+<td>$1,993</td>
+<td>+29%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Cooling Off — Were Good But Tapering</h2>
+<h3>Still Playing But Drawing Less</h3>
+<table>
+<thead>
+<tr>
+<th>Act</th>
+<th>Historical Avg</th>
+<th>Recent Avg</th>
+<th>Change</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fancy Faces</strong></td>
+<td>$1,899</td>
+<td>$1,006</td>
+<td>-47%</td>
+<td>Most dramatic decline. 15 total shows. Went from $3,003 (Nov 2023) to ~$1,000 in 2025. Still getting booked frequently but drawing poorly.</td>
+</tr>
+<tr>
+<td><strong>Dying Species</strong></td>
+<td>$2,351</td>
+<td>$1,205</td>
+<td>-49%</td>
+<td>Band dissolved. Main member moved away. Do not re-engage.</td>
+</tr>
+<tr>
+<td><strong>Ramblin Outlaws</strong></td>
+<td>$2,176</td>
+<td>$1,635</td>
+<td>-25%</td>
+<td>Farewell show for drummer (Jan 2025). May be inactive.</td>
+</tr>
+<tr>
+<td><strong>Holding Grudges</strong></td>
+<td>$2,075</td>
+<td>$1,719</td>
+<td>-17%</td>
+<td>Still decent but down from $3,133 peak</td>
+</tr>
+<tr>
+<td><strong>Crunk Witch</strong></td>
+<td>$1,412</td>
+<td>$959</td>
+<td>-32%</td>
+<td>Peaked $2,107 in June 2024, only $959 in Jan 2026</td>
+</tr>
+<tr>
+<td><strong>Manthers</strong></td>
+<td>$1,250</td>
+<td>$890</td>
+<td>-29%</td>
+<td>Had a $2,490 peak in 2022</td>
+</tr>
+<tr>
+<td><strong>Savage and the Witch</strong></td>
+<td>$1,320</td>
+<td>$707 last</td>
+<td>-46% last</td>
+<td>Dropped to $707 on 4/25/25</td>
+</tr>
+<tr>
+<td><strong>Psyattica</strong></td>
+<td>$1,551</td>
+<td>$716</td>
+<td>-54%</td>
+<td>Steep decline</td>
+</tr>
+</tbody>
+</table>
+<h3>Disappeared Entirely (Were Above-Average, No Shows Since Late 2024)</h3>
+<table>
+<thead>
+<tr>
+<th>Act</th>
+<th>Historical Avg</th>
+<th>Last Seen</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Broke Bastards</strong></td>
+<td>$1,959 (6 shows)</td>
+<td>Feb 2024</td>
+<td>Averaged $1,959, peaked $3,556. Worth outreach.</td>
+</tr>
+<tr>
+<td><strong>Club 80s</strong> (promoter night)</td>
+<td>$1,524 (22 nights)</td>
+<td>June 2024</td>
+<td>Consistently strong Friday night. Revive.</td>
+</tr>
+<tr>
+<td><strong>Klub Therapy</strong> (promoter night)</td>
+<td>$1,121 (14 nights)</td>
+<td>July 2024</td>
+<td>Reliable Saturday fill.</td>
+</tr>
+<tr>
+<td><strong>The Pictographs</strong></td>
+<td>$2,594</td>
+<td>Aug 2024</td>
+<td>Only 2 shows but both huge ($3,556, $1,631)</td>
+</tr>
+<tr>
+<td><strong>The Calvins</strong></td>
+<td>$2,524</td>
+<td>May 2024</td>
+<td>$3,401 and $1,647</td>
+</tr>
+<tr>
+<td><strong>Resider</strong></td>
+<td>$2,551</td>
+<td>Dec 2023</td>
+<td>Two strong shows</td>
+</tr>
+<tr>
+<td><strong>Cars On Fire</strong></td>
+<td>$2,250</td>
+<td>Jan 2023</td>
+<td>Peak $3,043</td>
+</tr>
+<tr>
+<td><strong>Systematic Abuse</strong></td>
+<td>$1,994</td>
+<td>Nov 2023</td>
+<td>Three shows, all strong</td>
+</tr>
+<tr>
+<td><strong>Grahzny</strong></td>
+<td>$2,012</td>
+<td>Mar 2024</td>
+<td>Peaked $3,401</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Admiral Atlas / Vilos Cohaagen — Deep Dive</h2>
+<p><strong>Identity:</strong> Victor Hugo (aka Vilos Cohaagen). Stage name: Admiral Atlas. Email: admiralatlas1@yahoo.com. Promoter/DJ/beatmaker. Books hip-hop showcases. Also DJs Monday "Vinyl Knights" sets.</p>
+<h3>All Show Dates (14 total)</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Day</th>
+<th>Gross Sales</th>
+<th>Event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-02-22</td>
+<td>Thu</td>
+<td>$775</td>
+<td>Bourdain Cobain / Admiral Atlas / Dross Wizdrobe</td>
+</tr>
+<tr>
+<td>2024-09-05</td>
+<td>Thu</td>
+<td>$918</td>
+<td>Thee Rapscallions / Admiral Atlas / Loopy Lew / Kind Weird Wild</td>
+</tr>
+<tr>
+<td>2024-10-25</td>
+<td>Fri</td>
+<td>$1,328</td>
+<td>Thee Rapscaillions / Admiral Atlas / Prime One / Loopy Lew</td>
+</tr>
+<tr>
+<td>2024-11-18</td>
+<td>Mon</td>
+<td>$506</td>
+<td>Vinyl Knights (DJ set)</td>
+</tr>
+<tr>
+<td>2024-11-23</td>
+<td>Sat</td>
+<td>$858</td>
+<td>Thee Rapscallions / Admiral Atlas / Lochness / T-Chronic</td>
+</tr>
+<tr>
+<td>2024-12-02</td>
+<td>Mon</td>
+<td>$506</td>
+<td>Vinyl Knights (DJ set)</td>
+</tr>
+<tr>
+<td>2024-12-19</td>
+<td>Thu</td>
+<td>$1,327</td>
+<td>Thee Rapscallions / Admiral Atlas / Frequency / Sloat Dixon / Loopy Lew</td>
+</tr>
+<tr>
+<td>2025-06-20</td>
+<td>Fri</td>
+<td>$1,146</td>
+<td>Admiral Atlas / Sloat Dixon ft. Chief Sweat / Hemo / Riquested</td>
+</tr>
+<tr>
+<td>2025-07-09</td>
+<td>Wed</td>
+<td>$368</td>
+<td>Admiral Atlas Arrt Nite (art night concept)</td>
+</tr>
+<tr>
+<td>2025-07-11</td>
+<td>Fri</td>
+<td>$1,029</td>
+<td>Fadegreen / Shadowfigure / Hemo / Admiral Atlas</td>
+</tr>
+<tr>
+<td>2025-08-22</td>
+<td>Fri</td>
+<td>$843</td>
+<td>City Soul Collective feat. Admiral Atlas</td>
+</tr>
+<tr>
+<td>2025-10-24</td>
+<td>Fri</td>
+<td>$1,337</td>
+<td>Take the Mic Back - Halloween Bash (Atlas B-Day)</td>
+</tr>
+<tr>
+<td>2025-11-22</td>
+<td>Sat</td>
+<td>$857</td>
+<td>Admiral Atlas / Sinja the Architect / Super-Mid / Derek Morris / DJ ODC</td>
+</tr>
+</tbody>
+</table>
+<h3>Revenue Summary</h3>
+<ul>
+<li><strong>10 headliner shows</strong> with data, average gross <strong>$1,042</strong></li>
+<li><strong>Trend: Flat.</strong> First 5 shows avg $1,041, last 5 avg $1,042.</li>
+</ul>
+<h3>Day-of-Week Performance</h3>
+<ul>
+<li><strong>Fridays:</strong> $1,089 avg vs venue Friday avg $1,231 — runs <strong>12% below</strong> typical Friday</li>
+<li><strong>Saturdays:</strong> ~$858 avg vs venue Saturday avg $1,308 — runs <strong>34% below</strong></li>
+<li><strong>Thursdays:</strong> His best relative performance. $1,327 (12/19/24) was nearly double the Thursday average.</li>
+<li><strong>Art night (Wed 7/9/25):</strong> Bombed at $368, 13 orders.</li>
+</ul>
+<h3>Email Volume</h3>
+<ul>
+<li><strong>133 total emails</strong> across 45 threads</li>
+<li>2024: only 7 emails. 2025: 126 emails. Very high-contact promoter (~10 emails per booked show).</li>
+</ul>
+<h3>Verdict</h3>
+<p>Admiral Atlas is a <strong>consistent mid-tier promoter</strong> who is neither hot nor coasting. Best value on Thursdays where he overperforms. On Fridays he's average-to-below. On Saturdays he significantly underperforms. High maintenance (lots of flyer exchanges, lineup reshuffling). Book him on Thursdays or off-peak nights.</p>
+<hr />
+<h2>Key Takeaways for the Booker</h2>
+<ol>
+<li><strong>Brighton Street Bullies + Deadly Dispute</strong> are the current anchor acts. They appear on the highest-grossing nights, often together, and their trend is UP. Book them as much as possible.</li>
+<li><strong>Fancy Faces is getting booked on inertia, not current draw.</strong> 15 shows but revenue dropped 47%. Reduce frequency.</li>
+<li><strong>Dying Species dissolved.</strong> Remove from re-engage lists.</li>
+<li><strong>Rising acts to bet on:</strong> Baked Religion (+111%), Discount Cadavers (+88%), Cotton Brain (new but consistent), Loopy Lew (+71%).</li>
+<li><strong>Club 80s disappeared</strong> and it was averaging $1,524 across 22 nights. Significant revenue loss. Revive.</li>
+<li><strong>Broke Bastards vanished</strong> despite $1,959 avg. Worth reaching out.</li>
+<li><strong>Wabash Cannons</strong> had a monster $4,557 night. Book again to see if it holds.</li>
+</ol>
+</body>
+</html>

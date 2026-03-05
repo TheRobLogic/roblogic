@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recurring Series — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Recurring Series Analysis — What Works, What Doesn't</h1>
+<p><strong>Generated:</strong> March 5, 2026<br />
+<strong>Data:</strong> 5,745 calendar events, Toast POS daily sales (2022-2026)</p>
+<hr />
+<h2>Day-of-Week Baseline</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Dark Night Avg</th>
+<th>Show Night Avg</th>
+<th>Lift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mon</td>
+<td>$539</td>
+<td>$712</td>
+<td>+$173</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td>$524</td>
+<td>$665</td>
+<td>+$141</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td>$438</td>
+<td>$563</td>
+<td>+$125</td>
+</tr>
+<tr>
+<td>Thu</td>
+<td>$601</td>
+<td>$962</td>
+<td>+$361</td>
+</tr>
+<tr>
+<td>Fri</td>
+<td>$731</td>
+<td>$1,427</td>
+<td>+$696</td>
+</tr>
+<tr>
+<td>Sat</td>
+<td>$618</td>
+<td>$1,308</td>
+<td>+$690</td>
+</tr>
+<tr>
+<td>Sun</td>
+<td>$689</td>
+<td>$903</td>
+<td>+$214</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Live Music Series — Ranked by Revenue</h2>
+<h3>1. Club 80s — BEST RECURRING NIGHT EVER (INACTIVE)</h3>
+<ul>
+<li><strong>What:</strong> 80s dance/DJ night, run by Bryan Pollard. Monthly Friday.</li>
+<li><strong>Date range:</strong> Jan 2015 - June 2024 (with gaps)</li>
+<li><strong>Occurrences:</strong> 24 dates (22 with Toast data)</li>
+<li><strong>Status:</strong> INACTIVE since June 2024. Nothing replaced it.</li>
+<li><strong>Average gross:</strong> $1,524</li>
+<li><strong>vs Dark Fridays:</strong> +108% ($1,524 vs $731)</li>
+<li><strong>vs Other Friday shows:</strong> +8% ($1,524 vs $1,411)</li>
+<li><strong>VERDICT: REVIVE.</strong> Most consistently profitable recurring night. Beat average one-off Friday shows. Required zero booking effort and delivered reliably above-average results.</li>
+</ul>
+<hr />
+<h3>2. Klub Therapy — STRONG (INACTIVE)</h3>
+<ul>
+<li><strong>What:</strong> Goth/industrial night. Monthly Saturday.</li>
+<li><strong>Date range:</strong> Dec 2014 - July 2024 (with gaps)</li>
+<li><strong>Occurrences:</strong> 27 dates (14 with Toast data)</li>
+<li><strong>Status:</strong> INACTIVE since July 2024.</li>
+<li><strong>Average gross:</strong> $1,121</li>
+<li><strong>vs Dark Saturdays:</strong> +82% ($1,121 vs $618)</li>
+<li><strong>vs Other Saturday shows:</strong> -15% ($1,121 vs $1,325)</li>
+<li><strong>VERDICT: CONDITIONAL REVIVE.</strong> Beats dark Saturdays handily but underperforms one-off bookings by ~$200/night. Good easy fill for thin months.</li>
+</ul>
+<hr />
+<h3>3. Vinyl Knights — GOOD FOR MONDAY (ACTIVE)</h3>
+<ul>
+<li><strong>What:</strong> DJ night (vinyl-only). DJs Hoof Hearted, Miggs, Admiral Atlas. Weekly Monday.</li>
+<li><strong>Date range:</strong> Nov 2024 - present (scheduled through Dec 2026)</li>
+<li><strong>Occurrences:</strong> 67 (24 with Toast data)</li>
+<li><strong>Status:</strong> ACTIVE, weekly.</li>
+<li><strong>Average gross:</strong> $881</li>
+<li><strong>vs Dark Mondays:</strong> +66% ($881 vs $539)</li>
+<li><strong>vs Monday Bingo/Karaoke (predecessor):</strong> +51% ($881 vs $583)</li>
+<li><strong>Trend:</strong> DOWN slightly (-9%) but high variance.</li>
+<li><strong>VERDICT: KEEP.</strong> Best Monday programming the bar has had. +$342/night vs doing nothing. Zero booking effort.</li>
+</ul>
+<hr />
+<h3>4. DarkWave Garden — UNDERPERFORMER (ACTIVE)</h3>
+<ul>
+<li><strong>What:</strong> Goth/darkwave DJ night, run by Bryan Pollard. Currently weekly Thursday.</li>
+<li><strong>Date range:</strong> Originally 2015-2016 (biweekly). Returned Oct 2025 as weekly.</li>
+<li><strong>Occurrences:</strong> 16 with Toast data (all from 2025-2026 run)</li>
+<li><strong>Status:</strong> ACTIVE, weekly.</li>
+<li><strong>Average gross:</strong> $704</li>
+<li><strong>vs Dark Thursdays:</strong> +17% ($704 vs $601) — barely better than nothing</li>
+<li><strong>vs Other Thursday shows:</strong> -32% ($704 vs $1,038) — dramatically worse</li>
+<li><strong>Consistency:</strong> 5 of 16 nights (31%) fell BELOW the dark Thursday average</li>
+<li><strong>Trend:</strong> Slightly up (+21%) but driven by one $1,296 outlier</li>
+</ul>
+<p><strong>VERDICT: CUT TO MONTHLY OR DROP.</strong> Every Thursday it occupies, you forgo ~$330 vs what a one-off band would bring. Over a year at weekly pace: ~$17,000 left on the table.</p>
+<p><strong>Suggested negotiation:</strong> If Pollard is the same promoter as Club 80s, offer: "Bring back Club 80s monthly Fridays in exchange for scaling DarkWave to monthly Thursdays."</p>
+<h3>DarkWave Revenue Detail</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th style="text-align: right;">Gross</th>
+<th style="text-align: right;">Orders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10-02</td>
+<td style="text-align: right;">$920</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr>
+<td>2025-10-09</td>
+<td style="text-align: right;">$714</td>
+<td style="text-align: right;">39</td>
+</tr>
+<tr>
+<td>2025-10-16</td>
+<td style="text-align: right;">$623</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>2025-10-23</td>
+<td style="text-align: right;">$614</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr>
+<td>2025-10-30</td>
+<td style="text-align: right;">$952</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr>
+<td>2025-11-06</td>
+<td style="text-align: right;">$413</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td>2025-11-13</td>
+<td style="text-align: right;">$422</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td>2025-11-20</td>
+<td style="text-align: right;">$444</td>
+<td style="text-align: right;">25</td>
+</tr>
+<tr>
+<td>2025-11-27</td>
+<td style="text-align: right;">$321</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr>
+<td>2025-12-04</td>
+<td style="text-align: right;">$840</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr>
+<td>2025-12-11</td>
+<td style="text-align: right;">$737</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td>2025-12-18</td>
+<td style="text-align: right;">$1,296</td>
+<td style="text-align: right;">59</td>
+</tr>
+<tr>
+<td>2026-01-08</td>
+<td style="text-align: right;">$744</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>2026-01-15</td>
+<td style="text-align: right;">$579</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr>
+<td>2026-01-22</td>
+<td style="text-align: right;">$709</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td>2026-01-29</td>
+<td style="text-align: right;">$930</td>
+<td style="text-align: right;">42</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>5. Blues Jam — DEAD, LEAVE IT DEAD</h3>
+<ul>
+<li><strong>What:</strong> Open blues jam / Big City Blues Band jam. Wednesday.</li>
+<li><strong>Date range:</strong> Mar 2016 - Sep 2022</li>
+<li><strong>Status:</strong> INACTIVE since Sep 28, 2022. Died on its own.</li>
+<li><strong>Average gross:</strong> $363</li>
+<li><strong>vs Dark Wednesdays:</strong> -17% ($363 vs $438) — <strong>WORSE THAN DOING NOTHING</strong></li>
+<li><strong>vs Other Wednesday shows:</strong> -53% ($363 vs $772)</li>
+<li><strong>Trend:</strong> DOWN (-27%), was cratering when it ended. Last 5 shows averaged $238. Final night: $147.</li>
+<li><strong>VERDICT: DO NOT REVIVE.</strong></li>
+</ul>
+<hr />
+<h2>Non-Music Recurring Events (Brief)</h2>
+<table>
+<thead>
+<tr>
+<th>Series</th>
+<th>Day</th>
+<th>Avg Gross</th>
+<th>vs Dark Night</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dart Tournament</td>
+<td>Sunday</td>
+<td>$901</td>
+<td>+31%</td>
+<td>179 events. Reliable. Not our concern.</td>
+</tr>
+<tr>
+<td>Karaoke</td>
+<td>Tuesday</td>
+<td>$599</td>
+<td>+14%</td>
+<td>Marginal lift. Low-effort fill.</td>
+</tr>
+<tr>
+<td>Daygo Pong</td>
+<td>Monday</td>
+<td>Included in Vinyl Knights</td>
+<td>—</td>
+<td>Beer pong paired with VK.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Summary Ranking</h2>
+<table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Series</th>
+<th>Status</th>
+<th>Avg Gross</th>
+<th>vs Dark</th>
+<th>vs Other Shows</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Club 80s</strong></td>
+<td>INACTIVE</td>
+<td>$1,524</td>
+<td>+108%</td>
+<td>+8%</td>
+<td><strong>REVIVE</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Vinyl Knights</strong></td>
+<td>ACTIVE</td>
+<td>$881</td>
+<td>+66%</td>
+<td>-7%</td>
+<td><strong>KEEP</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Klub Therapy</strong></td>
+<td>INACTIVE</td>
+<td>$1,121</td>
+<td>+82%</td>
+<td>-15%</td>
+<td><strong>REVIVE if needed</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>DarkWave Garden</strong></td>
+<td>ACTIVE</td>
+<td>$704</td>
+<td>+17%</td>
+<td>-32%</td>
+<td><strong>CUT to monthly</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Blues Jam</strong></td>
+<td>INACTIVE</td>
+<td>$363</td>
+<td>-17%</td>
+<td>-53%</td>
+<td><strong>LEAVE DEAD</strong></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

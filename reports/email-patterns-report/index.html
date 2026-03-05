@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Patterns — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Email Content Patterns — What the Messages Tell Us</h1>
+<p><strong>Generated:</strong> March 5, 2026<br />
+<strong>Data:</strong> 9,909 emails (2024-2026), cross-referenced with 5,745 calendar events and Toast POS data</p>
+<hr />
+<h2>What Makes a Good Pitch (Pitches That Led to Shows)</h2>
+<h3>A. Specific date, flexible range</h3>
+<p>Successful touring pitches name a target date or narrow window.</p>
+<blockquote>
+<p>"I'm doing the San Diego date of the West Coast tour for Obsidian Tongue from Portland Maine in September and I'm looking for holds on 9/27 if available."</p>
+</blockquote>
+<p>One date, one sentence, links to Bandcamp and socials. Booked.</p>
+<p>Ask Carol (Norway) asked for Nov 7th specifically: "Sorry for the last minute request, we are currently out on our US Tour, and recently had this date open up" — honest about timing, included Instagram (98k followers), TikTok (104k), streaming links, and a live video from their previous SD show. Booked within 24 hours despite only 20 days notice.</p>
+<h3>B. Local bands who bring their own bill are gold</h3>
+<p>Fungal Mirage submitted via the form, then organized the entire Aug 29 show: "There will be 4 bands with 45 min set times. The bands are Cotton Brain, Close Enough, The Paw and Fungal Mirage. We are coordinating a backline." This band appears 9 times on the calendar. They do the work.</p>
+<p>Rattlesnake Suitcase (Arizona) built a 3-band bill including local openers, decided set times, cover ($10), and sent the flyer — all before the venue had to do anything.</p>
+<h3>C. Prior relationship or name-drop matters</h3>
+<blockquote>
+<p>"I played Bancroft Bar last Summer, with Samhears. I will be able to put together a good bill, and get some folks out."</p>
+</blockquote>
+<p>Short, references previous show, offers to do the bill-building.</p>
+<blockquote>
+<p>"We have a 3 band lineup ready for a show on April 25 and would love to have the show at the Bancroft. Our band is Silent Vice, we have played with you guys before."</p>
+</blockquote>
+<p>Lineup done, date specific, reference to past play.</p>
+<h3>D. Music links matter — Spotify/Bandcamp win</h3>
+<p>90% of form submissions include a music link. The ones that get responses fastest have Spotify or Bandcamp links that can be clicked and listened to in 30 seconds. The IOTM encoded URLs are unclickable garbage.</p>
+<hr />
+<h2>What Info Bands Provide</h2>
+<p><strong>From 293 booking form submissions:</strong><br />
+- 90% include a music link<br />
+- 82% write something in the "Anything else" field<br />
+- Only 24% mention a specific date</p>
+<p><strong>In email-based pitches:</strong><br />
+- 99 include Spotify links<br />
+- 32 include Bandcamp links<br />
+- 71 mention draw/crowd/followers<br />
+- 53 offer a full bill (multiple bands)<br />
+- Only 7 mention door split terms</p>
+<p>Professional bookers (Happy Nomad, Adversarial Productions, Blind Anxiety Entertainment) always include: genre, comparable artists, touring status, music links, and specific date ranges. Most DIY bands send "hey can we play?" with an Instagram link.</p>
+<hr />
+<h2>Touring vs Local Patterns</h2>
+<p><strong>Local bands dominate.</strong> Of 218 shows in 2024-2025, only ~22 had detectable touring acts. The Bancroft's bread and butter is the SD scene.</p>
+<p><strong>Touring band lead time is all over the map:</strong><br />
+- Nocturnal Nightmares Tour (LA): 4.3 months ahead<br />
+- Obsidian Tongue (Maine): 3 months<br />
+- Jet Fuel Soda (Philly): 5.5 months<br />
+- Ask Carol (Norway): 20 days (apologized for "last minute")</p>
+<p><strong>Local band lead time is shorter:</strong><br />
+- Silent Vice: 6 weeks<br />
+- Jordi Hereu (Rockabilly Shakeout): asks ~3 months ahead<br />
+- Fungal Mirage: often booked within 2-3 weeks</p>
+<p><strong>Touring bands typically need help finding local openers.</strong> This is explicit in calendar notes: "IRVING BOOKS $15 Tour package. Will email us. 3 bands. need to find locals." Seven shows explicitly flag "need to find locals."</p>
+<p>Standard Bancroft question after a touring band confirms: "Will you need help finding locals to fill the rest of the bill?"</p>
+<hr />
+<h2>Date Negotiation Patterns</h2>
+<p><strong>First-choice date works more often than not.</strong> When a band asks for a specific date and it's available, Bancroft holds it immediately. Standard reply: "I have you guys on our calendar for [date]."</p>
+<p><strong>When dates don't work, alternatives offered:</strong></p>
+<blockquote>
+<p>"I have a couple shows in February and March that I need to find bands for, would you be interested in jumping on a bill or did you want to build your own bill?"</p>
+<p>"We have open weekend availability for June-August, which weekend date works best for you?"</p>
+</blockquote>
+<p><strong>The "hold" system:</strong> Bancroft puts holds on dates before full confirmation: "I put a hold on that date for you guys." Gives bands time to finalize lineups.</p>
+<p><strong>Date changes happen.</strong> Jet Fuel Soda moved from Jul 3 to Jul 4 ("Super sorry to do this, but there is there anyway we can move the show to 7/4! Just realized we double booked that day."). Accommodated.</p>
+<hr />
+<h2>Bill-Building Patterns</h2>
+<p>This is the core operational pattern at Bancroft. Two models:</p>
+<h3>Model A: Band builds their own bill (preferred)</h3>
+<p>Bancroft asks: "Did you want to set up a bill of your own or jump on an existing bill?" — this phrase appears in 23+ emails.</p>
+<p>Most successful recurring acts (Fungal Mirage, Fancy Faces, Brighton Street Bullies, Thee Rapscallions) build their own bills regularly.</p>
+<p>Bloodbelly Blues offered organically: "I remembered a great Outlaw Country band called The Rollin Ramblers out of Los Angeles." Bancroft: "Yeah see if they can play, that would be awesome."</p>
+<h3>Model B: Bancroft slots bands into existing bills</h3>
+<p>For touring acts or bands who don't know the local scene. To Super Weapon: "Let me reach out to Truth in Captivity and see if they would be onboard to getting on a bill with you guys."</p>
+<p><strong>Fancy Faces is the go-to local opener.</strong> They appear on 13 shows in 2024-2025, often added as support. Other frequent fill-ins: Admiral Atlas (9), Brighton Street Bullies (8), Close Enough (8), Legions (5).</p>
+<hr />
+<h2>Red Flags in Pitches (Never-Booked Patterns)</h2>
+<h3>A. Agency mass-blasts (40%+ of inbound, 0% converts)</h3>
+<p>White Mountain Agency (Kublai Kwon): 109 emails across 2024-2025 pitching hip-hop artists on rotation. Identical template every time. Zero bookings. Auto-reject.</p>
+<h3>B. Indie on the Move platform spam</h3>
+<p>94 IOTM-originated inquiries, low hit rate. Worst offenders: country/Nashville acts pitching a punk venue. "Nashville Country Music Star... My trio rate is $1200 per performance." Complete genre mismatch.</p>
+<h3>C. Genre mismatch</h3>
+<p>Jazz/R&amp;B/country/pop acts pitching a punk/metal/rock dive bar. The Deep End Productions pitching Grammy-winning jazz vocalists is a total miss.</p>
+<h3>D. No music link, no date, no effort</h3>
+<p>Form submissions like: "Band Name: Fuck Fentanyl benefit show / Contact: Luis / Send us a link to your music: NA" — goes nowhere.</p>
+<h3>E. Demands guarantees or payment</h3>
+<p>The Bancroft model is 100% of door to the bands, no guarantees. Any pitch mentioning rates ($1200-$3500) is DOA.</p>
+<hr />
+<h2>Seasonal Inquiry Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Inquiries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January</td>
+<td>66</td>
+</tr>
+<tr>
+<td>February</td>
+<td>55</td>
+</tr>
+<tr>
+<td>March</td>
+<td>62</td>
+</tr>
+<tr>
+<td>April</td>
+<td>52</td>
+</tr>
+<tr>
+<td>May</td>
+<td>54</td>
+</tr>
+<tr>
+<td>June</td>
+<td>57</td>
+</tr>
+<tr>
+<td>July</td>
+<td>31</td>
+</tr>
+<tr>
+<td>August</td>
+<td>63</td>
+</tr>
+<tr>
+<td>September</td>
+<td>41</td>
+</tr>
+<tr>
+<td>October</td>
+<td>40</td>
+</tr>
+<tr>
+<td>November</td>
+<td>40</td>
+</tr>
+<tr>
+<td>December</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p><strong>January, March, and August are peak inquiry months.</strong> January = New Year booking energy. August = bands planning fall tours. July is the low point (everyone already touring or booked).</p>
+<hr />
+<h2>Band Status Intel From Emails</h2>
+<h3>Name Changes</h3>
+<ul>
+<li><strong>Plenum SD</strong> renamed to <strong>Fever Vault</strong> (per Jeff Clark thread, Aug 2025)</li>
+<li><strong>Deeptrees</strong> renamed to <strong>Seetrees</strong> (per IOTM booking)</li>
+<li><strong>Bitterglow</strong> underwent a name change (pre-release materials under old name)</li>
+</ul>
+<h3>Moves</h3>
+<ul>
+<li><strong>King Dream</strong> (Jeremy Lyon) moved from Sonoma County to LA (Nov 2024)</li>
+<li><strong>Dying Species</strong> — main member moved, band dissolved (confirmed by owner)</li>
+</ul>
+<h3>Hiatus/Availability</h3>
+<ul>
+<li><strong>Social Cues</strong> on hiatus mid-June through mid-August 2025</li>
+<li><strong>The Capsules</strong> (Tucson) returned after a decade-long hiatus</li>
+<li><strong>Fantom Fire</strong> had trouble filling bills due to "missing members, on hiatus, etc."</li>
+</ul>
+<h3>Cancellations/Injuries</h3>
+<ul>
+<li><strong>Beth &amp; The Baysides</strong> Jan 2025: canceled, bass player surgery</li>
+<li><strong>Destard</strong> Feb 2025: canceled, member injury</li>
+<li><strong>Ask Carol</strong> (Norway): medical emergency day-of but still played</li>
+<li><strong>Strange Legends</strong> rescheduled Nov → Dec 2024</li>
+<li><strong>Go Scarlet</strong> rescheduled Dec 2024 → Mar 2025</li>
+</ul>
+<h3>Farewell Shows</h3>
+<ul>
+<li><strong>Ramblin Outlaws</strong> Jan 2025: farewell show for their drummer</li>
+</ul>
+<hr />
+<h2>Implications for the AI Booker</h2>
+<ol>
+<li><strong>Auto-classify by pitch quality:</strong> Specific date + music link + full bill = priority response. "Hey can we play?" with no details = template reply asking for info.</li>
+<li><strong>Match touring acts with local openers automatically:</strong> Maintain a "available openers" pool from bands who've said they want to jump on bills.</li>
+<li><strong>Track band status:</strong> Name changes, breakups, moves — the booker needs a living CRM, not a static list.</li>
+<li><strong>Seasonal outreach:</strong> Hit bands hard in December/January for Q1-Q2 bookings. August for fall bookings.</li>
+<li><strong>The hold system works:</strong> Keep it. Bands expect a hold before full confirmation.</li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day-of-Week Optimization — Bancroft Booking Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td {
+  background: rgba(26, 31, 39, 0.5);
+}
+
+tr:hover td {
+  background: var(--accent-dim);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  table { font-size: 0.8rem; }
+  th { background: #f0f0f0; }
+  td { border-color: #ccc; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav"><a href="/reports/">← All Reports</a></div>
+  <h1>Day-of-Week Booking Optimization</h1>
+<p><strong>Generated:</strong> March 5, 2026<br />
+<strong>Data:</strong> 486 music shows (2022-2025), 1,442 days Toast POS data<br />
+<strong>Excludes:</strong> Darts, karaoke, Daygo Pong, Vinyl Knights, bingo, gear swaps</p>
+<hr />
+<h2>Shows Booked Per Year by Day</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th style="text-align: right;">2022</th>
+<th style="text-align: right;">2023</th>
+<th style="text-align: right;">2024</th>
+<th style="text-align: right;">2025</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mon</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr>
+<td>Thu</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">68</td>
+</tr>
+<tr>
+<td>Fri</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">150</td>
+</tr>
+<tr>
+<td>Sat</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">161</td>
+</tr>
+<tr>
+<td>Sun</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">37</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>111</strong></td>
+<td style="text-align: right;"><strong>136</strong></td>
+<td style="text-align: right;"><strong>124</strong></td>
+<td style="text-align: right;"><strong>115</strong></td>
+<td style="text-align: right;"><strong>486</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trends:</strong> Wednesday collapsed from 26 to 4. Thursday grew from 7 to 23. Fri/Sat are the backbone.</p>
+<hr />
+<h2>Revenue: Show Night vs Dark Night</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th style="text-align: right;">Avg Show $</th>
+<th style="text-align: right;">Avg Dark $</th>
+<th style="text-align: right;">Lift $</th>
+<th style="text-align: right;">Lift %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mon</td>
+<td style="text-align: right;">$1,022</td>
+<td style="text-align: right;">$594</td>
+<td style="text-align: right;">+$428</td>
+<td style="text-align: right;">+72%</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td style="text-align: right;">$804</td>
+<td style="text-align: right;">$536</td>
+<td style="text-align: right;">+$268</td>
+<td style="text-align: right;">+50%</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td style="text-align: right;">$527</td>
+<td style="text-align: right;">$450</td>
+<td style="text-align: right;">+$77</td>
+<td style="text-align: right;">+17%</td>
+</tr>
+<tr>
+<td><strong>Thu</strong></td>
+<td style="text-align: right;"><strong>$984</strong></td>
+<td style="text-align: right;"><strong>$588</strong></td>
+<td style="text-align: right;"><strong>+$396</strong></td>
+<td style="text-align: right;"><strong>+67%</strong></td>
+</tr>
+<tr>
+<td><strong>Fri</strong></td>
+<td style="text-align: right;"><strong>$1,428</strong></td>
+<td style="text-align: right;"><strong>$745</strong></td>
+<td style="text-align: right;"><strong>+$683</strong></td>
+<td style="text-align: right;"><strong>+92%</strong></td>
+</tr>
+<tr>
+<td><strong>Sat</strong></td>
+<td style="text-align: right;"><strong>$1,299</strong></td>
+<td style="text-align: right;"><strong>$637</strong></td>
+<td style="text-align: right;"><strong>+$662</strong></td>
+<td style="text-align: right;"><strong>+104%</strong></td>
+</tr>
+<tr>
+<td><strong>Sun</strong></td>
+<td style="text-align: right;"><strong>$1,298</strong></td>
+<td style="text-align: right;"><strong>$789</strong></td>
+<td style="text-align: right;"><strong>+$509</strong></td>
+<td style="text-align: right;"><strong>+65%</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Fill Rate (% of weeks with a show)</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th style="text-align: right;">2022</th>
+<th style="text-align: right;">2023</th>
+<th style="text-align: right;">2024</th>
+<th style="text-align: right;">2025</th>
+<th style="text-align: right;">Avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mon</td>
+<td style="text-align: right;">6%</td>
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">6%</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">5%</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td style="text-align: right;">4%</td>
+<td style="text-align: right;">12%</td>
+<td style="text-align: right;">8%</td>
+<td style="text-align: right;">4%</td>
+<td style="text-align: right;">7%</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td style="text-align: right;">50%</td>
+<td style="text-align: right;">19%</td>
+<td style="text-align: right;">10%</td>
+<td style="text-align: right;">8%</td>
+<td style="text-align: right;">22%</td>
+</tr>
+<tr>
+<td><strong>Thu</strong></td>
+<td style="text-align: right;">13%</td>
+<td style="text-align: right;">42%</td>
+<td style="text-align: right;">31%</td>
+<td style="text-align: right;"><strong>44%</strong></td>
+<td style="text-align: right;">33%</td>
+</tr>
+<tr>
+<td><strong>Fri</strong></td>
+<td style="text-align: right;">63%</td>
+<td style="text-align: right;">73%</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;"><strong>77%</strong></td>
+<td style="text-align: right;">72%</td>
+</tr>
+<tr>
+<td><strong>Sat</strong></td>
+<td style="text-align: right;">60%</td>
+<td style="text-align: right;">83%</td>
+<td style="text-align: right;">85%</td>
+<td style="text-align: right;"><strong>81%</strong></td>
+<td style="text-align: right;">77%</td>
+</tr>
+<tr>
+<td>Sun</td>
+<td style="text-align: right;">15%</td>
+<td style="text-align: right;">23%</td>
+<td style="text-align: right;">25%</td>
+<td style="text-align: right;">8%</td>
+<td style="text-align: right;">18%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Opportunity Score (Lift x Vacancy Rate)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Rank</th>
+<th>Day</th>
+<th style="text-align: right;">Score</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td><strong>Thursday</strong></td>
+<td style="text-align: right;">267</td>
+<td>$396 lift, only 33% filled. Most actionable.</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td><strong>Tuesday</strong></td>
+<td style="text-align: right;">250</td>
+<td>$268 lift, 7% filled. Moderate lift, almost never used.</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td><strong>Friday</strong></td>
+<td style="text-align: right;">190</td>
+<td>$683 lift, 72% filled. Highest per-night value.</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td><strong>Saturday</strong></td>
+<td style="text-align: right;">152</td>
+<td>$662 lift, 77% filled. Same as Friday.</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>Wednesday</td>
+<td style="text-align: right;">60</td>
+<td>$77 lift. Barely moves the needle.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Friday/Saturday Gap Analysis (2025)</h2>
+<h3>Unfilled Fridays (9 gaps)</h3>
+<p>March 14, March 28, June 13, August 1, October 17, November 21, November 28, December 19, December 26</p>
+<h3>Unfilled Saturdays (8 gaps)</h3>
+<p>May 10, June 7, October 25, November 1, November 15, November 29, December 6, December 27</p>
+<p><strong>Worst months:</strong> November has 2/4 Fridays unfilled and only 2/5 Saturdays filled. December has 2/4 Fridays and 2/4 Saturdays unfilled. These two months alone leak an estimated $5,000-$7,000 in revenue.</p>
+<hr />
+<h2>Thursday: The Biggest Growth Opportunity</h2>
+<p>Thursday fill rate has grown from 13% (2022) to 44% (2025), driven largely by DarkWave Garden (12 consecutive Thursdays at avg $704/night). But traditional band shows on Thursdays average $984, with top nights hitting $2,870 (MDC), $2,224 (Sham 69), $2,058 (Thee Rapscallions).</p>
+<p><strong>What works on Thursdays:</strong><br />
+- Multi-band punk/metal lineups<br />
+- Touring acts<br />
+- Hip-hop showcases (Admiral Atlas best value is Thursdays)</p>
+<p><strong>Target:</strong> 36/52 Thursdays filled (69%, up from 44%). Estimated gain: +$5,148/year.</p>
+<hr />
+<h2>Wednesday: Not Worth Routine Booking</h2>
+<p>Only $77 average lift. 50% of Wednesday show nights underperform dark nights. Wednesday bookings dropped from 26/year (2022) to 4/year (2025) for good reason.</p>
+<p><strong>Recommendation:</strong> Accept 4-6 opportunistic bookings per year for touring acts or special events. Do not spend booker effort seeking Wednesday shows.</p>
+<hr />
+<h2>Monday/Tuesday: Not Booking Days</h2>
+<p><strong>Monday:</strong> $428 lift looks impressive but only 11 shows in 4 years. All were special circumstances (touring acts, memorial shows, holiday). Zero in 2025. Accept the rare touring act but don't seek them.</p>
+<p><strong>Tuesday:</strong> $268 lift across 14 shows. Same story. Not a real booking day.</p>
+<hr />
+<h2>Sunday: Underexploited</h2>
+<p>37 music shows across 2022-2025, averaging $1,298 vs $789 dark-night average. That's a $509 lift.</p>
+<p>Several blowout Sundays: $4,557 (Dogface Bastards, Feb 2025), $3,116 (Panther Car, Mar 2024), $2,942 (Black Tie Occasion, Nov 2024).</p>
+<p>Shows coexist with the dart tournament. Best format: matinee/early evening shows.</p>
+<p><strong>Target:</strong> 12-16 Sunday shows per year (2-3/month), especially Oct-Dec. Estimated gain: +$4,072/year.</p>
+<hr />
+<h2>Recommended Booking Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th style="text-align: center;">2025 Actual</th>
+<th style="text-align: center;">Target</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mon</td>
+<td style="text-align: center;">0/52 (0%)</td>
+<td style="text-align: center;">0-2/yr</td>
+<td>Touring acts only</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td style="text-align: center;">2/52 (4%)</td>
+<td style="text-align: center;">0-4/yr</td>
+<td>Touring acts only</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td style="text-align: center;">4/52 (8%)</td>
+<td style="text-align: center;">4-6/yr</td>
+<td>Special events only</td>
+</tr>
+<tr>
+<td><strong>Thu</strong></td>
+<td style="text-align: center;"><strong>23/52 (44%)</strong></td>
+<td style="text-align: center;"><strong>36/52 (69%)</strong></td>
+<td><strong>Biggest growth target</strong></td>
+</tr>
+<tr>
+<td><strong>Fri</strong></td>
+<td style="text-align: center;"><strong>40/52 (77%)</strong></td>
+<td style="text-align: center;"><strong>48/52 (92%)</strong></td>
+<td><strong>Close the gaps</strong></td>
+</tr>
+<tr>
+<td><strong>Sat</strong></td>
+<td style="text-align: center;"><strong>42/52 (81%)</strong></td>
+<td style="text-align: center;"><strong>48/52 (92%)</strong></td>
+<td><strong>Close the gaps</strong></td>
+</tr>
+<tr>
+<td><strong>Sun</strong></td>
+<td style="text-align: center;"><strong>4/52 (8%)</strong></td>
+<td style="text-align: center;"><strong>12-16/yr</strong></td>
+<td><strong>Add matinee shows</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current pace:</strong> ~2.2 shows/week (115 show-dates in 2025)<br />
+<strong>Recommended pace:</strong> ~3.0-3.5 shows/week (~156-182 show-dates/year)</p>
+<p><strong>Estimated incremental revenue from hitting all targets: +$18,810/year</strong></p>
+<hr />
+<h2>Priority Actions</h2>
+<ol>
+<li><strong>Fill every Friday and Saturday gap</strong> — especially November and December.</li>
+<li><strong>Make Thursday a weekly booking night.</strong> Reduce DarkWave Garden to monthly, fill remaining Thursdays with bands.</li>
+<li><strong>Add 1-2 Sunday shows per month</strong>, especially Oct-Dec. Matinee format alongside darts.</li>
+<li><strong>Stop trying to make Wednesday happen.</strong> The lift is negligible.</li>
+<li><strong>Monday/Tuesday are not booking days.</strong> Accept rare touring acts only.</li>
+</ol>
+</body>
+</html>
