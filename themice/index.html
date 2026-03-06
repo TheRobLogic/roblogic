@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mice __ San Diego</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green: #00ff00;
+      --green-dim: #00aa00;
+      --yellow: #ffff00;
+      --red: #ff0000;
+      --white: #e0e0e0;
+      --grey: #888;
+      --black: #000;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Scanline overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ASCII dividers */
+    .divider {
+      color: var(--red);
+      font-size: 13px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .divider.green { color: var(--green-dim); }
+
+    /* Band name */
+    .band-name {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      font-size: clamp(2.5rem, 10vw, 4rem);
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.2rem;
+    }
+
+    .tagline {
+      text-align: center;
+      color: var(--green);
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .location {
+      text-align: center;
+      color: var(--grey);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+    }
+
+    /* Sections */
+    h2 {
+      color: var(--yellow);
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Links */
+    a {
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--white);
+      background: var(--green);
+      padding: 0 2px;
+    }
+
+    a:visited {
+      color: var(--green-dim);
+    }
+
+    /* Link list */
+    .link-list {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+
+    .link-list li {
+      padding: 0.3rem 0;
+    }
+
+    .link-list li::before {
+      content: '> ';
+      color: var(--green);
+    }
+
+    .link-label {
+      color: var(--grey);
+      font-size: 13px;
+    }
+
+    /* Discography */
+    .disco-item {
+      margin-bottom: 0.6rem;
+    }
+
+    .disco-title {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .disco-year {
+      color: var(--yellow);
+      font-size: 13px;
+    }
+
+    .disco-note {
+      color: var(--grey);
+      font-size: 13px;
+    }
+
+    .sold-out {
+      color: var(--red);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Press quotes */
+    .quote {
+      margin-bottom: 1.2rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--green-dim);
+    }
+
+    .quote p {
+      color: var(--white);
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .quote .source {
+      color: var(--grey);
+      font-size: 12px;
+      font-style: normal;
+      margin-top: 0.3rem;
+    }
+
+    .quote.bad {
+      border-left-color: var(--red);
+    }
+
+    .quote.bad .source::before {
+      content: '(our lovely hometown Reader) ';
+      color: var(--red);
+    }
+
+    /* Members */
+    .member {
+      margin-bottom: 0.3rem;
+    }
+
+    .member-name {
+      color: var(--green);
+    }
+
+    .member-role {
+      color: var(--grey);
+      font-size: 13px;
+    }
+
+    /* Garage blurb */
+    .garage-blurb {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      padding: 1rem;
+      font-size: 13px;
+      color: var(--grey);
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #444;
+      font-size: 11px;
+      margin-top: 2rem;
+      letter-spacing: 0.1em;
+    }
+
+    .blink {
+      animation: blink 1.2s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .cursor {
+      color: var(--green);
+    }
+
+    @media (max-width: 500px) {
+      .container { padding: 1.5rem 1rem 3rem; }
+      body { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="band-name">The Mice</div>
+    <div class="tagline">San Diego Punk Rock Since 1998</div>
+    <div class="location">El Cajon, CA &middot; P.O. Box 21254</div>
+
+    <div class="divider">=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=</div>
+
+    <h2>[ LINKS ]</h2>
+    <ul class="link-list">
+      <li><a href="https://themice1.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a> <span class="link-label">- buy our stuff</span></li>
+      <li><a href="https://soundcloud.com/the-mice-music" target="_blank" rel="noopener">SoundCloud</a> <span class="link-label">- stream it</span></li>
+      <li><a href="https://facebook.com/The-Mice-46421161853" target="_blank" rel="noopener">Facebook</a> <span class="link-label">- are we still on here?</span></li>
+      <li><a href="https://www.sandiegoreader.com/bands/mice/" target="_blank" rel="noopener">SD Reader</a> <span class="link-label">- band profile</span></li>
+    </ul>
+
+    <div class="divider green">+==============================+==============================+================</div>
+
+    <h2>[ BIO ]</h2>
+    <div class="member"><span class="member-name">Rob Logic</span> <span class="member-role">// vocals, guitar</span></div>
+    <div class="member"><span class="member-name">Travis Poe</span> <span class="member-role">// vocals, bass</span></div>
+    <div class="member"><span class="member-name">Raul Campuzano</span> <span class="member-role">// drums</span></div>
+    <p style="margin-top: 0.8rem; font-size: 14px; color: var(--grey);">
+      California trio contributes standard guitar/bass/drums Punk-Pop,
+      stretching from quieter, decidedly Pop tunes to upbeat Punk,
+      periodically throwing a little Funk around.
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 13px; color: #555;">
+      Originally Billy Club (~1996). Matt went to rehab and never came back.
+      When Matt's away the Mice will play.
+    </p>
+
+    <div class="divider">=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=</div>
+
+    <h2>[ DISCOGRAPHY ]</h2>
+    <div class="disco-item">
+      <span class="disco-title">Peach</span> <span class="disco-year">2015</span><br>
+      <span class="disco-note"><a href="https://themice1.bandcamp.com/album/peach" target="_blank" rel="noopener">2 tracks on Bandcamp</a></span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">(sorry)</span> <span class="disco-year">2006</span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">The Mice Volume 1</span> <span class="disco-year">2005</span><br>
+      <span class="disco-note">9 tracks. Sunny Day, Life Crisis, Gotta Get Away, Speak to Me</span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">Slumpbuster</span> <span class="disco-year">EP</span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">Rock Star</span> <span class="disco-year">EP</span><br>
+      <span class="disco-note">"We did this all on our cheesy computer in my bedroom for free"</span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">Whitebelly</span> <span class="disco-year">LP</span> <span class="sold-out">SOLD OUT</span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">Generation Zero</span> <span class="disco-year">1998</span><br>
+      <span class="disco-note">14 tracks. Includes a cover of The Cars' "Let's Go"</span>
+    </div>
+    <div class="disco-item">
+      <span class="disco-title">Master Plan</span> <span class="disco-year">EP</span><br>
+      <span class="disco-note">Our first EP. Own a piece of history.</span>
+    </div>
+    <div class="disco-item" style="margin-top: 0.8rem;">
+      <span class="disco-note">Also on the <em>Scene of the Crime</em> compilation ("Runaway")</span>
+    </div>
+
+    <div class="divider green">+==============================+==============================+================</div>
+
+    <h2>[ PRESS ]</h2>
+
+    <div class="quote">
+      <p>"The Mice manage to combine the drunken, youthful, vaguely
+      poppy exuberance of early Replacements records with the obnoxious
+      sing-along poppy punk of bands like the Offspring."</p>
+      <div class="source">-- Listen.com</div>
+    </div>
+
+    <div class="quote">
+      <p>"These spiders, sorry, Mice have a nasty, frenzied, and
+      often melodic sound... These creatures have heart, and that's
+      what ultimately makes Volume 1 worth checking out."</p>
+      <div class="source">-- Ben Hunter, Askew Reviews</div>
+    </div>
+
+    <div class="quote">
+      <p>"This 'punk' band from SD plays dirty sounding pop songs,
+      that might sound like Ramones if on a 33 speed record played
+      at 45 rpm. I hear a bit of Dinosaur Jr. in there someplace."</p>
+      <div class="source">-- Wiretap</div>
+    </div>
+
+    <div class="quote">
+      <p>"The mice rock! From their great indie hooks and pop melodies
+      to their more traditional alt-rock and punk arrangements, there
+      is something here for everybody. This is one of those bands that
+      truly does get better with age."</p>
+      <div class="source">-- Juicy Jen</div>
+    </div>
+
+    <div class="quote bad">
+      <p>"The vocal range of frontman Rob Logic wavers between flat
+      and monotone."</p>
+      <div class="source">-- San Diego Reader, Sept 8, 2005</div>
+    </div>
+
+    <div class="divider">=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=</div>
+
+    <div class="garage-blurb">
+      THE MICE @ Garage Party In El Cajon -- It's always a pleasure when
+      San Diego's own MICE, the band even their girlfriends haven't seen
+      yet, but heard of, rocks the garage in El Cajon. It's not Cool but
+      they have a Fire Pit and a Wii. So bring some Ners. If you get drunk
+      enough you'll probably strap on some axes and play Misfits covers.
+    </div>
+
+    <div class="divider green">+==============================+==============================+================</div>
+
+    <h2>[ RIYL ]</h2>
+    <p style="font-size: 13px; color: var(--grey);">
+      The Queers, The Replacements, The Dead Milkmen, Dinosaur Jr,
+      The Ramones, Green Day, Fuzz-Huzzi, Fifty on Their Heels
+    </p>
+
+    <div class="divider">=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=</div>
+
+    <div class="footer">
+      (c) the MICE &middot; San Diego CA<br>
+      best viewed with mozilla 800x600<br>
+      <span class="cursor blink">_</span>
+    </div>
+
+  </div>
+</body>
+</html>
