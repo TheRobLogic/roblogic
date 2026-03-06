@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends of Cesar Romero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow+Semi+Condensed:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red: #e6262e;
+      --blue: #1a3ab5;
+      --yellow: #ffd819;
+      --pink: #ff69b4;
+      --purple: #7b2d8e;
+      --green: #2db34a;
+      --black: #1a1a1a;
+      --white: #fffef2;
+      --dot-size: 4px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--yellow);
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ben-Day dots overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: var(--dot-size) var(--dot-size);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Title banner */
+    .banner {
+      background: var(--red);
+      border: 4px solid var(--black);
+      padding: 1.4rem 1.5rem 1rem;
+      margin-bottom: 0.4rem;
+      transform: rotate(-1.5deg);
+      box-shadow: 6px 6px 0 var(--black);
+      position: relative;
+      text-align: center;
+    }
+
+    .banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px);
+      background-size: 5px 5px;
+      pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.2rem, 8vw, 3.6rem);
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-shadow: 3px 3px 0 var(--black), -1px -1px 0 var(--black);
+      text-transform: uppercase;
+      position: relative;
+      line-height: 1;
+    }
+
+    .subtitle {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      color: var(--black);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      text-align: center;
+      transform: rotate(-1.5deg);
+    }
+
+    /* POW starburst */
+    .starburst {
+      position: absolute;
+      right: -16px;
+      top: -16px;
+      width: 72px;
+      height: 72px;
+      background: var(--yellow);
+      border: 3px solid var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bangers', cursive;
+      font-size: 0.7rem;
+      color: var(--black);
+      letter-spacing: 0.05em;
+      clip-path: polygon(50% 0%, 61% 18%, 80% 10%, 74% 30%, 98% 35%, 80% 48%, 93% 65%, 72% 62%, 68% 82%, 50% 70%, 32% 82%, 28% 62%, 7% 65%, 20% 48%, 2% 35%, 26% 30%, 20% 10%, 39% 18%);
+      transform: rotate(8deg);
+      z-index: 2;
+    }
+
+    /* Link cards */
+    .link-card {
+      display: block;
+      background: var(--white);
+      border: 3px solid var(--black);
+      margin-bottom: 0.9rem;
+      box-shadow: 4px 4px 0 var(--black);
+      text-decoration: none;
+      color: var(--black);
+      transition: transform 0.1s, box-shadow 0.1s;
+      position: relative;
+    }
+
+    .link-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--black);
+    }
+
+    .link-card:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--black);
+    }
+
+    .link-card:nth-child(odd) { transform: rotate(0.4deg); }
+    .link-card:nth-child(even) { transform: rotate(-0.3deg); }
+    .link-card:nth-child(odd):hover { transform: rotate(0.4deg) translate(-2px, -2px); }
+    .link-card:nth-child(even):hover { transform: rotate(-0.3deg) translate(-2px, -2px); }
+
+    .link-card .card-header {
+      font-family: 'Bangers', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 1rem;
+      border-bottom: 3px solid var(--black);
+      color: var(--white);
+      position: relative;
+    }
+
+    .link-card .card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+    }
+
+    .link-card .card-body {
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Primary links — big and bold */
+    .link-card.primary .card-header {
+      font-size: 1.5rem;
+      padding: 0.7rem 1rem;
+    }
+
+    /* Color assignments */
+    .link-card.bc .card-header { background: var(--blue); }
+    .link-card.dc .card-header { background: var(--black); }
+    .link-card.ig .card-header { background: var(--pink); }
+    .link-card.fb .card-header { background: var(--blue); }
+    .link-card.lb .card-header { background: var(--red); }
+    .link-card.em .card-header { background: var(--purple); }
+
+    /* Streaming — downplayed */
+    .streaming {
+      margin-top: 1.2rem;
+      text-align: center;
+      transform: rotate(-0.3deg);
+    }
+
+    .streaming-label {
+      font-family: 'Bangers', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.5rem;
+    }
+
+    .streaming-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .streaming-links a {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 1px;
+      transition: color 0.1s;
+    }
+
+    .streaming-links a:hover {
+      color: var(--black);
+    }
+
+    /* Latest release callout */
+    .latest {
+      background: var(--white);
+      border: 3px solid var(--black);
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      transform: rotate(0.6deg);
+      box-shadow: 4px 4px 0 var(--black);
+      position: relative;
+    }
+
+    .latest-tag {
+      font-family: 'Bangers', cursive;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .latest-title {
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      color: var(--black);
+    }
+
+    .latest-sub {
+      font-size: 0.78rem;
+      color: #888;
+      font-weight: 500;
+    }
+
+    /* Bio blurb */
+    .bio {
+      font-size: 0.88rem;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      line-height: 1.5;
+      transform: rotate(-0.3deg);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      color: #bbb;
+      font-weight: 500;
+    }
+
+    @media (max-width: 500px) {
+      .banner { padding: 1rem; }
+      .starburst { width: 58px; height: 58px; font-size: 0.6rem; right: -10px; top: -12px; }
+      .container { padding: 1.5rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="banner">
+      <div class="starburst">BELOW-FI!</div>
+      <h1>Friends of Cesar Romero</h1>
+    </div>
+    <p class="subtitle">Carport Rock &middot; Rapid City, SD</p>
+
+    <p class="bio">
+      One-man garage pop wrecking crew. 58 releases and counting.<br>
+      4-track tape hiss aficionados since 2014.
+    </p>
+
+    <div class="latest">
+      <div class="latest-tag">New Release</div>
+      <div class="latest-title">Jolly Joker</div>
+      <div class="latest-sub">Doomed Babe Series #49 &middot; March 2026</div>
+    </div>
+
+    <a href="https://friendsofcesarromero.bandcamp.com/" target="_blank" rel="noopener" class="link-card primary bc">
+      <div class="card-header">Bandcamp</div>
+      <div class="card-body">Full discography &middot; Buy music directly</div>
+    </a>
+
+    <a href="https://www.discogs.com/artist/3228369-Friends-Of-Cesar-Romero" target="_blank" rel="noopener" class="link-card primary dc">
+      <div class="card-header">Discogs</div>
+      <div class="card-body">Releases &middot; Credits &middot; Physical media</div>
+    </a>
+
+    <a href="https://www.instagram.com/focr/" target="_blank" rel="noopener" class="link-card ig">
+      <div class="card-header">Instagram</div>
+      <div class="card-body">@focr</div>
+    </a>
+
+    <a href="https://www.facebook.com/FriendsofCesarR/" target="_blank" rel="noopener" class="link-card fb">
+      <div class="card-header">Facebook</div>
+      <div class="card-body">Friends of Cesar Romero</div>
+    </a>
+
+    <a href="https://snappylittlenumbers.bandcamp.com/album/war-party-favors" target="_blank" rel="noopener" class="link-card lb">
+      <div class="card-header">Snappy Little Numbers</div>
+      <div class="card-body">Label home &middot; War Party Favors, Trashionista!, The Hold 7"</div>
+    </a>
+
+    <a href="mailto:kitfoxrecordingco@gmail.com" class="link-card em">
+      <div class="card-header">Contact</div>
+      <div class="card-body">kitfoxrecordingco@gmail.com</div>
+    </a>
+
+    <div class="streaming">
+      <div class="streaming-label">Also streaming on</div>
+      <div class="streaming-links">
+        <a href="https://open.spotify.com/artist/7CrOv6bc5kcFWEEF54dGQa" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://music.apple.com/us/artist/friends-of-cesar-romero/562360206" target="_blank" rel="noopener">Apple Music</a>
+        <a href="https://soundcloud.com/friendsofcesarromero" target="_blank" rel="noopener">SoundCloud</a>
+      </div>
+    </div>
+
+    <div class="footer">A Rob Logic joint</div>
+  </div>
+</body>
+</html>
