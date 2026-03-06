@@ -181,7 +181,7 @@ hr {
   <div class="nav"><a href="/reports/">← All Reports</a></div>
   <h1>Bancroft Booking Agent — Morning Briefing (v2, QA-reviewed)</h1>
 <p><strong>Date:</strong> March 5, 2026<br />
-<strong>Data:</strong> 9,909 emails (2024-2026), 1,442 days Toast POS sales (2022-Mar 2026), 5,745 calendar events (2014-2026), 2,981 unique bands<br />
+<strong>Data:</strong> 9,909 emails (2024-2026), 1,442 days Toast POS sales (2022-Mar 2026), 5,745 calendar events (2014-2026), 2,981 unique bands, 400 Facebook events, 1,361 Instagram posts<br />
 <strong>QA:</strong> All numbers verified against raw data. See REVIEW-AND-CORRECTIONS.md for methodology.</p>
 <hr />
 <h2>The Big Picture</h2>
@@ -402,6 +402,37 @@ hr {
 <li>Revenue forecasting per show</li>
 </ul>
 <hr />
+<h2>Social Media Analysis (NEW — March 2026)</h2>
+<p>Cross-referenced 400 Facebook events and 1,361 Instagram posts against Toast POS, calendar, and band directory.</p>
+<h3>12. Facebook Events Were Abandoned in 2020</h3>
+<ul>
+<li>Peak: <strong>150 FB events in 2018</strong>. Now: <strong>1-3 per year</strong>.</li>
+<li><strong>867 calendar shows (70%) had no Facebook event</strong> — zero social promotion.</li>
+<li>Even in the active years (2017-2019), only 30% of shows got a FB event.</li>
+<li><strong>This is a free tool that's been completely unused for 5 years.</strong></li>
+</ul>
+<h3>13. Social Media Doesn't Drive Revenue</h3>
+<ul>
+<li>IG reach → same-day revenue correlation: <strong>r = -0.10</strong> (no connection)</li>
+<li>Monthly posting frequency → revenue: <strong>r = 0.17</strong> (not actionable)</li>
+<li>Days with IG posts average $949 vs $738 without — but this is confounded: posts go up when there's a show, and shows drive revenue. The IG post isn't causing the revenue.</li>
+<li><strong>Revenue is driven by who's playing, not social engagement.</strong></li>
+</ul>
+<h3>14. 293 Bands on Social Media Missing from CRM</h3>
+<ul>
+<li>Extracted band names from FB events and IG show announcements</li>
+<li><strong>293 bands played the venue</strong> (confirmed by social posts) but aren't in the master band directory</li>
+<li>These are potential CRM additions — bands that fell through the calendar tracking</li>
+</ul>
+<h3>Social Quick Wins</h3>
+<ol>
+<li><strong>Resume creating FB events for every show</strong> — 150/year was proven sustainable</li>
+<li><strong>Don't use social metrics to predict headcount</strong> — use play history and promoter track record</li>
+<li><strong>Add 293 missing bands to the directory</strong></li>
+<li><strong>Post show announcements 2-3 days before, not day-of</strong></li>
+</ol>
+<p>See <a href="/reports/meta-social-crossref-report/">Social Media Cross-Reference Report</a> for full analysis.</p>
+<hr />
 <h2>Data Files</h2>
 <p>All in <code>/Volumes/PeachDrive/Claude/CODE/bancroft/booking-agent/</code>:</p>
 <table>
@@ -479,6 +510,14 @@ hr {
 <tr>
 <td><code>analysis/REVIEW-AND-CORRECTIONS.md</code></td>
 <td>QA review — every error found and corrected</td>
+</tr>
+<tr>
+<td><code>meta-social/</code></td>
+<td>Facebook + Instagram data export (400 FB events, 1,361 IG posts)</td>
+</tr>
+<tr>
+<td><code>analysis/meta-social-crossref-report.md</code></td>
+<td>Social media cross-reference analysis</td>
 </tr>
 <tr>
 <td><code>reference/</code></td>
