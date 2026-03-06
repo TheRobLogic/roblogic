@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1600" width="1200" height="1600">
+  <!-- Halftone dots pattern -->
+  <defs>
+    <pattern id="dots" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="2.5" fill="#e6262e"/>
+    </pattern>
+    <pattern id="dots2" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="3" fill="#1a3ab5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background sections -->
+  <rect x="0" y="0" width="600" height="400" fill="url(#dots)"/>
+  <rect x="600" y="200" width="600" height="500" fill="url(#dots2)"/>
+  <rect x="0" y="900" width="700" height="400" fill="url(#dots)"/>
+  <rect x="700" y="1200" width="500" height="400" fill="url(#dots2)"/>
+
+  <!-- POW starburst -->
+  <polygon points="300,200 330,140 345,185 400,160 370,210 420,230 370,245 390,300 340,270 320,320 300,270 260,310 270,260 220,240 265,225 230,180 275,195" fill="#ffd819" stroke="#1a1a1a" stroke-width="4"/>
+  <text x="300" y="240" text-anchor="middle" font-family="Impact,sans-serif" font-size="42" font-weight="bold" fill="#e6262e" stroke="#1a1a1a" stroke-width="2">POW!</text>
+
+  <!-- BAM starburst -->
+  <polygon points="900,700 935,630 955,680 1020,650 985,710 1040,735 985,755 1010,820 950,785 930,840 900,785 855,825 870,770 815,750 860,730 820,670 870,690" fill="#ff69b4" stroke="#1a1a1a" stroke-width="4"/>
+  <text x="900" y="745" text-anchor="middle" font-family="Impact,sans-serif" font-size="42" font-weight="bold" fill="#1a1a1a">BAM!</text>
+
+  <!-- ZAP starburst -->
+  <polygon points="200,1100 225,1045 240,1085 290,1060 265,1105 310,1125 265,1140 285,1195 235,1165 220,1210 200,1165 160,1200 170,1150 120,1130 165,1115 135,1060 175,1080" fill="#ffd819" stroke="#1a1a1a" stroke-width="4"/>
+  <text x="200" y="1140" text-anchor="middle" font-family="Impact,sans-serif" font-size="38" font-weight="bold" fill="#e6262e" stroke="#1a1a1a" stroke-width="2">ZAP!</text>
+
+  <!-- Speech bubble 1 -->
+  <ellipse cx="750" cy="350" rx="140" ry="80" fill="#fffef2" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="710,420 680,490 740,430" fill="#fffef2" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="712,420 682,485 738,428" fill="#fffef2"/>
+  <text x="750" y="340" text-anchor="middle" font-family="Impact,sans-serif" font-size="28" fill="#1a3ab5">OH WOW!</text>
+  <text x="750" y="370" text-anchor="middle" font-family="Impact,sans-serif" font-size="22" fill="#e6262e">SO COOL!</text>
+
+  <!-- Speech bubble 2 -->
+  <ellipse cx="500" cy="1350" rx="120" ry="70" fill="#fffef2" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="540,1410 570,1470 560,1415" fill="#fffef2" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="542,1410 568,1465 558,1413" fill="#fffef2"/>
+  <text x="500" y="1345" text-anchor="middle" font-family="Impact,sans-serif" font-size="26" fill="#e6262e">CLICK</text>
+  <text x="500" y="1372" text-anchor="middle" font-family="Impact,sans-serif" font-size="20" fill="#1a3ab5">AWAY!</text>
+
+  <!-- Big halftone circles -->
+  <circle cx="1050" cy="100" r="80" fill="none" stroke="#e6262e" stroke-width="6"/>
+  <circle cx="1050" cy="100" r="55" fill="none" stroke="#e6262e" stroke-width="4"/>
+  <circle cx="1050" cy="100" r="30" fill="#e6262e"/>
+
+  <circle cx="100" cy="700" r="70" fill="none" stroke="#1a3ab5" stroke-width="6"/>
+  <circle cx="100" cy="700" r="45" fill="none" stroke="#1a3ab5" stroke-width="4"/>
+  <circle cx="100" cy="700" r="22" fill="#1a3ab5"/>
+
+  <circle cx="1100" cy="1400" r="60" fill="none" stroke="#ff69b4" stroke-width="5"/>
+  <circle cx="1100" cy="1400" r="38" fill="none" stroke="#ff69b4" stroke-width="3"/>
+  <circle cx="1100" cy="1400" r="18" fill="#ff69b4"/>
+
+  <!-- Speed lines -->
+  <g stroke="#1a1a1a" stroke-width="3" opacity="0.5">
+    <line x1="50" y1="500" x2="250" y2="480"/>
+    <line x1="30" y1="520" x2="200" y2="510"/>
+    <line x1="60" y1="540" x2="230" y2="535"/>
+    <line x1="950" y1="1050" x2="1150" y2="1030"/>
+    <line x1="930" y1="1070" x2="1100" y2="1060"/>
+    <line x1="960" y1="1090" x2="1130" y2="1085"/>
+  </g>
+
+  <!-- Lightning bolt -->
+  <polygon points="580,550 620,550 600,620 640,610 570,720 595,640 560,650" fill="#ffd819" stroke="#1a1a1a" stroke-width="3"/>
+
+  <!-- Stars -->
+  <polygon points="1000,500 1010,480 1020,500 1040,505 1025,515 1030,535 1015,525 1000,535 1005,515 990,505" fill="#ffd819" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="150,1350 158,1335 166,1350 182,1354 170,1362 174,1378 160,1370 146,1378 150,1362 138,1354" fill="#e6262e" stroke="#1a1a1a" stroke-width="2"/>
+  <polygon points="850,150 858,135 866,150 882,154 870,162 874,178 860,170 846,178 850,162 838,154" fill="#ff69b4" stroke="#1a1a1a" stroke-width="2"/>
+</svg>
