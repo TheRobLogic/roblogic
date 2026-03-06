@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetMex International — Cross-Border Pet Transport | San Diego to Tijuana Vet Care</title>
+  <meta name="description" content="Save 50–90% on veterinary care. PetMex provides door-to-door pet transport from San Diego to trusted Tijuana vet clinics. Family-owned. Bilingual. 5-star rated.">
+  <meta property="og:title" content="PetMex International — Your Pet's Passport to Affordable Care">
+  <meta property="og:description" content="Door-to-door pet transport from San Diego to Tijuana's best vets. Save 50-90% on vet bills. 5.0 stars. Family-owned.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #D4654A;
+      --terracotta-deep: #B84D35;
+      --terracotta-light: #E8937E;
+      --navy: #1A2744;
+      --navy-mid: #243454;
+      --navy-light: #3A4F6F;
+      --gold: #E8B84A;
+      --gold-light: #F5D78E;
+      --cream: #FDF6EE;
+      --cream-warm: #F8EDE0;
+      --sand: #EDE4D8;
+      --charcoal: #2A2A2A;
+      --text: #3D3229;
+      --text-light: #6B5E52;
+      --white: #FFFFFF;
+      --shadow-sm: 0 2px 8px rgba(26,39,68,0.08);
+      --shadow-md: 0 8px 30px rgba(26,39,68,0.12);
+      --shadow-lg: 0 20px 60px rgba(26,39,68,0.15);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-lg: 24px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3, h4 { font-family: 'Fraunces', serif; font-weight: 600; color: var(--navy); line-height: 1.15; }
+    .handwritten { font-family: 'Caveat', cursive; }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .text-center { text-align: center; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes pawPrint {
+      0% { opacity: 0; transform: scale(0) rotate(-15deg); }
+      50% { opacity: 1; transform: scale(1.1) rotate(-15deg); }
+      100% { opacity: 0.15; transform: scale(1) rotate(-15deg); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+    nav.scrolled {
+      background: rgba(253,246,238,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 2px 20px rgba(26,39,68,0.08);
+      padding: 10px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo .paw {
+      font-size: 1.2rem;
+      color: var(--terracotta);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-cta {
+      background: var(--terracotta);
+      color: var(--white) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta:hover {
+      background: var(--terracotta-deep) !important;
+      transform: translateY(-1px);
+    }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--navy);
+      margin: 6px 0;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, var(--navy) 0%, var(--navy-mid) 50%, #2A3F5F 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(212,101,74,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(232,184,74,0.12) 0%, transparent 50%);
+    }
+    /* Decorative paw prints */
+    .hero-paw {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0;
+      color: rgba(255,255,255,0.06);
+      animation: pawPrint 0.6s ease forwards;
+    }
+    .hero-paw:nth-child(1) { top: 15%; left: 8%; animation-delay: 1s; }
+    .hero-paw:nth-child(2) { top: 25%; left: 14%; animation-delay: 1.3s; transform: rotate(20deg); }
+    .hero-paw:nth-child(3) { bottom: 20%; right: 10%; animation-delay: 1.6s; }
+    .hero-paw:nth-child(4) { bottom: 30%; right: 5%; animation-delay: 1.9s; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 120px 24px 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-text {
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 8px 18px;
+      border-radius: 50px;
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--white);
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 36px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--terracotta);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(212,101,74,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--terracotta-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212,101,74,0.45);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--terracotta);
+      border: 2px solid var(--terracotta);
+    }
+    .btn-outline:hover {
+      background: var(--terracotta);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .hero-visual {
+      position: relative;
+      animation: scaleIn 0.8s ease 0.5s both;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+    .hero-card-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--terracotta-light), var(--gold));
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card-photo .placeholder {
+      color: var(--white);
+      font-size: 5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      animation: float 3s ease-in-out infinite;
+    }
+    .hero-card-label {
+      font-family: 'Caveat', cursive;
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      transform: rotate(3deg);
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat-value {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 20px 0;
+    }
+    .trust-items {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .trust-icon {
+      font-size: 1.3rem;
+    }
+    .trust-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem {
+      background: var(--cream-warm);
+      position: relative;
+    }
+    .problem::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--terracotta));
+    }
+    .problem-header {
+      max-width: 680px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+    .problem-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .problem-header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+    .cost-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .cost-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .cost-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .cost-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .cost-icon.sd { background: #FEE2E2; }
+    .cost-icon.tj { background: #D1FAE5; }
+    .cost-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+    .cost-compare {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cost-sd {
+      font-size: 1.1rem;
+      color: #DC2626;
+      text-decoration: line-through;
+      font-weight: 500;
+    }
+    .cost-arrow {
+      color: var(--text-light);
+      font-size: 1.2rem;
+    }
+    .cost-tj {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      color: #059669;
+      font-weight: 700;
+    }
+    .cost-note {
+      text-align: center;
+      margin-top: 40px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      color: var(--terracotta);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      background: var(--white);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-tag {
+      display: inline-block;
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 48px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta-light), var(--gold-light), var(--terracotta-light));
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-number {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2.4rem;
+      background: var(--cream);
+      border: 3px solid var(--terracotta-light);
+      transition: all 0.3s;
+    }
+    .step:hover .step-number {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      transform: scale(1.08);
+    }
+    .step:hover .step-number .step-emoji {
+      transform: scale(1.15);
+    }
+    .step-emoji {
+      transition: transform 0.3s;
+    }
+    .step h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+    .step p {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      max-width: 240px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── TEAM ── */
+    .team {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .team::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 90%, rgba(212,101,74,0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 90% 10%, rgba(232,184,74,0.08) 0%, transparent 40%);
+    }
+    .team .section-tag { color: var(--gold); }
+    .team .section-header h2 { color: var(--white); }
+    .team .section-header p { color: rgba(255,255,255,0.6); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .team-member {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    .team-member:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--terracotta), var(--terracotta-deep));
+      border: 4px solid rgba(255,255,255,0.15);
+      position: relative;
+    }
+    .team-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.1);
+    }
+    .team-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .team-desc {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+    .team-callout {
+      text-align: center;
+      margin-top: 48px;
+      position: relative;
+      z-index: 1;
+    }
+    .team-callout p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── REVIEWS ── */
+    .reviews {
+      background: var(--cream);
+    }
+    .reviews-header-rating {
+      font-family: 'Fraunces', serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .reviews-stars {
+      color: var(--gold);
+      font-size: 1.6rem;
+      letter-spacing: 4px;
+      margin-bottom: 8px;
+    }
+    .reviews-count {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .review-card::before {
+      content: '\201C';
+      font-family: 'Fraunces', serif;
+      font-size: 4rem;
+      color: var(--terracotta-light);
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      line-height: 1;
+      opacity: 0.4;
+    }
+    .review-stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .review-text {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--terracotta);
+      font-weight: 700;
+    }
+    .review-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+    .review-pet {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    .reviews-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .reviews-cta a {
+      color: var(--terracotta);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid var(--terracotta-light);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .reviews-cta a:hover { border-color: var(--terracotta); }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: var(--white);
+    }
+    .pricing-table {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .pricing-row {
+      display: grid;
+      grid-template-columns: 1fr 140px 140px 100px;
+      align-items: center;
+      padding: 20px 32px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: background 0.2s;
+    }
+    .pricing-row:hover { background: var(--cream); }
+    .pricing-row.header {
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .pricing-row.header:hover { background: var(--navy); }
+    .pricing-procedure { font-weight: 500; }
+    .pricing-sd { color: #DC2626; font-weight: 500; }
+    .pricing-tj { color: #059669; font-weight: 700; font-family: 'Fraunces', serif; font-size: 1.1rem; }
+    .pricing-savings {
+      background: #D1FAE5;
+      color: #059669;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .pricing-note {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .pricing-note strong { color: var(--navy); }
+
+    /* ── FAQ ── */
+    .faq {
+      background: var(--cream-warm);
+    }
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .faq-item:hover { box-shadow: var(--shadow-md); }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 24px 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--terracotta); }
+    .faq-chevron {
+      flex-shrink: 0;
+      font-size: 1.2rem;
+      color: var(--terracotta);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+    .faq-answer-inner {
+      padding: 0 32px 24px;
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ── MEDIA ── */
+    .media {
+      background: var(--cream);
+      padding: 60px 0;
+    }
+    .media-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(232,184,74,0.08), rgba(212,101,74,0.06));
+      border: 1px solid rgba(232,184,74,0.2);
+      border-radius: var(--radius-lg);
+    }
+    .media-quote {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--navy);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .media-source {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .media-stat {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--terracotta);
+      margin-top: 24px;
+    }
+    .media-stat-label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-final {
+      background: linear-gradient(165deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(212,101,74,0.12) 0%, transparent 60%);
+    }
+    .cta-final .container { position: relative; z-index: 1; }
+    .cta-final h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .cta-final p {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 40px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-phone {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--gold);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 32px;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .cta-phone:hover { color: var(--gold-light); }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .cta-details {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.9rem;
+    }
+    .cta-details a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cta-details a:hover { color: var(--white); }
+
+    /* ── CONTACT FORM ── */
+    .contact-form {
+      max-width: 500px;
+      margin: 40px auto 0;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      backdrop-filter: blur(10px);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: 12px;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      background: rgba(255,255,255,0.1);
+    }
+    .contact-form textarea { min-height: 100px; resize: vertical; }
+    .contact-form .btn { width: 100%; justify-content: center; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111B2E;
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-demo {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-demo a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+
+    /* ── BILINGUAL TOGGLE ── */
+    .lang-toggle {
+      display: inline-flex;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50px;
+      padding: 3px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .lang-btn {
+      padding: 6px 16px;
+      border-radius: 50px;
+      border: none;
+      background: none;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin: 0 auto 36px; }
+      .hero-buttons { justify-content: center; }
+      .hero-visual { max-width: 480px; margin: 0 auto; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+      .team-grid { grid-template-columns: 1fr; max-width: 440px; }
+      .pricing-row { grid-template-columns: 1fr 100px 100px 80px; padding: 16px 20px; font-size: 0.9rem; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 72px 0; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        padding: 24px;
+        gap: 20px;
+        box-shadow: var(--shadow-md);
+      }
+      .mobile-toggle { display: block; }
+      .hero-content { padding: 100px 24px 80px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-card { padding: 24px; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .hero-stat-value { font-size: 1.2rem; }
+      .hero-stat-label { font-size: 0.7rem; }
+      .steps { grid-template-columns: 1fr; gap: 40px; }
+      .cost-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .pricing-row { grid-template-columns: 1fr; gap: 8px; text-align: center; }
+      .pricing-row.header { display: none; }
+      .pricing-row { padding: 24px; }
+      .trust-items { gap: 20px; }
+      .trust-item { font-size: 0.82rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .cta-details { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="paw">&#128062;</span> PetMex
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="tel:+16198673300" class="nav-cta">Call Now</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-paw">&#128062;</div>
+    <div class="hero-paw">&#128062;</div>
+    <div class="hero-paw">&#128062;</div>
+    <div class="hero-paw">&#128062;</div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('es')">ES</button>
+          </div>
+          Hablamos Espa&ntilde;ol
+        </div>
+        <h1>San Diego Pets.<br>Tijuana Vets.<br>Door-to-Door <em>Peace of Mind.</em></h1>
+        <p class="hero-sub">Save 50&ndash;90% on veterinary care with PetMex&rsquo;s bilingual, white-glove pet transport service. Your pet rides safe. You stay stress-free.</p>
+        <div class="hero-buttons">
+          <a href="tel:+16198673300" class="btn btn-primary">Call Lizette Now</a>
+          <a href="#how" class="btn btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-photo">
+            <span class="placeholder">&#128054;</span>
+            <span class="hero-card-label">Safe &amp; Happy!</span>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-value">5.0</div>
+              <div class="hero-stat-label">Google Rating</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">59+</div>
+              <div class="hero-stat-label">Reviews</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">100%</div>
+              <div class="hero-stat-label">5-Star</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-items">
+      <div class="trust-item">
+        <span class="trust-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span>5.0 on Google</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#128106;</span>
+        <span>Family-Owned</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#127758;</span>
+        <span>Fully Bilingual</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#128664;</span>
+        <span>Door-to-Door Service</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#129514;</span>
+        <span>Trusted Tijuana Clinics</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <section class="problem section" id="problem">
+    <div class="container">
+      <div class="problem-header reveal">
+        <h2>Vet bills shouldn&rsquo;t make you choose between your pet and your paycheck.</h2>
+        <p>San Diego veterinary costs have skyrocketed. Across the border, the same quality care costs a fraction of the price.</p>
+      </div>
+      <div class="cost-grid">
+        <div class="cost-card reveal">
+          <div class="cost-icon sd">&#129463;</div>
+          <div>
+            <div class="cost-label">Dental Cleaning</div>
+            <div class="cost-compare">
+              <span class="cost-sd">$800+ SD</span>
+              <span class="cost-arrow">&rarr;</span>
+              <span class="cost-tj">$150 TJ</span>
+            </div>
+          </div>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-icon sd">&#9986;&#65039;</div>
+          <div>
+            <div class="cost-label">Spay / Neuter</div>
+            <div class="cost-compare">
+              <span class="cost-sd">$500+ SD</span>
+              <span class="cost-arrow">&rarr;</span>
+              <span class="cost-tj">$80 TJ</span>
+            </div>
+          </div>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-icon sd">&#128137;</div>
+          <div>
+            <div class="cost-label">Bloodwork + Labs</div>
+            <div class="cost-compare">
+              <span class="cost-sd">$300+ SD</span>
+              <span class="cost-arrow">&rarr;</span>
+              <span class="cost-tj">$60 TJ</span>
+            </div>
+          </div>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-icon sd">&#127973;</div>
+          <div>
+            <div class="cost-label">Tumor Removal</div>
+            <div class="cost-compare">
+              <span class="cost-sd">$2,000+ SD</span>
+              <span class="cost-arrow">&rarr;</span>
+              <span class="cost-tj">$400 TJ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cost-note reveal">Same care. Same love. A whole lot less money.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works section" id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Simple as 1-2-3-4</span>
+        <h2>How PetMex Works</h2>
+        <p>From your front door to the vet and back &mdash; we handle everything.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-number"><span class="step-emoji">&#128222;</span></div>
+          <h3>You Call, We Listen</h3>
+          <p>Tell us about your pet and what they need. We match you with the right Tijuana vet and get a cost estimate.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number"><span class="step-emoji">&#128664;</span></div>
+          <h3>We Pick Up</h3>
+          <p>We come to your San Diego home. Your pet rides safe and comfortable in our clean, stress-free vehicle.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number"><span class="step-emoji">&#129658;</span></div>
+          <h3>Your Pet Gets Care</h3>
+          <p>Board-certified Tijuana vets handle everything. We stay with your pet the entire time and keep you updated.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-number"><span class="step-emoji">&#127968;</span></div>
+          <h3>We Bring Them Home</h3>
+          <p>Same day, door-to-door. Your pet comes back healthy and happy. You never had to leave the house.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team section" id="team">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">The family behind PetMex</span>
+        <h2>We&rsquo;re Not a Call Center.</h2>
+        <p>When you call PetMex, you get a real person who knows your pet by name.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member reveal">
+          <div class="team-avatar">&#128105;</div>
+          <div class="team-name">Lizette</div>
+          <div class="team-role">Founder &amp; Client Care</div>
+          <div class="team-desc">Your first point of contact. Lizette coordinates everything &mdash; from matching your pet with the right vet to translating every finding in real time. Bilingual, compassionate, and fiercely dedicated to your pet&rsquo;s wellbeing.</div>
+        </div>
+        <div class="team-member reveal">
+          <div class="team-avatar">&#128104;</div>
+          <div class="team-name">TJ</div>
+          <div class="team-role">Transport &amp; Pet Care</div>
+          <div class="team-desc">The one behind the wheel. TJ personally picks up your pet, drives them across the border, and stays with them at the clinic. Your pet is never alone, never kenneled, never just a number.</div>
+        </div>
+      </div>
+      <div class="team-callout reveal">
+        <p>&ldquo;We treat your pet like our own &mdash; because we&rsquo;d want someone to do the same for ours.&rdquo;</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews section" id="reviews">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Don&rsquo;t take our word for it</span>
+        <div class="reviews-header-rating">5.0</div>
+        <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="reviews-count">59 Google Reviews &mdash; Zero Exceptions</div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">&ldquo;Lizette and TJ from PetMex were AMAZING. They were in communication the whole time. My dog came back with the most fantastic dental work. Can&rsquo;t recommend enough!&rdquo;</div>
+          <div class="review-author">
+            <div class="review-avatar">Z</div>
+            <div>
+              <div class="review-name">Zach B.</div>
+              <div class="review-pet">Dog &bull; Dental Cleaning</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">&ldquo;Super communicative every step of the way. Rossi&rsquo;s teeth look fantastic. I was nervous about sending my dog to Mexico but they made the whole process so easy and transparent.&rdquo;</div>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div>
+              <div class="review-name">Jenn L.</div>
+              <div class="review-pet">Rossi &bull; Dental Procedure</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">&ldquo;I was pleasantly surprised at how quickly they responded! During my pet&rsquo;s emergency, they jumped into action immediately. Truly caring people.&rdquo;</div>
+          <div class="review-author">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Suong H.</div>
+              <div class="review-pet">Pet Emergency Response</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">&ldquo;Incre&iacute;ble servicio para nuestra amada Kira. Su servicio es 100% confiable. Managed all the logistics from start to finish &mdash; we didn&rsquo;t have to worry about a thing.&rdquo;</div>
+          <div class="review-author">
+            <div class="review-avatar">L</div>
+            <div>
+              <div class="review-name">Laura J.</div>
+              <div class="review-pet">Kira &bull; Medical Coordination</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">&ldquo;Excellent veterinarian in Mexico, managed all the logistics. Sending your pet with people you don&rsquo;t know sounds daunting, but they are so kind and keep you updated all the way.&rdquo;</div>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div>
+              <div class="review-name">Jordana S.</div>
+              <div class="review-pet">International Vet Coordination</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">&ldquo;An absolute amazing experience. While sending animals with people you don&rsquo;t know sounds daunting, PetMex is so kind and professional, you end up having no worries at all.&rdquo;</div>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-name">Verified Client</div>
+              <div class="review-pet">First-Time Client</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-cta reveal">
+        <a href="https://www.google.com/maps/place/PetMex+International+Inc" target="_blank" rel="noopener">Read all 59 reviews on Google &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Transparent pricing</span>
+        <h2>Simple, Honest Pricing</h2>
+        <p>See what you&rsquo;d pay in San Diego vs. what your pet&rsquo;s care actually costs through PetMex.</p>
+      </div>
+      <div class="pricing-table reveal">
+        <div class="pricing-row header">
+          <div>Procedure</div>
+          <div>San Diego</div>
+          <div>Via PetMex</div>
+          <div>You Save</div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-procedure">Dental Cleaning</div>
+          <div class="pricing-sd">$800+</div>
+          <div class="pricing-tj">$150</div>
+          <div><span class="pricing-savings">~80%</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-procedure">Spay / Neuter</div>
+          <div class="pricing-sd">$500+</div>
+          <div class="pricing-tj">$80</div>
+          <div><span class="pricing-savings">~85%</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-procedure">Bloodwork &amp; Labs</div>
+          <div class="pricing-sd">$300+</div>
+          <div class="pricing-tj">$60</div>
+          <div><span class="pricing-savings">~80%</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-procedure">Tumor Removal</div>
+          <div class="pricing-sd">$2,000+</div>
+          <div class="pricing-tj">$400</div>
+          <div><span class="pricing-savings">~80%</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-procedure">Vaccinations (Full Set)</div>
+          <div class="pricing-sd">$250+</div>
+          <div class="pricing-tj">$50</div>
+          <div><span class="pricing-savings">~80%</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-procedure">X-Rays + Consultation</div>
+          <div class="pricing-sd">$400+</div>
+          <div class="pricing-tj">$80</div>
+          <div><span class="pricing-savings">~80%</span></div>
+        </div>
+      </div>
+      <p class="pricing-note reveal"><strong>Vet prices are approximate.</strong> PetMex transport fees vary by appointment type &mdash; call for an exact quote. Prices in USD.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Got questions?</span>
+        <h2>We&rsquo;ve Heard Them All</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is it legal to take my pet to Mexico for vet care?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Yes, absolutely. Thousands of San Diego pet owners take their pets to Tijuana for veterinary care every year. In 2022 alone, over 33,500 pets crossed the border from the US to Mexico. PetMex handles all documentation and border-crossing logistics for you.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Are the Tijuana vets actually qualified?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Our partner clinics employ board-certified veterinarians trained to the same standards as US vets. Many have trained in the US or Europe. We personally vet every clinic we work with &mdash; your pet only goes to clinics we trust with our own animals.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What if something goes wrong during the procedure?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Our team stays with your pet the entire time. We provide real-time updates and translate every finding from the vet directly to you. If there are any concerns, we call you immediately so you can make decisions together with the doctor.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How long does a typical visit take?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">It depends on the procedure. A simple consultation or vaccine visit can be done in a few hours. Dental cleanings or minor surgeries are typically same-day. Major surgeries may require an overnight stay. We give you a time estimate before every visit.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What types of pets do you transport?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">We primarily transport dogs and cats, but we&rsquo;ve handled other companion animals too. Each pet rides individually in our clean, climate-controlled vehicle &mdash; never kenneled, never crowded. Call us to discuss your pet&rsquo;s needs.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Can I come along for the ride?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Our service is designed so you don&rsquo;t have to miss work or rearrange your day. However, if you&rsquo;d like to accompany your pet, talk to us &mdash; we can work something out depending on the appointment.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I need a passport or any special documents?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">You don&rsquo;t need anything &mdash; we handle it all. PetMex takes care of all border-crossing documentation and veterinary paperwork. We organize everything so your pet&rsquo;s trip is smooth and legal.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            &iquest;Hablan espa&ntilde;ol?
+            <span class="faq-chevron">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">&iexcl;S&iacute;! Somos completamente biling&uuml;es. Lizette y TJ hablan espa&ntilde;ol e ingl&eacute;s con fluidez. Nos comunicamos con usted y con los veterinarios en el idioma que prefiera. Ll&aacute;menos &mdash; estamos aqu&iacute; para ayudarle.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AS SEEN IN -->
+  <section class="media">
+    <div class="container">
+      <div class="media-inner reveal">
+        <div class="media-quote">&ldquo;Americans are flocking to Mexico for pet care&rdquo;</div>
+        <div class="media-source">ABC News &bull; Good Morning America</div>
+        <div class="media-stat">33,500+</div>
+        <div class="media-stat-label">pets crossed the border for vet care in 2022 &mdash; a 68% increase from 2019</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final" id="contact">
+    <div class="container">
+      <h2 class="reveal">Ready to Give Your Pet the Care<br>They Deserve?</h2>
+      <p class="reveal">No San Diego price tag. No stress. Just compassionate care, door to door.</p>
+      <a href="tel:+16198673300" class="cta-phone reveal">(619) 867-3300</a>
+      <div class="cta-buttons reveal">
+        <a href="tel:+16198673300" class="btn btn-primary">Call Lizette</a>
+        <a href="sms:+16198673300" class="btn btn-outline" style="color: var(--white); border-color: rgba(255,255,255,0.3);">Text Us</a>
+        <a href="mailto:petmex.int@gmail.com" class="btn btn-outline" style="color: var(--white); border-color: rgba(255,255,255,0.3);">Email Us</a>
+      </div>
+
+      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" required>
+          <input type="text" placeholder="Pet's Name" required>
+        </div>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="email" placeholder="Email Address">
+        <textarea placeholder="Tell us about your pet and what they need..."></textarea>
+        <button type="submit" class="btn btn-primary">Request a Free Quote</button>
+      </form>
+
+      <div class="cta-details reveal">
+        <span>&#128205; La Mesa, CA (Serving all San Diego County)</span>
+        <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener">&#128247; @petmexint</a>
+        <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener">&#128101; Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">PetMex International</div>
+      <div class="footer-tagline">Family-owned in La Mesa, CA. Your pet&rsquo;s passport to affordable care.</div>
+      <div class="footer-links">
+        <a href="#how">How It Works</a>
+        <a href="#team">Our Team</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="tel:+16198673300">Call Us</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 PetMex International Inc. All rights reserved.</div>
+      <div class="footer-demo">Demo website by <a href="https://roblogic.org">Rob Logic</a> &mdash; <a href="/PMIproposal">View our proposal</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      links.classList.toggle('open');
+    });
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        links.classList.remove('open');
+      });
+    });
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Form handler (demo)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Sent! We\'ll call you soon.';
+      btn.style.background = '#059669';
+      setTimeout(() => {
+        btn.textContent = 'Request a Free Quote';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Language toggle (visual demo)
+    function setLang(lang) {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
