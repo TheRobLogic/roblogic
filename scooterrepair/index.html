@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scooter Revival — Rob Logic</title>
+  <meta name="description" content="A step-by-step guide to reviving a Genuine Buddy scooter that's been sitting. Mod-inspired, no-nonsense.">
+  <meta property="og:title" content="Scooter Revival — Rob Logic">
+  <meta property="og:description" content="Bringing a dormant Genuine Buddy back to life. 12-step revival guide.">
+  <meta property="og:url" content="https://roblogic.org/scooterrepair/">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #D62828;
+      --blue: #003566;
+      --navy: #001D3D;
+      --white: #FFFFFF;
+      --cream: #F5F0E0;
+      --check-dark: #1a1a1a;
+      --check-light: #f0f0f0;
+      --accent: #E85D04;
+      --steel: #4a5568;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      overflow: hidden;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(circle, var(--red) 0%, var(--red) 30%, var(--white) 30%, var(--white) 45%, var(--blue) 45%, var(--blue) 100%);
+      opacity: 0.15;
+      animation: pulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: translate(-50%, -50%) scale(1); opacity: 0.12; }
+      to { transform: translate(-50%, -50%) scale(1.08); opacity: 0.2; }
+    }
+
+    .hero-badge {
+      position: relative;
+      z-index: 1;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, var(--red) 0%, var(--red) 28%, var(--white) 28%, var(--white) 42%, var(--blue) 42%, var(--blue) 100%);
+      margin-bottom: 2rem;
+      box-shadow: 0 0 60px rgba(214, 40, 40, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-badge-inner {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 0.1em;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      color: var(--white);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.35em;
+      letter-spacing: 0.3em;
+      color: var(--red);
+      margin-top: 0.3em;
+    }
+
+    .hero-sub {
+      position: relative;
+      z-index: 1;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    .hero-arrow {
+      position: absolute;
+      bottom: 2rem;
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+      border-right: 3px solid var(--red);
+      border-bottom: 3px solid var(--red);
+      transform: rotate(45deg);
+      animation: bounce 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 100% { bottom: 2rem; }
+      50% { bottom: 1.2rem; }
+    }
+
+    /* ===== CHECKER BAR ===== */
+    .checker {
+      height: 24px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--check-dark) 0px,
+        var(--check-dark) 24px,
+        var(--check-light) 24px,
+        var(--check-light) 48px
+      );
+    }
+
+    .checker-thin {
+      height: 12px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--red) 0px,
+        var(--red) 12px,
+        var(--white) 12px,
+        var(--white) 24px
+      );
+    }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+      width: 6px;
+      height: 0.85em;
+      background: var(--red);
+    }
+
+    h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p { margin-bottom: 1rem; max-width: 70ch; }
+
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    li { margin-bottom: 0.4rem; }
+
+    strong { color: var(--navy); }
+
+    a { color: var(--red); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    a:hover { border-bottom-color: var(--red); }
+
+    /* ===== INTRO / PATIENT SECTION ===== */
+    .intro {
+      background: var(--white);
+      border-bottom: 4px solid var(--red);
+    }
+
+    .intro p {
+      font-size: 1.15rem;
+      color: var(--steel);
+    }
+
+    .intro .lead {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* ===== PHOTO GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 2rem 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border: 3px solid var(--navy);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .gallery img.hero-img {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    /* ===== STEP CARDS ===== */
+    .step {
+      background: var(--white);
+      border-left: 5px solid var(--red);
+      padding: 2rem 2rem 2rem 2.5rem;
+      margin: 2rem 0;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      width: 3rem;
+      height: 3rem;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(214, 40, 40, 0.3);
+    }
+
+    .step h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    /* ===== TABLES ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    thead {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    th {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:nth-child(even) { background: rgba(0, 53, 102, 0.04); }
+    tbody tr:hover { background: rgba(214, 40, 40, 0.06); }
+
+    .cost-total td {
+      font-weight: 700;
+      background: rgba(214, 40, 40, 0.08);
+      border-top: 2px solid var(--red);
+    }
+
+    /* ===== CALLOUT BOXES ===== */
+    .callout {
+      border-left: 4px solid var(--blue);
+      background: rgba(0, 53, 102, 0.06);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .callout.warning {
+      border-left-color: var(--accent);
+      background: rgba(232, 93, 4, 0.06);
+    }
+
+    .callout.tip {
+      border-left-color: #2d6a4f;
+      background: rgba(45, 106, 79, 0.06);
+    }
+
+    .callout strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ===== TOC ===== */
+    .toc {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .toc h3 {
+      color: var(--white);
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.5rem;
+      counter-reset: toc-counter;
+    }
+
+    .toc li {
+      counter-increment: toc-counter;
+      margin: 0;
+    }
+
+    .toc li::before {
+      content: counter(toc-counter, decimal-leading-zero) " ";
+      color: var(--red);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1em;
+      margin-right: 0.3em;
+    }
+
+    .toc a {
+      color: rgba(255,255,255,0.85);
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .toc a:hover { color: var(--white); border-bottom-color: var(--red); }
+
+    /* ===== TROUBLESHOOT ===== */
+    .troubleshoot {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .troubleshoot-item {
+      background: var(--white);
+      border: 2px solid var(--navy);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .troubleshoot-item .label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--red);
+      margin-bottom: 0.25rem;
+    }
+
+    .troubleshoot-item p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* ===== SPECS TABS ===== */
+    .spec-group {
+      background: var(--white);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border: 2px solid var(--navy);
+    }
+
+    .spec-group h4 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 3rem 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    footer a { color: var(--red); }
+
+    .footer-roundel {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--red) 0%, var(--red) 28%, var(--white) 28%, var(--white) 42%, var(--blue) 42%, var(--blue) 100%);
+      margin: 0 auto 1rem;
+      opacity: 0.6;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border: 4px solid var(--white);
+    }
+
+    /* ===== RESOURCES LIST ===== */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .resource-card {
+      background: var(--white);
+      border: 2px solid var(--navy);
+      padding: 1rem 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .resource-card:hover { border-color: var(--red); }
+
+    .resource-card h4 { margin-top: 0; font-size: 1rem; }
+    .resource-card p { font-size: 0.9rem; margin: 0; color: var(--steel); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery img.hero-img { grid-column: span 2; grid-row: span 1; }
+      .step { padding: 1.5rem 1.25rem 1.5rem 1.75rem; }
+      .toc ol { grid-template-columns: 1fr; }
+      h2 { font-size: 2rem; }
+      .hero-badge { width: 120px; height: 120px; }
+      .hero-badge-inner { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-badge">
+      <div class="hero-badge-inner">RIDE</div>
+    </div>
+    <h1>Scooter Revival<span>A Genuine Buddy Resurrection Guide</span></h1>
+    <p class="hero-sub">From dormant to daily driver</p>
+    <a href="#intro" class="hero-arrow" aria-label="Scroll down"></a>
+  </header>
+
+  <div class="checker"></div>
+
+  <!-- INTRO -->
+  <section class="intro" id="intro">
+    <div class="container">
+      <h2>The Patient</h2>
+      <p class="lead">A Genuine Buddy scooter &mdash; Italian style, Taiwanese engineering, American grit &mdash; that's been sitting a while and needs to be brought back to life.</p>
+      <p>The Genuine Buddy is manufactured by PGO Scooters of Taiwan and sold by Genuine Scooters out of Chicago. Under those retro-mod body panels lives a member of the GY6 engine family &mdash; the most common scooter engine in the world. Parts are cheap, knowledge is everywhere, and these machines are built to be revived.</p>
+      <p>This guide covers everything you need to go from yard ornament to road-ready. Works for the Buddy 50, 125, 150, and 170i &mdash; and most of the general steps apply to any dormant scooter.</p>
+
+      <div class="gallery">
+        <img src="img/img_5254.jpeg" alt="Genuine Buddy — front view showing classic round headlight and leg shield" class="hero-img" onclick="openLightbox(this)">
+        <img src="img/img_5250.jpeg" alt="Full side profile of the Genuine Buddy" onclick="openLightbox(this)">
+        <img src="img/img_5256.jpeg" alt="Dashboard and instrument cluster — analog speedometer" onclick="openLightbox(this)">
+        <img src="img/img_5251.jpeg" alt="Side view with body panels removed, exposing engine bay" onclick="openLightbox(this)">
+        <img src="img/img_5252.jpeg" alt="Close-up of engine and electrical components under the seat" onclick="openLightbox(this)">
+        <img src="img/img_5253.jpeg" alt="Under-seat battery compartment area" onclick="openLightbox(this)">
+        <img src="img/img_5255.jpeg" alt="Engine bay from behind — air filter, wiring harness visible" onclick="openLightbox(this)">
+        <img src="img/img_5257.jpeg" alt="Rear view with tail light and license plate" onclick="openLightbox(this)">
+      </div>
+
+      <!-- TOC -->
+      <nav class="toc">
+        <h3>The Plan</h3>
+        <ol>
+          <li><a href="#identify">Identify Your Model</a></li>
+          <li><a href="#issues">Common Issues After Sitting</a></li>
+          <li><a href="#tools">Tools &amp; Supplies</a></li>
+          <li><a href="#step1">Initial Assessment</a></li>
+          <li><a href="#step2">Battery</a></li>
+          <li><a href="#step3">Fuel System</a></li>
+          <li><a href="#step4">Carburetor Service</a></li>
+          <li><a href="#step5">Spark Plug &amp; Ignition</a></li>
+          <li><a href="#step6">Oil Change</a></li>
+          <li><a href="#step7">Air Filter</a></li>
+          <li><a href="#step8">Tires &amp; Wheels</a></li>
+          <li><a href="#step9">Brakes</a></li>
+          <li><a href="#step10">Electrical Check</a></li>
+          <li><a href="#step11">First Start</a></li>
+          <li><a href="#step12">Break-In Ride</a></li>
+          <li><a href="#specs">Specifications</a></li>
+          <li><a href="#costs">Parts &amp; Costs</a></li>
+          <li><a href="#quirks">Buddy-Specific Quirks</a></li>
+          <li><a href="#maintenance">Maintenance Schedule</a></li>
+          <li><a href="#resources">Resources</a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <div class="checker-thin"></div>
+
+  <!-- IDENTIFY YOUR MODEL -->
+  <section id="identify">
+    <div class="container">
+      <h2>Identify Your Model</h2>
+      <p>Four engine variants exist across the Buddy line. Knowing which one you have determines your parts, fluids, and procedures.</p>
+
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Engine</th><th>Type</th><th>Fuel System</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Buddy 50</strong></td><td>49.7cc Minarelli</td><td>2-stroke</td><td>Carburetor</td></tr>
+          <tr><td><strong>Buddy 125</strong></td><td>124cc GY6</td><td>4-stroke</td><td>Carburetor</td></tr>
+          <tr><td><strong>Buddy 150</strong></td><td>150cc GY6</td><td>4-stroke</td><td>Carburetor</td></tr>
+          <tr><td><strong>Buddy 170i</strong></td><td>168cc GY6</td><td>4-stroke</td><td>Fuel-injected</td></tr>
+        </tbody>
+      </table>
+
+      <p>All models use automatic CVT transmission &mdash; twist and go, no shifting.</p>
+
+      <div class="callout tip">
+        <strong>How to Tell</strong>
+        Check the VIN on the front steering head, under the seat, or on a plate inside the front leg shield. The Buddy 50 has smaller 90/90-10 tires; the 125/150/170 have 100/90-10s. The 50 is a 2-stroke (no oil filter). The 170i has fuel injection &mdash; no carburetor. If it's a 4-stroke with a carb, it's a 125 or 150.
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMON ISSUES -->
+  <section id="issues" style="background: var(--white);">
+    <div class="container">
+      <h2>Common Issues After Sitting</h2>
+
+      <h3>Fuel System &mdash; The #1 Problem</h3>
+      <p>Gasoline degrades after 30&ndash;60 days. After months, it becomes varnish that clogs every orifice in the fuel system. The carburetor jets <em>will</em> be blocked. The scooter <em>will not</em> run until they're clean.</p>
+      <ul>
+        <li><strong>Varnished fuel</strong> clogging jets, filter, lines, and petcock</li>
+        <li><strong>Failed vacuum petcock</strong> &mdash; rubber diaphragm cracks, causing no fuel flow or constant flooding</li>
+        <li><strong>Deteriorated fuel lines</strong> &mdash; cracked, hardened, or brittle rubber</li>
+      </ul>
+
+      <h3>Electrical</h3>
+      <ul>
+        <li><strong>Dead battery</strong> &mdash; lead-acid batteries left uncharged sulfate and die. If it's been 6+ months without a tender, it's gone.</li>
+        <li><strong>Corroded connections</strong> &mdash; especially battery terminals, ground wires, and spark plug cap</li>
+        <li><strong>Failed auto-choke</strong> &mdash; the electric enrichment valve's wax element can fail, preventing cold starts</li>
+      </ul>
+
+      <h3>Mechanical</h3>
+      <ul>
+        <li><strong>Flat/dry-rotted tires</strong> &mdash; if sidewalls are cracked, replace them. Don't ride on dry rot.</li>
+        <li><strong>Seized brakes</strong> &mdash; caliper pistons seize, drum shoes rust to the drum</li>
+        <li><strong>Stale engine &amp; gear oil</strong> &mdash; absorbs moisture, degrades. Change regardless of mileage.</li>
+        <li><strong>Stuck CVT belt</strong> &mdash; can take a "set" from sitting in one position. Usually works itself out.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="checker-thin"></div>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="container">
+      <h2>Tools &amp; Supplies</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        <div>
+          <h3>Basic Tools</h3>
+          <ul>
+            <li>Metric socket set (8, 10, 12, 14, 17mm)</li>
+            <li>Metric combination wrenches</li>
+            <li>Phillips &amp; flathead screwdrivers</li>
+            <li>Pliers (needle-nose &amp; standard)</li>
+            <li>Hex/Allen key set (metric)</li>
+            <li>Adjustable wrench</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Specialty</h3>
+          <ul>
+            <li>Spark plug socket (16mm or 18mm)</li>
+            <li>Feeler gauge set (0.08mm blade needed)</li>
+            <li>Multimeter</li>
+            <li>Oil drain pan &amp; funnel</li>
+            <li>Compressed air (canned or compressor)</li>
+            <li>Tire pressure gauge &amp; wire brush</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Supplies</h3>
+          <ul>
+            <li>Carburetor cleaner spray</li>
+            <li>Penetrating oil (PB Blaster)</li>
+            <li>Contact cleaner (for electrical)</li>
+            <li>Shop rags &amp; zip ties</li>
+            <li>Blue Loctite &amp; anti-seize compound</li>
+            <li>Fresh gasoline &amp; Sea Foam</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section style="background: var(--white);">
+    <div class="container">
+      <h2>The Revival &mdash; Step by Step</h2>
+      <div class="callout warning">
+        <strong>Important</strong>
+        Work through these in order. Do NOT try to start the engine until Steps 1&ndash;6 are complete.
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="step" id="step1">
+        <div class="step-number">1</div>
+        <h3>Initial Assessment</h3>
+        <ol>
+          <li><strong>Center stand, flat surface.</strong> Get it stable.</li>
+          <li><strong>Visual inspection.</strong> Cracked plastics, broken wires, rodent damage (chewed wires, nesting material in the airbox), rust.</li>
+          <li><strong>Check for engine seizure.</strong> Try the kickstarter. It should move with compression resistance. Won't budge? Remove the spark plug, squirt penetrating oil into the cylinder. Wait 24&ndash;48 hours. Try again.</li>
+          <li><strong>Check the wiring harness.</strong> Look for frayed, cut, or corroded wires. Rodents love scooter wiring.</li>
+        </ol>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" id="step2">
+        <div class="step-number">2</div>
+        <h3>Battery</h3>
+        <ol>
+          <li>Remove the old battery (under floorboard or under seat).</li>
+          <li><strong>Install a new YTX7A-BS</strong> (125/150/170i) or <strong>YTX7L-BS</strong> (Buddy 50). 12V, 6Ah, sealed AGM. Ready to install.</li>
+          <li>Connect positive (+) first, then negative (-). Clean terminals with a wire brush if corroded.</li>
+          <li>Test voltage with a multimeter &mdash; should read 12.4V&ndash;12.8V.</li>
+          <li>Check the main fuse near the battery. Replace if blown.</li>
+        </ol>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step" id="step3">
+        <div class="step-number">3</div>
+        <h3>Fuel System &mdash; Drain &amp; Clean</h3>
+        <div class="callout warning">
+          <strong>This is the most important step.</strong>
+          If the scooter sat with fuel in it, the fuel system is contaminated.
+        </div>
+        <ol>
+          <li>Disconnect the fuel line from the carburetor to stop flow.</li>
+          <li><strong>Drain all old fuel.</strong> Siphon or drain. Dispose properly.</li>
+          <li>Inspect the tank interior for rust, varnish, or debris.</li>
+          <li><strong>Replace the inline fuel filter</strong> (~$3&ndash;5). Always replace, never clean.</li>
+          <li>Replace fuel lines if cracked or hardened. Use 1/4" (6mm) fuel-rated hose.</li>
+          <li><strong>Test the vacuum petcock:</strong> With the fuel line disconnected and the scooter OFF, fuel should NOT drip. If it does, the diaphragm has failed &mdash; replace the petcock (P6523000000, ~$15&ndash;25).</li>
+          <li>Check the vacuum line from intake manifold to petcock. Cracked = no fuel flow.</li>
+        </ol>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="step" id="step4">
+        <div class="step-number">4</div>
+        <h3>Carburetor Service</h3>
+        <p>For a scooter that's been sitting, a full carb disassembly is mandatory. "Spray some carb cleaner in there" will not cut it.</p>
+        <ol>
+          <li><strong>Remove the carburetor.</strong> Loosen the intake manifold clamp, disconnect fuel line, vacuum line, throttle cable, and auto-choke connector.</li>
+          <li><strong>Remove the float bowl</strong> (four Phillips screws).</li>
+          <li><strong>Remove the float and float needle.</strong> Push out the float pin with a small punch.</li>
+          <li><strong>Remove all jets:</strong> main jet (brass, center tower), pilot/slow jet (smaller, to the side), jet needle (inside the slide/diaphragm assembly).</li>
+          <li><strong>Soak all metal parts</strong> in carb cleaner for several hours. Remove rubber O-rings first &mdash; carb cleaner destroys rubber.</li>
+          <li><strong>Blow out every passage with compressed air.</strong> Every hole. The tiny pilot jet passage is the most common clog.</li>
+          <li>Inspect the float needle valve seat. Pitted or dirty = the carb will flood. Replace.</li>
+          <li><strong>Reassemble with a rebuild kit</strong> (~$8&ndash;15). Includes new jets, gaskets, float needle, and O-rings.</li>
+        </ol>
+        <div class="callout tip">
+          <strong>Alternative</strong>
+          A complete replacement carburetor runs $25&ndash;45 aftermarket, or $80&ndash;120 for an OEM-style adjustable carb from Scooterworks. If the original is severely varnished, a new carb can be faster and more reliable.
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step" id="step5">
+        <div class="step-number">5</div>
+        <h3>Spark Plug &amp; Ignition</h3>
+        <ol>
+          <li>Remove and inspect the old plug. Black/sooty = rich. White = lean. Wet = flooding. Tan/brown = normal.</li>
+          <li><strong>Install a new spark plug:</strong>
+            <ul>
+              <li>Buddy 50: NGK BP7HS &mdash; 18mm socket &mdash; gap 0.6&ndash;0.7mm</li>
+              <li>Buddy 125/150: NGK C7HSA &mdash; 16mm socket &mdash; gap 0.6&ndash;0.7mm</li>
+              <li>Buddy 170i: NGK CR7HSA &mdash; gap 0.6&ndash;0.7mm</li>
+            </ul>
+          </li>
+          <li>Anti-seize on threads. Hand-tighten, then 1/4 turn with a wrench.</li>
+          <li><strong>Test for spark:</strong> Remove plug, reconnect wire, hold threaded end against engine metal. Kick the kickstarter. Look for a clear blue spark.</li>
+        </ol>
+        <div class="callout">
+          <strong>No spark?</strong>
+          Check in order: spark plug cap connection &rarr; ignition coil &rarr; CDI unit &rarr; stator/pickup coil &rarr; kill switch &rarr; wiring harness.
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="step" id="step6">
+        <div class="step-number">6</div>
+        <h3>Oil Change</h3>
+        <h4>Engine Oil (4-Stroke Models)</h4>
+        <ol>
+          <li>Remove the drain bolt on the bottom of the engine. Drain completely.</li>
+          <li>Remove and replace the oil filter screen + O-ring.</li>
+          <li>Replace drain bolt with a new crush washer.</li>
+          <li><strong>Fill with 0.9L of 15W-40.</strong> Check the sight glass &mdash; fill to the upper mark.</li>
+          <li>Run 1 minute, recheck level.</li>
+        </ol>
+        <h4>Gear Oil (All Models)</h4>
+        <ol>
+          <li>Locate the drain and fill plugs on the rear of the transmission case.</li>
+          <li>Drain old gear oil.</li>
+          <li><strong>Refill with 90&ndash;110mL of SAE 85W-140.</strong> Fill until oil seeps from the fill hole.</li>
+        </ol>
+        <div class="callout tip">
+          <strong>Buddy 50 Owners</strong>
+          The 50 is a 2-stroke. No oil filter. Fill the separate 2-stroke oil tank with SAE 30 FC-class oil (1.0L capacity). The oil pump mixes it automatically. Running out = engine seizure.
+        </div>
+      </div>
+
+      <!-- STEP 7 -->
+      <div class="step" id="step7">
+        <div class="step-number">7</div>
+        <h3>Air Filter</h3>
+        <ol>
+          <li>Remove the airbox cover (4&ndash;5 screws).</li>
+          <li>Inspect the element. Paper filters (125/150/170i) must be replaced if dirty. Foam filters (Buddy 50) can be washed and re-oiled.</li>
+          <li><strong>Check for rodent nests, leaves, or debris</strong> inside the airbox. Clean thoroughly.</li>
+          <li>Check the air intake tube running from the airbox under the seat plastics.</li>
+        </ol>
+      </div>
+
+      <!-- STEP 8 -->
+      <div class="step" id="step8">
+        <div class="step-number">8</div>
+        <h3>Tires &amp; Wheels</h3>
+        <ol>
+          <li><strong>Inspect sidewalls for dry rot.</strong> Cracks = replace. No exceptions.</li>
+          <li>Check tread depth &mdash; minimum 1mm.</li>
+          <li><strong>Inflate:</strong> Buddy 50: F 25 / R 36 psi. Buddy 125/150/170i: F 26 / R 36 psi.</li>
+          <li><strong>Tire sizes:</strong> Buddy 50: 90/90-10. Others: 100/90-10.</li>
+          <li>Spin each wheel by hand. Check for wobble (bent rim) or grinding (bad bearings).</li>
+        </ol>
+      </div>
+
+      <!-- STEP 9 -->
+      <div class="step" id="step9">
+        <div class="step-number">9</div>
+        <h3>Brakes</h3>
+        <h4>Front Disc Brake</h4>
+        <ol>
+          <li>Squeeze the lever &mdash; should feel firm, not spongy.</li>
+          <li>Visually inspect pad thickness through the caliper. Minimum: 1mm.</li>
+          <li>Check the rotor for deep scoring or warping. Light surface rust is normal.</li>
+          <li>Check brake fluid level in the master cylinder. Top up with DOT 3/4 if low. Dark fluid = flush and replace.</li>
+          <li>Seized caliper? Remove it, push the piston back with a C-clamp.</li>
+        </ol>
+        <h4>Rear Drum Brake</h4>
+        <ol>
+          <li>Squeeze the rear lever &mdash; should engage with moderate effort.</li>
+          <li>Adjust the cable using the adjuster nut at the rear hub if needed.</li>
+        </ol>
+      </div>
+
+      <!-- STEP 10 -->
+      <div class="step" id="step10">
+        <div class="step-number">10</div>
+        <h3>Electrical Systems Check</h3>
+        <ol>
+          <li>Turn key to ON &mdash; dash lights should illuminate.</li>
+          <li>Check all lights: headlight (high/low), tail, brake (both levers), turn signals, horn.</li>
+          <li>Replace burned-out bulbs. Clean corroded connectors with contact cleaner.</li>
+          <li><strong>Check ground wires</strong> &mdash; especially the main engine ground. A bad ground causes all sorts of gremlins.</li>
+          <li>Test the starter motor. Clicks but won't turn? Starter may be stuck or battery too weak. Try the kickstarter.</li>
+        </ol>
+      </div>
+
+      <div class="checker-thin"></div>
+
+      <!-- STEP 11 -->
+      <div class="step" id="step11">
+        <div class="step-number">11</div>
+        <h3>First Start Attempt</h3>
+        <ol>
+          <li><strong>Fresh fuel.</strong> Regular unleaded 87 octane. Add Sea Foam or fuel stabilizer.</li>
+          <li>Reconnect the fuel line to the carburetor.</li>
+          <li>Wait 30 seconds for fuel to fill the carb bowl.</li>
+          <li><strong>Do NOT touch the throttle.</strong> The auto-choke handles cold enrichment.</li>
+          <li>Electric start: 5 seconds max per attempt. 10 seconds between attempts.</li>
+          <li>No luck? Use the kickstarter. Firm, full kicks.</li>
+          <li>Fires but dies? Hold about 1/3 throttle while starting &mdash; the auto-choke may be shot.</li>
+          <li>Once running, idle for 2&ndash;3 minutes. Initial RPM will be high &mdash; that's the auto-choke. Normal.</li>
+          <li><strong>Watch for leaks</strong> under the engine.</li>
+        </ol>
+
+        <h4>Won't Start? Troubleshoot</h4>
+        <div class="troubleshoot">
+          <div class="troubleshoot-item">
+            <div class="label">Fuel</div>
+            <p>Disconnect fuel line at carb and crank &mdash; fuel should pulse out.</p>
+          </div>
+          <div class="troubleshoot-item">
+            <div class="label">Spark</div>
+            <p>Remove plug, ground against engine, kick &mdash; look for blue spark.</p>
+          </div>
+          <div class="troubleshoot-item">
+            <div class="label">Air</div>
+            <p>Air filter clear? Intake not blocked?</p>
+          </div>
+          <div class="troubleshoot-item">
+            <div class="label">Compression</div>
+            <p>Kickstarter should have resistance. None = internal issue.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 12 -->
+      <div class="step" id="step12">
+        <div class="step-number">12</div>
+        <h3>Break-In Ride</h3>
+        <ol>
+          <li><strong>First ride: 1 mile max, low speed.</strong> Test throttle, brakes, steering, lights.</li>
+          <li>Return and check for leaks (oil, fuel, brake fluid).</li>
+          <li><strong>Second ride: 3&ndash;5 miles.</strong> Open it up a bit. Reach full operating temperature.</li>
+          <li>Re-check tire pressure after tires warm up.</li>
+          <li>Re-check oil level after the first real ride.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="checker"></div>
+
+  <!-- SPECIFICATIONS -->
+  <section id="specs">
+    <div class="container">
+      <h2>Specifications by Model</h2>
+
+      <div class="spec-group">
+        <h4>Buddy 50 (2-Stroke)</h4>
+        <table>
+          <tbody>
+            <tr><td><strong>Engine</strong></td><td>49.7cc, 2-stroke, air-cooled</td></tr>
+            <tr><td><strong>Spark Plug</strong></td><td>NGK BP7HS &mdash; gap 0.6&ndash;0.7mm</td></tr>
+            <tr><td><strong>2-Stroke Oil</strong></td><td>SAE 30 FC class, 1.0L capacity</td></tr>
+            <tr><td><strong>Gear Oil</strong></td><td>SAE 140, 90&ndash;110mL</td></tr>
+            <tr><td><strong>Battery</strong></td><td>12V 7Ah (YTX7L-BS)</td></tr>
+            <tr><td><strong>Tires</strong></td><td>90/90-10 F&amp;R &mdash; 25/36 psi</td></tr>
+            <tr><td><strong>Brakes</strong></td><td>Front disc 190mm / Rear drum 130mm</td></tr>
+            <tr><td><strong>Weight</strong></td><td>198 lbs dry</td></tr>
+            <tr><td><strong>Top Speed</strong></td><td>~30 mph</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spec-group">
+        <h4>Buddy 125/150 (4-Stroke Carbureted)</h4>
+        <table>
+          <tbody>
+            <tr><td><strong>Engine</strong></td><td>124cc / 150cc GY6, 4-stroke, air-cooled</td></tr>
+            <tr><td><strong>Spark Plug</strong></td><td>NGK C7HSA &mdash; gap 0.6&ndash;0.7mm</td></tr>
+            <tr><td><strong>Engine Oil</strong></td><td>15W-40, 0.9L capacity</td></tr>
+            <tr><td><strong>Gear Oil</strong></td><td>SAE 85W-140, 90&ndash;110mL</td></tr>
+            <tr><td><strong>Battery</strong></td><td>12V 6Ah, YTX7A-BS (105 CCA)</td></tr>
+            <tr><td><strong>Tires</strong></td><td>100/90-10 F&amp;R &mdash; 26/36 psi</td></tr>
+            <tr><td><strong>Valve Clearance</strong></td><td>0.06&ndash;0.10mm intake &amp; exhaust (cold)</td></tr>
+            <tr><td><strong>Carburetor</strong></td><td>CVK/PD24 (24mm)</td></tr>
+            <tr><td><strong>CVT Belt</strong></td><td>20&ndash;21mm new; replace at 19mm</td></tr>
+            <tr><td><strong>Brakes</strong></td><td>Front disc 190mm / Rear drum 130mm</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="spec-group">
+        <h4>Buddy 170i (4-Stroke Fuel-Injected)</h4>
+        <table>
+          <tbody>
+            <tr><td><strong>Engine</strong></td><td>168cc GY6, 4-stroke, air-cooled, EFI</td></tr>
+            <tr><td><strong>Spark Plug</strong></td><td>NGK CR7HSA &mdash; gap 0.6&ndash;0.7mm</td></tr>
+            <tr><td><strong>Engine Oil</strong></td><td>15W-40, 0.9L capacity</td></tr>
+            <tr><td><strong>Gear Oil</strong></td><td>SAE 85W-140, 90&ndash;110mL</td></tr>
+            <tr><td><strong>Battery</strong></td><td>12V 6Ah, YTX7A-BS</td></tr>
+            <tr><td><strong>Tires</strong></td><td>100/90-10 F&amp;R &mdash; 26/36 psi</td></tr>
+            <tr><td><strong>Valve Clearance</strong></td><td>0.06&ndash;0.10mm intake &amp; exhaust (cold)</td></tr>
+            <tr><td><strong>Brakes</strong></td><td>Front disc 190mm / Rear drum 130mm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSTS -->
+  <section id="costs" style="background: var(--white);">
+    <div class="container">
+      <h2>Parts &amp; Estimated Costs</h2>
+      <p>Prices are approximate USD from Scooterworks, Amazon, Monster Scooter Parts, and Powersports Outlet.</p>
+
+      <h3>Essential Revival Parts (125/150)</h3>
+      <table>
+        <thead><tr><th>Part</th><th>Est. Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Battery (YTX7A-BS AGM)</td><td>$25&ndash;40</td></tr>
+          <tr><td>Spark plug (NGK C7HSA)</td><td>$3&ndash;5</td></tr>
+          <tr><td>Engine oil (15W-40, 1L)</td><td>$8&ndash;12</td></tr>
+          <tr><td>Gear oil (85W-140, 115mL)</td><td>$5&ndash;8</td></tr>
+          <tr><td>Oil filter + O-ring</td><td>$8&ndash;12</td></tr>
+          <tr><td>Air filter element</td><td>$12&ndash;18</td></tr>
+          <tr><td>Fuel filter (inline)</td><td>$3&ndash;5</td></tr>
+          <tr><td>Fuel line (1/4", 2 feet)</td><td>$3&ndash;5</td></tr>
+          <tr><td>Carburetor rebuild kit (PD24)</td><td>$8&ndash;15</td></tr>
+          <tr><td>Vacuum petcock (if failed)</td><td>$15&ndash;25</td></tr>
+          <tr class="cost-total"><td><strong>Subtotal (essentials)</strong></td><td><strong>$90&ndash;145</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Budget Summary</h3>
+      <table>
+        <thead><tr><th>Scenario</th><th>Estimate</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Best case</strong> &mdash; fluids, filter, spark plug, battery, carb clean</td><td>$90&ndash;145</td></tr>
+          <tr><td><strong>Typical revival</strong> &mdash; above + tires + brake pads</td><td>$150&ndash;260</td></tr>
+          <tr><td><strong>Full refresh</strong> &mdash; above + CVT service + new carb</td><td>$220&ndash;370</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="checker-thin"></div>
+
+  <!-- QUIRKS -->
+  <section id="quirks">
+    <div class="container">
+      <h2>Buddy-Specific Quirks</h2>
+
+      <h3>The Vacuum Petcock</h3>
+      <p>The Buddy has NO manual fuel shutoff valve. A vacuum-operated petcock only allows fuel flow when the engine creates intake vacuum. You can't gravity-feed fuel to test the carb without the engine cranking. To bench-test fuel flow, suck on the vacuum line (or use a hand vacuum pump) while the fuel line is disconnected.</p>
+
+      <h3>The Auto-Choke</h3>
+      <p>No manual choke lever. Cold starting is handled by an electric autobystarter &mdash; a wax-element thermostatic valve that gradually closes over 3&ndash;5 minutes as the engine warms up.</p>
+      <div class="callout tip">
+        <strong>If the auto-choke fails</strong>
+        Hold your hand over the air intake opening while cranking to restrict air (DIY manual choke). To test: disconnect the auto-choke electrical connector. Starts easier with it disconnected? It's stuck closed. Runs worse? It's stuck open or fine.
+      </div>
+
+      <h3>GY6 Engine Family = Dirt Cheap Parts</h3>
+      <p>The 125/150/170 engines belong to the GY6 family &mdash; the most common scooter engine on Earth. Parts are extremely cheap, widely available, and documented to death on YouTube and forums. The engine is robust and forgiving of neglect.</p>
+
+      <h3>Idle Adjustment</h3>
+      <p>After carb cleaning, idle will need re-adjustment. Idle speed screw: clockwise = faster, counterclockwise = slower. Target: 1500&ndash;1800 RPM. The OEM carb has no accessible air/fuel mixture screw (EPA-compliant). Aftermarket adjustable carbs ($80&ndash;120 from Scooterworks) have one and run noticeably better.</p>
+
+      <h3>Fuel Shutoff Habit</h3>
+      <p>When parking for more than a day, disconnect or pinch off the fuel line. Better yet: after your last ride, let the engine idle until it dies from fuel starvation (~2 minutes with the line disconnected). This empties the carb bowl and prevents varnish buildup.</p>
+
+      <h3>The Buddy 50 Is Different</h3>
+      <p>The 50 uses a horizontal Minarelli 2-stroke &mdash; completely different from the vertical GY6 4-stroke in the 125/150/170. Parts are NOT interchangeable. Different carb (PZ18), different plug (BP7HS), different tires (90/90-10), and significantly slower (30 mph top speed).</p>
+    </div>
+  </section>
+
+  <!-- MAINTENANCE -->
+  <section id="maintenance" style="background: var(--white);">
+    <div class="container">
+      <h2>Maintenance Schedule</h2>
+
+      <table>
+        <thead><tr><th>Interval</th><th>Tasks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Every Ride</strong></td><td>Tire pressure, oil level, brakes, lights</td></tr>
+          <tr><td><strong>1,000 mi / 6 months</strong></td><td>Engine oil + oil filter change</td></tr>
+          <tr><td><strong>2,000 mi / annually</strong></td><td>Spark plug, fuel filter, air filter, gear oil, inspect brakes &amp; tires</td></tr>
+          <tr><td><strong>4,000 mi</strong></td><td>Valve clearance check, CVT belt &amp; roller inspection, brake fluid, all fasteners</td></tr>
+          <tr><td><strong>8,000&ndash;10,000 mi</strong></td><td>CVT belt + rollers replacement, brake fluid flush, lubricate cables</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Seasonal Storage</h3>
+      <ol>
+        <li>Fill the tank completely and add fuel stabilizer.</li>
+        <li>Run the engine 5 minutes to circulate stabilized fuel.</li>
+        <li>Disconnect the fuel line and let it idle until it dies (empties the carb bowl).</li>
+        <li>Connect a battery tender/maintainer.</li>
+        <li>Inflate tires to max sidewall pressure.</li>
+        <li>Plug the exhaust opening to prevent moisture entry.</li>
+        <li>Store indoors or under a quality cover.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="checker"></div>
+
+  <!-- RESOURCES -->
+  <section id="resources">
+    <div class="container">
+      <h2>Resources</h2>
+
+      <h3>Official &amp; Community</h3>
+      <div class="resources-grid">
+        <a href="https://www.genuinescooters.com/pages/owners-manual" class="resource-card" target="_blank" rel="noopener">
+          <h4>Genuine Scooters Manuals</h4>
+          <p>Official owner's manuals from the manufacturer</p>
+        </a>
+        <a href="https://www.modernbuddy.com/forum/" class="resource-card" target="_blank" rel="noopener">
+          <h4>Modern Buddy Forum</h4>
+          <p>The #1 Genuine Buddy owner community since the mid-2000s</p>
+        </a>
+        <a href="https://scootdawg.proboards.com/" class="resource-card" target="_blank" rel="noopener">
+          <h4>ScootDawg Forums</h4>
+          <p>General scooter forum with deep GY6 expertise</p>
+        </a>
+      </div>
+
+      <h3>Parts Suppliers</h3>
+      <div class="resources-grid">
+        <a href="https://www.scooterworks.com/" class="resource-card" target="_blank" rel="noopener">
+          <h4>Scooterworks USA</h4>
+          <p>Genuine-authorized dealer, Chicago-based</p>
+        </a>
+        <a href="https://www.scooterwest.com/" class="resource-card" target="_blank" rel="noopener">
+          <h4>ScooterWest</h4>
+          <p>Large Genuine parts inventory</p>
+        </a>
+        <a href="https://monsterscooterparts.com/" class="resource-card" target="_blank" rel="noopener">
+          <h4>Monster Scooter Parts</h4>
+          <p>OEM and aftermarket parts</p>
+        </a>
+        <a href="https://powersportsoutlet.com/" class="resource-card" target="_blank" rel="noopener">
+          <h4>Powersports Outlet</h4>
+          <p>OEM Genuine parts</p>
+        </a>
+      </div>
+
+      <h3>Technical Guides</h3>
+      <div class="resources-grid">
+        <a href="https://www.buggydepot.com/tech-center/150cc-gy6-carburetor-cleaning-guide/" class="resource-card" target="_blank" rel="noopener">
+          <h4>GY6 Carb Cleaning Guide</h4>
+          <p>Buggy Depot &mdash; detailed carburetor walkthrough</p>
+        </a>
+        <a href="https://www.buggydepot.com/tech-center/gy6-150cc-ignition-troubleshooting-guide-no-spark/" class="resource-card" target="_blank" rel="noopener">
+          <h4>GY6 Ignition Troubleshooting</h4>
+          <p>Buggy Depot &mdash; no-spark diagnosis flowchart</p>
+        </a>
+        <a href="https://www.buggydepot.com/tech-center/150cc-gy6-automatic-choke-how-it-works/" class="resource-card" target="_blank" rel="noopener">
+          <h4>How the Auto-Choke Works</h4>
+          <p>Buggy Depot &mdash; autobystarter explained</p>
+        </a>
+        <a href="https://www.rollingwrenchdenver.com/blogs/news/my-scooter-wont-start-after-sitting" class="resource-card" target="_blank" rel="noopener">
+          <h4>Scooter Won't Start After Sitting</h4>
+          <p>Rolling Wrench Denver &mdash; revival guide</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="checker"></div>
+  <footer>
+    <div class="footer-roundel"></div>
+    <p><strong style="color: var(--white);">Rob Logic</strong> &mdash; <a href="https://roblogic.org">roblogic.org</a></p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;">Guide compiled from manufacturer docs, scooter parts retailers, owner forums, and GY6 technical resources. Prices reflect USD as of early 2026. Always verify part compatibility with your specific model year.</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(el) {
+      document.getElementById('lightbox-img').src = el.src;
+      document.getElementById('lightbox-img').alt = el.alt;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
