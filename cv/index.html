@@ -56,11 +56,9 @@
     }
 
     .logo-img {
-      width: 260px;
-      max-width: 70vw;
-      border: 3px solid var(--wood-dark);
-      box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
-      margin-bottom: 1rem;
+      width: 380px;
+      max-width: 85vw;
+      margin-bottom: 0.8rem;
     }
 
     .tagline {
@@ -443,6 +441,196 @@
       color: var(--accent);
     }
 
+    /* ===== BOOMBOX / TAPE DECK ===== */
+    .boom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .boombox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .boom-body {
+      width: 100%;
+      background: linear-gradient(180deg, #d0d0d0 0%, #b8b8b8 20%, #a0a0a0 80%, #888 100%);
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow:
+        0 6px 18px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 -1px 0 rgba(0,0,0,0.15);
+      border: 1px solid #777;
+    }
+
+    /* Top row: speakers + cassette window */
+    .boom-top {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    /* Speaker circles */
+    .boom-speaker {
+      width: 60px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .boom-speaker-cone {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #555 0%, #444 30%, #333 50%, #444 70%, #555 100%);
+      border: 3px solid #666;
+      box-shadow:
+        inset 0 0 8px rgba(0,0,0,0.5),
+        0 1px 2px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .boom-speaker-cone::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #777, #444);
+      border: 1px solid #555;
+    }
+
+    /* Cassette window — shows album art */
+    .boom-cassette-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .boom-cassette {
+      background: #222;
+      border-radius: 6px;
+      padding: 4px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .boom-cassette a {
+      display: block;
+    }
+
+    .boom-cassette img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+      filter: saturate(0.7) brightness(0.9);
+      transition: filter 0.2s;
+    }
+
+    .boombox:hover .boom-cassette img {
+      filter: saturate(1) brightness(1);
+    }
+
+    /* Play overlay */
+    .boom-cassette .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .boom-cassette .play-btn::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 0 8px 14px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 2px;
+    }
+
+    .boombox:hover .boom-cassette .play-btn { opacity: 1; }
+
+    /* Transport buttons row */
+    .boom-controls {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .boom-btn {
+      width: 28px;
+      height: 16px;
+      background: linear-gradient(180deg, #888, #666);
+      border: 1px solid #555;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .boom-btn.play-b {
+      background: linear-gradient(180deg, #cc4444, #993333);
+      border-color: #883333;
+    }
+
+    /* VU meter */
+    .boom-vu {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      margin-top: 6px;
+    }
+
+    .vu-bar {
+      width: 4px;
+      height: 10px;
+      background: #4a4;
+      border-radius: 1px;
+      opacity: 0.7;
+    }
+
+    .vu-bar:nth-child(n+5) { background: #aa4; }
+    .vu-bar:nth-child(n+7) { background: #a44; }
+
+    .boom-title {
+      text-align: center;
+      margin-top: 0.6rem;
+      font-family: 'Special Elite', monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .boom-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .boom-title a:hover { color: var(--accent); }
+
     /* Releases row */
     .releases {
       display: flex;
@@ -494,7 +682,9 @@
       .dial { width: 26px; height: 26px; }
       .dial.small { width: 18px; height: 18px; }
       .speaker { width: 42px; height: 36px; }
-      .logo-img { width: 200px; }
+      .logo-img { width: 280px; }
+      .boom-grid { grid-template-columns: 1fr; }
+      .boom-speaker-cone { width: 42px; height: 42px; }
     }
   </style>
 </head>
@@ -502,7 +692,7 @@
   <div class="container">
 
     <div class="header">
-      <img src="cv-sampler.jpg" alt="Cranial Vacancy" class="logo-img">
+      <img src="cv-logo-crop.png" alt="Cranial Vacancy" class="logo-img">
       <div class="tagline">El Cajon Garage Punk</div>
       <div class="years">1991 &ndash; 1994</div>
     </div>
@@ -683,109 +873,129 @@
 
     </div>
 
-    <div class="channel-strip">&#9608;&#9608; FULL RECORDINGS &#9608;&#9608;</div>
+    <div class="channel-strip">&#9608;&#9608; PRESS PLAY &#9608;&#9608;</div>
     <h2>Albums &amp; EPs</h2>
 
-    <div class="tv-grid">
+    <div class="boom-grid">
 
-      <div class="tv-set">
-        <div class="tv-antenna"><span class="tip-l"></span><span class="tip-r"></span></div>
-        <div class="tv-cabinet">
-          <div class="tv-screen-area">
-            <div class="tv-bezel">
-              <div class="tv-screen">
+      <div class="boombox">
+        <div class="boom-body">
+          <div class="boom-top">
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
+            <div class="boom-cassette-area">
+              <div class="boom-cassette">
                 <a href="https://www.youtube.com/watch?v=IMtoAvFiiYo" target="_blank" rel="noopener">
                   <img src="https://img.youtube.com/vi/IMtoAvFiiYo/hqdefault.jpg" alt="S/T Full Album">
                 </a>
                 <div class="play-btn"></div>
               </div>
             </div>
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
           </div>
-          <div class="tv-panel">
-            <div class="speaker"></div>
-            <div class="dial"></div>
-            <div class="dial"></div>
-            <div class="dial small"></div>
-            <span class="tv-brand">CV</span>
+          <div class="boom-vu">
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div>
+          </div>
+          <div class="boom-controls">
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn play-b"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
           </div>
         </div>
-        <div class="tv-legs"><div class="tv-leg"></div><div class="tv-leg"></div></div>
-        <div class="tv-title"><a href="https://www.youtube.com/watch?v=IMtoAvFiiYo" target="_blank" rel="noopener">S/T Full Album &mdash; 11 tracks, 1993</a></div>
+        <div class="boom-title"><a href="https://www.youtube.com/watch?v=IMtoAvFiiYo" target="_blank" rel="noopener">S/T Full Album &mdash; 11 tracks, 1993</a></div>
       </div>
 
-      <div class="tv-set">
-        <div class="tv-antenna"><span class="tip-l"></span><span class="tip-r"></span></div>
-        <div class="tv-cabinet">
-          <div class="tv-screen-area">
-            <div class="tv-bezel">
-              <div class="tv-screen">
+      <div class="boombox">
+        <div class="boom-body">
+          <div class="boom-top">
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
+            <div class="boom-cassette-area">
+              <div class="boom-cassette">
                 <a href="https://www.youtube.com/watch?v=-_rjGTzeS-Q" target="_blank" rel="noopener">
                   <img src="https://img.youtube.com/vi/-_rjGTzeS-Q/hqdefault.jpg" alt="Made Me Do It EP">
                 </a>
                 <div class="play-btn"></div>
               </div>
             </div>
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
           </div>
-          <div class="tv-panel">
-            <div class="speaker"></div>
-            <div class="dial"></div>
-            <div class="dial"></div>
-            <div class="dial small"></div>
-            <span class="tv-brand">CV</span>
+          <div class="boom-vu">
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div>
+          </div>
+          <div class="boom-controls">
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn play-b"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
           </div>
         </div>
-        <div class="tv-legs"><div class="tv-leg"></div><div class="tv-leg"></div></div>
-        <div class="tv-title"><a href="https://www.youtube.com/watch?v=-_rjGTzeS-Q" target="_blank" rel="noopener">Made Me Do It! &mdash; Amigo Records, 1993</a></div>
+        <div class="boom-title"><a href="https://www.youtube.com/watch?v=-_rjGTzeS-Q" target="_blank" rel="noopener">Made Me Do It! &mdash; Amigo Records, 1993</a></div>
       </div>
 
-      <div class="tv-set">
-        <div class="tv-antenna"><span class="tip-l"></span><span class="tip-r"></span></div>
-        <div class="tv-cabinet">
-          <div class="tv-screen-area">
-            <div class="tv-bezel">
-              <div class="tv-screen">
+      <div class="boombox">
+        <div class="boom-body">
+          <div class="boom-top">
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
+            <div class="boom-cassette-area">
+              <div class="boom-cassette">
                 <a href="https://www.youtube.com/watch?v=WwxzIgfUqPE" target="_blank" rel="noopener">
                   <img src="https://img.youtube.com/vi/WwxzIgfUqPE/hqdefault.jpg" alt="Sampler split 7 inch">
                 </a>
                 <div class="play-btn"></div>
               </div>
             </div>
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
           </div>
-          <div class="tv-panel">
-            <div class="speaker"></div>
-            <div class="dial"></div>
-            <div class="dial"></div>
-            <div class="dial small"></div>
-            <span class="tv-brand">CV</span>
+          <div class="boom-vu">
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div>
+          </div>
+          <div class="boom-controls">
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn play-b"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
           </div>
         </div>
-        <div class="tv-legs"><div class="tv-leg"></div><div class="tv-leg"></div></div>
-        <div class="tv-title"><a href="https://www.youtube.com/watch?v=WwxzIgfUqPE" target="_blank" rel="noopener">Sampler (w/ Faux Pas) &mdash; 7", 1993</a></div>
+        <div class="boom-title"><a href="https://www.youtube.com/watch?v=WwxzIgfUqPE" target="_blank" rel="noopener">Sampler (w/ Faux Pas) &mdash; 7", 1993</a></div>
       </div>
 
-      <div class="tv-set">
-        <div class="tv-antenna"><span class="tip-l"></span><span class="tip-r"></span></div>
-        <div class="tv-cabinet">
-          <div class="tv-screen-area">
-            <div class="tv-bezel">
-              <div class="tv-screen">
+      <div class="boombox">
+        <div class="boom-body">
+          <div class="boom-top">
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
+            <div class="boom-cassette-area">
+              <div class="boom-cassette">
                 <a href="https://www.youtube.com/watch?v=ehdPjZU3VfU" target="_blank" rel="noopener">
                   <img src="https://img.youtube.com/vi/ehdPjZU3VfU/hqdefault.jpg" alt="Heres Your Receipt cassette">
                 </a>
                 <div class="play-btn"></div>
               </div>
             </div>
+            <div class="boom-speaker"><div class="boom-speaker-cone"></div></div>
           </div>
-          <div class="tv-panel">
-            <div class="speaker"></div>
-            <div class="dial"></div>
-            <div class="dial"></div>
-            <div class="dial small"></div>
-            <span class="tv-brand">CV</span>
+          <div class="boom-vu">
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div><div class="vu-bar"></div>
+            <div class="vu-bar"></div><div class="vu-bar"></div>
+          </div>
+          <div class="boom-controls">
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn play-b"></div>
+            <div class="boom-btn"></div>
+            <div class="boom-btn"></div>
           </div>
         </div>
-        <div class="tv-legs"><div class="tv-leg"></div><div class="tv-leg"></div></div>
-        <div class="tv-title"><a href="https://www.youtube.com/watch?v=ehdPjZU3VfU" target="_blank" rel="noopener">Here's Your Receipt, You Hoe &mdash; Gag Records, '93</a></div>
+        <div class="boom-title"><a href="https://www.youtube.com/watch?v=ehdPjZU3VfU" target="_blank" rel="noopener">Here's Your Receipt, You Hoe &mdash; Gag Records, '93</a></div>
       </div>
 
     </div>
