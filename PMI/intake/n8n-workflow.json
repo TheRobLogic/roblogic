@@ -18,13 +18,41 @@
     },
     {
       "parameters": {
-        "jsCode": "const fs = require('fs');\nconst body = $input.first().json.body;\nconst now = new Date().toLocaleString('en-US', {\n  timeZone: 'America/Los_Angeles',\n  weekday: 'long',\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit'\n});\n\nconst fields = [\n  ['contact_name', 'Contact'],\n  ['contact_method', 'Preferred Contact Method'],\n  ['contact_detail', 'Contact Info'],\n  ['pricing', 'Current Pricing'],\n  ['service_area', 'Service Area'],\n  ['partner_clinics', 'Partner Clinics'],\n  ['monthly_volume', 'Monthly Volume'],\n  ['hours', 'Hours'],\n  ['tier', 'Tier Interest'],\n  ['photos', 'Photos Available'],\n  ['photo_link', 'Photo Upload Link'],\n  ['demo_feedback', 'Demo Site Feedback'],\n  ['corrections', 'Corrections'],\n  ['anything_else', 'Other Notes']\n];\n\nconst summary = {};\nlet md = '\\n---\\n\\n## ' + now + '\\n\\n';\n\nfor (const [key, label] of fields) {\n  const val = body && body[key];\n  if (val && String(val).trim()) {\n    summary[label] = String(val).trim();\n    md += '**' + label + ':** ' + String(val).trim() + '\\n\\n';\n  }\n}\n\nconst filePath = '/peach-logs/petmex-intake.md';\nif (!fs.existsSync(filePath)) {\n  fs.writeFileSync(filePath, '# PetMex Intake Submissions\\n\\n');\n}\nfs.appendFileSync(filePath, md);\n\nreturn [{\n  json: {\n    timestamp: now,\n    submission: summary,\n    raw: body\n  }\n}];"
+        "jsCode": "const fs = require('fs');\nconst body = $input.first().json.body;\nconst now = new Date().toLocaleString('en-US', {\n  timeZone: 'America/Los_Angeles',\n  weekday: 'long',\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit'\n});\n\nconst fields = [\n  ['contact_name', 'Contact'],\n  ['contact_method', 'Preferred Contact Method'],\n  ['contact_detail', 'Contact Info'],\n  ['pricing', 'Current Pricing'],\n  ['service_area', 'Service Area'],\n  ['partner_clinics', 'Partner Clinics'],\n  ['monthly_volume', 'Monthly Volume'],\n  ['hours', 'Hours'],\n  ['tier', 'Tier Interest'],\n  ['photos', 'Photos Available'],\n  ['photo_link', 'Photo Upload Link'],\n  ['demo_feedback', 'Demo Site Feedback'],\n  ['corrections', 'Corrections'],\n  ['anything_else', 'Other Notes']\n];\n\nconst summary = {};\nlet md = '\\n---\\n\\n## ' + now + '\\n\\n';\nlet notify = '';\n\nfor (const [key, label] of fields) {\n  const val = body && body[key];\n  if (val && String(val).trim()) {\n    summary[label] = String(val).trim();\n    md += '**' + label + ':** ' + String(val).trim() + '\\n\\n';\n    notify += label + ': ' + String(val).trim() + '\\n';\n  }\n}\n\nconst filePath = '/peach-logs/petmex-intake.md';\nif (!fs.existsSync(filePath)) {\n  fs.writeFileSync(filePath, '# PetMex Intake Submissions\\n\\n');\n}\nfs.appendFileSync(filePath, md);\n\nconst contactName = (body && body.contact_name) || 'Unknown';\n\nreturn [{\n  json: {\n    timestamp: now,\n    submission: summary,\n    raw: body,\n    notifyTitle: 'PetMex Intake: ' + contactName,\n    notifyBody: notify\n  }\n}];"
       },
       "id": "a1b2c3d4-2222-4000-a000-000000000002",
       "name": "Format Submission",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [480, 340]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ntfy.sh/petmex-intake-3f7aa6bba346",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Title",
+              "value": "={{ $json.notifyTitle }}"
+            },
+            {
+              "name": "Tags",
+              "value": "dog,incoming_envelope"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "body": "={{ $json.notifyBody }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-3333-4000-a000-000000000003",
+      "name": "Notify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 460]
     },
     {
       "parameters": {
@@ -35,7 +63,7 @@
       "name": "Respond",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [720, 340]
+      "position": [720, 220]
     }
   ],
   "connections": {
@@ -55,6 +83,11 @@
         [
           {
             "node": "Respond",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify",
             "type": "main",
             "index": 0
           }
