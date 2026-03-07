@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Show — The Bancroft Bar</title>
+  <meta name="description" content="Want to play The Bancroft? Submit your band info and we'll get back to you. Original live music in Spring Valley, CA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======== NAV ======== -->
+  <nav class="nav">
+    <a href="index.html"><img src="img/logo.png" alt="The Bancroft Bar" class="nav__logo"></a>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="shows.html" class="nav__link">Shows</a></li>
+      <li><a href="on-tap.html" class="nav__link">On Tap</a></li>
+      <li><a href="booking.html" class="nav__link">Booking</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== HEADER ======== -->
+  <section class="page-header page-header--brocade">
+    <h1 class="page-header__title">Play the Bancroft</h1>
+    <p class="page-header__sub">We book original live music Thursday through Sunday</p>
+  </section>
+
+  <!-- ======== BOOKING FORM ======== -->
+  <section class="booking-section">
+    <div class="container">
+
+      <form id="booking-form" class="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="band-name">Band Name *</label>
+            <input type="text" id="band-name" name="bandName" required autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label for="email">Contact Email *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="genre">Genre</label>
+            <input type="text" id="genre" name="genre" placeholder="Punk, Metal, Indie, etc.">
+          </div>
+          <div class="form-group">
+            <label for="preferred-dates">Preferred Dates</label>
+            <input type="text" id="preferred-dates" name="preferredDates" placeholder="Any Friday in April">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="links">Links (Bandcamp, Instagram, Spotify, Website)</label>
+          <textarea id="links" name="links" rows="3" placeholder="One link per line"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Anything else?</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us about your band, your draw, or anything we should know"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full">Send Inquiry</button>
+      </form>
+
+      <div id="form-success" class="form-message" hidden>
+        Thanks for reaching out! We'll get back to you soon.<br>
+        <small style="color: var(--cream-dim);">You can also email us directly at <a href="mailto:bancroftbar@gmail.com">bancroftbar@gmail.com</a></small>
+      </div>
+
+      <div id="form-error" class="form-message form-message--error" hidden>
+        Something went wrong. Email us directly at <a href="mailto:bancroftbar@gmail.com">bancroftbar@gmail.com</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="footer__content">
+      &copy; 2026 The Bancroft Bar &middot;
+      <a href="https://maps.google.com/?q=9143+Campo+Rd+Spring+Valley+CA+91977" target="_blank" rel="noopener">9143 Campo Rd, Spring Valley CA</a>
+      &middot; 21+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

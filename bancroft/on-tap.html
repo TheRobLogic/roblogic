@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>On Tap — The Bancroft Bar</title>
+  <meta name="description" content="See what's on tap at The Bancroft Bar. Craft beers, cocktails, and more in Spring Valley, CA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======== NAV ======== -->
+  <nav class="nav">
+    <a href="index.html"><img src="img/logo.png" alt="The Bancroft Bar" class="nav__logo"></a>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="shows.html" class="nav__link">Shows</a></li>
+      <li><a href="on-tap.html" class="nav__link">On Tap</a></li>
+      <li><a href="booking.html" class="nav__link">Booking</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== HEADER ======== -->
+  <section class="page-header page-header--wood">
+    <h1 class="page-header__title">On Tap</h1>
+    <p class="page-header__sub">What's pouring right now</p>
+  </section>
+
+  <!-- ======== UNTAPPD MENU ======== -->
+  <section class="ontap-section">
+    <div class="container">
+      <div id="menu-container"></div>
+      <script type="text/javascript">
+        !function(e,t){var n=document.createElement("script"),a=document.getElementsByTagName("script")[0];n.async=1,a.parentNode.insertBefore(n,a),n.onload=n.onreadystatechange=function(e,a){(a||!n.readyState||/loaded|complete/.test(n.readyState))&&(n.onload=n.onreadystatechange=null,n=void 0,a||t&&t())},n.src=e}("https://embed-menu-preloader.untappdapi.com/embed-menu-preloader.min.js",(function(){PreloadEmbedMenu("menu-container",40317,156763)}));
+      </script>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="footer__content">
+      &copy; 2026 The Bancroft Bar &middot;
+      <a href="https://maps.google.com/?q=9143+Campo+Rd+Spring+Valley+CA+91977" target="_blank" rel="noopener">9143 Campo Rd, Spring Valley CA</a>
+      &middot; 21+
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
