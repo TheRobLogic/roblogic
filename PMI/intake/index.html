@@ -335,8 +335,18 @@
 
         <div class="field-group required">
           <label for="contact_method">Best way to reach you</label>
-          <span class="hint">Email, phone, text &mdash; whatever you prefer</span>
-          <input type="text" id="contact_method" name="contact_method" placeholder="e.g. lizette@petmex.com or (619) 555-1234" required>
+          <select id="contact_method" name="contact_method" required>
+            <option value="">Pick one...</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone call</option>
+            <option value="text">Text message</option>
+            <option value="all">All of the above</option>
+          </select>
+        </div>
+
+        <div class="field-group required" id="contact-detail-group" style="display:none;">
+          <label for="contact_detail" id="contact-detail-label">Email address</label>
+          <input type="email" id="contact_detail" name="contact_detail" placeholder="lizette@petmex.com" required>
         </div>
 
         <hr class="section-divider">
@@ -364,7 +374,14 @@
 
         <div class="field-group">
           <label for="monthly_volume">Roughly how many trips per month?</label>
-          <input type="text" id="monthly_volume" name="monthly_volume" placeholder="e.g. 15-20">
+          <select id="monthly_volume" name="monthly_volume">
+            <option value="">Pick one...</option>
+            <option value="1-5">1&ndash;5</option>
+            <option value="5-10">5&ndash;10</option>
+            <option value="10-20">10&ndash;20</option>
+            <option value="20-40">20&ndash;40</option>
+            <option value="40+">40+</option>
+          </select>
         </div>
 
         <div class="field-group">
@@ -456,13 +473,57 @@
     const thankYou = document.getElementById('thank-you');
     const knownSection = document.querySelector('.known');
 
+    // Contact method toggle
+    const methodSelect = document.getElementById('contact_method');
+    const detailGroup = document.getElementById('contact-detail-group');
+    const detailInput = document.getElementById('contact_detail');
+    const detailLabel = document.getElementById('contact-detail-label');
+
+    function formatPhone(val) {
+      const digits = val.replace(/\D/g, '').slice(0, 10);
+      if (digits.length <= 3) return digits;
+      if (digits.length <= 6) return '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+      return '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+    }
+
+    methodSelect.addEventListener('change', () => {
+      const v = methodSelect.value;
+      detailGroup.style.display = v ? 'block' : 'none';
+      detailInput.removeEventListener('input', phoneFormatter);
+
+      if (v === 'email') {
+        detailLabel.textContent = 'Email address';
+        detailInput.type = 'email';
+        detailInput.placeholder = 'lizette@petmex.com';
+        detailInput.value = '';
+      } else if (v === 'phone' || v === 'text') {
+        detailLabel.textContent = v === 'phone' ? 'Phone number' : 'Text number';
+        detailInput.type = 'tel';
+        detailInput.placeholder = '(619) 555-1234';
+        detailInput.value = '';
+        detailInput.addEventListener('input', phoneFormatter);
+      } else if (v === 'all') {
+        detailLabel.textContent = 'Email and phone number';
+        detailInput.type = 'text';
+        detailInput.placeholder = 'lizette@petmex.com / (619) 555-1234';
+        detailInput.value = '';
+      }
+    });
+
+    function phoneFormatter(e) {
+      const pos = e.target.selectionStart;
+      const prev = e.target.value;
+      e.target.value = formatPhone(prev);
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Basic validation
       const name = form.contact_name.value.trim();
-      const method = form.contact_method.value.trim();
-      if (!name || !method) {
+      const method = form.contact_method.value;
+      const detail = form.contact_detail.value.trim();
+      if (!name || !method || !detail) {
         errorMsg.textContent = 'Please fill in your name and contact info at minimum.';
         errorMsg.classList.add('visible');
         return;
