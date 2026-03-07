@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Started — PetMex International | Rob Logic</title>
+  <meta name="description" content="Help us build your new digital presence. Quick intake form for PetMex International.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #D4654A;
+      --terracotta-deep: #B84D35;
+      --terracotta-light: #E8937E;
+      --navy: #1A2744;
+      --navy-mid: #243454;
+      --cream: #FDF6EE;
+      --cream-warm: #F8EDE0;
+      --sand: #EDE4D8;
+      --gold: #E8B84A;
+      --charcoal: #2A2A2A;
+      --text: #3D3229;
+      --text-light: #6B5E52;
+      --white: #FFFFFF;
+      --green: #1B7A4A;
+      --green-bg: #E8F5EE;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow-sm: 0 2px 8px rgba(26,39,68,0.08);
+      --shadow-md: 0 8px 30px rgba(26,39,68,0.12);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: 'Fraunces', serif; color: var(--navy); line-height: 1.2; }
+
+    /* HEADER */
+    .header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+    .header h1 {
+      color: var(--white);
+      font-size: clamp(2rem, 4.5vw, 2.8rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .header h1 em { color: var(--terracotta); font-style: italic; }
+    .header p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* CONTAINER */
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* WHAT WE KNOW */
+    .known {
+      padding: 48px 0 32px;
+    }
+    .known h2 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .known-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .known-card {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .known-card .icon { font-size: 1.1rem; flex-shrink: 0; }
+    .known-card .label { font-size: 0.9rem; color: var(--text-light); }
+    .known-card strong { color: var(--navy); }
+
+    /* FORM SECTION */
+    .form-section {
+      padding: 40px 0 80px;
+    }
+    .form-intro {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--sand);
+    }
+    .field-group {
+      margin-bottom: 28px;
+    }
+    .field-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .field-group .hint {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .field-group input,
+    .field-group textarea,
+    .field-group select {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--sand);
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    .field-group input:focus,
+    .field-group textarea:focus,
+    .field-group select:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(212,101,74,0.12);
+    }
+    .field-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .field-group select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B5E52' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    .field-group input::placeholder,
+    .field-group textarea::placeholder {
+      color: #B5A99A;
+    }
+    .field-group.required label::after {
+      content: ' *';
+      color: var(--terracotta);
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--sand);
+      margin: 36px 0;
+    }
+    .section-label {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    /* SUBMIT */
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--terracotta);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 12px;
+    }
+    .submit-btn:hover {
+      background: var(--terracotta-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,101,74,0.25);
+    }
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .submit-btn .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    .submit-btn.loading .spinner { display: block; }
+    .submit-btn.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* THANK YOU */
+    .thank-you {
+      display: none;
+      text-align: center;
+      padding: 80px 24px 120px;
+    }
+    .thank-you.visible { display: block; }
+    .thank-you .check-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--green-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2rem;
+    }
+    .thank-you h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .thank-you p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ERROR */
+    .error-msg {
+      display: none;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-top: 16px;
+      color: #991B1B;
+      font-size: 0.9rem;
+    }
+    .error-msg.visible { display: block; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--sand);
+    }
+    .footer a { color: var(--terracotta); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .header { padding: 60px 20px 48px; }
+      .known-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Let's Get <em>PetMex</em> Rolling</h1>
+    <p>We've done our homework. Now we need the details only you can provide. Takes about 5 minutes.</p>
+  </div>
+
+  <div class="container" id="main-content">
+
+    <!-- WHAT WE ALREADY KNOW -->
+    <div class="known">
+      <h2>What we already know</h2>
+      <div class="known-grid">
+        <div class="known-card">
+          <span class="icon">&#11088;</span>
+          <span class="label"><strong>5.0 stars</strong>, 59 Google reviews</span>
+        </div>
+        <div class="known-card">
+          <span class="icon">&#128149;</span>
+          <span class="label"><strong>Lizette &amp; TJ</strong> &mdash; the team</span>
+        </div>
+        <div class="known-card">
+          <span class="icon">&#128205;</span>
+          <span class="label"><strong>SD &rarr; TJ</strong> door-to-door transport</span>
+        </div>
+        <div class="known-card">
+          <span class="icon">&#127760;</span>
+          <span class="label"><strong>Bilingual</strong>, family-owned</span>
+        </div>
+        <div class="known-card">
+          <span class="icon">&#128200;</span>
+          <span class="label"><strong>Competitor analysis</strong> complete</span>
+        </div>
+        <div class="known-card">
+          <span class="icon">&#128187;</span>
+          <span class="label"><strong>Demo site</strong> &amp; proposal built</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-section" id="form-section">
+      <p class="form-intro">Now, some things only you can tell us. Fill out what you can &mdash; anything you're not sure about, just skip it and we'll figure it out together.</p>
+
+      <form id="intake-form" novalidate>
+
+        <!-- CONTACT -->
+        <div class="section-label">Contact</div>
+
+        <div class="field-group required">
+          <label for="contact_name">Who should we coordinate with?</label>
+          <input type="text" id="contact_name" name="contact_name" placeholder="e.g. Lizette" required>
+        </div>
+
+        <div class="field-group required">
+          <label for="contact_method">Best way to reach you</label>
+          <span class="hint">Email, phone, text &mdash; whatever you prefer</span>
+          <input type="text" id="contact_method" name="contact_method" placeholder="e.g. lizette@petmex.com or (619) 555-1234" required>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- SERVICE DETAILS -->
+        <div class="section-label">Your Service</div>
+
+        <div class="field-group">
+          <label for="pricing">What do you currently charge?</label>
+          <span class="hint">Flat rate, tiered, varies by procedure &mdash; whatever applies</span>
+          <textarea id="pricing" name="pricing" placeholder="e.g. $150 for standard transport, $200+ for surgical pickups..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="service_area">What San Diego areas do you pick up from?</label>
+          <span class="hint">Neighborhoods, zip codes, or radius &mdash; however you think about it</span>
+          <textarea id="service_area" name="service_area" placeholder="e.g. All of San Diego County, El Cajon, Chula Vista, La Mesa..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="partner_clinics">Which Tijuana vet clinics do you work with?</label>
+          <span class="hint">Names, specialties, anything you want people to know about them</span>
+          <textarea id="partner_clinics" name="partner_clinics" placeholder="e.g. Dr. Garcia at Clinica Veterinaria TJ (general), Dr. Lopez (dental)..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="monthly_volume">Roughly how many trips per month?</label>
+          <input type="text" id="monthly_volume" name="monthly_volume" placeholder="e.g. 15-20">
+        </div>
+
+        <div class="field-group">
+          <label for="hours">Hours of operation</label>
+          <input type="text" id="hours" name="hours" placeholder="e.g. Mon-Sat 7am-6pm">
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- GETTING STARTED -->
+        <div class="section-label">Getting Started</div>
+
+        <div class="field-group">
+          <label for="tier">Which service tier interests you?</label>
+          <span class="hint">From the <a href="/PMIproposal/#packages" style="color: var(--terracotta);">proposal</a> &mdash; no commitment, just gauging interest</span>
+          <select id="tier" name="tier">
+            <option value="">Pick one...</option>
+            <option value="Foundation">Tier 1 &mdash; Foundation (website + SEO)</option>
+            <option value="Growth">Tier 2 &mdash; Growth (+ social + reviews)</option>
+            <option value="Full Service">Tier 3 &mdash; Full Service (+ AI + automation)</option>
+            <option value="Not sure yet">Not sure yet &mdash; let's talk</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="photo_shoot">Photo shoot for the new site?</label>
+          <span class="hint">Real photos of you, TJ, and happy pets convert way better than stock. Any availability preferences?</span>
+          <textarea id="photo_shoot" name="photo_shoot" placeholder="e.g. Weekday mornings work best, or we have some good photos already..."></textarea>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- FEEDBACK -->
+        <div class="section-label">Feedback</div>
+
+        <div class="field-group">
+          <label for="demo_feedback">Anything you'd change about the demo site?</label>
+          <span class="hint"><a href="/PMI/" style="color: var(--terracotta);">View the demo</a> &mdash; colors, wording, layout, anything</span>
+          <textarea id="demo_feedback" name="demo_feedback" placeholder="e.g. Love the colors, but the pricing section needs different numbers..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="corrections">Anything in the proposal we got wrong?</label>
+          <span class="hint"><a href="/PMIproposal/" style="color: var(--terracotta);">View the proposal</a></span>
+          <textarea id="corrections" name="corrections" placeholder="e.g. We actually have 70 reviews now, or we don't work with that clinic anymore..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="anything_else">Anything else on your mind?</label>
+          <textarea id="anything_else" name="anything_else" placeholder="Questions, ideas, concerns &mdash; anything goes"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span class="btn-text">Send It Over &rarr;</span>
+          <span class="spinner"></span>
+        </button>
+
+        <div class="error-msg" id="error-msg">
+          Something went wrong sending the form. You can try again, or just email the info to <a href="mailto:rob@roblogic.org" style="color: #991B1B; font-weight: 600;">rob@roblogic.org</a>.
+        </div>
+      </form>
+    </div>
+
+    <!-- THANK YOU (shown after submit) -->
+    <div class="thank-you" id="thank-you">
+      <div class="check-circle">&#10003;</div>
+      <h2>Got It!</h2>
+      <p>We'll review your info and be in touch soon. In the meantime, keep snapping photos of happy pets &mdash; we'll need those for the new site.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="/PMI/">View Demo Site</a> &nbsp;&middot;&nbsp; <a href="/PMIproposal/">View Proposal</a> &nbsp;&middot;&nbsp; Prepared by <a href="https://roblogic.org">Rob Logic</a>
+  </div>
+
+  <script>
+    const WEBHOOK_URL = 'https://n8n.roblogic.org/webhook/petmex-intake';
+
+    const form = document.getElementById('intake-form');
+    const btn = document.getElementById('submit-btn');
+    const errorMsg = document.getElementById('error-msg');
+    const formSection = document.getElementById('form-section');
+    const thankYou = document.getElementById('thank-you');
+    const knownSection = document.querySelector('.known');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      const name = form.contact_name.value.trim();
+      const method = form.contact_method.value.trim();
+      if (!name || !method) {
+        errorMsg.textContent = 'Please fill in your name and contact info at minimum.';
+        errorMsg.classList.add('visible');
+        return;
+      }
+
+      // Collect form data as JSON
+      const data = {};
+      const fields = form.querySelectorAll('input, textarea, select');
+      fields.forEach(f => {
+        if (f.name && f.value.trim()) data[f.name] = f.value.trim();
+      });
+
+      // Submit
+      btn.classList.add('loading');
+      btn.disabled = true;
+      errorMsg.classList.remove('visible');
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) throw new Error('Server error');
+
+        // Success — show thank you
+        formSection.style.display = 'none';
+        knownSection.style.display = 'none';
+        thankYou.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        errorMsg.innerHTML = 'Something went wrong sending the form. You can try again, or just email the info to <a href="mailto:rob@roblogic.org" style="color: #991B1B; font-weight: 600;">rob@roblogic.org</a>.';
+        errorMsg.classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>

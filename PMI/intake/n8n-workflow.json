@@ -1,0 +1,92 @@
+{
+  "id": "petmex-intake-001",
+  "name": "PetMex Intake Form",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "petmex-intake",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-1111-4000-a000-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 340],
+      "webhookId": "petmex-intake"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body;\nconst now = new Date().toLocaleString('en-US', {\n  timeZone: 'America/Los_Angeles',\n  weekday: 'long',\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit'\n});\n\nlet md = '\\n---\\n\\n## ' + now + '\\n\\n';\n\nconst fields = [\n  ['contact_name', 'Contact'],\n  ['contact_method', 'Best Way to Reach You'],\n  ['pricing', 'Current Pricing'],\n  ['service_area', 'Service Area'],\n  ['partner_clinics', 'Partner Clinics'],\n  ['monthly_volume', 'Monthly Volume'],\n  ['hours', 'Hours'],\n  ['tier', 'Tier Interest'],\n  ['photo_shoot', 'Photo Shoot'],\n  ['demo_feedback', 'Demo Site Feedback'],\n  ['corrections', 'Corrections'],\n  ['anything_else', 'Other Notes']\n];\n\nfor (const [key, label] of fields) {\n  const val = body && body[key];\n  if (val && String(val).trim()) {\n    md += '**' + label + ':** ' + String(val).trim() + '\\n\\n';\n  }\n}\n\nconst b64 = Buffer.from(md).toString('base64');\n\nreturn [{\n  json: {\n    markdown: md,\n    markdownBase64: b64,\n    timestamp: now,\n    raw: body\n  }\n}];"
+      },
+      "id": "a1b2c3d4-2222-4000-a000-000000000002",
+      "name": "Format Submission",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 340]
+    },
+    {
+      "parameters": {
+        "command": "[ -f /peach-logs/petmex-intake.md ] || printf '# PetMex Intake Submissions\\n\\n' > /peach-logs/petmex-intake.md; echo '={{ $json.markdownBase64 }}' | base64 -d >> /peach-logs/petmex-intake.md"
+      },
+      "id": "a1b2c3d4-3333-4000-a000-000000000003",
+      "name": "Save to File",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [680, 340]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"message\": \"Received\"\n}"
+      },
+      "id": "a1b2c3d4-4444-4000-a000-000000000004",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [900, 340]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Format Submission",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Submission": {
+      "main": [
+        [
+          {
+            "node": "Save to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to File": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [],
+  "pinData": {}
+}
