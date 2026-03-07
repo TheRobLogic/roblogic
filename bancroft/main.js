@@ -27,10 +27,13 @@
   }
 
   // ---- Active Nav Link ----
-  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var path = window.location.pathname;
+  var page = path.split('/').filter(Boolean).pop() || '';
   document.querySelectorAll('.nav__link').forEach(function (link) {
     var href = link.getAttribute('href');
-    if (href === page || (page === '' && href === 'index.html')) {
+    var isHome = (href === '.' || href === './') && (page === 'bancroft' || page === '' || path.endsWith('/bancroft/'));
+    var isMatch = href === page;
+    if (isHome || isMatch) {
       link.classList.add('nav__link--active');
     }
   });
