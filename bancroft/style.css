@@ -495,7 +495,7 @@ h1, h2, h3, h4 {
 
 .page-header {
   position: relative;
-  padding: calc(var(--nav-h) + 56px) 0 56px;
+  padding: calc(var(--nav-h) + 64px) 0 64px;
   text-align: center;
   background-size: cover;
   background-position: center;
@@ -837,6 +837,66 @@ h1, h2, h3, h4 {
     var(--red-dark) 75%,
     transparent 100%
   );
+}
+
+/* ============================================
+   DESKTOP — BIGGER EVERYTHING
+   ============================================ */
+
+@media (min-width: 1024px) {
+  /* Hero */
+  .hero__logo { width: min(600px, 50vw); }
+  .hero__tagline { font-size: 30px; }
+  .hero__sub { font-size: 24px; }
+
+  /* Nav */
+  .nav__logo { height: 40px; }
+  .nav__link { font-size: 20px; }
+  .nav { height: 70px; }
+
+  /* Section titles */
+  .section-title { font-size: 48px; }
+
+  /* Schedule */
+  .schedule-day { padding: 24px 10px; }
+  .schedule-day__name { font-size: 26px; }
+  .schedule-day__event { font-size: 26px; }
+  .schedule-day__time { font-size: 20px; }
+
+  /* Info block */
+  .info-block { padding: 72px 24px; }
+  .info-block__address { font-size: 34px; }
+  .info-block__phone { font-size: 30px; }
+  .info-block__detail { font-size: 26px; }
+  .social-icon { width: 60px; height: 60px; }
+  .social-icon svg { width: 28px; height: 28px; }
+
+  /* Coming up */
+  .coming-up__date { font-size: 20px; }
+  .coming-up__bands { font-size: 24px; }
+  .coming-up__details { font-size: 20px; }
+
+  /* Page headers */
+  .page-header__title { font-size: 68px; }
+  .page-header__sub { font-size: 26px; }
+
+  /* Show cards */
+  .show-card__date { font-size: 20px; }
+  .show-card__bands { font-size: 28px; }
+  .show-card__details { font-size: 20px; }
+
+  /* No shows placeholder */
+  .no-shows { font-size: 28px; }
+
+  /* Forms */
+  .form-group label { font-size: 18px; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select { font-size: 18px; padding: 14px 18px; }
+  .btn { font-size: 20px; padding: 18px 56px; }
+
+  /* Footer */
+  .footer__content { font-size: 18px; }
 }
 
 /* ============================================
