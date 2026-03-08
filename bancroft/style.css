@@ -477,6 +477,16 @@ h1, h2, h3, h4 {
   white-space: nowrap;
 }
 
+.coming-up__bands a {
+  color: inherit;
+  border-bottom: 1px solid rgba(185, 28, 28, 0.4);
+  transition: border-color 0.2s;
+}
+.coming-up__bands a:hover {
+  border-bottom-color: var(--red-bright);
+  color: inherit;
+}
+
 @media (max-width: 600px) {
   .coming-up__item {
     grid-template-columns: 1fr auto;
