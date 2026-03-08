@@ -94,10 +94,10 @@ h1, h2, h3, h4 {
 
 .nav__link {
   font-family: var(--font-accent);
-  font-size: 14px;
+  font-size: 17px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cream-dim);
+  color: #fff;
   transition: color 0.2s, border-color 0.2s;
   padding: 4px 0;
   border-bottom: 2px solid transparent;
@@ -302,23 +302,23 @@ h1, h2, h3, h4 {
 
 .schedule-day__name {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 18px;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--red-bright);
   letter-spacing: 0.08em;
   margin-bottom: 10px;
 }
 
 .schedule-day__event {
   font-family: var(--font-accent);
-  font-size: 16px;
-  color: var(--cream);
+  font-size: 19px;
+  color: #fff;
   line-height: 1.4;
   margin-bottom: 4px;
 }
 
 .schedule-day__time {
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
 }
 
@@ -355,18 +355,18 @@ h1, h2, h3, h4 {
 
 .info-block__address {
   font-family: var(--font-accent);
-  font-size: 19px;
+  font-size: 22px;
   color: #fff;
   letter-spacing: 0.04em;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.info-block__phone { margin-bottom: 4px; }
-.info-block__phone a { color: var(--cream); }
+.info-block__phone { font-size: 20px; margin-bottom: 6px; }
+.info-block__phone a { color: #fff; }
 .info-block__phone a:hover { color: var(--red-bright); }
 
 .info-block__detail {
-  font-size: 16px;
+  font-size: 18px;
   color: #fff;
   margin-bottom: 28px;
 }
