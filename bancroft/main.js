@@ -24,6 +24,17 @@
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // Close nav on scroll
+    var lastScrollY = window.scrollY;
+    window.addEventListener('scroll', function () {
+      if (links.classList.contains('nav__links--open') && Math.abs(window.scrollY - lastScrollY) > 20) {
+        links.classList.remove('nav__links--open');
+        toggle.classList.remove('nav__toggle--open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      lastScrollY = window.scrollY;
+    }, { passive: true });
   }
 
   // ---- Active Nav Link ----

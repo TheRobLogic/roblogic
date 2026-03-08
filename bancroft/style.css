@@ -136,27 +136,32 @@ h1, h2, h3, h4 {
 .nav__toggle--open span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
 
 @media (max-width: 767px) {
-  .nav__toggle { display: block; }
-  .nav__logo { height: 50px; }
+  .nav__toggle { display: block; z-index: 1002; }
+  .nav__logo { height: 50px; position: relative; z-index: 1002; }
+
+  .nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #0a0505;
+  }
 
   .nav__links {
     position: fixed;
-    top: var(--nav-h);
+    top: 0;
     left: 0; right: 0; bottom: 0;
+    z-index: 1001;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 44px;
     background: #0a0505;
-    transform: translateX(100%);
-    opacity: 0;
+    transform: translateY(-100%);
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
   }
 
   .nav__links--open {
-    transform: translateX(0);
-    opacity: 1;
+    transform: translateY(0);
     visibility: visible;
   }
 
