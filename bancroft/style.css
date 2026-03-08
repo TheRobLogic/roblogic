@@ -361,6 +361,12 @@ h1, h2, h3, h4 {
   border-bottom: 1px solid #2a1515;
 }
 
+.info-block__rooster {
+  width: 150px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+}
+
 .info-block__address {
   font-family: var(--font-accent);
   font-size: 28px;
@@ -874,6 +880,7 @@ h1, h2, h3, h4 {
 
   /* Info block */
   .info-block { padding: 72px 24px; }
+  .info-block__rooster { width: 200px; margin-bottom: 32px; }
   .info-block__address { font-size: 34px; }
   .info-block__phone { font-size: 30px; }
   .info-block__detail { font-size: 26px; }
