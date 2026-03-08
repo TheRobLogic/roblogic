@@ -318,8 +318,8 @@ h1, h2, h3, h4 {
 }
 
 .schedule-day__time {
-  font-size: 13px;
-  color: var(--cream-dim);
+  font-size: 14px;
+  color: #fff;
 }
 
 @media (max-width: 767px) {
@@ -355,7 +355,8 @@ h1, h2, h3, h4 {
 
 .info-block__address {
   font-family: var(--font-accent);
-  font-size: 17px;
+  font-size: 19px;
+  color: #fff;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
 }
@@ -365,8 +366,8 @@ h1, h2, h3, h4 {
 .info-block__phone a:hover { color: var(--red-bright); }
 
 .info-block__detail {
-  font-size: 14px;
-  color: var(--cream-dim);
+  font-size: 16px;
+  color: #fff;
   margin-bottom: 28px;
 }
 
@@ -452,8 +453,8 @@ h1, h2, h3, h4 {
 
 .coming-up__details {
   font-family: var(--font-accent);
-  font-size: 12px;
-  color: var(--cream-dim);
+  font-size: 14px;
+  color: #fff;
   white-space: nowrap;
 }
 
@@ -523,8 +524,8 @@ h1, h2, h3, h4 {
   position: relative;
   z-index: 1;
   font-family: var(--font-accent);
-  font-size: clamp(13px, 2vw, 15px);
-  color: var(--cream-dim);
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: #fff;
   letter-spacing: 0.1em;
   margin-top: 12px;
 }
@@ -644,8 +645,8 @@ h1, h2, h3, h4 {
 }
 
 .show-card__details {
-  font-size: 12px;
-  color: var(--cream-dim);
+  font-size: 14px;
+  color: #fff;
   font-family: var(--font-accent);
   letter-spacing: 0.06em;
 }
@@ -662,8 +663,8 @@ h1, h2, h3, h4 {
   text-align: center;
   padding: 60px 24px;
   font-family: var(--font-accent);
-  font-size: 18px;
-  color: var(--cream-dim);
+  font-size: 20px;
+  color: #fff;
 }
 
 /* ============================================
@@ -809,15 +810,15 @@ h1, h2, h3, h4 {
 }
 
 .footer__content {
-  font-size: 12px;
-  color: #555;
+  font-size: 14px;
+  color: var(--cream);
   font-family: var(--font-accent);
   letter-spacing: 0.04em;
   line-height: 1.8;
 }
 
-.footer__content a { color: #555; }
-.footer__content a:hover { color: var(--cream-dim); }
+.footer__content a { color: var(--cream); }
+.footer__content a:hover { color: #fff; }
 
 /* ============================================
    RED GLOW DIVIDER
