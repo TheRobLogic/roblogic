@@ -6,9 +6,9 @@
 /* --- Fonts loaded in HTML: Alfa Slab One, Lora, Special Elite --- */
 
 :root {
-  --bg: #0a0a0a;
-  --bg-elevated: #131313;
-  --bg-card: #181818;
+  --bg: #1a0a0a;
+  --bg-elevated: #1e0e0e;
+  --bg-card: #221414;
   --red: #b91c1c;
   --red-bright: #dc2626;
   --red-dark: #7f1d1d;
@@ -28,7 +28,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background: var(--bg) url('img/brocade-bg.jpg') center / 600px repeat fixed;
   color: var(--cream);
   font-family: var(--font-body);
   font-size: 16px;
@@ -73,7 +73,7 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: rgba(10, 10, 10, 0.92);
+  background: rgba(20, 8, 8, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(127, 29, 29, 0.4);
@@ -187,9 +187,9 @@ h1, h2, h3, h4 {
   inset: 0;
   background: radial-gradient(
     ellipse at center,
-    rgba(10, 10, 10, 0.55) 0%,
-    rgba(10, 10, 10, 0.82) 70%,
-    rgba(10, 10, 10, 0.92) 100%
+    rgba(10, 10, 10, 0.20) 0%,
+    rgba(10, 10, 10, 0.35) 70%,
+    rgba(10, 10, 10, 0.50) 100%
   );
 }
 
@@ -201,7 +201,7 @@ h1, h2, h3, h4 {
 
 .hero__logo {
   width: min(480px, 75vw);
-  filter: invert(1) sepia(12%) brightness(0.9);
+  filter: invert(1) sepia(12%) brightness(0.9) drop-shadow(0 2px 8px rgba(0,0,0,0.8));
   margin: 0 auto 28px;
   animation: heroFadeUp 0.9s ease-out both;
 }
@@ -212,6 +212,7 @@ h1, h2, h3, h4 {
   color: var(--cream-dim);
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
   animation: heroFadeUp 0.9s ease-out 0.15s both;
 }
 
@@ -229,6 +230,7 @@ h1, h2, h3, h4 {
   font-size: clamp(13px, 2vw, 15px);
   color: var(--cream-dim);
   opacity: 0.7;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
   animation: heroFadeUp 0.9s ease-out 0.35s both;
 }
 
@@ -263,46 +265,12 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================
-   STICKER DOOR BAND
-   ============================================ */
-
-.sticker-band {
-  position: relative;
-  height: 280px;
-  background: url('img/sticker-door.jpg') center / cover no-repeat fixed;
-}
-
-.sticker-band::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
-  pointer-events: none;
-}
-
-.sticker-band::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(185, 28, 28, 0.06);
-  pointer-events: none;
-}
-
-@media (max-width: 767px) {
-  .sticker-band {
-    height: 180px;
-    background-attachment: scroll;
-  }
-}
-
-/* ============================================
    SCHEDULE
    ============================================ */
 
 .schedule {
   padding: 72px 0;
-  background: var(--bg);
+  background: rgba(26, 10, 10, 0.85);
 }
 
 .section-title {
@@ -380,9 +348,9 @@ h1, h2, h3, h4 {
 .info-block {
   padding: 56px 24px;
   text-align: center;
-  background: var(--bg-elevated);
-  border-top: 1px solid #1a1a1a;
-  border-bottom: 1px solid #1a1a1a;
+  background: rgba(30, 14, 14, 0.9);
+  border-top: 1px solid #2a1515;
+  border-bottom: 1px solid #2a1515;
 }
 
 .info-block__address {
@@ -437,7 +405,6 @@ h1, h2, h3, h4 {
 
 .coming-up {
   padding: 64px 0;
-  background: var(--bg-elevated);
 }
 
 .coming-up__list {
@@ -501,6 +468,25 @@ h1, h2, h3, h4 {
   }
 }
 
+.coming-up--sticker {
+  background: url('img/sticker-door.jpg') center / cover no-repeat fixed;
+  position: relative;
+}
+.coming-up--sticker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 5, 5, 0.75);
+  pointer-events: none;
+}
+.coming-up--sticker > .container {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .coming-up--sticker { background-attachment: scroll; }
+}
+
 /* ============================================
    PAGE HEADER (inner pages)
    ============================================ */
@@ -520,8 +506,8 @@ h1, h2, h3, h4 {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(10, 10, 10, 0.7) 0%,
-    rgba(10, 10, 10, 0.88) 100%
+    rgba(10, 10, 10, 0.35) 0%,
+    rgba(10, 10, 10, 0.55) 100%
   );
 }
 
@@ -544,8 +530,18 @@ h1, h2, h3, h4 {
 }
 
 .page-header--sticker { background-image: url('img/sticker-door.jpg'); }
+.page-header--sticker::before {
+  background: linear-gradient(to bottom, rgba(10,10,10,0.30) 0%, rgba(10,10,10,0.50) 100%);
+}
 .page-header--wood { background-image: url('img/wood-bg.jpg'); }
 .page-header--brocade { background-image: url('img/brocade-wood-bg.jpg'); }
+
+.body--shows {
+  background: var(--bg) url('img/sticker-door.jpg') center / cover no-repeat fixed;
+}
+.body--shows .shows-section {
+  background: rgba(10, 5, 5, 0.80);
+}
 
 /* ============================================
    SHOW CARDS
@@ -563,7 +559,7 @@ h1, h2, h3, h4 {
 }
 
 .show-card {
-  background: var(--bg-card);
+  background: rgba(22, 12, 12, 0.92);
   border: 1px solid #222;
   border-radius: 6px;
   overflow: hidden;
@@ -676,7 +672,7 @@ h1, h2, h3, h4 {
 
 .ontap-section {
   padding: 40px 0 80px;
-  background: var(--bg);
+  background: rgba(26, 10, 10, 0.85);
 }
 
 .ontap-intro {
@@ -696,7 +692,7 @@ h1, h2, h3, h4 {
 
 .booking-section {
   padding: 40px 0 80px;
-  background: var(--bg);
+  background: rgba(26, 10, 10, 0.85);
 }
 
 .booking-intro {
@@ -808,8 +804,8 @@ h1, h2, h3, h4 {
 .footer {
   padding: 36px 24px;
   text-align: center;
-  background: #050505;
-  border-top: 1px solid #151515;
+  background: rgba(10, 5, 5, 0.95);
+  border-top: 1px solid #2a1515;
 }
 
 .footer__content {
