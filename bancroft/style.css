@@ -81,7 +81,6 @@ h1, h2, h3, h4 {
 
 .nav__logo {
   height: 42px;
-  filter: invert(1);
   border-radius: 50%;
   transition: opacity 0.2s;
 }
@@ -202,7 +201,7 @@ h1, h2, h3, h4 {
 
 .hero__rooster {
   width: min(220px, 45vw);
-  filter: invert(1) drop-shadow(0 2px 12px rgba(0,0,0,0.6));
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.6));
   margin: 0 auto 20px;
   border-radius: 50%;
   animation: heroFadeUp 0.9s ease-out both;
