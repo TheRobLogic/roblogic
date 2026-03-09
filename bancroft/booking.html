@@ -68,6 +68,12 @@
           <textarea id="message" name="message" rows="4" placeholder="Tell us about your band, your draw, or anything we should know"></textarea>
         </div>
 
+        <!-- Honeypot — hidden from humans, bots fill it in -->
+        <div style="position: absolute; left: -9999px;" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
         <button type="submit" class="btn btn--primary btn--full">Send Inquiry</button>
       </form>
 

@@ -64,15 +64,43 @@
     errorMsg.removeAttribute('hidden');
   }
 
-  // Client-side form submit (test mode — shows success without sending)
+  // Booking form submit → Cloudflare Worker
+  var FORM_WORKER_URL = 'https://bancroft-form.roblogic-35f.workers.dev';
+
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (form && successMsg) {
-        form.setAttribute('hidden', '');
-        successMsg.removeAttribute('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      if (errorMsg) errorMsg.setAttribute('hidden', '');
+
+      var payload = {
+        bandName: form.bandName.value,
+        email: form.email.value,
+        genre: form.genre.value,
+        preferredDates: form.preferredDates.value,
+        links: form.links.value,
+        message: form.message.value,
+        website: form.website ? form.website.value : ''
+      };
+
+      fetch(FORM_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Send failed');
+          form.setAttribute('hidden', '');
+          successMsg.removeAttribute('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send Inquiry';
+          if (errorMsg) errorMsg.removeAttribute('hidden');
+        });
     });
   }
 
