@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Briefing Archive — Bancroft Booker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #0f1318;
+  --surface: #1a1f27;
+  --border: #2a3040;
+  --text: #c9d1d9;
+  --text-muted: #8b949e;
+  --heading: #f0f3f6;
+  --accent: #e87c2a;
+  --accent-dim: rgba(232, 124, 42, 0.15);
+  --green: #3fb950;
+  --red: #f85149;
+  --link: #58a6ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--heading);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.6rem;
+}
+
+h4 {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p { margin: 0.6rem 0; }
+
+strong { color: var(--heading); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol {
+  margin: 0.6rem 0 0.6rem 1.5rem;
+}
+
+li { margin: 0.3rem 0; }
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background: var(--accent-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: var(--surface);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code { background: none; padding: 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+tr:nth-child(even) td { background: rgba(26, 31, 39, 0.5); }
+tr:hover td { background: var(--accent-dim); }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.nav {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.nav a { color: var(--accent); font-weight: 500; margin-right: 1.5rem; }
+
+.report-date {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.archive-entry {
+  padding: 1rem;
+  margin: 0.8rem 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.archive-entry .date {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.archive-entry .preview {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+@media print {
+  body { background: white; color: #222; max-width: 100%; }
+  h1 { border-bottom-color: #222; color: #000; }
+  h2 { color: #000; border-bottom-color: #ccc; }
+  h3 { color: #444; }
+  .nav { display: none; }
+}
+</style>
+</head>
+<body>
+  <div class="nav">
+    <a href="/bookersummary/">Latest Briefing</a>
+    <a href="/reports/">Reports</a>
+  </div>
+  <h1>Briefing Archive</h1>
+  <p class="report-date">All booker briefings, newest first</p>
+  <div class="archive-entry"><div class="date">2026-03-09 PM</div><div class="preview">- **Follow up with Fudosa Band** about flyer materials for their 3/15 show — they haven't sent artwork for website promotion (17 days cold) - **Check ...</div></div>
+</body>
+</html>
