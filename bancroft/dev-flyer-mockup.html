@@ -56,6 +56,9 @@
     .page-header { padding-top: calc(var(--nav-h) + 30px + 64px); }
 
     /* Fixed box, image fits inside, dark fill behind */
+    /* Info on top, flyer below */
+    .show-card { display: flex; flex-direction: column; border: 3px solid var(--cream); }
+    .show-card__info { order: -1; border-bottom: 2px solid var(--red-dark); }
     .show-card__flyer-wrap {
       aspect-ratio: 3 / 4;
       background: #0a0505;
@@ -63,7 +66,8 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border-bottom: 2px solid var(--red-dark);
+      border-bottom: none;
+      border-top: none;
     }
     .show-card__flyer {
       max-width: 100%;
