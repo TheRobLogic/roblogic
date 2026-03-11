@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEV MOCKUP — Show Cards with Flyers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Dev mockup banner */
+    .dev-banner {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: #ff0;
+      color: #000;
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .dev-banner span { color: #c00; }
+
+    /* Push nav below dev banner */
+    .nav { top: 30px; }
+
+    /* Comparison section */
+    .comparison {
+      padding: 40px 0 20px;
+      background: rgba(26, 10, 10, 0.9);
+      border-bottom: 1px solid #2a1515;
+    }
+    .comparison__title {
+      font-family: var(--font-accent);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .comparison__sub {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--cream-dim);
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    /* Adjust page header for dev banner */
+    .page-header { padding-top: calc(var(--nav-h) + 30px + 64px); }
+
+    /* Fixed box, image fits inside, dark fill behind */
+    .show-card__flyer-wrap {
+      aspect-ratio: 3 / 4;
+      background: #0a0505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 2px solid var(--red-dark);
+    }
+    .show-card__flyer {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      aspect-ratio: unset;
+      object-fit: contain;
+      border-bottom: none;
+    }
+    /* Stretch rooster fallback to fill the box */
+    .show-card__flyer-wrap:not([onclick]) .show-card__flyer {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+    .show-card__flyer-generic {
+      aspect-ratio: 3 / 4;
+    }
+
+    /* "View flyer" hint on hover */
+    .show-card__flyer-wrap {
+      position: relative;
+      cursor: pointer;
+    }
+    .show-card__flyer-wrap::after {
+      content: 'TAP TO VIEW FLYER';
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-family: var(--font-accent);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 4px 10px;
+      border-radius: 3px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+    .show-card:hover .show-card__flyer-wrap::after {
+      opacity: 1;
+    }
+    /* Always show on touch devices */
+    @media (hover: none) {
+      .show-card__flyer-wrap::after {
+        opacity: 0.7;
+      }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 24px;
+    }
+    .lightbox--open {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 8px 60px rgba(0, 0, 0, 0.6);
+    }
+    .lightbox__close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-family: var(--font-accent);
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      color: var(--cream-dim);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 3px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .lightbox__close:hover {
+      color: #fff;
+      border-color: var(--red);
+    }
+  </style>
+</head>
+<body class="body--shows">
+
+  <!-- DEV BANNER -->
+  <div class="dev-banner">
+    <span>DEV MOCKUP</span> — Flyer Integration Preview — <span>Not Live</span>
+  </div>
+
+  <!-- ======== NAV ======== -->
+  <nav class="nav">
+    <a href="."><img src="img/rooster.png" alt="The Bancroft Bar" class="nav__logo"></a>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links">
+      <li><a href="." class="nav__link">Home</a></li>
+      <li><a href="shows" class="nav__link nav__link--active">Shows</a></li>
+      <li><a href="on-tap" class="nav__link">On Tap</a></li>
+      <li><a href="booking" class="nav__link">Booking</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== HEADER ======== -->
+  <section class="page-header page-header--sticker">
+    <h1 class="page-header__title">Upcoming Shows</h1>
+  </section>
+
+  <!-- ======== COMPARISON NOTE ======== -->
+  <section class="comparison">
+    <div class="container">
+      <p class="comparison__title">With Flyers vs. Without</p>
+      <p class="comparison__sub">Cards with attached flyers show the image. Cards without use the generic fallback.</p>
+    </div>
+  </section>
+
+  <!-- ======== SHOWS WITH FLYERS ======== -->
+  <section class="shows-section">
+    <div class="container">
+      <div class="show-grid">
+
+        <!-- MAR 14 — HAS FLYER -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap" onclick="openFlyer(this)">
+            <img class="show-card__flyer" src="img/flyers/solicitor-mar14.jpg" alt="Solicitor / Trencher / Chainwolf / Angel Fury flyer" loading="lazy">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">SAT MAR 14</div>
+            <div class="show-card__bands"><a href="https://www.instagram.com/solicitor.speedmetal" target="_blank" rel="noopener">Solicitor</a> <span class="sep">/</span> <a href="https://www.instagram.com/trencherspeedmetal" target="_blank" rel="noopener">Trencher</a> <span class="sep">/</span> <a href="https://www.instagram.com/chainxwolfx" target="_blank" rel="noopener">Chainwolf</a> <span class="sep">/</span> <a href="https://www.instagram.com/angelfurymetal" target="_blank" rel="noopener">Angel Fury</a></div>
+            <div class="show-card__details">$5 &middot; 7:30pm &middot; <a href="https://www.tickpick.com/organizer/event/solicitor-trencher-chainwolf-angel-fury-52772501" target="_blank" rel="noopener">Tickets</a></div>
+          </div>
+        </div>
+
+        <!-- MAR 15 — HAS FLYER -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap" onclick="openFlyer(this)">
+            <img class="show-card__flyer" src="img/flyers/fudosa-mar15.jpg" alt="Fudosa / Sun Jelly / Desire4 flyer" loading="lazy">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">SUN MAR 15</div>
+            <div class="show-card__bands"><a href="https://fudosa.bandcamp.com/" target="_blank" rel="noopener">Fudosa</a> <span class="sep">/</span> Sun Jelly <span class="sep">/</span> Desire4</div>
+            <div class="show-card__details">$10 &middot; 8pm &middot; 21+ &middot; <a href="https://www.tickpick.com/organizer/event/fudosa-sun-jelly-desire4-41092703" target="_blank" rel="noopener">Tickets</a></div>
+          </div>
+        </div>
+
+        <!-- MAR 19 — HAS FLYER -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap" onclick="openFlyer(this)">
+            <img class="show-card__flyer" src="img/flyers/none-mar19.png" alt="None! / Fractured Obscurity / Wrecktifyed / Dresden's Burning flyer" loading="lazy">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">THU MAR 19</div>
+            <div class="show-card__bands"><a href="https://open.spotify.com/artist/2cCVIYSovy2lUXkDaSAAiA" target="_blank" rel="noopener">None!</a> <span class="sep">/</span> <a href="https://www.instagram.com/fracturedobscurity" target="_blank" rel="noopener">Fractured Obscurity</a> <span class="sep">/</span> <a href="https://www.instagram.com/wrecktifyed" target="_blank" rel="noopener">Wrecktifyed</a> <span class="sep">/</span> Dresden's Burning</div>
+            <div class="show-card__details">$10 &middot; 8pm &middot; 21+ &middot; <a href="https://www.tickpick.com/organizer/event/none-fractured-obscurity-wrecktifyed-dresdens-burning-93873607" target="_blank" rel="noopener">Tickets</a></div>
+          </div>
+        </div>
+
+        <!-- MAR 21 — NO FLYER (generic fallback) -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap">
+            <img class="show-card__flyer" src="img/rooster.png" alt="The Bancroft Bar">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">SAT MAR 21</div>
+            <div class="show-card__bands">Leandra's Bday Party</div>
+          </div>
+        </div>
+
+        <!-- MAR 28 — HAS FLYER -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap" onclick="openFlyer(this)">
+            <img class="show-card__flyer" src="img/flyers/matters-most-mar28.jpg" alt="Matters Most / Midnight Block / The Osiders flyer" loading="lazy">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">SAT MAR 28</div>
+            <div class="show-card__bands">Matters Most <span class="sep">/</span> Midnight Block <span class="sep">/</span> The Osiders</div>
+            <div class="show-card__details">$10 &middot; 8pm &middot; <a href="https://www.tickpick.com/organizer/event/matters-most-midnight-block-the-osiders-42603384" target="_blank" rel="noopener">Tickets</a></div>
+          </div>
+        </div>
+
+        <!-- APR 4 — NO FLYER (not in bar's Drive yet) -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap">
+            <img class="show-card__flyer" src="img/rooster.png" alt="The Bancroft Bar">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">SAT APR 4</div>
+            <div class="show-card__bands">Whatever68 14th Year Festival: Quid Punk Quo <span class="sep">/</span> Herd it on the Radio <span class="sep">/</span> VFMS <span class="sep">/</span> A Bleeding Sky <span class="sep">/</span> The Brass Cats <span class="sep">/</span> Rat Feces <span class="sep">/</span> Torch Bug</div>
+            <div class="show-card__details">2pm &middot; $7 &middot; <a href="https://www.tickpick.com/organizer/event/whatever68-14th-year-festival-87000977" target="_blank" rel="noopener">Tickets</a></div>
+          </div>
+        </div>
+
+        <!-- APR 24 — NO FLYER (generic fallback) -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap">
+            <img class="show-card__flyer" src="img/rooster.png" alt="The Bancroft Bar">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">FRI APR 24</div>
+            <div class="show-card__bands"><a href="https://www.instagram.com/crashingwayward" target="_blank" rel="noopener">Crashing Wayward</a> <span class="sep">/</span> TBA</div>
+          </div>
+        </div>
+
+        <!-- MAY 2 — NO FLYER (generic fallback) -->
+        <div class="show-card">
+          <div class="show-card__flyer-wrap">
+            <img class="show-card__flyer" src="img/rooster.png" alt="The Bancroft Bar">
+          </div>
+          <div class="show-card__info">
+            <div class="show-card__date">SAT MAY 2</div>
+            <div class="show-card__bands">Tracy's anniversary show: Corporate Citizen <span class="sep">/</span> The Yucks <span class="sep">/</span> TBA</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="footer__content">
+      &copy; 2026 The Bancroft Bar &middot;
+      <a href="https://maps.google.com/?q=9143+Campo+Rd+Spring+Valley+CA+91977" target="_blank" rel="noopener">9143 Campo Rd, Spring Valley CA</a>
+      &middot; 21+
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeFlyer(event)">
+    <button class="lightbox__close" aria-label="Close">ESC</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    function openFlyer(wrap) {
+      const img = wrap.querySelector('img');
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('lightbox--open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeFlyer(e) {
+      // Don't close if clicking the image itself (let people zoom/pinch)
+      if (e.target.tagName === 'IMG') return;
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('lightbox--open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').classList.remove('lightbox--open');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>
