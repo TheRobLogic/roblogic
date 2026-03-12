@@ -630,6 +630,8 @@
       map = L.map('map', {
         zoomControl: true,
         scrollWheelZoom: true,
+        closePopupOnClick: true,
+        tap: true,
       }).setView([32.85, -117.05], 10);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -666,12 +668,12 @@
           ? `${lic.address}, ${lic.address2}`
           : lic.address;
 
-        marker.bindPopup(`
+        marker.bindPopup(`<div style="min-width:160px">
           <div class="popup-name">${escapeHtml(lic.displayName)}</div>
           <div class="popup-type" style="color:${typeColor}">${escapeHtml(lic.typeLabel)}</div>
           <div class="popup-address">${escapeHtml(fullAddress)}<br>${escapeHtml(lic.city)}, CA ${escapeHtml(lic.zip)}</div>
           <div class="popup-date">Issued ${formatDate(lic.issueDate)}</div>
-        `);
+        </div>`, { closeOnClick: true, autoClose: true });
 
         markers.push(marker);
       });
