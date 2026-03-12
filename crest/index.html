@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crest Order — The Bancroft Bar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a0a0a;
+      --bg-elevated: #1e0e0e;
+      --bg-card: #221414;
+      --red: #b91c1c;
+      --red-bright: #dc2626;
+      --red-dark: #7f1d1d;
+      --red-glow: rgba(185, 28, 28, 0.25);
+      --cream: #ede0cc;
+      --cream-dim: #9e9080;
+      --gold: #c4a265;
+      --green: #22c55e;
+      --green-dim: #166534;
+      --font-display: 'Alfa Slab One', cursive;
+      --font-body: 'Lora', serif;
+      --font-accent: 'Special Elite', system-ui;
+      --max-w: 900px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .order-header {
+      padding: 48px 0 32px;
+      text-align: center;
+      background: rgba(30, 14, 14, 0.95);
+      border-bottom: 1px solid var(--red-dark);
+    }
+
+    .order-header h1 {
+      font-size: clamp(28px, 6vw, 48px);
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .order-header h1 span { color: var(--red); }
+
+    .order-header .date {
+      font-family: var(--font-accent);
+      font-size: clamp(16px, 3vw, 22px);
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .order-header .delivery {
+      font-family: var(--font-accent);
+      font-size: 14px;
+      color: var(--cream-dim);
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    /* Glow divider */
+    .glow-divider {
+      width: 100%;
+      height: 1px;
+      border: none;
+      background: linear-gradient(to right, transparent 0%, var(--red-dark) 25%, var(--red) 50%, var(--red-dark) 75%, transparent 100%);
+    }
+
+    /* Week context */
+    .week-context {
+      padding: 32px 0;
+      background: rgba(26, 10, 10, 0.9);
+    }
+
+    .week-context h2 {
+      font-size: clamp(18px, 4vw, 26px);
+      color: #fff;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .week-context h2 span { color: var(--red); }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 6px;
+    }
+
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 12px 8px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .event-card--hot {
+      border-color: var(--red-dark);
+      box-shadow: 0 0 12px var(--red-glow);
+    }
+
+    .event-card .day {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .event-card .date-num {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      color: var(--cream-dim);
+      margin-bottom: 6px;
+    }
+
+    .event-card .event-name {
+      font-family: var(--font-accent);
+      font-size: 12px;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .event-card .event-tag {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+    .tag--show { background: var(--red-dark); color: var(--cream); }
+    .tag--tourney { background: var(--green-dim); color: var(--green); }
+    .tag--holiday { background: #92400e; color: #fbbf24; }
+    .tag--recurring { background: #333; color: var(--cream-dim); }
+
+    /* Order sections */
+    .order-section {
+      padding: 32px 0;
+    }
+
+    .order-section h2 {
+      font-size: clamp(20px, 4vw, 30px);
+      color: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--red-dark);
+    }
+    .order-section h2 span { color: var(--red); }
+
+    /* Order table */
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+    }
+
+    .order-table thead th {
+      font-family: var(--font-accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cream-dim);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid #333;
+    }
+    .order-table thead th:last-child,
+    .order-table thead th.right { text-align: right; }
+
+    .order-table tbody tr {
+      border-bottom: 1px solid #1a1a1a;
+      transition: background 0.15s;
+    }
+    .order-table tbody tr:hover {
+      background: rgba(185, 28, 28, 0.08);
+    }
+
+    .order-table td {
+      padding: 10px 12px;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .order-table .item-name {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .order-table .item-format {
+      font-family: var(--font-accent);
+      font-size: 12px;
+      color: var(--cream-dim);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .order-table .qty {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--gold);
+      text-align: center;
+      min-width: 50px;
+    }
+
+    .order-table .cost {
+      text-align: right;
+      font-family: var(--font-accent);
+      font-size: 14px;
+      color: var(--cream-dim);
+      white-space: nowrap;
+    }
+
+    .order-table .reason {
+      font-family: var(--font-accent);
+      font-size: 12px;
+      color: var(--cream-dim);
+      max-width: 200px;
+    }
+
+    .order-table .subtotal-row td {
+      padding-top: 12px;
+      border-top: 2px solid var(--red-dark);
+      font-family: var(--font-display);
+      font-size: 16px;
+    }
+    .order-table .subtotal-row .cost {
+      color: var(--gold);
+      font-size: 18px;
+      font-family: var(--font-display);
+    }
+
+    /* Grand total */
+    .grand-total {
+      padding: 24px 0 40px;
+      text-align: center;
+    }
+
+    .grand-total-box {
+      display: inline-block;
+      background: var(--bg-card);
+      border: 2px solid var(--red);
+      border-radius: 6px;
+      padding: 20px 48px;
+      box-shadow: 0 0 30px var(--red-glow);
+    }
+
+    .grand-total-box .label {
+      font-family: var(--font-accent);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cream-dim);
+      margin-bottom: 4px;
+    }
+
+    .grand-total-box .amount {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 6vw, 48px);
+      color: var(--gold);
+    }
+
+    .grand-total-box .note {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      color: var(--cream-dim);
+      margin-top: 4px;
+    }
+
+    /* Notes section */
+    .notes {
+      padding: 24px 0 48px;
+    }
+
+    .notes h2 {
+      font-size: clamp(18px, 4vw, 24px);
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .notes h2 span { color: var(--red); }
+
+    .note-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-left: 3px solid var(--red-dark);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .note-card strong {
+      color: var(--gold);
+    }
+
+    .note-card .flag {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red-bright);
+    }
+
+    /* Footer */
+    .order-footer {
+      padding: 24px;
+      text-align: center;
+      background: rgba(10, 5, 5, 0.95);
+      border-top: 1px solid #2a1515;
+      font-family: var(--font-accent);
+      font-size: 13px;
+      color: var(--cream-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* Copy button */
+    .copy-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      margin: 12px 0;
+      font-family: var(--font-display);
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border: 2px solid var(--red);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--cream);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .copy-btn:hover {
+      background: var(--red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px var(--red-glow);
+    }
+    .copy-btn.copied {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .order-table .reason { display: none; }
+      .order-table td { padding: 8px 6px; font-size: 14px; }
+      .order-table .qty { font-size: 18px; }
+      .event-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Print */
+    @media print {
+      body { background: #fff; color: #000; font-size: 12px; }
+      .order-header { background: none; border-bottom: 2px solid #000; padding: 16px 0; }
+      .order-header h1 { color: #000; }
+      .order-header h1 span { color: #000; }
+      .glow-divider { background: #000; }
+      .order-table .item-name { color: #000; }
+      .order-table .qty { color: #000; }
+      .grand-total-box { border-color: #000; box-shadow: none; }
+      .grand-total-box .amount { color: #000; }
+      .copy-btn { display: none; }
+      .week-context { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="order-header">
+    <div class="container">
+      <h1><span>Crest</span> Order</h1>
+      <div class="date">Week of March 13 - 19, 2026</div>
+      <div class="delivery">Delivery: Thursday, March 13</div>
+      <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
+    </div>
+  </header>
+
+  <hr class="glow-divider">
+
+  <!-- Week Context -->
+  <section class="week-context">
+    <div class="container">
+      <h2>This <span>Week</span></h2>
+      <div class="event-grid">
+        <div class="event-card event-card--hot">
+          <div class="day">Fri</div>
+          <div class="date-num">Mar 13</div>
+          <div class="event-name">Dart Tourney + Beer Pong</div>
+          <span class="event-tag tag--tourney">Tourney</span>
+        </div>
+        <div class="event-card event-card--hot">
+          <div class="day">Sat</div>
+          <div class="date-num">Mar 14</div>
+          <div class="event-name">Solicitor / Trencher / Chainwolf / Angel Fury</div>
+          <span class="event-tag tag--show">Metal Show</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Sun</div>
+          <div class="date-num">Mar 15</div>
+          <div class="event-name">Fudosa / Sun Jelly / Desire4 + Darts</div>
+          <span class="event-tag tag--show">Show</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Mon</div>
+          <div class="date-num">Mar 16</div>
+          <div class="event-name">Vinyl Knights / Daygo Pong</div>
+          <span class="event-tag tag--recurring">Recurring</span>
+        </div>
+        <div class="event-card event-card--hot">
+          <div class="day">Tue</div>
+          <div class="date-num">Mar 17</div>
+          <div class="event-name">St. Patrick's Day + Karaoke w/ Lenny</div>
+          <span class="event-tag tag--holiday">Holiday</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Wed</div>
+          <div class="date-num">Mar 18</div>
+          <div class="event-name">Free Pool</div>
+          <span class="event-tag tag--recurring">Quiet</span>
+        </div>
+        <div class="event-card event-card--hot">
+          <div class="day">Thu</div>
+          <div class="date-num">Mar 19</div>
+          <div class="event-name">None! / Fractured Obscurity / Wrecktifyed / Dresden's Burning</div>
+          <span class="event-tag tag--show">Show</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="glow-divider">
+
+  <!-- Beer Order -->
+  <section class="order-section">
+    <div class="container">
+      <h2><span>Beer</span> Order</h2>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th style="text-align:center">Qty</th>
+            <th class="right">Est. Cost</th>
+            <th class="reason">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="item-name">Modelo Especial</span><span class="item-format">B24 12oz LSE</span></td>
+            <td class="qty">2</td>
+            <td class="cost">$56.30</td>
+            <td class="reason">#2 beer, 18.6/wk. Only 20 on hand.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Coors Light</span><span class="item-format">B24 12oz 12P</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$22.80</td>
+            <td class="reason">54 btl on hand, 3.5x show spike</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Coors Light Keg</span><span class="item-format">1/2 BBL</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$182.00</td>
+            <td class="reason">Keg at 1/4, 14.4 draft/wk + shows</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Corona Extra</span><span class="item-format">B24 12oz LSE</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">Only 10 on hand</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz LSE</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">13 on hand, ~2 wk supply</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Mickeys Malt</span><span class="item-format">B24 12oz 12P</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$22.45</td>
+            <td class="reason">38 on hand, 9.2/wk steady mover</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Modelo Negra</span><span class="item-format">B24 12oz LSE</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$29.75</td>
+            <td class="reason">Only 8 on hand, 5.6x Fri spike</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">White Claw Blackberry</span><span class="item-format">C12 19.2oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$34.15</td>
+            <td class="reason">#3 beer (tall), only 9 total on hand</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">White Claw Mango</span><span class="item-format">C12 19.2oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$34.15</td>
+            <td class="reason">Tall cans nearly out</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">White Claw Ruby Grapefruit</span><span class="item-format">C12 19.2oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$34.15</td>
+            <td class="reason">Tall cans nearly out</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">White Claw Variety 1</span><span class="item-format">C24 12oz LSE/SL</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$30.40</td>
+            <td class="reason">Small cans, only 3 on hand</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Guinness Keg</span><span class="item-format">20L (~1/4 BBL)</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$129.50</td>
+            <td class="reason">St. Patrick's Day. Ask rep re: 1/2 BBL.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Hamms</span><span class="item-format">C24 16oz 6P</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$20.50</td>
+            <td class="reason">26 on hand but 19x show-night spike, 2 metal shows</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td>Beer Subtotal</td>
+            <td></td>
+            <td class="cost">$652</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="glow-divider">
+
+  <!-- Liquor Order -->
+  <section class="order-section">
+    <div class="container">
+      <h2><span>Liquor</span> Order</h2>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th style="text-align:center">Qty</th>
+            <th class="right">Est. Cost</th>
+            <th class="reason">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="item-name">Pueblo Viejo Blanco</span><span class="item-format">B12 1L &mdash; Full Case</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$187.20</td>
+            <td class="reason">Well tequila. Shrinkage + #1 spirit by volume.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Gran Malo Tamarindo</span><span class="item-format">750ml &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">~$44.00</td>
+            <td class="reason">Shot ingredient, 1/4 btl left</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">New Amsterdam Pineapple</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$31.08</td>
+            <td class="reason">Shot ingredient, full btl on hand</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Titos Vodka</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$54.48</td>
+            <td class="reason">1/4 btl left, 3.4x Fri spike</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$60.54</td>
+            <td class="reason">Nearly empty. Jameson sub + St. Patrick's 2x spike.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">$31.91</td>
+            <td class="reason">1/2 btl left, 3.9x show spike</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Fireball</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$36.30</td>
+            <td class="reason">1/4 btl left, steady mover</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td>Liquor Subtotal</td>
+            <td></td>
+            <td class="cost">$446</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="glow-divider">
+
+  <!-- Grand Total -->
+  <section class="grand-total">
+    <div class="grand-total-box">
+      <div class="label">Estimated Total</div>
+      <div class="amount">~$1,098</div>
+      <div class="note">Based on most recent Crest invoice pricing. Actual may vary.</div>
+    </div>
+  </section>
+
+  <hr class="glow-divider">
+
+  <!-- Notes -->
+  <section class="notes">
+    <div class="container">
+      <h2><span>Notes</span> for Rep</h2>
+
+      <div class="note-card">
+        <div class="flag">St. Patrick's Day</div>
+        <strong>Guinness keg</strong> is a one-time add for St. Patrick's Day (Tue Mar 17). Confirm if 20L or 1/2 BBL is available. Historical data shows Irish whiskey doubles, overall revenue +50-100% on weak-night StPDs.
+      </div>
+
+      <div class="note-card">
+        <div class="flag">Pricing Check</div>
+        <strong>Pueblo Viejo &amp; Ancient Age</strong> &mdash; last order had these priced per bottle, not per case. This order shows case rate ($187.20/case = $15.60/btl). Confirm case pricing is applied.
+      </div>
+
+      <div class="note-card">
+        <div class="flag">Heavy Week</div>
+        6 active nights: Fri tourney, Sat metal show, Sun show + darts, Mon pong, Tue St. Paddy's, Thu show. Show crowds drink <strong>cheap beer + shots</strong> (Hamms 19x, PBR 7x, Coors Light 3.5x on show nights).
+      </div>
+
+      <div class="note-card">
+        <div class="flag">Gran Malo</div>
+        Confirm Crest carries Gran Malo Spicy Tamarindo 750ml. No invoice history found &mdash; may need alternate source.
+      </div>
+
+      <div class="note-card">
+        <div class="flag">Not on This Order</div>
+        Wells (gin, vodka, rum, whiskey, triple sec) all 4-16 weeks stocked. PBR skipped (wrong SKU on file &mdash; 25oz vs 16oz). Miles Gin skipped (9+ wks on hand). SoCo skipped (not moving). Alesmith skipped.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="order-footer">
+    Barkeep &middot; Generated Mar 12, 2026 &middot; The Bancroft Bar
+  </footer>
+
+  <!-- Hidden text for copy -->
+  <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
+Delivery: Thu Mar 13, 2026
+Week of Mar 13-19 (6 active nights incl. St. Patrick's Day)
+
+BEER:
+2  Modelo Especial B24 12oz
+1  Coors Light B24 12oz 12P
+1  Coors Light K 1/2BBL
+1  Corona Extra B24 12oz
+1  Heineken B24 12oz
+1  Mickeys Malt B24 12oz 12P
+1  Modelo Negra B24 12oz
+1  White Claw Blackberry C12 19.2oz
+1  White Claw Mango C12 19.2oz
+1  White Claw Ruby Grapefruit C12 19.2oz
+1  White Claw Variety 1 C24 12oz
+1  Guinness K 20L (St. Patrick's Day)
+1  Hamms C24 16oz 6P
+
+LIQUOR (singles unless noted):
+1 case  Pueblo Viejo Blanco B12 1L
+/2  Gran Malo Spicy Tamarindo 750ml
+/2  New Amsterdam Pineapple Vodka 1L
+/2  Titos Vodka 1L
+/2  Tullamore Dew 1L
+/1  Jack Daniels 1L
+/2  Fireball 1L
+
+EST. TOTAL: ~$1,098
+
+NOTES:
+- Guinness keg is one-time for StPD. Confirm 20L or 1/2 BBL avail.
+- Confirm Pueblo Viejo & Ancient Age at CASE rate, not per-bottle.
+- Confirm Crest carries Gran Malo Spicy Tamarindo.
+  </textarea>
+
+  <script>
+    function copyOrder() {
+      const text = document.getElementById('order-text').value.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy Order Text';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
