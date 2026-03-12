@@ -859,6 +859,13 @@
       th.addEventListener('click', () => handleSort(th.dataset.col));
     });
 
+    // ── Close popups when clicking anywhere outside the map ──
+    document.addEventListener('click', function(e) {
+      if (map && !document.getElementById('map').contains(e.target)) {
+        map.closePopup();
+      }
+    });
+
     // ── Zoom to license on table row click ──
     function zoomToLicense(lat, lng, name) {
       map.setView([lat, lng], 16, { animate: true });
