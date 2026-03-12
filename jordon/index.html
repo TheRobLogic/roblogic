@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SD County New Licenses — ABC Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <style>
+    :root {
+      --bg-dark: #0c1220;
+      --bg-header: #111827;
+      --bg-surface: #1e293b;
+      --bg-light: #f8fafc;
+      --bg-row-alt: #f1f5f9;
+      --bg-row-hover: #e2e8f0;
+      --blue: #3b82f6;
+      --blue-bright: #60a5fa;
+      --blue-dim: rgba(59, 130, 246, 0.15);
+      --green: #22c55e;
+      --purple: #a855f7;
+      --orange: #f97316;
+      --text-white: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dark: #1e293b;
+      --text-body: #334155;
+      --border-dark: #1e293b;
+      --border-light: #e2e8f0;
+      --warning-bg: #fef3c7;
+      --warning-border: #f59e0b;
+      --warning-text: #92400e;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Stale Banner ── */
+    #stale-banner {
+      display: none;
+      background: var(--warning-bg);
+      border-bottom: 3px solid var(--warning-border);
+      color: var(--warning-text);
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    #stale-banner strong { color: var(--warning-text); }
+
+    /* ── Header ── */
+    header {
+      background: var(--bg-dark);
+      background: linear-gradient(135deg, #0c1220 0%, #162032 50%, #1a2744 100%);
+      padding: 2rem 1.5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    header h1 {
+      color: var(--text-white);
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    header h1 span {
+      color: var(--blue-bright);
+    }
+
+    .header-meta {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .header-meta .year {
+      color: var(--blue-bright);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* ── Legend ── */
+    .legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Filters ── */
+    .filters {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text-white);
+      font-family: inherit;
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .filter-input::placeholder { color: var(--text-muted); }
+    .filter-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-dim);
+    }
+
+    .filter-select {
+      padding: 0.6rem 2.2rem 0.6rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: var(--text-white);
+      font-family: inherit;
+      font-size: 0.875rem;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .filter-select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-dim);
+    }
+    .filter-select option {
+      background: var(--bg-header);
+      color: var(--text-white);
+    }
+
+    /* ── Map ── */
+    #map-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      transform: translateY(-1.5rem);
+    }
+
+    #map {
+      height: 420px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      border: 3px solid var(--bg-surface);
+      z-index: 1;
+    }
+
+    /* ── Stats Bar ── */
+    .stats-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .stats-count {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stats-count strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .category-counts {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .cat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(0,0,0,0.05);
+    }
+    .cat-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    /* ── Table ── */
+    .table-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: white;
+      font-size: 0.875rem;
+    }
+
+    thead {
+      background: var(--bg-header);
+    }
+    thead th {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+      position: relative;
+    }
+    thead th:hover { color: var(--text-white); }
+    thead th.sorted { color: var(--blue-bright); }
+    thead th .sort-arrow {
+      display: inline-block;
+      margin-left: 0.3rem;
+      font-size: 0.65rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    thead th.sorted .sort-arrow { opacity: 1; }
+    thead th:hover .sort-arrow { opacity: 0.5; }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-light);
+      transition: background 0.15s;
+    }
+    tbody tr:nth-child(even) { background: var(--bg-row-alt); }
+    tbody tr:hover { background: var(--bg-row-hover); }
+
+    tbody td {
+      padding: 0.7rem 1rem;
+      color: var(--text-body);
+      vertical-align: top;
+    }
+
+    .td-name {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .td-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .td-category .indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .td-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      display: inline-block;
+    }
+    .td-status.active { background: rgba(34,197,94,0.1); color: #16a34a; }
+    .td-status.other-status { background: rgba(148,163,184,0.1); color: var(--text-muted); }
+
+    .td-date {
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .td-address {
+      min-width: 160px;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ── Error State ── */
+    #error-state {
+      display: none;
+      text-align: center;
+      padding: 5rem 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    #error-state img {
+      max-width: 380px;
+      width: 90%;
+      border-radius: var(--radius);
+      opacity: 0.85;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    #error-state h2 {
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    #error-state p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ── Content wrapper (for showing/hiding) ── */
+    #content { display: none; }
+    #content.loaded { display: block; }
+
+    /* ── Leaflet popup override ── */
+    .leaflet-popup-content-wrapper {
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .leaflet-popup-content {
+      margin: 0.75rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .popup-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+    .popup-type {
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .popup-address {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    .popup-date {
+      margin-top: 0.3rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      header { padding: 1.5rem 1rem 1.25rem; }
+      .header-top { flex-direction: column; }
+      .header-meta { text-align: left; }
+      header h1 { font-size: 1.35rem; }
+      .filters { flex-direction: column; }
+      .filter-input, .filter-select { min-width: unset; width: 100%; }
+      #map-container { padding: 0 0.75rem; }
+      #map { height: 50vh; min-height: 280px; }
+      .stats-bar { padding: 0.75rem; flex-direction: column; align-items: flex-start; }
+      .table-wrapper { padding: 0 0.75rem 2rem; }
+      table { font-size: 0.8rem; }
+      thead th { padding: 0.6rem 0.7rem; }
+      tbody td { padding: 0.5rem 0.7rem; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.2rem; }
+      .legend { gap: 0.6rem; }
+      .legend-item { font-size: 0.7rem; }
+    }
+
+    /* ── Loading skeleton ── */
+    .loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+    .loading .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border-light);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <!-- Stale data warning -->
+  <div id="stale-banner">
+    <strong>Data may be outdated</strong> — last updated <span id="stale-date"></span>. Pipeline issue detected, check back tomorrow.
+  </div>
+
+  <!-- Loading state -->
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading license data...
+  </div>
+
+  <!-- Error state -->
+  <div id="error-state">
+    <img src="technical-difficulties.png" alt="Technical Difficulties">
+    <h2>License Tracker Pipeline Down</h2>
+    <p>Check back tomorrow — data refreshes daily.</p>
+  </div>
+
+  <!-- Main content (hidden until data loads) -->
+  <div id="content">
+    <header>
+      <div class="header-inner">
+        <div class="header-top">
+          <h1>SD County <span>New Licenses</span></h1>
+          <div class="header-meta">
+            <div class="year">YTD <span id="display-year"></span></div>
+            <div>Updated <span id="last-updated"></span></div>
+          </div>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> On-Premise</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div> Off-Premise</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#a855f7"></div> Wholesale / Producer</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#f97316"></div> Other</div>
+        </div>
+
+        <div class="filters">
+          <input type="text" id="search-input" class="filter-input" placeholder="Search businesses, addresses, cities...">
+          <select id="type-filter" class="filter-select">
+            <option value="">All License Types</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stats-count">Showing <strong><span id="visible-count">0</span></strong> of <strong><span id="total-count">0</span></strong> licenses</div>
+      <div class="category-counts" id="category-counts"></div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th data-col="issueDate" class="sorted">Issue Date <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="displayName">Business Name <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="typeLabel">License Type <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="address">Address <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="city">City <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="status">Status <span class="sort-arrow">&#9660;</span></th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+      <div id="no-results" class="no-results" style="display:none;">No licenses match your filters.</div>
+    </div>
+  </div>
+
+  <script>
+    // ── Category Colors ──
+    const CATEGORY_COLORS = {
+      'on-premise': '#3b82f6',
+      'off-premise': '#22c55e',
+      'wholesale': '#a855f7',
+      'other': '#f97316',
+    };
+
+    const CATEGORY_LABELS = {
+      'on-premise': 'On-Premise',
+      'off-premise': 'Off-Premise',
+      'wholesale': 'Wholesale',
+      'other': 'Other',
+    };
+
+    // ── State ──
+    let allLicenses = [];
+    let filteredLicenses = [];
+    let map = null;
+    let markers = [];
+    let sortCol = 'issueDate';
+    let sortDir = 'desc';
+
+    // ── Init ──
+    async function init() {
+      try {
+        const resp = await fetch('jordon-abc-data.json');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+
+        document.getElementById('loading').style.display = 'none';
+
+        // Check stale data (>36 hours)
+        const updated = new Date(data.updated);
+        const hoursOld = (Date.now() - updated.getTime()) / (1000 * 60 * 60);
+        if (hoursOld > 36) {
+          const banner = document.getElementById('stale-banner');
+          banner.style.display = 'block';
+          document.getElementById('stale-date').textContent = formatDateTime(data.updated);
+        }
+
+        // Populate header
+        const year = new Date().getFullYear();
+        document.getElementById('display-year').textContent = year;
+        document.getElementById('last-updated').textContent = formatDateTime(data.updated);
+
+        // Store data
+        allLicenses = data.licenses || [];
+        document.getElementById('total-count').textContent = allLicenses.length;
+
+        // Populate type filter dropdown
+        populateTypeFilter();
+
+        // Show content
+        document.getElementById('content').classList.add('loaded');
+
+        // Init map
+        initMap();
+
+        // Initial render
+        applyFilters();
+
+      } catch (err) {
+        console.error('Failed to load data:', err);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error-state').style.display = 'block';
+      }
+    }
+
+    // ── Map ──
+    function initMap() {
+      map = L.map('map', {
+        zoomControl: true,
+        scrollWheelZoom: true,
+      }).setView([32.85, -117.05], 10);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      // Fix map rendering after container becomes visible
+      setTimeout(() => map.invalidateSize(), 100);
+    }
+
+    function updateMapMarkers(licenses) {
+      // Clear existing markers
+      markers.forEach(m => map.removeLayer(m));
+      markers = [];
+
+      // Add new markers
+      licenses.forEach(lic => {
+        if (lic.lat === null || lic.lat === undefined || lic.lng === null || lic.lng === undefined) return;
+
+        const color = CATEGORY_COLORS[lic.category] || CATEGORY_COLORS.other;
+
+        const marker = L.circleMarker([lic.lat, lic.lng], {
+          radius: 7,
+          fillColor: color,
+          color: '#fff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.85,
+        }).addTo(map);
+
+        const typeColor = color;
+        const fullAddress = lic.address2
+          ? `${lic.address}, ${lic.address2}`
+          : lic.address;
+
+        marker.bindPopup(`
+          <div class="popup-name">${escapeHtml(lic.displayName)}</div>
+          <div class="popup-type" style="color:${typeColor}">${escapeHtml(lic.typeLabel)}</div>
+          <div class="popup-address">${escapeHtml(fullAddress)}<br>${escapeHtml(lic.city)}, CA ${escapeHtml(lic.zip)}</div>
+          <div class="popup-date">Issued ${formatDate(lic.issueDate)}</div>
+        `);
+
+        markers.push(marker);
+      });
+    }
+
+    // ── Filters ──
+    function populateTypeFilter() {
+      const types = [...new Set(allLicenses.map(l => l.typeLabel))].sort();
+      const select = document.getElementById('type-filter');
+      types.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t;
+        opt.textContent = t;
+        select.appendChild(opt);
+      });
+    }
+
+    function applyFilters() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
+      const typeFilter = document.getElementById('type-filter').value;
+
+      filteredLicenses = allLicenses.filter(lic => {
+        // Type filter
+        if (typeFilter && lic.typeLabel !== typeFilter) return false;
+
+        // Search filter (across multiple fields)
+        if (searchTerm) {
+          const searchable = [
+            lic.displayName,
+            lic.businessName,
+            lic.dbaName || '',
+            lic.typeLabel,
+            lic.address,
+            lic.address2 || '',
+            lic.city,
+            lic.zip,
+            lic.status,
+            lic.issueDate,
+          ].join(' ').toLowerCase();
+          if (!searchable.includes(searchTerm)) return false;
+        }
+
+        return true;
+      });
+
+      // Sort
+      sortLicenses();
+
+      // Update everything
+      renderTable();
+      updateMapMarkers(filteredLicenses);
+      updateStats();
+    }
+
+    // ── Sorting ──
+    function sortLicenses() {
+      filteredLicenses.sort((a, b) => {
+        let valA = a[sortCol] || '';
+        let valB = b[sortCol] || '';
+
+        if (typeof valA === 'string') valA = valA.toLowerCase();
+        if (typeof valB === 'string') valB = valB.toLowerCase();
+
+        let cmp = 0;
+        if (valA < valB) cmp = -1;
+        else if (valA > valB) cmp = 1;
+
+        return sortDir === 'asc' ? cmp : -cmp;
+      });
+    }
+
+    function handleSort(col) {
+      if (sortCol === col) {
+        sortDir = sortDir === 'desc' ? 'asc' : 'desc';
+      } else {
+        sortCol = col;
+        sortDir = col === 'issueDate' ? 'desc' : 'asc';
+      }
+
+      // Update header UI
+      document.querySelectorAll('thead th').forEach(th => {
+        th.classList.remove('sorted');
+        const arrow = th.querySelector('.sort-arrow');
+        if (th.dataset.col === sortCol) {
+          th.classList.add('sorted');
+          arrow.innerHTML = sortDir === 'desc' ? '&#9660;' : '&#9650;';
+        }
+      });
+
+      sortLicenses();
+      renderTable();
+    }
+
+    // ── Table Rendering ──
+    function renderTable() {
+      const tbody = document.getElementById('table-body');
+      const noResults = document.getElementById('no-results');
+
+      if (filteredLicenses.length === 0) {
+        tbody.innerHTML = '';
+        noResults.style.display = 'block';
+        return;
+      }
+
+      noResults.style.display = 'none';
+
+      const html = filteredLicenses.map(lic => {
+        const color = CATEGORY_COLORS[lic.category] || CATEGORY_COLORS.other;
+        const statusClass = lic.status === 'ACTIVE' ? 'active' : 'other-status';
+        const fullAddress = lic.address2
+          ? `${lic.address}, ${lic.address2}`
+          : lic.address;
+
+        return `<tr>
+          <td class="td-date">${formatDate(lic.issueDate)}</td>
+          <td class="td-name">${escapeHtml(lic.displayName)}</td>
+          <td><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
+          <td class="td-address">${escapeHtml(fullAddress)}</td>
+          <td>${escapeHtml(lic.city)}</td>
+          <td><span class="td-status ${statusClass}">${escapeHtml(lic.status)}</span></td>
+        </tr>`;
+      }).join('');
+
+      tbody.innerHTML = html;
+    }
+
+    // ── Stats ──
+    function updateStats() {
+      document.getElementById('visible-count').textContent = filteredLicenses.length;
+
+      // Category breakdown of filtered results
+      const cats = {};
+      filteredLicenses.forEach(lic => {
+        cats[lic.category] = (cats[lic.category] || 0) + 1;
+      });
+
+      const container = document.getElementById('category-counts');
+      const order = ['on-premise', 'off-premise', 'wholesale', 'other'];
+      container.innerHTML = order
+        .filter(cat => cats[cat])
+        .map(cat => `<span class="cat-badge"><span class="dot" style="background:${CATEGORY_COLORS[cat]}"></span>${cats[cat]} ${CATEGORY_LABELS[cat]}</span>`)
+        .join('');
+    }
+
+    // ── Helpers ──
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const [y, m, d] = dateStr.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[parseInt(m)-1]} ${parseInt(d)}, ${y}`;
+    }
+
+    function formatDateTime(isoStr) {
+      try {
+        const d = new Date(isoStr);
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const h = d.getHours();
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const h12 = h % 12 || 12;
+        const min = String(d.getMinutes()).padStart(2, '0');
+        return `${months[d.getMonth()]} ${d.getDate()} at ${h12}:${min} ${ampm}`;
+      } catch {
+        return isoStr;
+      }
+    }
+
+    // ── Event Listeners ──
+    document.getElementById('search-input').addEventListener('input', applyFilters);
+    document.getElementById('type-filter').addEventListener('change', applyFilters);
+
+    document.querySelectorAll('thead th').forEach(th => {
+      th.addEventListener('click', () => handleSort(th.dataset.col));
+    });
+
+    // ── Go ──
+    init();
+  </script>
+</body>
+</html>
