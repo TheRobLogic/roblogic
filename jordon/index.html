@@ -356,6 +356,23 @@
       font-size: 1rem;
     }
 
+    /* ── Footer ── */
+    .site-footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 2.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      border-top: 1px solid var(--border-light);
+    }
+    .site-footer a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .site-footer a:hover { text-decoration: underline; }
+
     /* ── Error State ── */
     #error-state {
       display: none;
@@ -532,6 +549,10 @@
       </table>
       <div id="no-results" class="no-results" style="display:none;">No licenses match your filters.</div>
     </div>
+
+    <footer class="site-footer">
+      Built by <a href="https://roblogic.org">Rob Logic</a> &middot; Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/">California ABC</a> &middot; Updated daily
+    </footer>
   </div>
 
   <script>
@@ -764,9 +785,13 @@
           ? `${lic.address}, ${lic.address2}`
           : lic.address;
 
-        return `<tr>
+        const hasCoords = lic.lat !== null && lic.lat !== undefined;
+        const rowStyle = hasCoords ? 'cursor:pointer' : '';
+        const rowClick = hasCoords ? `onclick="zoomToLicense(${lic.lat},${lic.lng},'${escapeHtml(lic.displayName).replace(/'/g, "\\'")}')"` : '';
+
+        return `<tr style="${rowStyle}" ${rowClick}>
           <td class="td-date">${formatDate(lic.issueDate)}</td>
-          <td class="td-name">${escapeHtml(lic.displayName)}</td>
+          <td class="td-name">${escapeHtml(lic.displayName)}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
           <td><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
           <td>${escapeHtml(lic.city)}</td>
@@ -831,6 +856,20 @@
     document.querySelectorAll('thead th').forEach(th => {
       th.addEventListener('click', () => handleSort(th.dataset.col));
     });
+
+    // ── Zoom to license on table row click ──
+    function zoomToLicense(lat, lng, name) {
+      map.setView([lat, lng], 16, { animate: true });
+      // Find and open the matching marker popup
+      markers.forEach(m => {
+        const pos = m.getLatLng();
+        if (Math.abs(pos.lat - lat) < 0.0001 && Math.abs(pos.lng - lng) < 0.0001) {
+          m.openPopup();
+        }
+      });
+      // Scroll map into view
+      document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     // ── Go ──
     init();
