@@ -110,6 +110,12 @@
       text-align: right;
       white-space: nowrap;
     }
+    .header-meta a {
+      color: var(--blue-bright);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .header-meta a:hover { text-decoration: underline; }
     .header-meta .year {
       color: var(--blue-bright);
       font-weight: 700;
@@ -510,6 +516,7 @@
           <div class="header-meta">
             <div class="year">YTD <span id="display-year"></span></div>
             <div>Updated <span id="last-updated"></span></div>
+            <div>Built by <a href="https://roblogic.org">Rob Logic</a></div>
           </div>
         </div>
 
@@ -556,7 +563,7 @@
     </div>
 
     <footer class="site-footer">
-      Built by <a href="https://roblogic.org">Rob Logic</a> &middot; Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/">California ABC</a> &middot; Updated daily
+      Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/">California ABC</a> &middot; Updated daily
     </footer>
   </div>
 
