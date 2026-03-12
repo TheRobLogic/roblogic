@@ -243,7 +243,12 @@
       font-size: 0.75rem;
       font-weight: 600;
       background: rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.15s;
+      user-select: none;
     }
+    .cat-badge:hover { transform: scale(1.05); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    .cat-badge.active-filter { box-shadow: 0 0 0 2px var(--blue); background: rgba(59,130,246,0.1); }
     .cat-badge .dot {
       width: 7px;
       height: 7px;
@@ -578,6 +583,7 @@
     let markers = [];
     let sortCol = 'issueDate';
     let sortDir = 'desc';
+    let categoryFilter = null;
 
     // ── Init ──
     async function init() {
@@ -696,6 +702,9 @@
       const typeFilter = document.getElementById('type-filter').value;
 
       filteredLicenses = allLicenses.filter(lic => {
+        // Category badge filter
+        if (categoryFilter && lic.category !== categoryFilter) return false;
+
         // Type filter
         if (typeFilter && lic.typeLabel !== typeFilter) return false;
 
@@ -818,7 +827,7 @@
       const order = ['on-premise', 'off-premise', 'wholesale', 'other'];
       container.innerHTML = order
         .filter(cat => cats[cat])
-        .map(cat => `<span class="cat-badge"><span class="dot" style="background:${CATEGORY_COLORS[cat]}"></span>${cats[cat]} ${CATEGORY_LABELS[cat]}</span>`)
+        .map(cat => `<span class="cat-badge${categoryFilter === cat ? ' active-filter' : ''}" onclick="toggleCategoryFilter('${cat}')" title="Click to filter"><span class="dot" style="background:${CATEGORY_COLORS[cat]}"></span>${cats[cat]} ${CATEGORY_LABELS[cat]}</span>`)
         .join('');
     }
 
@@ -858,6 +867,12 @@
     document.querySelectorAll('thead th').forEach(th => {
       th.addEventListener('click', () => handleSort(th.dataset.col));
     });
+
+    // ── Toggle category filter from badge click ──
+    function toggleCategoryFilter(cat) {
+      categoryFilter = categoryFilter === cat ? null : cat;
+      applyFilters();
+    }
 
     // ── Close popups when clicking anywhere outside the map ──
     document.addEventListener('click', function(e) {
