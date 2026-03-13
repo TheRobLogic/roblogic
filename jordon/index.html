@@ -452,21 +452,64 @@
       .header-top { flex-direction: column; }
       .header-meta { text-align: left; }
       header h1 { font-size: 1.35rem; }
+
+      /* Filters — prevent iOS auto-zoom, bigger touch targets */
       .filters { flex-direction: column; }
-      .filter-input, .filter-select { min-width: unset; width: 100%; }
+      .filter-input, .filter-select {
+        min-width: unset; width: 100%;
+        font-size: 16px;
+        padding: 0.75rem 1rem;
+      }
+      .filter-select { padding-right: 2.5rem; }
+
+      /* Map */
       #map-container { padding: 0 0.75rem; }
-      #map { height: 50vh; min-height: 280px; }
+      #map { height: 45vh; min-height: 280px; }
+
+      /* Stats */
       .stats-bar { padding: 0.75rem; flex-direction: column; align-items: flex-start; }
-      .table-wrapper { padding: 0 0.75rem 2rem; }
-      table { font-size: 0.8rem; }
-      thead th { padding: 0.6rem 0.7rem; }
-      tbody td { padding: 0.5rem 0.7rem; }
+      .cat-badge { padding: 0.35rem 0.75rem; font-size: 0.8rem; }
+
+      /* Table → Cards */
+      .table-wrapper { padding: 0 0.75rem 2rem; overflow-x: visible; }
+      table { background: transparent; box-shadow: none; border-radius: 0; overflow: visible; font-size: 0.875rem; }
+      thead { display: none; }
+      tbody { display: flex; flex-direction: column; gap: 0.75rem; }
+      tbody tr {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 0.875rem 1rem;
+        border-bottom: none;
+      }
+      tbody tr:nth-child(even) { background: white; }
+      tbody tr:hover { background: var(--bg-row-hover); }
+      tbody td { padding: 0; border: none; }
+
+      /* Card field ordering & styling */
+      td.td-name { order: 1; font-size: 0.95rem; padding-right: 5rem; margin-bottom: 0.15rem; }
+      td.td-type-cell { order: 2; font-size: 0.8rem; margin-bottom: 0.15rem; }
+      td.td-address { order: 3; font-size: 0.8rem; color: var(--text-muted); }
+      td.td-city { order: 4; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.15rem; }
+      td.td-date {
+        order: 5; font-size: 0.75rem; color: var(--text-muted);
+        margin-top: 0.35rem; padding-top: 0.35rem;
+        border-top: 1px solid var(--border-light);
+      }
+      td.td-status-cell { position: absolute; top: 0.875rem; right: 1rem; }
+
+      /* Leaflet popups — constrain width on small screens */
+      .leaflet-popup-content-wrapper { max-width: 260px; }
     }
 
     @media (max-width: 480px) {
       header h1 { font-size: 1.2rem; }
-      .legend { gap: 0.6rem; }
+      .legend { gap: 0.5rem; }
       .legend-item { font-size: 0.7rem; }
+      td.td-name { font-size: 0.875rem; padding-right: 4.5rem; }
     }
 
     /* ── Loading skeleton ── */
@@ -810,10 +853,10 @@
         return `<tr style="${rowStyle}" ${rowClick}>
           <td class="td-date">${formatDate(lic.issueDate)}</td>
           <td class="td-name">${escapeHtml(lic.displayName)}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
-          <td><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
+          <td class="td-type-cell"><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
-          <td>${escapeHtml(lic.city)}</td>
-          <td><span class="td-status ${statusClass}">${escapeHtml(lic.status)}</span></td>
+          <td class="td-city">${escapeHtml(lic.city)}</td>
+          <td class="td-status-cell"><span class="td-status ${statusClass}">${escapeHtml(lic.status)}</span></td>
         </tr>`;
       }).join('');
 
