@@ -87,9 +87,9 @@
 
     .header-top {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
       margin-bottom: 1.25rem;
     }
 
@@ -99,6 +99,7 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 1.2;
+      text-align: center;
     }
     header h1 span {
       color: var(--blue-bright);
@@ -107,7 +108,7 @@
     .header-meta {
       color: var(--text-muted);
       font-size: 0.8rem;
-      text-align: right;
+      text-align: center;
       white-space: nowrap;
     }
     .header-meta a {
@@ -596,7 +597,7 @@
     <header>
       <div class="header-inner">
         <div class="header-top">
-          <h1>SD County <span>New Licenses</span></h1>
+          <h1>SD County <span>New ABC Licenses</span></h1>
           <div class="header-meta">
             <div class="year">YTD <span id="display-year"></span></div>
             <div>Updated <span id="last-updated"></span></div>
