@@ -934,16 +934,20 @@
 
     // ── Zoom to license on table row click ──
     function zoomToLicense(lat, lng, name) {
-      map.setView([lat, lng], 14, { animate: true });
-      // Find and open the matching marker popup
-      markers.forEach(m => {
-        const pos = m.getLatLng();
-        if (Math.abs(pos.lat - lat) < 0.0001 && Math.abs(pos.lng - lng) < 0.0001) {
-          m.openPopup();
-        }
-      });
-      // Scroll map into view
+      // Scroll map into view first, then zoom and open popup after animation settles
       document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        map.setView([lat, lng], 14, { animate: true });
+        // Open popup after map finishes panning
+        map.once('moveend', () => {
+          markers.forEach(m => {
+            const pos = m.getLatLng();
+            if (Math.abs(pos.lat - lat) < 0.0001 && Math.abs(pos.lng - lng) < 0.0001) {
+              m.openPopup();
+            }
+          });
+        });
+      }, 300);
     }
 
     // ── Visitor beacon (disabled for testing) ──
