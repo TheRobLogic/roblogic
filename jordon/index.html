@@ -124,10 +124,9 @@
 
     /* ── Legend (toggle buttons) ── */
     .legend {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 0.6rem;
-      flex-wrap: wrap;
-      justify-content: center;
       margin-bottom: 1.25rem;
     }
     .legend-item {
@@ -136,12 +135,11 @@
       justify-content: center;
       gap: 0.5rem;
       color: var(--text-white);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.01em;
-      padding: 0.65rem 1.25rem;
-      flex: 1 1 0;
-      min-width: 0;
+      padding: 0.6rem 0.75rem;
+      white-space: nowrap;
       border-radius: 100px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(148, 163, 184, 0.25);
@@ -472,6 +470,10 @@
       .header-meta { text-align: left; }
       header h1 { font-size: 1.35rem; }
 
+      /* Legend — 2x2 grid on mobile */
+      .legend { grid-template-columns: repeat(2, 1fr); }
+      .legend-item { font-size: 0.9rem; padding: 0.6rem 0.5rem; }
+
       /* Filters — prevent iOS auto-zoom, bigger touch targets */
       .filters { flex-direction: column; }
       .filter-input, .filter-select {
@@ -526,8 +528,8 @@
 
     @media (max-width: 480px) {
       header h1 { font-size: 1.2rem; }
-      .legend { gap: 0.5rem; }
-      .legend-item { font-size: 0.7rem; }
+      .legend { gap: 0.4rem; }
+      .legend-item { font-size: 0.8rem; padding: 0.5rem 0.4rem; }
       td.td-name { font-size: 0.875rem; padding-right: 4.5rem; }
     }
 
