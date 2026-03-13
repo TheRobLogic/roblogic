@@ -133,12 +133,14 @@
     .legend-item {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 1rem;
+      color: var(--text-white);
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 0.01em;
-      padding: 0.6rem 1.15rem;
+      padding: 0.65rem 1.25rem;
+      min-width: 150px;
       border-radius: 100px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(148, 163, 184, 0.25);
@@ -149,7 +151,6 @@
     .legend-item:hover {
       background: rgba(255,255,255,0.12);
       border-color: rgba(148, 163, 184, 0.4);
-      color: var(--text-white);
     }
     .legend-item.active-filter {
       background: rgba(59,130,246,0.2);
@@ -631,7 +632,7 @@
     let markers = [];
     let sortCol = 'issueDate';
     let sortDir = 'desc';
-    let categoryFilter = null;
+    let categoryFilter = 'on-premise';
 
     // ── Init ──
     async function init() {
