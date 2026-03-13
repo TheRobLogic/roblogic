@@ -839,8 +839,6 @@
       updateMapMarkers(filteredLicenses);
       updateStats();
 
-      // Reset map to full county view
-      if (map) map.setView([32.85, -117.05], 10, { animate: true });
     }
 
     // ── Sorting ──
@@ -985,6 +983,7 @@
     function toggleCategoryFilter(cat) {
       categoryFilter = categoryFilter === cat ? null : cat;
       applyFilters();
+      if (map) map.setView([32.85, -117.05], 10, { animate: true });
     }
 
     // ── Close popups when clicking anywhere outside the map ──
