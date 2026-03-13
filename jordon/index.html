@@ -275,6 +275,24 @@
     }
     .popup-gmaps a:hover { text-decoration: underline; }
     .popup-gmaps { margin-top: 0.4rem; }
+    .popup-contact { margin-top: 0.3rem; font-size: 0.75rem; }
+    .popup-contact a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .popup-contact a:hover { text-decoration: underline; }
+
+    /* ── Contact info on cards ── */
+    .td-contact { display: none; }
+    .td-contact a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+    .td-contact a:hover { text-decoration: underline; }
+    .td-contact a + a { margin-left: 0.75rem; }
 
     /* ── Table ── */
     .table-wrapper {
@@ -513,8 +531,10 @@
       td.td-type-cell { order: 2; font-size: 0.8rem; margin-bottom: 0.15rem; }
       td.td-address { order: 3; font-size: 0.8rem; color: var(--text-muted); }
       td.td-city { order: 4; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.15rem; }
+      td.td-contact { display: block; order: 5; margin-bottom: 0.15rem; }
+      td.td-contact:empty { display: none; }
       td.td-date {
-        order: 5; font-size: 0.75rem; color: var(--text-muted);
+        order: 6; font-size: 0.75rem; color: var(--text-muted);
         margin-top: 0.35rem; padding-top: 0.35rem;
         border-top: 1px solid var(--border-light);
         display: flex; justify-content: space-between; align-items: center;
@@ -750,10 +770,16 @@
           : lic.address;
 
         const gmapsUrl = googleMapsUrl(lic.displayName, lic.address, lic.city);
+        let popupContact = '';
+        if (lic.phone) popupContact += `<a href="tel:${escapeHtml(lic.phone)}">&#x260E; ${escapeHtml(lic.phone)}</a>`;
+        if (lic.phone && lic.website) popupContact += ' &middot; ';
+        if (lic.website) popupContact += `<a href="${escapeHtml(lic.website)}" target="_blank" rel="noopener">Website</a>`;
+
         marker.bindPopup(`<div style="min-width:160px">
           <div class="popup-name">${escapeHtml(lic.displayName)}</div>
           <div class="popup-type" style="color:${typeColor}">${escapeHtml(lic.typeLabel)}</div>
           <div class="popup-address">${escapeHtml(fullAddress)}<br>${escapeHtml(lic.city)}, CA ${escapeHtml(lic.zip)}</div>
+          ${popupContact ? `<div class="popup-contact">${popupContact}</div>` : ''}
           <div class="popup-date">Issued ${formatDate(lic.issueDate)}</div>
           <div class="popup-gmaps"><a href="${gmapsUrl}" target="_blank" rel="noopener">Google Maps ↗</a></div>
         </div>`, { closeOnClick: true, autoClose: true });
@@ -884,6 +910,7 @@
           <td class="td-type-cell"><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
           <td class="td-city">${escapeHtml(lic.city)}</td>
+          <td class="td-contact">${lic.phone ? `<a href="tel:${escapeHtml(lic.phone)}" onclick="event.stopPropagation()">&#x260E; ${escapeHtml(lic.phone)}</a>` : ''}${lic.website ? `<a href="${escapeHtml(lic.website)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#x1F310; Website</a>` : ''}</td>
           <td class="td-status-cell"><span class="td-status ${statusClass}">${escapeHtml(lic.status)}</span></td>
         </tr>`;
       }).join('');
