@@ -1013,13 +1013,13 @@
       }, 300);
     }
 
-    // ── Visitor beacon (disabled for testing) ──
-    // try {
-    //   fetch('https://n8n.roblogic.org/webhook/page-visit', {
-    //     method: 'POST', mode: 'no-cors',
-    //     body: JSON.stringify({ page: '/jordon/', ts: new Date().toISOString() })
-    //   }).catch(() => {});
-    // } catch(e) {}
+    // ── Visitor beacon ──
+    try {
+      fetch('https://n8n.roblogic.org/webhook/page-visit', {
+        method: 'POST', mode: 'no-cors',
+        body: JSON.stringify({ page: '/jordon/', ts: new Date().toISOString() })
+      }).catch(() => {});
+    } catch(e) {}
 
     // ── Go ──
     init();
