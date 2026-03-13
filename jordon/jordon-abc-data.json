@@ -18,7 +18,9 @@
       "city": "ESCONDIDO",
       "zip": "92025",
       "lat": 33.1173924,
-      "lng": -117.0917194
+      "lng": -117.0917194,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674297",
@@ -36,7 +38,9 @@
       "city": "BORREGO SPRINGS",
       "zip": "92004",
       "lat": 33.2563035,
-      "lng": -116.3833549
+      "lng": -116.3833549,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675495",
@@ -54,7 +58,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2706",
       "lat": 32.754626,
-      "lng": -117.1967817
+      "lng": -117.1967817,
+      "phone": "(619) 246-8010",
+      "website": null
     },
     {
       "fileNumber": "00675488",
@@ -72,7 +78,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2705",
       "lat": 32.75455,
-      "lng": -117.1964359
+      "lng": -117.1964359,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675488",
@@ -90,7 +98,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2705",
       "lat": 32.75455,
-      "lng": -117.1964359
+      "lng": -117.1964359,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675488",
@@ -108,7 +118,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2705",
       "lat": 32.75455,
-      "lng": -117.1964359
+      "lng": -117.1964359,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675474",
@@ -126,7 +138,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2706",
       "lat": 32.754626,
-      "lng": -117.1967817
+      "lng": -117.1967817,
+      "phone": "(619) 246-8010",
+      "website": null
     },
     {
       "fileNumber": "00675474",
@@ -144,7 +158,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2706",
       "lat": 32.754626,
-      "lng": -117.1967817
+      "lng": -117.1967817,
+      "phone": "(619) 246-8010",
+      "website": null
     },
     {
       "fileNumber": "00675495",
@@ -162,7 +178,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2706",
       "lat": 32.754626,
-      "lng": -117.1967817
+      "lng": -117.1967817,
+      "phone": "(619) 246-8010",
+      "website": null
     },
     {
       "fileNumber": "00675488",
@@ -180,7 +198,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2705",
       "lat": 32.75455,
-      "lng": -117.1964359
+      "lng": -117.1964359,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675474",
@@ -198,7 +218,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-2706",
       "lat": 32.754626,
-      "lng": -117.1967817
+      "lng": -117.1967817,
+      "phone": "(619) 246-8010",
+      "website": null
     },
     {
       "fileNumber": "00657193",
@@ -216,7 +238,9 @@
       "city": "SAN DIEGO",
       "zip": "92101-8060",
       "lat": 32.809316,
-      "lng": -116.865414
+      "lng": -116.865414,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671584",
@@ -234,7 +258,9 @@
       "city": "SAN DIEGO",
       "zip": "92106",
       "lat": 32.7156719,
-      "lng": -117.2250906
+      "lng": -117.2250906,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671584",
@@ -252,7 +278,9 @@
       "city": "SAN DIEGO",
       "zip": "92106",
       "lat": 32.7156719,
-      "lng": -117.2250906
+      "lng": -117.2250906,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675595",
@@ -270,7 +298,9 @@
       "city": "CHULA VISTA",
       "zip": "91910",
       "lat": 32.640085,
-      "lng": -117.095802
+      "lng": -117.095802,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00664543",
@@ -288,7 +318,9 @@
       "city": "SAN DIEGO",
       "zip": "92107-3009",
       "lat": 32.747109,
-      "lng": -117.252024
+      "lng": -117.252024,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00657662",
@@ -306,7 +338,9 @@
       "city": "SAN MARCOS",
       "zip": "92078-4347",
       "lat": 33.1358716,
-      "lng": -117.1586062
+      "lng": -117.1586062,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674920",
@@ -324,7 +358,9 @@
       "city": "SOLANA BEACH",
       "zip": "92075-1502",
       "lat": 32.994484,
-      "lng": -117.253797
+      "lng": -117.253797,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00672461",
@@ -342,7 +378,9 @@
       "city": "VISTA",
       "zip": "92081",
       "lat": 33.1502622,
-      "lng": -117.2162562
+      "lng": -117.2162562,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00672461",
@@ -360,7 +398,9 @@
       "city": "VISTA",
       "zip": "92081",
       "lat": 33.1502622,
-      "lng": -117.2162562
+      "lng": -117.2162562,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00672461",
@@ -378,7 +418,9 @@
       "city": "VISTA",
       "zip": "92081",
       "lat": 33.1502622,
-      "lng": -117.2162562
+      "lng": -117.2162562,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00672461",
@@ -396,7 +438,9 @@
       "city": "VISTA",
       "zip": "92081",
       "lat": 33.1502622,
-      "lng": -117.2162562
+      "lng": -117.2162562,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673402",
@@ -414,7 +458,9 @@
       "city": "SAN DIEGO",
       "zip": "92101-2270",
       "lat": 32.7248595,
-      "lng": -117.1698262
+      "lng": -117.1698262,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675322",
@@ -432,7 +478,9 @@
       "city": "VISTA",
       "zip": "92081-8464",
       "lat": 33.1502622,
-      "lng": -117.2162562
+      "lng": -117.2162562,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675322",
@@ -450,7 +498,9 @@
       "city": "VISTA",
       "zip": "92081-8464",
       "lat": 33.1502622,
-      "lng": -117.2162562
+      "lng": -117.2162562,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675551",
@@ -468,7 +518,9 @@
       "city": "FALLBROOK",
       "zip": "92028",
       "lat": 33.341168,
-      "lng": -117.241935
+      "lng": -117.241935,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671347",
@@ -486,7 +538,9 @@
       "city": "SAN DIEGO",
       "zip": "92113",
       "lat": 32.688452,
-      "lng": -117.110067
+      "lng": -117.110067,
+      "phone": "(619) 264-1515",
+      "website": null
     },
     {
       "fileNumber": "00670518",
@@ -504,7 +558,9 @@
       "city": "SAN DIEGO",
       "zip": "92101",
       "lat": 32.7231657,
-      "lng": -117.1680994
+      "lng": -117.1680994,
+      "phone": "(442) 264-5830",
+      "website": null
     },
     {
       "fileNumber": "00670518",
@@ -522,7 +578,9 @@
       "city": "SAN DIEGO",
       "zip": "92101",
       "lat": 32.7231657,
-      "lng": -117.1680994
+      "lng": -117.1680994,
+      "phone": "(442) 264-5830",
+      "website": null
     },
     {
       "fileNumber": "00670518",
@@ -540,7 +598,9 @@
       "city": "SAN DIEGO",
       "zip": "92101",
       "lat": 32.7231657,
-      "lng": -117.1680994
+      "lng": -117.1680994,
+      "phone": "(442) 264-5830",
+      "website": null
     },
     {
       "fileNumber": "00676072",
@@ -558,7 +618,9 @@
       "city": "EL CAJON",
       "zip": "92020-2111",
       "lat": 32.7994777,
-      "lng": -117.0023725
+      "lng": -117.0023725,
+      "phone": "(619) 337-1388",
+      "website": null
     },
     {
       "fileNumber": "00675525",
@@ -576,7 +638,9 @@
       "city": "SANTEE",
       "zip": "92071",
       "lat": 32.837839,
-      "lng": -116.987972
+      "lng": -116.987972,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00670518",
@@ -594,7 +658,9 @@
       "city": "SAN DIEGO",
       "zip": "92101",
       "lat": 32.7231657,
-      "lng": -117.1680994
+      "lng": -117.1680994,
+      "phone": "(442) 264-5830",
+      "website": null
     },
     {
       "fileNumber": "00675025",
@@ -612,7 +678,9 @@
       "city": "ENCINITAS",
       "zip": "92024-3252",
       "lat": 33.050276,
-      "lng": -117.2942423
+      "lng": -117.2942423,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00669221",
@@ -630,7 +698,9 @@
       "city": "SAN MARCOS",
       "zip": "92078-4049",
       "lat": 33.1351692,
-      "lng": -117.2012435
+      "lng": -117.2012435,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00669221",
@@ -648,7 +718,9 @@
       "city": "SAN MARCOS",
       "zip": "92078-4049",
       "lat": 33.1351692,
-      "lng": -117.2012435
+      "lng": -117.2012435,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00669221",
@@ -666,7 +738,9 @@
       "city": "SAN MARCOS",
       "zip": "92078-4049",
       "lat": 33.1351692,
-      "lng": -117.2012435
+      "lng": -117.2012435,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00669221",
@@ -684,7 +758,9 @@
       "city": "SAN MARCOS",
       "zip": "92078-4049",
       "lat": 33.1351692,
-      "lng": -117.2012435
+      "lng": -117.2012435,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00654620",
@@ -702,7 +778,9 @@
       "city": "SAN DIEGO",
       "zip": "92122-2320",
       "lat": 32.856345,
-      "lng": -117.216927
+      "lng": -117.216927,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674639",
@@ -720,7 +798,9 @@
       "city": "EL CAJON",
       "zip": "92020-6665",
       "lat": 32.7880119,
-      "lng": -116.945034
+      "lng": -116.945034,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674658",
@@ -738,7 +818,9 @@
       "city": "LA MESA",
       "zip": "91942-3925",
       "lat": 32.779796,
-      "lng": -116.990282
+      "lng": -116.990282,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674685",
@@ -756,7 +838,9 @@
       "city": "EL CAJON",
       "zip": "92020-6402",
       "lat": 32.787375,
-      "lng": -116.958172
+      "lng": -116.958172,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671671",
@@ -774,7 +858,9 @@
       "city": "SAN DIEGO",
       "zip": "92121",
       "lat": 32.886629,
-      "lng": -117.170127
+      "lng": -117.170127,
+      "phone": "(858) 397-2244",
+      "website": null
     },
     {
       "fileNumber": "00654620",
@@ -792,7 +878,9 @@
       "city": "SAN DIEGO",
       "zip": "92122-2320",
       "lat": 32.856345,
-      "lng": -117.216927
+      "lng": -117.216927,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675701",
@@ -810,7 +898,9 @@
       "city": "SAN DIEGO",
       "zip": "92115-1824",
       "lat": 32.7687859,
-      "lng": -117.0463456
+      "lng": -117.0463456,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00666053",
@@ -828,7 +918,9 @@
       "city": "SAN DIEGO",
       "zip": "92106",
       "lat": 32.7227733,
-      "lng": -117.2284344
+      "lng": -117.2284344,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00662965",
@@ -846,7 +938,9 @@
       "city": "CHULA VISTA",
       "zip": "91911-6024",
       "lat": 32.5948374,
-      "lng": -117.0325209
+      "lng": -117.0325209,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673827",
@@ -864,7 +958,9 @@
       "city": "OCEANSIDE",
       "zip": "92058-1414",
       "lat": 33.225747,
-      "lng": -117.333714
+      "lng": -117.333714,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675760",
@@ -882,7 +978,9 @@
       "city": "OCEANSIDE",
       "zip": "92056-8600",
       "lat": 33.2096314,
-      "lng": -117.3120997
+      "lng": -117.3120997,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671705",
@@ -900,7 +998,9 @@
       "city": "SOLANA BEACH",
       "zip": "92075",
       "lat": 32.9927403,
-      "lng": -117.2700286
+      "lng": -117.2700286,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00668732",
@@ -918,7 +1018,9 @@
       "city": "SAN DIEGO",
       "zip": "92104-4636",
       "lat": 32.7393808,
-      "lng": -117.1254706
+      "lng": -117.1254706,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675600",
@@ -936,7 +1038,9 @@
       "city": "EL CAJON",
       "zip": "92020",
       "lat": 32.807596,
-      "lng": -116.964554
+      "lng": -116.964554,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674354",
@@ -954,7 +1058,9 @@
       "city": "CARLSBAD",
       "zip": "92009-1785",
       "lat": 33.1277751,
-      "lng": -117.253188
+      "lng": -117.253188,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675520",
@@ -972,7 +1078,9 @@
       "city": "CHULA VISTA",
       "zip": "91910",
       "lat": 32.647128,
-      "lng": -117.095313
+      "lng": -117.095313,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00662810",
@@ -990,7 +1098,9 @@
       "city": "LA JOLLA",
       "zip": "92037-5029",
       "lat": 32.8387166,
-      "lng": -117.2787136
+      "lng": -117.2787136,
+      "phone": "(619) 966-5236",
+      "website": null
     },
     {
       "fileNumber": "00673759",
@@ -1008,7 +1118,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-4412",
       "lat": 32.756102,
-      "lng": -117.206152
+      "lng": -117.206152,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00670576",
@@ -1026,7 +1138,9 @@
       "city": "BONSALL",
       "zip": "92003",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671921",
@@ -1044,7 +1158,9 @@
       "city": "CHULA VISTA",
       "zip": "91911-4618",
       "lat": 32.5942596,
-      "lng": -117.0754591
+      "lng": -117.0754591,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671921",
@@ -1062,7 +1178,9 @@
       "city": "CHULA VISTA",
       "zip": "91911-4618",
       "lat": 32.5942596,
-      "lng": -117.0754591
+      "lng": -117.0754591,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675132",
@@ -1080,7 +1198,9 @@
       "city": "SAN DIEGO",
       "zip": "92122-5542",
       "lat": 32.8670905,
-      "lng": -117.2067909
+      "lng": -117.2067909,
+      "phone": "(858) 886-7990",
+      "website": null
     },
     {
       "fileNumber": "00674705",
@@ -1098,7 +1218,9 @@
       "city": "ESCONDIDO",
       "zip": "92027-2708",
       "lat": 33.13651,
-      "lng": -117.050751
+      "lng": -117.050751,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675811",
@@ -1116,7 +1238,9 @@
       "city": "SAN DIEGO",
       "zip": "92130-6626",
       "lat": 32.9204273,
-      "lng": -117.2143672
+      "lng": -117.2143672,
+      "phone": "(858) 356-9221",
+      "website": null
     },
     {
       "fileNumber": "00673950",
@@ -1134,7 +1258,9 @@
       "city": "ALPINE",
       "zip": "91901-3853",
       "lat": 32.8369862,
-      "lng": -116.776497
+      "lng": -116.776497,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00670844",
@@ -1152,7 +1278,9 @@
       "city": "SAN DIEGO",
       "zip": "92123-1734",
       "lat": 32.8102758,
-      "lng": -117.140573
+      "lng": -117.140573,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674644",
@@ -1170,7 +1298,9 @@
       "city": "SAN DIEGO",
       "zip": "92101",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674170",
@@ -1188,7 +1318,9 @@
       "city": "ENCINITAS",
       "zip": "92024-3539",
       "lat": 33.044215,
-      "lng": -117.293902
+      "lng": -117.293902,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00666108",
@@ -1206,7 +1338,9 @@
       "city": "ESCONDIDO",
       "zip": "92025",
       "lat": 33.072633,
-      "lng": -117.0414677
+      "lng": -117.0414677,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674704",
@@ -1224,7 +1358,9 @@
       "city": "LA MESA",
       "zip": "91941-5019",
       "lat": 32.765371,
-      "lng": -117.026419
+      "lng": -117.026419,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00666108",
@@ -1242,7 +1378,9 @@
       "city": "ESCONDIDO",
       "zip": "92025",
       "lat": 33.072633,
-      "lng": -117.0414677
+      "lng": -117.0414677,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674730",
@@ -1260,7 +1398,9 @@
       "city": "SANTEE",
       "zip": "92071-5608",
       "lat": 32.8464995,
-      "lng": -116.9593149
+      "lng": -116.9593149,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674730",
@@ -1278,7 +1418,9 @@
       "city": "SANTEE",
       "zip": "92071-5608",
       "lat": 32.8464995,
-      "lng": -116.9593149
+      "lng": -116.9593149,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00643920",
@@ -1296,7 +1438,9 @@
       "city": "SANTEE",
       "zip": "92071",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675359",
@@ -1314,7 +1458,9 @@
       "city": "IMPERIAL BEACH",
       "zip": "91932-1865",
       "lat": 32.5826208,
-      "lng": -117.1318977
+      "lng": -117.1318977,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673697",
@@ -1332,7 +1478,9 @@
       "city": "IMPERIAL BEACH",
       "zip": "91932-1244",
       "lat": 32.5846037,
-      "lng": -117.1205433
+      "lng": -117.1205433,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00667724",
@@ -1350,7 +1498,9 @@
       "city": "POWAY",
       "zip": "92064",
       "lat": 32.9373137,
-      "lng": -117.0284368
+      "lng": -117.0284368,
+      "phone": "(858) 549-9888",
+      "website": null
     },
     {
       "fileNumber": "00667724",
@@ -1368,7 +1518,9 @@
       "city": "POWAY",
       "zip": "92064",
       "lat": 32.9373137,
-      "lng": -117.0284368
+      "lng": -117.0284368,
+      "phone": "(858) 549-9888",
+      "website": null
     },
     {
       "fileNumber": "00674259",
@@ -1386,7 +1538,9 @@
       "city": "SAN DIEGO",
       "zip": "92111-3761",
       "lat": 32.820235,
-      "lng": -117.1553414
+      "lng": -117.1553414,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00663829",
@@ -1404,7 +1558,9 @@
       "city": "SAN DIEGO",
       "zip": "92131-3621",
       "lat": 32.9365929,
-      "lng": -117.0964069
+      "lng": -117.0964069,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00594840",
@@ -1422,7 +1578,9 @@
       "city": "SAN YSIDRO",
       "zip": "92173",
       "lat": 32.5630413,
-      "lng": -117.0670469
+      "lng": -117.0670469,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00670361",
@@ -1440,7 +1598,9 @@
       "city": "ESCONDIDO",
       "zip": "92029-2278",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674680",
@@ -1458,7 +1618,9 @@
       "city": "SAN DIEGO",
       "zip": "92115-4725",
       "lat": 32.7572468,
-      "lng": -117.0828535
+      "lng": -117.0828535,
+      "phone": "(619) 713-9909",
+      "website": null
     },
     {
       "fileNumber": "00667904",
@@ -1476,7 +1638,9 @@
       "city": "CHULA VISTA",
       "zip": "91914-6004",
       "lat": 32.6610406,
-      "lng": -116.9707847
+      "lng": -116.9707847,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673884",
@@ -1494,7 +1658,9 @@
       "city": "SAN DIEGO",
       "zip": "92128-2584",
       "lat": 33.0173535,
-      "lng": -117.0745758
+      "lng": -117.0745758,
+      "phone": "(858) 487-4994",
+      "website": null
     },
     {
       "fileNumber": "00669698",
@@ -1512,7 +1678,9 @@
       "city": "SAN DIEGO",
       "zip": "92106-2704",
       "lat": 32.7211095,
-      "lng": -117.2303731
+      "lng": -117.2303731,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00670573",
@@ -1530,7 +1698,9 @@
       "city": "VISTA",
       "zip": "92084-2234",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674135",
@@ -1548,7 +1718,9 @@
       "city": "SAN DIEGO",
       "zip": "92127-4201",
       "lat": 33.0206528,
-      "lng": -117.124303
+      "lng": -117.124303,
+      "phone": "(858) 333-5818",
+      "website": null
     },
     {
       "fileNumber": "00672790",
@@ -1566,7 +1738,9 @@
       "city": "BONITA",
       "zip": "91902-1309",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675306",
@@ -1584,7 +1758,9 @@
       "city": "SAN DIEGO",
       "zip": "92130-2444",
       "lat": 32.9621875,
-      "lng": -117.1890528
+      "lng": -117.1890528,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671619",
@@ -1602,7 +1778,9 @@
       "city": "CHULA VISTA",
       "zip": "91910-5872",
       "lat": 32.625364,
-      "lng": -117.0736213
+      "lng": -117.0736213,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00620601",
@@ -1620,7 +1798,9 @@
       "city": "SAN DIEGO",
       "zip": "92154",
       "lat": 32.5738806,
-      "lng": -117.0553258
+      "lng": -117.0553258,
+      "phone": "(619) 787-5298",
+      "website": null
     },
     {
       "fileNumber": "00654728",
@@ -1638,7 +1818,9 @@
       "city": "NATIONAL CITY",
       "zip": "91950-8004",
       "lat": 32.656657,
-      "lng": -117.067638
+      "lng": -117.067638,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00654728",
@@ -1656,7 +1838,9 @@
       "city": "NATIONAL CITY",
       "zip": "91950-8004",
       "lat": 32.656657,
-      "lng": -117.067638
+      "lng": -117.067638,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00675011",
@@ -1674,7 +1858,9 @@
       "city": "SAN DIEGO",
       "zip": "92103-3213",
       "lat": 32.748516,
-      "lng": -117.159234
+      "lng": -117.159234,
+      "phone": "(858) 252-8021",
+      "website": null
     },
     {
       "fileNumber": "00673864",
@@ -1692,7 +1878,9 @@
       "city": "RAMONA",
       "zip": "92065",
       "lat": 33.044148,
-      "lng": -116.8640111
+      "lng": -116.8640111,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00665445",
@@ -1710,7 +1898,9 @@
       "city": "SAN DIEGO",
       "zip": "92126-4200",
       "lat": 32.8884623,
-      "lng": -117.1498996
+      "lng": -117.1498996,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674604",
@@ -1728,7 +1918,9 @@
       "city": "CORONADO",
       "zip": "92118",
       "lat": 32.685332,
-      "lng": -117.179551
+      "lng": -117.179551,
+      "phone": "(619) 654-3262",
+      "website": null
     },
     {
       "fileNumber": "00673693",
@@ -1746,7 +1938,9 @@
       "city": "SOLANA BEACH",
       "zip": "92075-1919",
       "lat": 32.9882124,
-      "lng": -117.2693249
+      "lng": -117.2693249,
+      "phone": "(619) 916-6085",
+      "website": null
     },
     {
       "fileNumber": "00668816",
@@ -1764,7 +1958,9 @@
       "city": "CHULA VISTA",
       "zip": "91910-5561",
       "lat": 32.6343425,
-      "lng": -117.0784656
+      "lng": -117.0784656,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00668816",
@@ -1782,7 +1978,9 @@
       "city": "CHULA VISTA",
       "zip": "91910-5561",
       "lat": 32.6343425,
-      "lng": -117.0784656
+      "lng": -117.0784656,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00668816",
@@ -1800,7 +1998,9 @@
       "city": "CHULA VISTA",
       "zip": "91910-5561",
       "lat": 32.6343425,
-      "lng": -117.0784656
+      "lng": -117.0784656,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674180",
@@ -1818,7 +2018,9 @@
       "city": "OCEANSIDE",
       "zip": "92054-3109",
       "lat": 33.19327,
-      "lng": -117.376909
+      "lng": -117.376909,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00669304",
@@ -1836,7 +2038,9 @@
       "city": "SAN DIEGO",
       "zip": "92104-2812",
       "lat": 32.748635,
-      "lng": -117.13474
+      "lng": -117.13474,
+      "phone": "(619) 262-4202",
+      "website": null
     },
     {
       "fileNumber": "00674130",
@@ -1854,7 +2058,9 @@
       "city": "CARLSBAD",
       "zip": "92008-1172",
       "lat": 33.1773759,
-      "lng": -117.3399316
+      "lng": -117.3399316,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00627207",
@@ -1872,7 +2078,9 @@
       "city": "CHULA VISTA",
       "zip": "91911",
       "lat": 32.607266,
-      "lng": -117.067044
+      "lng": -117.067044,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00666521",
@@ -1890,7 +2098,9 @@
       "city": "SAN DIEGO",
       "zip": "92104-3002",
       "lat": 32.7489456,
-      "lng": -117.1212548
+      "lng": -117.1212548,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00369696",
@@ -1908,7 +2118,9 @@
       "city": "SOLANA BEACH",
       "zip": "92075-1502",
       "lat": 32.9941333,
-      "lng": -117.2544345
+      "lng": -117.2544345,
+      "phone": "(858) 271-5350",
+      "website": null
     },
     {
       "fileNumber": "00674541",
@@ -1926,7 +2138,9 @@
       "city": "OCEANSIDE",
       "zip": "92054-3015",
       "lat": 33.1951374,
-      "lng": -117.3791132
+      "lng": -117.3791132,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673868",
@@ -1944,7 +2158,9 @@
       "city": "SAN MARCOS",
       "zip": "92069-3577",
       "lat": null,
-      "lng": null
+      "lng": null,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674442",
@@ -1962,7 +2178,9 @@
       "city": "SAN DIEGO",
       "zip": "92116-2403",
       "lat": 32.7633944,
-      "lng": -117.1158727
+      "lng": -117.1158727,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674654",
@@ -1980,7 +2198,9 @@
       "city": "EL CAJON",
       "zip": "92021-5849",
       "lat": 32.802423,
-      "lng": -116.935263
+      "lng": -116.935263,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673611",
@@ -1998,7 +2218,9 @@
       "city": "BORREGO SPRINGS",
       "zip": "92004",
       "lat": 33.2573034,
-      "lng": -116.3798039
+      "lng": -116.3798039,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674144",
@@ -2016,7 +2238,9 @@
       "city": "SAN DIEGO",
       "zip": "92129-5033",
       "lat": 32.9384844,
-      "lng": -117.1145777
+      "lng": -117.1145777,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671974",
@@ -2034,7 +2258,9 @@
       "city": "SAN DIEGO",
       "zip": "92101-5310",
       "lat": 32.717471,
-      "lng": -117.158651
+      "lng": -117.158651,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673668",
@@ -2052,7 +2278,9 @@
       "city": "POWAY",
       "zip": "92064-4437",
       "lat": 32.9555099,
-      "lng": -117.0543968
+      "lng": -117.0543968,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00671413",
@@ -2070,7 +2298,9 @@
       "city": "SAN DIEGO",
       "zip": "92131-1005",
       "lat": 32.9167591,
-      "lng": -117.1112652
+      "lng": -117.1112652,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00659071",
@@ -2088,7 +2318,9 @@
       "city": "SAN DIEGO",
       "zip": "92116-1311",
       "lat": 32.762786,
-      "lng": -117.135906
+      "lng": -117.135906,
+      "phone": "(619) 846-8381",
+      "website": null
     },
     {
       "fileNumber": "00646124",
@@ -2106,7 +2338,9 @@
       "city": "SAN DIEGO",
       "zip": "92110-3814",
       "lat": 32.7704927,
-      "lng": -117.2016191
+      "lng": -117.2016191,
+      "phone": "(619) 275-4114",
+      "website": null
     },
     {
       "fileNumber": "00670798",
@@ -2124,7 +2358,9 @@
       "city": "SAN DIEGO",
       "zip": "92120-1303",
       "lat": 32.8074687,
-      "lng": -117.0764561
+      "lng": -117.0764561,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673465",
@@ -2142,7 +2378,9 @@
       "city": "SAN DIEGO",
       "zip": "92117-6802",
       "lat": 32.8250431,
-      "lng": -117.2061031
+      "lng": -117.2061031,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00674588",
@@ -2160,7 +2398,9 @@
       "city": "CORONADO",
       "zip": "92118",
       "lat": 32.680748,
-      "lng": -117.1762307
+      "lng": -117.1762307,
+      "phone": null,
+      "website": null
     },
     {
       "fileNumber": "00673465",
@@ -2178,7 +2418,9 @@
       "city": "SAN DIEGO",
       "zip": "92117-6802",
       "lat": 32.8250431,
-      "lng": -117.2061031
+      "lng": -117.2061031,
+      "phone": null,
+      "website": null
     }
   ]
 }
