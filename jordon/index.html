@@ -262,6 +262,24 @@
 
     .category-counts { display: none; }
 
+    /* ── Google Maps link ── */
+    .gmaps-link {
+      display: none;
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .gmaps-link:hover { text-decoration: underline; }
+    .popup-gmaps a {
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .popup-gmaps a:hover { text-decoration: underline; }
+    .popup-gmaps { margin-top: 0.4rem; }
+
     /* ── Table ── */
     .table-wrapper {
       max-width: 1200px;
@@ -497,7 +515,9 @@
         order: 5; font-size: 0.75rem; color: var(--text-muted);
         margin-top: 0.35rem; padding-top: 0.35rem;
         border-top: 1px solid var(--border-light);
+        display: flex; justify-content: space-between; align-items: center;
       }
+      td.td-date .gmaps-link { display: inline; }
       td.td-status-cell { position: absolute; top: 0.875rem; right: 1rem; }
 
       /* Leaflet popups — constrain width on small screens */
@@ -727,11 +747,13 @@
           ? `${lic.address}, ${lic.address2}`
           : lic.address;
 
+        const gmapsUrl = googleMapsUrl(lic.displayName, lic.address, lic.city);
         marker.bindPopup(`<div style="min-width:160px">
           <div class="popup-name">${escapeHtml(lic.displayName)}</div>
           <div class="popup-type" style="color:${typeColor}">${escapeHtml(lic.typeLabel)}</div>
           <div class="popup-address">${escapeHtml(fullAddress)}<br>${escapeHtml(lic.city)}, CA ${escapeHtml(lic.zip)}</div>
           <div class="popup-date">Issued ${formatDate(lic.issueDate)}</div>
+          <div class="popup-gmaps"><a href="${gmapsUrl}" target="_blank" rel="noopener">Google Maps ↗</a></div>
         </div>`, { closeOnClick: true, autoClose: true });
 
         markers.push(marker);
@@ -852,9 +874,10 @@
         const hasCoords = lic.lat !== null && lic.lat !== undefined;
         const rowStyle = hasCoords ? 'cursor:pointer' : '';
         const rowClick = hasCoords ? `onclick="zoomToLicense(${lic.lat},${lic.lng},'${escapeHtml(lic.displayName).replace(/'/g, "\\'")}')"` : '';
+        const gmapsUrl = googleMapsUrl(lic.displayName, lic.address, lic.city);
 
         return `<tr style="${rowStyle}" ${rowClick}>
-          <td class="td-date">${formatDate(lic.issueDate)}</td>
+          <td class="td-date">${formatDate(lic.issueDate)}<a href="${gmapsUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="gmaps-link">Google Maps ↗</a></td>
           <td class="td-name">${escapeHtml(lic.displayName)}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
           <td class="td-type-cell"><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
@@ -891,6 +914,10 @@
       const div = document.createElement('div');
       div.textContent = str;
       return div.innerHTML;
+    }
+
+    function googleMapsUrl(name, address, city) {
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + address + ' ' + city + ' CA')}`;
     }
 
     function formatDate(dateStr) {
