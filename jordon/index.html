@@ -127,6 +127,7 @@
       display: flex;
       gap: 0.6rem;
       flex-wrap: wrap;
+      justify-content: center;
       margin-bottom: 1.25rem;
     }
     .legend-item {
@@ -134,10 +135,10 @@
       align-items: center;
       gap: 0.5rem;
       color: var(--text-muted);
-      font-size: 0.875rem;
+      font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.01em;
-      padding: 0.55rem 1rem;
+      padding: 0.6rem 1.15rem;
       border-radius: 100px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(148, 163, 184, 0.25);
@@ -163,7 +164,7 @@
       flex-shrink: 0;
     }
     .legend-count {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       opacity: 0.6;
       margin-left: 0.1rem;
     }
@@ -559,7 +560,7 @@
           </div>
         </div>
 
-        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(148,163,184,0.5);margin-bottom:0.4rem;font-weight:500;">Filter by type</div>
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:rgba(148,163,184,0.7);margin-bottom:0.5rem;font-weight:600;text-align:center;">Filter by type</div>
         <div class="legend">
           <div class="legend-item" data-category="on-premise" onclick="toggleCategoryFilter('on-premise')"><div class="legend-dot" style="background:#3b82f6"></div> On-Premise <span class="legend-count" id="count-on-premise"></span></div>
           <div class="legend-item" data-category="off-premise" onclick="toggleCategoryFilter('off-premise')"><div class="legend-dot" style="background:#22c55e"></div> Off-Premise <span class="legend-count" id="count-off-premise"></span></div>
