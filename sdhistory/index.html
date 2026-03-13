@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bostonia — A Town That Built Itself</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #bostonia-map {
+      width: 100%;
+      height: 500px;
+      border: 1px solid rgba(0,0,0,0.1);
+      margin: 2rem 0;
+    }
+    .map-legend {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+    .leaflet-popup-content h4 {
+      margin: 0 0 4px 0;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      color: #1a1209;
+    }
+    .leaflet-popup-content p {
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: #3d2b1f;
+    }
+    .leaflet-popup-content .pin-era {
+      font-size: 0.75rem;
+      color: #8b6914;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="era">San Diego County &middot; Est. 1886</div>
+  <h1>Bostonia</h1>
+  <p class="subtitle">The story of a town that built itself from raisin vines and red dust, and the valley that swallowed it whole</p>
+  <div class="scroll-hint">&darr;</div>
+</section>
+
+<!-- ==================== NAV ==================== -->
+<nav class="site-nav">
+  <a href="#the-land">The Land</a>
+  <a href="#plymouth">Plymouth of the West</a>
+  <a href="#boston-men">The Boston Men</a>
+  <a href="#town-is-born">A Town Is Born</a>
+  <a href="#community">Characters</a>
+  <a href="#aviator">The Aviator</a>
+  <a href="#knox">Knox's Corners</a>
+  <a href="#water">Water &amp; Flume</a>
+  <a href="#ballroom">The Ballroom</a>
+  <a href="#landmarks">Landmarks</a>
+  <a href="#streets">The Streets</a>
+  <a href="#scottys">Scotty's</a>
+  <a href="#fading">The Fading</a>
+  <a href="#hoots-bostonia">Hoot's Bostonia</a>
+  <a href="#remains">What Remains</a>
+  <a href="gallery.html">Gallery</a>
+</nav>
+
+<!-- ==================== THE LAND BEFORE ==================== -->
+<section class="chapter" id="the-land">
+  <div class="content">
+    <div class="timeline-year"><span>Before</span></div>
+    <h2>The Land Before the Name</h2>
+
+    <p class="lead">For over ten thousand years before anyone called it Bostonia, the Kumeyaay people lived in the wide valley the Spanish would name <em>El Caj&oacute;n</em>, "the box," for the way the mountains cupped around it on three sides.</p>
+
+    <p>The Kumeyaay, also called Tipai, were horticulturists who managed the landscape with fire, cultivated grain fields in the mountain meadows, and built permanent villages near water. When the Spanish arrived and noted that the valleys east of San Diego offered "excellent pasture," they were looking at the ancient grain fields of the Kumeyaay.</p>
+
+    <p>A Kumeyaay settlement known as <strong>Cullamac</strong> (E-quil-a-mak, meaning "behind the mountain") sat in the canyon of the San Diego River behind El Cajon Peak, about 23 miles east of the mission. Governor Pedro Fages documented it in his 1782 expedition diary. The settlement's captain, Francisco, had led Kumeyaay forces in the <strong>1775 revolt against Mission San Diego</strong>, earning the Spanish nickname <em>el capitan grande</em>, "the great captain." That name stuck to the canyon, the peak, and eventually the reservation. In 1934, the city of San Diego built <strong>El Capitan Dam</strong> and flooded the village site. The Kumeyaay families who lived there were forced out. Some went to Barona, others eventually settled in Viejas Valley. The Viejas and Barona bands are their direct descendants.</p>
+
+    <p>The Kumeyaay knew the land by its seasons: when the acorns fell in the oak groves, when the elderberries ripened along the river, when the yucca sent up its cream-colored spires. They traded with coastal bands who brought shells and dried fish up through the passes.</p>
+
+    <h3>The Missions Come</h3>
+
+    <p>On September 28, 1542, Juan Rodr&iacute;guez Cabrillo's expedition sailed into San Diego Bay, the first Europeans to set foot on the Pacific coast of what would become the United States. He called it San Miguel. Sebasti&aacute;n Vizca&iacute;no renamed it San Diego sixty years later.</p>
+
+    <p>It was 1769 before the Spanish returned to stay. Father Jun&iacute;pero Serra's expedition planted the cross at Presidio Hill and the mission system began its slow transformation of the landscape and its people. Mission San Diego de Alcal&aacute; was the first of twenty-one California missions, and the padres needed water.</p>
+
+    <h3>Old Mission Dam</h3>
+
+    <p>Upstream on the San Diego River, in what is now Mission Gorge, the padres ordered a gravity dam built from cobblestone and cement. Roughly 224 feet long and 13 feet high, it captured river water and channeled it through clay-tile aqueducts and open ditches stretching six miles back to the mission.</p>
+
+    <p>The Kumeyaay were conscripted to build it. They carried rocks. They mixed mortar. They laid the aqueduct tiles by hand. The dam still stands today in <strong>Mission Trails Regional Park</strong>, a National Historic Landmark and one of the earliest European engineering projects on the Pacific Coast.</p>
+
+    <div class="photo-inline">
+      <img src="images/old-mission-dam-1937.jpg" alt="Old Mission Dam, 1937">
+      <p class="caption">Old Mission Dam, photographed in 1937 by Hammond. The cobblestone and cement structure, built around 1803 by Kumeyaay laborers under Franciscan direction, was the first major irrigation project on the Pacific coast. &mdash; City of San Diego Archives</p>
+    </div>
+
+    <p>The San Diego River flows 52 miles from headwaters near Julian and Santa Ysabel through Mission Gorge, past Santee and Mission Valley, to the Pacific at Mission Bay. The watershed covers 440 square miles. In the headwaters, "the scale is dramatic and a person feels small and insignificant in this large, mountainous portion of the river corridor." By Mission Valley, the river runs between malls, freeways, and a stadium.</p>
+
+    <div class="pull-quote">
+      The Spanish "Rancho El Caj&oacute;n" consisted of 48,799.85 acres. After it was sold by the Miguel Pedrorena family in about 1868, it was opened to settlers in 1869.
+      <cite>&mdash; Hazel Sperry, "A Brief History of the Boston Ranch and Early Bostonia"</cite>
+    </div>
+
+    <h3>The Land Grant</h3>
+
+    <p>In 1845, Governor <strong>P&iacute;o Pico</strong> of Alta California granted eleven square leagues, approximately 48,800 acres, of El Cajon Valley to <strong>Do&ntilde;a Mar&iacute;a Antonia Estudillo de Pedrorena</strong>, wife of Miguel Pedrorena, a native of Madrid who had come to California from Peru in 1838. The grant was originally called Rancho Santa Monica, later renamed Rancho El Caj&oacute;n. It was given to repay a $500 government obligation.</p>
+
+    <p>The land encompassed present-day El Cajon, Bostonia, Santee, Lakeside, Flinn Springs, and the eastern part of La Mesa. In 1868, <strong>Isaac Lankershim</strong>, a San Francisco businessman, purchased most of it for <strong>one dollar per acre</strong> and opened it to settlement the following year.</p>
+
+    <p>Those first settlers of 1869, just 25 white families and 90 individuals in the entire valley, were scattered thinly across a vast landscape. They started with grain. El Cajon quickly became the largest wheat producer in San Diego County. Then ranchers began experimenting with fruit trees, olives, and grapes. The higher ground could even grow citrus.</p>
+  </div>
+
+  <div class="photo-full">
+    <img src="images/el-cajon-main-st-1900.jpg" alt="El Cajon Main Street, circa 1900">
+    <div class="content"><p class="caption">El Cajon general store on Main Street, circa 1900. The valley was still more ranch than town.</p></div>
+  </div>
+</section>
+
+<!-- ==================== PLYMOUTH OF THE WEST ==================== -->
+<section class="chapter-dark" id="plymouth">
+  <div class="content">
+    <div class="timeline-year"><span>1542</span></div>
+    <h2>Plymouth of the West</h2>
+
+    <p class="lead">In 1907, historian William E. Smythe published a massive, 700-page history of San Diego covering everything from Cabrillo's landing in 1542 to the dawn of the twentieth century. His framing of the city was grandiose and unapologetic:</p>
+
+    <div class="pull-quote">
+      "What Plymouth is to New England and the region facing the Atlantic, San Diego is to the great empire which faces the Pacific. Plymouth and San Diego! Each the scene of the first enduring settlement on its own side of the continent; each the offspring of religious zeal; each planted by those who, building better than they knew, became the pioneers of a movement which contributed immeasurably to the betterment of mankind; and each showing the way for millions to carve homes from the wilderness &mdash; the one by clearing the forest, the other by irrigating the desert."
+      <cite>&mdash; William E. Smythe, <em>History of San Diego, 1542&ndash;1907</em></cite>
+    </div>
+
+    <p>Smythe understood something fundamental about San Diego and its hinterlands. This was desert. Everything that grew here, the wheat, the grapes, the oranges, the towns themselves, required an act of will imposed on a landscape that gave nothing for free. The Kumeyaay understood this. The Spanish understood it. The Americans who came after 1868, scrambling to plant raisins and dig wells and build wooden flumes through the mountains, were learning it.</p>
+
+    <p>Smythe's book cataloged over 200 illustrations: portraits of pioneers, views of streets and buildings, maps and artifacts. He employed multiple research assistants and worried that he'd collected more material than he could use. "They will be preserved in some public place for the benefit of students and of the future historian," he wrote.</p>
+
+    <p>In the northeast corner of El Cajon Valley, at the same time Smythe was writing, a farmer named Don Gordon was watching eagles soar above the hills of Bostonia and dreaming of flight.</p>
+  </div>
+</section>
+
+<!-- ==================== THE BOSTON MEN ==================== -->
+<section class="chapter-alt" id="boston-men">
+  <div class="content">
+    <div class="timeline-year"><span>1886</span></div>
+    <h2>The Boston Men</h2>
+
+    <p class="lead">In 1886, a group of investors from Boston, Massachusetts bought 585 acres in the northeast section of El Cajon Valley and sent two of their own, Mr. Souther and Mr. Crosby, to build something from scratch.</p>
+
+    <p>They named it the <strong>Boston Ranch</strong>. Within a few years, the name evolved into <strong>Bostonia</strong>. One of the neighborhood streets, <strong>Crosby Street</strong>, still bears the co-founder's name today.</p>
+
+    <p>The timing mattered. This was the peak of the <strong>1880s Southern California real estate boom</strong>, a speculative frenzy triggered by railroad price wars that brought fares from the Midwest down to as little as one dollar. Dozens of "paper towns" were platted and marketed between 1884 and the peak in July 1887. The bust came in 1888-1889, and many planned communities went unbuilt. Bostonia survived because it was built on grapes, soil, and water.</p>
+
+    <p>Souther and Crosby built an industrial agricultural operation: the largest vineyard in the entire El Cajon Valley. Twenty-five men worked the ranch year-round. During harvest, that number swelled to <strong>three hundred</strong>. Farmers with as few as ten acres could net $1,000 a year. The Boston Ranch and the El Cajon Vineyard Company earned <strong>$50,000 or more annually</strong>.</p>
+
+    <div class="pull-quote">
+      "The acreage devoted to raisins is about 3,500 which is divided into some sixty vineyards varying in size from a few acres to nearly six hundred, the Boston Ranch being the largest, as it is probably the most productive. Twenty five men are constantly employed here, but this number is increased to 300 during harvest time."
+      <cite>&mdash; El Cajon Valley News, December 31, 1892</cite>
+    </div>
+
+    <p>The ranch had a definite plan: a big ranch house (a yellow two-story, facing Broadway, later reoriented to Peach Avenue), several cottages, two packing houses, a winery, a warehouse, and barns. They planted 3,500 orange trees on the higher ground, a section they called <strong>"Orlemvine"</strong>, a coined word meaning "Oranges-Lemons-Vines." They built a reservoir and piped water across the property. East Coast capital, deployed with purpose.</p>
+
+    <div class="photo-inline">
+      <img src="images/72261904_1713966272069163_8713312286401363968_n.jpg" alt="Big Find — Bostonia Fruit Growers crate label">
+      <p class="caption">"Big Find" &mdash; Bostonia Fruit Growers &amp; Packers Co., El Cajon, San Diego County. A vintage citrus crate label from Bostonia's agricultural prime.</p>
+    </div>
+
+    <p>In 1896, former Virginia agriculturalist <strong>Eugene Halstead</strong> even planted a crop of <strong>tobacco</strong> in Bostonia. He said it was "superior in some respects to that of the Cuban plantations," though the scarcity of rain was a "serious drawback." Bostonia grew everything.</p>
+
+    <h3>The Harvest</h3>
+
+    <p>The grape harvest was the pulse of Bostonia's year. Grapes were dried on large wooden trays in the relentless valley sun. Many of the harvest workers were Kumeyaay Indians who came and camped on the ranch, arranging the empty wooden trays as makeshift shelters beneath the roadway trees.</p>
+
+    <p>Mexican laborers were brought up from across the border. They always camped in "the Triangle," the angled intersection where Second Street met Broadway.</p>
+
+    <div class="pull-quote">
+      "Peon" was a guessing game which the Indians played in the late evenings. The men sat around a stretched blanket and passed peon sticks back and forth under the blanket while the women chanted in very weird tones. Bets were made on who would be holding the stick when the chanting would suddenly stop. This weird chanting set all the dogs in the vicinity to howling, and their howling caused the more distant dogs to join in until the air in the entire Valley was somewhat vibrating with the unmelodious sounds.
+      <cite>&mdash; Hazel Sperry</cite>
+    </div>
+
+    <p>Imagine it: a warm September night in 1892. Three hundred workers on the ranch. The Kumeyaay gathered around their blanket, the peon sticks passing invisibly beneath the fabric. The women's chant rising, eerie and rhythmic, into the valley air. First the nearby dogs begin to howl, then the dogs at the next ranch over, then the ones beyond that, until the sound rolls in waves across the entire El Cajon Valley. The harvest moon hanging above it all.</p>
+
+    <h3>The Olive Trees</h3>
+
+    <p>Grapes spoiled quickly in the heat, and in the 1890s there was no refrigeration and slow transportation. <strong>Kate Sessions</strong>, remembered today as the "Mother of Balboa Park," suggested planting double rows of olive trees around every ten acres of vineyard. The trees shaded the harvest wagons as they moved along the ranch roadways, keeping the grapes cool enough to survive the journey to market.</p>
+
+    <p>Those olive trees would outlast the vineyards by decades.</p>
+
+    <div class="photo-inline">
+      <img src="images/citrus-bostonia.jpg" alt="Citrus slopes of Bostonia">
+      <p class="caption">Citrus slopes of Bostonia &mdash; the higher ground was ideal for oranges and lemons. Aerial photos confirmed citrus groves still thriving here as late as 1938.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== A TOWN IS BORN ==================== -->
+<section class="chapter" id="town-is-born">
+  <div class="content">
+    <div class="timeline-year"><span>1894</span></div>
+    <h2>A Town Is Born</h2>
+
+    <p class="lead">A ranch is not a town. A town needs a store, a post office, a church, a school. In the summer of 1894, Souther and Crosby built them.</p>
+
+    <p><strong>Joseph Donald</strong>, the ranch superintendent, directed the construction of a general merchandise store at the crossroads of Broadway and Second Street. He became its first manager and was appointed postmaster of the new post office. They needed a name for the post office, and the choice was obvious.</p>
+
+    <p>They called it <strong>Bostonia</strong>.</p>
+
+    <div class="photo-inline">
+      <img src="images/bostonia-1894-newspaper.jpg" alt="Forward, Bostonia! — 1894 Poway Progress" style="max-width: 400px;">
+      <p class="caption">"FORWARD, BOSTONIA!" &mdash; The Poway Progress, June 30, 1894, announcing the new store and post office. "Souther and Crosby are putting up a fine store, 26 x 40 ft., with a cellar under one half." Joseph Donald received his appointment as postmaster. Plans were out for the Episcopal Church.</p>
+    </div>
+
+    <p>A stone and iron fountain was installed in the center of the intersection of Broadway and Second Streets, for the use of wagon teams that came from as far away as Julian. Public water, at a crossroads. That's the kind of thing that turns a ranch into a community.</p>
+
+    <p>That same year, an acre of ground was donated and <strong>St. John's Episcopal Church</strong> was erected on Clarendon Street near Second. Before that, Episcopal services had been held in the upstairs room of the old Meridian School, built in 1889 on what was then called Meridian Road (now Third Street). The Episcopal Church opened on <strong>July 28, 1895</strong>.</p>
+
+    <div class="photo-inline">
+      <img src="images/bostonia-church.jpg" alt="St. John's Episcopal Church, Bostonia">
+      <p class="caption">St. John's Episcopal Church, near the heart of old Bostonia. Built 1894, opened 1895.</p>
+    </div>
+
+    <p>The <strong>Bostonia Store</strong> became the center of everything. Mail, news, flour, gossip. By 1897, Bostonia appeared in the San Diego County Directory as an established local entity.</p>
+
+    <div class="photo-inline">
+      <img src="images/bostonia-1897-directory.jpg" alt="Bostonia in the 1897 San Diego County Directory" style="max-width: 500px;">
+      <p class="caption">Bostonia's entry in the 1897 San Diego County Directory &mdash; three years after the post office opened, the community was officially on the map.</p>
+    </div>
+
+    <p>The first telephone switchboard in the area was installed in the general store at Knox's Corners, with branch offices at the Boston Ranch, Dr. Johnson's residence, and the Lakeside Hotel.</p>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/bostonia-store-1800s.jpg" alt="The original Bostonia Store, late 1800s">
+        <figcaption>The original Bostonia Store, late 1800s. "General Merchandise" on the false front, a horse at the hitching post, the stone water fountain visible in the dirt road.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/bostonia-store-1950s.jpg" alt="Bostonia Store in the 1950s">
+        <figcaption>The same store in the 1950s, painted red: "BOSTONIA STORE &mdash; CENTER OF TOWN &mdash; SINCE 1898 &mdash; SQUARE WITH THE WORLD."</figcaption>
+      </figure>
+    </div>
+
+    <h3>The Raisins Go to Chicago</h3>
+
+    <p>In 1893, the year before the store opened, two young women from the valley, <strong>Josephine Asher</strong> and <strong>Gracie Donald</strong> (the superintendent's daughter), were asked to pack raisins for entry in the <strong>1893 World's Fair in Chicago</strong>. They packed sun-dried raisins, stems still on, into boxes lined with fancy paper. Each girl won a first prize.</p>
+
+    <p>Bostonia raisins, judged the best in the world, at the greatest exposition of the age. The town was barely a name on a post office form, and already its crops were winning international prizes.</p>
+  </div>
+</section>
+
+<!-- ==================== COMMUNITY ==================== -->
+<section class="chapter-dark" id="community">
+  <div class="content">
+    <div class="timeline-year"><span>1896</span></div>
+    <h2>The Characters of Bostonia</h2>
+
+    <p class="lead">Every small town is really a collection of characters. Bostonia had more than its share.</p>
+
+    <h3>The Doctor</h3>
+
+    <p><strong>Dr. Eugene Mathewson</strong> came to Bostonia in 1896 and built his house on North Second Street at the corner of Sumner. It served as both office and living quarters. He would serve the community for <strong>fifty-four years</strong> until his death in 1950.</p>
+
+    <p>When he arrived, there were eleven doctors in San Diego County outside the city. Within five years, every one of them had either died or left. For the next decade, Dr. Mathewson was the only doctor between San Diego and the Cuyamaca Mountains. He kept a relay of three horses to cover the vast territory. For nearby calls, he rode a bicycle to give his tired horses a rest.</p>
+
+    <div class="pull-quote">
+      When he bought an automobile in 1906, he had to keep a horse to drag the car back home when it broke down, which was often.
+      <cite>&mdash; Hazel Sperry</cite>
+    </div>
+
+    <p>His most difficult case, he said, was "a scalped Indian." Two Kumeyaay men working in a vineyard got into a fight. One took his hooked grape knife and scalped the other, got the scalp five-sixths off before friends intervened. The victim was brought to Mathewson's surgery nearly dead, skull covered in gravel. The doctor cleaned it, put the scalp back, and sewed it on. It healed. "Which was not much less than a miracle."</p>
+
+    <h3>Mama Duck</h3>
+
+    <p>Not all of Bostonia's famous residents were human.</p>
+
+    <div class="pull-quote">
+      Each morning she would be waiting for the store to open, and she would be the first to enter. She would waddle to the cracker bin and stand patiently until she was handed her morning cracker.
+      <cite>&mdash; Mrs. Murray Wright, via Irene L. Vita</cite>
+    </div>
+
+    <p><strong>Mama Duck</strong> was a fixture of early Bostonia. She had no mate, but one spring she sat on a clutch of chicken eggs and hatched them. Everything was fine until Mama Duck tried to teach her chicks to swim in the stone fountain at Broadway and Second. The chicks stayed frantically on the edge while she paddled around, and the whole scene always drew a crowd. She never taught them to swim. They remained on the edge of the fountain, frantically trying to keep up with her as she swam.</p>
+
+    <p>That stone fountain, installed by the Boston Ranch company, served the wagon teams that came from as far away as Julian. It also served, apparently, as Mama Duck's personal swimming pool.</p>
+
+    <h3>The Dance Hall</h3>
+
+    <p>On North Second Street, behind the store, fifty pioneer families pooled their resources to build a private dance hall. They called it <strong>Bostonia Hall</strong>. It hosted dances, parties, meetings, and school plays. When some families moved away and others died, the bank took it over and rented it out for five dollars a night.</p>
+
+    <p>Murray and his wife Wright rented the hall on Friday nights and sponsored teenage box socials and dances. "The young people danced to phonograph records and an occasional violin or guitar."</p>
+
+    <h3>The Store Owners</h3>
+
+    <p>The Bostonia Store passed through many hands. Joseph Donald built and managed it. In 1898, <strong>Uri Hill</strong> purchased it. Hill had been one of the original 1869 settlers who established the Claydelle Ranch. <strong>Murray Wright</strong> bought it in 1913 and ran it for thirty years, also serving as postmaster until December 31, 1950, when he fully retired. The Wrights continued to live in Bostonia until their deaths, Murray in 1953, his wife in 1961.</p>
+
+    <p>The last proprietor was <strong>Leland Barker</strong>, who purchased the store in 1948 and fought for twelve years against the tide of chain stores.</p>
+  </div>
+</section>
+
+<!-- ==================== THE AVIATOR ==================== -->
+<section class="chapter" id="aviator">
+  <div class="content">
+    <div class="timeline-year"><span>1909</span></div>
+    <h2>The Aviator</h2>
+
+    <p class="lead">Less than six years after the Wright Brothers' first flight at Kitty Hawk, a Bostonia man built and flew his own airplane.</p>
+
+    <p><strong>Donald H. Gordon</strong> was born in the summer of 1883 in New Britain, Connecticut. At age three, he moved with his family to Bostonia, where his father <strong>David Gilchrist Gordon</strong>, a lawyer turned rancher, operated a 160-acre grape ranch. His mother Helen organized the Wednesday Club, played organ at the Presbyterian Church, and was "a pioneer in all the social and religious affairs in the valley."</p>
+
+    <div class="pull-quote">
+      "As a schoolboy, I used to go back into the hills behind Bostonia and watch the eagles and buzzards floating around, diving on their prey, and I wished I could do that. It seemed that it should be possible. It seemed so effortless."
+      <cite>&mdash; Donald H. Gordon</cite>
+    </div>
+
+    <p>The first attempt at flight ended badly. Don and an older brother built a glider out of <strong>bed sheets and bamboo</strong>. The older brother jumped off the barn roof. "CRASH! and with that the Gordon plane building ceased for awhile."</p>
+
+    <p>Gordon couldn't let it go. In 1907, he resumed aviation work, building a more serious glider from "bamboo and spruce sticks, piano wire and muslin" at his father's ranch. In 1909, he purchased a motorcycle engine from his racing cycle named <strong>"Whistling Rufus"</strong> and converted the glider into a powered aircraft.</p>
+
+    <p>The plane was a biplane measuring roughly 4.5 to 5 feet wide and 26 feet long, with controllable front elevators. The propeller was homemade. The two wings were fabric stretched tightly over a wooden frame and "doped up hard as a board" with Gordon's own wax. "The whole structure was so light that Gordon could lift the whole thing himself."</p>
+
+    <p>In September 1909, he flew it. The initial flight covered approximately 150 yards, launched from a ground rail with companions pushing the machine. <strong>Professor Pearson</strong>, principal of El Cajon Valley Union High School, witnessed the flight. His ground crew consisted of local grammar school students from the Old Meridian School.</p>
+
+    <div class="photo-inline">
+      <img src="images/don-gordon-40.png" alt="Don Gordon's early aircraft">
+      <p class="caption">Don Gordon and his hand-built aircraft on the family ranch in Bostonia &mdash; one of the first powered flights west of the Mississippi.</p>
+    </div>
+
+    <p>Mrs. Dorcas Asher Drown, watching from the patio of her house overlooking the Gordon ranch, gave this account:</p>
+
+    <div class="pull-quote">
+      "I had just put my daughter to bed on the patio of our house, which overlooked the Gordon ranch. She shouted, 'Mama, there's a man carrying a load of lumber up in the sky!' and I looked up just in time to see the plane fall."
+      <cite>&mdash; Mrs. Dorcas Asher Drown</cite>
+    </div>
+
+    <p>"All I saw was a big cloud of dust when it fell. But my husband and several other men ran over from the Bostonia General Store and there was Don, climbing out of the wreckage without a scratch on him."</p>
+
+    <p>A man carrying a load of lumber up in the sky. That's what powered flight looked like to someone who'd never imagined it.</p>
+
+    <p>Gordon built <strong>four aircraft</strong> between 1907 and 1914, conducting frequent short hops of several hundred feet. He drew inspiration from John H. Montgomery's documented glider flights on Otay Mesa in 1883, and from plans published in <em>Popular Science</em> and <em>Popular Mechanics</em>. He himself reflected that he had opportunities equivalent to Glenn Martin, Boeing, and Douglas, but chose not to pursue aviation manufacturing.</p>
+
+    <h3>The Silence</h3>
+
+    <p>Gordon discontinued flying in <strong>1914</strong> due to progressive hearing loss. He was nearly deaf by 1917. The same condition prevented him from enlisting in the Army's Aviation Section during World War I. Around 1920, he relocated to Valley Center, where he built a primitive runway and resumed limited flying. Around 1944, he moved to a 160-acre ranch on <strong>Palomar Mountain</strong>, living in a converted water tower, remaining active in conservation efforts, and donating quietly to orphanages around the world.</p>
+
+    <p>Gordon remained an obscure figure until <strong>1964</strong>, when the San Diego Aerospace Museum in Balboa Park honored him as "a pioneer inventor, builder and flier of aircraft." A street at Gillespie Field was named <strong>Donald H. Gordon Drive</strong>. He died on June 10, 1968, at age 84, on his Palomar Mountain ranch. In his will, he wished the ranch to become a nature preserve.</p>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/gordon-glider-1908.jpg" alt="Don Gordon's glider, 1908">
+        <figcaption>Gordon's glider, built from bamboo, spruce, piano wire, and muslin at the family ranch, c. 1908. &mdash; SDASM</figcaption>
+      </figure>
+      <figure>
+        <img src="images/gordon-2nd-powered-plane.jpg" alt="Don Gordon's second powered plane">
+        <figcaption>Gordon's second powered biplane on the Bostonia ranch. The engine came from his racing motorcycle "Whistling Rufus." &mdash; SDASM</figcaption>
+      </figure>
+    </div>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/gordon-portrait-1911.jpg" alt="Don Gordon portrait, 1911">
+        <figcaption>Donald H. Gordon, c. 1911 &mdash; aviation pioneer of Bostonia. &mdash; SDASM</figcaption>
+      </figure>
+      <figure>
+        <img src="images/gordon-home-bostonia.jpg" alt="The Gordon home in Bostonia">
+        <figcaption>The Gordon family home in Bostonia &mdash; from here Don watched eagles soar over the hills and dreamed of flight. &mdash; SDASM</figcaption>
+      </figure>
+    </div>
+
+    <div class="pull-quote">
+      "Many folks will remember him even more for his great kindness and generosity which he administered in such a quiet manner to both man and beast. His greatest happiness came from bringing happiness and comfort to people in need."
+      <cite>&mdash; Hazel Sperry, on Donald Gordon</cite>
+    </div>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/gordon-palomar-ranch.jpg" alt="Gordon's ranch on Palomar Mountain">
+        <figcaption>Gordon's 160-acre ranch on Palomar Mountain, where he lived in a converted water tower from 1944 until his death in 1968. He wished it to become a nature preserve. &mdash; SDASM</figcaption>
+      </figure>
+      <figure>
+        <img src="images/aero-drive-in.jpg" alt="The Aero Drive-In Theater">
+        <figcaption>The Aero Drive-In, built on the Gordon Ranch where Don made his 1909 flight. "Swiss Family Robinson" on the marquee, c. 1960.</figcaption>
+      </figure>
+    </div>
+
+    <h3>The Aero Drive-In</h3>
+
+    <p>The Gordon Ranch hayfield where Don made his first powered flight eventually became the <strong>Aero Drive-In Theater</strong>, named for the aviation history of the site. The drive-in opened in the late 1940s on the north side of Broadway, screening Hollywood pictures for families who drove in from across East County. During the day, the lot transformed into the <strong>Aero Drive-In Swap Meet</strong>, one of the valley's most popular weekend gathering spots. Old-timers remember browsing rows of tables for everything from tools to tube socks while their kids begged for hot dogs.</p>
+
+    <p>The Aero closed in the early 1980s as land values climbed and multiplexes drew audiences indoors. The field where Gordon flew is now covered in houses and strip malls. But the name lives on at <strong>Gillespie Field</strong>, the general aviation airport just south, where <strong>Donald H. Gordon Drive</strong> honors the man who watched eagles from the hills of Bostonia and decided he could do that too.</p>
+  </div>
+</section>
+
+<!-- ==================== KNOX'S CORNERS ==================== -->
+<section class="chapter-alt" id="knox">
+  <div class="content">
+    <div class="timeline-year"><span>1876</span></div>
+    <h2>Knox's Corners</h2>
+
+    <p class="lead">While Bostonia was building itself in the northeast corner of the valley, El Cajon's heart was forming a mile to the southwest, at a crossroads the teamsters called "The Corners."</p>
+
+    <p><strong>Amaziah Lord Knox</strong> arrived in San Diego County in 1869 and began raising wheat. By 1873, he was cultivating 2,000 of the 5,000-6,000 acres of wheat in the valley. In <strong>1876</strong>, he built the valley's first hotel at the intersection of Main Street and Magnolia Avenue, on an ancient Kumeyaay trail leading up to the Cuyamaca Mountains. The hotel cost $1,000 to build: a two-story, seven-room tavern serving the wagon teamsters who hauled gold ore between the Julian mines and San Diego. They'd been camping at the spot. Knox gave them a roof.</p>
+
+    <div class="photo-inline">
+      <img src="images/knox-hotel-sketch.jpg" alt="Knox's W. Paton Hotel, El Cajon">
+      <p class="caption">Knox's W. Paton Hotel at the intersection of Main Street and Magnolia Avenue &mdash; the seven-room tavern that became the heart of El Cajon. Sketch courtesy El Cajon Historical Society.</p>
+    </div>
+
+    <p>That intersection became <strong>"Knox's Corner"</strong> and was the center of El Cajon's business district for the next seventy years. The post office opened in Knox's hotel lobby in 1878. Knox was appointed first postmaster. When postmaster J.H. Dodson moved the post office from a grocery store to a drug store in 1895, <strong>"it took two trips with a wheelbarrow to transfer the whole thing."</strong></p>
+
+    <p>By the turn of the century, the two blocks of Main Street astride Magnolia boasted two hotels, a general store, meat market, post office, pharmacy, harness shop, blacksmith shop, and smaller shops and offices. <strong>John Rea's grocery store</strong> (ca. 1883) was El Cajon's first. The Rea family later developed a ranch in Anaheim named "The Katella Ranch" for their daughters Kate and Ella. Katella Boulevard is now the approaching road to the entrance of Disneyland.</p>
+
+    <h3>The Blacksmith from Cape Breton</h3>
+
+    <p><strong>Duncan B. McFadden</strong> came from Cape Breton, Nova Scotia in 1880 to be El Cajon's blacksmith and horse-shoer. He expanded his business, building five structures along Main Street. Then came the monetary depression. In 1896, all five McFadden buildings burned in a single fire. Two years later, in 1898, McFadden left for the <strong>Klondike</strong> to seek gold. He died of illness and was buried in <strong>Skagway, Alaska</strong>. A Cape Breton blacksmith who crossed a continent twice and died on the trail to the goldfields.</p>
+
+    <h3>The Corona Hotel</h3>
+
+    <p>In 1886, Mrs. Anna S. Knowles built the <strong>Corona Del Cajon Hotel</strong>, 40 rooms with a cupola and a sky veranda. Its tower "provided an ideal vantage point for land buyers who wished to view El Cajon Valley." Built at the peak of the Southern California land boom, it was as much a sales tool as a hotel. The barber <strong>Otto Brennecke</strong> installed two bathtubs in his shop and advertised "five baths for $1.00."</p>
+
+    <p>At the general election on November 12, 1912, 123 of 158 electors voted to incorporate a 1.25-square-mile area centering on Knox's Corners, making El Cajon an official city. Bostonia, one mile northeast, remained separate and would stay that way for another forty years.</p>
+  </div>
+</section>
+
+<!-- ==================== WATER & THE FLUME ==================== -->
+<section class="chapter" id="water">
+  <div class="content">
+    <div class="timeline-year"><span>1889</span></div>
+    <h2>Water, the Flume &amp; the River</h2>
+
+    <p class="lead">Everything in the valley depended on water. The story of East County is, at its heart, a story about where the water came from and who controlled it.</p>
+
+    <h3>The San Diego Flume</h3>
+
+    <p>By the 1880s, El Cajon Valley's fruit orchards and vineyards were booming, but the local wells couldn't keep up. The <strong>San Diego Flume Company</strong>, founded in 1886, embarked on one of the most ambitious engineering projects in the region's history.</p>
+
+    <p>Completed on <strong>February 22, 1889</strong>, the flume was a 33.5-mile aqueduct running from a reservoir in the Cuyamaca Mountains through the back country to El Cajon Valley. It required:</p>
+
+    <p><strong>Nine million board feet</strong> of redwood lumber.<br>
+    <strong>$900,000</strong> in capital.<br>
+    Around <strong>800 mules and horses</strong>.<br>
+    <strong>315 trestles</strong> that crossed canyons hundreds of feet deep.<br>
+    <strong>Eight tunnels</strong> blasted through solid rock.</p>
+
+    <p>The flume was a V-shaped redwood trough, elevated on wooden trestles that followed the contours of the land from the mountains to the valley floor. At its peak, it could deliver millions of gallons per day. $900,000 was an enormous sum in the 1880s.</p>
+
+    <div class="photo-full">
+      <img src="images/flume-cuyamaca-1888.jpg" alt="San Diego Flume at Lake Cuyamaca, 1888">
+      <div class="content"><p class="caption">The elevated flume at Lake Cuyamaca, 1888 &mdash; the V-shaped redwood trough curving across the mountains on wooden trestles. Photographed by Turner and Judd. &mdash; City of San Diego Archives</p></div>
+    </div>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/flume-los-coches-trestle.jpg" alt="Los Coches Trestle, 1925">
+        <figcaption>The Los Coches Trestle &mdash; 1,774 feet long, 56 feet high. The longest trestle on the entire flume system. Photographed March 17, 1925.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/flume-diverting-dam-1887.jpg" alt="Diverting Dam, San Diego River, 1887">
+        <figcaption>Diverting dam on the San Diego River for the flume, 1887. Photographed by Herve Friend for Douglas Gunn's <em>Picturesque San Diego</em>.</figcaption>
+      </figure>
+    </div>
+
+    <div class="photo-full">
+      <img src="images/flume-opening-day-1889.jpg" alt="Riding the San Diego Flume on Opening Day, February 22, 1889">
+      <div class="content"><p class="caption">Opening Day, February 22, 1889 &mdash; dignitaries ride flat-bottomed boats inside the V-shaped flume, parasols raised against the sun. Governor Robert W. Waterman was among the passengers. &mdash; City of San Diego Archives</p></div>
+    </div>
+
+    <div class="photo-inline">
+      <img src="images/flume-driving-alongside-1905.jpg" alt="Driving alongside the San Diego Flume, 1905">
+      <p class="caption">Driving alongside the San Diego Flume, 1905. The flume diverted water "into flume to the El Cajon valley" &mdash; the water that made Bostonia's raisin vineyards and citrus groves possible. &mdash; City of San Diego Archives</p>
+    </div>
+
+    <p>The El Cajon Horticultural Society, founded in July 1889 with 18 members, took great interest in the flume and negotiated water rights with the Flume Company. They discussed grafting, budding, pest management (squirrels and rabbits), and fertilizer. Water was always the central question.</p>
+
+    <p>The flume made the raisin boom possible. Without it, the Boston Ranch and dozens of other vineyards couldn't have existed. Today, the old flume route is the <strong>Flume Trail</strong>, a popular hiking path through the chaparral-covered hills above Lakeside and El Cajon. You can still see remnants of the old wooden trestles.</p>
+
+    <h3>The Eucalyptus Mistake</h3>
+
+    <p>Around 1906, the Santa Fe Railroad planted approximately <strong>three million eucalyptus trees</strong> throughout San Diego County from Australian and New Zealand seeds, believing the wood would make excellent railroad ties. Good for reforestation. As railroad ties, the wood wouldn't hold spikes.</p>
+
+    <p>The first eucalyptus in El Cajon Valley had been planted in 1876 by <strong>R.G. Clark</strong> at his Centennial Ranch. Colonel Ed Fletcher and his son planted rows of them from Grossmont High School to Main Street in 1906. A massive grove stretching from Johnson to Magnolia avenues had to be cleared in the 1950s-60s for <strong>Interstate 8</strong>. In 1914, a eucalyptus at Main and Magnolia was removed; a week later, an automobile got "mired in the hole left by the removal of this tree and having to be pulled out by a team of horses." During World War II, a eucalyptus grove on Chase Avenue served as an army camp.</p>
+
+    <p>The trees outlasted their purpose. Like the olive trees Kate Sessions planted in the vineyards, they became part of the landscape long after the reason for planting them was forgotten.</p>
+
+    <div class="photo-inline">
+      <img src="images/bostonia-pepper-drive.jpg" alt="Rural road in Bostonia area">
+      <p class="caption">A rural road in the Bostonia area &mdash; the agricultural landscape that the Flume's water made possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE BALLROOM ==================== -->
+<section class="chapter-dark" id="ballroom">
+  <div class="content">
+    <div class="timeline-year"><span>1932</span></div>
+    <h2>The Grand Ole Opry of the Southwest</h2>
+
+    <p class="lead">In 1925, a man named Mr. Amey built a large dance hall on Broadway, east of Second Street. It was very popular. Seven years later, it burned to the ground. <strong>Walter Judy</strong> replaced it, at the same location, with something grander. He called it the <strong>Bostonia Ballroom</strong>.</p>
+
+    <p>The building was 11,000 square feet of Spanish Colonial Revival architecture, described by one writer as resembling "a bad forgery of the Alamo with a warehouse." It would become one of the most important music venues in Southern California history.</p>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/ballroom-interior.jpg" alt="Bostonia Ballroom interior">
+        <figcaption>The Bostonia Ballroom interior &mdash; a vast dance floor with Art Deco fixtures and a raised bandstand.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/ballroom-exterior.jpg" alt="Bostonia Ballroom exterior">
+        <figcaption>The Ballroom in later years, repurposed but still standing at 1340 Broadway.</figcaption>
+      </figure>
+    </div>
+
+    <p>The ballroom initially hosted big bands in the 1930s before switching to country and western music in the 1940s. But the golden era began in <strong>1952</strong>, when <strong>Andrew "Cactus" Soldi</strong>, <strong>Eugene "Smokey" Rogers</strong>, and <strong>Larry "Pedro" DePaul</strong> took over.</p>
+
+    <p>Smokey Rogers hosted <strong>"Smokey Rogers' General Store"</strong>, a daily KFMB TV variety show that aired alternately from the station's studios and from the Bostonia Ballroom. The show initially ran four hours a day. It featured the Western Caravan, local personalities, and a young performer named Terry Preston, who later changed his name to <strong>Ferlin Husky</strong>.</p>
+
+    <p>The Bostonia became known as <strong>"the Grand Ole Opry of the Southwest,"</strong> the southernmost stop along California's country-western music circuit. Ticket prices averaged $1 to $1.50. As many as 1,500 patrons packed the house at peak events. Hundreds of bands performed nearly every day for a decade.</p>
+
+    <h3>The Acts</h3>
+
+    <p>The list of performers who played the Bostonia Ballroom reads like the Country Music Hall of Fame:</p>
+
+    <p><strong>Hank Williams</strong> played in September 1952, just three months before his death on New Year's Day 1953. His band the Drifting Cowboys were stranded east of the Laguna Mountains by Santa Ana winds, so he performed with Smokey's band instead. <strong>Chet Atkins</strong> introduced him.</p>
+
+    <p><strong>Johnny Cash</strong> played for roughly $300 a night including his band.</p>
+
+    <p><strong>Patsy Cline. Jerry Lee Lewis. Roy Orbison. Carl Perkins. Merle Haggard. Willie Nelson. Bob Wills &amp; His Texas Playboys. George Jones. Marty Robbins. Bill Monroe. Flatt &amp; Scruggs. Brenda Lee. Lefty Frizzell. Barbara Mandrell. Tex Ritter. Charley Pride.</strong></p>
+
+    <p>Elvis never played there, despite the legend.</p>
+
+    <h3>The Byrds Take Flight</h3>
+
+    <p>In 1963, a seventeen-year-old mandolinist named <strong>Chris Hillman</strong> performed at the Bostonia Ballroom with <strong>The Scottsville Squirrel Barkers</strong>. He later described playing there as "a gate swinging open." While practicing outside the Bostonia, country legend Tex Ritter came up and said, <em>"You sound really good, son. Keep working hard."</em></p>
+
+    <p>Hillman would co-found <strong>The Byrds</strong> and be inducted into the Rock &amp; Roll Hall of Fame. The Bostonia Ballroom was where it started.</p>
+
+    <p>In 1952, Smokey, Cactus, and Pedro also opened <strong>Valley Music</strong> on East Main Street in El Cajon, a music store that became a local institution.</p>
+
+    <h3>After the Music</h3>
+
+    <p>By the early 1970s, the music had moved on. The Ballroom cycled through incarnations: a neighborhood bar, a salvage yard, "Club Bostonia," a hard-rock club called "Zoo," an 18-and-up nightclub called "911," and finally, for twenty years, the <strong>Royal Palace Banquet Hall</strong>, serving El Cajon's sizable Chaldean community.</p>
+
+    <p>In October 2021, a <strong>"Bostonia Ballroom Revival"</strong> concert was held. The event featured Deke Dickerson's All-Star Western Swing Band and included <strong>93-year-old mandolinist Scotty Broyles</strong>, who had attended performances at the Bostonia in the early 1950s while serving in the Navy. The building was in escrow with an asking price of <strong>$4.5 million</strong>.</p>
+
+    <p>In January 2022, <strong>Robert Marcos</strong>, CEO of <strong>North Park Produce</strong>, purchased the property. The building continues to operate as a banquet hall. The walls that heard Hank Williams sing three months before he died are still standing at 1340 Broadway, still holding wedding receptions and quincea&ntilde;eras where country legends once stomped the boards.</p>
+  </div>
+</section>
+
+<!-- ==================== BOSTONIA LANDMARKS ==================== -->
+<section class="chapter" id="landmarks">
+  <div class="content">
+    <div class="timeline-year"><span>Places</span></div>
+    <h2>What the Locals Remember</h2>
+
+    <p class="lead">Ask anyone who grew up in Bostonia what they remember, and you won't hear about city council votes or census data. You'll hear about the places: the drive-in, the deli, the schools, the hills you weren't supposed to climb.</p>
+
+    <h3>The Schools</h3>
+
+    <p><strong>Bostonia Elementary School</strong> at 1390 Broadway opened when the community was still a separate place with its own identity. Generations of Bostonia kids walked or rode their bikes to the same campus. Today it operates as <strong>Bostonia Global</strong>, a K-12 magnet school in the Cajon Valley Union School District, opened July 1, 2021. The Bostonia name is still on the building.</p>
+
+    <p><strong>Rios Elementary</strong> sits at the mouth of <strong>Rios Canyon</strong>, one of the narrow valleys that cuts north into the hills above Bostonia. Rios Canyon Road winds up past ranches and oaks toward Lakeside, a back way out of the valley. <strong>Greenfield Junior High</strong> (now <strong>Greenfield Middle School</strong>) served as the middle step between elementary and El Cajon Valley High, funneling Bostonia kids into the wider East County world.</p>
+
+    <p>The earlier schools went deeper. The <strong>Old Meridian School</strong>, built in 1889 on Third Street (then called Meridian Road), was where Don Gordon's ground crew of grammar school students came from. In 1893, trustees from Lakeside, Meridian, and Cowles (Santee) school districts met at the Lakeside Hotel and decided the new Union High School would be located at the Meridian School in the Bostonia area, placing Bostonia at the center of East County education.</p>
+
+    <h3>Leggio's Deli</h3>
+
+    <p><strong>Leggio's Italian Deli</strong> at 1164 North 2nd Street. A neighborhood deli where you went for sandwiches and ended up staying for conversation. The sub rolls were thick, the meats were piled high, and the owner knew everybody's name. In the back rooms, local thrash-metal band <strong>Psychotic Waltz</strong> rehearsed their way to a record deal.</p>
+
+    <h3>Rattlesnake Mountain &amp; the Hills</h3>
+
+    <p>Bostonia sits in the northeast pocket of the El Cajon Valley, backed by hills that climb toward Lakeside and the backcountry. <strong>Rattlesnake Mountain</strong> rises above the community to the north, named for the obvious reason. Every East County kid has a rattlesnake story. The hills behind Bostonia were where Don Gordon watched eagles as a boy, where Kumeyaay trails threaded through the chaparral, and where generations of Bostonia teenagers went to get away from everything below.</p>
+
+    <h3>Rios Canyon &amp; Flinn Springs</h3>
+
+    <p><strong>Rios Canyon</strong> cuts north from Bostonia through boulder-strewn hillsides, following the old route toward Lakeside. It's narrow and winding, the kind of road where you have to pull over for oncoming trucks. <strong>Flinn Springs County Park</strong> sits in the hills east of Bostonia along Old Highway 80, a small oak-shaded park named for early settler Thomas Flinn. In an area that's been paved, subdivided, and strip-malled, Flinn Springs is one of the few places where you can still see what the valley looked like before the houses came.</p>
+
+    <h3>Pecan Park</h3>
+
+    <p><strong>Pecan Park</strong> on Pecan Drive, just off Broadway, is one of those quiet neighborhood parks that locals know and outsiders drive past. It's named for the pecan trees that once grew there, another echo of the time when Bostonia grew everything from grapes to tobacco to stone fruit to pecans.</p>
+
+    <h3>The Dairies</h3>
+
+    <p>By mid-century, the grapes and citrus had given way to dairy cows. In 1948, milk and cream held the <strong>#1 position for farm product value</strong> in all of San Diego County. Around 160 dairies operated countywide. Holsteins and Jerseys grazed in Bostonia where raisins had dried on wooden trays a generation before. "It became too hard to maintain the dairy, especially when the population closes in," said Pete DeJong of Hollandia Dairy, which eventually moved its 1,100 cows to the Central Valley. Today, the <strong>Frank Konyn Dairy</strong> in Escondido is the last remaining dairy in all of San Diego County. From 160 to one.</p>
+
+    <div class="photo-pair">
+      <figure>
+        <img src="images/2nd-street.jpg" alt="Second Street commercial strip">
+        <figcaption>Second Street in the 1970s &mdash; Arby's, Jack in the Box, and the neon language that replaced the orchards.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/salazars-market.jpg" alt="Salazar's Market">
+        <figcaption>Salazar's Market &mdash; a holdout from the era when every neighborhood had its own corner store.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THE STREETS ==================== -->
+<section class="chapter-dark" id="streets">
+  <div class="content">
+    <div class="timeline-year"><span>1960s</span></div>
+    <h2>The Streets They Renamed</h2>
+
+    <p class="lead">Bostonia was its own town before it was part of El Cajon. It had its own streets, its own grid, its own logic. Then the freeway came.</p>
+
+    <h3>The Original Grid</h3>
+
+    <p>The <strong>1925 Bostonia Acres</strong> subdivision map, filed with San Diego County, shows the original street names running north-south through the community. The map explicitly names three avenues dedicated to the public:</p>
+
+    <p style="text-align:center; font-size:1.3rem; letter-spacing:0.05em; color:var(--gold-light);"><strong>Peach Avenue &middot; Lemon Avenue &middot; Orange Avenue</strong></p>
+
+    <p>These were fruit streets, named for what grew here. The full grid ran: <strong>Peach, Avocado, Orange, Lemon, Oakdale</strong>. Five north-south avenues defining the Bostonia neighborhood, each named for the crops that made the valley rich.</p>
+
+    <h3>What Changed</h3>
+
+    <p>When <strong>Interstate 8</strong> was cut through the valley in the 1960s, it erased part of the map. <strong>Lemon Avenue was completely destroyed</strong>, swallowed by the freeway right-of-way. The remaining streets were renamed:</p>
+
+    <div style="margin:2rem 0; padding:1.5rem 2rem; background:rgba(255,255,255,0.05); border-left:4px solid var(--gold);">
+      <p style="margin:0; line-height:2.2;">
+        <strong style="color:var(--gold-light);">Peach</strong> &rarr; Peach <em>(unchanged)</em><br>
+        <strong style="color:var(--gold-light);">Avocado</strong> &rarr; Marline<br>
+        <strong style="color:var(--gold-light);">Orange</strong> &rarr; Naranca <em>(Spanish for orange)</em><br>
+        <strong style="color:var(--gold-light);">Lemon</strong> &rarr; <em>Gone. Removed for Interstate 8.</em><br>
+        <strong style="color:var(--gold-light);">Oakdale</strong> &rarr; Oakdale <em>(unchanged)</em>
+      </p>
+    </div>
+
+    <p>"Naranca" is Spanish for orange, so they kept the meaning but buried the English name. "Marline" has no connection to avocados. And Lemon? Lemon is under the freeway. You drive over it every time you take I-8 through Bostonia and don't even know it's there.</p>
+
+    <p>The 1954 county sewer plans show the new grid already in place: Marline, Naranca, Oakdale, Crosby, Clarendon, Sumner, with the freeway corridor cutting a wide blank stripe where Lemon Avenue used to be. The engineering drawings are precise and clinical. They don't mention what was lost.</p>
+
+    <div class="pull-quote">
+      Peach Avenue is the only original Bostonia Acres street that kept its name through the freeway era. It's where the Boston Ranch house stood. It's where Hoot McDonald bought his home in 1972. Some things survive by stubbornness.
+    </div>
+
+    <div class="photo-inline">
+      <img src="images/el-cajon-aerial-sdasm.jpg" alt="Aerial view of El Cajon Valley">
+      <p class="caption">Aerial view of El Cajon Valley &mdash; the freeway corridor that cut through Bostonia is visible in the modern landscape. The hills that cup the valley on three sides haven't changed. &mdash; SDASM</p>
+    </div>
+
+    <p>The street renaming is a small thing, maybe. But it's the kind of small thing that erases a place. When you rename a street, you break a thread. The people who planted the lemon trees and the orange groves and called the streets after what they grew, their logic disappears. The new names are arbitrary. They don't tell you anything about the place. The old names told you everything.</p>
+  </div>
+</section>
+
+<!-- ==================== MARSHAL SCOTTY'S ==================== -->
+<section class="chapter-alt" id="scottys">
+  <div class="content">
+    <div class="timeline-year"><span>1967</span></div>
+    <h2>Marshal Scotty's</h2>
+
+    <p class="lead">Ask anyone who grew up in East County in the 1970s or 80s what they remember, and chances are they'll say two words: <strong>Marshal Scotty's</strong>.</p>
+
+    <p><strong>Frank Hobbs</strong> called himself "Marshal Scotty" (one L), named after his wife. He started out running kiddie rides in National City in the 1950s. He acquired a small amusement park called Wally Park near the El Cajon/Lakeside boundary and, on <strong>January 1, 1967</strong>, officially opened <strong>Marshal Scotty's Playland Park</strong> on 25 acres of California live oaks off Ridge Hill Road, visible from I-8.</p>
+
+    <p>It was the only amusement park in East County, and it was everything to the kids who went there: a Tilt-a-Whirl, a 20-foot Ferris wheel, bumper cars, mini-boats, pony rides, a miniature train, a kiddie roller coaster, and a ride called <strong>"Bulgy the Whale."</strong> Birthday parties at Marshal Scotty's were a rite of passage for East County kids. In 1979, the park even appeared in the Hollywood film <strong><em>Scavenger Hunt</em></strong>, starring Richard Benjamin and Cloris Leachman.</p>
+
+    <h3>The Decline</h3>
+
+    <p>In the late 1980s, owner Bill Lee invested $500,000 in go-karts and what was reportedly the longest water slide of its kind in Southern California. Lee filed Chapter 11 in 1990. The park cycled through owners, briefly becoming <strong>"Frasier's Frontier"</strong> with a children's day camp, before closing for good in 1998.</p>
+
+    <p>For over a decade, the abandoned park sat behind chain-link fencing, the Ferris wheel rusting, the roller coaster track warping in the sun. It became East County's most photogenic ruin.</p>
+
+    <p>In 2015, new operators created <strong>"The Haunted Amusement Park,"</strong> a nearly mile-long Halloween scare trail through the decaying rides and structures. Marshal Scotty's lives on.</p>
+
+    <p>It represents the same story as the Bostonia Store and the Aero Drive-In: a local, homegrown institution that thrived in the less-developed East County landscape and faded as the valley transformed around it.</p>
+  </div>
+</section>
+
+<!-- ==================== THE FADING ==================== -->
+<section class="chapter-dark" id="fading">
+  <div class="content">
+    <div class="timeline-year"><span>1953</span></div>
+    <h2>The Fading</h2>
+
+    <p class="lead">The Boston Ranch began subdividing in 1919. It took forty years, but eventually the town that raisins built was erased by the thing that replaced everything in Southern California: the subdivision.</p>
+
+    <h3>The Annexation Vote</h3>
+
+    <p>In <strong>May 1953</strong>, residents of the southern portion of Bostonia voted on whether to be annexed by El Cajon. The result: <strong>315 to 271</strong>. Close. Divisive. Just 44 votes separated Bostonia from maintaining its independence.</p>
+
+    <p>The annexation came during explosive post-WWII suburban growth. El Cajon's population had grown to 5,600. By 1960, the incorporated area would increase five-fold and population six-fold to 37,618. The pressure was irresistible.</p>
+
+    <p>But only the <strong>southern portion</strong> was annexed. The northern part of Bostonia stayed unincorporated and remains so today, a Census-Designated Place that was never officially a city and never officially absorbed.</p>
+
+    <h3>The Timeline of Loss</h3>
+
+    <p><strong>1919</strong>. Subdivision of the Boston Ranch begins. Half-acre tracts offered as residence property.</p>
+
+    <p><strong>1925</strong>. New sales campaign for Boston Ranch lots. The real estate office sits on "the Triangle" at Second and Broadway, with a little model of the dance hall in its window.</p>
+
+    <p><strong>1932</strong>. The original dance hall burns. Walter Judy builds the Bostonia Ballroom in its place.</p>
+
+    <p><strong>1950</strong>. Murray Wright retires as postmaster after thirty-seven years.</p>
+
+    <p><strong>1953</strong>. Southern Bostonia votes to join El Cajon. 315-271.</p>
+
+    <p><strong>1954</strong>. The post office moves out of the Bostonia Store into separate quarters across the street.</p>
+
+    <p><strong>1958</strong>. The Bostonia Post Office is officially discontinued. It becomes a branch of the El Cajon Post Office. Bostonia loses its postal identity.</p>
+
+    <p><strong>1960, February 17</strong>. The Bostonia Store closes forever. Leland Barker, the last proprietor, had fought for twelve years to keep it alive against the tide of chain stores. He was "convinced that the old Bostonia Store still had a place to fill."</p>
+
+    <div class="pull-quote">
+      With sincere interest in preserving the heritage that was "hers", he began pumping new vitality into its precious old fashioned atmosphere. Thus for another twelve years, he continued to preserve and radiate the spirit of friendliness, honesty, and helpfulness that had touched Bostonia Store patrons down through its many long years of service.
+      <cite>&mdash; Hazel Sperry, on Leland Barker</cite>
+    </div>
+
+    <p><strong>1960, December</strong>. The building is moved in two sections to Alpine, where it was supposed to become part of Sleepy Hollow Ranch and Ghost Town, an authentic historical preservation. The plans fell through. The old Bostonia Store was dismantled for second-hand lumber.</p>
+
+    <p><strong>1961</strong>. The stone winery, which had stood on Broadway since the 1890s, is demolished to make room for the Bostonia Shopper's Mart.</p>
+
+    <p><strong>1986</strong>. A fatal fire at a home for the aged near the Bostonia fire station exposed the jurisdictional lines left by partial annexation. Bostonia firefighters were prevented from fighting a blaze just 100 yards from their station because it was in El Cajon's jurisdiction.</p>
+
+    <p>A Standard Oil gas station and a Safeway grocery store now stand at the crossroads where little Bostonia was born and reared.</p>
+
+    <div class="photo-inline">
+      <img src="images/14352597_10208115041222505_8658591922768957527_o.jpg" alt="Downtown El Cajon, 1960s">
+      <p class="caption">Downtown El Cajon in the early 1960s &mdash; Unimart, mid-century cars, and the suburban commercial strip. The agricultural town was gone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HOOT'S BOSTONIA ==================== -->
+<section class="chapter" id="hoots-bostonia">
+  <div class="content">
+    <div class="timeline-year"><span>1968</span></div>
+    <h2>Hoot's Bostonia</h2>
+
+    <p class="lead">In 1968, a young man named John "Hoot" McDonald got a job at E&amp;M Auto Parts in El Cajon and rented a house on Oro Street in Bostonia. Four years later, he and his wife bought a house on Peach Avenue.</p>
+
+    <div class="pull-quote">
+      My first memories of El Cajon and Bostonia were coming to get fresh produce with my grandfather. People would be selling fruits and vegetables in their front yards. I always looked forward to those trips. It seems like El Cajon was so far away.
+      <cite>&mdash; John "Hoot" McDonald</cite>
+    </div>
+
+    <p>By 1972, the Bostonia that Hazel Sperry had chronicled was already a ghost. The store was gone, replaced by a gas station. The post office had been absorbed by El Cajon. The vineyards were long gone. But the name persisted, and what was left of the community held on.</p>
+
+    <div class="pull-quote">
+      The view from our house looked like Tobacco Road with tumbled down shacks and goats roaming around. In the middle 80's the property consisted of 12 duplexes with lawns and fences. So many changes in the area over the years like tearing down the Bostonia General Store to build the Safeway and the Chevron gas station. The old County Sheriff's station at 1351 Broadway is now called Broadway Greens, a local marijuana dispensary. Times sure have changed.
+      <cite>&mdash; John "Hoot" McDonald</cite>
+    </div>
+
+    <p>Hoot was a saxophone player and jazz fan who played gigs across San Diego County. His first gig was at the American Legion Hall at the corner of Main and Magnolia, a show put on by Monte Hall and the Tiny Town Ranch Gang. He played Warner Hot Springs and San Diego Country Estates, driving up through the Barona reservation on Wild Cat Canyon Road.</p>
+
+    <h3>The Road Home</h3>
+
+    <p>Sometimes on the way home from San Diego Country Estates, cattle would block the road through Wild Cat Canyon. "I honked the horn one time and one of them came charging at the car so I decided after that to wait." He always worried about breaking down on that dark road. This was before cell phones.</p>
+
+    <p>At the Country Estates, the crowd was colorful. <strong>Ross Martin</strong> from <em>The Wild Wild West</em> lived there and came every time they played. Tennis player <strong>Bobby Riggs</strong> had one of the largest homes. When the rodeo was in town, 9-time world champion <strong>Casey Tibbs</strong> would come by, and once brought <strong>Steven Ford</strong>, the son of President Gerald Ford. Their bass player Steve Baker lost a girl to Casey Tibbs and Steven Ford that night.</p>
+
+    <h3>Jazz in the Wrong City</h3>
+
+    <p>Hoot loved jazz with a passion that San Diego never quite returned.</p>
+
+    <div class="pull-quote">
+      The first time I heard McPherson was back in the 1980's. It was a concert at the East County Performing Arts Center. As I entered the nearly empty concert hall I was surprised that I found such a wonderful seat. Featured that evening were the Grossmont College Symphony and Charles McPherson playing a perfect version of "Charlie Parker with Strings." There were more people performing than in the audience.
+      <cite>&mdash; John "Hoot" McDonald</cite>
+    </div>
+
+    <p>When <strong>Dizzy Gillespie</strong> was scheduled to play Humphrey's, the show was cancelled due to low ticket sales. At the San Diego Street Scene, <strong>James Moody</strong> played on a small stage right next to a large stage with Wilson Pickett. "While a thousand people watched Wilson Pickett I was one of the ten people watching James Moody."</p>
+
+    <p>By the 1970s and 80s, Bostonia had been fully absorbed into the suburban sprawl. But a sax player could still sit on his porch on Peach Avenue and play for the neighborhood.</p>
+
+    <div class="photo-inline">
+      <img src="images/peach-ave-overhead.png" alt="Peach Avenue aerial view">
+      <p class="caption">Peach Avenue, Bostonia &mdash; where the Boston Ranch house once stood, and where Hoot made his home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHAT REMAINS ==================== -->
+<section class="chapter-alt" id="remains">
+  <div class="content">
+    <div class="timeline-year"><span>Now</span></div>
+    <h2>What Remains</h2>
+
+    <p class="lead">Bostonia is still on the map. Census-designated place, population 16,882. An unincorporated community that was never officially a city and never officially died.</p>
+
+    <p>The crossroads of Broadway and Second Street is now a busy suburban intersection. A Chevron station stands where the store stood. The <strong>Bostonia Ballroom</strong> building still exists at 1340 Broadway, owned since 2022 by Robert Marcos of North Park Produce, hosting banquets in the room where Hank Williams sang. <strong>Bostonia Global</strong> carries the name at the old elementary school campus. The <strong>Bostonia Post Office</strong> still operates at 867 N 2nd Street. Crosby Street still bears the co-founder's name. Peach Avenue, the one street they couldn't rename, still runs north-south through the heart of the neighborhood.</p>
+
+    <p>The stone fountain is gone. The winery is gone. The packing houses burned in World War I. St. John's Episcopal Church is gone. The Meridian School is gone. Dr. Mathewson's house is gone. The Gordon Ranch is covered in houses where a drive-in theater used to be, and before that a hayfield where a man flew a plane made of spruce and wax. Lemon Avenue is under the freeway. Orange Avenue answers to a Spanish name now. But Bostonia is still Bostonia.</p>
+
+    <p>But the land remembers. The valley still cups around you on three sides. The sun still hangs heavy in the summer. The San Diego River still flows 52 miles from the mountains to the sea, past the dam the Kumeyaay built under mission orders, past the flume trail where redwood troughs once carried Cuyamaca water to the valley, past the spot where Don Gordon flew a plane made of spruce and wax and a motorcycle engine called Whistling Rufus.</p>
+
+    <h3>The Map</h3>
+
+    <p>Where it all was, and what's still there.</p>
+
+    <div id="bostonia-map"></div>
+    <p class="map-legend">Gold pins: still standing or still in use. Brown pins: gone, approximate location. Click any pin for details.</p>
+
+    <p>If you stand at Broadway and Second on a quiet evening, you can almost hear the weird chanting of the peon game, the dogs beginning to howl, the sound rolling in waves across the entire El Cajon Valley, under a harvest moon that hasn't changed in a thousand years.</p>
+
+    <div class="divider">&bull; &bull; &bull;</div>
+
+    <p style="text-align:center; font-style:italic; opacity:0.7;">This site was built from primary sources held in a family collection: PDFs, photographs, personal writings, and OCR'd documents gathered over years by people who cared enough to save them. Supplemented by web research into public archives, newspaper accounts, and the records of the El Cajon Historical Society, the San Diego History Center, and the San Diego Air and Space Museum.</p>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="sources">
+    <h3>Sources</h3>
+    <p><strong>Hazel Sperry</strong>, "A Brief History of the Boston Ranch and Early Bostonia in El Cajon Valley" &middot; "The Corners &mdash; El Cajon's First Shopping Center" &middot; "Postal History of El Cajon" &middot; "The Story of the D.G. Gordon Family"</p>
+    <p><strong>John "Hoot" McDonald</strong>, "Bostonia: How You Have Changed," "San Diego Country Estates," "Shame on You San Diego," and other writings</p>
+    <p><strong>William E. Smythe</strong>, <em>History of San Diego, 1542&ndash;1907</em> (1907)</p>
+    <p><strong>Irene L. Vita</strong>, "Early History of Bostonia" (via Mrs. Murray Wright's recollections)</p>
+    <p><strong>El Cajon Valley News</strong>, December 31, 1892</p>
+    <p><strong>Chloris Scott</strong>, "Eucalyptus Trees" (El Cajon Historical Society, 1982)</p>
+    <p><strong>Mrs. Dorcas Asher Drown</strong>, eyewitness account of Don Gordon's flight</p>
+    <p><strong>Mary J. Collard</strong>, "History of Bostonia"</p>
+    <p><strong>Katrin Pesch</strong>, "Ghosts and Objects at the Bancroft Ranch House Museum" (UCSD, 2016)</p>
+    <p><strong>San Diego Union-Tribune</strong> &middot; <strong>San Diego Reader</strong> &middot; <strong>San Diego Troubadour</strong> &middot; <strong>East County Magazine</strong> &middot; <strong>KPBS / Ken Kramer's About San Diego</strong></p>
+    <p><strong>El Cajon Historical Society</strong> &middot; <strong>San Diego History Center</strong> &middot; <strong>San Diego Air and Space Museum</strong> &middot; <strong>Spring Valley Historical Society</strong></p>
+    <p>Photographs from the El Cajon Valley historical community, family collections, Facebook history groups, and recovered archives</p>
+  </div>
+  <br>
+  <p><a href="gallery.html">Photo Gallery</a></p>
+  <p style="margin-top:2rem; opacity:0.4; font-size:0.75rem;">A Peach Pit production &middot; 2026</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function() {
+  var map = L.map('bostonia-map', { scrollWheelZoom: false }).setView([32.8100, -116.9350], 14);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 19
+  }).addTo(map);
+
+  // Gold icon for places that still exist
+  var goldIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
+
+  // Dark icon for places that are gone
+  var brownIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+  });
+
+  var pins = [
+    // Still standing / still in use (gold)
+    { lat: 32.80776, lng: -116.93405, icon: goldIcon,
+      name: "Bostonia Ballroom",
+      era: "1932 &ndash; present",
+      desc: "1340 Broadway. Built by Walter Judy after the original 1925 dance hall burned. Now a banquet hall, owned by Robert Marcos of North Park Produce since 2022." },
+    { lat: 32.80692, lng: -116.93566, icon: goldIcon,
+      name: "Bostonia Post Office",
+      era: "1894 &ndash; present",
+      desc: "867 N 2nd Street. The post office name survived even after Bostonia was partially annexed in 1953." },
+    { lat: 32.80776, lng: -116.93176, icon: goldIcon,
+      name: "Bostonia Global (formerly Bostonia Elementary)",
+      era: "Est. early 1900s",
+      desc: "1390 Broadway. Now a K-12 magnet school in the Cajon Valley Union School District. Opened as Bostonia Global July 1, 2021." },
+    { lat: 32.83965, lng: -117.04182, icon: goldIcon,
+      name: "Old Mission Dam",
+      era: "c. 1803",
+      desc: "Mission Trails Regional Park. Built by Kumeyaay laborers under Franciscan direction. National Historic Landmark. The first major irrigation project on the Pacific coast." },
+    { lat: 32.81088, lng: -116.93579, icon: goldIcon,
+      name: "Leggio's Italian Deli",
+      era: "Late 1900s",
+      desc: "1164 N 2nd Street. Neighborhood deli where Psychotic Waltz rehearsed in the back rooms." },
+    { lat: 32.79498, lng: -116.96242, icon: goldIcon,
+      name: "Knox's Corners",
+      era: "1876",
+      desc: "Main Street &amp; Magnolia Avenue. Amaziah Knox built the valley's first hotel here in 1876. Center of El Cajon's business district for 70 years." },
+
+    // Gone (brown/red)
+    { lat: 32.80788, lng: -116.93736, icon: brownIcon,
+      name: "Bostonia Store &amp; Stone Fountain",
+      era: "1894 &ndash; 1960",
+      desc: "Broadway &amp; N 2nd Street. The general store was the heart of Bostonia for 74 years. A stone fountain for wagon teams stood at the crossroads. Now a Chevron station and Safeway." },
+    { lat: 32.80899, lng: -116.93566, icon: brownIcon,
+      name: "St. John's Episcopal Church (approximate)",
+      era: "1895",
+      desc: "Was on Clarendon Street near N 2nd. Built 1894, opened July 28, 1895. No longer standing." },
+    { lat: 32.81018, lng: -116.93566, icon: brownIcon,
+      name: "Dr. Mathewson's House (approximate)",
+      era: "1896 &ndash; 1950",
+      desc: "N 2nd Street at Sumner Avenue. Office and home of the only doctor between San Diego and the Cuyamaca Mountains for a decade." },
+    { lat: 32.80796, lng: -116.92698, icon: brownIcon,
+      name: "Old Meridian School (approximate)",
+      era: "1889",
+      desc: "Third Street (formerly Meridian Road). Don Gordon's ground crew of grammar school students attended here. The Union High School also met upstairs." },
+    { lat: 32.80777, lng: -116.92827, icon: brownIcon,
+      name: "Aero Drive-In Theater",
+      era: "c. 1949 &ndash; 1999",
+      desc: "1470 Broadway. Built on the Gordon Ranch hayfield where Don Gordon made his 1909 powered flight. Also hosted the Aero Drive-In Swap Meet. Now residential (Teatro Circle)." },
+    { lat: 32.80647, lng: -116.93125, icon: brownIcon,
+      name: "Gordon Family Home / Ranch (approximate)",
+      era: "1886 &ndash; 1919",
+      desc: "Near Peach Ave &amp; Broadway. The 160-acre grape ranch where Don Gordon built and flew four aircraft. The ranch was subdivided starting in 1919." },
+    { lat: 32.84195, lng: -116.88505, icon: goldIcon,
+      name: "Marshal Scotty's Playland Park",
+      era: "1967 &ndash; 1998",
+      desc: "14011 Ridge Hill Road. East County's only amusement park. Now hosts The Haunted Amusement Park seasonally." },
+    { lat: 32.79498, lng: -116.95570, icon: brownIcon,
+      name: "Valley Music (original location)",
+      era: "1952",
+      desc: "530 E Main Street. Opened by Smokey Rogers, Cactus Soldi, and Pedro DePaul, the same team that ran the Bostonia Ballroom." },
+    { lat: 32.84382, lng: -116.87696, icon: goldIcon,
+      name: "Pecan Park",
+      era: "",
+      desc: "Pecan Park Lane, near Lake Jennings and Rios Canyon Road. Named for the pecan trees from Bostonia's agricultural era." },
+    { lat: 32.88439, lng: -116.80945, icon: brownIcon,
+      name: "El Capitan Dam / Cullamac Village Site",
+      era: "Pre-contact &ndash; 1934",
+      desc: "The Kumeyaay settlement of Cullamac (E-quil-a-mak, \"behind the mountain\") was flooded when El Capitan Dam was built in 1934. The Viejas and Barona bands are direct descendants of the Cullamac community." }
+  ];
+
+  pins.forEach(function(p) {
+    var popup = '<h4>' + p.name + '</h4>' +
+      (p.era ? '<span class="pin-era">' + p.era + '</span>' : '') +
+      '<p>' + p.desc + '</p>';
+    L.marker([p.lat, p.lng], { icon: p.icon }).addTo(map).bindPopup(popup);
+  });
+
+  // Fit bounds to show all Bostonia-area pins (not the outliers like Mission Dam)
+  map.fitBounds([
+    [32.79, -116.97],
+    [32.85, -116.87]
+  ]);
+})();
+</script>
+
+</body>
+</html>

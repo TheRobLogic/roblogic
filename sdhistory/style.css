@@ -1,0 +1,383 @@
+/* Bostonia: A Town That Built Itself */
+/* Design: archival warmth meets modern longform storytelling */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+
+:root {
+  --deep-brown: #1a1209;
+  --brown: #3d2b1f;
+  --warm-cream: #f7f2ea;
+  --alt-cream: #ece4d6;
+  --gold: #8b6914;
+  --gold-light: #c9a959;
+  --gold-faint: #f0e6c8;
+  --sepia-overlay: rgba(112, 66, 20, 0.08);
+  --max-content: 760px;
+  --max-wide: 1100px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  color: var(--brown);
+  background: var(--warm-cream);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === HERO === */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem 2rem 4rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 18, 9, 0.1) 0%,
+    rgba(26, 18, 9, 0.6) 60%,
+    rgba(26, 18, 9, 0.92) 100%
+  ), url('images/bostonia-store-1800s.jpg') center/cover no-repeat;
+  color: var(--warm-cream);
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+
+.hero .subtitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.hero .era {
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.scroll-hint {
+  margin-top: 2rem;
+  opacity: 0.4;
+  animation: pulse 2s infinite;
+  font-size: 1.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 0.6; transform: translateY(6px); }
+}
+
+/* === NAV === */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--deep-brown);
+  border-bottom: 2px solid var(--gold);
+  padding: 0.6rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.site-nav a:hover { color: var(--warm-cream); }
+
+/* === CONTENT COLUMN === */
+.content {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* === SECTIONS === */
+.chapter {
+  padding: 5rem 0;
+}
+
+.chapter-alt {
+  background: var(--alt-cream);
+  padding: 5rem 0;
+}
+
+.chapter-dark {
+  background: var(--deep-brown);
+  color: var(--warm-cream);
+  padding: 5rem 0;
+}
+
+.chapter-dark .content { color: var(--warm-cream); }
+.chapter-dark h2 { color: var(--gold-light); }
+.chapter-dark .pull-quote { border-color: var(--gold); color: var(--gold-faint); }
+
+/* === TYPOGRAPHY === */
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--deep-brown);
+  line-height: 1.15;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--deep-brown);
+  margin: 2.5rem 0 1rem;
+}
+
+.chapter-dark h3 { color: var(--gold-light); }
+
+p {
+  margin-bottom: 1.3em;
+}
+
+.date-marker {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--deep-brown);
+  font-weight: 300;
+}
+
+/* === PULL QUOTES === */
+.pull-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--deep-brown);
+  border-left: 4px solid var(--gold);
+  padding: 1rem 0 1rem 1.8rem;
+  margin: 2.5rem 0;
+}
+
+.pull-quote cite {
+  display: block;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--gold);
+  margin-top: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+/* === IMAGES === */
+.photo-full {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.photo-full img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: cover;
+  display: block;
+  filter: sepia(15%) contrast(1.05);
+}
+
+.photo-inline {
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.photo-inline img {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(0,0,0,0.1);
+  filter: sepia(10%);
+}
+
+.photo-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.photo-pair img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.1);
+  filter: sepia(10%);
+}
+
+figcaption, .caption {
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-style: italic;
+  padding-top: 0.6rem;
+  line-height: 1.4;
+}
+
+/* === TIMELINE MARKER === */
+.timeline-year {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.timeline-year::before {
+  content: '';
+  flex: 0 0 40px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.timeline-year span {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* === DIVIDERS === */
+.divider {
+  text-align: center;
+  margin: 4rem 0;
+  color: var(--gold-light);
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+}
+
+/* === FOOTER === */
+.site-footer {
+  background: var(--deep-brown);
+  color: var(--gold-light);
+  text-align: center;
+  padding: 3rem 2rem;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.site-footer a { color: var(--gold-light); }
+
+.sources {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  text-align: left;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  opacity: 0.7;
+}
+
+.sources h3 {
+  color: var(--gold-light);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* === GALLERY PAGE === */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.gallery-item {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.gallery-item:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+
+.gallery-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  filter: sepia(8%);
+}
+
+.gallery-item .caption {
+  padding: 0.8rem 1rem;
+  font-style: normal;
+  font-size: 0.85rem;
+}
+
+/* === VOICES PAGE === */
+.voice-entry {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--alt-cream);
+}
+
+.voice-entry:last-child { border-bottom: none; }
+
+.voice-entry h3 {
+  margin-top: 0;
+}
+
+.voice-text {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  font-style: italic;
+  background: var(--alt-cream);
+  padding: 2rem 2.5rem;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 700px) {
+  html { font-size: 16px; }
+  .content { padding: 0 1.2rem; }
+  .photo-pair { grid-template-columns: 1fr; }
+  .site-nav { gap: 1rem; padding: 0.5rem 1rem; }
+  .site-nav a { font-size: 0.7rem; }
+  .pull-quote { padding-left: 1.2rem; }
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Bostonia &amp; the East County</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery-hero {
+      background: var(--deep-brown);
+      color: var(--warm-cream);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+    .gallery-hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 0.5rem;
+    }
+    .gallery-hero p {
+      font-style: italic;
+      opacity: 0.7;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .gallery-section {
+      padding: 3rem 0 1rem;
+    }
+    .gallery-section h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 0.3rem;
+    }
+    .gallery-section .section-desc {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .gallery-section:nth-child(even) {
+      background: var(--alt-cream);
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .back-link:hover { color: var(--warm-cream); }
+
+    /* Lightbox */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      filter: none;
+    }
+    .lightbox-caption {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 0.9rem;
+      font-style: italic;
+      text-align: center;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html">&larr; Back to Story</a>
+  <a href="#bostonia-core">Bostonia</a>
+  <a href="#el-cajon">El Cajon</a>
+  <a href="#flume">The Flume</a>
+  <a href="#mission-dam">Mission Dam</a>
+  <a href="#people">Gordon &amp; Aviation</a>
+  <a href="#aerials">Aerials</a>
+  <a href="#documents">Documents</a>
+  <a href="#streetcars">Transit</a>
+</nav>
+
+<div class="gallery-hero">
+  <a href="index.html" class="back-link">&larr; Back to the story</a>
+  <h1>The Archive</h1>
+  <p>Photographs from City of San Diego Archives, family collections, the El Cajon Historical Society, Facebook history groups, and recovered hard drives. Click any image to enlarge.</p>
+</div>
+
+<!-- Bostonia Core -->
+<section class="gallery-section" id="bostonia-core">
+  <h2>Bostonia</h2>
+  <p class="section-desc">The store, the ballroom, the crossroads</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-store-1800s.jpg" alt="Bostonia Store, 1800s" data-caption="The original Bostonia Store, late 1800s. 'General Merchandise' painted on the false front. Dirt roads, hitching posts, the center of everything.">
+      <div class="caption">Bostonia Store, late 1800s</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-store-1950s.jpg" alt="Bostonia Store, 1950s" data-caption="The Bostonia Store in the 1950s, painted red. Still serving the community after 60 years. It would close in 1960.">
+      <div class="caption">Bostonia Store, 1950s</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/ballroom-interior.jpg" alt="Bostonia Ballroom interior" data-caption="Inside the Bostonia Ballroom — a vast dance floor with Art Deco light fixtures. Built 1932 by Walter Judy.">
+      <div class="caption">Bostonia Ballroom interior</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/ballroom-exterior.jpg" alt="Bostonia Ballroom exterior" data-caption="The Bostonia Ballroom at 1340 Broadway — still standing. Sold to Robert Marcos of North Park Produce in January 2022. The building that hosted Hank Williams, Johnny Cash, and Patsy Cline now hosts banquets and celebrations.">
+      <div class="caption">Bostonia Ballroom — still standing</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-church.jpg" alt="Bostonia church" data-caption="St. John's Episcopal Church, built 1894 near the heart of Bostonia.">
+      <div class="caption">St. John's Episcopal Church</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-pepper-drive.jpg" alt="Bostonia, Pepper Drive area" data-caption="A rural road in the Bostonia area, possibly Pepper Drive — showing the agricultural landscape.">
+      <div class="caption">Bostonia — Pepper Drive area</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/citrus-bostonia.jpg" alt="Citrus groves, Bostonia" data-caption="Citrus slopes of Bostonia — the higher ground was ideal for oranges and lemons.">
+      <div class="caption">Citrus groves, Bostonia</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/peach-ave-overhead.png" alt="Peach Avenue aerial" data-caption="Aerial view of Peach Avenue — where the Boston Ranch house once stood, and where Hoot McDonald made his home.">
+      <div class="caption">Peach Avenue aerial view</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/72261904_1713966272069163_8713312286401363968_n.jpg" alt="Big Find crate label" data-caption="'Big Find' — Bostonia Fruit Growers &amp; Packers Co., El Cajon, San Diego Co., California. A vintage citrus crate label showing the Bostonia brand in its agricultural prime.">
+      <div class="caption">"Big Find" — Bostonia Fruit crate label</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/aero-drive-in.jpg" alt="Aero Drive-In Theater" data-caption="The Aero Drive-In Theater — built on the Gordon Ranch hayfield where Don Gordon made his 1909 flight. 'Swiss Family Robinson' and '3 Worlds of Gulliver' on the marquee (1960 films). The lot also hosted the popular Aero Drive-In Swap Meet on weekends.">
+      <div class="caption">Aero Drive-In Theater</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-home-bostonia.jpg" alt="Gordon home" data-caption="The Gordon family home in Bostonia — where Don grew up watching eagles soar above the hills. His father David operated a 160-acre grape ranch here. — SDASM">
+      <div class="caption">Gordon home — Bostonia</div>
+    </div>
+  </div>
+</section>
+
+<!-- El Cajon -->
+<section class="gallery-section" id="el-cajon">
+  <h2>El Cajon Valley</h2>
+  <p class="section-desc">The wider valley — Main Street, general stores, drive-ins</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/el-cajon-main-st-1900.jpg" alt="El Cajon Main Street, 1900" data-caption="El Cajon general store on Main Street, circa 1900. Horse and buggy era.">
+      <div class="caption">Main Street, El Cajon — c. 1900</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/main-street-el-cajon.jpg" alt="Main Street El Cajon" data-caption="Main Street, El Cajon — showing the commercial strip in its prime.">
+      <div class="caption">Main Street, El Cajon</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/east-main-st.jpg" alt="East Main Street" data-caption="East Main Street, looking toward the hills that cup the valley.">
+      <div class="caption">East Main Street</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/2nd-street.jpg" alt="2nd Street" data-caption="Second Street commercial strip — Arby's, Jack in the Box, and other mid-century businesses.">
+      <div class="caption">Second Street</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/salazars-market.jpg" alt="Salazar's Market" data-caption="Salazar's Market — one of the local businesses that served the community.">
+      <div class="caption">Salazar's Market</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/lakeside-hotel.jpg" alt="Lakeside Hotel" data-caption="The Lakeside Hotel, circa 1907-08 — a grand Victorian resort with turrets, wraparound porches, and palm trees. Barney Oldfield roared around here in his early automobiles. Demolished 1920.">
+      <div class="caption">Lakeside Hotel</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/14352597_10208115041222505_8658591922768957527_o.jpg" alt="Downtown El Cajon, 1960s" data-caption="Downtown El Cajon in the early 1960s — Unimart, mid-century cars, and the suburban commercial strip replacing the old agricultural town.">
+      <div class="caption">Downtown El Cajon — 1960s</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/273447686_156942000015065_7880031834719784813_n.jpg" alt="Harvest House Cafeteria" data-caption="Harvest House Cafeteria — a mid-century dining institution in El Cajon with chandeliers, red carpet, and pink upholstered chairs.">
+      <div class="caption">Harvest House Cafeteria</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/273364355_156600180049247_5168424791984514021_n.jpg" alt="Blue Meannie Records then and now" data-caption="Blue Meannie Records — a legendary El Cajon record store, shown in its psychedelic prime (top) and as Hair &amp; Beyond (bottom). The music moved on.">
+      <div class="caption">Blue Meannie Records — then &amp; now</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/22792211_10212036864249522_8983872434810746546_o.jpg" alt="Giuseppe's Pizza business card" data-caption="Giuseppe's Pizza, 935 Broadway, El Cajon — 'Complete Italian Menu, Phone Ahead for Fast Pick-Up Service.' A piece of the valley's small-business past.">
+      <div class="caption">Giuseppe's Pizza — Broadway</div>
+    </div>
+  </div>
+</section>
+
+<!-- The Flume -->
+<section class="gallery-section" id="flume">
+  <h2>The San Diego Flume</h2>
+  <p class="section-desc">33.5 miles of redwood trough, 315 trestles, 8 tunnels &mdash; the engineering marvel that made the valley bloom</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/flume-cuyamaca-1888.jpg" alt="San Diego Flume at Lake Cuyamaca, 1888" data-caption="The elevated flume at Lake Cuyamaca, 1888 — the V-shaped redwood trough curving across the mountains on wooden trestles. 9 million board feet of redwood, $900,000 in capital, 800 mules. Photographed by Turner and Judd. — City of San Diego Archives">
+      <div class="caption">Elevated Flume, Cuyamaca — 1888</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/flume-los-coches-trestle.jpg" alt="Los Coches Trestle, 1925" data-caption="The Los Coches Trestle — 1,774 feet long, 56 feet high. The longest trestle on the entire flume system. Photographed March 17, 1925. — City of San Diego Archives">
+      <div class="caption">Los Coches Trestle — 1925</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/flume-opening-day-1889.jpg" alt="Riding the Flume, Opening Day 1889" data-caption="Opening Day, February 22, 1889 — dignitaries ride flat-bottomed boats inside the V-shaped flume, parasols raised against the sun. Governor Robert W. Waterman was among the passengers. — City of San Diego Archives">
+      <div class="caption">Opening Day — Feb 22, 1889</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/flume-diverting-dam-1887.jpg" alt="Diverting Dam, San Diego River, 1887" data-caption="Diverting dam on the San Diego River for the flume, 1887. Photographed by Herve Friend for Douglas Gunn's Picturesque San Diego. — City of San Diego Archives">
+      <div class="caption">Diverting Dam — 1887</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/flume-driving-alongside-1905.jpg" alt="Driving alongside the Flume, 1905" data-caption="Driving alongside the San Diego Flume, 1905. The water was diverted 'into flume to the El Cajon valley' — making Bostonia's raisin vineyards and citrus groves possible. — City of San Diego Archives">
+      <div class="caption">Driving alongside the Flume — 1905</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/flume-boats-smythe.jpg" alt="Officials in boats on the flume" data-caption="Officials riding the flume in flat-bottomed boats — from William E. Smythe's History of San Diego, 1542-1907. The flume was completed on February 22, 1889, after three years of construction.">
+      <div class="caption">Officials riding the Flume</div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Dam -->
+<section class="gallery-section" id="mission-dam">
+  <h2>Old Mission Dam</h2>
+  <p class="section-desc">Built c. 1803 by Kumeyaay laborers &mdash; the first major irrigation project on the Pacific coast</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/old-mission-dam-1937.jpg" alt="Old Mission Dam, 1937" data-caption="Old Mission Dam, photographed in 1937 by Hammond. Dry in this shot — the cobblestone and cement structure built around 1803 by Kumeyaay laborers under Franciscan direction. Now a National Historic Landmark in Mission Trails Regional Park. — City of San Diego Archives">
+      <div class="caption">Old Mission Dam — 1937</div>
+    </div>
+  </div>
+</section>
+
+<!-- People & Aviation -->
+<section class="gallery-section" id="people">
+  <h2>People &amp; Aviation</h2>
+  <p class="section-desc">Don Gordon, his family, and the pioneers of powered flight in Bostonia &mdash; SDASM Collection</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-portrait-1911.jpg" alt="Donald H. Gordon, c. 1911" data-caption="Donald H. Gordon, c. 1911 — aviation pioneer of Bostonia. Born in Connecticut in 1883, he moved to Bostonia at age three and spent his life watching eagles soar above the hills. — San Diego Air &amp; Space Museum">
+      <div class="caption">Don Gordon — portrait, c. 1911</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-glider-1908.jpg" alt="Gordon's glider, 1908" data-caption="Gordon's glider, built from bamboo, spruce, piano wire, and muslin at the family ranch, c. 1908. The fabric was 'doped up hard as a board' with Gordon's own wax. — SDASM">
+      <div class="caption">Gordon's glider — c. 1908</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-2nd-powered-plane.jpg" alt="Gordon's second powered plane" data-caption="Gordon's second powered biplane on the Bostonia ranch. The engine came from his racing motorcycle 'Whistling Rufus.' The whole structure was so light Gordon could lift it himself. — SDASM">
+      <div class="caption">Second powered biplane</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-2nd-plane-side.jpg" alt="Side view of Gordon's biplane" data-caption="Side view of Don Gordon's biplane on the ranch in Bostonia. A biplane measuring 4.5 to 5 feet wide and 26 feet long, with controllable front elevators and a homemade propeller. — SDASM">
+      <div class="caption">Biplane — side view</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-second-monoplane.jpg" alt="Gordon's monoplane" data-caption="Gordon's monoplane — one of four aircraft he built between 1907 and 1914. He drew inspiration from John Montgomery's glider flights on Otay Mesa and plans in Popular Science. — SDASM">
+      <div class="caption">Gordon's monoplane</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-where-he-flew.jpg" alt="The field where Gordon flew" data-caption="The field on the Gordon Ranch where Don made his powered flights — looking across the Bostonia landscape that later became the Aero Drive-In Theater. — SDASM">
+      <div class="caption">The field where he flew</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-home-bostonia.jpg" alt="The Gordon home in Bostonia" data-caption="The Gordon family home in Bostonia. David Gilchrist Gordon (lawyer turned rancher) and Helen Hazen Gordon (teacher, Wednesday Club organizer, church organist) raised their family here on 160 acres. — SDASM">
+      <div class="caption">Gordon family home — Bostonia</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-brothers-bostonia-1886.jpg" alt="Gordon brothers in Bostonia, 1886" data-caption="The Gordon brothers in Bostonia, c. 1886 — the year the family arrived from Connecticut and the Boston Ranch was founded. — SDASM">
+      <div class="caption">Gordon brothers — 1886</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-brothers-grown.jpg" alt="Gordon brothers, grown" data-caption="The Gordon brothers as young men. Don (the aviator) built four aircraft on the family ranch between 1907 and 1914 before hearing loss ended his flying career. — SDASM">
+      <div class="caption">Gordon brothers — grown</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-family-portrait.jpg" alt="Gordon family portrait" data-caption="Gordon family portrait — David, Helen, and their sons in Bostonia. Helen organized the Wednesday Club, played organ at the Presbyterian Church, and was 'a pioneer in all the social and religious affairs in the valley.' — SDASM">
+      <div class="caption">Gordon family portrait</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-parents-portrait.jpg" alt="David and Helen Gordon" data-caption="David Gilchrist Gordon and Helen Hazen Gordon. David was postmaster of Bostonia (1898), helped form the Meridian School District, and operated a 160-acre grape ranch. — SDASM">
+      <div class="caption">David &amp; Helen Gordon</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-hill-1916.jpg" alt="Gordon on the hill, 1916" data-caption="Don Gordon on the hills above Bostonia, c. 1916. 'As a schoolboy, I used to go back into the hills behind Bostonia and watch the eagles and buzzards floating around, and I wished I could do that.' — SDASM">
+      <div class="caption">Gordon on the hills — 1916</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/gordon-palomar-ranch.jpg" alt="Gordon's Palomar Mountain ranch" data-caption="Gordon's 160-acre ranch on Palomar Mountain, where he lived in a converted water tower from 1944 until his death in 1968. In his will, he wished the ranch to become a nature preserve. — SDASM">
+      <div class="caption">Palomar Mountain ranch</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/don-gordon-40.png" alt="Don Gordon aviation" data-caption="Early aviation in Bostonia — from the family's personal photo collection. Gordon's ground crew were local grammar school students from the Old Meridian School.">
+      <div class="caption">Don Gordon — family collection</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/don-gordon-57.png" alt="Don Gordon flight" data-caption="Biplane experiments on the Gordon Ranch, Bostonia. One of the first powered flights west of the Mississippi, September 1909.">
+      <div class="caption">Gordon Ranch — flight</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/don-gordon-92.png" alt="El Cajon Valley from above" data-caption="The El Cajon Valley agricultural landscape — the view Don Gordon saw from above when he flew over the ranch in 1909.">
+      <div class="caption">Valley from the air</div>
+    </div>
+  </div>
+</section>
+
+<!-- Aerials -->
+<section class="gallery-section" id="aerials">
+  <h2>Aerial Views</h2>
+  <p class="section-desc">The valley from above &mdash; from agricultural patchwork to suburban grid</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/el-cajon-aerial-sdasm.jpg" alt="El Cajon Valley aerial" data-caption="Aerial view of the El Cajon Valley — showing the transition from agricultural landscape to suburban development. The hills that cup the valley on three sides are visible in the distance. — San Diego Air &amp; Space Museum">
+      <div class="caption">El Cajon Valley aerial &mdash; SDASM</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/14372372_10208115040782494_5907319403338879883_o.jpg" alt="El Cajon aerial, 1969" data-caption="Apartment News, San Diego County, April 1969 — aerial view showing the valley's transformation from orchards and ranches to apartment complexes and strip malls.">
+      <div class="caption">El Cajon aerial &mdash; 1969</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/peach-ave-overhead.png" alt="Peach Avenue aerial" data-caption="Aerial view of Peach Avenue — the one original Bostonia Acres street that kept its name. Where the Boston Ranch house once stood, and where Hoot McDonald made his home.">
+      <div class="caption">Peach Avenue &mdash; aerial</div>
+    </div>
+  </div>
+</section>
+
+<!-- Streetcars -->
+<section class="gallery-section" id="streetcars">
+  <h2>San Diego Transit</h2>
+  <p class="section-desc">The streetcars that connected the city</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/streetcar-pcc.jpg" alt="PCC Streetcar #503" data-caption="San Diego PCC Streetcar #503, Route 7 to Union Depot — 1940s streamlined transit.">
+      <div class="caption">PCC Streetcar #503 — 1940s</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/streetcar-bridge.jpg" alt="Streetcar on bridge" data-caption="A vintage trolley passing under an arched bridge — early San Diego transit.">
+      <div class="caption">Trolley under the bridge</div>
+    </div>
+  </div>
+</section>
+
+<!-- Documents & Maps -->
+<section class="gallery-section" id="documents">
+  <h2>Documents &amp; Ephemera</h2>
+  <p class="section-desc">Newspapers, directories, business cards &mdash; the paper trail of a community</p>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-1894-newspaper.jpg" alt="Forward, Bostonia! — 1894" data-caption="'FORWARD, BOSTONIA!' — The Poway Progress, June 30, 1894. Announcing the new general store ('26 x 40 ft., with a cellar under one half') and Joseph Donald's appointment as postmaster. Plans for the Episcopal Church. The birth certificate of a town.">
+      <div class="caption">"Forward, Bostonia!" — 1894</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-1897-directory.jpg" alt="1897 San Diego County Directory" data-caption="Bostonia's entry in the 1897 San Diego County Directory — three years after the store and post office opened, the community was officially on the map.">
+      <div class="caption">1897 Directory entry</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/knox-hotel-sketch.jpg" alt="Knox's W. Paton Hotel sketch" data-caption="Sketch of Knox's W. Paton Hotel at Main Street and Magnolia Avenue — the seven-room tavern built for $1,000 in 1876 that became the heart of El Cajon. Courtesy El Cajon Historical Society.">
+      <div class="caption">Knox's Hotel — sketch</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/knox-postmaster-1878.jpg" alt="Knox postmaster appointment, 1878" data-caption="1878 appointment record for Amaziah Knox as El Cajon's first postmaster — the post office opened in the lobby of his hotel. Courtesy National Archives via San Diego History Seeker.">
+      <div class="caption">Knox postmaster appointment — 1878</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(this)">
+      <img src="images/bostonia-store-color.jpg" alt="Bostonia Store color postcard" data-caption="Color postcard of the Bostonia Store — the red building with its distinctive false front, Coca-Cola buttons, and 'SINCE 1898' sign.">
+      <div class="caption">Bostonia Store — color postcard</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<footer class="site-footer">
+  <p><a href="index.html">&larr; Back to the story</a></p>
+  <p style="margin-top:1rem; opacity:0.4; font-size:0.75rem;">Photographs from City of San Diego Archives, San Diego Air &amp; Space Museum (Flickr), family collections, Facebook history groups, El Cajon Historical Society, and recovered archives &middot; A Peach Pit production &middot; 2026</p>
+</footer>
+
+<script>
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-caption').textContent = img.dataset.caption || '';
+  lb.classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
