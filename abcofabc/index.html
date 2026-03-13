@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The ABC of ABC — How It Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06090f;
+      --bg-card: #0d1321;
+      --bg-card-hover: #131b2e;
+      --blue: #3b82f6;
+      --blue-bright: #60a5fa;
+      --blue-glow: rgba(59, 130, 246, 0.15);
+      --green: #22c55e;
+      --purple: #a855f7;
+      --orange: #f97316;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --text-dim: #475569;
+      --border: rgba(148, 163, 184, 0.08);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      border: 1px solid rgba(59,130,246,0.3);
+      background: rgba(59,130,246,0.08);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--blue-bright) 0%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 30px rgba(59,130,246,0.25);
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-cta:hover {
+      background: #2563eb;
+      box-shadow: 0 0 50px rgba(59,130,246,0.4);
+      transform: translateY(-2px);
+    }
+    .hero-cta svg { width: 18px; height: 18px; }
+
+    /* ── Section ── */
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── What It Does (3 cards) ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(148,163,184,0.15);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+    }
+
+    .feature-card h3 {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ── How To Use (steps) ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      counter-reset: step;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .step:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(148,163,184,0.15);
+    }
+
+    .step-num {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.12);
+      border: 1.5px solid rgba(59,130,246,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--blue-bright);
+    }
+    .step-num::before { content: counter(step); }
+
+    .step-content h3 {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ── Category legend visual ── */
+    .category-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .cat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── Under the Hood ── */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .pipe-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .pipe-arrow {
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      padding: 0 0.35rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Bottom CTA ── */
+    .bottom-cta {
+      text-align: center;
+      padding: 4rem 0 5rem;
+    }
+
+    .bottom-cta h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    .bottom-cta p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--blue-bright);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Scroll animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      .hero { padding: 4rem 0 3rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .step { flex-direction: column; gap: 0.75rem; }
+      .pipeline { flex-direction: column; align-items: center; }
+      .pipe-arrow { transform: rotate(90deg); padding: 0.15rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-badge">San Diego County</div>
+      <h1>The ABC <span class="accent">of ABC</span></h1>
+      <p class="hero-sub">A daily-updated tracker for every new California ABC liquor license issued in San Diego County. Map, filter, search — then reach out.</p>
+      <a href="/jordon/" class="hero-cta">
+        Open the Tracker
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ WHAT IT DOES ═══════════════════ -->
+  <section class="container reveal">
+    <div class="section-label">What it does</div>
+    <h2 class="section-title">New licenses, on your radar</h2>
+    <p class="section-desc">Every morning the pipeline pulls fresh data straight from the California ABC, geocodes each business, and publishes an interactive map and searchable table.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(59,130,246,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7Z"/></svg>
+        </div>
+        <h3>Interactive Map</h3>
+        <p>Every license plotted on an OpenStreetMap. Color-coded dots. Tap a pin to see the full details and jump to Google Maps.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(34,197,94,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
+        </div>
+        <h3>Filter &amp; Search</h3>
+        <p>Toggle by category — on-premise, off-premise, wholesale, other. Search by name, address, or city. Drill into specific license types.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(168,85,247,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <h3>Daily Refresh</h3>
+        <p>Automated pipeline runs every morning. New licenses appear automatically — no manual updates, no stale data.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ HOW TO USE ═══════════════════ -->
+  <section class="container reveal" style="padding-top:2rem;">
+    <div class="section-label">How to use it</div>
+    <h2 class="section-title">Five taps to your next lead</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Pick a category</h3>
+          <p>The four toggle buttons at the top filter the entire view — map and table. Tap one to focus on that license type. Tap it again to show all.</p>
+          <div class="category-row">
+            <span class="cat-pill"><span class="cat-dot" style="background:#3b82f6"></span> On-Premise</span>
+            <span class="cat-pill"><span class="cat-dot" style="background:#22c55e"></span> Off-Premise</span>
+            <span class="cat-pill"><span class="cat-dot" style="background:#a855f7"></span> Wholesale</span>
+            <span class="cat-pill"><span class="cat-dot" style="background:#f97316"></span> Other</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Search or narrow down</h3>
+          <p>Type a business name, street, or city into the search bar. Use the dropdown to filter by a specific license type (e.g., Type 47 — On-Sale General).</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Tap a card or a pin</h3>
+          <p>Each business shows up as a card below the map and a dot on the map. Tap a card and the map scrolls into view and highlights that location. Tap a map pin to see a popup with full details.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Get directions</h3>
+          <p>Every card and popup has a Google Maps link. Tap it to open directions straight from your phone — or look up the business right there.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Make contact</h3>
+          <p>When we have a phone number or website on file, it's right on the card. Tap the number to call, or the link to visit their site. More contact data enriches automatically over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ UNDER THE HOOD ═══════════════════ -->
+  <section class="container reveal" style="padding-top:2rem;">
+    <div class="section-label">Under the hood</div>
+    <h2 class="section-title">Fully automated, zero maintenance</h2>
+    <p class="section-desc">The data pipeline fires every morning. No human in the loop. Here's the flow:</p>
+
+    <div class="pipeline">
+      <div class="pipe-node">CA ABC CSV</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-node">Filter SD County</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-node">Deduplicate</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-node">Geocode</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-node">Enrich Contacts</div>
+      <div class="pipe-arrow">&rarr;</div>
+      <div class="pipe-node" style="border-color:rgba(59,130,246,0.3);color:var(--blue-bright);">Publish</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ BOTTOM CTA ═══════════════════ -->
+  <div class="bottom-cta container">
+    <h2>Ready to take a look?</h2>
+    <p>Open the live tracker — updated this morning.</p>
+    <a href="/jordon/" class="hero-cta">
+      Open the Tracker
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="container">
+    Built by <a href="https://roblogic.org">Rob Logic</a>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
