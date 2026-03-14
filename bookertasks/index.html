@@ -898,13 +898,18 @@
     const src = t.source === 'briefing' ? `<span>Source: Briefing</span>` : `<span>Manual</span>`;
     const due = t.due ? ` &bull; Due: ${t.due}` : '';
     const by = ` &bull; Added by ${t.created_by}, ${formatDate(t.created_at)}`;
-    document.getElementById('modal-meta').innerHTML = src + due + by;
+    // Extract band/contact name for search link
+    const bandName = extractBandName(t.title);
+    const listen = bandName
+      ? ` &bull; <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(bandName + ' band')}" target="_blank" rel="noopener" style="color:var(--link);">Listen</a> &bull; <a href="https://www.google.com/search?q=${encodeURIComponent(bandName + ' band music')}" target="_blank" rel="noopener" style="color:var(--link);">Google</a>`
+      : '';
+    document.getElementById('modal-meta').innerHTML = src + due + by + listen;
 
-    // Context
+    // Context (with clickable links)
     const ctxWrap = document.getElementById('modal-context-wrap');
     if (t.context) {
       ctxWrap.style.display = 'block';
-      document.getElementById('modal-context').textContent = t.context;
+      document.getElementById('modal-context').innerHTML = linkifyUrls(esc(t.context));
     } else {
       ctxWrap.style.display = 'none';
     }
@@ -1125,6 +1130,30 @@
     await api('update', 'POST', { id: taskId, notes: newNotes });
     renderNoteLog(t);
     renderTasks();
+  }
+
+  // --- Band name + link helpers ---
+
+  function extractBandName(title) {
+    // "Reply to Contact Name <email> re: subject" or "Review inquiry from Contact re: subject"
+    let name = title;
+    for (const prefix of ['Reply to ', 'Review inquiry from ']) {
+      if (name.startsWith(prefix)) name = name.slice(prefix.length);
+    }
+    // Strip email in angle brackets
+    name = name.replace(/<[^>]+>/g, '').trim();
+    // Take everything before " re:"
+    const reIdx = name.indexOf(' re:');
+    if (reIdx > 0) name = name.slice(0, reIdx).trim();
+    return name || null;
+  }
+
+  function linkifyUrls(text) {
+    // Find URLs in text and wrap them as clickable links
+    return text.replace(
+      /(https?:\/\/[^\s<>,]+)/g,
+      '<a href="$1" target="_blank" rel="noopener" style="color:var(--link); word-break:break-all;">$1</a>'
+    );
   }
 
   // --- Helpers ---
