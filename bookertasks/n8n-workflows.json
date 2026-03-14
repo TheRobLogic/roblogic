@@ -1,0 +1,732 @@
+[
+  {
+    "name": "Booker Tasks \u2014 List",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "booker-tasks/list",
+          "httpMethod": "GET",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "id": "a1000001-0001-0001-0001-000000000001",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1.1,
+        "position": [
+          250,
+          300
+        ],
+        "webhookId": "booker-tasks-list"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "condition-list-auth",
+                "leftValue": "={{ $json.headers['x-booker-secret'] }}",
+                "rightValue": "83e477b8a39e50d7deb6d28b04c2dbbf4fbdf8636252f3a3072cb37ae649cd51",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "a1000001-0001-0001-0001-000000000002",
+        "name": "Auth Check",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          470,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "const fs = require('fs');\nconst FILE = '/peach-logs/booker-tasks.json';\nconst NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;\nconst now = Date.now();\nconst user = $input.first().json.headers['x-booker-user'] || 'unknown';\n\nlet data;\ntry {\n  data = JSON.parse(fs.readFileSync(FILE, 'utf8'));\n} catch (e) {\n  data = { tasks: [], history: [] };\n}\n\n// Prune done tasks older than 90 days\nconst cutoff = new Date(now - NINETY_DAYS_MS).toISOString();\ndata.tasks = data.tasks.filter(t =>\n  t.status === 'active' || (t.completed_at && t.completed_at > cutoff)\n);\n\n// Prune old history\ndata.history = data.history.filter(h => h.at > cutoff);\n\n// Write pruned data back\nfs.writeFileSync(FILE, JSON.stringify(data, null, 2));\n\nreturn [{ json: { tasks: data.tasks, history: data.history, user } }];"
+        },
+        "id": "a1000001-0001-0001-0001-000000000003",
+        "name": "List Tasks",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          690,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ $json }}",
+          "options": {}
+        },
+        "id": "a1000001-0001-0001-0001-000000000004",
+        "name": "Respond 200",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          910,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\"success\": false, \"error\": \"Forbidden\"}",
+          "options": {
+            "responseCode": 403
+          }
+        },
+        "id": "a1000001-0001-0001-0001-000000000005",
+        "name": "Respond 403",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          690,
+          480
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Auth Check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Auth Check": {
+        "main": [
+          [
+            {
+              "node": "List Tasks",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond 403",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "List Tasks": {
+        "main": [
+          [
+            {
+              "node": "Respond 200",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/Los_Angeles"
+    },
+    "id": "1"
+  },
+  {
+    "name": "Booker Tasks \u2014 Add",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "booker-tasks/add",
+          "responseMode": "responseNode",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "id": "a2000002-0002-0002-0002-000000000001",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1.1,
+        "position": [
+          250,
+          300
+        ],
+        "webhookId": "booker-tasks-add"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "condition-add-auth",
+                "leftValue": "={{ $json.headers['x-booker-secret'] }}",
+                "rightValue": "83e477b8a39e50d7deb6d28b04c2dbbf4fbdf8636252f3a3072cb37ae649cd51",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "a2000002-0002-0002-0002-000000000002",
+        "name": "Auth Check",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          470,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "const fs = require('fs');\nconst FILE = '/peach-logs/booker-tasks.json';\nconst user = $input.first().json.headers['x-booker-user'] || 'unknown';\nconst body = $input.first().json.body;\n\nif (!body || !body.title) {\n  return [{ json: { success: false, error: 'Missing title' } }];\n}\n\nlet data;\ntry {\n  data = JSON.parse(fs.readFileSync(FILE, 'utf8'));\n} catch (e) {\n  data = { tasks: [], history: [] };\n}\n\nconst task = {\n  id: `t-${Date.now()}`,\n  title: body.title,\n  notes: body.notes || '',\n  context: body.context || '',\n  priority: body.priority || 'medium',\n  due: body.due || null,\n  status: 'active',\n  source: user === 'briefing' ? 'briefing' : 'manual',\n  created_at: new Date().toISOString(),\n  created_by: user,\n  completed_at: null,\n  completed_by: null,\n};\n\ndata.tasks.push(task);\ndata.history.push({\n  task_id: task.id,\n  action: 'created',\n  by: user,\n  at: task.created_at,\n  title: null,\n});\n\nfs.writeFileSync(FILE, JSON.stringify(data, null, 2));\nreturn [{ json: { success: true, task } }];"
+        },
+        "id": "a2000002-0002-0002-0002-000000000003",
+        "name": "Add Task",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          690,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ $json }}",
+          "options": {}
+        },
+        "id": "a2000002-0002-0002-0002-000000000004",
+        "name": "Respond 200",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          910,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\"success\": false, \"error\": \"Forbidden\"}",
+          "options": {
+            "responseCode": 403
+          }
+        },
+        "id": "a2000002-0002-0002-0002-000000000005",
+        "name": "Respond 403",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          690,
+          480
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Auth Check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Auth Check": {
+        "main": [
+          [
+            {
+              "node": "Add Task",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond 403",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Add Task": {
+        "main": [
+          [
+            {
+              "node": "Respond 200",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/Los_Angeles"
+    },
+    "id": "2"
+  },
+  {
+    "name": "Booker Tasks \u2014 Add Batch",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "booker-tasks/add-batch",
+          "responseMode": "responseNode",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "id": "a3000003-0003-0003-0003-000000000001",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1.1,
+        "position": [
+          250,
+          300
+        ],
+        "webhookId": "booker-tasks-add-batch"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "condition-batch-auth",
+                "leftValue": "={{ $json.headers['x-booker-secret'] }}",
+                "rightValue": "83e477b8a39e50d7deb6d28b04c2dbbf4fbdf8636252f3a3072cb37ae649cd51",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "a3000003-0003-0003-0003-000000000002",
+        "name": "Auth Check",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          470,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "const fs = require('fs');\nconst FILE = '/peach-logs/booker-tasks.json';\nconst user = $input.first().json.headers['x-booker-user'] || 'unknown';\nconst body = $input.first().json.body;\n\nif (!body || !Array.isArray(body.tasks) || body.tasks.length === 0) {\n  return [{ json: { success: false, error: 'Missing or empty tasks array' } }];\n}\n\nlet data;\ntry {\n  data = JSON.parse(fs.readFileSync(FILE, 'utf8'));\n} catch (e) {\n  data = { tasks: [], history: [] };\n}\n\nconst now = Date.now();\nconst added = [];\n\nfor (let i = 0; i < body.tasks.length; i++) {\n  const t = body.tasks[i];\n  if (!t.title) continue;\n\n  const task = {\n    id: `t-${now + i}`,\n    title: t.title,\n    notes: t.notes || '',\n    context: t.context || '',\n    priority: t.priority || 'medium',\n    due: t.due || null,\n    status: 'active',\n    source: user === 'briefing' ? 'briefing' : 'manual',\n    created_at: new Date().toISOString(),\n    created_by: user,\n    completed_at: null,\n    completed_by: null,\n  };\n\n  data.tasks.push(task);\n  data.history.push({\n    task_id: task.id,\n    action: 'created',\n    by: user,\n    at: task.created_at,\n    title: null,\n  });\n  added.push(task);\n}\n\nfs.writeFileSync(FILE, JSON.stringify(data, null, 2));\nreturn [{ json: { success: true, added: added.length, tasks: added } }];"
+        },
+        "id": "a3000003-0003-0003-0003-000000000003",
+        "name": "Add Batch",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          690,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ $json }}",
+          "options": {}
+        },
+        "id": "a3000003-0003-0003-0003-000000000004",
+        "name": "Respond 200",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          910,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\"success\": false, \"error\": \"Forbidden\"}",
+          "options": {
+            "responseCode": 403
+          }
+        },
+        "id": "a3000003-0003-0003-0003-000000000005",
+        "name": "Respond 403",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          690,
+          480
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Auth Check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Auth Check": {
+        "main": [
+          [
+            {
+              "node": "Add Batch",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond 403",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Add Batch": {
+        "main": [
+          [
+            {
+              "node": "Respond 200",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/Los_Angeles"
+    },
+    "id": "3"
+  },
+  {
+    "name": "Booker Tasks \u2014 Update",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "booker-tasks/update",
+          "responseMode": "responseNode",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "id": "a4000004-0004-0004-0004-000000000001",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1.1,
+        "position": [
+          250,
+          300
+        ],
+        "webhookId": "booker-tasks-update"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "condition-update-auth",
+                "leftValue": "={{ $json.headers['x-booker-secret'] }}",
+                "rightValue": "83e477b8a39e50d7deb6d28b04c2dbbf4fbdf8636252f3a3072cb37ae649cd51",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "a4000004-0004-0004-0004-000000000002",
+        "name": "Auth Check",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          470,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "const fs = require('fs');\nconst FILE = '/peach-logs/booker-tasks.json';\nconst user = $input.first().json.headers['x-booker-user'] || 'unknown';\nconst body = $input.first().json.body;\n\nif (!body || !body.id) {\n  return [{ json: { success: false, error: 'Missing task id' } }];\n}\n\nlet data;\ntry {\n  data = JSON.parse(fs.readFileSync(FILE, 'utf8'));\n} catch (e) {\n  data = { tasks: [], history: [] };\n}\n\nconst idx = data.tasks.findIndex(t => t.id === body.id);\nif (idx === -1) {\n  return [{ json: { success: false, error: 'Task not found' } }];\n}\n\nconst task = data.tasks[idx];\nlet action = 'edited';\n\n// Update allowed fields\nif (body.title !== undefined) task.title = body.title;\nif (body.notes !== undefined) task.notes = body.notes;\nif (body.priority !== undefined) task.priority = body.priority;\nif (body.due !== undefined) task.due = body.due;\n\nif (body.status !== undefined) {\n  if (body.status === 'done' && task.status === 'active') {\n    task.status = 'done';\n    task.completed_at = new Date().toISOString();\n    task.completed_by = user;\n    action = 'completed';\n  } else if (body.status === 'active' && task.status === 'done') {\n    task.status = 'active';\n    task.completed_at = null;\n    task.completed_by = null;\n    action = 'unchecked';\n  }\n}\n\ndata.history.push({\n  task_id: task.id,\n  action,\n  by: user,\n  at: new Date().toISOString(),\n  title: null,\n});\n\nfs.writeFileSync(FILE, JSON.stringify(data, null, 2));\nreturn [{ json: { success: true, task } }];"
+        },
+        "id": "a4000004-0004-0004-0004-000000000003",
+        "name": "Update Task",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          690,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ $json }}",
+          "options": {}
+        },
+        "id": "a4000004-0004-0004-0004-000000000004",
+        "name": "Respond 200",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          910,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\"success\": false, \"error\": \"Forbidden\"}",
+          "options": {
+            "responseCode": 403
+          }
+        },
+        "id": "a4000004-0004-0004-0004-000000000005",
+        "name": "Respond 403",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          690,
+          480
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Auth Check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Auth Check": {
+        "main": [
+          [
+            {
+              "node": "Update Task",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond 403",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Update Task": {
+        "main": [
+          [
+            {
+              "node": "Respond 200",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/Los_Angeles"
+    },
+    "id": "4"
+  },
+  {
+    "name": "Booker Tasks \u2014 Delete",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "booker-tasks/delete",
+          "responseMode": "responseNode",
+          "options": {},
+          "httpMethod": "POST"
+        },
+        "id": "a5000005-0005-0005-0005-000000000001",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1.1,
+        "position": [
+          250,
+          300
+        ],
+        "webhookId": "booker-tasks-delete"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "condition-delete-auth",
+                "leftValue": "={{ $json.headers['x-booker-secret'] }}",
+                "rightValue": "83e477b8a39e50d7deb6d28b04c2dbbf4fbdf8636252f3a3072cb37ae649cd51",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "a5000005-0005-0005-0005-000000000002",
+        "name": "Auth Check",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          470,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "const fs = require('fs');\nconst FILE = '/peach-logs/booker-tasks.json';\nconst user = $input.first().json.headers['x-booker-user'] || 'unknown';\nconst body = $input.first().json.body;\n\nif (!body || !body.id) {\n  return [{ json: { success: false, error: 'Missing task id' } }];\n}\n\nlet data;\ntry {\n  data = JSON.parse(fs.readFileSync(FILE, 'utf8'));\n} catch (e) {\n  data = { tasks: [], history: [] };\n}\n\nconst idx = data.tasks.findIndex(t => t.id === body.id);\nif (idx === -1) {\n  return [{ json: { success: false, error: 'Task not found' } }];\n}\n\nconst title = data.tasks[idx].title;\ndata.tasks.splice(idx, 1);\n\ndata.history.push({\n  task_id: body.id,\n  action: 'deleted',\n  by: user,\n  at: new Date().toISOString(),\n  title,\n});\n\nfs.writeFileSync(FILE, JSON.stringify(data, null, 2));\nreturn [{ json: { success: true, id: body.id } }];"
+        },
+        "id": "a5000005-0005-0005-0005-000000000003",
+        "name": "Delete Task",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          690,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ $json }}",
+          "options": {}
+        },
+        "id": "a5000005-0005-0005-0005-000000000004",
+        "name": "Respond 200",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          910,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={\"success\": false, \"error\": \"Forbidden\"}",
+          "options": {
+            "responseCode": 403
+          }
+        },
+        "id": "a5000005-0005-0005-0005-000000000005",
+        "name": "Respond 403",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          690,
+          480
+        ]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Auth Check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Auth Check": {
+        "main": [
+          [
+            {
+              "node": "Delete Task",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Respond 403",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete Task": {
+        "main": [
+          [
+            {
+              "node": "Respond 200",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "America/Los_Angeles"
+    },
+    "id": "5"
+  }
+]
