@@ -615,7 +615,16 @@
       <div class="modal-actions" id="modal-actions">
         <button class="btn-done" id="modal-btn-done">Mark Done</button>
         <button class="btn-secondary" id="modal-btn-edit">Edit</button>
+        <button class="btn-secondary" id="modal-btn-draft" style="background:rgba(88,166,255,0.15); color:#58a6ff; border:1px solid rgba(88,166,255,0.3);">Draft Email</button>
         <button class="btn-danger" id="modal-btn-delete" style="display:none">Delete</button>
+      </div>
+
+      <div id="modal-draft-section" style="display:none; margin-top:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+          <div class="modal-notes-label" style="margin:0;">Email Draft</div>
+          <button id="modal-btn-copy" style="background:var(--green); color:white; border:none; border-radius:5px; padding:0.3rem 0.8rem; font-size:0.75rem; font-weight:600; font-family:inherit; cursor:pointer;">Copy</button>
+        </div>
+        <div id="modal-draft-output" style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:0.8rem; color:var(--text); font-size:0.85rem; line-height:1.6; white-space:pre-wrap; max-height:300px; overflow-y:auto;"></div>
       </div>
     </div>
   </div>
@@ -911,6 +920,9 @@
     }
     document.getElementById('modal-btn-delete').style.display = 'none';
     document.getElementById('modal-btn-edit').textContent = 'Edit';
+    document.getElementById('modal-draft-section').style.display = 'none';
+    document.getElementById('modal-btn-draft').textContent = 'Draft Email';
+    document.getElementById('modal-btn-draft').disabled = false;
 
     document.getElementById('modal-backdrop').classList.add('open');
   };
@@ -995,6 +1007,49 @@
       renderTasks();
       closeModal();
     }
+  });
+
+  // --- Email Draft ---
+
+  document.getElementById('modal-btn-draft').addEventListener('click', async function() {
+    if (!modalTaskId) return;
+    const t = tasks.find(x => x.id === modalTaskId);
+    if (!t) return;
+
+    const btn = this;
+    const section = document.getElementById('modal-draft-section');
+    const output = document.getElementById('modal-draft-output');
+
+    // Get current notes from the textarea (may have been edited)
+    const notes = document.getElementById('modal-notes').value || '';
+
+    btn.textContent = 'Generating...';
+    btn.disabled = true;
+    section.style.display = 'block';
+    output.textContent = 'Thinking...';
+
+    const data = await api('draft-email', 'POST', {
+      title: t.title,
+      context: t.context || '',
+      notes: notes,
+    });
+
+    btn.textContent = 'Draft Email';
+    btn.disabled = false;
+
+    if (data && data.draft) {
+      output.textContent = data.draft;
+    } else {
+      output.textContent = 'Failed to generate draft. Try again.';
+    }
+  });
+
+  document.getElementById('modal-btn-copy').addEventListener('click', function() {
+    const text = document.getElementById('modal-draft-output').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      this.textContent = 'Copied!';
+      setTimeout(() => { this.textContent = 'Copy'; }, 1500);
+    });
   });
 
   // --- Helpers ---
