@@ -479,6 +479,13 @@
       });
     }, { threshold: 0.15 });
     reveals.forEach(el => observer.observe(el));
+
+    // Notify Rob that someone opened the guide
+    fetch('https://ntfy.sh/roblogic-claude', {
+      method: 'POST',
+      headers: { 'Title': 'Booker Tasks Guide opened', 'Tags': 'books' },
+      body: 'Someone opened the Booker Tasks guide',
+    }).catch(() => {});
   </script>
 </body>
 </html>

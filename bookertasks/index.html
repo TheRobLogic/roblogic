@@ -1020,6 +1020,13 @@
   }
 
   // --- Init ---
+  // Notify Rob that someone opened the checklist
+  fetch('https://ntfy.sh/roblogic-claude', {
+    method: 'POST',
+    headers: { 'Title': 'Booker Tasks opened', 'Tags': 'clipboard' },
+    body: (currentUser || 'unknown') + ' opened the checklist',
+  }).catch(() => {});
+
   loadTasks();
 
 })();
