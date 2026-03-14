@@ -389,12 +389,53 @@
       font-weight: 600;
       margin-bottom: 0.6rem;
     }
+    .modal-subtitle {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-bottom: 0.25rem;
+      margin-top: 0.1rem;
+    }
+    .modal-subtitle a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .modal-subtitle a:hover { color: var(--link); }
     .modal-meta {
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
-    .modal-meta span { color: var(--link); }
+    .modal-meta .meta-pill {
+      background: var(--border);
+      border-radius: 4px;
+      padding: 0.1rem 0.45rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .modal-meta .meta-due {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .modal-meta .meta-links {
+      display: flex;
+      gap: 0.4rem;
+      margin-left: auto;
+    }
+    .modal-meta .meta-links a {
+      color: var(--link);
+      font-size: 0.75rem;
+      text-decoration: none;
+      background: rgba(88,166,255,0.1);
+      border: 1px solid rgba(88,166,255,0.2);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+    }
+    .modal-meta .meta-links a:hover { background: rgba(88,166,255,0.2); }
     .modal-context {
       background: var(--bg);
       border-radius: 6px;
@@ -665,6 +706,7 @@
         <button class="modal-close" id="modal-close">&times;</button>
       </div>
       <div id="modal-title" class="modal-title"></div>
+      <div id="modal-subtitle" class="modal-subtitle"></div>
       <div id="modal-meta" class="modal-meta"></div>
       <div id="modal-context-wrap" class="modal-context" style="display:none">
         <div class="modal-context-label">Context from briefing</div>
@@ -974,26 +1016,50 @@
       `<span class="badge badge-${t.priority}">${t.priority.toUpperCase()}</span>` +
       (t.source === 'briefing' ? ' <span class="badge badge-briefing">BRIEFING</span>' : '');
 
-    document.getElementById('modal-title').textContent = t.title;
+    // Parse title into action + contact + email + subject
+    // Formats: "Reply to Name <email> re: Subject" or "Review inquiry from Name re: Subject"
+    const parsed = parseTitleParts(t.title);
 
-    const src = t.source === 'briefing' ? `<span>Source: Briefing</span>` : `<span>Manual</span>`;
-    const due = t.due ? ` &bull; Due: ${t.due}` : '';
-    const by = ` &bull; Added by ${t.created_by}, ${formatDate(t.created_at)}`;
-    // Show links: real URLs from context first, fallback to search only if it looks like a band
-    const contextUrls = t.context ? extractUrls(t.context) : [];
-    const bandName = extractBandName(t.title);
-    const hasGenre = t.context && /genre:/i.test(t.context);
-    let links = '';
-    if (contextUrls.length > 0) {
-      links = contextUrls.slice(0, 3).map(u => {
-        const label = u.includes('bandcamp') ? 'Bandcamp' : u.includes('spotify') ? 'Spotify' : u.includes('youtube') ? 'YouTube' : u.includes('instagram') ? 'IG' : u.includes('facebook') ? 'FB' : 'Link';
-        return `<a href="${u}" target="_blank" rel="noopener" style="color:var(--link);">${label}</a>`;
-      }).join(' &bull; ');
-      links = ' &bull; ' + links;
-    } else if (bandName && hasGenre) {
-      links = ` &bull; <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(bandName)}" target="_blank" rel="noopener" style="color:var(--link);">YouTube</a> &bull; <a href="https://www.google.com/search?q=${encodeURIComponent(bandName + ' band')}" target="_blank" rel="noopener" style="color:var(--link);">Google</a>`;
+    // Title: just the action verb + contact name
+    document.getElementById('modal-title').textContent = parsed.action + parsed.contact;
+
+    // Subtitle: subject (stripped of Re:/Fwd: noise) + mailto link
+    let subtitleHtml = '';
+    if (parsed.subject) subtitleHtml += `<span>${esc(parsed.subject)}</span>`;
+    if (parsed.email) {
+      if (subtitleHtml) subtitleHtml += '&ensp;';
+      subtitleHtml += `<a href="mailto:${esc(parsed.email)}" title="${esc(parsed.email)}">✉ ${esc(parsed.email)}</a>`;
     }
-    document.getElementById('modal-meta').innerHTML = src + due + by + links;
+    document.getElementById('modal-subtitle').innerHTML = subtitleHtml;
+
+    // Meta row: source pill, due date, links
+    const srcPill = t.source === 'briefing'
+      ? `<span class="meta-pill">Briefing</span>`
+      : `<span class="meta-pill">Manual</span>`;
+    const dueHtml = t.due ? `<span class="meta-due">Due ${t.due}</span>` : '';
+
+    // Links: real URLs from context, fallback to search for bands with genre
+    const contextUrls = t.context ? extractUrls(t.context) : [];
+    const hasGenre = t.context && /genre:/i.test(t.context);
+    let linksHtml = '';
+    if (contextUrls.length > 0) {
+      const linkTags = contextUrls.slice(0, 3).map(u => {
+        const label = u.includes('bandcamp') ? 'Bandcamp'
+          : u.includes('spotify') ? 'Spotify'
+          : u.includes('youtube') ? 'YouTube'
+          : u.includes('instagram') ? 'IG'
+          : u.includes('facebook') ? 'FB' : 'Link';
+        return `<a href="${u}" target="_blank" rel="noopener">${label}</a>`;
+      }).join('');
+      linksHtml = `<span class="meta-links">${linkTags}</span>`;
+    } else if (parsed.contact && hasGenre) {
+      linksHtml = `<span class="meta-links">
+        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(parsed.contact)}" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.google.com/search?q=${encodeURIComponent(parsed.contact + ' band')}" target="_blank" rel="noopener">Google</a>
+      </span>`;
+    }
+
+    document.getElementById('modal-meta').innerHTML = srcPill + dueHtml + linksHtml;
 
     // Context (with clickable links)
     const ctxWrap = document.getElementById('modal-context-wrap');
@@ -1256,6 +1322,42 @@
     await api('update', 'POST', { id: taskId, notes: newNotes });
     renderNoteLog(t);
     renderTasks();
+  }
+
+  // --- Title parsing ---
+
+  function parseTitleParts(title) {
+    // Returns { action, contact, email, subject }
+    // Handles: "Reply to Name <email> re: Subject"
+    //          "Review inquiry from Name <email> re: Subject"
+    //          "Check if Name available April 5" (manual tasks)
+    let action = '', contact = title, email = null, subject = null;
+
+    for (const prefix of ['Reply to ', 'Review inquiry from ']) {
+      if (title.startsWith(prefix)) {
+        action = prefix;
+        contact = title.slice(prefix.length);
+        break;
+      }
+    }
+
+    // Extract email in angle brackets
+    const emailMatch = contact.match(/<([^>]+@[^>]+)>/);
+    if (emailMatch) {
+      email = emailMatch[1];
+      contact = contact.replace(emailMatch[0], '').trim();
+    }
+
+    // Extract subject after " re: "
+    const reIdx = contact.indexOf(' re: ');
+    if (reIdx > 0) {
+      subject = contact.slice(reIdx + 5);
+      contact = contact.slice(0, reIdx).trim();
+      // Strip leading Re:/Fwd: chains from subject
+      subject = subject.replace(/^(Re:\s*|Fwd:\s*)+/i, '').trim();
+    }
+
+    return { action, contact, email, subject };
   }
 
   // --- Band name + link helpers ---
