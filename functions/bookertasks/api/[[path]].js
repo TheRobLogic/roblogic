@@ -37,9 +37,11 @@ Now draft a reply for this task:
 
 Task: ${title}
 
-Context: ${context || 'No additional context.'}
+Context from the booking system:
+${context || 'No context available. Use the task title to infer what the reply should say.'}
+${notes ? `\nAdditional notes from Rob (use these to guide the draft):\n${notes}` : ''}
 
-Notes/instructions: ${notes || 'No specific instructions.'}
+Based on the context above, figure out what the appropriate reply is. If we need to reply to confirm a date, confirm it. If we need to follow up on a stale thread, nudge them. If we need to offer terms, offer them. Use the context to determine what makes sense.
 
 Write ONLY the email body text. No subject line, no greeting, no signature. Match Rob's voice exactly.`;
 
