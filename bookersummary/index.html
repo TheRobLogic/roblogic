@@ -27,6 +27,38 @@ body {
   color: #fff;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+}
+
+.header {
+  background: #fff;
+  padding: 0.9rem 1.5rem 0.75rem;
+  border-bottom: 5px solid var(--red);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.header-venue {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--red);
+}
+.header-slash {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  color: #bbb;
+  line-height: 1;
+}
+.header-page {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #111;
+}
+
+.content {
   max-width: 820px;
   margin: 0 auto;
   padding: 1.5rem 1rem 3rem;
@@ -34,13 +66,11 @@ body {
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
   letter-spacing: 0.04em;
   line-height: 1.1;
-  color: #fff;
+  color: var(--muted);
   margin: 0 0 0.3rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 3px solid var(--red);
 }
 
 h2 {
@@ -139,11 +169,9 @@ hr {
 .nav-strip {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  margin: -1.5rem -1rem 2rem;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   display: flex;
   gap: 0;
-  align-items: center;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -195,19 +223,25 @@ hr {
 }
 
 @media (max-width: 600px) {
-  body { padding: 1rem 0.75rem 2rem; }
-  .nav-strip { margin: -1rem -0.75rem 1.5rem; }
+  .content { padding: 1rem 0.75rem 2rem; }
+  .header { padding: 0.7rem 0.75rem; }
+  .nav-strip { padding: 0 0.5rem; }
 }
 
 @media print {
   body { background: white; color: #222; }
-  h1 { color: #000; border-bottom-color: #222; font-family: Arial; }
+  .header { display: none; }
   h2 { color: #333; border-bottom-color: #ccc; font-family: Arial; }
   .nav-strip { display: none; }
 }
 </style>
 </head>
 <body>
+  <div class="header">
+    <span class="header-venue">Bancroft</span>
+    <span class="header-slash">/</span>
+    <span class="header-page">Booking Briefing</span>
+  </div>
   <nav class="nav-strip">
     <a href="/bookersummary/" class="active">Briefing</a>
     <a href="/bookersummary/archive.html">Archive</a>
@@ -215,80 +249,64 @@ hr {
     <a href="/bookertasks/guide.html">Guide</a>
     <a href="https://bancroftbar.com" target="_blank">Bar Website</a>
   </nav>
-  <h1>Bancroft Booker — Afternoon Briefing</h1>
-  <p class="report-date">Saturday, March 14, 2026 &middot; 12:29 PM</p>
-  <h1>Afternoon Briefing - Saturday, March 14, 2026</h1>
+  <div class="content">
+  <h1>Afternoon Briefing &mdash; Saturday, March 14, 2026 &middot; 01:33 PM</h1>
+  <h1>Afternoon Briefing — Saturday, March 14, 2026</h1>
 <h2>Action Items</h2>
-<p><strong>URGENT - Reply to these 9 threads waiting on us:</strong></p>
-<ul>
-<li><strong>Bird Bath</strong> — Confirm April 2-3 booking, they have local act secured for the 3rd</li>
-<li><strong>Illintention</strong> — Confirm June 19th booking </li>
-<li><strong>Matters Most</strong> — Address their request to move Jan 23 show to March 28 (4 days waiting)</li>
-<li><strong>Hooch Band</strong> — Respond with specific April/May date offer (4 days waiting)</li>
-<li><strong>Super Buffet</strong> — Follow up on April/May availability via Promo Pete (4 days waiting)</li>
-<li><strong>Pressing Strings</strong> — Confirm hold dates for late July/early August West Coast tour (4 days waiting)</li>
-<li><strong>Hot Brown Smackdown</strong> — Respond to August-September availability request (2 days waiting)</li>
-<li><strong>The Harbingers</strong> — Address May 8-10 grunge punk tour dates (3 days waiting)</li>
-<li><strong>Astro Dice Tarot</strong> — Confirm April 10, 17, 18 availability via Laura Barker (1 day waiting)</li>
-</ul>
+<p><strong>Reply to BIRDBATH</strong> — They're following up on April 2-3 booking, have one local secured for the 3rd, need confirmation on moving forward with full bill.</p>
+<p><strong>Confirm with Illintention</strong> — They're locked for June 19th with one band secured, need your OK to proceed.</p>
+<p><strong>Handle Matters Most date change</strong> — Want to move from Jan 23 to March 28. March 28 currently shows "Matters Most / TBA" so likely already moved in calendar, just need to confirm with them.</p>
+<p><strong>Follow up with Hooch Band</strong> — 4 days cold on extensive April/May availability request (every Fri/Sat except specific dates).</p>
+<p><strong>Close Super Buffet</strong> — Kayla offered April/May dates, they've been silent 5 days. Push or pass.</p>
 <h2>Active Conversations</h2>
-<ul>
-<li><strong>mc chris</strong> — Payment terms being negotiated ($1000 or 80% for headliner, $400 for opener mega ran) for 6/12/26</li>
-<li><strong>Tlaquaxe</strong> — Surf crust band wants April 11th tour date, basic inquiry stage</li>
-</ul>
+<p><strong>mc chris (June 12)</strong> — Payment terms being negotiated. $1000 or 80% after expenses for headliner, $400 for opener mega ran. Ball in their court since yesterday.</p>
+<p><strong>Tlaquaxe (April 11)</strong> — Surf crust band wants the date, 4 days since last contact. April 11 shows open on calendar.</p>
 <h2>New Inquiries</h2>
-<p><strong>Fresh leads (unread):</strong></p>
-<ul>
-<li><strong>Carol Pacey</strong> (via Sean Padilla) — Americana acoustic duo from Phoenix, May 28-31. Shared stages with 10,000 Maniacs</li>
-<li><strong>GRAVEYARD PEOPLE</strong> (via Sean Padilla) — Comedic psych-rock duo from Denver, wants March 19/21/22 (note: 50 days old)</li>
-<li><strong>Juno Dunes</strong> (via Kevin White/Pivotal Touring) — Touring band wants March 18/19/21 (49 days old)</li>
-<li><strong>Multiple AFM Entertainment tributes</strong> — Len Schmitzer pitching Bon Jovi/Journey, Mötley Crüe, and The Who tributes (all 43 days old)</li>
-<li><strong>Crashing Wayward</strong> — Wants April 24 (36 days old)</li>
-<li><strong>Igimèjí</strong> — LA/Dallas R&amp;B/Rock/Neo Soul for August 11 or 14 (12 days old)</li>
-<li><strong>Tlaquaxe</strong> — April 11 via booking form (5 days old)</li>
-<li><strong>BECKONER + FINAL FALL</strong> — LA metal bands want July 21 (18 days old)</li>
-<li><strong>BipolArte</strong> — LA rock band with 400+ shows experience (55 days old)</li>
-</ul>
-<p><strong>Multiple test band submissions</strong> — Several "Test Band" entries from March 9, likely form testing</p>
+<p><strong>Carol Pacey</strong> (via Sean Padilla) — Phoenix Americana duo, shared stages with 10,000 Maniacs. Wants May 28-31 range.</p>
+<p><strong>GRAVEYARD PEOPLE</strong> (via Sean Padilla) — Denver comedic psych-rock duo, March 19/21/22. <strong>50 days old</strong> but just surfaced.</p>
+<p><strong>Juno Dunes</strong> (via Kevin White/Pivotal) — Touring band wants March 18/19/21. <strong>49 days old</strong>.</p>
+<p><strong>Three AFM Entertainment tributes</strong> (via Len Schmitzer) — Two for the Show (Bon Jovi/Journey), Wreking Crüe (Motley Crue), Teenage Wasteland (The Who). All <strong>43 days old</strong>.</p>
+<p><strong>Igimèjí</strong> — LA/Dallas R&amp;B/Rock/Neo Soul, wants Aug 11 or 14. Solid promo plan mentioned.</p>
+<p><strong>Several form submissions</strong> — Tlaquaxe (April 11), Sami Siteman, multiple "Test Band" entries. Most need follow-up.</p>
 <h2>Calendar Watch</h2>
-<p><strong>Wide open Fri/Sat nights:</strong><br />
-- March 20 (Friday)<br />
-- March 27 (Friday) <br />
-- April 10 (Friday)<br />
-- April 11 (Saturday) — Multiple bands want this date<br />
-- April 17 (Friday)<br />
-- April 18 (Saturday)<br />
-- April 25 (Saturday)</p>
-<p><strong>Thin bills needing locals:</strong><br />
-- <strong>Tonight (March 14)</strong> — Solicitor/Trencher + TBA<br />
-- March 21 — Only Leandra hold<br />
-- March 28 — Only Matters Most (if they get moved date)<br />
-- April 2-3 — Birdbath holds but need full bills<br />
-- April 24 — Crashing Wayward needs local support</p>
-<p><strong>Hot date conflicts:</strong><br />
-- <strong>April 11</strong> — Both Tlaquaxe (form) and Tlaquaxe (direct email) want this, plus it's open<br />
-- <strong>August 11</strong> — Both Boosty and Igimèjí requesting</p>
+<p><strong>Tonight (March 14)</strong> — Solicitor/Trencher/TBA. Need third band.</p>
+<p><strong>Open weekend nights</strong> — March 20, 27, April 10 (Fri), April 11 (Sat), April 17 (Fri), April 18 (Sat), April 25 (Sat).</p>
+<p><strong>Thin bills needing attention:</strong><br />
+- March 21: Just "Hold for Leandra" <br />
+- March 28: Matters Most + TBA (if their date change confirmed)<br />
+- March 30: Goddamn Ranchhand Band hold (Monday show)<br />
+- April 2-3: BIRDBATH holds (awaiting your reply)<br />
+- April 24: Crashing Wayward + need locals</p>
+<p><strong>Hot availability matches:</strong><br />
+- Tlaquaxe wants April 11 (open Saturday)<br />
+- Multiple bands want March 19/21 dates<br />
+- GRAVEYARD PEOPLE and Juno Dunes overlap on March 19/21</p>
 <h2>Stale Leads</h2>
-<p><strong>Ancient inquiries (40+ days) worth considering:</strong><br />
-- <strong>AFM Entertainment tributes</strong> — Professional acts, could fill bigger dates<br />
-- <strong>GRAVEYARD PEOPLE/Juno Dunes</strong> — March dates they wanted are next week<br />
-- <strong>BipolArte</strong> — Experienced touring act (400+ shows)</p>
-<p><strong>Payment issues:</strong><br />
-- <strong>SD Metal Massacre</strong> — Vincent Platte claiming money owed from Jan 27/Feb 7 shows (21 days)</p>
-<p><strong>Probably dead:</strong><br />
-- Multiple 50+ day old form submissions<br />
-- <strong>Rohini Chandra</strong> — 62 days, solo acoustic act</p>
+<p><strong>22+ days cold:</strong><br />
+- SD Metal Massacre — Payment dispute over January/February shows<br />
+- Boosty (August 11) — El Paso artist via Bentley<br />
+- Multiple confirmed March shows went quiet: Fudosa (3/15), Auroras Hope, None!/Fractured Obscurity (3/19)</p>
+<p><strong>Recent but cooling (10+ days):</strong><br />
+- Pressing Strings (Jesse Dunn) — Roots rock from Annapolis, August tour dates<br />
+- Hot Brown Smackdown (Ryan Allen) — Louisville jam band, August-September<br />
+- The Harbingers — LA grunge punk, May 8-10 weekend<br />
+- Astro Dice Tarot — Laura Barker confirmed April 10/17/18 availability</p>
+<p><strong>Worth saving:</strong><br />
+- <strong>Pressing Strings</strong> and <strong>Hot Brown Smackdown</strong> are pro touring acts with agency representation<br />
+- <strong>The Harbingers</strong> are on album release tour<br />
+- <strong>Astro Dice Tarot</strong> got confirmed dates, just need final word</p>
+<p><strong>Let die:</strong><br />
+- AFM Entertainment tributes (43 days, mass pitch)<br />
+- Test band form spam<br />
+- Payment dispute threads</p>
 <h2>Stats</h2>
-<ul>
-<li><strong>756 total emails processed</strong> YTD</li>
-<li><strong>492 active threads</strong> (filtered out noise)</li>
-<li><strong>320 booking-related</strong> emails</li>
-<li><strong>20 noise messages</strong> filtered</li>
-</ul>
-<p><strong>Current pipeline:</strong> 9 threads need immediate replies, 2 active negotiations, 19+ new inquiries to process. April booking up but March still has gaps.</p>
+<p><strong>YTD:</strong> 756 total emails processed, 492 active threads, 320 booking-related</p>
+<p><strong>Current load:</strong> 9 urgent replies needed, 2 active negotiations, 19 new inquiries, 31 stale threads over 5 days</p>
+<p><strong>Calendar status:</strong> 7 open prime slots next 6 weeks, 8 shows need filling out</p>
   <hr>
-  <p style="color: var(--text-muted); font-size: 0.8rem;">
+  <p style="color: var(--dim); font-size: 0.8rem; font-family: 'Special Elite', cursive;">
     Generated by the Bancroft Booking Agent. Data: Gmail API (read-only), Google Calendar.
   </p>
+  </div>
 </body>
 </html>
