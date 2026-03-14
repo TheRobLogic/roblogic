@@ -610,12 +610,17 @@
       </div>
 
       <div class="modal-notes-label">Notes</div>
-      <textarea class="modal-notes" id="modal-notes" placeholder="Add notes..."></textarea>
+      <div id="modal-notes-log" style="margin-bottom:0.5rem;"></div>
+      <div style="display:flex; gap:0.5rem; align-items:flex-end;">
+        <textarea class="modal-notes" id="modal-notes-input" placeholder="Add a note..." style="margin-bottom:0; min-height:50px;"></textarea>
+        <button id="modal-btn-add-note" style="background:var(--accent); color:white; border:none; border-radius:6px; padding:0.5rem 0.8rem; font-weight:600; font-family:inherit; cursor:pointer; white-space:nowrap; height:fit-content;">Add Note</button>
+      </div>
 
       <div class="modal-actions" id="modal-actions">
         <button class="btn-done" id="modal-btn-done">Mark Done</button>
         <button class="btn-secondary" id="modal-btn-edit">Edit</button>
         <button class="btn-secondary" id="modal-btn-draft" style="background:rgba(88,166,255,0.15); color:#58a6ff; border:1px solid rgba(88,166,255,0.3);">Draft Email</button>
+        <button class="btn-secondary" id="modal-btn-nah" style="background:rgba(139,148,158,0.15); color:var(--text-muted); border:1px solid rgba(139,148,158,0.3);">Nah</button>
         <button class="btn-danger" id="modal-btn-delete" style="display:none">Delete</button>
       </div>
 
@@ -778,7 +783,9 @@
     const prioClass = t.priority === 'high' ? ' high' : '';
     const prioBadge = `<span class="badge badge-${t.priority}">${t.priority === 'medium' ? 'MED' : t.priority.toUpperCase()}</span>`;
     const srcBadge = t.source === 'briefing' ? ' <span class="badge badge-briefing">BRIEFING</span>' : '';
-    const notes = t.notes ? `<div class="task-notes-preview">${esc(t.notes)}</div>` : '';
+    const noteLog = parseNotes(t.notes);
+    const lastNote = noteLog.length ? noteLog[noteLog.length - 1] : null;
+    const notes = lastNote ? `<div class="task-notes-preview">${esc(lastNote.text)}</div>` : '';
     const due = t.due ? `Due: ${t.due}` : '';
     const by = `Added by ${t.created_by}, ${formatDate(t.created_at)}`;
     const meta = [due, by].filter(Boolean).join(' &bull; ');
@@ -902,8 +909,9 @@
       ctxWrap.style.display = 'none';
     }
 
-    // Notes
-    document.getElementById('modal-notes').value = t.notes || '';
+    // Notes log
+    renderNoteLog(t);
+    document.getElementById('modal-notes-input').value = '';
 
     // Edit fields
     document.getElementById('modal-edit-section').style.display = 'none';
@@ -941,16 +949,22 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  // Notes auto-save on blur
-  document.getElementById('modal-notes').addEventListener('blur', async function() {
+  // Add Note button
+  document.getElementById('modal-btn-add-note').addEventListener('click', async function() {
     if (!modalTaskId) return;
-    const t = tasks.find(x => x.id === modalTaskId);
-    if (!t) return;
-    const newNotes = this.value;
-    if (newNotes === (t.notes || '')) return;
-    t.notes = newNotes;
-    await api('update', 'POST', { id: modalTaskId, notes: newNotes });
-    renderTasks();
+    const input = document.getElementById('modal-notes-input');
+    const text = input.value.trim();
+    if (!text) return;
+    await addNoteToTask(modalTaskId, text);
+    input.value = '';
+  });
+
+  // Enter key in note input (shift+enter for newline)
+  document.getElementById('modal-notes-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      document.getElementById('modal-btn-add-note').click();
+    }
   });
 
   // Mark Done from modal
@@ -1009,6 +1023,15 @@
     }
   });
 
+  // --- Nah (pass on this task) ---
+
+  document.getElementById('modal-btn-nah').addEventListener('click', async function() {
+    if (!modalTaskId) return;
+    await addNoteToTask(modalTaskId, 'Passed');
+    await window._toggleDone(modalTaskId);
+    closeModal();
+  });
+
   // --- Email Draft ---
 
   document.getElementById('modal-btn-draft').addEventListener('click', async function() {
@@ -1020,8 +1043,11 @@
     const section = document.getElementById('modal-draft-section');
     const output = document.getElementById('modal-draft-output');
 
-    // Get current notes from the textarea (may have been edited)
-    const notes = document.getElementById('modal-notes').value || '';
+    // Gather notes log + any text in the input as direction
+    const noteLog = parseNotes(t.notes);
+    const logText = noteLog.map(n => n.text).join('\n');
+    const inputText = document.getElementById('modal-notes-input').value || '';
+    const allNotes = [logText, inputText].filter(Boolean).join('\n');
 
     btn.textContent = 'Generating...';
     btn.disabled = true;
@@ -1031,7 +1057,7 @@
     const data = await api('draft-email', 'POST', {
       title: t.title,
       context: t.context || '',
-      notes: notes,
+      notes: allNotes,
     });
 
     btn.textContent = 'Draft Email';
@@ -1039,6 +1065,8 @@
 
     if (data && data.draft) {
       output.textContent = data.draft;
+      // Append "Email drafted" to notes
+      await addNoteToTask(modalTaskId, 'Email drafted');
     } else {
       output.textContent = 'Failed to generate draft. Try again.';
     }
@@ -1051,6 +1079,53 @@
       setTimeout(() => { this.textContent = 'Copy'; }, 1500);
     });
   });
+
+  // --- Notes helpers ---
+
+  // Notes are stored as a JSON array string: [{"text":"...", "by":"rob", "at":"2026-03-14T..."}]
+  // Legacy: if notes is a plain string, treat it as a single entry
+  function parseNotes(notes) {
+    if (!notes) return [];
+    try {
+      const parsed = JSON.parse(notes);
+      if (Array.isArray(parsed)) return parsed;
+    } catch (e) {}
+    // Legacy string — wrap as a single entry
+    return [{ text: notes, by: '?', at: '' }];
+  }
+
+  function renderNoteLog(task) {
+    const el = document.getElementById('modal-notes-log');
+    const log = parseNotes(task.notes);
+    if (log.length === 0) {
+      el.innerHTML = '<div style="color:var(--text-muted); font-size:0.8rem; font-style:italic; margin-bottom:0.5rem;">No notes yet</div>';
+      return;
+    }
+    el.innerHTML = log.map(n => {
+      const when = n.at ? formatDate(n.at) : '';
+      const who = n.by || '?';
+      const isSystem = n.text === 'Email drafted';
+      const style = isSystem
+        ? 'color:var(--link); font-style:italic;'
+        : 'color:var(--text);';
+      return `<div style="padding:0.4rem 0; border-bottom:1px solid var(--border); font-size:0.82rem;">
+        <span style="${style}">${esc(n.text)}</span>
+        <span style="color:var(--text-muted); font-size:0.7rem; margin-left:0.5rem;">${who}, ${when}</span>
+      </div>`;
+    }).join('');
+  }
+
+  async function addNoteToTask(taskId, text) {
+    const t = tasks.find(x => x.id === taskId);
+    if (!t) return;
+    const log = parseNotes(t.notes);
+    log.push({ text, by: currentUser, at: new Date().toISOString() });
+    const newNotes = JSON.stringify(log);
+    t.notes = newNotes;
+    await api('update', 'POST', { id: taskId, notes: newNotes });
+    renderNoteLog(t);
+    renderTasks();
+  }
 
   // --- Helpers ---
 
