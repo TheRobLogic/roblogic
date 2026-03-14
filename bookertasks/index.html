@@ -898,12 +898,21 @@
     const src = t.source === 'briefing' ? `<span>Source: Briefing</span>` : `<span>Manual</span>`;
     const due = t.due ? ` &bull; Due: ${t.due}` : '';
     const by = ` &bull; Added by ${t.created_by}, ${formatDate(t.created_at)}`;
-    // Extract band/contact name for search link
+    // Show links: real URLs from context first, fallback to search only if it looks like a band
+    const contextUrls = t.context ? extractUrls(t.context) : [];
     const bandName = extractBandName(t.title);
-    const listen = bandName
-      ? ` &bull; <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(bandName + ' band')}" target="_blank" rel="noopener" style="color:var(--link);">Listen</a> &bull; <a href="https://www.google.com/search?q=${encodeURIComponent(bandName + ' band music')}" target="_blank" rel="noopener" style="color:var(--link);">Google</a>`
-      : '';
-    document.getElementById('modal-meta').innerHTML = src + due + by + listen;
+    const hasGenre = t.context && /genre:/i.test(t.context);
+    let links = '';
+    if (contextUrls.length > 0) {
+      links = contextUrls.slice(0, 3).map(u => {
+        const label = u.includes('bandcamp') ? 'Bandcamp' : u.includes('spotify') ? 'Spotify' : u.includes('youtube') ? 'YouTube' : u.includes('instagram') ? 'IG' : u.includes('facebook') ? 'FB' : 'Link';
+        return `<a href="${u}" target="_blank" rel="noopener" style="color:var(--link);">${label}</a>`;
+      }).join(' &bull; ');
+      links = ' &bull; ' + links;
+    } else if (bandName && hasGenre) {
+      links = ` &bull; <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(bandName)}" target="_blank" rel="noopener" style="color:var(--link);">YouTube</a> &bull; <a href="https://www.google.com/search?q=${encodeURIComponent(bandName + ' band')}" target="_blank" rel="noopener" style="color:var(--link);">Google</a>`;
+    }
+    document.getElementById('modal-meta').innerHTML = src + due + by + links;
 
     // Context (with clickable links)
     const ctxWrap = document.getElementById('modal-context-wrap');
@@ -1146,6 +1155,11 @@
     const reIdx = name.indexOf(' re:');
     if (reIdx > 0) name = name.slice(0, reIdx).trim();
     return name || null;
+  }
+
+  function extractUrls(text) {
+    const matches = text.match(/https?:\/\/[^\s<>,]+/g);
+    return matches || [];
   }
 
   function linkifyUrls(text) {
