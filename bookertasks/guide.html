@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #06090f;
@@ -330,6 +331,61 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Concert poster nav */
+    .cp-header {
+      background: #fff;
+      padding: 0.9rem 1.5rem 0.75rem;
+      border-bottom: 5px solid #d42b2b;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .cp-venue {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: #d42b2b;
+    }
+    .cp-slash {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: #bbb;
+      line-height: 1;
+    }
+    .cp-page {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: #111;
+    }
+    .cp-nav {
+      background: #111;
+      border-bottom: 1px solid #242424;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 0;
+    }
+    .cp-nav a {
+      color: #777;
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      padding: 0.7rem 1rem;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      display: block;
+      font-family: 'Inter', sans-serif;
+    }
+    .cp-nav a:hover { color: #fff; }
+    .cp-nav a.active { color: #fff; border-bottom-color: #d42b2b; }
+
     /* ── Mobile ── */
     @media (max-width: 700px) {
       .hero { padding: 4rem 0 3rem; }
@@ -339,6 +395,18 @@
   </style>
 </head>
 <body>
+
+  <div class="cp-header">
+    <span class="cp-venue">Bancroft</span>
+    <span class="cp-slash">/</span>
+    <span class="cp-page">Booking Tasks</span>
+  </div>
+  <nav class="cp-nav">
+    <a href="/bookersummary/">Briefing</a>
+    <a href="/bookertasks/">Tasks</a>
+    <a href="/bookertasks/guide.html" class="active">Guide</a>
+    <a href="https://bancroftbar.com" target="_blank">Home</a>
+  </nav>
 
   <div class="hero">
     <div class="container">

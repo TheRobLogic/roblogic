@@ -3,103 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morning Briefing — Bancroft Booker</title>
+  <title>Afternoon Briefing — Bancroft Booker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
 :root {
-  --bg: #0f1318;
-  --surface: #1a1f27;
-  --border: #2a3040;
-  --text: #c9d1d9;
-  --text-muted: #8b949e;
-  --heading: #f0f3f6;
-  --accent: #e87c2a;
-  --accent-dim: rgba(232, 124, 42, 0.15);
-  --green: #3fb950;
-  --red: #f85149;
-  --link: #58a6ff;
+  --bg: #0a0a0a;
+  --surface: #111;
+  --white: #ffffff;
+  --red: #d42b2b;
+  --yellow: #f5c500;
+  --muted: #777;
+  --dim: #444;
+  --border: #242424;
+  --green: #3a9a4a;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
   background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  padding: 2rem;
-  max-width: 900px;
+  color: #fff;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  max-width: 820px;
   margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
 }
 
 h1 {
-  color: var(--heading);
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--accent);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0 0 0.3rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px solid var(--red);
 }
 
 h2 {
-  color: var(--heading);
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.4rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  margin: 2rem 0 0.6rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--border);
 }
 
 h3 {
-  color: var(--accent);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 1.8rem 0 0.6rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin: 1.4rem 0 0.5rem;
 }
 
 h4 {
-  color: var(--text-muted);
-  font-size: 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
   font-weight: 600;
-  margin: 1.2rem 0 0.4rem;
+  margin: 1rem 0 0.4rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 p { margin: 0.6rem 0; }
 
-strong { color: var(--heading); }
+strong { color: #fff; font-weight: 600; }
 
-a { color: var(--link); text-decoration: none; }
+a { color: var(--yellow); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-ul, ol {
-  margin: 0.6rem 0 0.6rem 1.5rem;
-}
-
-li { margin: 0.3rem 0; }
+ul, ol { margin: 0.5rem 0 0.5rem 1.4rem; }
+li { margin: 0.35rem 0; }
 
 blockquote {
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--red);
   padding: 0.5rem 1rem;
   margin: 1rem 0;
-  background: var(--accent-dim);
-  border-radius: 0 6px 6px 0;
+  background: rgba(212,43,43,0.08);
 }
 
 code {
   font-family: 'SF Mono', 'Fira Code', monospace;
-  background: var(--surface);
+  background: #161616;
   padding: 0.15rem 0.4rem;
-  border-radius: 4px;
   font-size: 0.9em;
 }
 
 pre {
-  background: var(--surface);
+  background: #161616;
   border: 1px solid var(--border);
-  border-radius: 8px;
   padding: 1rem;
   overflow-x: auto;
   margin: 1rem 0;
@@ -115,13 +112,15 @@ table {
 }
 
 th {
-  background: var(--surface);
-  color: var(--heading);
+  background: #161616;
+  color: #fff;
   font-weight: 600;
   text-align: left;
   padding: 0.6rem 0.8rem;
   border: 1px solid var(--border);
   white-space: nowrap;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.06em;
 }
 
 td {
@@ -129,8 +128,7 @@ td {
   border: 1px solid var(--border);
 }
 
-tr:nth-child(even) td { background: rgba(26, 31, 39, 0.5); }
-tr:hover td { background: var(--accent-dim); }
+tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
 
 hr {
   border: none;
@@ -138,112 +136,156 @@ hr {
   margin: 2rem 0;
 }
 
-.nav {
-  margin-bottom: 2rem;
-  padding: 1rem;
+.nav-strip {
   background: var(--surface);
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: -1.5rem -1rem 2rem;
+  padding: 0 1rem;
+  display: flex;
+  gap: 0;
+  align-items: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.nav a { color: var(--accent); font-weight: 500; margin-right: 1.5rem; }
+.nav-strip a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 0.7rem 1rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  display: block;
+}
+
+.nav-strip a:hover { color: #fff; }
+.nav-strip a.active { color: #fff; border-bottom-color: var(--red); }
 
 .report-date {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: var(--muted);
+  font-size: 0.82rem;
   margin-bottom: 1.5rem;
+  font-family: 'Special Elite', cursive;
 }
 
 .archive-entry {
   padding: 1rem;
-  margin: 0.8rem 0;
+  margin: 0.6rem 0;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-left: 3px solid var(--red);
+  cursor: pointer;
 }
 
 .archive-entry .date {
-  color: var(--accent);
-  font-weight: 600;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: #fff;
 }
 
 .archive-entry .preview {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  color: var(--muted);
+  font-size: 0.85rem;
   margin-top: 0.3rem;
+  font-family: 'Special Elite', cursive;
+}
+
+@media (max-width: 600px) {
+  body { padding: 1rem 0.75rem 2rem; }
+  .nav-strip { margin: -1rem -0.75rem 1.5rem; }
 }
 
 @media print {
-  body { background: white; color: #222; max-width: 100%; }
-  h1 { border-bottom-color: #222; color: #000; }
-  h2 { color: #000; border-bottom-color: #ccc; }
-  h3 { color: #444; }
-  .nav { display: none; }
+  body { background: white; color: #222; }
+  h1 { color: #000; border-bottom-color: #222; font-family: Arial; }
+  h2 { color: #333; border-bottom-color: #ccc; font-family: Arial; }
+  .nav-strip { display: none; }
 }
 </style>
 </head>
 <body>
-  <div class="nav">
+  <nav class="nav-strip">
+    <a href="/bookersummary/" class="active">Briefing</a>
     <a href="/bookersummary/archive.html">Archive</a>
     <a href="/bookertasks/">Tasks</a>
-    <a href="/bookertasks/guide.html">Tasks Guide</a>
-    <a href="/">Home</a>
-  </div>
-  <h1>Bancroft Booker — Morning Briefing</h1>
-  <p class="report-date">Saturday, March 14, 2026 &middot; 09:01 AM</p>
-  <h1>Morning Briefing — Saturday, March 14, 2026</h1>
+    <a href="/bookertasks/guide.html">Guide</a>
+    <a href="https://bancroftbar.com" target="_blank">Home</a>
+  </nav>
+  <h1>Bancroft Booker — Afternoon Briefing</h1>
+  <p class="report-date">Saturday, March 14, 2026 &middot; 12:29 PM</p>
+  <h1>Afternoon Briefing - Saturday, March 14, 2026</h1>
 <h2>Action Items</h2>
+<p><strong>URGENT - Reply to these 9 threads waiting on us:</strong></p>
 <ul>
-<li><strong>Reply to Matters Most</strong> — They want to move their Jan 23 show to March 28. Been 4 days. Make the call.</li>
-<li><strong>Get back to Hooch Band</strong> — They want April/May Fri/Sat slots. 4 days cold. Send them available dates.</li>
-<li><strong>Follow up with Super Buffet</strong> — Promo Pete waiting on April/May dates. Kayla offered holds 4 days ago.</li>
-<li><strong>Close Pressing Strings</strong> — Jesse Dunn wants late July/early August holds. Quality touring act from Annapolis.</li>
-<li><strong>Book The Harbingers</strong> — LA grunge punk wants May 8-10 for album release tour. 3 days out.</li>
-<li><strong>Confirm with Astro Dice Tarot</strong> — Laura Barker got April dates yesterday. Lock it down.</li>
+<li><strong>Bird Bath</strong> — Confirm April 2-3 booking, they have local act secured for the 3rd</li>
+<li><strong>Illintention</strong> — Confirm June 19th booking </li>
+<li><strong>Matters Most</strong> — Address their request to move Jan 23 show to March 28 (4 days waiting)</li>
+<li><strong>Hooch Band</strong> — Respond with specific April/May date offer (4 days waiting)</li>
+<li><strong>Super Buffet</strong> — Follow up on April/May availability via Promo Pete (4 days waiting)</li>
+<li><strong>Pressing Strings</strong> — Confirm hold dates for late July/early August West Coast tour (4 days waiting)</li>
+<li><strong>Hot Brown Smackdown</strong> — Respond to August-September availability request (2 days waiting)</li>
+<li><strong>The Harbingers</strong> — Address May 8-10 grunge punk tour dates (3 days waiting)</li>
+<li><strong>Astro Dice Tarot</strong> — Confirm April 10, 17, 18 availability via Laura Barker (1 day waiting)</li>
 </ul>
 <h2>Active Conversations</h2>
 <ul>
-<li><strong>BIRDBATH</strong> — April 2-3 weekend locked, working on filling bills. Following up yesterday.</li>
-<li><strong>Illintention</strong> — June 19 confirmed, one band secured. Replied yesterday.</li>
-<li><strong>Hot Brown Smackdown</strong> — Ryan Allen wants late August dates. Louisville rock/jam/bluegrass. Fresh inquiry.</li>
-<li><strong>mc chris</strong> — June 12 locked with mega ran opening. Negotiating guarantees ($1000 vs 80% split).</li>
-<li><strong>Luicidal</strong> — May 10 hold confirmed with Something Outrageous. Waiting on their move.</li>
-<li><strong>Tlaquaxe</strong> — Surf crust band wants April 11. Been 4 days quiet.</li>
+<li><strong>mc chris</strong> — Payment terms being negotiated ($1000 or 80% for headliner, $400 for opener mega ran) for 6/12/26</li>
+<li><strong>Tlaquaxe</strong> — Surf crust band wants April 11th tour date, basic inquiry stage</li>
 </ul>
 <h2>New Inquiries</h2>
+<p><strong>Fresh leads (unread):</strong></p>
 <ul>
-<li><strong>Carol Pacey</strong> — Sean Padilla (Happy Nomad Booking) pitching Americana duo from Phoenix. May 28-31 range. Shared stages with 10,000 Maniacs.</li>
+<li><strong>Carol Pacey</strong> (via Sean Padilla) — Americana acoustic duo from Phoenix, May 28-31. Shared stages with 10,000 Maniacs</li>
+<li><strong>GRAVEYARD PEOPLE</strong> (via Sean Padilla) — Comedic psych-rock duo from Denver, wants March 19/21/22 (note: 50 days old)</li>
+<li><strong>Juno Dunes</strong> (via Kevin White/Pivotal Touring) — Touring band wants March 18/19/21 (49 days old)</li>
+<li><strong>Multiple AFM Entertainment tributes</strong> — Len Schmitzer pitching Bon Jovi/Journey, Mötley Crüe, and The Who tributes (all 43 days old)</li>
+<li><strong>Crashing Wayward</strong> — Wants April 24 (36 days old)</li>
+<li><strong>Igimèjí</strong> — LA/Dallas R&amp;B/Rock/Neo Soul for August 11 or 14 (12 days old)</li>
+<li><strong>Tlaquaxe</strong> — April 11 via booking form (5 days old)</li>
+<li><strong>BECKONER + FINAL FALL</strong> — LA metal bands want July 21 (18 days old)</li>
+<li><strong>BipolArte</strong> — LA rock band with 400+ shows experience (55 days old)</li>
 </ul>
+<p><strong>Multiple test band submissions</strong> — Several "Test Band" entries from March 9, likely form testing</p>
 <h2>Calendar Watch</h2>
-<p><strong>TONIGHT (3/14)</strong> — Only Solicitor + Trencher booked, need third band</p>
-<p><strong>Open weekends burning</strong>:<br />
-- Fri 3/20 — Wide open<br />
-- Fri 3/27 — Wide open<br />
-- Fri 4/10, Sat 4/11 — Back-to-back available<br />
-- Fri 4/17, Sat 4/18 — Another weekend pair</p>
-<p><strong>Thin bills needing attention</strong>:<br />
-- 3/21 — Just Leandra hold<br />
-- 3/28 — Matters Most wants this (see Action Items)<br />
-- 3/30 — Goddamn Ranchhand Band hold<br />
-- 4/24 — Crashing Wayward needs locals</p>
+<p><strong>Wide open Fri/Sat nights:</strong><br />
+- March 20 (Friday)<br />
+- March 27 (Friday) <br />
+- April 10 (Friday)<br />
+- April 11 (Saturday) — Multiple bands want this date<br />
+- April 17 (Friday)<br />
+- April 18 (Saturday)<br />
+- April 25 (Saturday)</p>
+<p><strong>Thin bills needing locals:</strong><br />
+- <strong>Tonight (March 14)</strong> — Solicitor/Trencher + TBA<br />
+- March 21 — Only Leandra hold<br />
+- March 28 — Only Matters Most (if they get moved date)<br />
+- April 2-3 — Birdbath holds but need full bills<br />
+- April 24 — Crashing Wayward needs local support</p>
+<p><strong>Hot date conflicts:</strong><br />
+- <strong>April 11</strong> — Both Tlaquaxe (form) and Tlaquaxe (direct email) want this, plus it's open<br />
+- <strong>August 11</strong> — Both Boosty and Igimèjí requesting</p>
 <h2>Stale Leads</h2>
-<p><strong>Dead weight (50+ days)</strong>:<br />
-- Soco Fa Sho Josh, SPARES (canceled anyway), Power Hour 3-band bill, Deadbrokedown, Sooflay</p>
-<p><strong>Might be salvageable</strong>:<br />
-- <strong>Skyler Fell</strong> (3/30 date) — 11 days quiet, still this month<br />
-- <strong>GHOST CITY REBELS</strong> (5/16 rescheduled) — 11 days, but further out<br />
-- <strong>Fudosa</strong> — Their 3/15 show is TOMORROW, but 22 days since contact</p>
-<p><strong>Cut loose</strong>: Everything 20+ days old unless it's a major touring act.</p>
+<p><strong>Ancient inquiries (40+ days) worth considering:</strong><br />
+- <strong>AFM Entertainment tributes</strong> — Professional acts, could fill bigger dates<br />
+- <strong>GRAVEYARD PEOPLE/Juno Dunes</strong> — March dates they wanted are next week<br />
+- <strong>BipolArte</strong> — Experienced touring act (400+ shows)</p>
+<p><strong>Payment issues:</strong><br />
+- <strong>SD Metal Massacre</strong> — Vincent Platte claiming money owed from Jan 27/Feb 7 shows (21 days)</p>
+<p><strong>Probably dead:</strong><br />
+- Multiple 50+ day old form submissions<br />
+- <strong>Rohini Chandra</strong> — 62 days, solo acoustic act</p>
 <h2>Stats</h2>
 <ul>
-<li>756 total emails processed YTD</li>
-<li>320 booking-related (42% signal vs noise)</li>
-<li>10 shows in next 6 weeks</li>
-<li>7 open Fri/Sat nights need filling</li>
+<li><strong>756 total emails processed</strong> YTD</li>
+<li><strong>492 active threads</strong> (filtered out noise)</li>
+<li><strong>320 booking-related</strong> emails</li>
+<li><strong>20 noise messages</strong> filtered</li>
 </ul>
-<hr />
-<p><strong>Bottom line</strong>: You've got confirmed holds but need to close deals. Too many 4+ day gaps in hot conversations. Tonight's show needs a third band. April is looking thin — push those spring bookings.</p>
+<p><strong>Current pipeline:</strong> 9 threads need immediate replies, 2 active negotiations, 19+ new inquiries to process. April booking up but March still has gaps.</p>
   <hr>
   <p style="color: var(--text-muted); font-size: 0.8rem;">
     Generated by the Bancroft Booking Agent. Data: Gmail API (read-only), Google Calendar.
