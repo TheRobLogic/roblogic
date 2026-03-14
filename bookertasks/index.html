@@ -414,17 +414,23 @@
       font-size: 0.85rem;
       line-height: 1.6;
     }
-    .modal-notes-label {
+    .modal-section-label {
       color: var(--text-muted);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.3rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+      margin-top: 1rem;
+    }
+    .modal-notes-area {
+      border-top: 1px solid var(--border);
+      padding-top: 0.9rem;
+      margin-top: 0.2rem;
     }
     .modal-notes {
       width: 100%;
-      min-height: 80px;
+      min-height: 50px;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -434,9 +440,38 @@
       font-size: 0.85rem;
       outline: none;
       resize: vertical;
-      margin-bottom: 1rem;
     }
     .modal-notes:focus { border-color: var(--accent); }
+    .modal-add-note-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+      margin-top: 0.5rem;
+    }
+    .modal-add-note-row textarea { margin: 0; }
+    .btn-add-note {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 0.8rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 0.82rem;
+      height: fit-content;
+    }
+    .btn-add-note:hover { opacity: 0.9; }
+    .modal-actions-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 0.8rem;
+    }
 
     /* Modal edit fields */
     .modal-edit-row {
@@ -476,44 +511,88 @@
 
     .modal-actions {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
+      align-items: center;
+      margin-top: 0.2rem;
     }
     .btn-done {
-      background: var(--accent);
+      background: var(--green);
       color: white;
       border: none;
       border-radius: 6px;
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.1rem;
       font-weight: 600;
       font-family: inherit;
       cursor: pointer;
       font-size: 0.85rem;
+      transition: opacity 0.15s;
     }
-    .btn-done:hover { opacity: 0.9; }
+    .btn-done:hover { opacity: 0.85; }
     .btn-secondary {
       background: var(--border);
       color: var(--text);
-      border: none;
+      border: 1px solid transparent;
       border-radius: 6px;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.9rem;
       font-family: inherit;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
+      transition: border-color 0.15s, opacity 0.15s;
     }
-    .btn-secondary:hover { opacity: 0.85; }
+    .btn-secondary:hover { border-color: var(--text-muted); opacity: 0.9; }
+    .btn-nah {
+      background: none;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-nah:hover { color: var(--red); border-color: var(--red); }
     .btn-danger {
       background: none;
       color: var(--red);
       border: 1px solid var(--red);
       border-radius: 6px;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.9rem;
       font-family: inherit;
       cursor: pointer;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       margin-left: auto;
     }
     .btn-danger:hover { background: rgba(248,81,73,0.1); }
+    .btn-draft-email {
+      background: rgba(88,166,255,0.12);
+      color: #58a6ff;
+      border: 1px solid rgba(88,166,255,0.35);
+      border-radius: 6px;
+      padding: 0.55rem 1.1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.15s;
+    }
+    .btn-draft-email:hover { background: rgba(88,166,255,0.22); }
+    .btn-draft-email:disabled { opacity: 0.5; cursor: default; }
+    /* Inline draft viewer in notes log */
+    .note-draft-preview {
+      margin-top: 0.35rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.5rem 0.7rem;
+      color: var(--text);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      display: none;
+    }
+    .note-draft-preview.open { display: block; }
 
     /* Responsive */
     @media (max-width: 600px) {
@@ -609,27 +688,29 @@
         </div>
       </div>
 
-      <div class="modal-notes-label">Notes</div>
-      <div id="modal-notes-log" style="margin-bottom:0.5rem;"></div>
-      <div style="display:flex; gap:0.5rem; align-items:flex-end;">
-        <textarea class="modal-notes" id="modal-notes-input" placeholder="Add a note..." style="margin-bottom:0; min-height:50px;"></textarea>
-        <button id="modal-btn-add-note" style="background:var(--accent); color:white; border:none; border-radius:6px; padding:0.5rem 0.8rem; font-weight:600; font-family:inherit; cursor:pointer; white-space:nowrap; height:fit-content;">Add Note</button>
+      <div class="modal-notes-area">
+        <div class="modal-section-label" style="margin-top:0;">Notes</div>
+        <div id="modal-notes-log"></div>
+        <div class="modal-add-note-row">
+          <textarea class="modal-notes" id="modal-notes-input" placeholder="Add a note..."></textarea>
+          <button class="btn-add-note" id="modal-btn-add-note">Add Note</button>
+        </div>
       </div>
 
-      <div class="modal-actions" id="modal-actions">
+      <div class="modal-actions-row" id="modal-actions">
         <button class="btn-done" id="modal-btn-done">Mark Done</button>
+        <button class="btn-draft-email" id="modal-btn-draft">Draft Email</button>
         <button class="btn-secondary" id="modal-btn-edit">Edit</button>
-        <button class="btn-secondary" id="modal-btn-draft" style="background:rgba(88,166,255,0.15); color:#58a6ff; border:1px solid rgba(88,166,255,0.3);">Draft Email</button>
-        <button class="btn-secondary" id="modal-btn-nah" style="background:rgba(139,148,158,0.15); color:var(--text-muted); border:1px solid rgba(139,148,158,0.3);">Nah</button>
+        <button class="btn-nah" id="modal-btn-nah">Nah</button>
         <button class="btn-danger" id="modal-btn-delete" style="display:none">Delete</button>
       </div>
 
-      <div id="modal-draft-section" style="display:none; margin-top:1rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-          <div class="modal-notes-label" style="margin:0;">Email Draft</div>
+      <div id="modal-draft-section" style="display:none; margin-top:1rem; border-top:1px solid var(--border); padding-top:1rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <div style="color:var(--link); font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">Email Draft</div>
           <button id="modal-btn-copy" style="background:var(--green); color:white; border:none; border-radius:5px; padding:0.3rem 0.8rem; font-size:0.75rem; font-weight:600; font-family:inherit; cursor:pointer;">Copy</button>
         </div>
-        <div id="modal-draft-output" style="background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:0.8rem; color:var(--text); font-size:0.85rem; line-height:1.6; white-space:pre-wrap; max-height:300px; overflow-y:auto;"></div>
+        <div id="modal-draft-output" style="background:var(--bg); border:1px solid rgba(88,166,255,0.2); border-radius:6px; padding:0.9rem; color:var(--text); font-size:0.85rem; line-height:1.7; white-space:pre-wrap; max-height:300px; overflow-y:auto;"></div>
       </div>
     </div>
   </div>
@@ -1079,8 +1160,8 @@
 
     if (data && data.draft) {
       output.textContent = data.draft;
-      // Append "Email drafted" to notes
-      await addNoteToTask(modalTaskId, 'Email drafted');
+      // Save "Email drafted" note with the actual draft text embedded
+      await addNoteToTask(modalTaskId, 'Email drafted', data.draft);
     } else {
       output.textContent = 'Failed to generate draft. Try again.';
     }
@@ -1097,43 +1178,79 @@
   // --- Notes helpers ---
 
   // Notes are stored as a JSON array string: [{"text":"...", "by":"rob", "at":"2026-03-14T..."}]
+  // Email drafts include a "draft" field: {"text":"Email drafted", "draft":"...", "by":..., "at":...}
   // Legacy: if notes is a plain string, treat it as a single entry
   function parseNotes(notes) {
     if (!notes) return [];
     try {
       const parsed = JSON.parse(notes);
-      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed)) {
+        // Filter out placeholder entries
+        return parsed.filter(n => n.text && n.text.trim() && n.text !== '?');
+      }
     } catch (e) {}
-    // Legacy string — wrap as a single entry
+    // Legacy string — skip placeholders
+    if (!notes.trim() || notes.trim() === '?') return [];
     return [{ text: notes, by: '?', at: '' }];
   }
+
+  let _draftExpandIds = new Set();
 
   function renderNoteLog(task) {
     const el = document.getElementById('modal-notes-log');
     const log = parseNotes(task.notes);
     if (log.length === 0) {
-      el.innerHTML = '<div style="color:var(--text-muted); font-size:0.8rem; font-style:italic; margin-bottom:0.5rem;">No notes yet</div>';
+      el.innerHTML = '';
       return;
     }
-    el.innerHTML = log.map(n => {
+    el.innerHTML = log.map((n, i) => {
       const when = n.at ? formatDate(n.at) : '';
       const who = n.by || '?';
-      const isSystem = n.text === 'Email drafted';
-      const style = isSystem
-        ? 'color:var(--link); font-style:italic;'
-        : 'color:var(--text);';
-      return `<div style="padding:0.4rem 0; border-bottom:1px solid var(--border); font-size:0.82rem;">
-        <span style="${style}">${esc(n.text)}</span>
-        <span style="color:var(--text-muted); font-size:0.7rem; margin-left:0.5rem;">${who}, ${when}</span>
+      const isEmailDraft = n.text === 'Email drafted' && n.draft;
+      const draftId = `draft-${task.id}-${i}`;
+      const isOpen = _draftExpandIds.has(draftId);
+
+      if (isEmailDraft) {
+        return `<div style="padding:0.45rem 0; border-bottom:1px solid var(--border); font-size:0.82rem;">
+          <span style="color:var(--link); font-style:italic; cursor:pointer;" onclick="window._toggleDraft('${draftId}')">
+            Email drafted ${isOpen ? '▴' : '▾'}
+          </span>
+          <span style="color:var(--text-muted); font-size:0.7rem; margin-left:0.5rem;">${esc(who)}, ${when}</span>
+          <div id="${draftId}" class="note-draft-preview${isOpen ? ' open' : ''}">${esc(n.draft)}</div>
+        </div>`;
+      }
+
+      return `<div style="padding:0.45rem 0; border-bottom:1px solid var(--border); font-size:0.82rem;">
+        <span style="color:var(--text);">${esc(n.text)}</span>
+        <span style="color:var(--text-muted); font-size:0.7rem; margin-left:0.5rem;">${esc(who)}, ${when}</span>
       </div>`;
     }).join('');
   }
 
-  async function addNoteToTask(taskId, text) {
+  window._toggleDraft = function(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (_draftExpandIds.has(id)) {
+      _draftExpandIds.delete(id);
+      el.classList.remove('open');
+      // update arrow
+      const span = el.previousElementSibling;
+      if (span) span.innerHTML = span.innerHTML.replace('▴', '▾');
+    } else {
+      _draftExpandIds.add(id);
+      el.classList.add('open');
+      const span = el.previousElementSibling;
+      if (span) span.innerHTML = span.innerHTML.replace('▾', '▴');
+    }
+  };
+
+  async function addNoteToTask(taskId, text, draft) {
     const t = tasks.find(x => x.id === taskId);
     if (!t) return;
     const log = parseNotes(t.notes);
-    log.push({ text, by: currentUser, at: new Date().toISOString() });
+    const entry = { text, by: currentUser, at: new Date().toISOString() };
+    if (draft) entry.draft = draft;
+    log.push(entry);
     const newNotes = JSON.stringify(log);
     t.notes = newNotes;
     await api('update', 'POST', { id: taskId, notes: newNotes });
