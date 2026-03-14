@@ -533,11 +533,19 @@
       <a href="/bookersummary/">Briefing</a>
       <a href="/">Home</a>
     </div>
-    <div class="nav-user">Logged in as: <strong id="user-name">...</strong></div>
+    <div class="nav-user">Logged in as: <strong id="user-name" style="cursor:pointer" onclick="window._changeIdentity()">...</strong></div>
   </div>
 
   <h1>Booker Tasks</h1>
   <p class="meta-line" id="meta-line">Loading... </p>
+
+  <div id="identity-prompt" style="display:none; justify-content:center; align-items:center; gap:1rem; padding:2rem; margin-bottom:1.5rem; background:var(--surface); border:1px solid var(--accent); border-radius:12px; flex-direction:column;">
+    <div style="color:var(--heading); font-weight:600; font-size:1.1rem;">Who are you?</div>
+    <div style="display:flex; gap:1rem;">
+      <button onclick="window._setIdentity('rob')" style="background:var(--accent); color:white; border:none; border-radius:8px; padding:0.8rem 2rem; font-size:1rem; font-weight:600; font-family:inherit; cursor:pointer;">Rob</button>
+      <button onclick="window._setIdentity('kayla')" style="background:var(--accent); color:white; border:none; border-radius:8px; padding:0.8rem 2rem; font-size:1rem; font-weight:600; font-family:inherit; cursor:pointer;">Kayla</button>
+    </div>
+  </div>
 
   <div class="add-row">
     <input type="text" class="add-input" id="add-input" placeholder="Add a task..." autocomplete="off">
@@ -618,15 +626,45 @@
   const API = '/bookertasks/api';
   let tasks = [];
   let history = [];
-  let currentUser = '...';
+  let currentUser = localStorage.getItem('booker-user') || '';
   let currentFilter = 'all';
   let modalTaskId = null;
   let editMode = false;
 
+  // --- Identity ---
+
+  function ensureIdentity() {
+    if (currentUser) {
+      document.getElementById('user-name').textContent = currentUser;
+      document.getElementById('identity-prompt').style.display = 'none';
+      return true;
+    }
+    document.getElementById('identity-prompt').style.display = 'flex';
+    document.getElementById('task-list').innerHTML = '';
+    return false;
+  }
+
+  window._setIdentity = function(name) {
+    currentUser = name;
+    localStorage.setItem('booker-user', name);
+    document.getElementById('user-name').textContent = name;
+    document.getElementById('identity-prompt').style.display = 'none';
+    loadTasks();
+  };
+
+  window._changeIdentity = function() {
+    localStorage.removeItem('booker-user');
+    currentUser = '';
+    document.getElementById('identity-prompt').style.display = 'flex';
+  };
+
   // --- API helpers ---
 
   async function api(action, method, body) {
-    const opts = { method, headers: { 'Content-Type': 'application/json' } };
+    const opts = { method, headers: {
+      'Content-Type': 'application/json',
+      'X-Booker-User': currentUser,
+    }};
     if (body) opts.body = JSON.stringify(body);
     try {
       const r = await fetch(`${API}/${action}`, opts);
@@ -643,11 +681,11 @@
   }
 
   async function loadTasks() {
+    if (!ensureIdentity()) return;
     const data = await api('list', 'GET');
     if (!data) return;
     tasks = data.tasks || [];
     history = data.history || [];
-    currentUser = data.user || '?';
     document.getElementById('user-name').textContent = currentUser;
     updateMeta();
     renderFilters();
