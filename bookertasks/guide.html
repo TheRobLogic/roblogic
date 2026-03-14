@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booker Tasks — How It Works</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06090f;
+      --bg-card: #0d1321;
+      --bg-card-hover: #131b2e;
+      --orange: #e87c2a;
+      --orange-bright: #f09040;
+      --orange-glow: rgba(232, 124, 42, 0.15);
+      --green: #3fb950;
+      --red: #f85149;
+      --blue: #58a6ff;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --text-dim: #475569;
+      --border: rgba(148, 163, 184, 0.08);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232,124,42,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange-bright);
+      border: 1px solid rgba(232,124,42,0.3);
+      background: rgba(232,124,42,0.08);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--orange-bright) 0%, var(--red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--orange);
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 30px rgba(232,124,42,0.25);
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-cta:hover {
+      background: #d06a1e;
+      box-shadow: 0 0 50px rgba(232,124,42,0.4);
+      transform: translateY(-2px);
+    }
+    .hero-cta svg { width: 18px; height: 18px; }
+
+    /* ── Section ── */
+    section { padding: 3rem 0; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange-bright);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Feature cards ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(148,163,184,0.15);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+    }
+
+    .feature-card h3 {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ── Steps ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      counter-reset: step;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .step:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(148,163,184,0.15);
+    }
+
+    .step-num {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(232,124,42,0.12);
+      border: 1.5px solid rgba(232,124,42,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--orange-bright);
+    }
+    .step-num::before { content: counter(step); }
+
+    .step-content h3 {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ── Priority pills ── */
+    .priority-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .prio-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .prio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── Bottom CTA ── */
+    .bottom-cta {
+      text-align: center;
+      padding: 4rem 0 5rem;
+    }
+
+    .bottom-cta h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    .bottom-cta p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--orange-bright);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Scroll animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      .hero { padding: 4rem 0 3rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .step { flex-direction: column; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="container">
+      <div class="hero-badge">The Bancroft</div>
+      <h1>Booker <span class="accent">Tasks</span></h1>
+      <p class="hero-sub">A shared checklist for booking. Tasks auto-generated from the daily briefing, plus anything you add yourself. Check things off, add notes, stay on the same page.</p>
+      <a href="/bookertasks/" class="hero-cta">
+        Open the Checklist
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <section class="container reveal">
+    <div class="section-label">What it does</div>
+    <h2 class="section-title">One list, two people, zero confusion</h2>
+    <p class="section-desc">Rob and Kayla see the same checklist. Check something off and it updates for both of you. The daily briefing automatically adds action items so nothing falls through the cracks.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(232,124,42,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f09040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3>Shared Checklist</h3>
+        <p>One list for both of you. Add tasks, check them off, add notes. Everything syncs. Refresh to see the latest.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(63,185,80,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Auto-Generated Tasks</h3>
+        <p>The morning and evening briefing scans email threads and creates tasks automatically. "Reply to [band]", "Follow up on [date]" -- already on your list.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(88,166,255,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>History</h3>
+        <p>See who completed what and when in the Done section. Tasks stay visible for 90 days so you can look back.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal" style="padding-top:2rem;">
+    <div class="section-label">How to use it</div>
+    <h2 class="section-title">Quick walkthrough</h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Pick your name</h3>
+          <p>First time you open the page, it asks who you are -- Rob or Kayla. This is how the checklist tracks who did what. Your choice is remembered on that device. To switch, click your name in the top right.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Check off tasks</h3>
+          <p>Click the checkbox to mark something done. It moves to the "Done" section at the bottom with your name and the time. If you checked it off by mistake, you can undo it.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Tap a task for details</h3>
+          <p>Click anywhere on a task (not the checkbox) to open the detail view. Briefing-generated tasks have a "Context from briefing" section with the email thread summary, message count, and how stale the lead is. You can also edit notes here -- they auto-save.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Add your own tasks</h3>
+          <p>Type in the "Add a task" box and hit Enter or click + Add. Click "More options" to set priority (High / Medium / Low) and a due date. Manual tasks show up alongside briefing tasks.</p>
+          <div class="priority-row">
+            <span class="prio-pill"><span class="prio-dot" style="background:#f85149"></span> High</span>
+            <span class="prio-pill"><span class="prio-dot" style="background:#e87c2a"></span> Medium</span>
+            <span class="prio-pill"><span class="prio-dot" style="background:#64748b"></span> Low</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Filter by priority</h3>
+          <p>The pills at the top (All / High / Medium / Low) filter the list. Tap one to focus on just that priority level. The count shows how many tasks are in each category.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Edit or delete</h3>
+          <p>Open a task's detail view and click "Edit" to change the title, priority, or due date. Click "Save" when done. A red "Delete" button appears in edit mode -- this permanently removes the task.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal" style="padding-top:2rem;">
+    <div class="section-label">Good to know</div>
+    <h2 class="section-title">A few things</h2>
+    <p class="section-desc" style="max-width:700px;">
+      <strong>Refresh to sync.</strong> If you and Rob/Kayla are both using the list at the same time, hit the "Refresh" link to see each other's changes. There's no auto-refresh.<br><br>
+      <strong>Briefing tasks appear twice daily.</strong> The 9am and 9pm briefing runs add new tasks automatically. If a task for the same contact already exists, the briefing won't create a duplicate.<br><br>
+      <strong>BRIEFING badge.</strong> Tasks with a blue "BRIEFING" tag were auto-generated. Manual tasks don't have this badge.<br><br>
+      <strong>Done section.</strong> Click the green "Done" bar at the bottom to expand/collapse completed tasks. Shows who completed each one and when.
+    </p>
+  </section>
+
+  <div class="bottom-cta container">
+    <h2>Ready?</h2>
+    <p>Open the checklist and get to work.</p>
+    <a href="/bookertasks/" class="hero-cta">
+      Open the Checklist
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+    </a>
+  </div>
+
+  <footer class="container">
+    Built by <a href="https://roblogic.org">Rob Logic</a>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
