@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deaf Artists Through the Decades | 1920–2020</title>
+  <meta name="description" content="A century of deaf and hard-of-hearing artists who shaped culture, challenged perceptions, and created enduring works — from the 1920s to the 2010s.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f5f0e8;
+      --bg-card: #ffffff;
+      --text: #2d2926;
+      --text-muted: #6b635b;
+      --accent: #c44b2f;
+      --accent-light: rgba(196, 75, 47, 0.08);
+      --teal: #2c6e5a;
+      --teal-light: rgba(44, 110, 90, 0.08);
+      --border: #e2ddd4;
+      --shadow: 0 2px 20px rgba(45, 41, 38, 0.06);
+      --shadow-hover: 0 8px 30px rgba(45, 41, 38, 0.12);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: var(--grain);
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    .hero-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero-dates {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-intro {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ── DECADE NAV ── */
+    .decade-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .decade-nav::-webkit-scrollbar { display: none; }
+
+    .decade-nav a {
+      display: block;
+      padding: 0.9rem 1.2rem;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .decade-nav a:hover,
+    .decade-nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── DECADES ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .decade {
+      padding: 5rem 0 3rem;
+      position: relative;
+    }
+
+    .decade + .decade {
+      border-top: 1px solid var(--border);
+    }
+
+    .decade-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .decade-number {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 12vw, 9rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.12;
+      position: absolute;
+      left: -0.5rem;
+      top: -1.5rem;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .decade-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+      padding-left: 0.5rem;
+    }
+
+    /* ── ARTIST CARDS ── */
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .artist-card {
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .artist-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    }
+
+    .artist-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .artist-card.visible:hover {
+      transform: translateY(-4px);
+    }
+
+    .artist-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #d8d2c6 0%, #c4bdb0 50%, #b5ad9f 100%);
+    }
+
+    .artist-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .artist-card:hover .artist-photo img {
+      transform: scale(1.04);
+    }
+
+    .artist-photo .initials {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.1em;
+    }
+
+    .artist-photo.no-photo .initials {
+      display: flex;
+    }
+
+    .artist-photo.no-photo img {
+      display: none;
+    }
+
+    .artist-info {
+      padding: 1.5rem;
+    }
+
+    .discipline {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--teal-light);
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      margin-bottom: 0.6rem;
+    }
+
+    .artist-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.15rem;
+    }
+
+    .artist-years {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      font-weight: 300;
+    }
+
+    .artist-info p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .learn-more {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--teal);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .learn-more:hover {
+      color: var(--accent);
+    }
+
+    .learn-more svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .learn-more:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ── SOURCES ── */
+    .sources-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .sources-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .sources-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 2rem 0 1rem;
+      color: var(--accent);
+    }
+
+    .sources-list {
+      list-style: none;
+      columns: 2;
+      column-gap: 3rem;
+    }
+
+    .sources-list li {
+      padding: 0.3rem 0;
+      font-size: 0.88rem;
+      font-weight: 300;
+      break-inside: avoid;
+    }
+
+    .sources-list a {
+      color: var(--teal);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sources-list a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .further-reading {
+      margin-top: 2rem;
+      padding: 1.5rem 2rem;
+      background: var(--teal-light);
+      border-radius: 8px;
+      border-left: 3px solid var(--teal);
+    }
+
+    .further-reading h3 {
+      color: var(--teal);
+      margin-top: 0;
+    }
+
+    .further-reading ul {
+      list-style: none;
+    }
+
+    .further-reading li {
+      padding: 0.35rem 0;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    .further-reading a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .further-reading a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem 4rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 300;
+    }
+
+    footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .artists-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+      .sources-list { columns: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 4rem 1.5rem 3rem; }
+      .decade { padding: 3rem 0 2rem; }
+      main { padding: 0 1rem; }
+      .artists-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .decade-nav a {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.72rem;
+      }
+      .sources-section { padding: 3rem 1rem 2rem; }
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .decade-nav { display: none; }
+      .artist-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      body::before { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="hero-label">A Visual History</span>
+    <h1>Deaf Artists<br>Through the <em>Decades</em></h1>
+    <div class="hero-dates">1920 &mdash; 2020</div>
+    <p class="hero-intro">
+      A century of deaf and hard-of-hearing artists who shaped culture,
+      challenged perceptions, and created enduring works across painting,
+      sculpture, film, poetry, music, and performance.
+    </p>
+  </header>
+
+  <!-- DECADE NAV -->
+  <nav class="decade-nav" aria-label="Decade navigation">
+    <a href="#d1920s">1920s</a>
+    <a href="#d1930s">1930s</a>
+    <a href="#d1940s">1940s</a>
+    <a href="#d1950s">1950s</a>
+    <a href="#d1960s">1960s</a>
+    <a href="#d1970s">1970s</a>
+    <a href="#d1980s">1980s</a>
+    <a href="#d1990s">1990s</a>
+    <a href="#d2000s">2000s</a>
+    <a href="#d2010s">2010s</a>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════ 1920s ═══════════ -->
+    <section class="decade" id="d1920s">
+      <div class="decade-header">
+        <span class="decade-number">1920</span>
+        <h2 class="decade-title">The 1920s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Granville_Redmond_-_Self-portrait.jpg" alt="Self-portrait of Granville Redmond" loading="lazy">
+            <span class="initials">GR</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Landscape Painting</span>
+            <h3>Granville Redmond</h3>
+            <p class="artist-years">1871&ndash;1935</p>
+            <p>Deaf from infancy, Redmond became a leading California Impressionist whose friendship with Charlie Chaplin influenced silent film acting technique. Chaplin gave him a studio on his movie lot, collected his paintings, and cast him in several films including <em>City Lights</em>.</p>
+            <a href="https://en.wikipedia.org/wiki/Granville_Redmond" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Douglas_Tilden%2C_sculptor.jpg" alt="Portrait of Douglas Tilden" loading="lazy">
+            <span class="initials">DT</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Sculpture</span>
+            <h3>Douglas Tilden</h3>
+            <p class="artist-years">1860&ndash;1935</p>
+            <p>Known as the "Michelangelo of the West," Tilden created iconic public sculptures across San Francisco including the Mechanics Monument and California Volunteers. Deaf from scarlet fever at age four, he studied in Paris and became one of America's foremost sculptors.</p>
+            <a href="https://en.wikipedia.org/wiki/Douglas_Tilden" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Petrona_viera.jpg" alt="Portrait of Petrona Viera" loading="lazy">
+            <span class="initials">PV</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting</span>
+            <h3>Petrona Viera</h3>
+            <p class="artist-years">1895&ndash;1960</p>
+            <p>Deaf from meningitis at age two, Viera became the first female professional painter in Uruguay and a central figure in the Planismo movement. The daughter of a Uruguayan president, she proved that a deaf woman could achieve international artistic recognition.</p>
+            <a href="https://en.wikipedia.org/wiki/Petrona_Viera" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1930s ═══════════ -->
+    <section class="decade" id="d1930s">
+      <div class="decade-header">
+        <span class="decade-number">1930</span>
+        <h2 class="decade-title">The 1930s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/John_Clark_LCCN2014718007.jpg" alt="Portrait of John Louis Clarke" loading="lazy">
+            <span class="initials">JC</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Woodcarving</span>
+            <h3>John Louis Clarke</h3>
+            <p class="artist-years">1881&ndash;1970</p>
+            <p>A Blackfeet artist known as "Cutapuis" (The Man Who Talks Not), Clarke was deaf from scarlet fever at age two. Without formal training, he became internationally renowned for his wildlife carvings from his studio near Glacier National Park.</p>
+            <a href="https://en.wikipedia.org/wiki/John_Louis_Clarke" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Cadwallader_Lincoln_Washburn_1906.jpg" alt="Portrait of Cadwallader Washburn, 1906" loading="lazy">
+            <span class="initials">CW</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting &amp; Etching</span>
+            <h3>Cadwallader Washburn</h3>
+            <p class="artist-years">1866&ndash;1965</p>
+            <p>A Gallaudet valedictorian, Washburn created over 1,000 drypoint etchings and served as a war correspondent in three conflicts &mdash; remarkable for a deaf person in that era. He studied architecture at MIT and painting under William Merritt Chase.</p>
+            <a href="https://en.wikipedia.org/wiki/Cadwallader_Lincoln_Washburn" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/MatsumotoShunsuke_photo_ca1940.png" alt="Portrait of Shunsuke Matsumoto, c. 1940" loading="lazy">
+            <span class="initials">SM</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting</span>
+            <h3>Shunsuke Matsumoto</h3>
+            <p class="artist-years">1912&ndash;1948</p>
+            <p>A major figure in Japanese modern art who lost his hearing at 13 from meningitis. Known for haunting urban landscapes in cold blue tones, he resisted wartime artistic nationalism while creating deeply personal work. He died of tuberculosis at 36.</p>
+            <a href="https://en.wikipedia.org/wiki/Shunsuke_Matsumoto" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1940s ═══════════ -->
+    <section class="decade" id="d1940s">
+      <div class="decade-header">
+        <span class="decade-number">1940</span>
+        <h2 class="decade-title">The 1940s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/James_at_the_Front_of_His_Home_in_Boise%2C_idaho..webp" alt="James Castle at his home in Boise, Idaho" loading="lazy">
+            <span class="initials">JC</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Drawing &amp; Assemblage</span>
+            <h3>James Castle</h3>
+            <p class="artist-years">1899&ndash;1977</p>
+            <p>Born profoundly deaf in rural Idaho, Castle created art from salvaged paper, soot mixed with saliva, and sharpened sticks. His work has been exhibited at the Venice Biennale, Smithsonian, and Whitney Museum &mdash; making him one of America's most celebrated outsider artists.</p>
+            <a href="https://en.wikipedia.org/wiki/James_Charles_Castle" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/David_Ludwig_Bloch_Chinese_ID_card_higher_quality_%28cropped%29.jpg" alt="David Ludwig Bloch, Shanghai ID card, 1944" loading="lazy">
+            <span class="initials">DB</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Lithography &amp; Woodcuts</span>
+            <h3>David Ludwig Bloch</h3>
+            <p class="artist-years">1910&ndash;2002</p>
+            <p>Deaf from meningitis at age one, Bloch survived Dachau during Kristallnacht and escaped to Shanghai. His art documented both refugee street life and Holocaust horrors. His archive is held at Gallaudet University &mdash; a unique intersection of deaf identity and Holocaust history.</p>
+            <a href="https://en.wikipedia.org/wiki/David_Ludwig_Bloch" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">RH</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Botanical Illustration</span>
+            <h3>Regina Olson Hughes</h3>
+            <p class="artist-years">1895&ndash;1993</p>
+            <p>One of America's foremost botanical illustrators, Hughes created scientific illustrations for the U.S. Department of Agriculture across decades. She lived on Gallaudet's campus for 30 years, deeply embedded in deaf community life.</p>
+            <a href="https://en.wikipedia.org/wiki/Regina_Olson_Hughes" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1950s ═══════════ -->
+    <section class="decade" id="d1950s">
+      <div class="decade-header">
+        <span class="decade-number">1950</span>
+        <h2 class="decade-title">The 1950s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Robert_Panara_in_2007.png" alt="Robert F. Panara in 2007" loading="lazy">
+            <span class="initials">RP</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Poetry &amp; Theater</span>
+            <h3>Robert F. Panara</h3>
+            <p class="artist-years">1920&ndash;2014</p>
+            <p>Co-founded both NTID and the National Theatre of the Deaf. A pioneer of deaf culture studies, he developed some of the first plays for deaf audiences. The U.S. Postal Service honored him with a stamp in their Distinguished Americans series in 2017.</p>
+            <a href="https://en.wikipedia.org/wiki/Robert_Panara" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">BB</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting &amp; Mime</span>
+            <h3>Bernard Bragg</h3>
+            <p class="artist-years">1928&ndash;2018</p>
+            <p>Called "the leading professional deaf actor in the country" by The New York Times. He studied mime with Marcel Marceau in Paris and co-founded the National Theatre of the Deaf in 1967. His NBC special was the first televised deaf performance in sign language.</p>
+            <a href="https://en.wikipedia.org/wiki/Bernard_Bragg" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Audree_Norton_in_St._Paul%2C_Minnesota.tif/lossy-page1-400px-Audree_Norton_in_St._Paul%2C_Minnesota.tif.jpg" alt="Audree Norton in St. Paul, Minnesota" loading="lazy">
+            <span class="initials">AN</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting</span>
+            <h3>Audree Norton</h3>
+            <p class="artist-years">1927&ndash;2015</p>
+            <p>A founding member of the National Theatre of the Deaf and the first deaf actress photographed in Time magazine. Her 1974 Kodak commercial won a Clio Award, and her 1978 SAG complaint about casting discrimination sparked nationwide protests.</p>
+            <a href="https://en.wikipedia.org/wiki/Audree_Norton" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1960s ═══════════ -->
+    <section class="decade" id="d1960s">
+      <div class="decade-header">
+        <span class="decade-number">1960</span>
+        <h2 class="decade-title">The 1960s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">BM</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting</span>
+            <h3>Betty G. Miller</h3>
+            <p class="artist-years">1934&ndash;2012</p>
+            <p>Known as the "Mother of De'VIA" (Deaf View/Image Art), Miller was the first artist to exhibit work explicitly about the deaf experience. Her landmark <em>Ameslan Prohibited</em> depicted shackled hands with broken fingers. She led the 1989 Gallaudet workshop that created the De'VIA manifesto.</p>
+            <a href="https://en.wikipedia.org/wiki/Betty_G._Miller" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">GE</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Playwriting &amp; Acting</span>
+            <h3>Gilbert Eastman</h3>
+            <p class="artist-years">1934&ndash;2006</p>
+            <p>First deaf person to earn a master's degree in drama. He wrote over 40 plays including "Sign Me Alice," performed at the Kennedy Center, and won an Emmy in 1993 for co-hosting "Deaf Mosaic." A towering figure in deaf theatrical arts.</p>
+            <a href="https://en.wikipedia.org/wiki/Gilbert_Eastman" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">DM</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Poetry</span>
+            <h3>Dorothy Miles</h3>
+            <p class="artist-years">1931&ndash;1993</p>
+            <p>Pioneer of British Sign Language poetry and sign language poetry in both the U.S. and U.K. She translated Dylan Thomas for the National Theatre of the Deaf and compiled the first BSL teaching manual. Google honored her with a Doodle in 2024.</p>
+            <a href="https://en.wikipedia.org/wiki/Dorothy_Miles" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1970s ═══════════ -->
+    <section class="decade" id="d1970s">
+      <div class="decade-header">
+        <span class="decade-number">1970</span>
+        <h2 class="decade-title">The 1970s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">PF</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting</span>
+            <h3>Phyllis Frelich</h3>
+            <p class="artist-years">1944&ndash;2014</p>
+            <p>First deaf actor to win a Tony Award, for originating the lead in "Children of a Lesser God" &mdash; a play written specifically for her by Mark Medoff. She was elected to the SAG Board in 1991, the first deaf actress so recognized.</p>
+            <a href="https://en.wikipedia.org/wiki/Phyllis_Frelich" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">CB</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting &amp; Sculpture</span>
+            <h3>Chuck Baird</h3>
+            <p class="artist-years">1947&ndash;2012</p>
+            <p>A co-founder of the De'VIA art movement who spent a decade as set painter and actor for the National Theatre of the Deaf. His paintings incorporating ASL handshapes became iconic, and he established a foundation to support emerging deaf artists.</p>
+            <a href="https://en.wikipedia.org/wiki/Chuck_Baird" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">LB</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting</span>
+            <h3>Linda Bove</h3>
+            <p class="artist-years">1945&ndash;</p>
+            <p>First deaf actress to be a recurring cast member on Sesame Street, portraying Linda from 1971 to 2002 &mdash; the longest-running deaf character in television history. She introduced millions of children to sign language and co-founded Deaf West Theatre.</p>
+            <a href="https://en.wikipedia.org/wiki/Linda_Bove" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1980s ═══════════ -->
+    <section class="decade" id="d1980s">
+      <div class="decade-header">
+        <span class="decade-number">1980</span>
+        <h2 class="decade-title">The 1980s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Marlee_Matlin_at_the_2025_Sundance_Film_Festival_%28cropped%29.jpg" alt="Marlee Matlin at the 2025 Sundance Film Festival" loading="lazy">
+            <span class="initials">MM</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting</span>
+            <h3>Marlee Matlin</h3>
+            <p class="artist-years">1965&ndash;</p>
+            <p>Won the Academy Award for Best Actress for her debut in "Children of a Lesser God" (1986), becoming the youngest winner in that category and the first deaf Oscar recipient. Her advocacy led to the Television Decoder Circuitry Act of 1990, requiring closed captioning in American TVs.</p>
+            <a href="https://en.wikipedia.org/wiki/Marlee_Matlin" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">PC</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">ASL Poetry &amp; Performance</span>
+            <h3>Peter Cook</h3>
+            <p class="artist-years">c. 1963&ndash;</p>
+            <p>Co-founded the Flying Words Project in 1984, pioneering ASL poetry as performance art. He organized the First National ASL Literature Conference in 1992 and has toured internationally for over 30 years, redefining what poetry can be.</p>
+            <a href="https://www.deafpetercook.com/" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">CV</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">ASL Poetry &amp; Linguistics</span>
+            <h3>Clayton Valli</h3>
+            <p class="artist-years">1951&ndash;2003</p>
+            <p>The first person to earn a Ph.D. in ASL poetics, legitimizing ASL literature as an academic field. His scholarly work on ASL phonology remains foundational in linguistics, and his nature-imagery poems are classics of ASL literature.</p>
+            <a href="https://en.wikipedia.org/wiki/Clayton_Valli" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 1990s ═══════════ -->
+    <section class="decade" id="d1990s">
+      <div class="decade-header">
+        <span class="decade-number">1990</span>
+        <h2 class="decade-title">The 1990s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/CJ_Jones_2014.jpg" alt="CJ Jones in 2014" loading="lazy">
+            <span class="initials">CJ</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Comedy &amp; Acting</span>
+            <h3>CJ Jones</h3>
+            <p class="artist-years">1950&ndash;</p>
+            <p>A pioneering deaf comedian who became the first Black deaf actor in an international blockbuster (<em>Baby Driver</em>, 2017). He created the Na'vi Sign Language for the Avatar sequels and toured internationally with three one-man shows.</p>
+            <a href="https://en.wikipedia.org/wiki/CJ_Jones" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">DB</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting</span>
+            <h3>Deanne Bray</h3>
+            <p class="artist-years">1971&ndash;</p>
+            <p>Became the first deaf actor to lead a primetime network drama as the title character in "Sue Thomas: F.B.Eye" (2002&ndash;2005). She came up through Deaf West Theatre and the National Theatre of the Deaf, and advocates for early language access for deaf children.</p>
+            <a href="https://en.wikipedia.org/wiki/Deanne_Bray" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">SD</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting</span>
+            <h3>Susan Dupor</h3>
+            <p class="artist-years">1969&ndash;</p>
+            <p>A De'VIA painter known for surreal, emotionally charged imagery depicting the deaf experience. Her works like <em>The Family Dog</em> explore navigating between hearing and deaf worlds. She teaches art at the Wisconsin School for the Deaf.</p>
+            <a href="https://deaf-art.org/profiles/susan-dupor/" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 2000s ═══════════ -->
+    <section class="decade" id="d2000s">
+      <div class="decade-header">
+        <span class="decade-number">2000</span>
+        <h2 class="decade-title">The 2000s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Christine_Sun_Kim_by_%C3%89river_Hijano.jpg" alt="Christine Sun Kim" loading="lazy">
+            <span class="initials">CK</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Sound Art &amp; Drawing</span>
+            <h3>Christine Sun Kim</h3>
+            <p class="artist-years">1980&ndash;</p>
+            <p>A groundbreaking artist who reclaims ownership of sound from a deaf perspective. Her work has been shown at MoMA and the Whitney Biennial, and she performed the national anthem in ASL at the 2020 Super Bowl. A two-time TED Fellow.</p>
+            <a href="https://en.wikipedia.org/wiki/Christine_Sun_Kim" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Sean_At_54_Sound.jpg" alt="Sean Forbes" loading="lazy">
+            <span class="initials">SF</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Music</span>
+            <h3>Sean Forbes</h3>
+            <p class="artist-years">1982&ndash;</p>
+            <p>A deaf hip-hop artist who co-founded D-PAN (Deaf Professional Arts Network) to make music accessible. He signed with the label that discovered Eminem, proving that deafness and musical artistry are not mutually exclusive.</p>
+            <a href="https://en.wikipedia.org/wiki/Sean_Forbes" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo no-photo">
+            <img src="" alt="" loading="lazy">
+            <span class="initials">NR</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Painting &amp; Muralism</span>
+            <h3>Nancy Rourke</h3>
+            <p class="artist-years">1957&ndash;</p>
+            <p>The most prominent living painter in the De'VIA movement, known for a bold "Rourkeism" style with symbolic colors tied to Deafhood and liberation. She received the Laurent Clerc Award from Gallaudet University in 2019 for outstanding contributions to society.</p>
+            <a href="https://en.wikipedia.org/wiki/Nancy_Rourke" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ 2010s ═══════════ -->
+    <section class="decade" id="d2010s">
+      <div class="decade-header">
+        <span class="decade-number">2010</span>
+        <h2 class="decade-title">The 2010s</h2>
+      </div>
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Nyle_DiMarco_Citation_Presentation_%2828915940204%29_%28cropped%29.jpg" alt="Nyle DiMarco" loading="lazy">
+            <span class="initials">ND</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Modeling &amp; Activism</span>
+            <h3>Nyle DiMarco</h3>
+            <p class="artist-years">1989&ndash;</p>
+            <p>First deaf winner of both America's Next Top Model (2015) and Dancing with the Stars (2016), proving deaf performers can dominate hearing-centric formats. He founded the Nyle DiMarco Foundation for deaf children and directed the documentary "Deaf President Now!"</p>
+            <a href="https://en.wikipedia.org/wiki/Nyle_DiMarco" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Troy_kotsur_2022_1.jpg" alt="Troy Kotsur in 2022" loading="lazy">
+            <span class="initials">TK</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Acting</span>
+            <h3>Troy Kotsur</h3>
+            <p class="artist-years">1968&ndash;</p>
+            <p>First deaf man to win an Academy Award, taking Best Supporting Actor for "CODA" (2022). His decades of work with Deaf West Theatre and the National Theatre of the Deaf built toward a historic win that validated deaf storytelling at the highest level of cinema.</p>
+            <a href="https://en.wikipedia.org/wiki/Troy_Kotsur" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Chella_Man%2C_January_2019.png" alt="Chella Man in 2019" loading="lazy">
+            <span class="initials">CM</span>
+          </div>
+          <div class="artist-info">
+            <span class="discipline">Multidisciplinary Art</span>
+            <h3>Chella Man</h3>
+            <p class="artist-years">1998&ndash;</p>
+            <p>A Chinese-Jewish, transgender, deaf artist who became representation that didn't previously exist. They portrayed Jericho on DC's "Titans," created jewelry transforming hearing aids into fashion, and use art to bridge deaf, trans, and AAPI communities.</p>
+            <a href="https://en.wikipedia.org/wiki/Chella_Man" target="_blank" rel="noopener" class="learn-more">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ SOURCES ═══════════ -->
+  <section class="sources-section">
+    <h2>Sources</h2>
+
+    <h3>Individual Artist Sources</h3>
+    <ul class="sources-list">
+      <li><a href="https://en.wikipedia.org/wiki/Granville_Redmond">Granville Redmond &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Douglas_Tilden">Douglas Tilden &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Petrona_Viera">Petrona Viera &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/John_Louis_Clarke">John Louis Clarke &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Cadwallader_Lincoln_Washburn">Cadwallader Washburn &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Shunsuke_Matsumoto">Shunsuke Matsumoto &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/James_Charles_Castle">James Castle &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/David_Ludwig_Bloch">David Ludwig Bloch &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Regina_Olson_Hughes">Regina Olson Hughes &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Robert_Panara">Robert F. Panara &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Bernard_Bragg">Bernard Bragg &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Audree_Norton">Audree Norton &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Betty_G._Miller">Betty G. Miller &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Gilbert_Eastman">Gilbert Eastman &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Dorothy_Miles">Dorothy Miles &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Phyllis_Frelich">Phyllis Frelich &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Chuck_Baird">Chuck Baird &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Linda_Bove">Linda Bove &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Marlee_Matlin">Marlee Matlin &mdash; Wikipedia</a></li>
+      <li><a href="https://www.deafpetercook.com/">Peter Cook &mdash; Official Website</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Clayton_Valli">Clayton Valli &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/CJ_Jones">CJ Jones &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Deanne_Bray">Deanne Bray &mdash; Wikipedia</a></li>
+      <li><a href="https://deaf-art.org/profiles/susan-dupor/">Susan Dupor &mdash; Deaf Art</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Christine_Sun_Kim">Christine Sun Kim &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Sean_Forbes">Sean Forbes &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Nancy_Rourke">Nancy Rourke &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Nyle_DiMarco">Nyle DiMarco &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Troy_Kotsur">Troy Kotsur &mdash; Wikipedia</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Chella_Man">Chella Man &mdash; Wikipedia</a></li>
+    </ul>
+
+    <div class="further-reading">
+      <h3>Further Reading</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/De%27VIA">De'VIA (Deaf View/Image Art) Movement &mdash; Wikipedia</a></li>
+        <li><a href="https://deaf-art.org/">Deaf Art &mdash; Online gallery and artist profiles</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/National_Theatre_of_the_Deaf">National Theatre of the Deaf &mdash; Wikipedia</a></li>
+        <li><a href="https://www.gallaudet.edu/">Gallaudet University &mdash; World's only university for the deaf</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/Category:Deaf_artists">Category: Deaf Artists &mdash; Wikipedia</a></li>
+        <li><a href="https://www.britannica.com/biography/Marlee-Matlin">Marlee Matlin &mdash; Encyclopaedia Britannica</a></li>
+        <li><a href="https://art21.org/artist/christine-sun-kim/">Christine Sun Kim &mdash; Art21</a></li>
+        <li><a href="https://www.nancyrourke.com/biography.htm">Nancy Rourke &mdash; Official Website</a></li>
+        <li><a href="https://www.signingsavvy.com/article/320/Living+Loud:+Clayton+Valli">Clayton Valli profile &mdash; Signing Savvy</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      Research compiled March 2026. Photos sourced from Wikimedia Commons under Creative Commons licenses.
+      <br>
+      <a href="https://roblogic.org/other">roblogic.org</a>
+    </p>
+  </footer>
+
+  <script>
+    // Image fallback — show initials if image fails to load
+    document.querySelectorAll('.artist-photo img').forEach(img => {
+      if (!img.src || img.src === window.location.href) {
+        img.parentElement.classList.add('no-photo');
+        return;
+      }
+      img.addEventListener('error', function() {
+        this.parentElement.classList.add('no-photo');
+      });
+    });
+
+    // Scroll-triggered fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const siblings = Array.from(card.parentElement.children);
+          const index = siblings.indexOf(card);
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 120);
+          observer.unobserve(card);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.artist-card').forEach(card => observer.observe(card));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('.decade');
+    const navLinks = document.querySelectorAll('.decade-nav a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const activeLink = document.querySelector(`.decade-nav a[href="#${entry.target.id}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, { threshold: 0, rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(section => navObserver.observe(section));
+  </script>
+
+</body>
+</html>
