@@ -599,7 +599,7 @@
         <div class="header-top">
           <h1>SD County <span>New ABC Licenses</span></h1>
           <div class="header-meta">
-            <div><span class="year">YTD <span id="display-year"></span></span> &nbsp;·&nbsp; Updated <span id="last-updated"></span></div>
+            <div><span class="year">Last 90 Days</span> &nbsp;·&nbsp; Updated <span id="last-updated"></span></div>
             <div>Built by <a href="https://roblogic.org">Rob Logic</a></div>
           </div>
         </div>
@@ -696,8 +696,6 @@
         }
 
         // Populate header
-        const year = new Date().getFullYear();
-        document.getElementById('display-year').textContent = year;
         document.getElementById('last-updated').textContent = formatDateTime(data.updated);
 
         // Store data
