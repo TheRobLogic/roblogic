@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABC Tracker — Full Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06090f;
+      --bg-card: #0d1321;
+      --bg-card-hover: #131b2e;
+      --bg-code: #090e1a;
+      --blue: #3b82f6;
+      --blue-bright: #60a5fa;
+      --blue-glow: rgba(59, 130, 246, 0.15);
+      --green: #22c55e;
+      --green-dim: rgba(34,197,94,0.12);
+      --purple: #a855f7;
+      --orange: #f97316;
+      --yellow: #eab308;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --text-dim: #475569;
+      --border: rgba(148, 163, 184, 0.08);
+      --border-med: rgba(148, 163, 184, 0.14);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── Section divider ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border-med);
+      margin: 0;
+    }
+
+    /* ── Tier label ── */
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 2.5rem 0 0;
+    }
+    .tier-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.85rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .tier-badge.user   { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .tier-badge.exec   { background: rgba(34,197,94,0.10);  color: #4ade80; border: 1px solid rgba(34,197,94,0.25); }
+    .tier-badge.tech   { background: rgba(168,85,247,0.10); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+    .tier-line { flex: 1; border: none; border-top: 1px solid var(--border); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5.5rem 0 3.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      border: 1px solid rgba(59,130,246,0.3);
+      background: rgba(59,130,246,0.08);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--blue-bright) 0%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.8rem 1.75rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 30px rgba(59,130,246,0.2);
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-cta:hover { background: #2563eb; box-shadow: 0 0 50px rgba(59,130,246,0.35); transform: translateY(-2px); }
+    .hero-cta svg { width: 16px; height: 16px; }
+
+    /* ── Section shared ── */
+    section { padding: 2.5rem 0 3rem; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 0.6rem;
+    }
+    .section-label.green { color: #4ade80; }
+    .section-label.purple { color: #c084fc; }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 620px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── How to use steps ── */
+    .steps { display: flex; flex-direction: column; gap: 1.25rem; counter-reset: step; }
+
+    .step {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .step:hover { background: var(--bg-card-hover); border-color: var(--border-med); }
+
+    .step-num {
+      counter-increment: step;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.12);
+      border: 1.5px solid rgba(59,130,246,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--blue-bright);
+    }
+    .step-num::before { content: counter(step); }
+
+    .step-content h3 { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .step-content p { color: var(--text-muted); font-size: 0.855rem; line-height: 1.6; }
+
+    .category-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.65rem; }
+    .cat-pill {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-size: 0.75rem; font-weight: 600;
+      padding: 0.25rem 0.65rem; border-radius: 100px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    }
+    .cat-dot { width: 7px; height: 7px; border-radius: 50%; }
+
+    /* ── Exec stat grid ── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+
+    /* ── Exec value cards ── */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .value-card:hover { background: var(--bg-card-hover); border-color: var(--border-med); }
+
+    .value-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+
+    .value-card h3 { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .value-card p { color: var(--text-muted); font-size: 0.845rem; line-height: 1.6; }
+
+    /* ── Pipeline flow ── */
+    .pipeline-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      row-gap: 0.5rem;
+    }
+
+    .pipe-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-med);
+      border-radius: 10px;
+      padding: 0.55rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .pipe-node .pipe-sub {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .pipe-arrow { color: var(--text-dim); font-size: 1rem; padding: 0 0.4rem; flex-shrink: 0; }
+
+    /* ── Tech stack cards ── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stack-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .stack-card:hover { background: var(--bg-card-hover); border-color: var(--border-med); }
+
+    .stack-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .stack-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .stack-card h3 { font-weight: 700; font-size: 0.92rem; }
+    .stack-card .stack-role { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .stack-card p { color: var(--text-muted); font-size: 0.845rem; line-height: 1.6; }
+
+    .code-pill {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      background: var(--bg-code);
+      border: 1px solid rgba(148,163,184,0.1);
+      border-radius: 6px;
+      padding: 0.15rem 0.5rem;
+      color: #94a3b8;
+      margin-top: 0.65rem;
+    }
+
+    /* ── Error / resilience callout ── */
+    .callout {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: rgba(234,179,8,0.06);
+      border: 1px solid rgba(234,179,8,0.2);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 0.1rem; }
+    .callout h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.25rem; color: #fde68a; }
+    .callout p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem 3.5rem;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    footer a { color: var(--blue-bright); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Animations ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 700px) {
+      .hero { padding: 4rem 0 2.5rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .value-grid, .stack-grid { grid-template-columns: 1fr; }
+      .step { flex-direction: column; gap: 0.75rem; }
+      .pipeline-flow { flex-direction: column; align-items: center; }
+      .pipe-arrow { transform: rotate(90deg); padding: 0.1rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-badge">Internal Briefing — SD County ABC Tracker</div>
+      <h1>From the State's<br><span class="accent">database to your screen</span></h1>
+      <p class="hero-sub">A fully automated liquor license intelligence tool for San Diego County — how to use it, why it matters, and how the pipeline works.</p>
+      <a href="/jordon/" class="hero-cta">
+        Open the Live Tracker
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══ USER: HOW TO USE ═══ -->
+  <hr class="section-divider">
+  <div class="container">
+    <div class="tier-header">
+      <span class="tier-badge user">How to use it</span>
+      <hr class="tier-line">
+    </div>
+  </div>
+
+  <section class="container reveal">
+    <div class="section-label">User guide</div>
+    <h2 class="section-title">Five steps to your next lead</h2>
+    <p class="section-desc">The tracker updates every morning. Here's how to get from the map to a real conversation.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Pick a category</h3>
+          <p>The four toggle buttons filter everything — map and table together. Tap one to focus on that license type. Tap it again to show all.</p>
+          <div class="category-row">
+            <span class="cat-pill"><span class="cat-dot" style="background:#3b82f6"></span>On-Premise</span>
+            <span class="cat-pill"><span class="cat-dot" style="background:#22c55e"></span>Off-Premise</span>
+            <span class="cat-pill"><span class="cat-dot" style="background:#a855f7"></span>Wholesale</span>
+            <span class="cat-pill"><span class="cat-dot" style="background:#f97316"></span>Other</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Search or narrow down</h3>
+          <p>Type a business name, street, or city. Use the dropdown to filter by a specific license type — e.g. Type 47 (On-Sale General — Eating Place) for restaurants with full bars.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Tap a card or a pin</h3>
+          <p>Each business shows as a card in the table and a dot on the map. Tap a card and the map zooms to that location. Tap a map pin to see the full details popup.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Get directions</h3>
+          <p>Every card and popup has a Google Maps link. Tap it to get turn-by-turn directions or to look the business up before you call.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>Make contact</h3>
+          <p>When we have a phone number or website on file, it's right on the card. Tap the number to call, or the link to open their site. Contact data enriches automatically as new businesses appear.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EXEC ═══ -->
+  <hr class="section-divider">
+  <div class="container">
+    <div class="tier-header">
+      <span class="tier-badge exec">Executive overview</span>
+      <hr class="tier-line">
+    </div>
+  </div>
+
+  <section class="container reveal">
+    <div class="section-label green">By the numbers</div>
+    <h2 class="section-title">What the tool delivers</h2>
+    <p class="section-desc">All of San Diego County, updated every morning, zero manual work.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number" style="color:#60a5fa">123</div>
+        <div class="stat-label">Licenses tracked<br>(last 90 days)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color:#4ade80">~1.8</div>
+        <div class="stat-label">New licenses<br>per day</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color:#c084fc">8am</div>
+        <div class="stat-label">Daily refresh<br>Pacific Time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color:#fb923c">$0</div>
+        <div class="stat-label">Ongoing cost<br>to operate</div>
+      </div>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <h3>First-mover advantage</h3>
+        <p>New licenses appear in the tracker the same morning the CA ABC publishes them. That's often weeks before a new bar or restaurant opens its doors — time to build a relationship before anyone else is at the door.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🗺️</div>
+        <h3>Geographic intelligence</h3>
+        <p>Every address is geocoded on first appearance. You see where new accounts are opening — by neighborhood, by zip, by city. Spot clusters, prioritize routes, identify territory gaps at a glance.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚙️</div>
+        <h3>Fully automated</h3>
+        <p>The pipeline runs itself. No spreadsheet downloads, no manual filtering, no human in the loop. One person built it; nobody needs to maintain it. If a run fails, an alert fires automatically.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📋</div>
+        <h3>Rolling 90-day window</h3>
+        <p>The tracker shows the last 90 days of new licenses — enough history to work from, recent enough to be actionable. The window advances daily so old data ages out automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TECH ═══ -->
+  <hr class="section-divider">
+  <div class="container">
+    <div class="tier-header">
+      <span class="tier-badge tech">Technical deep-dive</span>
+      <hr class="tier-line">
+    </div>
+  </div>
+
+  <section class="container reveal">
+    <div class="section-label purple">Pipeline</div>
+    <h2 class="section-title">How the data gets from Sacramento to your screen</h2>
+    <p class="section-desc">Seven stages, fully automated, running every day at 8am PT on self-hosted infrastructure.</p>
+
+    <div class="pipeline-flow">
+      <div class="pipe-node">CA ABC<span class="pipe-sub">daily CSV ZIP</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">n8n<span class="pipe-sub">download + unzip</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">Parse + Filter<span class="pipe-sub">SD County, 90 days</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">Geocode<span class="pipe-sub">Nominatim</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">Enrich<span class="pipe-sub">Foursquare</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">GitHub<span class="pipe-sub">commit JSON</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-node">Cloudflare Pages<span class="pipe-sub">auto-deploy</span></div>
+    </div>
+
+    <div class="stack-grid">
+
+      <div class="stack-card">
+        <div class="stack-header">
+          <div class="stack-icon" style="background:rgba(59,130,246,0.12);">📥</div>
+          <div>
+            <h3>CA ABC Daily Export</h3>
+            <div class="stack-role">Data source</div>
+          </div>
+        </div>
+        <p>The California Department of Alcoholic Beverage Control publishes a full statewide license export every day as a ZIP file (~7MB, ~27MB uncompressed CSV). It contains every active and pending license in the state. The pipeline pulls this directly — no API key required, no scraping, no fragile web automation.</p>
+        <span class="code-pill">abc.ca.gov/wp-content/uploads/DailyExport-CSV.zip</span>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-header">
+          <div class="stack-icon" style="background:rgba(168,85,247,0.12);">🔄</div>
+          <div>
+            <h3>n8n Automation</h3>
+            <div class="stack-role">Orchestration — self-hosted on Mac Mini M2</div>
+          </div>
+        </div>
+        <p>n8n is a self-hosted workflow automation tool (like Zapier, but runs locally). A scheduled trigger fires at 8am PT. The workflow downloads the ZIP, unzips it, parses the CSV, and filters to San Diego County licenses issued within the last 90 days. Roughly 100–130 records after deduplication. All processing happens in JavaScript code nodes — no external APIs for the core parse step.</p>
+        <span class="code-pill">Schedule: 08:00 PT daily — 8 nodes total</span>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-header">
+          <div class="stack-icon" style="background:rgba(34,197,94,0.12);">📍</div>
+          <div>
+            <h3>Geocoding</h3>
+            <div class="stack-role">Nominatim / OpenStreetMap</div>
+          </div>
+        </div>
+        <p>New businesses (ones not seen in the previous run) are geocoded using Nominatim — the free OpenStreetMap geocoding API. Street address, city, and zip are submitted; lat/lng comes back. Results are cached to disk inside the n8n container so each address is only ever geocoded once. Rate limited to 1 request per 1.1 seconds to stay within Nominatim's usage policy.</p>
+        <span class="code-pill">~11 new addresses geocoded on a typical run</span>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-header">
+          <div class="stack-icon" style="background:rgba(249,115,22,0.12);">📞</div>
+          <div>
+            <h3>Contact Enrichment</h3>
+            <div class="stack-role">Foursquare Places API</div>
+          </div>
+        </div>
+        <p>Businesses that have been geocoded but are missing a phone number or website are looked up in the Foursquare Places API using name + coordinates. Phone and website are written back into the record. Enrichment is additive — it never overwrites data that's already there. Currently 27 phone numbers and 22 websites on file across the dataset.</p>
+        <span class="code-pill">Foursquare Places v3 · radius: 200m</span>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-header">
+          <div class="stack-icon" style="background:rgba(59,130,246,0.12);">🐙</div>
+          <div>
+            <h3>GitHub Commit</h3>
+            <div class="stack-role">Version-controlled data layer</div>
+          </div>
+        </div>
+        <p>The final JSON (licenses array + metadata + timestamp) is base64-encoded and PUT directly to the GitHub API, updating a single file in the site's repository. This creates a named commit with every day's data snapshot — giving a complete audit trail of when each license appeared. The commit is the deployment trigger.</p>
+        <span class="code-pill">jordon/jordon-abc-data.json · GitHub Contents API</span>
+      </div>
+
+      <div class="stack-card">
+        <div class="stack-header">
+          <div class="stack-icon" style="background:rgba(249,115,22,0.12);">🌐</div>
+          <div>
+            <h3>Cloudflare Pages</h3>
+            <div class="stack-role">Hosting + global CDN</div>
+          </div>
+        </div>
+        <p>The entire front end is static HTML, CSS, and JavaScript — no server, no database, no runtime. Cloudflare Pages watches the GitHub repository and auto-deploys within ~30 seconds of any commit. The site is served from Cloudflare's global edge network. Zero hosting cost, sub-100ms load times worldwide.</p>
+        <span class="code-pill">roblogic.org → Cloudflare Pages → GitHub repo</span>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">⚠️</div>
+      <div>
+        <h4>Error handling &amp; alerting</h4>
+        <p>If any step in the pipeline fails, n8n's error trigger fires and sends a push notification via ntfy. The previous day's data stays live on the site — visitors always see the last successful run. Failures are isolated: a geocoding timeout or Foursquare API error won't abort the commit; it just skips enrichment for that run and tries again tomorrow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="container">
+    Built by <a href="https://roblogic.org">Rob Logic</a> &nbsp;·&nbsp; <a href="/jordon/">Open the Tracker</a> &nbsp;·&nbsp; <a href="/abcofabc/">Client Guide</a>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
