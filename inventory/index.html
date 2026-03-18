@@ -5,44 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bancroft Inventory</title>
 <style>
-@page { size: letter; margin: 0.2in; }
+@page { size: letter portrait; margin: 0.25in 0.2in; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: Arial, sans-serif; color: #000; background: #fff; }
+
 .no-print { text-align: center; padding: 8px; background: #333; color: #fff; font-size: 13px; }
 .no-print button { font-size: 15px; padding: 6px 20px; cursor: pointer; background: #fff; border: 2px solid #000; border-radius: 3px; font-weight: bold; margin-right: 10px; }
+
 .sheet { max-width: 8in; margin: 0 auto; }
-h1 { font-size: 13px; text-align: center; margin: 3px 0 1px; text-transform: uppercase; letter-spacing: 1px; }
-.meta { text-align: center; font-size: 9px; color: #555; margin-bottom: 3px; }
-.hdr { background: #222; color: #fff; font-size: 9px; font-weight: bold; padding: 2px 4px; margin-top: 4px; text-transform: uppercase; }
-table { width: 100%; border-collapse: collapse; }
-col.item { width: auto; }
-col.n { width: 26px; }
-col.w { width: 38px; }
-th { background: #ddd; font-size: 6.5px; text-transform: uppercase; padding: 1px 0; border: 1px solid #999; text-align: center; white-space: nowrap; }
-th:first-child { text-align: left; padding-left: 3px; font-size: 7px; }
-td { border: 1px solid #999; font-size: 12px; height: 17px; line-height: 17px; padding: 0 3px; }
-td:not(:first-child) { text-align: center; padding: 0; }
-tr.bk td { border: 1px dashed #ccc; }
-.sig { margin-top: 6px; font-size: 8px; }
-.sig span { display: inline-block; width: 120px; border-bottom: 1px solid #000; margin-left: 3px; }
+
+h1 { font-size: 13px; text-align: center; margin: 4px 0 2px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+.meta { text-align: center; font-size: 8.5px; color: #333; margin-bottom: 4px; }
+.hdr { background: #111; color: #fff; font-size: 9px; font-weight: bold; padding: 3px 5px; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* ---- Tables ---- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Item column: left-aligned, nowrap so it only takes what it needs */
+td:first-child, th:first-child {
+  text-align: left;
+  padding: 0 4px;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+/* Count column headers — enforce minimum width here; browsers respect min-width on th/td */
+th {
+  background: #e0e0e0;
+  font-size: 7.5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 2px 2px;
+  border: 1px solid #666;
+  text-align: center;
+  white-space: nowrap;
+}
+th:first-child {
+  font-size: 8.5px;
+  background: #e8e8e8;
+}
+
+/* All data cells */
+td {
+  border: 1px solid #888;
+  height: 20px;
+  line-height: 20px;
+  padding: 0;
+  font-size: 11px;
+}
+
+/* Count cells: min-width enforced so they can't collapse below pen-write size */
+td:not(:first-child) {
+  text-align: center;
+  min-width: 52px;
+}
+th:not(:first-child) {
+  min-width: 52px;
+}
+
+/* Blank write-in rows */
+tr.bk td {
+  border: 1px dashed #bbb;
+  height: 20px;
+}
+
+/* Signature line */
+.sig { margin-top: 8px; font-size: 8.5px; }
+.sig span { display: inline-block; width: 130px; border-bottom: 1px solid #000; margin-left: 4px; }
+
+/* Page break */
 .pb { page-break-before: always; }
-@media print { .no-print { display: none; } }
+
+/* Section group label (sub-header inside a section) */
+.subhdr td {
+  background: #555;
+  color: #fff;
+  font-size: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 1px 4px;
+  border: 1px solid #333;
+}
+
+@media print {
+  .no-print { display: none; }
+  /* Ensure borders print */
+  td, th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .hdr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
 </style>
 </head>
 <body>
 <div class="no-print">
-<button onclick="window.print()">PRINT</button>
-Bancroft Inventory Count Sheet
+  <button onclick="window.print()">PRINT</button>
+  Bancroft Inventory Count Sheet
 </div>
 <div class="sheet">
 
 <h1>Beer Inventory</h1>
-<div class="meta">Date: ____________ &nbsp; Counted by: ____________ &nbsp; SEND ME EDITS / ADDS / CROSS OUT WHAT WE DON'T HAVE</div>
+<div class="meta">Date: _____________ &nbsp;&nbsp; Counted by: _____________ &nbsp;&nbsp; <em>Cross out items we don't carry &mdash; add new ones at bottom</em></div>
 
-<div class="hdr">Draft / On Tap &mdash; <span style="font-weight:normal;font-style:italic">kegs: F=full, &frac12;, &frac14;, K=kicked</span></div>
+<!-- DRAFT -->
+<div class="hdr">Draft / On Tap &mdash; <span style="font-weight:normal;font-style:italic">kegs: F=full &nbsp; &frac12; &nbsp; &frac14; &nbsp; K=kicked</span></div>
 <table>
-<colgroup><col class="item"><col class="w"><col class="w"></colgroup>
-<tr><th>Item</th><th>Bar</th><th>Walk-in</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Bar<br><span style="font-size:6px;font-weight:normal">(at tap)</span></th>
+  <th>Walk-In<br><span style="font-size:6px;font-weight:normal">(backup)</span></th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Elysian Space Dust IPA</td><td></td><td></td></tr>
 <tr><td>Coors Light Draft</td><td></td><td></td></tr>
 <tr><td>Karl Strauss Boat Shoes Hazy</td><td></td><td></td></tr>
@@ -73,12 +149,20 @@ Bancroft Inventory Count Sheet
 <tr class="bk"><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- BOTTLES -->
 <div class="hdr">Bottles</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Bar</th><th>WI</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Bar</th>
+  <th>Walk-In</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Modelo Especial</td><td></td><td></td></tr>
 <tr><td>Heineken</td><td></td><td></td></tr>
 <tr><td>Coors Light</td><td></td><td></td></tr>
@@ -104,12 +188,20 @@ Bancroft Inventory Count Sheet
 <tr class="bk"><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- CANS -->
 <div class="hdr">Cans / Seltzer</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Bar</th><th>WI</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Bar</th>
+  <th>Walk-In</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>White Claw Tall 19.2oz (any)</td><td></td><td></td></tr>
 <tr><td>White Claw Small (any)</td><td></td><td></td></tr>
 <tr><td>Happy Dad Seltzer (any)</td><td></td><td></td></tr>
@@ -123,12 +215,20 @@ Bancroft Inventory Count Sheet
 <tr><td>Twisted Tea 12oz</td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- TALL CANS -->
 <div class="hdr">Tall Cans / 16oz+</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Bar</th><th>WI</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Bar</th>
+  <th>Walk-In</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Bud Light Chelada Tall Boy</td><td></td><td></td></tr>
 <tr><td>Guinness Stout</td><td></td><td></td></tr>
 <tr><td>PBR Tall Can</td><td></td><td></td></tr>
@@ -136,17 +236,30 @@ Bancroft Inventory Count Sheet
 <tr><td>Mickey's Grenade</td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
-<!-- =========== LIQUOR =========== -->
+<!-- =========== LIQUOR PAGE =========== -->
 <div class="pb"></div>
 <h1>Liquor Inventory</h1>
-<div class="meta">Date: ____________ &nbsp; Counted by: ____________ &nbsp; SEND ME EDITS / ADDS / CROSS OUT WHAT WE DON'T HAVE</div>
+<div class="meta">Date: _____________ &nbsp;&nbsp; Counted by: _____________ &nbsp;&nbsp; <em>Cross out items we don't carry &mdash; add new ones at bottom</em></div>
 
+<!-- WELL SPIRITS — Day/Night for the two open wells + Full/1/2/1/4/Bar/Bkup -->
 <div class="hdr">Well Spirits</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Day</th><th>Night</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Day<br><span style="font-size:6px;font-weight:normal">(well 1)</span></th>
+  <th>Night<br><span style="font-size:6px;font-weight:normal">(well 2)</span></th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Well Tequila (Tres Paraguas)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Well Vodka (Hideout)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Well Whiskey</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -154,12 +267,23 @@ Bancroft Inventory Count Sheet
 <tr><td>Well Gin (Clocktower)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Well Scotch</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Well Brandy</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- WHISKEY -->
 <div class="hdr">Whiskey / Bourbon / Scotch / Irish</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Tullamore Dew</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Jack Daniels</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Jameson</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -188,12 +312,23 @@ Bancroft Inventory Count Sheet
 <tr><td>Nelson Brothers Classic</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- TEQUILA -->
 <div class="hdr">Tequila / Mezcal</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Gran Malo Blanco</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Cazadores Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Hornitos Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -209,12 +344,23 @@ Bancroft Inventory Count Sheet
 <tr><td>Lo Ciento Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- VODKA -->
 <div class="hdr">Vodka</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Tito's</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>New Amsterdam Pineapple</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Hideout Mandarin</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -231,12 +377,23 @@ Bancroft Inventory Count Sheet
 <tr><td>Seagram's Sweet Tea</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- RUM -->
 <div class="hdr">Rum</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Captain Morgan Spiced</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Bacardi Silver</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Sailor Jerry</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -248,23 +405,45 @@ Bancroft Inventory Count Sheet
 <tr><td>Whaler's Dark</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- GIN -->
 <div class="hdr">Gin</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Hendrick's</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Gin Mare</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Bombay Sapphire</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Tanqueray</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- LIQUEUR -->
 <div class="hdr">Liqueur / Cordial / Vermouth</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Jagermeister</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Fernet Branca</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Kahlua</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -287,12 +466,23 @@ Bancroft Inventory Count Sheet
 <tr><td>Martini &amp; Rossi Dry</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
+<!-- DEKUYPER -->
 <div class="hdr">Dekuyper Cordials</div>
 <table>
-<colgroup><col class="item"><col class="n"><col class="n"><col class="n"><col class="n"><col class="n"></colgroup>
-<tr><th>Item</th><th>Full</th><th>&frac12;</th><th>&frac14;</th><th>Bar</th><th>Bkup</th></tr>
+<thead>
+<tr>
+  <th>Item</th>
+  <th>Full</th>
+  <th>&frac12;</th>
+  <th>&frac14;</th>
+  <th>Bar</th>
+  <th>Bkup</th>
+</tr>
+</thead>
+<tbody>
 <tr><td>Triple Sec</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Amaretto</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Blue Curacao</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -306,10 +496,11 @@ Bancroft Inventory Count Sheet
 <tr><td>Grape</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Cherry</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>Orange Curacao</td><td></td><td></td><td></td><td></td><td></td></tr>
+</tbody>
 </table>
 
 <div class="sig">
-Counted by: <span></span> &nbsp; Date: <span style="width:80px"></span>
+Counted by: <span></span> &nbsp;&nbsp; Date: <span style="width:90px"></span>
 </div>
 
 </div>
