@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bancroft Inventory Count Sheet</title>
+<style>
+@page { size: letter; margin: 0.3in 0.25in; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #000; background: #fff; }
+.no-print { text-align: center; padding: 10px; background: #333; color: #fff; }
+.no-print button { font-size: 16px; padding: 8px 24px; cursor: pointer; margin: 0 6px; background: #fff; border: 2px solid #000; border-radius: 4px; font-weight: bold; }
+.no-print button:hover { background: #eee; }
+.sheet { max-width: 8in; margin: 0 auto; padding: 8px; }
+h1 { font-size: 16px; text-align: center; margin: 4px 0 2px; text-transform: uppercase; letter-spacing: 1px; }
+.meta { text-align: center; font-size: 10px; color: #555; margin-bottom: 6px; }
+.hdr { background: #222; color: #fff; font-size: 11px; font-weight: bold; padding: 3px 6px; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 2px; }
+th { background: #e8e8e8; font-size: 8px; text-transform: uppercase; padding: 2px; border: 1px solid #aaa; text-align: center; }
+th.itm { text-align: left; padding-left: 4px; }
+td { border: 1px solid #aaa; padding: 1px 4px; font-size: 10px; height: 15px; }
+td.c { width: 48px; text-align: center; background: #f9f9f6; }
+td.t { width: 44px; text-align: center; background: #f0efe8; font-weight: bold; }
+.bk td { border-style: dashed; }
+.sig { margin-top: 10px; font-size: 9px; }
+.sig span { display: inline-block; width: 160px; border-bottom: 1px solid #000; margin-left: 4px; }
+@media print {
+  .no-print { display: none; }
+  body { font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <button onclick="window.print()">Print This Sheet</button>
+  <span style="font-size:12px;">Bancroft Bar Inventory &mdash; Updated Mar 18, 2026</span>
+</div>
+
+<div class="sheet">
+<h1>Beer Inventory</h1>
+<div class="meta">Date: ____________ &nbsp; Counted by: ____________</div>
+
+<div class="hdr">Draft / On Tap</div>
+<table>
+<tr><th class="itm">Item</th><th>Bar</th><th>WI</th><th>Tot</th></tr>
+<tr><td>Elysian Space Dust IPA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Coors Light Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Karl Strauss Boat Shoes Hazy</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bud Light Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Jai Alai IPA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bancroft House Blonde</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Lagunitas Hazy Wonder IPA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Estrella Jalisco Lager</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Big Wave Kona Ale</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>805 Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Blue Moon Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Fall Plenty For All Pilsner</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mission Sea Cider</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Stella Lager Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Modelo Lager Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Pacifico Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Battlemage Czech Pilsner</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Michelob Ultra Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Sierra Nevada Celebration IPA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Karl Strauss Red Trolley</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Thorn St Relay IPA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Sierra Nevada Hazy Little Thing</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bambucha Hawaiian Hibiscus</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bells Two Hearted IPA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mission Foggy Shores Hef</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Sierra Nevada Pale Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Coors Banquet Draft</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Bottles</div>
+<table>
+<tr><th class="itm">Item</th><th>Bar</th><th>WI</th><th>Tot</th></tr>
+<tr><td>Modelo Especial</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Heineken</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Coors Light</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Pacifico</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Stella</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Corona</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Heineken Zero N/A</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Budweiser</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Miller Lite</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Michelob Ultra</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Miller High Life</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bud Light</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Coors Original</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>PBR 12oz</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Modelo Negra</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Michelob Ultra NA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Corona NA</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Surfside</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Modelo Oro</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>805 Bottle</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Dos Equis</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Corona Premier</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Cans / Seltzer</div>
+<table>
+<tr><th class="itm">Item</th><th>Bar</th><th>WI</th><th>Tot</th></tr>
+<tr><td>White Claw Tall 19.2oz (any)</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>White Claw Small (any)</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Happy Dad Seltzer (any)</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Buzzball (any)</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Hamm's 12oz</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Natural Light</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Rolling Rock 12oz</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mari-Hi Seltzer</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Topo Chico Seltzer (any)</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Sierra Nevada Hazy IPA Can</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Twisted Tea 12oz</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Tall Cans / 16oz+</div>
+<table>
+<tr><th class="itm">Item</th><th>Bar</th><th>WI</th><th>Tot</th></tr>
+<tr><td>Bud Light Chelada Tall Boy</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Guinness Stout</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>PBR Tall Can</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Hamm's 16oz</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mickey's Grenade</td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<!-- =========== LIQUOR =========== -->
+<div style="page-break-before:always"></div>
+<h1>Liquor Inventory</h1>
+<div class="meta">Date: ____________ &nbsp; Counted by: ____________ &nbsp; Open bottles: F=full &frac12;=half &frac14;=quarter</div>
+
+<div class="hdr">Well Spirits</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Well Tequila (Tres Paraguas)</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Well Vodka (Hideout)</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Well Whiskey</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Well Rum (Sunken Ship)</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Well Gin (Clocktower)</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Well Scotch</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Well Brandy</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Whiskey / Bourbon / Scotch / Irish</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Tullamore Dew</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Jack Daniels</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Jameson</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Fireball</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Seagram's 7</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Tullamore Dew Honey</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Stone Imperial Whiskey</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Blanton's Single Barrel</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Rams Point PB Whiskey</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bulleit Rye</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Crown Royal</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Maker's Mark</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Monkey Shoulder</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Johnnie Walker Black</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bulleit Bourbon</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Glenfiddich</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>EH Taylor Barrel Proof</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>EH Taylor Rye</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Skrewball PB Whiskey</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bushmills Irish</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Dewar's Scotch</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Wild Turkey 101</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Ancient Age Bourbon</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>8 Ball Chocolate Whiskey</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Traveller Bourbon</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Nelson Brothers Classic</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Tequila / Mezcal</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Gran Malo Blanco</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Cazadores Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Hornitos Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Milagro Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mijenta Blanco</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mijenta Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mi Campo Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mi Campo Blanco</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Mango Shotta</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>400 Conejos Mezcal</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Corazon Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Gran Orendain Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Lo Ciento Reposado</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Vodka</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Tito's</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>New Amsterdam Pineapple</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Hideout Mandarin</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Pink Whitney</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Reyka</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Hideout Cucumber</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>New Amsterdam Peach</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>New Amsterdam (plain)</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Absolut</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Absolut Peppar</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Stoli</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>7X Platinum</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Wheatley</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Seagram's Sweet Tea</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Rum</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Captain Morgan Spiced</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bacardi Silver</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Sailor Jerry</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Malibu Coconut</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Myers Dark</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>RumChata</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>RumChata Peppermint</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Don Q 151</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Whaler's Dark</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Gin</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Hendrick's</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Gin Mare</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Bombay Sapphire</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Tanqueray</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Liqueur / Cordial / Vermouth</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Jagermeister</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Fernet Branca</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Kahlua</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Baileys Irish Cream</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Baileys Almond</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Southern Comfort 100</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Frangelico</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>St. Germain</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Campari</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Midori Melon</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Goldschlager</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Rumpleminze</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Grind Espresso</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Christian Bros Brandy</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Llords Peach</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Llords Watermelon</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Dr. McGillicuddy Peppermint</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Cribari Dry Vermouth</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Cribari Sweet Vermouth</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Martini &amp; Rossi Dry</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr class="bk"><td></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="hdr">Dekuyper Cordials</div>
+<table>
+<tr><th class="itm">Item</th><th>Open</th><th>Bar</th><th>Bkup</th><th>Tot</th></tr>
+<tr><td>Triple Sec</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Amaretto</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Blue Curacao</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Peachtree</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Buttershots</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Apple Pucker</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Sloe Gin</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Watermelon</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Raspberry</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Root Beer</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Grape</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Cherry</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+<tr><td>Orange Curacao</td><td class="c"></td><td class="c"></td><td class="c"></td><td class="t"></td></tr>
+</table>
+
+<div class="sig">
+Counted by: <span></span> &nbsp; Date: <span style="width:100px"></span><br>
+Verified by: <span></span> &nbsp; Date: <span style="width:100px"></span>
+</div>
+
+</div>
+</body>
+</html>
