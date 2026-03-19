@@ -83,6 +83,19 @@
       margin-top: 4px;
     }
 
+    .order-header .budget-badge {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 14px;
+      border: 1px solid var(--green-dim);
+      border-radius: 3px;
+      color: var(--green);
+      margin-top: 10px;
+    }
+
     /* Glow divider */
     .glow-divider {
       width: 100%;
@@ -160,6 +173,7 @@
     .tag--tourney { background: var(--green-dim); color: var(--green); }
     .tag--holiday { background: #92400e; color: #fbbf24; }
     .tag--recurring { background: #333; color: var(--cream-dim); }
+    .tag--quiet { background: #1a1a1a; color: #666; }
 
     /* Order sections */
     .order-section {
@@ -294,6 +308,13 @@
       margin-top: 4px;
     }
 
+    .grand-total-box .savings {
+      font-family: var(--font-accent);
+      font-size: 13px;
+      color: var(--green);
+      margin-top: 6px;
+    }
+
     /* Notes section */
     .notes {
       padding: 24px 0 48px;
@@ -397,8 +418,9 @@
   <header class="order-header">
     <div class="container">
       <h1><span>Crest</span> Order</h1>
-      <div class="date">Week of March 13 - 19, 2026</div>
-      <div class="delivery">Delivery: Thursday, March 13</div>
+      <div class="date">Week of March 20 - 26, 2026</div>
+      <div class="delivery">Delivery: Thursday, March 20</div>
+      <div class="budget-badge">Budget week &mdash; under $500</div>
       <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
     </div>
   </header>
@@ -411,46 +433,46 @@
       <h2>This <span>Week</span></h2>
       <div class="event-grid">
         <div class="event-card event-card--hot">
-          <div class="day">Fri</div>
-          <div class="date-num">Mar 13</div>
-          <div class="event-name">Dart Tourney + Beer Pong</div>
-          <span class="event-tag tag--tourney">Tourney</span>
-        </div>
-        <div class="event-card event-card--hot">
-          <div class="day">Sat</div>
-          <div class="date-num">Mar 14</div>
-          <div class="event-name">Solicitor / Trencher / Chainwolf / Angel Fury</div>
-          <span class="event-tag tag--show">Metal Show</span>
-        </div>
-        <div class="event-card">
-          <div class="day">Sun</div>
-          <div class="date-num">Mar 15</div>
-          <div class="event-name">Fudosa / Sun Jelly / Desire4 + Darts</div>
-          <span class="event-tag tag--show">Show</span>
-        </div>
-        <div class="event-card">
-          <div class="day">Mon</div>
-          <div class="date-num">Mar 16</div>
-          <div class="event-name">Vinyl Knights / Daygo Pong</div>
-          <span class="event-tag tag--recurring">Recurring</span>
-        </div>
-        <div class="event-card event-card--hot">
-          <div class="day">Tue</div>
-          <div class="date-num">Mar 17</div>
-          <div class="event-name">St. Patrick's Day + Karaoke w/ Lenny</div>
-          <span class="event-tag tag--holiday">Holiday</span>
-        </div>
-        <div class="event-card">
-          <div class="day">Wed</div>
-          <div class="date-num">Mar 18</div>
-          <div class="event-name">Free Pool</div>
-          <span class="event-tag tag--recurring">Quiet</span>
-        </div>
-        <div class="event-card event-card--hot">
           <div class="day">Thu</div>
           <div class="date-num">Mar 19</div>
           <div class="event-name">None! / Fractured Obscurity / Wrecktifyed / Dresden's Burning</div>
-          <span class="event-tag tag--show">Show</span>
+          <span class="event-tag tag--show">4-Band Show</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Fri</div>
+          <div class="date-num">Mar 20</div>
+          <div class="event-name">Nothing booked</div>
+          <span class="event-tag tag--quiet">Normal</span>
+        </div>
+        <div class="event-card event-card--hot">
+          <div class="day">Sat</div>
+          <div class="date-num">Mar 21</div>
+          <div class="event-name">Hold for Leandra + Beer Pong Tournament</div>
+          <span class="event-tag tag--tourney">Pong</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Sun</div>
+          <div class="date-num">Mar 22</div>
+          <div class="event-name">Dart Tournament</div>
+          <span class="event-tag tag--tourney">Darts</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Mon</div>
+          <div class="date-num">Mar 23</div>
+          <div class="event-name">Daygo Pong + Vinyl Knights</div>
+          <span class="event-tag tag--recurring">Recurring</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Tue</div>
+          <div class="date-num">Mar 24</div>
+          <div class="event-name">Karaoke w/ Lenny</div>
+          <span class="event-tag tag--recurring">Recurring</span>
+        </div>
+        <div class="event-card">
+          <div class="day">Wed</div>
+          <div class="date-num">Mar 25</div>
+          <div class="event-name">Nothing booked</div>
+          <span class="event-tag tag--quiet">Quiet</span>
         </div>
       </div>
     </div>
@@ -474,86 +496,62 @@
         <tbody>
           <tr>
             <td><span class="item-name">Modelo Especial</span><span class="item-format">B24 12oz LSE</span></td>
-            <td class="qty">2</td>
-            <td class="cost">$56.30</td>
-            <td class="reason">#2 beer, 18.6/wk. Only 20 on hand.</td>
+            <td class="qty">1</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">#1 beer, 25/wk. 47 on hand = 1.9 wks.</td>
           </tr>
           <tr>
-            <td><span class="item-name">Coors Light</span><span class="item-format">B24 12oz 12P</span></td>
+            <td><span class="item-name">Pacifico</span><span class="item-format">B24 12oz LSE</span></td>
             <td class="qty">1</td>
-            <td class="cost">$22.80</td>
-            <td class="reason">54 btl on hand, 3.5x show spike</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Coors Light Keg</span><span class="item-format">1/2 BBL</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$182.00</td>
-            <td class="reason">Keg at 1/4, 14.4 draft/wk + shows</td>
+            <td class="cost">$26.80</td>
+            <td class="reason">Only 12 on hand, 15.4/wk. Under 1 week.</td>
           </tr>
           <tr>
             <td><span class="item-name">Corona Extra</span><span class="item-format">B24 12oz LSE</span></td>
             <td class="qty">1</td>
             <td class="cost">$28.15</td>
-            <td class="reason">Only 10 on hand</td>
+            <td class="reason">Only 12 on hand, 14/wk. Under 1 week.</td>
           </tr>
           <tr>
             <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz LSE</span></td>
             <td class="qty">1</td>
             <td class="cost">$28.15</td>
-            <td class="reason">13 on hand, ~2 wk supply</td>
+            <td class="reason">26 on hand, 14/wk. Under 2 weeks.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Coors Light</span><span class="item-format">B24 12oz 12P</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$22.80</td>
+            <td class="reason">41 on hand, 22/wk. Show + pong week.</td>
           </tr>
           <tr>
             <td><span class="item-name">Mickeys Malt</span><span class="item-format">B24 12oz 12P</span></td>
             <td class="qty">1</td>
             <td class="cost">$22.45</td>
-            <td class="reason">38 on hand, 9.2/wk steady mover</td>
+            <td class="reason">Only 4 on hand, 10.7/wk. Under 3 days.</td>
           </tr>
           <tr>
             <td><span class="item-name">Modelo Negra</span><span class="item-format">B24 12oz LSE</span></td>
             <td class="qty">1</td>
-            <td class="cost">$29.75</td>
-            <td class="reason">Only 8 on hand, 5.6x Fri spike</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">~12 on hand, 6.3/wk. Under 2 weeks.</td>
           </tr>
           <tr>
-            <td><span class="item-name">White Claw Blackberry</span><span class="item-format">C12 19.2oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$34.15</td>
-            <td class="reason">#3 beer (tall), only 9 total on hand</td>
+            <td><span class="item-name">White Claw Tall</span><span class="item-format">C12 19.2oz &mdash; any 2 flavors</span></td>
+            <td class="qty">2</td>
+            <td class="cost">$68.30</td>
+            <td class="reason">#1 seller by revenue. 17 on hand, 24/wk = 5 days.</td>
           </tr>
           <tr>
-            <td><span class="item-name">White Claw Mango</span><span class="item-format">C12 19.2oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$34.15</td>
-            <td class="reason">Tall cans nearly out</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">White Claw Ruby Grapefruit</span><span class="item-format">C12 19.2oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$34.15</td>
-            <td class="reason">Tall cans nearly out</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">White Claw Variety 1</span><span class="item-format">C24 12oz LSE/SL</span></td>
+            <td><span class="item-name">White Claw Variety 1</span><span class="item-format">C24 12oz</span></td>
             <td class="qty">1</td>
             <td class="cost">$30.40</td>
-            <td class="reason">Small cans, only 3 on hand</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Guinness Keg</span><span class="item-format">20L (~1/4 BBL)</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$129.50</td>
-            <td class="reason">St. Patrick's Day. Ask rep re: 1/2 BBL.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Hamms</span><span class="item-format">C24 16oz 6P</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$20.50</td>
-            <td class="reason">26 on hand but 19x show-night spike, 2 metal shows</td>
+            <td class="reason">9 smalls on hand, 12.8/wk. Under 1 week.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Beer Subtotal</td>
             <td></td>
-            <td class="cost">$652</td>
+            <td class="cost">$283</td>
             <td></td>
           </tr>
         </tbody>
@@ -578,51 +576,33 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="item-name">Pueblo Viejo Blanco</span><span class="item-format">B12 1L &mdash; Full Case</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$187.20</td>
-            <td class="reason">Well tequila. Shrinkage + #1 spirit by volume.</td>
-          </tr>
-          <tr>
             <td><span class="item-name">Gran Malo Tamarindo</span><span class="item-format">750ml &mdash; Singles</span></td>
             <td class="qty">/2</td>
-            <td class="cost">~$44.00</td>
-            <td class="reason">Shot ingredient, 1/4 btl left</td>
+            <td class="cost">$35.48</td>
+            <td class="reason">Half bottle left. 15.4 drinks/wk = will run out.</td>
           </tr>
           <tr>
-            <td><span class="item-name">New Amsterdam Pineapple</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td><span class="item-name">Fireball Cinnamon</span><span class="item-format">1L &mdash; Singles</span></td>
             <td class="qty">/2</td>
-            <td class="cost">$31.08</td>
-            <td class="reason">Shot ingredient, full btl on hand</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Titos Vodka</span><span class="item-format">1L &mdash; Singles</span></td>
-            <td class="qty">/2</td>
-            <td class="cost">$54.48</td>
-            <td class="reason">1/4 btl left, 3.4x Fri spike</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L &mdash; Singles</span></td>
-            <td class="qty">/2</td>
-            <td class="cost">$60.54</td>
-            <td class="reason">Nearly empty. Jameson sub + St. Patrick's 2x spike.</td>
+            <td class="cost">$32.30</td>
+            <td class="reason">~1/4 btl left. 11.4 drinks/wk, trending up 51%.</td>
           </tr>
           <tr>
             <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
             <td class="qty">/1</td>
-            <td class="cost">$31.91</td>
-            <td class="reason">1/2 btl left, 3.9x show spike</td>
+            <td class="cost">$27.66</td>
+            <td class="reason">~1 btl left. 11 drinks/wk, ~2 weeks supply.</td>
           </tr>
           <tr>
-            <td><span class="item-name">Fireball</span><span class="item-format">1L &mdash; Singles</span></td>
-            <td class="qty">/2</td>
-            <td class="cost">$36.30</td>
-            <td class="reason">1/4 btl left, steady mover</td>
+            <td><span class="item-name">New Amsterdam Pineapple</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">$13.54</td>
+            <td class="reason">~1/4 btl left. Shot ingredient.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Liquor Subtotal</td>
             <td></td>
-            <td class="cost">$446</td>
+            <td class="cost">$109</td>
             <td></td>
           </tr>
         </tbody>
@@ -636,8 +616,9 @@
   <section class="grand-total">
     <div class="grand-total-box">
       <div class="label">Estimated Total</div>
-      <div class="amount">~$1,098</div>
-      <div class="note">Based on most recent Crest invoice pricing. Actual may vary.</div>
+      <div class="amount">~$392</div>
+      <div class="note">Based on confirmed Crest invoice pricing (Mar 6 &amp; 13 invoices).</div>
+      <div class="savings">$662 less than last week &mdash; no kegs, no wells needed</div>
     </div>
   </section>
 
@@ -649,72 +630,66 @@
       <h2><span>Notes</span> for Rep</h2>
 
       <div class="note-card">
-        <div class="flag">St. Patrick's Day</div>
-        <strong>Guinness keg</strong> is a one-time add for St. Patrick's Day (Tue Mar 17). Confirm if 20L or 1/2 BBL is available. Historical data shows Irish whiskey doubles, overall revenue +50-100% on weak-night StPDs.
+        <div class="flag">Lighter Week</div>
+        Normal week &mdash; no holidays, 2 busy nights (Thu 4-band show, Sat pong tournament). Budget target <strong>under $500</strong>. Restocking bottles and shots only.
       </div>
 
       <div class="note-card">
-        <div class="flag">Pricing Check</div>
-        <strong>Pueblo Viejo &amp; Ancient Age</strong> &mdash; last order had these priced per bottle, not per case. This order shows case rate ($187.20/case = $15.60/btl). Confirm case pricing is applied.
+        <div class="flag">No Kegs This Week</div>
+        <strong>Coors Light</strong> keg is Full. <strong>805</strong> at 1/4 but only 4 pours/wk = 2+ weeks left. <strong>Guinness</strong> at 1/2 = 8+ weeks at current pace. <strong>Miller High Life</strong> at 1/4, monitoring. Will reassess next week.
       </div>
 
       <div class="note-card">
-        <div class="flag">Heavy Week</div>
-        6 active nights: Fri tourney, Sat metal show, Sun show + darts, Mon pong, Tue St. Paddy's, Thu show. Show crowds drink <strong>cheap beer + shots</strong> (Hamms 19x, PBR 7x, Coors Light 3.5x on show nights).
+        <div class="flag">No Wells Needed</div>
+        All well spirits (Pueblo Viejo, Platinum 7X, Ancient Age, Cane Rum, Miles Gin, Triple Sec) have <strong>2.5&ndash;5+ weeks</strong> on hand. Skipping this week.
       </div>
 
       <div class="note-card">
-        <div class="flag">Gran Malo</div>
-        Confirm Crest carries Gran Malo Spicy Tamarindo 750ml. No invoice history found &mdash; may need alternate source.
+        <div class="flag">White Claw Tall &mdash; Dealer's Choice</div>
+        Need 2 cases of tall 19.2oz cans, any flavors. Mango and Blackberry have been popular. Rep can sub freely.
       </div>
 
       <div class="note-card">
-        <div class="flag">Not on This Order</div>
-        Wells (gin, vodka, rum, whiskey, triple sec) all 4-16 weeks stocked. PBR skipped (wrong SKU on file &mdash; 25oz vs 16oz). Miles Gin skipped (9+ wks on hand). SoCo skipped (not moving). Alesmith skipped.
+        <div class="flag">Pricing Confirmed</div>
+        All prices match invoices #101002560 (Mar 6) and #101007417 (Mar 13). No estimated/guessed prices this week.
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="order-footer">
-    Barkeep &middot; Generated Mar 12, 2026 &middot; The Bancroft Bar
+    Barkeep &middot; Generated Mar 19, 2026 &middot; The Bancroft Bar
   </footer>
 
   <!-- Hidden text for copy -->
   <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
-Delivery: Thu Mar 13, 2026
-Week of Mar 13-19 (6 active nights incl. St. Patrick's Day)
+Delivery: Thu Mar 20, 2026
+Week of Mar 20-26 (normal week, Thu show + Sat pong)
 
 BEER:
-2  Modelo Especial B24 12oz
-1  Coors Light B24 12oz 12P
-1  Coors Light K 1/2BBL
+1  Modelo Especial B24 12oz
+1  Pacifico B24 12oz
 1  Corona Extra B24 12oz
 1  Heineken B24 12oz
+1  Coors Light B24 12oz 12P
 1  Mickeys Malt B24 12oz 12P
 1  Modelo Negra B24 12oz
-1  White Claw Blackberry C12 19.2oz
-1  White Claw Mango C12 19.2oz
-1  White Claw Ruby Grapefruit C12 19.2oz
+2  White Claw Tall C12 19.2oz (any 2 flavors)
 1  White Claw Variety 1 C24 12oz
-1  Guinness K 20L (St. Patrick's Day)
-1  Hamms C24 16oz 6P
 
-LIQUOR (singles unless noted):
-1 case  Pueblo Viejo Blanco B12 1L
+LIQUOR (singles):
 /2  Gran Malo Spicy Tamarindo 750ml
-/2  New Amsterdam Pineapple Vodka 1L
-/2  Titos Vodka 1L
-/2  Tullamore Dew 1L
+/2  Fireball Cinnamon 1L
 /1  Jack Daniels 1L
-/2  Fireball 1L
+/1  New Amsterdam Pineapple 1L
 
-EST. TOTAL: ~$1,098
+EST. TOTAL: ~$392
 
 NOTES:
-- Guinness keg is one-time for StPD. Confirm 20L or 1/2 BBL avail.
-- Confirm Pueblo Viejo & Ancient Age at CASE rate, not per-bottle.
-- Confirm Crest carries Gran Malo Spicy Tamarindo.
+- No kegs this week — all good for now.
+- No wells — 2.5+ weeks on everything.
+- White Claw tall: any 2 flavors, dealer's choice.
+- Budget week, keeping it lean. Back to normal next week.
   </textarea>
 
   <script>
