@@ -718,6 +718,7 @@
       <p class="subtitle">A field guide to the tools that make it all click</p>
       <div class="cta-row">
         <a href="#big-picture" class="cta-btn primary">Start Here</a>
+        <a href="#home-assistant" class="cta-btn">Home Assistant</a>
         <a href="#homebrew" class="cta-btn">Homebrew</a>
         <a href="#claude-code" class="cta-btn">Claude Code</a>
         <a href="#install" class="cta-btn">Install Guide</a>
@@ -777,7 +778,7 @@
             <li><strong>App:</strong> A user-facing process. Could be a native binary, an Electron wrapper, a web server (like Home Assistant), or a CLI tool. "App" is a UX term, not an architectural one.</li>
           </ul>
           <h4>Why HACS is annoying</h4>
-          <p>HACS is a custom integration for Home Assistant that acts as a community package manager, but under the hood it's just cloning Git repos into your <code>custom_components/</code> directory. It requires a GitHub account and a personal access token because it uses the GitHub API to download releases. This is architecturally lazy (they're offloading hosting to GitHub instead of running their own package registry), and it means you're debugging Git and API auth instead of just clicking "install." Homebrew doesn't have this problem because it runs its own registry.</p>
+          <p>HACS is a custom integration for Home Assistant that acts as a community package manager. Under the hood, it downloads ZIP archives of releases from GitHub via the GitHub API. It requires a GitHub account and an OAuth authorization because it needs authenticated API access to avoid rate limits. This is architecturally lazy (they're offloading hosting to GitHub instead of running their own package registry), and it means you're debugging GitHub auth instead of just clicking "install." Homebrew doesn't have this problem because it runs its own registry.</p>
         </div>
       </div>
 
@@ -810,7 +811,7 @@
             <li><strong>Repo:</strong> Short for "repository," a single project tracked by Git</li>
             <li><strong>Branch:</strong> A separate copy of the project for trying things out without breaking the main version</li>
           </ul>
-          <p>When HACS asks you to create a GitHub personal access token, it's because it needs permission to download code from GitHub on your behalf. That's the part that trips people up. Homebrew skips all this because it handles the GitHub communication for you behind the scenes.</p>
+          <p>When HACS asks you to sign in to GitHub (by entering a code on github.com/login/device), it's because it needs permission to download code from GitHub on your behalf. That's the part that trips people up. Homebrew skips all this because it handles the GitHub communication for you behind the scenes.</p>
         </div>
 
         <div class="depth-panel" id="git-ceo">
@@ -847,7 +848,7 @@
           </table>
           <p>Homebrew actually uses Git under the hood: its formula repository (<code>homebrew-core</code>) is a Git repo. When you <code>brew update</code>, it does a <code>git pull</code> on that repo. But you never see or interact with that directly.</p>
           <h4>Why HACS is painful, architecturally</h4>
-          <p>HACS clones Git repos directly into <code>config/custom_components/</code>. This means: (1) it needs a GitHub PAT for API rate limits, (2) updates are <code>git pull</code> operations that can fail silently if there are local modifications, (3) dependency resolution is nonexistent (no <code>requirements.txt</code> pinning across integrations), and (4) rollback requires manual <code>git checkout</code>. Compare to Homebrew, which pre-builds binaries ("bottles"), has proper dependency trees, and supports <code>brew pin</code>/<code>brew switch</code> for version management. HACS is a package manager built by people who were solving a community problem quickly, not architecting for long-term usability.</p>
+          <p>HACS downloads ZIP archives from GitHub releases via the REST API and extracts them into <code>config/custom_components/</code>. It authenticates via OAuth Device Flow (5,000 API calls/hour vs 60 unauthenticated). Architecturally: (1) no dependency resolution across integrations, (2) no rollback mechanism beyond manually replacing files, (3) a HA restart is required after every integration install. Compare to Homebrew, which pre-builds binaries ("bottles"), has proper dependency trees, and supports <code>brew pin</code>/<code>brew switch</code> for version management. HACS is a package manager built by people who were solving a community problem quickly, not architecting for long-term usability.</p>
         </div>
       </div>
 
@@ -906,6 +907,291 @@
           <p>Homebrew manages the system-level package graph. npm manages the Node.js package graph (Claude Code is a Node.js app). Git underpins both registries (homebrew-core is a Git repo; npm packages are published from Git repos). Claude Code sits on top and orchestrates all of them through natural language.</p>
           <p>For home automation specifically: Claude Code can SSH into a Home Assistant instance, edit YAML configs, install HACS integrations, write automations, and debug errors, all from your Mac's terminal. It replaces the "google the error, find a forum post, try the fix, fail, repeat" cycle with "describe the problem, let the AI investigate and fix it."</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="diamond"></div></div>
+
+  <!-- ═══════ HOME ASSISTANT ═══════ -->
+  <section id="home-assistant">
+    <div class="container">
+      <span class="section-label fade-up">The Home Assistant Ecosystem</span>
+      <h2 class="section-title fade-up">Making sense of Home Assistant's moving parts</h2>
+      <div class="section-body fade-up">
+        <p>Home Assistant is powerful, but its ecosystem has a lot of vocabulary that trips people up. "Integrations," "add-ons," "HACS," "custom components," "blueprints." Here's what each one actually means and why installing things can feel harder than it should.</p>
+      </div>
+
+      <!-- ── INTEGRATIONS vs ADD-ONS vs HACS ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">Integrations, add-ons, and HACS: what's what?</h3>
+
+      <div class="depth-tabs fade-up" data-group="ha-core">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="ha-core-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="ha-core-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="ha-core-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="ha-core-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="ha-core-eli5">
+          <div class="analogy">
+            Think of Home Assistant like a smartphone.<br><br>
+            <strong>Integrations</strong> are built-in features, like how your phone already knows how to connect to WiFi and Bluetooth. Home Assistant ships with thousands of these. They let HA talk to your lights, thermostats, weather services, and more.<br><br>
+            <strong>Add-ons</strong> are separate apps you install alongside HA. Like installing Spotify on your phone. They run independently but show up inside your HA interface. Things like a file editor, an MQTT broker, or Node-RED.<br><br>
+            <strong>HACS</strong> is a community app store. Like sideloading apps on Android. It lets you install bonus integrations and pretty dashboard cards that the official team didn't build.
+          </div>
+          <p>The confusing part: sometimes you need <em>both</em> an add-on AND an integration for the same thing. The add-on runs the service, the integration connects HA to it. It's like installing Spotify (the app) and then logging into it (the connection).</p>
+        </div>
+
+        <div class="depth-panel" id="ha-core-hs">
+          <h4>Integrations</h4>
+          <p>Integrations are how Home Assistant connects to your devices and services. When you add a Philips Hue bridge, a weather service, or a Zigbee coordinator, you're setting up an integration. HA ships with over 2,800 built-in integrations. You set them up in <strong>Settings &rarr; Devices &amp; Services &rarr; Add Integration</strong>. No files to download, no terminal commands.</p>
+          <p><strong>Custom integrations</strong> are the same thing, but made by community developers instead of the HA team. They add support for devices or services that aren't built in yet. These are what HACS installs for you.</p>
+
+          <h4>Add-ons (now called "Apps")</h4>
+          <p>Add-ons are completely separate programs that run alongside Home Assistant. They each get their own isolated environment. Examples: a code editor for your config files, an MQTT message broker, a Zigbee bridge, or Node-RED for visual automations.</p>
+          <p>You install them from the built-in add-on store at <strong>Settings &rarr; Add-ons</strong>. One click to install, one click to start.</p>
+          <p><strong>Important:</strong> Add-ons are only available if you're running Home Assistant OS (the full operating system install). If you installed HA as a Docker container, you don't have add-ons. You'd run those same services as separate Docker containers yourself. This is the single biggest source of "why can't I find the add-on store?" confusion.</p>
+
+          <h4>HACS</h4>
+          <p>HACS (Home Assistant Community Store) is a community-built integration that adds a second "store" to your HA. It lets you browse and install community-made integrations, custom dashboard cards (like nicer-looking buttons and graphs), and themes.</p>
+          <p>It requires a GitHub account because it downloads everything from GitHub and needs to authenticate to avoid rate limits. That's the part that gives people headaches. Once it's set up, it works like a regular store with browse, install, and update.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-core-ceo">
+          <p>Three different extension mechanisms, each solving a different problem:</p>
+          <table>
+            <tr><th></th><th>Integrations</th><th>Add-ons (Apps)</th><th>HACS</th></tr>
+            <tr><td><strong>What it is</strong></td><td>Device/service connectors</td><td>Standalone companion apps</td><td>Community package browser</td></tr>
+            <tr><td><strong>Runs where</strong></td><td>Inside HA Core</td><td>Separate containers alongside HA</td><td>Inside HA Core (it's an integration itself)</td></tr>
+            <tr><td><strong>Managed by</strong></td><td>HA team (built-in) or community (custom)</td><td>HA team (official) or community repos</td><td>Community project</td></tr>
+            <tr><td><strong>Install via</strong></td><td>Settings &rarr; Devices &amp; Services</td><td>Settings &rarr; Add-ons</td><td>HACS panel (after installing HACS itself)</td></tr>
+            <tr><td><strong>Requires</strong></td><td>Any HA install</td><td>HA OS or HA Supervised only</td><td>Any HA install + GitHub account</td></tr>
+            <tr><td><strong>Examples</strong></td><td>Hue, Z-Wave, MQTT, Spotify</td><td>Mosquitto, Node-RED, VS Code, Frigate</td><td>Mushroom cards, Adaptive Lighting, custom themes</td></tr>
+          </table>
+          <p>The user experience gap: Home Assistant has three places to "install things" (the integration list, the add-on store, and HACS), and there's no unified search across them. A new user looking for "MQTT" has to know that the broker is an add-on but the HA connection is an integration. This is an architecture problem the HA team is aware of but hasn't solved yet.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-core-tech">
+          <h4>Integrations (core vs custom)</h4>
+          <p><strong>Core integrations</strong> ship in the HA source at <code>homeassistant/components/&lt;domain&gt;/</code>. Each is a Python package with a <code>manifest.json</code>, <code>__init__.py</code>, and platform files (<code>sensor.py</code>, <code>light.py</code>, etc.). They go through code review, CI, and are tested against each HA release.</p>
+          <p><strong>Custom integrations</strong> go in <code>&lt;config&gt;/custom_components/&lt;domain&gt;/</code>. Structurally identical to core integrations. HA loads <code>custom_components/</code> at startup, and a custom integration with the same domain name <em>overrides</em> the core version. Custom integrations must include a <code>version</code> key in <code>manifest.json</code>.</p>
+
+          <h4>Add-ons (the Supervisor layer)</h4>
+          <p>Add-ons are Docker containers managed by the <strong>Supervisor</strong>, which is itself a Docker container that orchestrates others via the Docker API. The Supervisor handles image pulls, container lifecycle, networking (bridge network <code>172.30.32.0/23</code>), and an ingress reverse proxy that lets add-on web UIs appear inside the HA frontend without exposing extra ports.</p>
+          <p>Each add-on has a <code>config.yaml</code> defining its Docker image, required ports, volumes, environment variables, and AppArmor profile. Add-on repos are Git repositories with a directory per add-on.</p>
+          <p><strong>Why add-ons require HA OS/Supervised:</strong> The Supervisor is the orchestrator. Without it, there's nothing to pull images, manage containers, or provide ingress routing. HA Container users must run equivalent services as standalone Docker containers and connect them via integrations manually.</p>
+
+          <h4>HACS internals</h4>
+          <p>HACS is a custom integration installed to <code>custom_components/hacs/</code>. It does <strong>not</strong> use <code>git clone</code>. It calls the GitHub REST API to fetch repository metadata, then downloads ZIP archives of tagged releases (or default branches) via <code>https://github.com/{owner}/{repo}/archive/refs/tags/{tag}.zip</code>. It extracts the relevant subtree (<code>custom_components/&lt;domain&gt;/</code> for integrations, <code>dist/</code> for frontend cards) and places files in the correct config directories.</p>
+          <p>Authentication uses GitHub's <strong>OAuth Device Flow</strong> (not a PAT). The user authorizes at <code>github.com/login/device</code>, granting read-only public repo access. Authenticated requests get 5,000 API calls/hour vs 60 unauthenticated. HACS checks all tracked repos for updates on startup, so users with many repos can still hit rate limits during peak load.</p>
+          <p>HACS manages five content types, each with a different destination path:</p>
+          <table>
+            <tr><th>Type</th><th>Destination</th><th>URL Path</th></tr>
+            <tr><td>Integrations</td><td><code>custom_components/&lt;domain&gt;/</code></td><td>n/a (Python, needs restart)</td></tr>
+            <tr><td>Dashboard cards</td><td><code>www/community/&lt;plugin&gt;/</code></td><td><code>/hacsfiles/&lt;plugin&gt;/</code></td></tr>
+            <tr><td>Themes</td><td><code>themes/&lt;name&gt;/</code></td><td>n/a (loaded by frontend config)</td></tr>
+            <tr><td>Python scripts</td><td><code>python_scripts/</code></td><td>n/a</td></tr>
+            <tr><td>AppDaemon apps</td><td>AppDaemon apps dir</td><td>n/a</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── BLUEPRINTS & AUTOMATIONS ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">Blueprints and automations</h3>
+
+      <div class="depth-tabs fade-up" data-group="ha-blueprints">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="ha-blueprints-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="ha-blueprints-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="ha-blueprints-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="ha-blueprints-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="ha-blueprints-eli5">
+          <div class="analogy">
+            An <strong>automation</strong> is a rule: "when X happens, do Y." Like: "when motion is detected, turn on the light."<br><br>
+            A <strong>blueprint</strong> is a template for a rule. Someone else wrote the automation, left some blanks for you to fill in (which motion sensor? which light?), and shared it. You fill in the blanks and you've got a working automation without writing anything from scratch.
+          </div>
+          <p>Blueprints live on the HA community forums. When you find one you like, you import it with a URL. No GitHub account needed, no HACS, no terminal.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-blueprints-hs">
+          <p><strong>Automations</strong> are the bread and butter of Home Assistant. They follow a trigger-condition-action pattern:</p>
+          <ul>
+            <li><strong>Trigger:</strong> Something happens (motion detected, sun sets, temperature drops below 65)</li>
+            <li><strong>Condition:</strong> Optional filter (only if it's after 6pm, only if someone is home)</li>
+            <li><strong>Action:</strong> Do something (turn on lights, send a notification, lock the door)</li>
+          </ul>
+          <p>You can build automations in the visual editor (Settings &rarr; Automations) or write them in YAML.</p>
+          <p><strong>Blueprints</strong> are reusable automation templates that community members share. Instead of figuring out the YAML yourself, you import a blueprint and fill in the blanks. Examples: "motion-activated lights with timeout," "notify when a door is left open," "set thermostat based on time of day."</p>
+          <p>To import: <strong>Settings &rarr; Automations &rarr; Blueprints &rarr; Import Blueprint</strong>. Paste a URL from the HA forums. Done.</p>
+          <p>Blueprints are the easiest way to get complex automations running without learning YAML or asking anyone for help.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-blueprints-ceo">
+          <table>
+            <tr><th></th><th>Automation</th><th>Blueprint</th></tr>
+            <tr><td><strong>What it is</strong></td><td>A specific rule for your home</td><td>A reusable template for rules</td></tr>
+            <tr><td><strong>Created by</strong></td><td>You, in the UI or YAML</td><td>Community members, shared on forums</td></tr>
+            <tr><td><strong>Customizable?</strong></td><td>Fully editable</td><td>Fill-in-the-blank inputs only</td></tr>
+            <tr><td><strong>Updates?</strong></td><td>Manual changes only</td><td>If you update the local blueprint file, all automations based on it inherit changes on next reload</td></tr>
+            <tr><td><strong>Install method</strong></td><td>Built-in UI editor</td><td>Import via URL (no HACS or GitHub needed)</td></tr>
+          </table>
+          <p>Blueprints are the lowest-friction way to get value from the HA community. No accounts, no tokens, no restarts. Import a URL, pick your devices, done.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-blueprints-tech">
+          <p>Blueprints are YAML files with <code>!input</code> tags that define user-configurable placeholders. They live on disk at:</p>
+          <pre style="background: var(--charcoal); color: #e0d8cc; margin: 1rem 0;"><span class="comment"># Blueprint directory structure</span>
+&lt;config&gt;/blueprints/
+    automation/
+        homeassistant/           <span class="comment"># Built-in blueprints</span>
+            motion_light.yaml
+        &lt;author&gt;/               <span class="comment"># Imported blueprints</span>
+            my_blueprint.yaml
+    script/
+        &lt;author&gt;/
+            script_blueprint.yaml</pre>
+          <p>A blueprint defines a <code>blueprint:</code> block with metadata (name, description, domain, input definitions) followed by the automation/script body that references those inputs via <code>!input input_name</code>. When you create an automation from a blueprint, HA stores a reference to the blueprint plus your input values. The actual automation logic stays in the blueprint file.</p>
+          <p>Supported domains: <code>automation</code> and <code>script</code>. Blueprints are NOT managed by HACS. They are imported via the HA UI or dropped into the directory manually. The community shares them on the HA forum's Blueprints Exchange section.</p>
+          <p>Key advantage over manual automations: when you update the local blueprint file (by re-importing or manually replacing it), all automations derived from it inherit the changes after an HA reload. The blueprint file itself does not auto-update from the source URL; that's a manual step.</p>
+        </div>
+      </div>
+
+      <!-- ── INSTALLATION METHODS ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">The four ways to install Home Assistant (and why it matters)</h3>
+
+      <div class="depth-tabs fade-up" data-group="ha-install">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="ha-install-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="ha-install-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="ha-install-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="ha-install-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="ha-install-eli5">
+          <div class="analogy">
+            There are different ways to put Home Assistant on a computer, and the method you pick determines what features you get. The simplest analogy:<br><br>
+            <strong>Home Assistant OS</strong> = buying an iPhone. Everything works, all features available, Apple (the HA team) manages the system for you.<br><br>
+            <strong>Home Assistant Container</strong> = buying an Android phone and installing your own apps. More control, but you manage more yourself. Some "app store" features (add-ons) aren't available.<br><br>
+            The other two methods (Supervised and Core) are less common and not recommended for new setups.
+          </div>
+          <p>If you're setting up fresh: <strong>go with Home Assistant OS.</strong> Flash it to a Raspberry Pi, a mini PC, or run it as a virtual machine. You get everything, including the add-on store.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-install-hs">
+          <h4>Home Assistant OS (recommended)</h4>
+          <p>This is the full package. You flash the HA operating system onto a device (Raspberry Pi, Intel NUC, old laptop, or a VM) and it manages everything: the system, updates, backups, add-ons. You get all features: integrations, add-ons, HACS, blueprints, one-click updates.</p>
+          <p>The downside: the device is dedicated to Home Assistant. You can't easily use it for other things.</p>
+
+          <h4>Home Assistant Container</h4>
+          <p>This is just the HA application running as a Docker container on a computer you manage yourself. Good if you already have a Linux server running other things. You get integrations, HACS, and blueprints, but <strong>not add-ons</strong>. If you need Mosquitto, Node-RED, or other add-on services, you install them yourself as separate Docker containers.</p>
+          <p>This is often the source of frustration: you follow a tutorial that says "install the Mosquitto add-on," but there is no add-on store in your setup. You have to translate those instructions into running a separate Mosquitto Docker container and connecting HA to it via the MQTT integration.</p>
+
+          <h4>The other two (not recommended)</h4>
+          <p><strong>Supervised</strong> (you manage the OS, HA manages containers) and <strong>Core</strong> (bare Python install, no Docker) still exist but are not recommended for new setups. If you're starting fresh, go with HA OS or Container.</p>
+
+          <div class="analogy">
+            <strong>Bottom line:</strong> If a tutorial says "install this add-on" and you can't find the add-on store, your installation method is the reason. You're either on Container (no add-ons available) or something went wrong during setup. Check <strong>Settings &rarr; System &rarr; Repairs</strong> for clues.
+          </div>
+        </div>
+
+        <div class="depth-panel" id="ha-install-ceo">
+          <table>
+            <tr><th>Method</th><th>Integrations</th><th>Add-ons</th><th>HACS</th><th>Blueprints</th><th>Who manages the OS?</th></tr>
+            <tr><td><strong>HA OS</strong></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>HA team (automatic)</td></tr>
+            <tr><td><strong>Container</strong></td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>You</td></tr>
+            <tr><td><strong>Supervised</strong></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>You (not recommended)</td></tr>
+            <tr><td><strong>Core</strong></td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td><td>You (not recommended)</td></tr>
+          </table>
+          <p>The critical decision is between HA OS and Container. HA OS is right for most people. Container is for users who already run a Linux server and want HA to coexist with other services. The trade-off is convenience (HA OS) vs flexibility (Container).</p>
+          <p>The #1 user experience failure in the HA ecosystem: tutorials don't specify which installation method they assume. A user on Container follows a tutorial written for HA OS, hits a wall at "install the add-on," and has no idea why.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-install-tech">
+          <h4>Home Assistant OS</h4>
+          <p>A full Linux OS (a custom Linux distribution built with Buildroot) that boots directly into the HA Supervisor. Includes: HA Core (Python app), Supervisor (Docker orchestrator), and a managed OS layer that handles updates, snapshots, and network config. Runs on bare metal (Pi, NUC, x86), or as a VM image (VMDK, VHDX, OVA, QCOW2). The Supervisor manages Core as a container, add-ons as separate containers, and provides the ingress proxy.</p>
+
+          <h4>Home Assistant Container</h4>
+          <p>Just the <code>ghcr.io/home-assistant/home-assistant</code> Docker image. No Supervisor, no add-on support. Config directory is bind-mounted from the host. Users run companion services (Mosquitto, Z2M, Node-RED, MariaDB, Frigate, etc.) as standalone Docker containers, typically via <code>docker-compose.yml</code>. Communication happens over Docker networks and environment variables, connected to HA via integrations.</p>
+
+          <h4>Why add-ons need the Supervisor</h4>
+          <p>The Supervisor is a Docker container (<code>ghcr.io/home-assistant/aarch64-hassio-supervisor</code>) that orchestrates other containers via the Docker socket. It:</p>
+          <ul>
+            <li>Pulls add-on images from registries</li>
+            <li>Manages container lifecycle (start, stop, restart, update)</li>
+            <li>Provides a bridge network (<code>172.30.32.0/23</code>) with DNS resolution between containers</li>
+            <li>Runs an ingress reverse proxy so add-on web UIs appear inside the HA frontend</li>
+            <li>Exposes the add-on store API</li>
+          </ul>
+          <p>Without the Supervisor, none of this orchestration exists. There's no API to discover add-ons, no proxy for ingress, no container management. The add-on store UI in HA Core checks for the Supervisor API and simply doesn't render if it's absent.</p>
+
+          <h4>Other methods (not recommended for new installs)</h4>
+          <p><strong>Supervised:</strong> Supervisor installed on user-managed Debian. Full add-on support but the HA team can't guarantee OS-level stability since they don't control the host. Strict requirements (Debian only, specific OS agent version). Recommended migration: backup &rarr; restore to HA OS.</p>
+          <p><strong>Core:</strong> HA installed in a Python virtualenv. No Docker at all. No add-ons, no Supervisor. For advanced users who want maximum control. Migration path: backup &rarr; restore to HA Container or OS.</p>
+        </div>
+      </div>
+
+      <!-- ── WHY INSTALLING STUFF ON HA IS CONFUSING ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">Why installing things on Home Assistant feels so hard</h3>
+
+      <div class="depth-tabs fade-up" data-group="ha-pain">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="ha-pain-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="ha-pain-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="ha-pain-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="ha-pain-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="ha-pain-eli5">
+          <div class="analogy">
+            Imagine if your iPhone had three different App Stores, each with different apps, and some apps needed you to install a piece from one store and a piece from another, and one of the stores required you to sign up for a completely separate website first. That's Home Assistant right now.
+          </div>
+          <p>It's not you. The system is genuinely confusing. The good news: once you know which "store" to look in for what, it gets much easier. And tools like Claude Code can handle the messy parts for you.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-pain-hs">
+          <p>Here are the specific things that trip people up:</p>
+          <ul>
+            <li><strong>Three places to install things.</strong> Built-in integrations (Settings &rarr; Devices &amp; Services), add-ons (Settings &rarr; Add-ons), and HACS (a separate panel). There's no unified search. You have to know which one you need.</li>
+            <li><strong>Tutorials don't say which install method they assume.</strong> You follow a guide that says "install the Mosquitto add-on." You can't find it. Turns out it's because you're running HA Container, which doesn't have add-ons. The tutorial never mentioned that.</li>
+            <li><strong>HACS needs a GitHub account.</strong> You just want a nicer-looking thermostat card. HACS makes you create a GitHub account, go to a separate website, enter a code, authorize an app. It feels like airport security for a dashboard widget.</li>
+            <li><strong>Some things need both an add-on AND an integration.</strong> MQTT is the classic: you install the Mosquitto add-on (the broker), then separately add the MQTT integration (the connection). The tutorial might only mention one of those steps.</li>
+            <li><strong>Restarts.</strong> After installing custom integrations via HACS, you have to restart all of Home Assistant. Forgot to restart? It looks like the install didn't work. You install it again. Now you have a mess.</li>
+          </ul>
+          <p>None of these are your fault. They're real design problems in the HA ecosystem that the team is slowly improving.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-pain-ceo">
+          <p>The root cause is architectural: Home Assistant grew organically from a developer hobby project into the world's largest open-source home automation platform. Its extension mechanisms were designed at different times, by different teams, for different audiences:</p>
+          <ul>
+            <li><strong>Integrations</strong> (2013+) were built for developers adding device support to Core.</li>
+            <li><strong>Add-ons</strong> (2017+) were built when the Supervisor was created to give HA OS users a way to run companion services.</li>
+            <li><strong>HACS</strong> (2019+) was built by one community member who wanted an "app store" for custom integrations, since the official team had no plans to build one.</li>
+            <li><strong>Blueprints</strong> (2020+) were added to lower the barrier for sharing automations.</li>
+          </ul>
+          <p>Each one works well in isolation. The problem is discovery and onboarding: a new user doesn't know the taxonomy, and the UI doesn't guide them. The 2025 "Apps" rename and UI consolidation is a step toward fixing this, but it's going to take time.</p>
+        </div>
+
+        <div class="depth-panel" id="ha-pain-tech">
+          <p>The technical fragmentation, mapped out:</p>
+          <table>
+            <tr><th>Want to install...</th><th>Where to look</th><th>Install method</th><th>Restart needed?</th><th>Gotchas</th></tr>
+            <tr><td>Device support (built-in)</td><td>Settings &rarr; Devices &amp; Services</td><td>UI wizard (config flow)</td><td>No</td><td>Some require YAML config instead of UI</td></tr>
+            <tr><td>Device support (community)</td><td>HACS &rarr; Integrations</td><td>Download + restart</td><td>Yes</td><td>Needs HACS + GitHub account first</td></tr>
+            <tr><td>Companion service (HA OS)</td><td>Settings &rarr; Add-ons</td><td>One-click install</td><td>No (runs as separate container)</td><td>Add-ons not available on Container installs</td></tr>
+            <tr><td>Companion service (Container)</td><td>Your Docker setup</td><td>Manual <code>docker-compose.yml</code></td><td>No</td><td>No HA UI management, must configure networking yourself</td></tr>
+            <tr><td>Dashboard card</td><td>HACS &rarr; Frontend</td><td>Download + add as resource</td><td>Browser refresh</td><td>Cache issues are common</td></tr>
+            <tr><td>Theme</td><td>HACS &rarr; Frontend</td><td>Download</td><td>No</td><td>Must enable <code>!include_dir_merge_named themes</code> in config</td></tr>
+            <tr><td>Automation template</td><td>HA Forums (Blueprints Exchange)</td><td>Import by URL</td><td>No</td><td>NOT in HACS; forums only</td></tr>
+          </table>
+          <p>The ideal future state: a single "Store" in the HA UI that searches across integrations, add-ons, HACS repos, and blueprints, with unified install flows. The HA team has signaled they're working toward this, but the architectural split between the Supervisor (add-ons) and Core (integrations) makes unification non-trivial. The "Apps" rename is the first visible step.</p>
+        </div>
+      </div>
+
+      <div class="tip-box fade-up" style="margin-top: 2rem;">
+        <strong>The shortcut:</strong> Claude Code can navigate this maze for you. Tell it what you want to accomplish ("I want my lights to turn on when I get home") and it can figure out which integrations, add-ons, or HACS packages you need, install them, write the YAML, and debug the errors. You focus on what your home should do. Let the AI figure out where Home Assistant hid the install button.
       </div>
     </div>
   </section>
