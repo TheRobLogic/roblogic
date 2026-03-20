@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Mac, Supercharged</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #FAF3E8;
+      --warm-white: #FFF8F0;
+      --teak: #8B5E3C;
+      --teak-light: #A97D5D;
+      --teak-dark: #6B3F22;
+      --olive: #5B6B4A;
+      --olive-light: #7A8C65;
+      --mustard: #D4A843;
+      --mustard-light: #E8C96A;
+      --rust: #C45B3A;
+      --charcoal: #2C2C2C;
+      --slate: #4A4A4A;
+      --fog: #E8E0D4;
+      --gold-accent: #C9A84C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Subtle texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B5E3C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ═══════════ HERO ═══════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 40%, var(--fog) 100%);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teak), var(--mustard), var(--olive), var(--teak));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .starburst {
+      display: inline-block;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1.5rem;
+      animation: slowSpin 30s linear infinite;
+    }
+
+    .starburst svg { width: 100%; height: 100%; }
+
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--teak-dark);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: var(--slate);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--teak);
+      color: var(--teak-dark);
+      background: transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover {
+      background: var(--teak);
+      color: var(--cream);
+    }
+
+    .cta-btn.primary {
+      background: var(--teak);
+      color: var(--cream);
+    }
+
+    .cta-btn.primary:hover {
+      background: var(--teak-dark);
+      border-color: var(--teak-dark);
+    }
+
+    /* ═══════════ SECTIONS ═══════════ */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--olive);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--teak-dark);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      color: var(--slate);
+      max-width: 720px;
+    }
+
+    .section-body p + p { margin-top: 1rem; }
+
+    /* ═══════════ DIVIDER ═══════════ */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0 2rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      max-width: 200px;
+      height: 1px;
+      background: var(--teak-light);
+      opacity: 0.4;
+    }
+
+    .divider .diamond {
+      width: 10px;
+      height: 10px;
+      background: var(--mustard);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ═══════════ DEPTH TABS ═══════════ */
+    .depth-tabs {
+      margin: 2rem 0;
+    }
+
+    .depth-tab-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid var(--fog);
+    }
+
+    .depth-tab-btn {
+      padding: 0.65rem 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      background: none;
+      color: var(--teak-light);
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .depth-tab-btn:hover { color: var(--teak-dark); }
+
+    .depth-tab-btn.active {
+      color: var(--teak-dark);
+    }
+
+    .depth-tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 2px;
+      background: var(--teak);
+    }
+
+    .depth-panel {
+      display: none;
+      padding: 1.75rem 0;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .depth-panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .depth-panel p {
+      font-size: 1.05rem;
+      color: var(--slate);
+      line-height: 1.75;
+    }
+
+    .depth-panel p + p { margin-top: 1rem; }
+
+    .depth-panel .analogy {
+      background: var(--warm-white);
+      border-left: 3px solid var(--mustard);
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      font-style: italic;
+      color: var(--slate);
+    }
+
+    .depth-panel code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.88rem;
+      background: var(--fog);
+      padding: 0.1rem 0.4rem;
+      color: var(--teak);
+    }
+
+    .depth-panel ul {
+      margin: 0.75rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .depth-panel li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: var(--slate);
+    }
+
+    .depth-panel li strong { color: var(--teak-dark); }
+
+    .depth-panel h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--teak-dark);
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .depth-panel table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.92rem;
+    }
+
+    .depth-panel th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 2px solid var(--fog);
+      font-weight: 600;
+      color: var(--teak-dark);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .depth-panel td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--fog);
+      color: var(--slate);
+    }
+
+    .depth-panel td code {
+      font-size: 0.82rem;
+    }
+
+    /* ═══════════ FEATURE CARDS ═══════════ */
+    .features {
+      background: var(--warm-white);
+      border-top: 1px solid var(--fog);
+      border-bottom: 1px solid var(--fog);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .card {
+      background: var(--cream);
+      border: 1px solid var(--fog);
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(107, 63, 34, 0.08);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .card:nth-child(1)::before { background: var(--teak); }
+    .card:nth-child(2)::before { background: var(--olive); }
+    .card:nth-child(3)::before { background: var(--mustard); }
+    .card:nth-child(4)::before { background: var(--rust); }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--teak-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    /* ═══════════ CODE BLOCKS ═══════════ */
+    .install-section {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    .install-section .section-label { color: var(--mustard-light); }
+    .install-section .section-title { color: var(--cream); }
+    .install-section .section-body { color: #b5aa98; }
+
+    .steps {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--mustard);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--mustard);
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: #9a9080;
+      margin-bottom: 0.75rem;
+    }
+
+    pre {
+      background: #1a1a1a;
+      border: 1px solid #3a3a3a;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #e0d8cc;
+      position: relative;
+    }
+
+    pre .comment { color: #6a6a5a; }
+    pre .cmd { color: var(--mustard-light); }
+    pre .flag { color: #8aaa7a; }
+    pre .url { color: #b5aa98; }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #3a3a3a;
+      border: none;
+      color: #9a9080;
+      padding: 0.3rem 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--mustard);
+      color: var(--charcoal);
+    }
+
+    /* ═══════════ USE CASES ═══════════ */
+    .use-case {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .use-case-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--teak-dark);
+      margin-bottom: 1rem;
+    }
+
+    .use-case-text p {
+      font-size: 0.95rem;
+      color: var(--slate);
+      margin-bottom: 1rem;
+    }
+
+    .use-case-examples {
+      background: var(--warm-white);
+      border: 1px solid var(--fog);
+      padding: 1.75rem;
+    }
+
+    .use-case-examples h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--olive);
+      margin-bottom: 1rem;
+    }
+
+    .example-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--fog);
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .example-item:last-child { border-bottom: none; }
+
+    .example-prompt {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--teak);
+      background: var(--cream);
+      padding: 0.15rem 0.5rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .example-desc {
+      font-size: 0.88rem;
+      color: var(--slate);
+    }
+
+    .pill {
+      display: inline-block;
+      color: var(--cream);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem;
+      margin-right: 0.5rem;
+    }
+
+    .pill.home { background: var(--olive); }
+    .pill.sql { background: var(--teak); }
+
+    /* ═══════════ BREW PICKS ═══════════ */
+    .brew-picks { margin-top: 2rem; }
+
+    .brew-category { margin-bottom: 2rem; }
+
+    .brew-category h4 {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--teak-dark);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--fog);
+    }
+
+    .brew-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .brew-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.4rem 0;
+    }
+
+    .brew-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--teak);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .brew-desc {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    /* ═══════════ TIP BOX ═══════════ */
+    .tip-box {
+      background: var(--warm-white);
+      border-left: 3px solid var(--mustard);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .tip-box strong { color: var(--teak-dark); }
+
+    .tip-box code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      background: var(--cream);
+      padding: 0.1rem 0.35rem;
+      color: var(--teak);
+    }
+
+    /* ═══════════ FOOTER ═══════════ */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--fog);
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--teak-light);
+      letter-spacing: 0.05em;
+    }
+
+    footer a {
+      color: var(--teak);
+      text-decoration: none;
+    }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (max-width: 768px) {
+      .use-case { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 40px 1fr; }
+      .step-num { width: 40px; height: 40px; font-size: 1rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .depth-tab-btn { padding: 0.5rem 1rem; font-size: 0.75rem; }
+    }
+
+    /* ═══════════ SCROLL ANIMATIONS ═══════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════ TOC (table of contents) ═══════════ */
+    .toc {
+      margin: 2.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .toc a {
+      display: block;
+      padding: 1rem 1.25rem;
+      background: var(--warm-white);
+      border: 1px solid var(--fog);
+      text-decoration: none;
+      color: var(--teak-dark);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .toc a:hover {
+      border-color: var(--teak);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(107, 63, 34, 0.08);
+    }
+
+    .toc a span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--teak-light);
+      margin-top: 0.25rem;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="starburst">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,2 58,38 95,25 65,50 95,75 58,62 50,98 42,62 5,75 35,50 5,25 42,38"
+            fill="none" stroke="#C9A84C" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="12" fill="none" stroke="#8B5E3C" stroke-width="1"/>
+        </svg>
+      </div>
+      <h1>Your Mac,<br><em>Supercharged</em></h1>
+      <p class="subtitle">A field guide to the tools that make it all click</p>
+      <div class="cta-row">
+        <a href="#big-picture" class="cta-btn primary">Start Here</a>
+        <a href="#homebrew" class="cta-btn">Homebrew</a>
+        <a href="#claude-code" class="cta-btn">Claude Code</a>
+        <a href="#install" class="cta-btn">Install Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ THE BIG PICTURE ═══════ -->
+  <section id="big-picture">
+    <div class="container fade-up">
+      <span class="section-label">Start Here</span>
+      <h2 class="section-title">The big picture, four ways</h2>
+      <div class="section-body">
+        <p>There are a few words that get thrown around interchangeably in the tech world and make everything sound harder than it is. Let's untangle them. Pick your depth.</p>
+      </div>
+
+      <!-- ── APPS vs REPOS vs PACKAGES ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">What's an "app?" What's a "repo?" What's a "package?"</h3>
+
+      <div class="depth-tabs fade-up" data-group="apps">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="apps-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="apps-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="apps-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="apps-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="apps-eli5">
+          <div class="analogy">
+            Think of your Mac like a kitchen. An <strong>app</strong> is a finished appliance you plug in and use (like a blender). A <strong>package</strong> is the same thing, just delivered in a box through the side door instead of the front. A <strong>repo</strong> is the factory blueprint for building that blender from scratch.
+          </div>
+          <p>You don't need to visit the factory. You just need the blender. Homebrew is the delivery service that brings it to your door and keeps it up to date.</p>
+        </div>
+
+        <div class="depth-panel" id="apps-hs">
+          <p>An <strong>app</strong> is any program you run on your computer. Safari is an app. Excel is an app. Your Home Assistant dashboard is an app running on another computer.</p>
+          <p>A <strong>package</strong> is an app (or a piece of an app) that's been wrapped up for easy installation. When Homebrew installs something, it's downloading a package. When you went to install HACS on Home Assistant, it was asking you to install a package too, just from a different source.</p>
+          <p>A <strong>repo</strong> (short for "repository") is where the source code for a package lives online, usually on GitHub. It's the recipe, not the meal. You don't normally need to look at the repo unless you're curious how something works or you're troubleshooting a weird error.</p>
+          <p>The confusion happens because some installation instructions tell you to "clone the repo" when really they could just say "install the package." That's the developer showing their work instead of keeping it simple.</p>
+        </div>
+
+        <div class="depth-panel" id="apps-ceo">
+          <p>These three terms describe the same software at different stages of its life cycle:</p>
+          <ul>
+            <li><strong>Repository (repo):</strong> The source code, tracked in a version control system (usually Git, hosted on GitHub). This is where developers collaborate. It's like the master document in a shared drive.</li>
+            <li><strong>Package:</strong> A built, versioned, distributable artifact created from that source code. Published to a registry (npm, PyPI, Homebrew, HACS). This is the shrink-wrapped product.</li>
+            <li><strong>App:</strong> The running software on a device. What the end user interacts with.</li>
+          </ul>
+          <p>The reason HACS (Home Assistant Community Store) can be painful: it blurs the line between "install a package" and "clone a repo," requiring users to interact with Git concepts they don't need to care about for other app stores.</p>
+        </div>
+
+        <div class="depth-panel" id="apps-tech">
+          <p>At the technical level:</p>
+          <ul>
+            <li><strong>Repository:</strong> A Git-managed directory tree. Contains source, build configs, CI pipelines, docs. Hosted on a forge (GitHub, GitLab, Bitbucket). Every repo has a <code>.git/</code> folder that stores the full commit history locally.</li>
+            <li><strong>Package:</strong> An installable unit registered in a package manager. Homebrew formulae/casks, npm modules, Python wheels, Docker images. A package manager resolves dependencies, handles versioning (semver), and manages the install/uninstall lifecycle.</li>
+            <li><strong>App:</strong> A user-facing process. Could be a native binary, an Electron wrapper, a web server (like Home Assistant), or a CLI tool. "App" is a UX term, not an architectural one.</li>
+          </ul>
+          <h4>Why HACS is annoying</h4>
+          <p>HACS is a custom integration for Home Assistant that acts as a community package manager, but under the hood it's just cloning Git repos into your <code>custom_components/</code> directory. It requires a GitHub account and a personal access token because it uses the GitHub API to download releases. This is architecturally lazy (they're offloading hosting to GitHub instead of running their own package registry), and it means you're debugging Git and API auth instead of just clicking "install." Homebrew doesn't have this problem because it runs its own registry.</p>
+        </div>
+      </div>
+
+      <!-- ── WHAT IS GIT ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">What is Git?</h3>
+
+      <div class="depth-tabs fade-up" data-group="git">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="git-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="git-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="git-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="git-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="git-eli5">
+          <div class="analogy">
+            Git is "Track Changes" for programmers. Like Track Changes in Word, but way more powerful. It remembers every version of every file you ever saved, lets you undo anything, and lets multiple people work on the same project without stepping on each other.
+          </div>
+          <p>Git lives on your computer. <strong>GitHub</strong> is a website where people share their Git projects. They're related but different, like email (the technology) vs. Gmail (one service that runs it).</p>
+          <p>You probably won't use Git directly. But when installation instructions say "clone" something, they're asking you to download a Git project from GitHub to your computer. That's all.</p>
+        </div>
+
+        <div class="depth-panel" id="git-hs">
+          <p><strong>Git</strong> is version control software that runs on your computer. It tracks changes to files over time, so you can always see what changed, when, and who did it. Every save point is called a "commit."</p>
+          <p><strong>GitHub</strong> is a website (owned by Microsoft) where people post their Git projects so others can see, download, and contribute to them. Most open-source software lives on GitHub, including HACS, Home Assistant integrations, and Homebrew's package list.</p>
+          <p>Key terms you'll see around:</p>
+          <ul>
+            <li><strong>Clone:</strong> Download a Git project from GitHub to your computer</li>
+            <li><strong>Pull:</strong> Get the latest updates from GitHub for a project you already cloned</li>
+            <li><strong>Repo:</strong> Short for "repository," a single project tracked by Git</li>
+            <li><strong>Branch:</strong> A separate copy of the project for trying things out without breaking the main version</li>
+          </ul>
+          <p>When HACS asks you to create a GitHub personal access token, it's because it needs permission to download code from GitHub on your behalf. That's the part that trips people up. Homebrew skips all this because it handles the GitHub communication for you behind the scenes.</p>
+        </div>
+
+        <div class="depth-panel" id="git-ceo">
+          <p>Git is a distributed version control system. Two important things to understand:</p>
+          <ul>
+            <li><strong>It's local-first.</strong> Every copy of a Git repo contains the entire history. You don't need internet access to use Git. This is by design: it was created by Linus Torvalds (who also created Linux) specifically so thousands of developers could work on the same codebase without a central server being a bottleneck.</li>
+            <li><strong>GitHub is a hosting layer, not Git itself.</strong> GitHub adds a web interface, issue tracking, pull requests, and an API on top of Git. GitLab and Bitbucket are competitors that do the same thing. The code is the same regardless of where it's hosted.</li>
+          </ul>
+          <p>For non-developers, the main interaction with Git is usually one of:</p>
+          <ul>
+            <li>Installing software that asks you to "clone" a repo (download it)</li>
+            <li>Creating a GitHub account to get API access (like HACS requires)</li>
+            <li>Reading documentation that lives in a GitHub repo</li>
+          </ul>
+          <p>The shift happening now: AI tools like Claude Code understand Git natively, so they can handle the Git workflow for you. You describe what you want, the AI manages branches, commits, and merges. The friction of learning Git commands is going away.</p>
+        </div>
+
+        <div class="depth-panel" id="git-tech">
+          <p>Git is a content-addressable filesystem with a VCS interface bolted on top. Key internals:</p>
+          <ul>
+            <li><strong>Object model:</strong> Every file, directory, and commit is stored as a SHA-1 (migrating to SHA-256) hashed object in <code>.git/objects/</code>. Three types: blobs (file contents), trees (directories), commits (snapshots with parent pointers).</li>
+            <li><strong>Distributed:</strong> Every clone is a full replica. There's no "central" server, just conventions about which remote is canonical (usually <code>origin</code>).</li>
+            <li><strong>Branching model:</strong> Branches are just pointers (40-byte text files) to commit hashes. Creating a branch is O(1). This is why Git branching is cheap compared to older VCS like SVN.</li>
+            <li><strong>Staging area (index):</strong> Changes are staged before committing, giving you fine-grained control over what goes into each commit.</li>
+          </ul>
+          <h4>Git vs. Homebrew</h4>
+          <table>
+            <tr><th>Aspect</th><th>Git</th><th>Homebrew</th></tr>
+            <tr><td>What it is</td><td>Version control system</td><td>Package manager</td></tr>
+            <tr><td>What it manages</td><td>Source code history</td><td>Software installation</td></tr>
+            <tr><td>Key command</td><td><code>git clone &lt;url&gt;</code></td><td><code>brew install &lt;name&gt;</code></td></tr>
+            <tr><td>Dependencies</td><td>None</td><td>Uses Git internally to update its package list</td></tr>
+            <tr><td>End user role</td><td>Developer tool</td><td>Anyone who wants clean installs</td></tr>
+          </table>
+          <p>Homebrew actually uses Git under the hood: its formula repository (<code>homebrew-core</code>) is a Git repo. When you <code>brew update</code>, it does a <code>git pull</code> on that repo. But you never see or interact with that directly.</p>
+          <h4>Why HACS is painful, architecturally</h4>
+          <p>HACS clones Git repos directly into <code>config/custom_components/</code>. This means: (1) it needs a GitHub PAT for API rate limits, (2) updates are <code>git pull</code> operations that can fail silently if there are local modifications, (3) dependency resolution is nonexistent (no <code>requirements.txt</code> pinning across integrations), and (4) rollback requires manual <code>git checkout</code>. Compare to Homebrew, which pre-builds binaries ("bottles"), has proper dependency trees, and supports <code>brew pin</code>/<code>brew switch</code> for version management. HACS is a package manager built by people who were solving a community problem quickly, not architecting for long-term usability.</p>
+        </div>
+      </div>
+
+      <!-- ── HOW THESE TOOLS CONNECT ── -->
+      <h3 class="section-title fade-up" style="font-size: 1.4rem; margin-top: 3rem;">How Homebrew, Git, and Claude Code fit together</h3>
+
+      <div class="depth-tabs fade-up" data-group="connect">
+        <div class="depth-tab-buttons">
+          <button class="depth-tab-btn active" data-tab="connect-eli5">The 30-Second Version</button>
+          <button class="depth-tab-btn" data-tab="connect-hs">A Bit More Detail</button>
+          <button class="depth-tab-btn" data-tab="connect-ceo">The Executive Summary</button>
+          <button class="depth-tab-btn" data-tab="connect-tech">The Full Picture</button>
+        </div>
+
+        <div class="depth-panel active" id="connect-eli5">
+          <div class="analogy">
+            <strong>Homebrew</strong> is the hardware store. You walk in, ask for what you need, and walk out with it installed.<br><br>
+            <strong>Git</strong> is the filing system behind the scenes that keeps everything organized and versioned. You don't need to think about it.<br><br>
+            <strong>Claude Code</strong> is the knowledgeable friend who comes with you and says "you need this, let me set it up for you." You describe the problem, they handle the tools.
+          </div>
+        </div>
+
+        <div class="depth-panel" id="connect-hs">
+          <p>Here's how they work together in practice:</p>
+          <ul>
+            <li><strong>Homebrew</strong> installs software. You use it to put tools on your Mac, including Git and Node.js (which Claude Code needs to run).</li>
+            <li><strong>Git</strong> tracks code changes. It's already on your Mac (Apple ships a version with the developer tools). Homebrew uses Git internally, but you don't interact with it directly unless you're doing software development.</li>
+            <li><strong>Claude Code</strong> is an AI assistant in your terminal. It knows how to use both Homebrew and Git, so you can tell it things like "install a Postgres database" or "download that project from GitHub" and it'll run the right commands for you.</li>
+          </ul>
+          <p>The workflow: install Homebrew first, use it to install Node.js, then install Claude Code. After that, Claude Code can help you install and manage everything else.</p>
+        </div>
+
+        <div class="depth-panel" id="connect-ceo">
+          <p>These three tools form a stack, each solving a different layer:</p>
+          <table>
+            <tr><th>Layer</th><th>Tool</th><th>What it does</th></tr>
+            <tr><td>Install & update software</td><td>Homebrew</td><td>Package management, dependency resolution, clean installs</td></tr>
+            <tr><td>Track & share code</td><td>Git / GitHub</td><td>Version control, collaboration, open-source distribution</td></tr>
+            <tr><td>Automate & assist</td><td>Claude Code</td><td>AI-driven command execution, code generation, troubleshooting</td></tr>
+          </table>
+          <p>The value proposition: Homebrew eliminates software management friction. Claude Code eliminates the learning curve for everything command-line. Together, they give a non-developer access to developer-grade tools without needing to become a developer.</p>
+        </div>
+
+        <div class="depth-panel" id="connect-tech">
+          <p>The dependency chain:</p>
+          <pre style="background: var(--charcoal); color: #e0d8cc; margin: 1rem 0;"><span class="comment"># Homebrew installs git, node, and other tools</span>
+<span class="cmd">brew install</span> <span class="flag">git node</span>
+
+<span class="comment"># npm (comes with node) installs claude code</span>
+<span class="cmd">npm install -g</span> <span class="flag">@anthropic-ai/claude-code</span>
+
+<span class="comment"># Claude Code can now use git, brew, and everything else</span>
+<span class="cmd">claude</span>
+<span class="url">> "install postgresql and set up a local database for my project"</span>
+<span class="comment"># Claude runs: brew install postgresql, initdb, createdb, etc.</span></pre>
+          <p>Homebrew manages the system-level package graph. npm manages the Node.js package graph (Claude Code is a Node.js app). Git underpins both registries (homebrew-core is a Git repo; npm packages are published from Git repos). Claude Code sits on top and orchestrates all of them through natural language.</p>
+          <p>For home automation specifically: Claude Code can SSH into a Home Assistant instance, edit YAML configs, install HACS integrations, write automations, and debug errors, all from your Mac's terminal. It replaces the "google the error, find a forum post, try the fix, fail, repeat" cycle with "describe the problem, let the AI investigate and fix it."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="diamond"></div></div>
+
+  <!-- ═══════ HOMEBREW ═══════ -->
+  <section id="homebrew" class="features">
+    <div class="container">
+      <span class="section-label fade-up">Tool No. 1</span>
+      <h2 class="section-title fade-up">Homebrew</h2>
+      <div class="section-body fade-up">
+        <p>Homebrew is a package manager for macOS. Instead of googling an app, downloading a .dmg, dragging it to Applications, and then checking for updates manually, you type one command. Install, update, and remove software cleanly. It's been the standard Mac power-user tool since 2009.</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card fade-up">
+          <span class="card-icon">&#9881;</span>
+          <h3>One-command installs</h3>
+          <p><code>brew install rectangle</code> and it's done. GUI apps, command-line tools, fonts. One syntax for everything.</p>
+        </div>
+        <div class="card fade-up">
+          <span class="card-icon">&#8635;</span>
+          <h3>Update everything at once</h3>
+          <p><code>brew upgrade</code> updates every app and tool you installed through it. No more "a new update is available" popups.</p>
+        </div>
+        <div class="card fade-up">
+          <span class="card-icon">&#128203;</span>
+          <h3>Clean removes</h3>
+          <p><code>brew uninstall something</code> removes it properly. No leftover preference files or orphaned folders scattered across your system.</p>
+        </div>
+        <div class="card fade-up">
+          <span class="card-icon">&#9733;</span>
+          <h3>Thousands of packages</h3>
+          <p>From browsers and media players to databases and developer tools. If it runs on a Mac, Homebrew probably has it.</p>
+        </div>
+      </div>
+
+      <div class="brew-picks fade-up">
+        <h3 class="section-title" style="font-size: 1.4rem; margin-top: 3rem;">Starter Picks</h3>
+        <p class="section-body" style="margin-bottom: 1.5rem;">GUI apps use <code style="font-family: 'DM Mono', monospace; font-size: 0.85rem; background: var(--cream); padding: 0.1rem 0.35rem; color: var(--teak);">brew install --cask appname</code>, command-line tools use just <code style="font-family: 'DM Mono', monospace; font-size: 0.85rem; background: var(--cream); padding: 0.1rem 0.35rem; color: var(--teak);">brew install toolname</code>.</p>
+
+        <div class="brew-category">
+          <h4>Everyday Mac Apps</h4>
+          <ul class="brew-list">
+            <li><span class="brew-name">rectangle</span> <span class="brew-desc">Window snapping (drag to edges)</span></li>
+            <li><span class="brew-name">iina</span> <span class="brew-desc">Best macOS video player</span></li>
+            <li><span class="brew-name">the-unarchiver</span> <span class="brew-desc">Opens any compressed file</span></li>
+            <li><span class="brew-name">appcleaner</span> <span class="brew-desc">Fully removes apps and leftovers</span></li>
+            <li><span class="brew-name">stats</span> <span class="brew-desc">System monitor in your menu bar</span></li>
+            <li><span class="brew-name">firefox</span> <span class="brew-desc">You know this one</span></li>
+          </ul>
+        </div>
+
+        <div class="brew-category">
+          <h4>For SQL and Data Work</h4>
+          <ul class="brew-list">
+            <li><span class="brew-name">dbeaver-community</span> <span class="brew-desc">Visual database client (any DB)</span></li>
+            <li><span class="brew-name">azure-data-studio</span> <span class="brew-desc">SQL Server / Azure queries</span></li>
+            <li><span class="brew-name">jq</span> <span class="brew-desc">Query JSON from the command line</span></li>
+            <li><span class="brew-name">csvkit</span> <span class="brew-desc">Manipulate CSVs like SQL tables</span></li>
+            <li><span class="brew-name">sqlite</span> <span class="brew-desc">Lightweight local database</span></li>
+            <li><span class="brew-name">postgresql</span> <span class="brew-desc">Full-featured database server</span></li>
+          </ul>
+        </div>
+
+        <div class="brew-category">
+          <h4>For Home Automation</h4>
+          <ul class="brew-list">
+            <li><span class="brew-name">mosquitto</span> <span class="brew-desc">MQTT broker for smart devices</span></li>
+            <li><span class="brew-name">node</span> <span class="brew-desc">Run Node-RED and JS automations</span></li>
+            <li><span class="brew-name">python</span> <span class="brew-desc">Scripts, automations, HA plugins</span></li>
+            <li><span class="brew-name">nmap</span> <span class="brew-desc">Scan your network, find devices</span></li>
+            <li><span class="brew-name">homebridge</span> <span class="brew-desc">Non-HomeKit devices in Apple Home</span></li>
+            <li><span class="brew-name">wget</span> <span class="brew-desc">Download files and firmware easily</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="diamond"></div></div>
+
+  <!-- ═══════ CLAUDE CODE ═══════ -->
+  <section id="claude-code">
+    <div class="container">
+      <span class="section-label fade-up">Tool No. 2</span>
+      <h2 class="section-title fade-up">Claude Code</h2>
+      <div class="section-body fade-up">
+        <p>Claude Code is an AI assistant that runs in your terminal. Unlike ChatGPT or the Claude website, it can actually see your files, run commands, and make changes on your machine. Think of it like a knowledgeable coworker sitting next to you who can read your screen and type for you.</p>
+        <p>You talk to it in plain English. It writes code, runs queries, debugs problems, and explains what's happening. You approve each action before it runs. Nothing happens without your say-so.</p>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <div class="use-case fade-up">
+          <div class="use-case-text">
+            <h3><span class="pill sql">SQL</span> Your Work Database</h3>
+            <p>Stop writing queries from scratch. Describe what you need in plain English and Claude Code writes the SQL. It can connect to your database, run queries, explain results, and help you build reports.</p>
+            <p>It knows SQL Server, PostgreSQL, MySQL, SQLite, and more. It can read your schema, suggest indexes, optimize slow queries, and generate the exact joins you need.</p>
+          </div>
+          <div class="use-case-examples">
+            <h4>Things you can say to it</h4>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Write a query to find all customers who ordered in January but not February"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"This query is running slow, can you look at it and tell me why?"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Convert this Excel formula to a SQL query"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Explain what this stored procedure does in plain English"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Generate a monthly sales report grouped by region"</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="use-case fade-up" style="margin-top: 3rem;">
+          <div class="use-case-text">
+            <h3><span class="pill home">Home</span> Home Automation</h3>
+            <p>Smart home setups always involve some YAML config file or a script that almost works. Claude Code can read those files, fix the errors, and write new automations for you.</p>
+            <p>Whether it's Home Assistant, Node-RED, Homebridge, or shell scripts that run on a schedule, you describe what you want and it builds it.</p>
+          </div>
+          <div class="use-case-examples">
+            <h4>Things you can say to it</h4>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Write a Home Assistant automation that turns off porch lights at sunrise"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"This YAML config has an error somewhere, can you find it?"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Create a script that texts me when my garage door has been open for 10 minutes"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Help me install HACS without me having to mess with GitHub tokens"</span>
+            </div>
+            <div class="example-item">
+              <span class="example-prompt">you:</span>
+              <span class="example-desc">"Set up a Node-RED flow that logs my thermostat temperature every hour"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box fade-up" style="margin-top: 2.5rem;">
+        <strong>The key difference from ChatGPT:</strong> When you paste code into ChatGPT, it gives you a suggestion and you have to figure out where to put it. Claude Code actually reads your files, makes the changes, and runs them. It's not giving you advice. It's doing the work.
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="diamond"></div></div>
+
+  <!-- ═══════ INSTALL GUIDE ═══════ -->
+  <section id="install" class="install-section">
+    <div class="container">
+      <span class="section-label fade-up">Getting Started</span>
+      <h2 class="section-title fade-up">Set it up in five minutes</h2>
+      <div class="section-body fade-up">
+        <p>Open <strong style="color: var(--cream);">Terminal</strong> (hit <strong style="color: var(--cream);">Cmd + Space</strong>, type "Terminal," hit Enter). Then paste these commands one at a time. Each one finishes before you run the next.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step fade-up">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Install Homebrew</h3>
+            <p>This one-liner downloads and installs everything. It'll ask for your Mac password (the cursor won't move while you type it, that's normal).</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><span class="cmd">/bin/bash</span> <span class="flag">-c</span> <span class="url">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span></pre>
+            <p>When it finishes, it may print some lines saying "Add Homebrew to your PATH." If so, copy and paste those lines too. If it doesn't say that, you're good.</p>
+          </div>
+        </div>
+
+        <div class="step fade-up">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Install Node.js</h3>
+            <p>Claude Code needs this to run. One command, takes about 30 seconds.</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><span class="cmd">brew install</span> <span class="flag">node</span></pre>
+          </div>
+        </div>
+
+        <div class="step fade-up">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Install Claude Code</h3>
+            <p>This installs it globally so you can run it from anywhere.</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><span class="cmd">npm install</span> <span class="flag">-g</span> <span class="url">@anthropic-ai/claude-code</span></pre>
+          </div>
+        </div>
+
+        <div class="step fade-up">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Launch it</h3>
+            <p>Type <code style="color: var(--mustard-light);">claude</code> and hit Enter. A browser window opens for sign-in on first run.</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><span class="cmd">claude</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box fade-up" style="background: #1a1a1a; border-left-color: var(--rust); margin-top: 2.5rem;">
+        <strong style="color: var(--mustard-light);">Account options:</strong> Claude Code works with a free claude.ai account (limited usage), a Pro subscription ($20/mo for heavier use), or pay-as-you-go API credits at console.anthropic.com (add $5, use until it runs out). Start free and upgrade if you like it.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ QUICK REFERENCE ═══════ -->
+  <section>
+    <div class="container">
+      <span class="section-label fade-up">Quick Reference</span>
+      <h2 class="section-title fade-up">Commands you'll actually use</h2>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="fade-up">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 1rem; color: var(--teak-dark);">Homebrew</h3>
+          <pre style="background: var(--charcoal); color: #e0d8cc;"><span class="comment"># Install a GUI app</span>
+<span class="cmd">brew install --cask</span> <span class="flag">rectangle</span>
+
+<span class="comment"># Install a command-line tool</span>
+<span class="cmd">brew install</span> <span class="flag">jq</span>
+
+<span class="comment"># Update everything</span>
+<span class="cmd">brew upgrade</span>
+
+<span class="comment"># Search for something</span>
+<span class="cmd">brew search</span> <span class="flag">postgres</span>
+
+<span class="comment"># See what you've installed</span>
+<span class="cmd">brew list</span>
+
+<span class="comment"># Remove something</span>
+<span class="cmd">brew uninstall</span> <span class="flag">something</span></pre>
+        </div>
+        <div class="fade-up">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 1rem; color: var(--teak-dark);">Claude Code</h3>
+          <pre style="background: var(--charcoal); color: #e0d8cc;"><span class="comment"># Start Claude Code</span>
+<span class="cmd">claude</span>
+
+<span class="comment"># Start in a specific folder</span>
+<span class="cmd">cd</span> <span class="flag">~/Documents</span> <span class="url">&amp;&amp; claude</span>
+
+<span class="comment"># Once inside, just talk to it:</span>
+<span class="flag">"read this CSV and summarize it"</span>
+<span class="flag">"write a SQL query that..."</span>
+<span class="flag">"fix the error in this file"</span>
+<span class="flag">"explain what this code does"</span>
+
+<span class="comment"># Exit</span>
+<span class="cmd">/exit</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer>
+    <p>Put together by <a href="https://roblogic.org">Rob Logic</a></p>
+  </footer>
+
+  <script>
+    // Copy button
+    function copyCode(btn) {
+      const pre = btn.parentElement;
+      const code = pre.textContent.replace('Copy', '').trim();
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+      });
+    }
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Depth tabs
+    document.querySelectorAll('.depth-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabGroup = btn.closest('.depth-tabs');
+        tabGroup.querySelectorAll('.depth-tab-btn').forEach(b => b.classList.remove('active'));
+        tabGroup.querySelectorAll('.depth-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
