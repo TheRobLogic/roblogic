@@ -545,13 +545,9 @@ const INVENTORY = [
   {
     id: 'well_spirits', name: 'Well Spirits', type: 'well',
     columns: [
-      { key: 'day',     label: 'Day',    sublabel: '(well 1)', inputType: 'fill'   },
-      { key: 'night',   label: 'Night',  sublabel: '(well 2)', inputType: 'fill'   },
-      { key: 'full',    label: 'Full',                         inputType: 'number' },
-      { key: 'half',    label: '\u00BD',                       inputType: 'number' },
-      { key: 'quarter', label: '\u00BC',                       inputType: 'number' },
-      { key: 'bar',     label: 'Bar',                          inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',                        inputType: 'number' }
+      { key: 'well1',   label: 'Well 1', sublabel: '(day)',   inputType: 'fill'   },
+      { key: 'well2',   label: 'Well 2', sublabel: '(night)', inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup',                      inputType: 'number' }
     ],
     items: [
       'Well Tequila (Tres Paraguas)','Well Vodka (Hideout)','Well Whiskey',
