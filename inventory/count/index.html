@@ -458,6 +458,19 @@
     .success-content p {
       color: var(--cream-dim);
     }
+    .overlay-dismiss {
+      margin-top: 32px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 40px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 430px) {
@@ -879,11 +892,17 @@ function updateProgress() {
     if (badge) badge.textContent = sectionCounted + '/' + sectionTotal;
   });
 
+  // Also check if any add-rows have a name entered
+  let hasAddedItems = false;
+  document.querySelectorAll('.add-name-input').forEach(inp => {
+    if (inp.value.trim() !== '') hasAddedItems = true;
+  });
+
   document.getElementById('progress').textContent = counted + ' / ' + total;
 
   const submitBtn = document.getElementById('submitBtn');
   if (submitBtn && !submitBtn.classList.contains('sent')) {
-    submitBtn.disabled = (counted === 0);
+    submitBtn.disabled = (counted === 0 && !hasAddedItems);
   }
 }
 
@@ -1095,7 +1114,22 @@ function showOverlay(title, subtitle) {
     '<div class="success-check">\u2713</div>' +
     '<h2>' + title + '</h2>' +
     '<p>' + subtitle + '</p>' +
+    '<button class="overlay-dismiss">TAP OUT</button>' +
     '</div>';
+  overlay.querySelector('.overlay-dismiss').addEventListener('click', () => {
+    overlay.remove();
+    // Reset everything for next count
+    document.querySelectorAll('.count-input').forEach(i => i.value = '');
+    document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
+    document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
+    document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed', 'counted'));
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.textContent = 'SUBMIT';
+    submitBtn.disabled = true;
+    submitBtn.classList.remove('sent', 'sending', 'error');
+    updateProgress();
+  });
   document.body.appendChild(overlay);
 }
 
