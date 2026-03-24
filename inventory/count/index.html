@@ -1186,6 +1186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const device = params.get('device') || 'unknown';
   fetch('https://ntfy.sh/bancroft-inventory', {
     method: 'POST',
+    mode: 'no-cors',
     body: 'Inventory opened (' + device + ')'
   }).catch(() => {});
 
