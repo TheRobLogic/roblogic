@@ -1184,10 +1184,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ping ntfy on page open
   const params = new URLSearchParams(window.location.search);
   const device = params.get('device') || 'unknown';
-  fetch('https://ntfy.sh/bancroft-inventory', {
+  fetch('https://ntfy.sh/roblogic-claude', {
     method: 'POST',
-    mode: 'no-cors',
-    body: 'Inventory opened (' + device + ')'
+    headers: { 'Title': 'Inventory count opened', 'Tags': 'beers' },
+    body: device + ' opened the inventory counter'
   }).catch(() => {});
 
   const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
