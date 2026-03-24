@@ -297,8 +297,9 @@
       border: 2px solid var(--cream-dim);
       border-radius: 6px;
       color: var(--cream-dim);
-      font-family: var(--font-accent);
-      font-size: 20px;
+      font-family: sans-serif;
+      font-size: 24px;
+      font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -312,6 +313,43 @@
       color: var(--gold);
       border-color: var(--gold);
       background: rgba(196,162,101,0.08);
+    }
+
+    /* ── 86 BUTTON ── */
+    .eighty-six {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: transparent;
+      border: 2px solid rgba(158,144,128,0.3);
+      border-radius: 50%;
+      color: var(--cream-dim);
+      font-family: var(--font-accent);
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: all 0.15s;
+      margin-right: 4px;
+    }
+    .eighty-six.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .item-row.eighty-sixed .item-name {
+      text-decoration: line-through;
+      color: var(--cream-dim);
+      opacity: 0.5;
+    }
+    .item-row.eighty-sixed .item-inputs {
+      opacity: 0.2;
+      pointer-events: none;
     }
 
     /* ── ADD ITEM ROW ── */
@@ -751,6 +789,12 @@ function renderSections() {
       row.dataset.section = sec.id;
       row.dataset.index = itemIdx;
 
+      const btn86 = document.createElement('button');
+      btn86.className = 'eighty-six';
+      btn86.textContent = '86';
+      btn86.type = 'button';
+      row.appendChild(btn86);
+
       const nameEl = document.createElement('span');
       nameEl.className = 'item-name';
       nameEl.textContent = itemName;
@@ -859,7 +903,7 @@ function saveToLocal() {
 }
 
 function collectAllData() {
-  const result = { sections: {}, addedItems: {} };
+  const result = { sections: {}, addedItems: {}, eightySixed: [] };
 
   INVENTORY.forEach(sec => {
     const secData = {};
@@ -868,6 +912,11 @@ function collectAllData() {
     sec.items.forEach((itemName, itemIdx) => {
       const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
       if (!row) return;
+
+      // Check if 86'd
+      if (row.classList.contains('eighty-sixed')) {
+        result.eightySixed.push({ section: sec.id, name: itemName });
+      }
 
       const entry = {};
       let hasValue = false;
@@ -973,6 +1022,22 @@ function restoreFromLocal() {
     }
   });
 
+  // Restore 86'd items
+  if (data.eightySixed && data.eightySixed.length > 0) {
+    data.eightySixed.forEach(item => {
+      const sec = INVENTORY.find(s => s.id === item.section);
+      if (!sec) return;
+      const idx = sec.items.indexOf(item.name);
+      if (idx === -1) return;
+      const row = document.querySelector(`.item-row[data-section="${item.section}"][data-index="${idx}"]`);
+      if (!row) return;
+      row.classList.add('eighty-sixed');
+      const btn86 = row.querySelector('.eighty-six');
+      if (btn86) btn86.classList.add('active');
+      anyRestored = true;
+    });
+  }
+
   if (anyRestored && data._savedAt) {
     const banner = document.getElementById('resumeBanner');
     const ts = new Date(data._savedAt);
@@ -1018,6 +1083,7 @@ function buildPayload() {
     submitted_at: new Date().toISOString(),
     device,
     sections,
+    eighty_sixed: allData.eightySixed,
     progress: { counted, total: totalItems },
     notes: ''
   };
@@ -1055,6 +1121,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }, true); // capture phase so focus events bubble up
 
   document.getElementById('sections').addEventListener('click', (e) => {
+    // 86 button — toggle "don't carry" on item row
+    const btn86 = e.target.closest('.eighty-six');
+    if (btn86) {
+      const row = btn86.closest('.item-row');
+      btn86.classList.toggle('active');
+      row.classList.toggle('eighty-sixed');
+      saveToLocal();
+      updateProgress();
+      return;
+    }
+
     // Cycle button takes priority — check it first
     const btn = e.target.closest('.cycle-btn');
     if (btn) {
@@ -1117,6 +1194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.count-input').forEach(i => i.value = '');
     document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
     document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
+    document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed'));
     document.getElementById('resumeBanner').style.display = 'none';
     updateProgress();
   });
