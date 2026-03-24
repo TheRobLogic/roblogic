@@ -380,6 +380,45 @@
       border-color: var(--red-bright);
     }
 
+    /* ── SUBMIT STATES ── */
+    #submitBtn.sending { opacity: 0.6; cursor: wait; }
+    #submitBtn.sent { background: var(--green); border-color: var(--green); }
+    #submitBtn.error { background: var(--red-bright); }
+
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-content {
+      text-align: center;
+      color: var(--cream);
+      font-family: var(--font-body);
+    }
+    .success-check {
+      font-size: 72px;
+      color: var(--green);
+      width: 120px;
+      height: 120px;
+      line-height: 120px;
+      border: 4px solid var(--green);
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      font-family: var(--font-display);
+    }
+    .success-content h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .success-content p {
+      color: var(--cream-dim);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 430px) {
       .count-input, .cycle-btn { width: 44px; }
@@ -794,6 +833,11 @@ function updateProgress() {
   });
 
   document.getElementById('progress').textContent = counted + ' / ' + total;
+
+  const submitBtn = document.getElementById('submitBtn');
+  if (submitBtn && !submitBtn.classList.contains('sent')) {
+    submitBtn.disabled = (counted === 0);
+  }
 }
 
 // ── localStorage persistence ──────────────────────────────────────────────────
@@ -939,6 +983,53 @@ function restoreFromLocal() {
   }
 }
 
+function buildPayload() {
+  const params = new URLSearchParams(window.location.search);
+  const device = params.get('device') || 'unknown';
+  const allData = collectAllData();
+  const totalItems = INVENTORY.reduce((sum, s) => sum + s.items.length, 0);
+
+  const sections = {};
+  INVENTORY.forEach(section => {
+    const sectionData = allData.sections[section.id] || {};
+    const items = [];
+    section.items.forEach(name => {
+      if (sectionData[name]) {
+        items.push({ name, ...sectionData[name] });
+      }
+    });
+    const added = (allData.addedItems[section.id] || []);
+    sections[section.id] = { items, added };
+  });
+
+  let counted = 0;
+  INVENTORY.forEach(section => {
+    const sectionData = allData.sections[section.id] || {};
+    section.items.forEach(name => {
+      if (sectionData[name]) counted++;
+    });
+  });
+
+  return {
+    submitted_at: new Date().toISOString(),
+    device,
+    sections,
+    progress: { counted, total: totalItems },
+    notes: ''
+  };
+}
+
+function showOverlay(title, subtitle) {
+  const overlay = document.createElement('div');
+  overlay.className = 'success-overlay';
+  overlay.innerHTML = '<div class="success-content">' +
+    '<div class="success-check">\u2713</div>' +
+    '<h2>' + title + '</h2>' +
+    '<p>' + subtitle + '</p>' +
+    '</div>';
+  document.body.appendChild(overlay);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderSections();
   restoreFromLocal();
@@ -971,6 +1062,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!header) return;
     const section = header.closest('.section');
     section.classList.toggle('collapsed');
+  });
+
+  // ── Submit handler ────────────────────────────────────────────────────────
+  document.getElementById('submitBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('submitBtn');
+    if (btn.disabled) return;
+
+    btn.disabled = true;
+    btn.textContent = 'SENDING...';
+    btn.classList.add('sending');
+
+    try {
+      const payload = buildPayload();
+      const resp = await fetch('https://n8n.roblogic.org/webhook/inventory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!resp.ok) throw new Error('Server returned ' + resp.status);
+
+      // Success
+      localStorage.removeItem(STORAGE_KEY);
+      btn.textContent = 'SENT \u2713';
+      btn.classList.remove('sending');
+      btn.classList.add('sent');
+      showOverlay('Inventory submitted!', 'Count has been sent.');
+
+    } catch (err) {
+      // Failure — keep data intact
+      btn.disabled = false;
+      btn.textContent = 'RETRY';
+      btn.classList.remove('sending');
+      btn.classList.add('error');
+      alert('Failed to send: ' + err.message + '\n\nYour data is saved. Try again when you have signal.');
+    }
   });
 
   document.getElementById('clearBtn').addEventListener('click', () => {
