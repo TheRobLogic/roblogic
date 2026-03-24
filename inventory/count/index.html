@@ -863,7 +863,7 @@ function updateProgress() {
       // Check cycle buttons
       const btns = row.querySelectorAll('.cycle-btn');
 
-      let hasValue = false;
+      let hasValue = row.classList.contains('eighty-sixed');
       inputs.forEach(inp => { if (inp.value !== '') hasValue = true; });
       btns.forEach(btn => { if (btn.textContent !== '') hasValue = true; });
 
