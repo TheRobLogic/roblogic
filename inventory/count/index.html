@@ -95,14 +95,27 @@
 
     /* ── RESUME BANNER ── */
     #resumeBanner {
-      background: var(--green-dim);
-      color: var(--cream);
-      font-family: var(--font-accent);
-      font-size: 13px;
-      letter-spacing: 0.05em;
+      background: var(--gold);
+      color: var(--bg);
       text-align: center;
-      padding: 8px 16px;
-      border-bottom: 1px solid var(--green);
+      padding: 8px;
+      font-size: 14px;
+      font-family: var(--font-accent);
+      position: fixed;
+      top: 56px; /* below topbar */
+      left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    #resumeBanner button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--bg);
     }
 
     /* ── SECTIONS ── */
@@ -747,16 +760,197 @@ function renderSections() {
 }
 
 function updateProgress() {
-  // Stub: Task 3 will implement actual counting of filled inputs
   const total = totalItems();
-  document.getElementById('progress').textContent = '0 / ' + total;
+  let counted = 0;
+
+  INVENTORY.forEach(sec => {
+    let sectionCounted = 0;
+    const sectionTotal = sec.items.length;
+
+    sec.items.forEach((_, itemIdx) => {
+      const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
+      if (!row) return;
+
+      // Check number inputs
+      const inputs = row.querySelectorAll('.count-input');
+      // Check cycle buttons
+      const btns = row.querySelectorAll('.cycle-btn');
+
+      let hasValue = false;
+      inputs.forEach(inp => { if (inp.value !== '') hasValue = true; });
+      btns.forEach(btn => { if (btn.textContent !== '') hasValue = true; });
+
+      if (hasValue) {
+        sectionCounted++;
+        counted++;
+        row.classList.add('counted');
+      } else {
+        row.classList.remove('counted');
+      }
+    });
+
+    const badge = document.getElementById('badge-' + sec.id);
+    if (badge) badge.textContent = sectionCounted + '/' + sectionTotal;
+  });
+
+  document.getElementById('progress').textContent = counted + ' / ' + total;
+}
+
+// ── localStorage persistence ──────────────────────────────────────────────────
+
+const STORAGE_KEY = 'bancroft_inventory_draft';
+let saveTimeout = null;
+
+function saveToLocal() {
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    const data = collectAllData();
+    data._savedAt = new Date().toISOString();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }, 500);
+}
+
+function collectAllData() {
+  const result = { sections: {}, addedItems: {} };
+
+  INVENTORY.forEach(sec => {
+    const secData = {};
+
+    // Regular item rows
+    sec.items.forEach((itemName, itemIdx) => {
+      const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
+      if (!row) return;
+
+      const entry = {};
+      let hasValue = false;
+
+      row.querySelectorAll('.count-input').forEach(inp => {
+        if (inp.value !== '') { entry[inp.dataset.col] = inp.value; hasValue = true; }
+      });
+      row.querySelectorAll('.cycle-btn').forEach(btn => {
+        if (btn.textContent !== '') { entry[btn.dataset.col] = btn.textContent; hasValue = true; }
+      });
+
+      if (hasValue) secData[itemName] = entry;
+    });
+
+    result.sections[sec.id] = secData;
+
+    // Add-row
+    const addRow = document.querySelector(`.add-row[data-section="${sec.id}"]`);
+    if (addRow) {
+      const nameInput = addRow.querySelector('.add-name-input');
+      const name = nameInput ? nameInput.value.trim() : '';
+      if (name) {
+        const entry = { name };
+        addRow.querySelectorAll('.add-input.count-input').forEach(inp => {
+          if (inp.value !== '') entry[inp.dataset.col] = inp.value;
+        });
+        addRow.querySelectorAll('.add-input.cycle-btn').forEach(btn => {
+          if (btn.textContent !== '') entry[btn.dataset.col] = btn.textContent;
+        });
+        if (!result.addedItems[sec.id]) result.addedItems[sec.id] = [];
+        result.addedItems[sec.id].push(entry);
+      }
+    }
+  });
+
+  return result;
+}
+
+function restoreFromLocal() {
+  let raw;
+  try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return; }
+  if (!raw) return;
+
+  let data;
+  try { data = JSON.parse(raw); } catch (e) { return; }
+  if (!data || !data.sections) return;
+
+  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
+  const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+
+  let anyRestored = false;
+
+  INVENTORY.forEach(sec => {
+    const secData = data.sections[sec.id];
+    if (!secData) return;
+
+    sec.items.forEach((itemName, itemIdx) => {
+      const saved = secData[itemName];
+      if (!saved) return;
+
+      const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
+      if (!row) return;
+
+      row.querySelectorAll('.count-input').forEach(inp => {
+        const val = saved[inp.dataset.col];
+        if (val !== undefined) { inp.value = val; anyRestored = true; }
+      });
+      row.querySelectorAll('.cycle-btn').forEach(btn => {
+        const val = saved[btn.dataset.col];
+        if (val !== undefined) {
+          btn.textContent = val;
+          const validStates = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
+          btn.classList.toggle('has-value', validStates.indexOf(val) > 0);
+          anyRestored = true;
+        }
+      });
+    });
+
+    // Restore add-row
+    const addedList = data.addedItems && data.addedItems[sec.id];
+    if (addedList && addedList.length > 0) {
+      const addRow = document.querySelector(`.add-row[data-section="${sec.id}"]`);
+      if (addRow) {
+        const nameInput = addRow.querySelector('.add-name-input');
+        const first = addedList[0];
+        if (nameInput && first && first.name) {
+          nameInput.value = first.name;
+          addRow.querySelectorAll('.add-input.count-input').forEach(inp => {
+            const val = first[inp.dataset.col];
+            if (val !== undefined) inp.value = val;
+          });
+          addRow.querySelectorAll('.add-input.cycle-btn').forEach(btn => {
+            const val = first[btn.dataset.col];
+            if (val !== undefined) {
+              btn.textContent = val;
+              const validStates = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
+              btn.classList.toggle('has-value', validStates.indexOf(val) > 0);
+            }
+          });
+          anyRestored = true;
+        }
+      }
+    }
+  });
+
+  if (anyRestored && data._savedAt) {
+    const banner = document.getElementById('resumeBanner');
+    const ts = new Date(data._savedAt);
+    const timeStr = ts.toLocaleDateString([], { month: 'short', day: 'numeric' })
+      + ' ' + ts.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    banner.innerHTML = '<span>Draft restored from ' + timeStr + '</span>'
+      + '<button id="dismissBanner" title="Dismiss">\u00d7</button>';
+    banner.style.display = 'flex';
+    document.getElementById('dismissBanner').addEventListener('click', () => {
+      banner.style.display = 'none';
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   renderSections();
+  restoreFromLocal();
+  updateProgress();
 
   const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
   const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+
+  document.getElementById('sections').addEventListener('input', () => {
+    saveToLocal();
+    updateProgress();
+  });
 
   document.getElementById('sections').addEventListener('click', (e) => {
     // Cycle button takes priority — check it first
@@ -767,6 +961,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextIdx = (currentIdx + 1) % values.length;
       btn.textContent = values[nextIdx];
       btn.classList.toggle('has-value', nextIdx > 0);
+      saveToLocal();
+      updateProgress();
       return; // don't bubble to section toggle
     }
 
@@ -775,6 +971,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!header) return;
     const section = header.closest('.section');
     section.classList.toggle('collapsed');
+  });
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if (!confirm('Clear all counts and start over?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.count-input').forEach(i => i.value = '');
+    document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
+    document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
+    document.getElementById('resumeBanner').style.display = 'none';
+    updateProgress();
   });
 });
 </script>
