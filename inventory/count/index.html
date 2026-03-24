@@ -752,7 +752,31 @@ function updateProgress() {
   document.getElementById('progress').textContent = '0 / ' + total;
 }
 
-document.addEventListener('DOMContentLoaded', renderSections);
+document.addEventListener('DOMContentLoaded', () => {
+  renderSections();
+
+  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
+  const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+
+  document.getElementById('sections').addEventListener('click', (e) => {
+    // Cycle button takes priority — check it first
+    const btn = e.target.closest('.cycle-btn');
+    if (btn) {
+      const values = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
+      const currentIdx = values.indexOf(btn.textContent);
+      const nextIdx = (currentIdx + 1) % values.length;
+      btn.textContent = values[nextIdx];
+      btn.classList.toggle('has-value', nextIdx > 0);
+      return; // don't bubble to section toggle
+    }
+
+    // Section header toggle
+    const header = e.target.closest('.section-header');
+    if (!header) return;
+    const section = header.closest('.section');
+    section.classList.toggle('collapsed');
+  });
+});
 </script>
 </body>
 </html>
