@@ -220,11 +220,14 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       line-height: 1.2;
+      text-align: center;
+      white-space: nowrap;
     }
     .col-header .col-sublabel {
       font-size: 9px;
       color: rgba(158,144,128,0.6);
       line-height: 1.1;
+      text-align: center;
     }
 
     /* ── ITEM ROWS ── */
@@ -557,11 +560,9 @@ const INVENTORY = [
   {
     id: 'whiskey', name: 'Whiskey / Bourbon / Scotch / Irish', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       'Tullamore Dew','Jack Daniels','Jameson','Fireball',"Seagram's 7",
@@ -576,11 +577,9 @@ const INVENTORY = [
   {
     id: 'tequila', name: 'Tequila / Mezcal', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       'Gran Malo Blanco','Cazadores Reposado','Hornitos Reposado','Milagro Reposado',
@@ -592,11 +591,9 @@ const INVENTORY = [
   {
     id: 'vodka', name: 'Vodka', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       "Tito's",'New Amsterdam Pineapple','Hideout Mandarin','Pink Whitney',
@@ -608,11 +605,9 @@ const INVENTORY = [
   {
     id: 'rum', name: 'Rum', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       'Captain Morgan Spiced','Bacardi Silver','Sailor Jerry','Malibu Coconut',
@@ -622,11 +617,9 @@ const INVENTORY = [
   {
     id: 'gin', name: 'Gin', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       "Hendrick's",'Gin Mare','Bombay Sapphire','Tanqueray'
@@ -635,11 +628,9 @@ const INVENTORY = [
   {
     id: 'liqueur', name: 'Liqueur / Cordial / Vermouth', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       'Jagermeister','Fernet Branca','Kahlua','Baileys Irish Cream','Baileys Almond',
@@ -652,11 +643,9 @@ const INVENTORY = [
   {
     id: 'dekuyper', name: 'Dekuyper Cordials', type: 'liquor',
     columns: [
-      { key: 'full',    label: 'Full',   inputType: 'number' },
-      { key: 'half',    label: '\u00BD', inputType: 'number' },
-      { key: 'quarter', label: '\u00BC', inputType: 'number' },
-      { key: 'bar',     label: 'Bar',    inputType: 'number' },
-      { key: 'bkup',    label: 'Bkup',  inputType: 'number' }
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
       'Triple Sec','Amaretto','Blue Curacao','Peachtree','Buttershots',
