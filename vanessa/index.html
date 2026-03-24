@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanessa — 1984 Chevy G25 Custom Van</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Righteous&family=Barlow+Semi+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #ff6b1a;
+      --purple: #7b2d8e;
+      --gold: #ffc928;
+      --teal: #00b4d8;
+      --cream: #fdf6e3;
+      --brown: #3d2b1f;
+      --rust: #c1440e;
+      --chrome: linear-gradient(180deg, #e8e8e8 0%, #b0b0b0 40%, #e8e8e8 50%, #a0a0a0 100%);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--brown);
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* Shag carpet texture background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.015) 2px,
+          rgba(255,255,255,0.015) 4px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.01) 2px,
+          rgba(255,255,255,0.01) 4px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Custom van stripe header */
+    .header {
+      position: relative;
+      margin-bottom: 2rem;
+      padding: 2rem 2rem 1.5rem;
+      background: linear-gradient(
+        180deg,
+        var(--orange) 0%,
+        var(--rust) 30%,
+        var(--gold) 30%,
+        var(--gold) 40%,
+        var(--orange) 40%,
+        var(--orange) 100%
+      );
+      border-radius: 8px;
+      border: 3px solid var(--gold);
+      box-shadow:
+        0 0 20px rgba(255, 107, 26, 0.4),
+        inset 0 0 40px rgba(0,0,0,0.15);
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 8px,
+        rgba(255,255,255,0.04) 8px,
+        rgba(255,255,255,0.04) 9px
+      );
+      pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Bungee Shade', cursive;
+      font-size: clamp(2.2rem, 7vw, 3.5rem);
+      color: var(--cream);
+      text-shadow:
+        3px 3px 0 var(--brown),
+        0 0 20px rgba(255, 201, 40, 0.5);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-family: 'Righteous', cursive;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--gold);
+      margin-top: 0.5rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 0 var(--brown);
+    }
+
+    /* Chrome divider */
+    .chrome-strip {
+      height: 6px;
+      background: var(--chrome);
+      border-radius: 3px;
+      margin: 1.8rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* Section panels — like van interior panels */
+    .panel {
+      background: linear-gradient(135deg, rgba(61,43,31,0.9), rgba(50,35,24,0.95));
+      border: 2px solid rgba(255, 201, 40, 0.3);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .panel-header {
+      font-family: 'Righteous', cursive;
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.8rem 1.2rem;
+      border-bottom: 2px solid rgba(255, 201, 40, 0.2);
+      position: relative;
+    }
+
+    .panel:nth-child(4n+1) .panel-header {
+      background: linear-gradient(135deg, var(--orange), var(--rust));
+    }
+    .panel:nth-child(4n+2) .panel-header {
+      background: linear-gradient(135deg, var(--purple), #5a1d6e);
+    }
+    .panel:nth-child(4n+3) .panel-header {
+      background: linear-gradient(135deg, var(--teal), #0088a8);
+    }
+    .panel:nth-child(4n+4) .panel-header {
+      background: linear-gradient(135deg, var(--rust), #8b2500);
+    }
+
+    /* Carpet texture on panel headers */
+    .panel-header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          60deg,
+          transparent,
+          transparent 1px,
+          rgba(255,255,255,0.06) 1px,
+          rgba(255,255,255,0.06) 2px
+        );
+      pointer-events: none;
+    }
+
+    .panel-body {
+      padding: 1.2rem;
+      line-height: 1.6;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 0.5rem 0.8rem;
+      background: rgba(255, 201, 40, 0.12);
+      border-bottom: 2px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Righteous', cursive;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* Shop cards */
+    .shop {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .shop:last-child { border-bottom: none; }
+
+    .shop-name {
+      font-family: 'Righteous', cursive;
+      font-size: 1.05rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+
+    .shop-location {
+      font-size: 0.85rem;
+      color: rgba(253, 246, 227, 0.6);
+      margin: 0.15rem 0 0.3rem;
+    }
+
+    .shop-note {
+      font-size: 0.9rem;
+      color: rgba(253, 246, 227, 0.85);
+    }
+
+    /* Highlight boxes */
+    .highlight {
+      background: rgba(255, 201, 40, 0.08);
+      border-left: 3px solid var(--gold);
+      padding: 0.8rem 1rem;
+      margin: 0.8rem 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .price-tag {
+      display: inline-block;
+      font-family: 'Righteous', cursive;
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* Tips list */
+    .tips {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tips li {
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      font-size: 0.95rem;
+      color: rgba(253, 246, 227, 0.85);
+    }
+
+    .tips li::before {
+      content: '\2726';
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-size: 0.9rem;
+    }
+
+    h3 {
+      font-family: 'Righteous', cursive;
+      font-size: 1rem;
+      color: var(--gold);
+      margin: 1rem 0 0.5rem;
+      letter-spacing: 0.06em;
+    }
+
+    p { margin-bottom: 0.6rem; }
+
+    strong { color: var(--gold); }
+
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      font-size: 0.75rem;
+      color: rgba(253, 246, 227, 0.35);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1rem 1rem 3rem; }
+      .header { padding: 1.5rem 1.2rem 1rem; }
+      .panel-body { padding: 1rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <h1>Vanessa</h1>
+      <div class="subtitle">1984 Chevrolet G25 Custom Van &mdash; Research Notes</div>
+    </div>
+
+    <!-- THE VAN -->
+    <div class="panel">
+      <div class="panel-header">The Van</div>
+      <div class="panel-body">
+        <table>
+          <tr><td style="width:40%"><strong>Year</strong></td><td>1984</td></tr>
+          <tr><td><strong>Make / Model</strong></td><td>Chevrolet G25 (G-Series Van)</td></tr>
+          <tr><td><strong>Class</strong></td><td>3/4 Ton Cargo Van</td></tr>
+          <tr><td><strong>Engine</strong></td><td>6.2L V8 Diesel (Detroit Diesel, 378 ci)</td></tr>
+          <tr><td><strong>Power</strong></td><td>~130&ndash;148 hp / ~240 lb-ft (naturally aspirated)</td></tr>
+          <tr><td><strong>Drive</strong></td><td>RWD (4x2)</td></tr>
+          <tr><td><strong>GVWR</strong></td><td>6,001&ndash;7,000 lbs</td></tr>
+          <tr><td><strong>Assembly</strong></td><td>GM Scarborough, Ontario, Canada</td></tr>
+          <tr><td><strong>Conversion</strong></td><td>Valley Van Works, Las Vegas, NV</td></tr>
+        </table>
+
+        <div class="highlight">
+          The 6.2L Detroit Diesel is the same engine block used in the original military Humvee. Slow but unkillable &mdash; known for 17&ndash;20 MPG and running past 300K miles. The Stanadyne DB2 injection pump is the weak point ($800&ndash;$1,500 to replace).
+        </div>
+
+        <p>Engine built by Detroit Diesel in Michigan; van assembled at the GM Scarborough plant in Ontario (open 1953&ndash;1993). Components crossing the US-Canada border during assembly was standard under the 1965 Auto Pact.</p>
+
+        <p><strong>Conversion:</strong> Valley Van Works was a small Las Vegas shop doing custom interiors in the 1980s. Carpet walls and floors, insulation, interior trim. No digital footprint survives &mdash; they predate the internet and weren't part of the major converter brands (Starcraft, Explorer, Mark III, etc.).</p>
+      </div>
+    </div>
+
+    <div class="chrome-strip"></div>
+
+    <!-- VALUATION -->
+    <div class="panel">
+      <div class="panel-header">What's It Worth?</div>
+      <div class="panel-body">
+        <p>Market value for a 1984 Chevy G25 with the 6.2L diesel, plain van (not a camper conversion):</p>
+
+        <table>
+          <thead>
+            <tr><th>Condition</th><th>Private Sale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Non-running / no title / project</td><td><span class="price-tag">$500 &ndash; $2,500</span></td></tr>
+            <tr><td>Running, rough, some rust</td><td><span class="price-tag">$2,500 &ndash; $6,000</span></td></tr>
+            <tr><td>Running, decent, minor rust</td><td><span class="price-tag">$6,000 &ndash; $12,000</span></td></tr>
+            <tr><td>Clean, low miles, rust-free</td><td><span class="price-tag">$12,000 &ndash; $20,000</span></td></tr>
+            <tr><td>Exceptional / survivor</td><td><span class="price-tag">$19,000 &ndash; $25,000+</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3>What Moves the Needle</h3>
+        <ul class="tips">
+          <li><strong>Rust is everything.</strong> A rust-free body is worth 2&ndash;3x a rusty one regardless of mechanicals.</li>
+          <li><strong>Injection pump health</strong> &mdash; the Stanadyne DB2 is the Achilles heel. A recently rebuilt or known-good IP adds real value.</li>
+          <li><strong>The 6.2 diesel doesn't command a premium</strong> like a 7.3 Powerstroke or Cummins would. It's slow but gets 17&ndash;20 MPG and runs forever.</li>
+          <li><strong>Plain vans are gaining value</strong> over beat-up camper conversions &mdash; the van-life crowd wants a clean canvas.</li>
+          <li><strong>Low mileage matters.</strong> Under 100K is desirable. The 6.2L is typically "tired" around 230K, though some last 400K+.</li>
+          <li><strong>Clear title is essential.</strong> Bill-of-sale-only examples sell for pennies.</li>
+        </ul>
+
+        <div class="highlight">
+          Realistic private sale for a running, decent example: <span class="price-tag">$5,000 &ndash; $10,000</span>. Dealer lots ask $12K&ndash;$20K but there's room to negotiate.
+        </div>
+      </div>
+    </div>
+
+    <div class="chrome-strip"></div>
+
+    <!-- SAN DIEGO SHOPS -->
+    <div class="panel">
+      <div class="panel-header">Upholstery Shops &mdash; San Diego</div>
+      <div class="panel-body">
+        <p>Good shops for custom van interior work (carpet walls, headliners, seats, panels). Budget: <span class="price-tag">$3,000&ndash;$7,000</span> for a full van interior.</p>
+
+        <div class="shop">
+          <div class="shop-name">JJ Upholstery</div>
+          <div class="shop-location">1519 Industrial Ave, Escondido &bull; (760) 855-4462</div>
+          <div class="shop-note">Best for van/RV work. Owner Miguel is praised for communication and fair pricing. Does headliners, carpet, leather, vinyl, custom designs. Proven motorhome and RV experience.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">El Cajon Auto Trim Shop</div>
+          <div class="shop-location">645 W Lexington Ave, El Cajon</div>
+          <div class="shop-note">Old-school craftsmanship. Does full interior packages &mdash; seats, headliner, visors, carpet, door panels in one go. Run by Mike and Dave. Ford dealers refer customers here.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Quality Auto Upholstery</div>
+          <div class="shop-location">8148 Ronson Rd, Kearny Mesa &bull; (858) 541-0177</div>
+          <div class="shop-note">Family-owned, 30+ years. Martin (owner) gets personal praise everywhere. Markets as "best prices in San Diego." Free estimates. Also listed in Yelp's Top 10 for RV Interior Repair.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Arroyo Brothers Auto Upholstery</div>
+          <div class="shop-location">128 National City Blvd, National City &bull; (619) 474-4684</div>
+          <div class="shop-note">In business since 1971. "Quality workmanship at a fair price." Quoted about half the price of competing shops. Does commercial/military upholstery &mdash; used to non-standard interiors.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Lindy's Auto Upholstery</div>
+          <div class="shop-location">7269 El Cajon Blvd, Mid-City &bull; (619) 466-6354</div>
+          <div class="shop-note">Called "the best in San Diego" on Yelp multiple times. Fast turnaround (2 days). Good value for the quality.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chrome-strip"></div>
+
+    <!-- TIJUANA SHOPS -->
+    <div class="panel">
+      <div class="panel-header">Upholstery Shops &mdash; Tijuana</div>
+      <div class="panel-body">
+        <p>Same full van interior for <span class="price-tag">$800&ndash;$1,500</span> &mdash; 60&ndash;85% less than San Diego.</p>
+
+        <div class="shop">
+          <div class="shop-name">Baja Jr (Ricardo's)</div>
+          <div class="shop-location">Calle 3a &amp; Negrete, Zona Centro (2 blocks from Revoluci&oacute;n)</div>
+          <div class="shop-note">Most recommended on forums. Complete auto interior from ~$225. Ask for Ricardo specifically. He stands behind his work.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Tapiceria Daniel's</div>
+          <div class="shop-location">Calle Novena, Valle Verde, Tijuana</div>
+          <div class="shop-note">"Worth the drive!" &mdash; known for classic/restoration automotive work. Slightly outside Zona Centro but quality justifies the trip.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Tapiceria California</div>
+          <div class="shop-location">Playas de Tijuana &bull; +52 664 310 7657</div>
+          <div class="shop-note">Family-owned since 1992. 30+ years experience. Does full restorations and custom projects. Serves both TJ and San Diego customers.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Champs (Champion's)</div>
+          <div class="shop-location">Central Tijuana, ~5 min from border</div>
+          <div class="shop-note">Known for truck/SUV work. Both front seats for ~$220. Often same-day turnaround.</div>
+        </div>
+
+        <div class="shop">
+          <div class="shop-name">Taller Nuevo FM</div>
+          <div class="shop-location">Av. Melchor Ocampo 887, Zona Centro &bull; +52 664 293 0298</div>
+          <div class="shop-note">20+ years, 7,500+ clients. Double-fenced facility with 24/7 video surveillance &mdash; good if you need to leave the van overnight. Also does body/paint.</div>
+        </div>
+
+        <h3>Price Comparison</h3>
+        <table>
+          <thead>
+            <tr><th>Work</th><th>Tijuana</th><th>San Diego</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Complete interior</td><td><span class="price-tag">$450&ndash;$1,000</span></td><td>$3,000&ndash;$7,000</td></tr>
+            <tr><td>Front seats (pair)</td><td><span class="price-tag">$200&ndash;$300</span></td><td>$800&ndash;$1,500</td></tr>
+            <tr><td>Headliner</td><td><span class="price-tag">$80&ndash;$150</span></td><td>$300&ndash;$500</td></tr>
+            <tr><td>Single seat</td><td><span class="price-tag">$100&ndash;$220</span></td><td>$500&ndash;$800</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="chrome-strip"></div>
+
+    <!-- TJ TIPS -->
+    <div class="panel">
+      <div class="panel-header">Crossing to TJ &mdash; Tips</div>
+      <div class="panel-body">
+        <ul class="tips">
+          <li><strong>Get Mexican auto insurance first.</strong> Your US policy doesn't cover you. Baja Bound does online day policies (~$15&ndash;25/day).</li>
+          <li><strong>Bring your passport.</strong> SENTRI or Global Entry speeds up the return crossing.</li>
+          <li><strong>Bring a Spanish speaker</strong> if you can &mdash; prices stay lower.</li>
+          <li><strong>Bring reference photos and fabric swatches.</strong> Be specific about materials, stitching, patterns.</li>
+          <li><strong>The traditional upholstery district</strong> is Calle 2a and 3a, east of Revoluci&oacute;n. You can walk between 20+ shops and compare quotes.</li>
+          <li><strong>Cross early (7&ndash;8 AM).</strong> Return before 3 PM to avoid the worst lines.</li>
+          <li><strong>For a full van interior, plan to leave it overnight.</strong> 1&ndash;2 days typical. Taller Nuevo FM's surveilled lot is good for this.</li>
+          <li><strong>Option: pull the seats and panels yourself</strong> and just bring the parts across. Avoids leaving the whole vehicle.</li>
+          <li><strong>Pay 50% deposit, balance on completion.</strong> Inspect thoroughly before paying.</li>
+          <li><strong>If your vehicle is financed or leased,</strong> check your loan docs &mdash; you may need written permission to take it into Mexico.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      Research compiled March 2026 &bull; Rob Logic
+    </div>
+
+  </div>
+</body>
+</html>
