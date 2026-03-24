@@ -27,7 +27,7 @@
       --font-display: 'Alfa Slab One', cursive;
       --font-body: 'Lora', serif;
       --font-accent: 'Special Elite', system-ui;
-      --topbar-h: 56px;
+      --topbar-h: 64px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,7 +60,7 @@
 
     #topbar .title {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: 22px;
       color: var(--cream);
       letter-spacing: 0.04em;
       white-space: nowrap;
@@ -68,7 +68,7 @@
 
     #progress {
       font-family: var(--font-accent);
-      font-size: 13px;
+      font-size: 16px;
       color: var(--cream-dim);
       letter-spacing: 0.06em;
       white-space: nowrap;
@@ -76,13 +76,13 @@
 
     #submitBtn {
       font-family: var(--font-display);
-      font-size: 13px;
+      font-size: 16px;
       letter-spacing: 0.06em;
       background: var(--red);
       color: #fff;
       border: none;
-      border-radius: 4px;
-      padding: 6px 14px;
+      border-radius: 6px;
+      padding: 10px 20px;
       cursor: pointer;
       white-space: nowrap;
       transition: background 0.15s;
@@ -103,7 +103,7 @@
       font-size: 14px;
       font-family: var(--font-accent);
       position: fixed;
-      top: 56px; /* below topbar */
+      top: var(--topbar-h); /* below topbar */
       left: 0; right: 0;
       z-index: 999;
       display: flex;
@@ -132,8 +132,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 12px;
-      height: 48px;
+      padding: 0 16px;
+      height: 56px;
       background: var(--red);
       cursor: pointer;
       user-select: none;
@@ -144,7 +144,7 @@
 
     .section-header .sec-name {
       font-family: var(--font-display);
-      font-size: 15px;
+      font-size: 18px;
       color: var(--cream);
       text-transform: uppercase;
       letter-spacing: 0.04em;
@@ -164,7 +164,7 @@
 
     .sec-badge {
       font-family: var(--font-accent);
-      font-size: 12px;
+      font-size: 14px;
       color: rgba(237, 224, 204, 0.7);
       letter-spacing: 0.04em;
       background: rgba(0,0,0,0.25);
@@ -173,7 +173,7 @@
     }
 
     .sec-arrow {
-      font-size: 12px;
+      font-size: 14px;
       color: rgba(237, 224, 204, 0.7);
       transition: transform 0.2s;
       display: inline-block;
@@ -209,13 +209,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 48px;
+      width: 54px;
       flex-shrink: 0;
     }
 
     .col-header .col-label {
       font-family: var(--font-accent);
-      font-size: 10px;
+      font-size: 12px;
       color: var(--cream-dim);
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -231,10 +231,10 @@
     .item-row {
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      min-height: 48px;
+      padding: 4px 12px;
+      min-height: 56px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
-      gap: 4px;
+      gap: 6px;
       background: var(--bg-card);
       transition: border-left-color 0.1s;
     }
@@ -251,7 +251,7 @@
       flex: 1;
       min-width: 0;
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 17px;
       color: var(--cream);
       white-space: nowrap;
       overflow: hidden;
@@ -261,7 +261,7 @@
 
     .item-inputs {
       display: flex;
-      gap: 4px;
+      gap: 6px;
       flex-shrink: 0;
       align-items: center;
       overflow-x: auto;
@@ -269,15 +269,15 @@
 
     /* ── NUMBER INPUTS ── */
     .count-input {
-      width: 48px;
-      height: 40px;
+      width: 54px;
+      height: 48px;
       text-align: center;
       background: var(--bg-card);
       color: var(--cream);
-      border: 1px solid var(--cream-dim);
-      border-radius: 4px;
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
       font-family: var(--font-accent);
-      font-size: 16px;
+      font-size: 20px;
       -moz-appearance: textfield;
       appearance: textfield;
     }
@@ -291,14 +291,14 @@
 
     /* ── CYCLE BUTTONS (keg / fill) ── */
     .cycle-btn {
-      width: 48px;
-      height: 40px;
+      width: 54px;
+      height: 48px;
       background: var(--bg-card);
-      border: 1px solid var(--cream-dim);
-      border-radius: 4px;
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
       color: var(--cream-dim);
       font-family: var(--font-accent);
-      font-size: 16px;
+      font-size: 20px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -318,8 +318,8 @@
     .add-row {
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      min-height: 48px;
+      padding: 4px 12px;
+      min-height: 56px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
       gap: 4px;
       background: var(--bg-elevated);
@@ -329,7 +329,7 @@
     .add-row:focus-within { opacity: 1; }
 
     .add-icon {
-      font-size: 18px;
+      font-size: 22px;
       color: var(--gold);
       flex-shrink: 0;
       width: 20px;
@@ -366,14 +366,14 @@
 
     #clearBtn {
       font-family: var(--font-accent);
-      font-size: 13px;
+      font-size: 15px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       background: transparent;
       color: var(--cream-dim);
       border: 1px solid var(--cream-dim);
-      border-radius: 4px;
-      padding: 7px 20px;
+      border-radius: 6px;
+      padding: 10px 24px;
       cursor: pointer;
       transition: color 0.15s, border-color 0.15s;
     }
@@ -423,13 +423,15 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 430px) {
-      .count-input, .cycle-btn { width: 44px; }
-      .col-header { width: 44px; }
+      .count-input, .cycle-btn { width: 48px; height: 44px; font-size: 18px; }
+      .col-header { width: 48px; }
+      .item-name { font-size: 15px; }
     }
     @media (max-width: 380px) {
-      .item-name { font-size: 13px; }
-      .count-input, .cycle-btn { width: 40px; font-size: 15px; }
-      .col-header { width: 40px; }
+      .count-input, .cycle-btn { width: 42px; height: 42px; font-size: 16px; }
+      .col-header { width: 42px; }
+      .item-name { font-size: 14px; }
+      .section-header .sec-name { font-size: 15px; }
     }
   </style>
 </head>
