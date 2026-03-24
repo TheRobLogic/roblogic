@@ -222,7 +222,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.04);
       gap: 4px;
       background: var(--bg-card);
-      transition: border-left 0.1s;
+      transition: border-left-color 0.1s;
     }
 
     .item-row:nth-child(even) {
@@ -250,6 +250,7 @@
       gap: 4px;
       flex-shrink: 0;
       align-items: center;
+      overflow-x: auto;
     }
 
     /* ── NUMBER INPUTS ── */
@@ -367,10 +368,14 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 430px) {
+      .count-input, .cycle-btn { width: 44px; }
+      .col-header { width: 44px; }
+    }
     @media (max-width: 380px) {
       .item-name { font-size: 13px; }
-      .count-input, .cycle-btn { width: 42px; font-size: 15px; }
-      .col-header { width: 42px; }
+      .count-input, .cycle-btn { width: 40px; font-size: 15px; }
+      .col-header { width: 40px; }
     }
   </style>
 </head>
@@ -585,16 +590,19 @@ function totalItems() {
   return INVENTORY.reduce((acc, sec) => acc + sec.items.length, 0);
 }
 
+// itemIndex defaults to 'add' (for add-item rows) when not provided
 function makeInput(col, sectionId, itemIndex) {
+  const idx = itemIndex !== undefined ? itemIndex : 'add';
+  const isAddRow = itemIndex === undefined;
   if (col.inputType === 'number') {
     const inp = document.createElement('input');
     inp.type = 'number';
     inp.inputMode = 'numeric';
     inp.pattern = '[0-9]*';
-    inp.className = 'count-input';
+    inp.className = 'count-input' + (isAddRow ? ' add-input' : '');
     inp.dataset.col = col.key;
     inp.dataset.section = sectionId;
-    inp.dataset.index = itemIndex;
+    inp.dataset.index = idx;
     inp.placeholder = '—';
     inp.min = '0';
     return inp;
@@ -602,38 +610,11 @@ function makeInput(col, sectionId, itemIndex) {
     // cycle button (keg or fill)
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'cycle-btn';
+    btn.className = 'cycle-btn' + (isAddRow ? ' add-input' : '');
     btn.dataset.col = col.key;
     btn.dataset.type = col.inputType;
     btn.dataset.section = sectionId;
-    btn.dataset.index = itemIndex;
-    btn.dataset.stateIndex = '0';
-    btn.textContent = '';
-    return btn;
-  }
-}
-
-function makeAddRowInput(col, sectionId) {
-  if (col.inputType === 'number') {
-    const inp = document.createElement('input');
-    inp.type = 'number';
-    inp.inputMode = 'numeric';
-    inp.pattern = '[0-9]*';
-    inp.className = 'count-input';
-    inp.dataset.col = col.key;
-    inp.dataset.section = sectionId;
-    inp.dataset.index = 'add';
-    inp.placeholder = '—';
-    inp.min = '0';
-    return inp;
-  } else {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'cycle-btn';
-    btn.dataset.col = col.key;
-    btn.dataset.type = col.inputType;
-    btn.dataset.section = sectionId;
-    btn.dataset.index = 'add';
+    btn.dataset.index = idx;
     btn.dataset.stateIndex = '0';
     btn.textContent = '';
     return btn;
@@ -751,7 +732,7 @@ function renderSections() {
     addInputs.className = 'item-inputs';
 
     sec.columns.forEach(col => {
-      addInputs.appendChild(makeAddRowInput(col, sec.id));
+      addInputs.appendChild(makeInput(col, sec.id));
     });
 
     addRow.appendChild(addInputs);
@@ -766,6 +747,7 @@ function renderSections() {
 }
 
 function updateProgress() {
+  // Stub: Task 3 will implement actual counting of filled inputs
   const total = totalItems();
   document.getElementById('progress').textContent = '0 / ' + total;
 }
