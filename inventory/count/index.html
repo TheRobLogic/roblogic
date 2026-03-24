@@ -1128,7 +1128,9 @@ function showOverlay(title, subtitle) {
     submitBtn.textContent = 'SUBMIT';
     submitBtn.disabled = true;
     submitBtn.classList.remove('sent', 'sending', 'error');
+    document.querySelectorAll('.section').forEach(s => s.classList.add('collapsed'));
     updateProgress();
+    window.scrollTo(0, 0);
   });
   document.body.appendChild(overlay);
 }
