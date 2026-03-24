@@ -393,6 +393,54 @@
     .add-name-input:focus { outline: none; border-bottom-color: var(--gold); }
     .add-name-input::placeholder { color: rgba(158,144,128,0.4); font-style: italic; }
 
+    /* ── NOTES SECTION ── */
+    #notes-section {
+      margin: 0;
+      border-bottom: 1px solid var(--red-dark);
+    }
+    #notes-section .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 56px;
+      background: var(--red);
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #notes-section .sec-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    #notes-section .sec-arrow {
+      font-size: 14px;
+      color: rgba(237, 224, 204, 0.7);
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    #notes-section.collapsed .sec-arrow { transform: rotate(-90deg); }
+    #notes-section.collapsed .notes-body { display: none; }
+    .notes-body { padding: 12px; background: var(--bg-card); }
+    #notesArea {
+      width: 100%;
+      min-height: 120px;
+      background: var(--bg);
+      color: var(--cream);
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+    #notesArea:focus { outline: none; border-color: var(--gold); }
+    #notesArea::placeholder { color: rgba(158,144,128,0.4); font-style: italic; }
+
     /* ── FOOTER ── */
     #footer {
       position: fixed;
@@ -500,6 +548,16 @@
 <div id="resumeBanner" style="display:none"></div>
 
 <main id="sections"></main>
+
+<div id="notes-section" class="collapsed">
+  <div class="section-header" onclick="this.parentElement.classList.toggle('collapsed')">
+    <span class="sec-name">Notes</span>
+    <span class="sec-arrow">▼</span>
+  </div>
+  <div class="notes-body">
+    <textarea id="notesArea" placeholder="Anything we should know? Broken tap, missing product, stuff that looks off..."></textarea>
+  </div>
+</div>
 
 <div id="footer">
   <button id="clearBtn">Clear / Start Over</button>
@@ -860,7 +918,8 @@ function updateProgress() {
 
   const submitBtn = document.getElementById('submitBtn');
   if (submitBtn && !submitBtn.classList.contains('sent')) {
-    submitBtn.disabled = (counted === 0 && !hasAddedItems);
+    const hasNotes = document.getElementById('notesArea') && document.getElementById('notesArea').value.trim() !== '';
+    submitBtn.disabled = (counted === 0 && !hasAddedItems && !hasNotes);
   }
 }
 
@@ -927,6 +986,9 @@ function collectAllData() {
       }
     }
   });
+
+  const notesArea = document.getElementById('notesArea');
+  if (notesArea) result.notes = notesArea.value;
 
   return result;
 }
@@ -998,6 +1060,12 @@ function restoreFromLocal() {
     }
   });
 
+  // Restore notes
+  if (data.notes) {
+    const notesArea = document.getElementById('notesArea');
+    if (notesArea) { notesArea.value = data.notes; anyRestored = true; }
+  }
+
   // Restore 86'd items
   if (data.eightySixed && data.eightySixed.length > 0) {
     data.eightySixed.forEach(item => {
@@ -1061,7 +1129,7 @@ function buildPayload() {
     sections,
     eighty_sixed: allData.eightySixed,
     progress: { counted, total: totalItems },
-    notes: ''
+    notes: allData.notes || ''
   };
 }
 
@@ -1082,6 +1150,8 @@ function showOverlay(title, subtitle) {
     document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
     document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed', 'counted'));
+    document.getElementById('notesArea').value = '';
+    document.getElementById('notes-section').classList.add('collapsed');
     const submitBtn = document.getElementById('submitBtn');
     submitBtn.textContent = 'SUBMIT';
     submitBtn.disabled = true;
@@ -1102,6 +1172,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
 
   document.getElementById('sections').addEventListener('input', () => {
+    saveToLocal();
+    updateProgress();
+  });
+
+  document.getElementById('notesArea').addEventListener('input', () => {
     saveToLocal();
     updateProgress();
   });
@@ -1189,6 +1264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
     document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed'));
+    document.getElementById('notesArea').value = '';
     document.getElementById('resumeBanner').style.display = 'none';
     updateProgress();
   });
