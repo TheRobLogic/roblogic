@@ -393,38 +393,7 @@
     .add-name-input:focus { outline: none; border-bottom-color: var(--gold); }
     .add-name-input::placeholder { color: rgba(158,144,128,0.4); font-style: italic; }
 
-    /* ── NOTES SECTION ── */
-    #notes-section {
-      margin: 0;
-      border-bottom: 1px solid var(--red-dark);
-    }
-    #notes-section .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      height: 56px;
-      background: var(--red);
-      cursor: pointer;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    #notes-section .sec-name {
-      font-family: var(--font-display);
-      font-size: 18px;
-      color: var(--cream);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    #notes-section .sec-arrow {
-      font-size: 14px;
-      color: rgba(237, 224, 204, 0.7);
-      transition: transform 0.2s;
-      display: inline-block;
-    }
-    #notes-section.collapsed .sec-arrow { transform: rotate(-90deg); }
-    #notes-section.collapsed .notes-body { display: none; }
-    .notes-body { padding: 12px; background: var(--bg-card); }
+    /* ── NOTES TEXTAREA ── */
     #notesArea {
       width: 100%;
       min-height: 120px;
@@ -548,16 +517,6 @@
 <div id="resumeBanner" style="display:none"></div>
 
 <main id="sections"></main>
-
-<div id="notes-section" class="collapsed">
-  <div class="section-header" onclick="this.parentElement.classList.toggle('collapsed')">
-    <span class="sec-name">Notes</span>
-    <span class="sec-arrow">▼</span>
-  </div>
-  <div class="notes-body">
-    <textarea id="notesArea" placeholder="Anything we should know? Broken tap, missing product, stuff that looks off..."></textarea>
-  </div>
-</div>
 
 <div id="footer">
   <button id="clearBtn">Clear / Start Over</button>
@@ -887,6 +846,25 @@ function renderSections() {
     section.appendChild(body);
     container.appendChild(section);
   });
+
+  // Notes section — rendered like any other collapsible section
+  const notesSection = document.createElement('div');
+  notesSection.className = 'section collapsed';
+  notesSection.id = 'notes-section';
+
+  const notesHeader = document.createElement('div');
+  notesHeader.className = 'section-header';
+  notesHeader.innerHTML = '<span class="sec-name">Notes</span><span class="sec-meta"><span class="sec-arrow">▼</span></span>';
+  notesSection.appendChild(notesHeader);
+
+  const notesBody = document.createElement('div');
+  notesBody.className = 'section-body';
+  notesBody.style.padding = '12px';
+  notesBody.style.background = 'var(--bg-card)';
+  notesBody.innerHTML = '<textarea id="notesArea" placeholder="Anything we should know? Broken tap, missing product, stuff that looks off..."></textarea>';
+  notesSection.appendChild(notesBody);
+
+  container.appendChild(notesSection);
 
   updateProgress();
 }
