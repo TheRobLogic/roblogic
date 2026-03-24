@@ -701,7 +701,7 @@ function renderSections() {
 
   INVENTORY.forEach((sec, secIdx) => {
     const section = document.createElement('div');
-    section.className = 'section' + (secIdx === 0 ? '' : ' collapsed');
+    section.className = 'section collapsed';
     section.id = 'sec-' + sec.id;
 
     // ── Header
