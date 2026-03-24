@@ -1184,13 +1184,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ping ntfy on page open
   const params = new URLSearchParams(window.location.search);
   const device = params.get('device') || 'unknown';
-  fetch('https://ntfy.sh', {
+  fetch('https://ntfy.sh/bancroft-inventory', {
     method: 'POST',
-    body: JSON.stringify({
-      topic: 'bancroft-inventory',
-      title: 'Inventory Opened',
-      message: 'Someone opened the inventory counter (' + device + ')'
-    })
+    body: 'Inventory opened (' + device + ')'
   }).catch(() => {});
 
   const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
