@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Count">
   <title>Inventory Count — Bancroft</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -303,6 +304,7 @@
       align-items: center;
       justify-content: center;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation; /* remove 300ms tap delay on older mobile browsers */
       transition: border-color 0.1s, color 0.1s;
     }
     .cycle-btn:focus { outline: none; border-color: var(--gold); }
@@ -344,7 +346,7 @@
       border-bottom: 1px dashed var(--cream-dim);
       color: var(--cream);
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 16px; /* 16px min to prevent iOS auto-zoom */
       padding: 0 4px;
     }
     .add-name-input:focus { outline: none; border-bottom-color: var(--gold); }
@@ -1042,6 +1044,13 @@ document.addEventListener('DOMContentLoaded', () => {
     saveToLocal();
     updateProgress();
   });
+
+  // Scroll focused input into view when iOS keyboard appears
+  document.getElementById('sections').addEventListener('focus', (e) => {
+    if (e.target.matches('.count-input, .add-name-input')) {
+      setTimeout(() => e.target.scrollIntoView({ block: 'center', behavior: 'smooth' }), 300);
+    }
+  }, true); // capture phase so focus events bubble up
 
   document.getElementById('sections').addEventListener('click', (e) => {
     // Cycle button takes priority — check it first
