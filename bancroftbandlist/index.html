@@ -302,7 +302,8 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       background: white;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
+      table-layout: fixed;
     }
 
     thead {
@@ -368,9 +369,11 @@
     tbody tr:hover { background: var(--bg-row-hover); }
 
     tbody td {
-      padding: 0.55rem 0.75rem;
+      padding: 0.5rem 0.5rem;
       color: var(--text-body);
       vertical-align: top;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .td-name {
@@ -561,7 +564,7 @@
       <div class="header-inner">
         <div class="header-top">
           <h1>Bancroft <span>Band Directory</span></h1>
-          <div class="header-meta">Generated 2026-03-25 10:30 &middot; <span id="user-display"></span></div>
+          <div class="header-meta">Generated 2026-03-25 10:38 &middot; <span id="user-display"></span></div>
         </div>
 
         <div class="stat-badges">
@@ -606,15 +609,15 @@
       <table>
         <thead>
           <tr>
-            <th data-col="name" style="min-width:120px;max-width:200px;">Band Name <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="genre" style="min-width:55px;max-width:100px;">Genre <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="location" style="min-width:35px;max-width:60px;">Loc <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="contact" style="min-width:90px;max-width:160px;">Contact <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="notes" style="min-width:70px;max-width:140px;">Notes <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="played" style="min-width:30px;max-width:45px;"># <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="active" style="min-width:55px;max-width:80px;">Active <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="lastPlayed" class="sorted" style="min-width:65px;max-width:80px;">Last Played <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="score" style="min-width:35px;max-width:50px;">Score <span class="sort-arrow">&#9660;</span><div class="tooltip">Revenue on nights this band played vs. venue median for that day of week. 1-3 = below median, 4-6 = around median, 7-10 = above median.</div></th>
+            <th data-col="name" style="width:18%;">Band Name <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="genre" style="width:8%;">Genre <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="location" style="width:5%;">Loc <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="contact" style="width:18%;">Contact <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="notes" style="width:15%;">Notes <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="played" style="width:4%;"># <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="active" style="width:9%;">Active <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="lastPlayed" class="sorted" style="width:9%;">Last <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="score" style="width:5%;">$$ <span class="sort-arrow">&#9660;</span><div class="tooltip">Money Maker score: revenue on nights this band played vs. venue median for that day of week. 1-3 = below, 4-6 = around, 7-10 = above median.</div></th>
           </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -623,7 +626,7 @@
     </div>
 
     <footer class="site-footer">
-      Bancroft Band Directory &middot; Generated 2026-03-25 10:30 &middot; Built by Rob Logic
+      Bancroft Band Directory &middot; Generated 2026-03-25 10:38 &middot; Built by Rob Logic
     </footer>
   </div>
 
@@ -707,11 +710,16 @@
         let valA = a[sortCol];
         let valB = b[sortCol];
 
-        // Handle null scores
+        // Handle null/empty — always push to bottom regardless of sort direction
         if (sortCol === 'score') {
           if (valA === null && valB === null) return 0;
           if (valA === null) return 1;
           if (valB === null) return -1;
+        }
+        if (sortCol === 'lastPlayed' || sortCol === 'active') {
+          if (!valA && !valB) return 0;
+          if (!valA) return 1;
+          if (!valB) return -1;
         }
 
         // Handle contact as combined string
