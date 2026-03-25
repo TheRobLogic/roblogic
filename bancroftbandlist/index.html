@@ -386,20 +386,29 @@
     .td-notes { color: var(--text-muted); font-size: 0.75rem; max-width: 280px; }
     .notes-truncated { cursor: help; border-bottom: 1px dotted var(--text-muted); }
     .auto-note { color: var(--text-muted); font-size: 0.72rem; }
-    .user-note {
-      color: var(--text-dark);
-      font-size: 0.75rem;
-      font-style: italic;
-      margin-top: 0.2rem;
-      cursor: pointer;
-      min-height: 1.2em;
-      padding: 1px 4px;
+    .user-notes-thread { margin-top: 0.2rem; }
+    .user-note-entry {
+      font-size: 0.72rem;
+      padding: 2px 4px;
       border-radius: 3px;
-      transition: background 0.15s;
+      line-height: 1.3;
+      position: relative;
     }
-    .user-note:hover { background: var(--green-dim); }
-    .user-note.empty { color: var(--text-muted); opacity: 0.5; font-style: normal; }
-    .user-note.empty:hover { opacity: 1; }
+    .user-note-entry + .user-note-entry { margin-top: 1px; }
+    .user-note-text { color: var(--text-dark); font-style: italic; }
+    .user-note-meta { font-size: 0.62rem; color: var(--text-muted); opacity: 0.7; }
+    .user-note-del {
+      cursor: pointer; color: var(--text-muted); opacity: 0.3;
+      font-size: 0.6rem; margin-left: 0.3rem;
+    }
+    .user-note-del:hover { opacity: 1; color: #dc2626; }
+    .add-note-btn {
+      color: var(--text-muted); opacity: 0.5; font-size: 0.72rem;
+      cursor: pointer; padding: 1px 4px; border-radius: 3px;
+      transition: background 0.15s, opacity 0.15s;
+      display: inline-block; margin-top: 1px;
+    }
+    .add-note-btn:hover { opacity: 1; background: var(--green-dim); }
     .user-note-input {
       width: 100%;
       font-family: inherit;
@@ -416,7 +425,6 @@
       0% { background: var(--green-dim); }
       100% { background: transparent; }
     }
-    .note-by { font-size: 0.65rem; color: var(--text-muted); opacity: 0.7; }
 
     .td-played { text-align: center; font-variant-numeric: tabular-nums; }
 
@@ -780,16 +788,14 @@
         const contactCell = contactParts.join('<span class="sep">|</span>');
 
         const autoNote = escapeHtml(b.notes);
-        const userNote = getUserNote(b.name);
         const autoHtml = autoNote
           ? (autoNote.length > 50
             ? `<div class="auto-note"><span class="notes-truncated" title="${autoNote}">${autoNote.substring(0, 48)}&hellip;</span></div>`
             : `<div class="auto-note">${autoNote}</div>`)
           : '';
-        const userHtml = userNote
-          ? `<div class="user-note" onclick="editNote(this, '${escapeHtml(b.name).replace(/'/g, "\\'")}')">${escapeHtml(userNote)}${getNoteBy(b.name)}</div>`
-          : `<div class="user-note empty" onclick="editNote(this, '${escapeHtml(b.name).replace(/'/g, "\\'")}')" title="Click to add a note">+ note</div>`;
-        const notesCell = autoHtml + userHtml;
+        const bNameEsc = escapeHtml(b.name).replace(/'/g, "\\'");
+        const threadHtml = renderNoteThread(b.name, bNameEsc);
+        const notesCell = autoHtml + threadHtml;
 
         const scoreDisplay = b.score !== null ? b.score : '\u2014';
         const sClass = scoreClass(b.score);
@@ -901,70 +907,105 @@
       }
     }
 
+    // -- Note data helpers (array-based: each band has a list of notes) --
+
+    function migrateOldNotes() {
+      // Migrate single-note format { note, user, updated } to array format
+      for (const [band, entry] of Object.entries(userNotes)) {
+        if (!Array.isArray(entry)) {
+          const note = typeof entry === 'string' ? entry : (entry.note || '');
+          const user = typeof entry === 'object' ? (entry.user || '') : '';
+          const ts = typeof entry === 'object' ? (entry.updated || '') : '';
+          userNotes[band] = note ? [{ text: note, user: user, ts: ts, id: Date.now() }] : [];
+        }
+      }
+    }
+
+    function getBandNotes(bandName) {
+      return Array.isArray(userNotes[bandName]) ? userNotes[bandName] : [];
+    }
+
     function getUserNote(bandName) {
-      const entry = userNotes[bandName];
-      if (!entry) return '';
-      return typeof entry === 'string' ? entry : (entry.note || '');
+      // For search — returns all note text concatenated
+      return getBandNotes(bandName).map(n => n.text).join(' ');
     }
 
-    function getNoteBy(bandName) {
-      const entry = userNotes[bandName];
-      if (!entry || typeof entry === 'string') return '';
-      const who = entry.user || '';
-      if (!who) return '';
-      return ` <span class="note-by">— ${escapeHtml(who)}</span>`;
+    function formatNoteDate(ts) {
+      if (!ts) return '';
+      try {
+        const d = new Date(ts);
+        const mon = d.toLocaleString('en-US', { month: 'short' });
+        const day = d.getDate();
+        return `${mon} ${day}`;
+      } catch(e) { return ''; }
     }
 
-    function editNote(el, bandName) {
-      const current = getUserNote(bandName);
+    function renderNoteThread(bandName, bNameEsc) {
+      const notes = getBandNotes(bandName);
+      let html = '<div class="user-notes-thread">';
+      // Show notes newest first
+      const sorted = notes.slice().sort((a, b) => (b.ts || '').localeCompare(a.ts || ''));
+      for (const n of sorted) {
+        const dateStr = formatNoteDate(n.ts);
+        const who = n.user ? escapeHtml(n.user) : '';
+        const meta = [dateStr, who].filter(Boolean).join(' ');
+        html += `<div class="user-note-entry">`;
+        html += `<span class="user-note-text">${escapeHtml(n.text)}</span>`;
+        if (meta) html += ` <span class="user-note-meta">${meta}</span>`;
+        html += `<span class="user-note-del" onclick="deleteNote('${bNameEsc}', ${n.id})" title="Delete">x</span>`;
+        html += `</div>`;
+      }
+      html += `<span class="add-note-btn" onclick="addNote(this, '${bNameEsc}')">+ note</span>`;
+      html += '</div>';
+      return html;
+    }
+
+    function addNote(el, bandName) {
       const input = document.createElement('input');
       input.type = 'text';
       input.className = 'user-note-input';
-      input.value = current;
       input.placeholder = 'Add a note...';
-
-      el.replaceWith(input);
+      el.style.display = 'none';
+      el.parentNode.insertBefore(input, el);
       input.focus();
 
       function save() {
         const val = input.value.trim();
-        const user = sessionStorage.getItem('bandlist-user') || 'unknown';
-        const ts = new Date().toISOString();
-
         if (val) {
-          userNotes[bandName] = { note: val, user: user, updated: ts };
-        } else {
-          delete userNotes[bandName];
+          const user = sessionStorage.getItem('bandlist-user') || '';
+          const ts = new Date().toISOString();
+          const id = Date.now();
+          if (!Array.isArray(userNotes[bandName])) userNotes[bandName] = [];
+          userNotes[bandName].push({ text: val, user: user, ts: ts, id: id });
+          saveNotesToStorage();
+          saveNoteToServer(bandName, JSON.stringify(userNotes[bandName]));
         }
-        saveNotesToStorage();
-        saveNoteToServer(bandName, val);
-
-        // Replace input with display
-        const div = document.createElement('div');
-        if (val) {
-          div.className = 'user-note note-saved';
-          div.textContent = val;
-        } else {
-          div.className = 'user-note empty';
-          div.textContent = '+ note';
-          div.title = 'Click to add a note';
-        }
-        div.onclick = function() { editNote(this, bandName); };
-        input.replaceWith(div);
+        // Re-render just this cell
+        input.remove();
+        el.style.display = '';
+        renderTable();
       }
 
       input.addEventListener('blur', save);
       input.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') { input.blur(); }
-        if (e.key === 'Escape') {
-          input.value = current;
-          input.blur();
-        }
+        if (e.key === 'Escape') { input.value = ''; input.blur(); }
       });
+    }
+
+    function deleteNote(bandName, noteId) {
+      const notes = getBandNotes(bandName);
+      userNotes[bandName] = notes.filter(n => n.id !== noteId);
+      if (userNotes[bandName].length === 0) delete userNotes[bandName];
+      saveNotesToStorage();
+      saveNoteToServer(bandName, JSON.stringify(userNotes[bandName] || []));
+      renderTable();
     }
 
     // Load notes on startup
     loadNotesFromStorage();
+    migrateOldNotes();
+    saveNotesToStorage();
     // Try server sync after page renders
     setTimeout(syncNotesFromServer, 500);
 
