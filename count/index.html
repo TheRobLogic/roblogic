@@ -74,21 +74,6 @@
       white-space: nowrap;
     }
 
-    #helpBtn {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 2px solid var(--cream-dim);
-      background: transparent;
-      color: var(--cream-dim);
-      font-family: var(--font-display);
-      font-size: 16px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
 
     #submitBtn {
       font-family: var(--font-display);
@@ -995,6 +980,7 @@ function saveToLocal() {
   saveTimeout = setTimeout(() => {
     const data = collectAllData();
     data._savedAt = new Date().toISOString();
+    data._counterName = counterName;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, 500);
 }
@@ -1062,6 +1048,12 @@ function restoreFromLocal() {
   let data;
   try { data = JSON.parse(raw); } catch (e) { return; }
   if (!data || !data.sections) return;
+
+  // Restore counter name and skip picker
+  if (data._counterName && data._counterName !== 'unknown') {
+    counterName = data._counterName;
+    document.getElementById('namePicker').style.display = 'none';
+  }
 
   const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
   const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
@@ -1229,6 +1221,9 @@ function showOverlay(title, subtitle) {
     document.querySelectorAll('.section').forEach(s => s.classList.add('collapsed'));
     updateProgress();
     window.scrollTo(0, 0);
+    // Re-show name picker for next person
+    counterName = 'unknown';
+    document.getElementById('namePicker').style.display = 'flex';
   });
   document.body.appendChild(overlay);
 }
