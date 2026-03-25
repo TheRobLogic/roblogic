@@ -737,6 +737,61 @@ function makeInput(col, sectionId, itemIndex) {
   }
 }
 
+function createAddRow(sec) {
+  const addRow = document.createElement('div');
+  addRow.className = 'add-row';
+  addRow.dataset.section = sec.id;
+
+  const addIcon = document.createElement('span');
+  addIcon.className = 'add-icon';
+  addIcon.textContent = '+';
+  addRow.appendChild(addIcon);
+
+  const addNameInput = document.createElement('input');
+  addNameInput.type = 'text';
+  addNameInput.className = 'add-name-input';
+  addNameInput.placeholder = 'Add item…';
+  addNameInput.dataset.section = sec.id;
+  addRow.appendChild(addNameInput);
+
+  const addInputs = document.createElement('div');
+  addInputs.className = 'item-inputs';
+  sec.columns.forEach(col => {
+    addInputs.appendChild(makeInput(col, sec.id));
+  });
+  addRow.appendChild(addInputs);
+
+  return addRow;
+}
+
+function resetAddRows() {
+  INVENTORY.forEach(sec => {
+    const rows = document.querySelectorAll(`.add-row[data-section="${sec.id}"]`);
+    for (let i = 1; i < rows.length; i++) rows[i].remove();
+    const kept = rows[0];
+    if (kept) {
+      kept.querySelector('.add-name-input').value = '';
+      kept.querySelectorAll('.add-input').forEach(inp => {
+        if (inp.tagName === 'INPUT') inp.value = '';
+        else { inp.textContent = ''; inp.classList.remove('has-value'); }
+      });
+    }
+  });
+}
+
+function ensureBlankAddRow(sectionId) {
+  const sec = INVENTORY.find(s => s.id === sectionId);
+  if (!sec) return;
+  const sectionEl = document.getElementById('sec-' + sectionId);
+  if (!sectionEl) return;
+  const body = sectionEl.querySelector('.section-body');
+  const addRows = body.querySelectorAll('.add-row');
+  const last = addRows[addRows.length - 1];
+  if (last && last.querySelector('.add-name-input').value.trim() !== '') {
+    body.appendChild(createAddRow(sec));
+  }
+}
+
 function renderSections() {
   const container = document.getElementById('sections');
   container.innerHTML = '';
@@ -834,31 +889,7 @@ function renderSections() {
     });
 
     // Add-item row
-    const addRow = document.createElement('div');
-    addRow.className = 'add-row';
-    addRow.dataset.section = sec.id;
-
-    const addIcon = document.createElement('span');
-    addIcon.className = 'add-icon';
-    addIcon.textContent = '+';
-    addRow.appendChild(addIcon);
-
-    const addNameInput = document.createElement('input');
-    addNameInput.type = 'text';
-    addNameInput.className = 'add-name-input';
-    addNameInput.placeholder = 'Add item…';
-    addNameInput.dataset.section = sec.id;
-    addRow.appendChild(addNameInput);
-
-    const addInputs = document.createElement('div');
-    addInputs.className = 'item-inputs';
-
-    sec.columns.forEach(col => {
-      addInputs.appendChild(makeInput(col, sec.id));
-    });
-
-    addRow.appendChild(addInputs);
-    body.appendChild(addRow);
+    body.appendChild(createAddRow(sec));
 
     section.appendChild(header);
     section.appendChild(body);
@@ -981,9 +1012,8 @@ function collectAllData() {
 
     result.sections[sec.id] = secData;
 
-    // Add-row
-    const addRow = document.querySelector(`.add-row[data-section="${sec.id}"]`);
-    if (addRow) {
+    // Add-rows (multiple)
+    document.querySelectorAll(`.add-row[data-section="${sec.id}"]`).forEach(addRow => {
       const nameInput = addRow.querySelector('.add-name-input');
       const name = nameInput ? nameInput.value.trim() : '';
       if (name) {
@@ -997,7 +1027,7 @@ function collectAllData() {
         if (!result.addedItems[sec.id]) result.addedItems[sec.id] = [];
         result.addedItems[sec.id].push(entry);
       }
-    }
+    });
   });
 
   const notesArea = document.getElementById('notesArea');
@@ -1046,21 +1076,30 @@ function restoreFromLocal() {
       });
     });
 
-    // Restore add-row
+    // Restore add-rows (multiple)
     const addedList = data.addedItems && data.addedItems[sec.id];
     if (addedList && addedList.length > 0) {
-      const addRow = document.querySelector(`.add-row[data-section="${sec.id}"]`);
-      if (addRow) {
-        const nameInput = addRow.querySelector('.add-name-input');
-        const first = addedList[0];
-        if (nameInput && first && first.name) {
-          nameInput.value = first.name;
+      const sectionEl = document.getElementById('sec-' + sec.id);
+      const body = sectionEl ? sectionEl.querySelector('.section-body') : null;
+      if (body) {
+        addedList.forEach((item, i) => {
+          if (!item || !item.name) return;
+          // First item uses existing add-row, rest get new ones
+          let addRow;
+          if (i === 0) {
+            addRow = body.querySelector('.add-row');
+          } else {
+            addRow = createAddRow(sec);
+            body.appendChild(addRow);
+          }
+          if (!addRow) return;
+          addRow.querySelector('.add-name-input').value = item.name;
           addRow.querySelectorAll('.add-input.count-input').forEach(inp => {
-            const val = first[inp.dataset.col];
+            const val = item[inp.dataset.col];
             if (val !== undefined) inp.value = val;
           });
           addRow.querySelectorAll('.add-input.cycle-btn').forEach(btn => {
-            const val = first[btn.dataset.col];
+            const val = item[btn.dataset.col];
             if (val !== undefined) {
               btn.textContent = val;
               const validStates = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
@@ -1068,7 +1107,9 @@ function restoreFromLocal() {
             }
           });
           anyRestored = true;
-        }
+        });
+        // Ensure a blank row at the end
+        ensureBlankAddRow(sec.id);
       }
     }
   });
@@ -1160,9 +1201,9 @@ function showOverlay(title, subtitle) {
     // Reset everything for next count
     document.querySelectorAll('.count-input').forEach(i => i.value = '');
     document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
-    document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
     document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed', 'counted'));
+    resetAddRows();
     document.getElementById('notesArea').value = '';
     document.getElementById('notes-section').classList.add('collapsed');
     const submitBtn = document.getElementById('submitBtn');
@@ -1193,9 +1234,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
   const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
 
-  document.getElementById('sections').addEventListener('input', () => {
+  document.getElementById('sections').addEventListener('input', (e) => {
     saveToLocal();
     updateProgress();
+    if (e.target.classList.contains('add-name-input')) {
+      ensureBlankAddRow(e.target.dataset.section);
+    }
   });
 
   document.getElementById('notesArea').addEventListener('input', () => {
@@ -1283,9 +1327,9 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem(STORAGE_KEY);
     document.querySelectorAll('.count-input').forEach(i => i.value = '');
     document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
-    document.querySelectorAll('.add-name-input').forEach(i => i.value = '');
     document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed'));
+    resetAddRows();
     document.getElementById('notesArea').value = '';
     document.getElementById('resumeBanner').style.display = 'none';
     updateProgress();
