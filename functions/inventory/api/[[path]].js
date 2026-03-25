@@ -19,7 +19,7 @@ export async function onRequest(context) {
   const segments = url.pathname.replace('/inventory/api/', '').split('/').filter(Boolean);
   const action = segments[0] || '';
 
-  const n8nBase = context.env.N8N_WEBHOOK_URL || 'https://n8n.roblogic.org/webhook';
+  const n8nBase = context.env.N8N_INVENTORY_URL || 'https://n8n.roblogic.org/webhook';
 
   try {
     if (action === 'latest') {
