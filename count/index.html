@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Count">
+  <title>Inventory Count — Bancroft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a0a0a;
+      --bg-elevated: #1e0e0e;
+      --bg-card: #221414;
+      --red: #b91c1c;
+      --red-bright: #dc2626;
+      --red-dark: #7f1d1d;
+      --red-glow: rgba(185, 28, 28, 0.25);
+      --cream: #ede0cc;
+      --cream-dim: #9e9080;
+      --gold: #c4a265;
+      --green: #22c55e;
+      --green-dim: #166534;
+      --font-display: 'Alfa Slab One', cursive;
+      --font-body: 'Lora', serif;
+      --font-accent: 'Special Elite', system-ui;
+      --topbar-h: 64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+      padding-top: var(--topbar-h);
+    }
+
+    /* ── TOP BAR ── */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: var(--bg-elevated);
+      border-bottom: 2px solid var(--red-dark);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      gap: 8px;
+    }
+
+    #topbar .title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    #progress {
+      font-family: var(--font-accent);
+      font-size: 16px;
+      color: var(--cream-dim);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    #helpBtn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--cream-dim);
+      background: transparent;
+      color: var(--cream-dim);
+      font-family: var(--font-display);
+      font-size: 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    #submitBtn {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.06em;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    #submitBtn:disabled {
+      background: var(--red-dark);
+      color: var(--cream-dim);
+      cursor: not-allowed;
+    }
+    #submitBtn:not(:disabled):hover { background: var(--red-bright); }
+
+    /* ── RESUME BANNER ── */
+    #resumeBanner {
+      background: var(--gold);
+      color: var(--bg);
+      text-align: center;
+      padding: 8px;
+      font-size: 14px;
+      font-family: var(--font-accent);
+      position: fixed;
+      top: var(--topbar-h); /* below topbar */
+      left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+    #resumeBanner button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--bg);
+    }
+
+    /* ── SECTIONS ── */
+    #sections {
+      padding-bottom: 80px;
+    }
+
+    .section {
+      border-bottom: 1px solid var(--red-dark);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 56px;
+      background: var(--red);
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      gap: 8px;
+    }
+    .section-header:active { background: var(--red-bright); }
+
+    .section-header .sec-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .section-header .sec-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .sec-badge {
+      font-family: var(--font-accent);
+      font-size: 14px;
+      color: rgba(237, 224, 204, 0.7);
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.25);
+      border-radius: 10px;
+      padding: 1px 8px;
+    }
+
+    .sec-arrow {
+      font-size: 14px;
+      color: rgba(237, 224, 204, 0.7);
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+
+    .section.collapsed .sec-arrow {
+      transform: rotate(-90deg);
+    }
+
+    .section-body {
+      overflow: hidden;
+    }
+    .section.collapsed .section-body {
+      display: none;
+    }
+
+    /* ── COLUMN HEADERS ── */
+    .col-headers {
+      display: flex;
+      align-items: center;
+      padding: 4px 12px 2px;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid rgba(185,28,28,0.2);
+      gap: 4px;
+    }
+
+    .col-headers .col-name-spacer {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .col-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 54px;
+      flex-shrink: 0;
+    }
+
+    .col-header .col-label {
+      font-family: var(--font-accent);
+      font-size: 12px;
+      color: var(--cream-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .col-header .col-sublabel {
+      font-size: 9px;
+      color: rgba(158,144,128,0.6);
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    /* ── ITEM ROWS ── */
+    .item-row {
+      display: flex;
+      align-items: center;
+      padding: 4px 12px;
+      min-height: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 6px;
+      background: var(--bg-card);
+      transition: border-left-color 0.1s;
+    }
+
+    .item-row:nth-child(even) {
+      background: var(--bg);
+    }
+
+    .item-row.counted {
+      border-left: 3px solid var(--green-dim);
+    }
+
+    .item-name {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-body);
+      font-size: 17px;
+      color: var(--cream);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 4px;
+    }
+
+    .item-inputs {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    /* ── NUMBER INPUTS ── */
+    .count-input {
+      width: 54px;
+      height: 48px;
+      text-align: center;
+      background: var(--bg-card);
+      color: var(--cream);
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
+      font-family: var(--font-accent);
+      font-size: 20px;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+    .count-input::-webkit-inner-spin-button,
+    .count-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .count-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .count-input::placeholder { color: rgba(158,144,128,0.35); }
+
+    /* ── CYCLE BUTTONS (keg / fill) ── */
+    .cycle-btn {
+      width: 54px;
+      height: 48px;
+      background: var(--bg-card);
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
+      color: var(--cream-dim);
+      font-family: sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation; /* remove 300ms tap delay on older mobile browsers */
+      transition: border-color 0.1s, color 0.1s;
+    }
+    .cycle-btn:focus { outline: none; border-color: var(--gold); }
+    .cycle-btn.has-value {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(196,162,101,0.08);
+    }
+
+    /* ── 86 BUTTON ── */
+    .eighty-six {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: transparent;
+      border: 2px solid rgba(158,144,128,0.3);
+      border-radius: 50%;
+      color: var(--cream-dim);
+      font-family: var(--font-accent);
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: all 0.15s;
+      margin-right: 4px;
+    }
+    .eighty-six.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+
+    .item-row.eighty-sixed .item-name {
+      text-decoration: line-through;
+      color: var(--cream-dim);
+      opacity: 0.5;
+    }
+    .item-row.eighty-sixed .item-inputs {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    /* ── ADD ITEM ROW ── */
+    .add-row {
+      display: flex;
+      align-items: center;
+      padding: 4px 12px;
+      min-height: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 4px;
+      background: var(--bg-elevated);
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .add-row:focus-within { opacity: 1; }
+
+    .add-icon {
+      font-size: 22px;
+      color: var(--gold);
+      flex-shrink: 0;
+      width: 20px;
+      text-align: center;
+      font-family: var(--font-body);
+    }
+
+    .add-name-input {
+      flex: 1;
+      min-width: 0;
+      height: 40px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px dashed var(--cream-dim);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 16px; /* 16px min to prevent iOS auto-zoom */
+      padding: 0 4px;
+    }
+    .add-name-input:focus { outline: none; border-bottom-color: var(--gold); }
+    .add-name-input::placeholder { color: rgba(158,144,128,0.4); font-style: italic; }
+
+    /* ── NOTES TEXTAREA ── */
+    #notesArea {
+      width: 100%;
+      min-height: 120px;
+      background: var(--bg);
+      color: var(--cream);
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+    #notesArea:focus { outline: none; border-color: var(--gold); }
+    #notesArea::placeholder { color: rgba(158,144,128,0.4); font-style: italic; }
+
+    /* ── FOOTER ── */
+    #footer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--red-dark);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      z-index: 999;
+    }
+
+    #clearBtn {
+      font-family: var(--font-accent);
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid var(--cream);
+      border-radius: 6px;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    #clearBtn:hover {
+      color: var(--red-bright);
+      border-color: var(--red-bright);
+    }
+
+    /* ── SUBMIT STATES ── */
+    #submitBtn.sending { opacity: 0.6; cursor: wait; }
+    #submitBtn.sent { background: var(--green); border-color: var(--green); }
+    #submitBtn.error { background: var(--red-bright); }
+
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-content {
+      text-align: center;
+      color: var(--cream);
+      font-family: var(--font-body);
+    }
+    .success-check {
+      font-size: 72px;
+      color: var(--green);
+      width: 120px;
+      height: 120px;
+      line-height: 120px;
+      border: 4px solid var(--green);
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      font-family: var(--font-display);
+    }
+    .success-content h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .success-content p {
+      color: var(--cream-dim);
+    }
+    .overlay-dismiss {
+      margin-top: 32px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 40px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 430px) {
+      .count-input, .cycle-btn { width: 48px; height: 44px; font-size: 18px; }
+      .col-header { width: 48px; }
+      .item-name { font-size: 15px; }
+    }
+    @media (max-width: 380px) {
+      .count-input, .cycle-btn { width: 42px; height: 42px; font-size: 16px; }
+      .col-header { width: 42px; }
+      .item-name { font-size: 14px; }
+      .section-header .sec-name { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <span class="title">INVENTORY</span>
+  <span id="progress">0 / 171</span>
+  <button id="submitBtn" disabled>SUBMIT</button>
+</div>
+
+<div id="resumeBanner" style="display:none"></div>
+
+<main id="sections"></main>
+
+<div id="footer">
+  <button id="clearBtn">Clear / Start Over</button>
+  <a href="/count/how" style="font-family:var(--font-accent);font-size:15px;color:var(--cream);text-decoration:none;text-transform:uppercase;letter-spacing:0.06em;border:2px solid var(--cream);border-radius:6px;padding:10px 24px;">Help</a>
+  <span style="font-family:var(--font-accent);font-size:10px;color:rgba(158,144,128,0.4);margin-left:auto;letter-spacing:0.04em;">v4 — Created by Rob Logic</span>
+</div>
+
+<script>
+const INVENTORY = [
+  {
+    id: 'draft', name: 'Draft / On Tap', type: 'draft',
+    columns: [
+      { key: 'bar',    label: 'Tapped',  inputType: 'keg'    },
+      { key: 'walkin', label: 'Backup',  inputType: 'number' }
+    ],
+    items: [
+      'Elysian Space Dust IPA','Coors Light Draft','Karl Strauss Boat Shoes Hazy',
+      'Bud Light Draft','Bancroft House Blonde',
+      'Estrella Jalisco Lager','Big Wave Kona Ale',
+      '805 Draft','Fall Plenty For All Pilsner',
+      'Mission Sea Cider','Stella Lager Draft','Modelo Lager Draft',
+      'Battlemage Czech Pilsner','Michelob Ultra Draft',
+      'Bambucha Hawaiian Hibiscus',
+      'Mission Foggy Shores Hef'
+    ]
+  },
+  {
+    id: 'bottles_cans', name: 'Bottles & Cans', type: 'beer',
+    columns: [
+      { key: 'bar',    label: 'Bar',   inputType: 'number' },
+      { key: 'cases',  label: 'Cases', inputType: 'number' },
+      { key: 'loose',  label: 'Loose', inputType: 'number' }
+    ],
+    items: [
+      'Modelo Especial','Heineken','Coors Light','Pacifico','Stella','Corona',
+      'Heineken Zero N/A','Budweiser','Miller Lite','Michelob Ultra',
+      'Miller High Life','Bud Light','Coors Original','PBR 12oz','Modelo Negra',
+      'Michelob Ultra NA','Corona NA','Surfside','Modelo Oro','805 Bottle',
+      'Dos Equis','Corona Premier',
+      'White Claw Tall 19.2oz (any)','White Claw Small (any)','Happy Dad Seltzer (any)',
+      'Buzzball (any)',"Hamm's 12oz",'Natural Light','Rolling Rock 12oz',
+      'Mari-Hi Seltzer','Topo Chico Seltzer (any)','Sierra Nevada Hazy IPA Can',
+      'Twisted Tea 12oz',
+      'Bud Light Chelada Tall Boy','Guinness Stout','PBR Tall Can',
+      "Hamm's 16oz","Mickey's Grenade"
+    ]
+  },
+  {
+    id: 'well_spirits', name: 'Well Spirits', type: 'well',
+    columns: [
+      { key: 'well1',   label: 'Well 1', sublabel: '(day)',   inputType: 'fill'   },
+      { key: 'well2',   label: 'Well 2', sublabel: '(night)', inputType: 'fill'   },
+      { key: 'bar',     label: 'Bar',                          inputType: 'number' },
+      { key: 'room',    label: 'Room',                         inputType: 'number' }
+    ],
+    items: [
+      'Well Tequila','Well Vodka','Well Whiskey',
+      'Well Rum','Well Gin','Well Scotch','Well Brandy'
+    ]
+  },
+  {
+    id: 'whiskey', name: 'Whiskey', type: 'liquor',
+    columns: [
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
+    ],
+    items: [
+      'Tullamore Dew','Jack Daniels','Jameson','Fireball',"Seagram's 7",
+      'Tullamore Dew Honey','Stone Imperial Whiskey',"Blanton's Single Barrel",
+      'Rams Point PB Whiskey','Bulleit Rye','Crown Royal',"Maker's Mark",
+      'Monkey Shoulder','Johnnie Walker Black','Bulleit Bourbon','Glenfiddich',
+      'EH Taylor Barrel Proof','EH Taylor Rye','Skrewball PB Whiskey',
+      'Bushmills Irish',"Dewar's Scotch",'Wild Turkey 101','Ancient Age Bourbon',
+      '8 Ball Chocolate Whiskey','Traveller Bourbon','Nelson Brothers Classic'
+    ]
+  },
+  {
+    id: 'tequila', name: 'Tequila', type: 'liquor',
+    columns: [
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
+    ],
+    items: [
+      'Gran Malo Blanco','Cazadores Reposado','Hornitos Reposado','Milagro Reposado',
+      'Mijenta Blanco','Mijenta Reposado','Mi Campo Reposado','Mi Campo Blanco',
+      'Mango Shotta','400 Conejos Mezcal','Corazon Reposado',
+      'Gran Orendain Reposado','Lo Ciento Reposado'
+    ]
+  },
+  {
+    id: 'vodka', name: 'Vodka', type: 'liquor',
+    columns: [
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
+    ],
+    items: [
+      "Tito's",'New Amsterdam Pineapple','Hideout Mandarin','Pink Whitney',
+      'Reyka','Hideout Cucumber','New Amsterdam Peach','New Amsterdam (plain)',
+      'Absolut','Absolut Peppar','Stoli','7X Platinum','Wheatley',
+      "Seagram's Sweet Tea"
+    ]
+  },
+  {
+    id: 'rum', name: 'Rum', type: 'liquor',
+    columns: [
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
+    ],
+    items: [
+      'Captain Morgan Spiced','Bacardi Silver','Sailor Jerry','Malibu Coconut',
+      "Myers Dark",'RumChata','RumChata Peppermint','Don Q 151',"Whaler's Dark"
+    ]
+  },
+  {
+    id: 'gin', name: 'Gin', type: 'liquor',
+    columns: [
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
+    ],
+    items: [
+      "Hendrick's",'Gin Mare','Bombay Sapphire','Tanqueray'
+    ]
+  },
+  {
+    id: 'liqueur', name: 'Liqueur', type: 'liquor',
+    columns: [
+      { key: 'open',    label: 'Open',   inputType: 'fill'   },
+      { key: 'backup',  label: 'Backup', inputType: 'number' },
+      { key: 'room',    label: 'Room',   inputType: 'number' }
+    ],
+    items: [
+      'Jagermeister','Fernet Branca','Kahlua','Baileys Irish Cream','Baileys Almond',
+      'Southern Comfort 100','Frangelico','St. Germain','Campari','Midori Melon',
+      'Goldschlager','Rumpleminze','Grind Espresso','Christian Bros Brandy',
+      'Llords Peach','Llords Watermelon','Dr. McGillicuddy Peppermint',
+      'Cribari Dry Vermouth','Cribari Sweet Vermouth','Martini & Rossi Dry',
+      'Triple Sec','Amaretto','Blue Curacao','Peachtree','Buttershots',
+      'Apple Pucker','Sloe Gin','Watermelon','Raspberry','Root Beer',
+      'Grape','Cherry','Orange Curacao'
+    ]
+  },
+  {
+    id: 'bar_supplies', name: 'Supplies', type: 'supplies',
+    columns: [
+      { key: 'bar',    label: 'Bar',   inputType: 'number' },
+      { key: 'back',   label: 'Back',  inputType: 'number' }
+    ],
+    items: [
+      'Pepsi','Diet Pepsi','Sierra Mist / 7UP','Ginger Ale',
+      'Club Soda','Tonic Water','Red Bull','Sugar Free Red Bull',
+      'Orange Juice','Cranberry Juice','Pineapple Juice','Grapefruit Juice',
+      'Lime Juice','Lemon Juice','Bloody Mary Mix',
+      'Sweet & Sour Mix','Grenadine','Simple Syrup','Margarita Mix',
+      'Half & Half','Coffee','Hot Chocolate Mix',
+      'Lemons','Limes','Oranges','Olives','Cherries',
+      'Napkins','Straws','Paper Towels','Trash Bags'
+    ]
+  }
+];
+
+// Keg fill states (cycles: empty → F → ½ → ¼ → K → empty)
+const KEG_STATES = ['', 'F', '½', '¼', 'K'];
+// Fill states for well (cycles: empty → F → ½ → ¼ → empty)
+const FILL_STATES = ['', 'F', '½', '¼'];
+
+function totalItems() {
+  return INVENTORY.reduce((acc, sec) => acc + sec.items.length, 0);
+}
+
+// itemIndex defaults to 'add' (for add-item rows) when not provided
+function makeInput(col, sectionId, itemIndex) {
+  const idx = itemIndex !== undefined ? itemIndex : 'add';
+  const isAddRow = itemIndex === undefined;
+  if (col.inputType === 'number') {
+    const inp = document.createElement('input');
+    inp.type = 'number';
+    inp.inputMode = 'numeric';
+    inp.pattern = '[0-9]*';
+    inp.className = 'count-input' + (isAddRow ? ' add-input' : '');
+    inp.dataset.col = col.key;
+    inp.dataset.section = sectionId;
+    inp.dataset.index = idx;
+    inp.placeholder = '—';
+    inp.min = '0';
+    return inp;
+  } else {
+    // cycle button (keg or fill)
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cycle-btn' + (isAddRow ? ' add-input' : '');
+    btn.dataset.col = col.key;
+    btn.dataset.type = col.inputType;
+    btn.dataset.section = sectionId;
+    btn.dataset.index = idx;
+    btn.dataset.stateIndex = '0';
+    btn.textContent = '';
+    return btn;
+  }
+}
+
+function createAddRow(sec) {
+  const addRow = document.createElement('div');
+  addRow.className = 'add-row';
+  addRow.dataset.section = sec.id;
+
+  const addIcon = document.createElement('span');
+  addIcon.className = 'add-icon';
+  addIcon.textContent = '+';
+  addRow.appendChild(addIcon);
+
+  const addNameInput = document.createElement('input');
+  addNameInput.type = 'text';
+  addNameInput.className = 'add-name-input';
+  addNameInput.placeholder = 'Add item…';
+  addNameInput.dataset.section = sec.id;
+  addRow.appendChild(addNameInput);
+
+  const addInputs = document.createElement('div');
+  addInputs.className = 'item-inputs';
+  sec.columns.forEach(col => {
+    addInputs.appendChild(makeInput(col, sec.id));
+  });
+  addRow.appendChild(addInputs);
+
+  return addRow;
+}
+
+function resetAddRows() {
+  INVENTORY.forEach(sec => {
+    const rows = document.querySelectorAll(`.add-row[data-section="${sec.id}"]`);
+    for (let i = 1; i < rows.length; i++) rows[i].remove();
+    const kept = rows[0];
+    if (kept) {
+      kept.querySelector('.add-name-input').value = '';
+      kept.querySelectorAll('.add-input').forEach(inp => {
+        if (inp.tagName === 'INPUT') inp.value = '';
+        else { inp.textContent = ''; inp.classList.remove('has-value'); }
+      });
+    }
+  });
+}
+
+function ensureBlankAddRow(sectionId) {
+  const sec = INVENTORY.find(s => s.id === sectionId);
+  if (!sec) return;
+  const sectionEl = document.getElementById('sec-' + sectionId);
+  if (!sectionEl) return;
+  const body = sectionEl.querySelector('.section-body');
+  const addRows = body.querySelectorAll('.add-row');
+  const last = addRows[addRows.length - 1];
+  if (last && last.querySelector('.add-name-input').value.trim() !== '') {
+    body.appendChild(createAddRow(sec));
+  }
+}
+
+function renderSections() {
+  const container = document.getElementById('sections');
+  container.innerHTML = '';
+
+  INVENTORY.forEach((sec, secIdx) => {
+    const section = document.createElement('div');
+    section.className = 'section collapsed';
+    section.id = 'sec-' + sec.id;
+
+    // ── Header
+    const header = document.createElement('div');
+    header.className = 'section-header';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'sec-name';
+    nameSpan.textContent = sec.name;
+
+    const meta = document.createElement('span');
+    meta.className = 'sec-meta';
+
+    const badge = document.createElement('span');
+    badge.className = 'sec-badge';
+    badge.id = 'badge-' + sec.id;
+    badge.textContent = '0/' + sec.items.length;
+
+    const arrow = document.createElement('span');
+    arrow.className = 'sec-arrow';
+    arrow.textContent = '▼';
+
+    meta.appendChild(badge);
+    meta.appendChild(arrow);
+    header.appendChild(nameSpan);
+    header.appendChild(meta);
+
+    // ── Body
+    const body = document.createElement('div');
+    body.className = 'section-body';
+
+    // Column headers row
+    const colHeaders = document.createElement('div');
+    colHeaders.className = 'col-headers';
+
+    const nameSpacer = document.createElement('div');
+    nameSpacer.className = 'col-name-spacer';
+    colHeaders.appendChild(nameSpacer);
+
+    sec.columns.forEach(col => {
+      const ch = document.createElement('div');
+      ch.className = 'col-header';
+
+      const lbl = document.createElement('span');
+      lbl.className = 'col-label';
+      lbl.textContent = col.label;
+      ch.appendChild(lbl);
+
+      if (col.sublabel) {
+        const sub = document.createElement('span');
+        sub.className = 'col-sublabel';
+        sub.textContent = col.sublabel;
+        ch.appendChild(sub);
+      }
+
+      colHeaders.appendChild(ch);
+    });
+
+    body.appendChild(colHeaders);
+
+    // Item rows
+    sec.items.forEach((itemName, itemIdx) => {
+      const row = document.createElement('div');
+      row.className = 'item-row';
+      row.dataset.section = sec.id;
+      row.dataset.index = itemIdx;
+
+      const btn86 = document.createElement('button');
+      btn86.className = 'eighty-six';
+      btn86.textContent = '86';
+      btn86.type = 'button';
+      row.appendChild(btn86);
+
+      const nameEl = document.createElement('span');
+      nameEl.className = 'item-name';
+      nameEl.textContent = itemName;
+      row.appendChild(nameEl);
+
+      const inputs = document.createElement('div');
+      inputs.className = 'item-inputs';
+
+      sec.columns.forEach(col => {
+        inputs.appendChild(makeInput(col, sec.id, itemIdx));
+      });
+
+      row.appendChild(inputs);
+      body.appendChild(row);
+    });
+
+    // Add-item row
+    body.appendChild(createAddRow(sec));
+
+    section.appendChild(header);
+    section.appendChild(body);
+    container.appendChild(section);
+  });
+
+  // Notes section — rendered like any other collapsible section
+  const notesSection = document.createElement('div');
+  notesSection.className = 'section collapsed';
+  notesSection.id = 'notes-section';
+
+  const notesHeader = document.createElement('div');
+  notesHeader.className = 'section-header';
+  notesHeader.innerHTML = '<span class="sec-name">Notes</span><span class="sec-meta"><span class="sec-arrow">▼</span></span>';
+  notesSection.appendChild(notesHeader);
+
+  const notesBody = document.createElement('div');
+  notesBody.className = 'section-body';
+  notesBody.style.padding = '12px';
+  notesBody.style.background = 'var(--bg-card)';
+  notesBody.innerHTML = '<textarea id="notesArea" placeholder="Anything we should know? Broken tap, missing product, stuff that looks off..."></textarea>';
+  notesSection.appendChild(notesBody);
+
+  container.appendChild(notesSection);
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = totalItems();
+  let counted = 0;
+
+  INVENTORY.forEach(sec => {
+    let sectionCounted = 0;
+    const sectionTotal = sec.items.length;
+
+    sec.items.forEach((_, itemIdx) => {
+      const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
+      if (!row) return;
+
+      // Check number inputs
+      const inputs = row.querySelectorAll('.count-input');
+      // Check cycle buttons
+      const btns = row.querySelectorAll('.cycle-btn');
+
+      let hasValue = row.classList.contains('eighty-sixed');
+      inputs.forEach(inp => { if (inp.value !== '') hasValue = true; });
+      btns.forEach(btn => { if (btn.textContent !== '') hasValue = true; });
+
+      if (hasValue) {
+        sectionCounted++;
+        counted++;
+        row.classList.add('counted');
+      } else {
+        row.classList.remove('counted');
+      }
+    });
+
+    const badge = document.getElementById('badge-' + sec.id);
+    if (badge) badge.textContent = sectionCounted + '/' + sectionTotal;
+  });
+
+  // Also check if any add-rows have a name entered
+  let hasAddedItems = false;
+  document.querySelectorAll('.add-name-input').forEach(inp => {
+    if (inp.value.trim() !== '') hasAddedItems = true;
+  });
+
+  document.getElementById('progress').textContent = counted + ' / ' + total;
+
+  const submitBtn = document.getElementById('submitBtn');
+  if (submitBtn && !submitBtn.classList.contains('sent')) {
+    const hasNotes = document.getElementById('notesArea') && document.getElementById('notesArea').value.trim() !== '';
+    submitBtn.disabled = (counted === 0 && !hasAddedItems && !hasNotes);
+  }
+}
+
+// ── localStorage persistence ──────────────────────────────────────────────────
+
+const STORAGE_KEY = 'bancroft_inventory_draft';
+let saveTimeout = null;
+
+function saveToLocal() {
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    const data = collectAllData();
+    data._savedAt = new Date().toISOString();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }, 500);
+}
+
+function collectAllData() {
+  const result = { sections: {}, addedItems: {}, eightySixed: [] };
+
+  INVENTORY.forEach(sec => {
+    const secData = {};
+
+    // Regular item rows
+    sec.items.forEach((itemName, itemIdx) => {
+      const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
+      if (!row) return;
+
+      // Check if 86'd
+      if (row.classList.contains('eighty-sixed')) {
+        result.eightySixed.push({ section: sec.id, name: itemName });
+      }
+
+      const entry = {};
+      let hasValue = false;
+
+      row.querySelectorAll('.count-input').forEach(inp => {
+        if (inp.value !== '') { entry[inp.dataset.col] = inp.value; hasValue = true; }
+      });
+      row.querySelectorAll('.cycle-btn').forEach(btn => {
+        if (btn.textContent !== '') { entry[btn.dataset.col] = btn.textContent; hasValue = true; }
+      });
+
+      if (hasValue) secData[itemName] = entry;
+    });
+
+    result.sections[sec.id] = secData;
+
+    // Add-rows (multiple)
+    document.querySelectorAll(`.add-row[data-section="${sec.id}"]`).forEach(addRow => {
+      const nameInput = addRow.querySelector('.add-name-input');
+      const name = nameInput ? nameInput.value.trim() : '';
+      if (name) {
+        const entry = { name };
+        addRow.querySelectorAll('.add-input.count-input').forEach(inp => {
+          if (inp.value !== '') entry[inp.dataset.col] = inp.value;
+        });
+        addRow.querySelectorAll('.add-input.cycle-btn').forEach(btn => {
+          if (btn.textContent !== '') entry[btn.dataset.col] = btn.textContent;
+        });
+        if (!result.addedItems[sec.id]) result.addedItems[sec.id] = [];
+        result.addedItems[sec.id].push(entry);
+      }
+    });
+  });
+
+  const notesArea = document.getElementById('notesArea');
+  if (notesArea) result.notes = notesArea.value;
+
+  return result;
+}
+
+function restoreFromLocal() {
+  let raw;
+  try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return; }
+  if (!raw) return;
+
+  let data;
+  try { data = JSON.parse(raw); } catch (e) { return; }
+  if (!data || !data.sections) return;
+
+  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
+  const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+
+  let anyRestored = false;
+
+  INVENTORY.forEach(sec => {
+    const secData = data.sections[sec.id];
+    if (!secData) return;
+
+    sec.items.forEach((itemName, itemIdx) => {
+      const saved = secData[itemName];
+      if (!saved) return;
+
+      const row = document.querySelector(`.item-row[data-section="${sec.id}"][data-index="${itemIdx}"]`);
+      if (!row) return;
+
+      row.querySelectorAll('.count-input').forEach(inp => {
+        const val = saved[inp.dataset.col];
+        if (val !== undefined) { inp.value = val; anyRestored = true; }
+      });
+      row.querySelectorAll('.cycle-btn').forEach(btn => {
+        const val = saved[btn.dataset.col];
+        if (val !== undefined) {
+          btn.textContent = val;
+          const validStates = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
+          btn.classList.toggle('has-value', validStates.indexOf(val) > 0);
+          anyRestored = true;
+        }
+      });
+    });
+
+    // Restore add-rows (multiple)
+    const addedList = data.addedItems && data.addedItems[sec.id];
+    if (addedList && addedList.length > 0) {
+      const sectionEl = document.getElementById('sec-' + sec.id);
+      const body = sectionEl ? sectionEl.querySelector('.section-body') : null;
+      if (body) {
+        addedList.forEach((item, i) => {
+          if (!item || !item.name) return;
+          // First item uses existing add-row, rest get new ones
+          let addRow;
+          if (i === 0) {
+            addRow = body.querySelector('.add-row');
+          } else {
+            addRow = createAddRow(sec);
+            body.appendChild(addRow);
+          }
+          if (!addRow) return;
+          addRow.querySelector('.add-name-input').value = item.name;
+          addRow.querySelectorAll('.add-input.count-input').forEach(inp => {
+            const val = item[inp.dataset.col];
+            if (val !== undefined) inp.value = val;
+          });
+          addRow.querySelectorAll('.add-input.cycle-btn').forEach(btn => {
+            const val = item[btn.dataset.col];
+            if (val !== undefined) {
+              btn.textContent = val;
+              const validStates = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
+              btn.classList.toggle('has-value', validStates.indexOf(val) > 0);
+            }
+          });
+          anyRestored = true;
+        });
+        // Ensure a blank row at the end
+        ensureBlankAddRow(sec.id);
+      }
+    }
+  });
+
+  // Restore notes
+  if (data.notes) {
+    const notesArea = document.getElementById('notesArea');
+    if (notesArea) { notesArea.value = data.notes; anyRestored = true; }
+  }
+
+  // Restore 86'd items
+  if (data.eightySixed && data.eightySixed.length > 0) {
+    data.eightySixed.forEach(item => {
+      const sec = INVENTORY.find(s => s.id === item.section);
+      if (!sec) return;
+      const idx = sec.items.indexOf(item.name);
+      if (idx === -1) return;
+      const row = document.querySelector(`.item-row[data-section="${item.section}"][data-index="${idx}"]`);
+      if (!row) return;
+      row.classList.add('eighty-sixed');
+      const btn86 = row.querySelector('.eighty-six');
+      if (btn86) btn86.classList.add('active');
+      anyRestored = true;
+    });
+  }
+
+  if (anyRestored && data._savedAt) {
+    const banner = document.getElementById('resumeBanner');
+    const ts = new Date(data._savedAt);
+    const timeStr = ts.toLocaleDateString([], { month: 'short', day: 'numeric' })
+      + ' ' + ts.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    banner.innerHTML = '<span>Draft restored from ' + timeStr + '</span>'
+      + '<button id="dismissBanner" title="Dismiss">\u00d7</button>';
+    banner.style.display = 'flex';
+    document.getElementById('dismissBanner').addEventListener('click', () => {
+      banner.style.display = 'none';
+    });
+  }
+}
+
+function buildPayload() {
+  const params = new URLSearchParams(window.location.search);
+  const device = params.get('device') || 'unknown';
+  const allData = collectAllData();
+  const totalItems = INVENTORY.reduce((sum, s) => sum + s.items.length, 0);
+
+  const sections = {};
+  INVENTORY.forEach(section => {
+    const sectionData = allData.sections[section.id] || {};
+    const items = [];
+    section.items.forEach(name => {
+      if (sectionData[name]) {
+        items.push({ name, ...sectionData[name] });
+      }
+    });
+    const added = (allData.addedItems[section.id] || []);
+    sections[section.id] = { items, added };
+  });
+
+  let counted = 0;
+  INVENTORY.forEach(section => {
+    const sectionData = allData.sections[section.id] || {};
+    section.items.forEach(name => {
+      if (sectionData[name]) counted++;
+    });
+  });
+
+  return {
+    submitted_at: new Date().toISOString(),
+    device,
+    sections,
+    eighty_sixed: allData.eightySixed,
+    progress: { counted, total: totalItems },
+    notes: allData.notes || ''
+  };
+}
+
+function showOverlay(title, subtitle) {
+  const overlay = document.createElement('div');
+  overlay.className = 'success-overlay';
+  overlay.innerHTML = '<div class="success-content">' +
+    '<div class="success-check">\u2713</div>' +
+    '<h2>' + title + '</h2>' +
+    '<p>' + subtitle + '</p>' +
+    '<button class="overlay-dismiss">TAP OUT</button>' +
+    '</div>';
+  overlay.querySelector('.overlay-dismiss').addEventListener('click', () => {
+    overlay.remove();
+    // Reset everything for next count
+    document.querySelectorAll('.count-input').forEach(i => i.value = '');
+    document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
+    document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed', 'counted'));
+    resetAddRows();
+    document.getElementById('notesArea').value = '';
+    document.getElementById('notes-section').classList.add('collapsed');
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.textContent = 'SUBMIT';
+    submitBtn.disabled = true;
+    submitBtn.classList.remove('sent', 'sending', 'error');
+    document.querySelectorAll('.section').forEach(s => s.classList.add('collapsed'));
+    updateProgress();
+    window.scrollTo(0, 0);
+  });
+  document.body.appendChild(overlay);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderSections();
+  restoreFromLocal();
+  updateProgress();
+
+  // Ping ntfy on page open
+  const params = new URLSearchParams(window.location.search);
+  const device = params.get('device') || 'unknown';
+  fetch('https://ntfy.sh/roblogic-claude', {
+    method: 'POST',
+    headers: { 'Title': 'Inventory count opened', 'Tags': 'beers' },
+    body: device + ' opened the inventory counter'
+  }).catch(() => {});
+
+  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
+  const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+
+  document.getElementById('sections').addEventListener('input', (e) => {
+    saveToLocal();
+    updateProgress();
+    if (e.target.classList.contains('add-name-input')) {
+      ensureBlankAddRow(e.target.dataset.section);
+    }
+  });
+
+  document.getElementById('notesArea').addEventListener('input', () => {
+    saveToLocal();
+    updateProgress();
+  });
+
+  // Scroll focused input into view when iOS keyboard appears
+  document.getElementById('sections').addEventListener('focus', (e) => {
+    if (e.target.matches('.count-input, .add-name-input')) {
+      setTimeout(() => e.target.scrollIntoView({ block: 'center', behavior: 'smooth' }), 300);
+    }
+  }, true); // capture phase so focus events bubble up
+
+  document.getElementById('sections').addEventListener('click', (e) => {
+    // 86 button — toggle "don't carry" on item row
+    const btn86 = e.target.closest('.eighty-six');
+    if (btn86) {
+      const row = btn86.closest('.item-row');
+      btn86.classList.toggle('active');
+      row.classList.toggle('eighty-sixed');
+      saveToLocal();
+      updateProgress();
+      return;
+    }
+
+    // Cycle button takes priority — check it first
+    const btn = e.target.closest('.cycle-btn');
+    if (btn) {
+      const values = btn.dataset.type === 'keg' ? KEG_VALUES : FILL_VALUES;
+      const currentIdx = values.indexOf(btn.textContent);
+      const nextIdx = (currentIdx + 1) % values.length;
+      btn.textContent = values[nextIdx];
+      btn.classList.toggle('has-value', nextIdx > 0);
+      saveToLocal();
+      updateProgress();
+      return; // don't bubble to section toggle
+    }
+
+    // Section header toggle
+    const header = e.target.closest('.section-header');
+    if (!header) return;
+    const section = header.closest('.section');
+    section.classList.toggle('collapsed');
+  });
+
+  // ── Submit handler ────────────────────────────────────────────────────────
+  document.getElementById('submitBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('submitBtn');
+    if (btn.disabled) return;
+
+    btn.disabled = true;
+    btn.textContent = 'SENDING...';
+    btn.classList.add('sending');
+
+    try {
+      const payload = buildPayload();
+      const resp = await fetch('https://n8n.roblogic.org/webhook/inventory', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!resp.ok) throw new Error('Server returned ' + resp.status);
+
+      // Success
+      localStorage.removeItem(STORAGE_KEY);
+      btn.textContent = 'SENT \u2713';
+      btn.classList.remove('sending');
+      btn.classList.add('sent');
+      showOverlay('Inventory submitted!', 'Count has been sent.');
+
+    } catch (err) {
+      // Failure — keep data intact
+      btn.disabled = false;
+      btn.textContent = 'RETRY';
+      btn.classList.remove('sending');
+      btn.classList.add('error');
+      alert('Failed to send: ' + err.message + '\n\nYour data is saved. Try again when you have signal.');
+    }
+  });
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    if (!confirm('Clear all counts and start over?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.count-input').forEach(i => i.value = '');
+    document.querySelectorAll('.cycle-btn').forEach(b => { b.textContent = ''; b.classList.remove('has-value'); });
+    document.querySelectorAll('.eighty-six').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.item-row').forEach(r => r.classList.remove('eighty-sixed'));
+    resetAddRows();
+    document.getElementById('notesArea').value = '';
+    document.getElementById('resumeBanner').style.display = 'none';
+    updateProgress();
+  });
+});
+</script>
+</body>
+</html>

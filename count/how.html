@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How To Count — Bancroft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1a0a0a;
+      --bg-card: #221414;
+      --red: #b91c1c;
+      --red-dark: #7f1d1d;
+      --cream: #ede0cc;
+      --cream-dim: #9e9080;
+      --gold: #c4a265;
+      --green: #22c55e;
+      --font-display: 'Alfa Slab One', cursive;
+      --font-body: 'Lora', serif;
+      --font-accent: 'Special Elite', system-ui;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0 0 60px;
+    }
+    .header {
+      background: var(--red);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .header h1 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+    }
+    .header p {
+      font-family: var(--font-accent);
+      font-size: 14px;
+      color: rgba(237,224,204,0.7);
+      margin-top: 4px;
+    }
+    .content {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin: 32px 0 12px;
+      letter-spacing: 0.03em;
+    }
+    h2:first-child { margin-top: 0; }
+    p { margin-bottom: 12px; }
+    .step {
+      background: var(--bg-card);
+      border-left: 3px solid var(--red);
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 0 6px 6px 0;
+    }
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .key {
+      display: inline-block;
+      background: var(--bg-card);
+      border: 2px solid var(--cream-dim);
+      border-radius: 6px;
+      padding: 2px 10px;
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 0 2px;
+    }
+    .key-gold {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .eighty-six-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-accent);
+      font-size: 12px;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    .strike { text-decoration: line-through; color: var(--cream-dim); }
+    .go-btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      margin-top: 32px;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      border: none;
+    }
+    ul { margin: 0 0 12px 20px; }
+    li { margin-bottom: 6px; }
+    .tip {
+      background: rgba(196,162,101,0.1);
+      border-left: 3px solid var(--gold);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 15px;
+    }
+    .tip strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>How To Count</h1>
+  <p>Bancroft Inventory</p>
+</div>
+
+<div class="content">
+
+  <h2>The Basics</h2>
+
+  <div class="step">
+    <div class="step-num">Step 1</div>
+    Open the inventory page on your phone. Tap a section to open it.
+  </div>
+
+  <div class="step">
+    <div class="step-num">Step 2</div>
+    Enter the count for each item. Your work saves automatically — if your phone goes to sleep, everything's still there when you come back.
+  </div>
+
+  <div class="step">
+    <div class="step-num">Step 3</div>
+    When you're done, hit <strong>SUBMIT</strong> at the top. You'll see a confirmation screen — tap <strong>TAP OUT</strong> to reset for the next person.
+  </div>
+
+  <h2>The Buttons</h2>
+
+  <p><strong>Drafts & open bottles</strong> — tap to cycle through fill levels:</p>
+  <p style="text-align:center; margin: 16px 0;">
+    <span class="key">F</span> full &nbsp;
+    <span class="key">½</span> half &nbsp;
+    <span class="key">¼</span> quarter &nbsp;
+    <span class="key">K</span> kicked
+  </p>
+  <p>Tap again to cycle to the next one. Tap past K to clear it.</p>
+
+  <p><strong>Number fields</strong> — just type the count. How many bottles, cases, whatever.</p>
+
+  <h2>Sections</h2>
+  <ul>
+    <li><strong>Draft</strong> — Tapped (what's on the line) + Backup (kegs in the walk-in)</li>
+    <li><strong>Bottles & Cans</strong> — Bar (behind the bar) + Cases + Loose (in the walk-in)</li>
+    <li><strong>Well Spirits</strong> — Well 1 + Well 2 (fill level of each open bottle) + Backup (sealed bottles)</li>
+    <li><strong>Liquor</strong> (whiskey, tequila, etc.) — Open (fill level) + Backup (behind bar) + Room (in the liquor room)</li>
+    <li><strong>Soda / Juice / Supplies</strong> — Bar + Back</li>
+    <li><strong>Notes</strong> — anything you want to tell us. Broken stuff, things we're low on, whatever.</li>
+  </ul>
+
+  <h2>86 Button</h2>
+  <p>See the <span class="eighty-six-demo">86</span> circle next to each item? Tap it if we <strong>don't carry that anymore</strong>. The item gets <span class="strike">crossed out</span> and we'll remove it from the list.</p>
+
+  <h2>Adding Items</h2>
+  <p>At the bottom of every section there's a <span class="key-gold" style="color: var(--gold);">+</span> row. Type the name of something that's not on the list and enter the count. We'll add it next time.</p>
+
+  <h2>The Process</h2>
+
+  <div class="step">
+    <div class="step-num">You Count</div>
+    Walk the bar, the walk-in, the liquor room. Enter what you see. Use the Notes section for anything weird — broken equipment, stuff that looks off, things we're running low on.
+  </div>
+
+  <div class="step">
+    <div class="step-num">You Submit</div>
+    When you're done (or done enough), hit Submit. Your count goes straight to Rob.
+  </div>
+
+  <div class="step">
+    <div class="step-num">Rob Reviews</div>
+    Rob looks at what you sent, compares it to what we've been selling, and figures out what to order. If you 86'd something or added something new, he'll update the list for next time.
+  </div>
+
+  <div class="step">
+    <div class="step-num">List Gets Better</div>
+    Every count makes the list more accurate. Items you 86 get removed. Items you add get put on permanently. The more you use it, the less work it is.
+  </div>
+
+  <div class="tip">
+    <strong>Tip:</strong> You don't have to do the whole thing in one shot. Count what you can, put the phone down, come back later. It remembers where you left off.
+  </div>
+
+  <a href="/count/" class="go-btn">Start Counting</a>
+
+</div>
+</body>
+</html>

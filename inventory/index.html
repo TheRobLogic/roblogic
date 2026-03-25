@@ -1,508 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bancroft Inventory</title>
-<style>
-@page { size: letter portrait; margin: 0.25in 0.2in; }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, sans-serif; color: #000; background: #fff; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Results — Bancroft</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, 'Segoe UI', sans-serif;
+      background: #f0f5fa;
+      color: #1a1a2e;
+      font-size: 18px;
+      line-height: 1.4;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 4px;
+    }
+    .meta {
+      font-size: 16px;
+      color: #4a6fa5;
+      margin-bottom: 20px;
+    }
+    .meta strong { color: #1a365d; }
 
-.no-print { text-align: center; padding: 8px; background: #333; color: #fff; font-size: 13px; }
-.no-print button { font-size: 15px; padding: 6px 20px; cursor: pointer; background: #fff; border: 2px solid #000; border-radius: 3px; font-weight: bold; margin-right: 10px; }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      background: #3b82b6;
+      padding: 10px 14px;
+      margin-top: 24px;
+      border-radius: 6px 6px 0 0;
+    }
 
-.sheet { max-width: 8in; margin: 0 auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2px;
+      background: #fff;
+    }
+    th {
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 8px 12px;
+      text-align: center;
+      border: 1px solid #bfdbfe;
+    }
+    th:first-child { text-align: left; }
+    td {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 18px;
+    }
+    td:first-child {
+      font-weight: 600;
+      color: #1a365d;
+    }
+    td:not(:first-child) {
+      text-align: center;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    tr:nth-child(even) { background: #f8fafc; }
+    tr:hover { background: #eff6ff; }
 
-h1 { font-size: 13px; text-align: center; margin: 4px 0 2px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
-.meta { text-align: center; font-size: 8.5px; color: #333; margin-bottom: 4px; }
-.hdr { background: #111; color: #fff; font-size: 9px; font-weight: bold; padding: 3px 5px; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .val-fill {
+      color: #1e40af;
+      font-size: 22px;
+    }
+    .val-zero {
+      color: #cbd5e1;
+    }
 
-/* ---- Tables ---- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+    .eighty-sixed td:first-child {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+    .eighty-sixed td {
+      background: #fef2f2;
+    }
+    .eighty-sixed-badge {
+      display: inline-block;
+      background: #dc2626;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+      margin-left: 6px;
+    }
 
-/* Item column: left-aligned, nowrap so it only takes what it needs */
-td:first-child, th:first-child {
-  text-align: left;
-  padding: 0 4px;
-  white-space: nowrap;
-  font-size: 11px;
-}
+    .added td:first-child { font-style: italic; }
+    .added-badge {
+      display: inline-block;
+      background: #16a34a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+      margin-left: 6px;
+    }
 
-/* Count column headers — enforce minimum width here; browsers respect min-width on th/td */
-th {
-  background: #e0e0e0;
-  font-size: 7.5px;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 2px 2px;
-  border: 1px solid #666;
-  text-align: center;
-  white-space: nowrap;
-}
-th:first-child {
-  font-size: 8.5px;
-  background: #e8e8e8;
-}
+    .notes-box {
+      background: #fff;
+      border: 2px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 16px;
+      margin-top: 24px;
+      font-size: 18px;
+      white-space: pre-wrap;
+    }
+    .notes-box strong {
+      color: #1e40af;
+      font-size: 20px;
+    }
+    .notes-empty { color: #94a3b8; font-style: italic; }
 
-/* All data cells */
-td {
-  border: 1px solid #888;
-  height: 20px;
-  line-height: 20px;
-  padding: 0;
-  font-size: 11px;
-}
+    .summary {
+      background: #dbeafe;
+      border: 2px solid #93c5fd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 16px;
+    }
+    .summary-item { }
+    .summary-item .num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1e40af;
+    }
+    .summary-item .label { color: #4a6fa5; }
 
-/* Count cells: min-width enforced so they can't collapse below pen-write size */
-td:not(:first-child) {
-  text-align: center;
-  min-width: 52px;
-}
-th:not(:first-child) {
-  min-width: 52px;
-}
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: #94a3b8;
+      font-size: 20px;
+    }
+    .empty-state h2 { color: #64748b; margin-bottom: 8px; }
 
-/* Blank write-in rows */
-tr.bk td {
-  border: 1px dashed #bbb;
-  height: 20px;
-}
+    #loading {
+      text-align: center;
+      padding: 80px 20px;
+      color: #4a6fa5;
+      font-size: 20px;
+    }
 
-/* Signature line */
-.sig { margin-top: 8px; font-size: 8.5px; }
-.sig span { display: inline-block; width: 130px; border-bottom: 1px solid #000; margin-left: 4px; }
-
-/* Page break */
-.pb { page-break-before: always; }
-
-/* Section group label (sub-header inside a section) */
-.subhdr td {
-  background: #555;
-  color: #fff;
-  font-size: 8px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 1px 4px;
-  border: 1px solid #333;
-}
-
-@media print {
-  .no-print { display: none; }
-  /* Ensure borders print */
-  td, th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .hdr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-}
-</style>
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .file-picker select {
+      font-size: 16px;
+      padding: 8px 12px;
+      border: 2px solid #93c5fd;
+      border-radius: 6px;
+      background: #fff;
+      color: #1a365d;
+    }
+    .refresh-btn {
+      font-size: 14px;
+      padding: 6px 14px;
+      border: 2px solid #93c5fd;
+      border-radius: 6px;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .refresh-btn:active { background: #bfdbfe; }
+  </style>
 </head>
 <body>
-<div class="no-print">
-  <button onclick="window.print()">PRINT</button>
-  Bancroft Inventory Count Sheet
+
+<h1>Inventory Count</h1>
+<div class="toolbar">
+  <div class="file-picker">
+    <select id="archive-picker" onchange="loadFromPicker()">
+      <option value="">Latest</option>
+    </select>
+  </div>
+  <button class="refresh-btn" onclick="loadCount()">Refresh</button>
 </div>
-<div class="sheet">
+<div id="app"><div id="loading">Loading latest count...</div></div>
 
-<h1>Beer Inventory</h1>
-<div class="meta">Date: _____________ &nbsp;&nbsp; Counted by: _____________ &nbsp;&nbsp; <em>Cross out items we don't carry &mdash; add new ones at bottom</em></div>
+<script>
+const API_BASE = '/inventory/api';
+let currentFile = null;
 
-<!-- DRAFT -->
-<div class="hdr">Draft / On Tap &mdash; <span style="font-weight:normal;font-style:italic">kegs: F=full &nbsp; &frac12; &nbsp; &frac14; &nbsp; K=kicked</span></div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Bar<br><span style="font-size:6px;font-weight:normal">(at tap)</span></th>
-  <th>Walk-In<br><span style="font-size:6px;font-weight:normal">(backup)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Elysian Space Dust IPA</td><td></td><td></td></tr>
-<tr><td>Coors Light Draft</td><td></td><td></td></tr>
-<tr><td>Karl Strauss Boat Shoes Hazy</td><td></td><td></td></tr>
-<tr><td>Bud Light Draft</td><td></td><td></td></tr>
-<tr><td>Jai Alai IPA</td><td></td><td></td></tr>
-<tr><td>Bancroft House Blonde</td><td></td><td></td></tr>
-<tr><td>Lagunitas Hazy Wonder IPA</td><td></td><td></td></tr>
-<tr><td>Estrella Jalisco Lager</td><td></td><td></td></tr>
-<tr><td>Big Wave Kona Ale</td><td></td><td></td></tr>
-<tr><td>805 Draft</td><td></td><td></td></tr>
-<tr><td>Blue Moon Draft</td><td></td><td></td></tr>
-<tr><td>Fall Plenty For All Pilsner</td><td></td><td></td></tr>
-<tr><td>Mission Sea Cider</td><td></td><td></td></tr>
-<tr><td>Stella Lager Draft</td><td></td><td></td></tr>
-<tr><td>Modelo Lager Draft</td><td></td><td></td></tr>
-<tr><td>Pacifico Draft</td><td></td><td></td></tr>
-<tr><td>Battlemage Czech Pilsner</td><td></td><td></td></tr>
-<tr><td>Michelob Ultra Draft</td><td></td><td></td></tr>
-<tr><td>Sierra Nevada Celebration IPA</td><td></td><td></td></tr>
-<tr><td>Karl Strauss Red Trolley</td><td></td><td></td></tr>
-<tr><td>Thorn St Relay IPA</td><td></td><td></td></tr>
-<tr><td>Sierra Nevada Hazy Little Thing</td><td></td><td></td></tr>
-<tr><td>Bambucha Hawaiian Hibiscus</td><td></td><td></td></tr>
-<tr><td>Bells Two Hearted IPA</td><td></td><td></td></tr>
-<tr><td>Mission Foggy Shores Hef</td><td></td><td></td></tr>
-<tr><td>Sierra Nevada Pale Draft</td><td></td><td></td></tr>
-<tr><td>Coors Banquet Draft</td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+const SECTION_NAMES = {
+  draft: 'Draft / On Tap',
+  bottles_cans: 'Bottles & Cans',
+  well_spirits: 'Well Spirits',
+  whiskey: 'Whiskey / Bourbon / Scotch / Irish',
+  tequila: 'Tequila / Mezcal',
+  vodka: 'Vodka',
+  rum: 'Rum',
+  gin: 'Gin',
+  liqueur: 'Liqueur / Cordial / Dekuyper',
+  bar_supplies: 'Soda / Juice / Supplies'
+};
 
-<!-- BOTTLES -->
-<div class="hdr">Bottles</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Bar</th>
-  <th>Walk-In</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Modelo Especial</td><td></td><td></td></tr>
-<tr><td>Heineken</td><td></td><td></td></tr>
-<tr><td>Coors Light</td><td></td><td></td></tr>
-<tr><td>Pacifico</td><td></td><td></td></tr>
-<tr><td>Stella</td><td></td><td></td></tr>
-<tr><td>Corona</td><td></td><td></td></tr>
-<tr><td>Heineken Zero N/A</td><td></td><td></td></tr>
-<tr><td>Budweiser</td><td></td><td></td></tr>
-<tr><td>Miller Lite</td><td></td><td></td></tr>
-<tr><td>Michelob Ultra</td><td></td><td></td></tr>
-<tr><td>Miller High Life</td><td></td><td></td></tr>
-<tr><td>Bud Light</td><td></td><td></td></tr>
-<tr><td>Coors Original</td><td></td><td></td></tr>
-<tr><td>PBR 12oz</td><td></td><td></td></tr>
-<tr><td>Modelo Negra</td><td></td><td></td></tr>
-<tr><td>Michelob Ultra NA</td><td></td><td></td></tr>
-<tr><td>Corona NA</td><td></td><td></td></tr>
-<tr><td>Surfside</td><td></td><td></td></tr>
-<tr><td>Modelo Oro</td><td></td><td></td></tr>
-<tr><td>805 Bottle</td><td></td><td></td></tr>
-<tr><td>Dos Equis</td><td></td><td></td></tr>
-<tr><td>Corona Premier</td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+const SECTION_COLS = {
+  draft:        [['bar','Tapped'],['walkin','Backup']],
+  bottles_cans: [['bar','Bar'],['cases','Cases'],['loose','Loose']],
+  well_spirits: [['well1','Well 1'],['well2','Well 2'],['bar','Bar'],['room','Room']],
+  whiskey:      [['open','Open'],['backup','Backup'],['room','Room']],
+  tequila:      [['open','Open'],['backup','Backup'],['room','Room']],
+  vodka:        [['open','Open'],['backup','Backup'],['room','Room']],
+  rum:          [['open','Open'],['backup','Backup'],['room','Room']],
+  gin:          [['open','Open'],['backup','Backup'],['room','Room']],
+  liqueur:      [['open','Open'],['backup','Backup'],['room','Room']],
+  bar_supplies: [['bar','Bar'],['back','Back']]
+};
 
-<!-- CANS -->
-<div class="hdr">Cans / Seltzer</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Bar</th>
-  <th>Walk-In</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>White Claw Tall 19.2oz (any)</td><td></td><td></td></tr>
-<tr><td>White Claw Small (any)</td><td></td><td></td></tr>
-<tr><td>Happy Dad Seltzer (any)</td><td></td><td></td></tr>
-<tr><td>Buzzball (any)</td><td></td><td></td></tr>
-<tr><td>Hamm's 12oz</td><td></td><td></td></tr>
-<tr><td>Natural Light</td><td></td><td></td></tr>
-<tr><td>Rolling Rock 12oz</td><td></td><td></td></tr>
-<tr><td>Mari-Hi Seltzer</td><td></td><td></td></tr>
-<tr><td>Topo Chico Seltzer (any)</td><td></td><td></td></tr>
-<tr><td>Sierra Nevada Hazy IPA Can</td><td></td><td></td></tr>
-<tr><td>Twisted Tea 12oz</td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+function formatVal(v) {
+  if (v === undefined || v === null || v === '') return '<span class="val-zero">—</span>';
+  if (['F','½','¼','K'].includes(v)) return '<span class="val-fill">' + v + '</span>';
+  if (v === '0' || v === 0) return '<span class="val-zero">0</span>';
+  return v;
+}
 
-<!-- TALL CANS -->
-<div class="hdr">Tall Cans / 16oz+</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Bar</th>
-  <th>Walk-In</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Bud Light Chelada Tall Boy</td><td></td><td></td></tr>
-<tr><td>Guinness Stout</td><td></td><td></td></tr>
-<tr><td>PBR Tall Can</td><td></td><td></td></tr>
-<tr><td>Hamm's 16oz</td><td></td><td></td></tr>
-<tr><td>Mickey's Grenade</td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+function renderCount(data) {
+  const app = document.getElementById('app');
+  const ts = new Date(data.submitted_at);
+  const dateStr = ts.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+  const timeStr = ts.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 
-<!-- =========== LIQUOR PAGE =========== -->
-<div class="pb"></div>
-<h1>Liquor Inventory</h1>
-<div class="meta">Date: _____________ &nbsp;&nbsp; Counted by: _____________ &nbsp;&nbsp; <em>Cross out items we don't carry &mdash; add new ones at bottom</em></div>
+  const counted = data.progress ? data.progress.counted : 0;
+  const total = data.progress ? data.progress.total : '?';
+  const eightySixed = data.eighty_sixed || [];
+  const device = data.device || 'unknown';
 
-<!-- WELL SPIRITS — Day/Night for the two open wells + Full/1/2/1/4/Bar/Bkup -->
-<div class="hdr">Well Spirits</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Day<br><span style="font-size:6px;font-weight:normal">(well 1)</span></th>
-  <th>Night<br><span style="font-size:6px;font-weight:normal">(well 2)</span></th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Well Tequila (Tres Paraguas)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Well Vodka (Hideout)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Well Whiskey</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Well Rum (Sunken Ship)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Well Gin (Clocktower)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Well Scotch</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Well Brandy</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+  let html = '';
+  html += '<div class="meta">' + dateStr + ' at ' + timeStr + ' &nbsp;·&nbsp; <strong>' + device + '</strong> &nbsp;·&nbsp; ' + counted + ' of ' + total + ' counted</div>';
 
-<!-- WHISKEY -->
-<div class="hdr">Whiskey / Bourbon / Scotch / Irish</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Tullamore Dew</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Jack Daniels</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Jameson</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Fireball</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Seagram's 7</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Tullamore Dew Honey</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Stone Imperial Whiskey</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Blanton's Single Barrel</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Rams Point PB Whiskey</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Bulleit Rye</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Crown Royal</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Maker's Mark</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Monkey Shoulder</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Johnnie Walker Black</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Bulleit Bourbon</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Glenfiddich</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>EH Taylor Barrel Proof</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>EH Taylor Rye</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Skrewball PB Whiskey</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Bushmills Irish</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Dewar's Scotch</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Wild Turkey 101</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Ancient Age Bourbon</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>8 Ball Chocolate Whiskey</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Traveller Bourbon</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Nelson Brothers Classic</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+  html += '<div class="summary">';
+  html += '<div class="summary-item"><div class="num">' + counted + '</div><div class="label">Counted</div></div>';
+  html += '<div class="summary-item"><div class="num">' + eightySixed.length + '</div><div class="label">86\'d</div></div>';
+  let addedCount = 0;
+  Object.values(data.sections || {}).forEach(s => { addedCount += (s.added || []).length; });
+  html += '<div class="summary-item"><div class="num">' + addedCount + '</div><div class="label">Added</div></div>';
+  html += '</div>';
 
-<!-- TEQUILA -->
-<div class="hdr">Tequila / Mezcal</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Gran Malo Blanco</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Cazadores Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Hornitos Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Milagro Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Mijenta Blanco</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Mijenta Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Mi Campo Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Mi Campo Blanco</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Mango Shotta</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>400 Conejos Mezcal</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Corazon Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Gran Orendain Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Lo Ciento Reposado</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+  // 86'd items
+  if (eightySixed.length > 0) {
+    html += '<div class="section-title" style="background:#dc2626;">86\'d Items — Remove From List</div>';
+    html += '<table><thead><tr><th>Item</th><th>Section</th></tr></thead><tbody>';
+    eightySixed.forEach(item => {
+      html += '<tr class="eighty-sixed"><td>' + item.name + '</td><td style="font-size:14px;color:#64748b;">' + (SECTION_NAMES[item.section] || item.section) + '</td></tr>';
+    });
+    html += '</tbody></table>';
+  }
 
-<!-- VODKA -->
-<div class="hdr">Vodka</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Tito's</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>New Amsterdam Pineapple</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Hideout Mandarin</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Pink Whitney</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Reyka</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Hideout Cucumber</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>New Amsterdam Peach</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>New Amsterdam (plain)</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Absolut</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Absolut Peppar</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Stoli</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>7X Platinum</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Wheatley</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Seagram's Sweet Tea</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+  // Sections with data
+  const sectionOrder = Object.keys(SECTION_NAMES);
+  sectionOrder.forEach(secId => {
+    const sec = (data.sections || {})[secId];
+    if (!sec) return;
+    const items = sec.items || [];
+    const added = sec.added || [];
+    if (items.length === 0 && added.length === 0) return;
 
-<!-- RUM -->
-<div class="hdr">Rum</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Captain Morgan Spiced</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Bacardi Silver</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Sailor Jerry</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Malibu Coconut</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Myers Dark</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>RumChata</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>RumChata Peppermint</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Don Q 151</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Whaler's Dark</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+    const cols = SECTION_COLS[secId] || [];
+    html += '<div class="section-title">' + (SECTION_NAMES[secId] || secId) + '</div>';
+    html += '<table><thead><tr><th>Item</th>';
+    cols.forEach(c => { html += '<th>' + c[1] + '</th>'; });
+    html += '</tr></thead><tbody>';
 
-<!-- GIN -->
-<div class="hdr">Gin</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Hendrick's</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Gin Mare</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Bombay Sapphire</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Tanqueray</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+    items.forEach(item => {
+      html += '<tr>';
+      html += '<td>' + item.name + '</td>';
+      cols.forEach(c => { html += '<td>' + formatVal(item[c[0]]) + '</td>'; });
+      html += '</tr>';
+    });
 
-<!-- LIQUEUR -->
-<div class="hdr">Liqueur / Cordial / Vermouth</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Jagermeister</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Fernet Branca</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Kahlua</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Baileys Irish Cream</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Baileys Almond</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Southern Comfort 100</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Frangelico</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>St. Germain</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Campari</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Midori Melon</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Goldschlager</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Rumpleminze</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Grind Espresso</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Christian Bros Brandy</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Llords Peach</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Llords Watermelon</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Dr. McGillicuddy Peppermint</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Cribari Dry Vermouth</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Cribari Sweet Vermouth</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Martini &amp; Rossi Dry</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr class="bk"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+    added.forEach(item => {
+      html += '<tr class="added">';
+      html += '<td>' + (item.name || '?') + '<span class="added-badge">NEW</span></td>';
+      cols.forEach(c => { html += '<td>' + formatVal(item[c[0]]) + '</td>'; });
+      html += '</tr>';
+    });
 
-<!-- DEKUYPER -->
-<div class="hdr">Dekuyper Cordials</div>
-<table>
-<thead>
-<tr>
-  <th>Item</th>
-  <th>Full</th>
-  <th>&frac12;</th>
-  <th>&frac14;</th>
-  <th>Bar</th>
-  <th>Bkup</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Triple Sec</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Amaretto</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Blue Curacao</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Peachtree</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Buttershots</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Apple Pucker</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Sloe Gin</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Watermelon</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Raspberry</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Root Beer</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Grape</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Cherry</td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr><td>Orange Curacao</td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
-</table>
+    html += '</tbody></table>';
+  });
 
-<div class="sig">
-Counted by: <span></span> &nbsp;&nbsp; Date: <span style="width:90px"></span>
-</div>
+  // Notes
+  html += '<div class="notes-box"><strong>Notes</strong><br>';
+  if (data.notes && data.notes.trim()) {
+    html += data.notes;
+  } else {
+    html += '<span class="notes-empty">No notes</span>';
+  }
+  html += '</div>';
 
-</div>
+  app.innerHTML = html;
+}
+
+async function loadCount(file) {
+  try {
+    const url = file
+      ? API_BASE + '/count?file=' + encodeURIComponent(file)
+      : API_BASE + '/latest';
+    const resp = await fetch(url);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.error) throw new Error(data.error);
+      renderCount(data);
+      return true;
+    }
+  } catch (e) {}
+  document.getElementById('app').innerHTML = '<div class="empty-state"><h2>No counts yet</h2><p>Waiting for someone to submit an inventory count.</p></div>';
+  return false;
+}
+
+async function loadArchiveList() {
+  try {
+    const resp = await fetch(API_BASE + '/archive');
+    if (!resp.ok) return;
+    const data = await resp.json();
+    const picker = document.getElementById('archive-picker');
+    const entries = data.entries || [];
+    entries.forEach(e => {
+      const opt = document.createElement('option');
+      opt.value = e.file;
+      const d = new Date(e.submitted_at);
+      opt.textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+        + ' (' + (e.device || '?') + ')';
+      picker.appendChild(opt);
+    });
+  } catch (e) {}
+}
+
+function loadFromPicker() {
+  const picker = document.getElementById('archive-picker');
+  currentFile = picker.value || null;
+  loadCount(currentFile);
+}
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+  if (file) {
+    currentFile = file;
+    document.getElementById('archive-picker').value = file;
+  }
+  await loadCount(file || null);
+  await loadArchiveList();
+  if (file) {
+    document.getElementById('archive-picker').value = file;
+  }
+}
+
+init();
+</script>
 </body>
 </html>
