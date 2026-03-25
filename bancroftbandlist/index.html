@@ -298,7 +298,7 @@
       box-shadow: var(--shadow);
       background: white;
       font-size: 0.78rem;
-      table-layout: fixed;
+      table-layout: auto;
     }
 
     thead {
@@ -429,6 +429,21 @@
     .score-none { background: rgba(148,163,184,0.1); color: var(--text-muted); }
 
     .no-results { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 1rem; }
+
+    /* -- Resizable columns -- */
+    thead th { position: relative; }
+    .col-resize-handle {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      cursor: col-resize;
+      background: transparent;
+      z-index: 11;
+    }
+    .col-resize-handle:hover,
+    .col-resize-handle.active { background: var(--green); opacity: 0.5; }
 
     /* -- Footer -- */
     .site-footer {
@@ -595,15 +610,15 @@
       <table>
         <thead>
           <tr>
-            <th data-col="name" style="width:18%;">Band Name <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="genre" style="width:8%;">Genre <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="location" style="width:5%;">Loc <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="contact" style="width:18%;">Contact <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="notes" style="width:18%;">Notes <span class="sort-arrow">&#9660;</span><div class="tooltip">Auto-generated notes + click to add your own. User notes sync across devices.</div></th>
-            <th data-col="played" style="width:4%;"># <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="active" style="width:9%;">Active <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="lastPlayed" class="sorted" style="width:9%;">Last <span class="sort-arrow">&#9660;</span></th>
-            <th data-col="score" style="width:5%;">$$ <span class="sort-arrow">&#9660;</span><div class="tooltip">Money Maker score: revenue on nights this band played vs. venue median for that day of week. 1-3 = below, 4-6 = around, 7-10 = above median.</div></th>
+            <th data-col="name" style="width:16%; min-width:120px;">Band Name <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="genre" style="width:8%; min-width:70px;">Genre <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="location" style="width:8%; min-width:70px;">Loc <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="contact" style="width:16%; min-width:100px;">Contact <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="notes" style="width:18%; min-width:140px;">Notes <span class="sort-arrow">&#9660;</span><div class="tooltip">Auto-generated notes + click to add your own. User notes sync across devices.</div></th>
+            <th data-col="played" style="width:4%; min-width:35px;"># <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="active" style="width:8%; min-width:70px;">Active <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="lastPlayed" class="sorted" style="width:8%; min-width:75px;">Last <span class="sort-arrow">&#9660;</span></th>
+            <th data-col="score" style="width:4%; min-width:35px;">$$ <span class="sort-arrow">&#9660;</span><div class="tooltip">Money Maker score: revenue on nights this band played vs. venue median for that day of week. 1-3 = below, 4-6 = around, 7-10 = above median.</div></th>
           </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -962,6 +977,41 @@
     loadNotesFromStorage();
     // Try server sync after page renders
     setTimeout(syncNotesFromServer, 500);
+
+    // -- Column resize handles --
+    function initColumnResize() {
+      const ths = document.querySelectorAll('thead th');
+      ths.forEach(th => {
+        const handle = document.createElement('div');
+        handle.className = 'col-resize-handle';
+        th.appendChild(handle);
+
+        let startX, startW;
+
+        handle.addEventListener('mousedown', function(e) {
+          e.preventDefault();
+          e.stopPropagation(); // don't trigger sort
+          startX = e.pageX;
+          startW = th.offsetWidth;
+          handle.classList.add('active');
+
+          function onMove(e) {
+            const w = Math.max(35, startW + (e.pageX - startX));
+            th.style.width = w + 'px';
+            th.style.minWidth = w + 'px';
+          }
+          function onUp() {
+            handle.classList.remove('active');
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+          }
+          document.addEventListener('mousemove', onMove);
+          document.addEventListener('mouseup', onUp);
+        });
+      });
+    }
+    // Init resize after table is visible
+    setTimeout(initColumnResize, 100);
 
     // -- Visitor beacon --
     try {
