@@ -922,12 +922,18 @@
     function migrateOldNotes() {
       // Migrate single-note format { note, user, updated } to array format
       for (const [band, entry] of Object.entries(userNotes)) {
-        if (!Array.isArray(entry)) {
-          const note = typeof entry === 'string' ? entry : (entry.note || '');
-          const user = typeof entry === 'object' ? (entry.user || '') : '';
-          const ts = typeof entry === 'object' ? (entry.updated || '') : '';
-          userNotes[band] = note ? [{ text: note, user: user, ts: ts, id: Date.now() }] : [];
+        if (Array.isArray(entry)) continue;
+        const raw = typeof entry === 'string' ? entry : (entry.note || '');
+        // Check if the note value is a stringified JSON array
+        if (raw.startsWith('[')) {
+          try {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) { userNotes[band] = parsed; continue; }
+          } catch(e) {}
         }
+        const user = typeof entry === 'object' ? (entry.user || '') : '';
+        const ts = typeof entry === 'object' ? (entry.updated || '') : '';
+        userNotes[band] = raw ? [{ text: raw, user: user, ts: ts, id: Date.now() }] : [];
       }
     }
 
