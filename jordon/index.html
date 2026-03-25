@@ -723,7 +723,7 @@
     let sortCol = 'issueDate';
     let sortDir = 'desc';
     let categoryFilter = 'on-premise';
-    let actionFilter = 'all'; // 'all', 'new', 'transfer'
+    let actionFilter = 'new'; // 'all', 'new', 'transfer'
 
     // ── Init ──
     async function init() {
@@ -760,7 +760,7 @@
         initMap();
 
         // Set default action filter button state
-        document.getElementById('filter-all').classList.add('active');
+        document.getElementById('filter-new').classList.add('active');
 
         // Initial render
         applyFilters();
@@ -961,7 +961,7 @@
 
         return `<tr style="${rowStyle}" ${rowClick}>
           <td class="td-date">${formatDate(lic.issueDate)}<a href="${gmapsUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="gmaps-link">Google Maps ↗</a></td>
-          <td class="td-name">${escapeHtml(lic.displayName)}${lic.isNew === true ? '<span class="td-action-badge new-badge">NEW</span>' : lic.isNew === false ? '<span class="td-action-badge transfer-badge">Transfer</span>' : ''}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
+          <td class="td-name">${escapeHtml(lic.displayName)}${lic.isNew === true ? '<span class="td-action-badge new-badge">NEW</span>' : ''}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
           <td class="td-type-cell"><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
           <td class="td-city">${escapeHtml(lic.city)}</td>
