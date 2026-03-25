@@ -159,8 +159,12 @@
       font-size: 20px;
     }
 
-    .file-picker {
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
     .file-picker select {
       font-size: 16px;
@@ -170,15 +174,40 @@
       background: #fff;
       color: #1a365d;
     }
+    .auto-badge {
+      font-size: 13px;
+      color: #16a34a;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      border-radius: 12px;
+      padding: 3px 10px;
+      font-weight: 600;
+    }
+    .auto-badge.stale {
+      color: #b45309;
+      background: #fef3c7;
+      border-color: #fcd34d;
+    }
   </style>
 </head>
 <body>
 
 <h1>Inventory Count</h1>
+<div class="toolbar">
+  <div class="file-picker">
+    <select id="archive-picker" onchange="loadFromPicker()">
+      <option value="">Latest</option>
+    </select>
+  </div>
+  <span id="live-badge" class="auto-badge" style="display:none;">Live — auto-updating</span>
+</div>
 <div id="app"><div id="loading">Loading latest count...</div></div>
 
 <script>
-const WEBHOOK_URL = 'https://n8n.roblogic.org/webhook/inventory-list';
+const API_BASE = '/inventory/api';
+let currentFile = null;
+let lastSubmittedAt = null;
+let pollTimer = null;
 
 const SECTION_NAMES = {
   draft: 'Draft / On Tap',
@@ -289,26 +318,100 @@ function renderCount(data) {
   app.innerHTML = html;
 }
 
-// Try to load from URL param ?file=FILENAME, or fetch latest from n8n
-async function init() {
-  const params = new URLSearchParams(window.location.search);
-  const file = params.get('file');
-
-  // Try the n8n webhook that returns latest (or specific file)
+async function loadCount(file) {
   try {
     const url = file
-      ? WEBHOOK_URL + '?file=' + encodeURIComponent(file)
-      : WEBHOOK_URL;
+      ? API_BASE + '/count?file=' + encodeURIComponent(file)
+      : API_BASE + '/latest';
     const resp = await fetch(url);
     if (resp.ok) {
       const data = await resp.json();
+      if (data.error) throw new Error(data.error);
       renderCount(data);
-      return;
+      lastSubmittedAt = data.submitted_at || null;
+      return true;
     }
   } catch (e) {}
-
-  // Fallback: show empty state
   document.getElementById('app').innerHTML = '<div class="empty-state"><h2>No counts yet</h2><p>Waiting for someone to submit an inventory count.</p></div>';
+  return false;
+}
+
+async function loadArchiveList() {
+  try {
+    const resp = await fetch(API_BASE + '/archive');
+    if (!resp.ok) return;
+    const data = await resp.json();
+    const picker = document.getElementById('archive-picker');
+    const entries = data.entries || [];
+    entries.forEach(e => {
+      const opt = document.createElement('option');
+      opt.value = e.file;
+      const d = new Date(e.submitted_at);
+      opt.textContent = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+        + ' (' + (e.device || '?') + ')';
+      picker.appendChild(opt);
+    });
+  } catch (e) {}
+}
+
+function loadFromPicker() {
+  const picker = document.getElementById('archive-picker');
+  const file = picker.value;
+  currentFile = file || null;
+  const badge = document.getElementById('live-badge');
+  if (file) {
+    badge.style.display = 'none';
+    stopPolling();
+  } else {
+    badge.style.display = '';
+    startPolling();
+  }
+  loadCount(file || null);
+}
+
+async function checkForUpdate() {
+  if (currentFile) return;
+  try {
+    const resp = await fetch(API_BASE + '/latest');
+    if (!resp.ok) return;
+    const data = await resp.json();
+    if (data.submitted_at && data.submitted_at !== lastSubmittedAt) {
+      renderCount(data);
+      lastSubmittedAt = data.submitted_at;
+      loadArchiveList();
+      const badge = document.getElementById('live-badge');
+      badge.textContent = 'Updated just now';
+      badge.className = 'auto-badge';
+      setTimeout(() => { badge.textContent = 'Live — auto-updating'; }, 3000);
+    }
+  } catch (e) {}
+}
+
+function startPolling() {
+  stopPolling();
+  pollTimer = setInterval(checkForUpdate, 15000);
+}
+function stopPolling() {
+  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+}
+
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+  if (file) {
+    currentFile = file;
+    document.getElementById('archive-picker').value = file;
+  }
+  await loadCount(file || null);
+  await loadArchiveList();
+  if (file) {
+    document.getElementById('archive-picker').value = file;
+  }
+  if (!currentFile) {
+    document.getElementById('live-badge').style.display = '';
+    startPolling();
+  }
 }
 
 init();
