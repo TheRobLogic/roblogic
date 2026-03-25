@@ -390,7 +390,7 @@ async function checkForUpdate() {
 
 function startPolling() {
   stopPolling();
-  pollTimer = setInterval(checkForUpdate, 15000);
+  pollTimer = setInterval(checkForUpdate, 60000);
 }
 function stopPolling() {
   if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
