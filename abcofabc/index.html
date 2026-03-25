@@ -378,7 +378,7 @@
     <div class="container">
       <div class="hero-badge">San Diego County</div>
       <h1>The ABC <span class="accent">of ABC</span></h1>
-      <p class="hero-sub">A daily-updated tracker for every new California ABC liquor license issued in San Diego County. Map, filter, search — then reach out.</p>
+      <p class="hero-sub">A daily-updated tracker for every new California ABC liquor license in San Diego County. See which ones are brand-new businesses vs. ownership transfers. Map, filter, search — then reach out.</p>
       <a href="/jordon/" class="hero-cta">
         Open the Tracker
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
@@ -390,7 +390,7 @@
   <section class="container reveal">
     <div class="section-label">What it does</div>
     <h2 class="section-title">New licenses, on your radar</h2>
-    <p class="section-desc">Every morning the pipeline pulls fresh data straight from the California ABC, geocodes each business, and publishes an interactive map and searchable table.</p>
+    <p class="section-desc">Every morning the tracker pulls fresh data from the California ABC, geocodes each business, and publishes an interactive map and searchable table. Each license is tagged as a brand-new business or a transfer.</p>
 
     <div class="feature-grid">
       <div class="feature-card">
@@ -398,7 +398,15 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7Z"/></svg>
         </div>
         <h3>Interactive Map</h3>
-        <p>Every license plotted on an OpenStreetMap. Color-coded dots. Tap a pin to see the full details and jump to Google Maps.</p>
+        <p>Every license plotted on a map. Color-coded dots by category. Tap a pin to see full details and jump to Google Maps.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(234,179,8,0.12);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>New vs. Transfer</h3>
+        <p>Each license is tagged as <strong>NEW</strong> (a brand-new business) or <strong>Transfer</strong> (existing license changing hands). Filter to see just the ones you care about.</p>
       </div>
 
       <div class="feature-card">
@@ -408,21 +416,13 @@
         <h3>Filter &amp; Search</h3>
         <p>Toggle by category — on-premise, off-premise, wholesale, other. Search by name, address, or city. Drill into specific license types.</p>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon" style="background:rgba(168,85,247,0.12);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg>
-        </div>
-        <h3>Daily Refresh</h3>
-        <p>Automated pipeline runs every morning. New licenses appear automatically — no manual updates, no stale data.</p>
-      </div>
     </div>
   </section>
 
   <!-- ═══════════════════ HOW TO USE ═══════════════════ -->
   <section class="container reveal" style="padding-top:2rem;">
     <div class="section-label">How to use it</div>
-    <h2 class="section-title">Five taps to your next lead</h2>
+    <h2 class="section-title">Six taps to your next lead</h2>
 
     <div class="steps">
       <div class="step">
@@ -436,6 +436,14 @@
             <span class="cat-pill"><span class="cat-dot" style="background:#a855f7"></span> Wholesale</span>
             <span class="cat-pill"><span class="cat-dot" style="background:#f97316"></span> Other</span>
           </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-content">
+          <h3>New or Transfer?</h3>
+          <p>Use the <strong>All / New / Transfers</strong> buttons to filter. "New" means a brand-new license — someone opening a business for the first time. "Transfer" means an existing license that changed hands or moved locations.</p>
         </div>
       </div>
 
