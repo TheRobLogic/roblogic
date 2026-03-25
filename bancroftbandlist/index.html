@@ -876,30 +876,40 @@
         const res = await fetch(NOTES_API, { signal: AbortSignal.timeout(3000) });
         if (res.ok) {
           const serverNotes = await res.json();
-          // Merge: server wins for newer timestamps, local wins otherwise
+          // Server stores arrays per band. Merge with local.
           for (const [band, data] of Object.entries(serverNotes)) {
-            const local = userNotes[band];
-            if (!local || (data.updated && (!local.updated || data.updated > local.updated))) {
-              userNotes[band] = data;
+            let serverArr = [];
+            if (Array.isArray(data)) {
+              serverArr = data;
+            } else if (data && typeof data === 'object' && data.note) {
+              // Migrate old single-note format from server
+              try { serverArr = JSON.parse(data.note); } catch(e) {
+                serverArr = [{ text: data.note, user: data.user || '', ts: data.updated || '', id: Date.now() }];
+              }
             }
+            const localArr = getBandNotes(band);
+            // Merge: combine by id, deduplicate
+            const merged = new Map();
+            for (const n of localArr) merged.set(n.id, n);
+            for (const n of serverArr) merged.set(n.id, n);
+            userNotes[band] = Array.from(merged.values());
           }
           saveNotesToStorage();
           notesLoaded = true;
-          renderTable(); // re-render with synced notes
+          renderTable();
         }
       } catch(e) {
-        // n8n not available — localStorage only, that's fine
         console.log('Notes API unavailable, using localStorage');
       }
     }
 
-    async function saveNoteToServer(band, note) {
-      const user = sessionStorage.getItem('bandlist-user') || 'unknown';
+    async function saveNoteToServer(bandName) {
+      const notes = getBandNotes(bandName);
       try {
         await fetch(NOTES_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ band, note, user }),
+          body: JSON.stringify({ band: bandName, notes: notes }),
           signal: AbortSignal.timeout(3000)
         });
       } catch(e) {
@@ -978,7 +988,7 @@
           if (!Array.isArray(userNotes[bandName])) userNotes[bandName] = [];
           userNotes[bandName].push({ text: val, user: user, ts: ts, id: id });
           saveNotesToStorage();
-          saveNoteToServer(bandName, JSON.stringify(userNotes[bandName]));
+          saveNoteToServer(bandName);
         }
         // Re-render just this cell
         input.remove();
@@ -998,7 +1008,7 @@
       userNotes[bandName] = notes.filter(n => n.id !== noteId);
       if (userNotes[bandName].length === 0) delete userNotes[bandName];
       saveNotesToStorage();
-      saveNoteToServer(bandName, JSON.stringify(userNotes[bandName] || []));
+      saveNoteToServer(bandName);
       renderTable();
     }
 
