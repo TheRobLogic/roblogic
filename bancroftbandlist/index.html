@@ -787,7 +787,7 @@
             : `<div class="auto-note">${autoNote}</div>`)
           : '';
         const userHtml = userNote
-          ? `<div class="user-note" onclick="editNote(this, '${escapeHtml(b.name).replace(/'/g, "\\'")}')">${escapeHtml(userNote)}</div>`
+          ? `<div class="user-note" onclick="editNote(this, '${escapeHtml(b.name).replace(/'/g, "\\'")}')">${escapeHtml(userNote)}${getNoteBy(b.name)}</div>`
           : `<div class="user-note empty" onclick="editNote(this, '${escapeHtml(b.name).replace(/'/g, "\\'")}')" title="Click to add a note">+ note</div>`;
         const notesCell = autoHtml + userHtml;
 
@@ -905,6 +905,14 @@
       const entry = userNotes[bandName];
       if (!entry) return '';
       return typeof entry === 'string' ? entry : (entry.note || '');
+    }
+
+    function getNoteBy(bandName) {
+      const entry = userNotes[bandName];
+      if (!entry || typeof entry === 'string') return '';
+      const who = entry.user || '';
+      if (!who) return '';
+      return ` <span class="note-by">— ${escapeHtml(who)}</span>`;
     }
 
     function editNote(el, bandName) {
