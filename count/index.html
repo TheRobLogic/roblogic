@@ -526,6 +526,21 @@
 </head>
 <body>
 
+<!-- WHO'S COUNTING PICKER -->
+<div id="namePicker" style="position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;padding:24px;">
+    <h1 style="font-family:var(--font-display);color:var(--cream);font-size:28px;margin-bottom:32px;">Who's Counting?</h1>
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:center;">
+      <button class="name-pick" data-name="Kayla" style="font-family:var(--font-display);font-size:20px;letter-spacing:0.04em;background:var(--red);color:#fff;border:none;border-radius:8px;padding:16px 48px;cursor:pointer;width:220px;">KAYLA</button>
+      <button class="name-pick" data-name="Rob" style="font-family:var(--font-display);font-size:20px;letter-spacing:0.04em;background:var(--red);color:#fff;border:none;border-radius:8px;padding:16px 48px;cursor:pointer;width:220px;">ROB</button>
+      <div style="margin-top:8px;display:flex;gap:8px;align-items:center;">
+        <input id="otherName" type="text" placeholder="Other…" style="font-family:var(--font-body);font-size:18px;background:var(--bg-card);color:var(--cream);border:2px solid var(--cream-dim);border-radius:8px;padding:14px 16px;width:160px;">
+        <button id="otherGo" style="font-family:var(--font-display);font-size:16px;background:var(--red);color:#fff;border:none;border-radius:8px;padding:14px 20px;cursor:pointer;">GO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="topbar">
   <span class="title">INVENTORY</span>
   <span id="progress">0 / 171</span>
@@ -1154,8 +1169,6 @@ function restoreFromLocal() {
 }
 
 function buildPayload() {
-  const params = new URLSearchParams(window.location.search);
-  const device = params.get('device') || 'unknown';
   const allData = collectAllData();
   const totalItems = INVENTORY.reduce((sum, s) => sum + s.items.length, 0);
 
@@ -1182,7 +1195,7 @@ function buildPayload() {
 
   return {
     submitted_at: new Date().toISOString(),
-    device,
+    device: counterName,
     sections,
     eighty_sixed: allData.eightySixed,
     progress: { counted, total: totalItems },
@@ -1220,19 +1233,37 @@ function showOverlay(title, subtitle) {
   document.body.appendChild(overlay);
 }
 
+let counterName = 'unknown';
+
+function startCounter(name) {
+  counterName = name;
+  document.getElementById('namePicker').style.display = 'none';
+  fetch('https://ntfy.sh/roblogic-claude', {
+    method: 'POST',
+    headers: { 'Title': 'Inventory count opened', 'Tags': 'beers' },
+    body: name + ' opened the inventory counter'
+  }).catch(() => {});
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderSections();
   restoreFromLocal();
   updateProgress();
 
-  // Ping ntfy on page open
-  const params = new URLSearchParams(window.location.search);
-  const device = params.get('device') || 'unknown';
-  fetch('https://ntfy.sh/roblogic-claude', {
-    method: 'POST',
-    headers: { 'Title': 'Inventory count opened', 'Tags': 'beers' },
-    body: device + ' opened the inventory counter'
-  }).catch(() => {});
+  // Name picker handlers
+  document.querySelectorAll('.name-pick').forEach(btn => {
+    btn.addEventListener('click', () => startCounter(btn.dataset.name));
+  });
+  document.getElementById('otherGo').addEventListener('click', () => {
+    const name = document.getElementById('otherName').value.trim();
+    if (name) startCounter(name);
+  });
+  document.getElementById('otherName').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const name = e.target.value.trim();
+      if (name) startCounter(name);
+    }
+  });
 
   const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
   const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
