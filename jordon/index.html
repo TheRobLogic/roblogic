@@ -385,6 +385,47 @@
     .td-status.active { background: rgba(34,197,94,0.1); color: #16a34a; }
     .td-status.other-status { background: rgba(148,163,184,0.1); color: var(--text-muted); }
 
+    /* ── NEW / TRANSFER badge ── */
+    .td-action-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.1rem 0.4rem;
+      border-radius: 100px;
+      display: inline-block;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+    .td-action-badge.new-badge { background: rgba(234,179,8,0.15); color: #a16207; }
+    .td-action-badge.transfer-badge { background: rgba(148,163,184,0.1); color: var(--text-muted); }
+
+    /* ── New/Transfer toggle ── */
+    .action-filter {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .action-filter-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      border: 1.5px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .action-filter-btn:hover { border-color: rgba(148, 163, 184, 0.4); color: var(--text-white); }
+    .action-filter-btn.active {
+      background: rgba(234,179,8,0.2);
+      border-color: #eab308;
+      color: var(--text-white);
+    }
+
     .td-date {
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
@@ -612,6 +653,12 @@
           <div class="legend-item" data-category="other" onclick="toggleCategoryFilter('other')"><div class="legend-dot" style="background:#f97316"></div> Other <span class="legend-count" id="count-other"></span></div>
         </div>
 
+        <div class="action-filter">
+          <div class="action-filter-btn" id="filter-all" onclick="setActionFilter('all')">All</div>
+          <div class="action-filter-btn" id="filter-new" onclick="setActionFilter('new')">New Only</div>
+          <div class="action-filter-btn" id="filter-transfer" onclick="setActionFilter('transfer')">Transfers</div>
+        </div>
+
         <div class="filters">
           <input type="text" id="search-input" class="filter-input" placeholder="Search businesses, addresses, cities...">
           <select id="type-filter" class="filter-select">
@@ -676,6 +723,7 @@
     let sortCol = 'issueDate';
     let sortDir = 'desc';
     let categoryFilter = 'on-premise';
+    let actionFilter = 'all'; // 'all', 'new', 'transfer'
 
     // ── Init ──
     async function init() {
@@ -710,6 +758,9 @@
 
         // Init map
         initMap();
+
+        // Set default action filter button state
+        document.getElementById('filter-all').classList.add('active');
 
         // Initial render
         applyFilters();
@@ -773,8 +824,9 @@
         if (lic.phone && lic.website) popupContact += ' &middot; ';
         if (lic.website) popupContact += `<a href="${escapeHtml(lic.website)}" target="_blank" rel="noopener">Website</a>`;
 
+        const actionBadge = lic.isNew === true ? '<span style="display:inline-block;font-size:0.6rem;font-weight:700;background:rgba(234,179,8,0.2);color:#a16207;padding:0.05rem 0.35rem;border-radius:100px;margin-left:0.3rem;vertical-align:middle">NEW</span>' : '';
         marker.bindPopup(`<div style="min-width:160px">
-          <div class="popup-name">${escapeHtml(lic.displayName)}</div>
+          <div class="popup-name">${escapeHtml(lic.displayName)}${actionBadge}</div>
           <div class="popup-type" style="color:${typeColor}">${escapeHtml(lic.typeLabel)}</div>
           <div class="popup-address">${escapeHtml(fullAddress)}<br>${escapeHtml(lic.city)}, CA ${escapeHtml(lic.zip)}</div>
           ${popupContact ? `<div class="popup-contact">${popupContact}</div>` : ''}
@@ -805,6 +857,10 @@
       filteredLicenses = allLicenses.filter(lic => {
         // Category badge filter
         if (categoryFilter && lic.category !== categoryFilter) return false;
+
+        // Action filter (new vs transfer)
+        if (actionFilter === 'new' && !lic.isNew) return false;
+        if (actionFilter === 'transfer' && (lic.isNew || lic.isNew === null)) return false;
 
         // Type filter
         if (typeFilter && lic.typeLabel !== typeFilter) return false;
@@ -905,7 +961,7 @@
 
         return `<tr style="${rowStyle}" ${rowClick}>
           <td class="td-date">${formatDate(lic.issueDate)}<a href="${gmapsUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="gmaps-link">Google Maps ↗</a></td>
-          <td class="td-name">${escapeHtml(lic.displayName)}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
+          <td class="td-name">${escapeHtml(lic.displayName)}${lic.isNew === true ? '<span class="td-action-badge new-badge">NEW</span>' : lic.isNew === false ? '<span class="td-action-badge transfer-badge">Transfer</span>' : ''}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
           <td class="td-type-cell"><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
           <td class="td-city">${escapeHtml(lic.city)}</td>
@@ -934,6 +990,13 @@
         const item = document.querySelector(`.legend-item[data-category="${cat}"]`);
         if (item) item.classList.toggle('active-filter', categoryFilter === cat);
       });
+
+      // Count NEW vs Transfer for filter button labels
+      const newCount = allLicenses.filter(l => l.isNew === true).length;
+      const transferCount = allLicenses.filter(l => l.isNew === false).length;
+      document.getElementById('filter-all').textContent = `All (${allLicenses.length})`;
+      document.getElementById('filter-new').textContent = `New (${newCount})`;
+      document.getElementById('filter-transfer').textContent = `Transfers (${transferCount})`;
     }
 
     // ── Helpers ──
@@ -982,6 +1045,14 @@
       categoryFilter = categoryFilter === cat ? null : cat;
       applyFilters();
       if (map) map.setView([32.85, -117.05], 10, { animate: true });
+    }
+
+    // ── Action filter (new vs transfer) ──
+    function setActionFilter(filter) {
+      actionFilter = filter;
+      document.querySelectorAll('.action-filter-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('filter-' + filter).classList.add('active');
+      applyFilters();
     }
 
     // ── Close popups when clicking anywhere outside the map ──
