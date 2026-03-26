@@ -308,13 +308,6 @@
       margin-top: 4px;
     }
 
-    .grand-total-box .savings {
-      font-family: var(--font-accent);
-      font-size: 13px;
-      color: var(--green);
-      margin-top: 6px;
-    }
-
     /* Notes section */
     .notes {
       padding: 24px 0 48px;
@@ -418,12 +411,81 @@
   <header class="order-header">
     <div class="container">
       <h1><span>Crest</span> Order</h1>
-      <div class="date">Week of March 20 - 26, 2026</div>
-      <div class="delivery">Delivery: Thursday, March 20</div>
-      <div class="budget-badge">Budget week &mdash; under $500</div>
+      <div class="date">Week of March 27 &ndash; April 2, 2026</div>
+      <div class="delivery">Delivery: Friday, March 27</div>
+      <div class="budget-badge">Essentials only &mdash; tight week</div>
       <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
     </div>
   </header>
+
+  <hr class="glow-divider">
+
+  <!-- Liquor Order (priority this week) -->
+  <section class="order-section">
+    <div class="container">
+      <h2><span>Liquor</span> Order</h2>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th style="text-align:center">Qty</th>
+            <th class="right">Est. Cost</th>
+            <th class="reason">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="item-name">Ancient Age Bourbon</span><span class="item-format">1L &mdash; Full Case (well whiskey)</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$97.20</td>
+            <td class="reason">Well whiskey. Nearly empty.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Pueblo Viejo Tequila</span><span class="item-format">1L &mdash; 6 bottles (well tequila)</span></td>
+            <td class="qty">6</td>
+            <td class="cost">$93.60</td>
+            <td class="reason">Well tequila. Under 1 week supply.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$56.54</td>
+            <td class="reason">Completely out. High demand.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">$27.66</td>
+            <td class="reason">Down to last pour.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Gran Malo Tamarindo</span><span class="item-format">750ml &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$35.48</td>
+            <td class="reason">Half bottle left. Popular call.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Llords Watermelon</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$14.14</td>
+            <td class="reason">Mexican Candy + shot ingredient.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Dr. McGillicuddy Grape</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">~$12.85</td>
+            <td class="reason">Out of stock.</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td>Liquor Subtotal</td>
+            <td></td>
+            <td class="cost">~$337</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <hr class="glow-divider">
 
@@ -442,45 +504,27 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="item-name">Coors Light</span><span class="item-format">B24 12oz 12P</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$22.80</td>
-            <td class="reason">41 on hand, 22/wk. Show + pong week.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Corona Extra</span><span class="item-format">B24 12oz LSE</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$28.15</td>
-            <td class="reason">Only 12 on hand, 14/wk. Under 1 week.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Pacifico</span><span class="item-format">B24 12oz LSE</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$26.80</td>
-            <td class="reason">Only 12 on hand, 15.4/wk. Under 1 week.</td>
-          </tr>
-          <tr>
             <td><span class="item-name">White Claw Tall</span><span class="item-format">C12 19.2oz &mdash; any 2 flavors</span></td>
             <td class="qty">2</td>
             <td class="cost">$68.30</td>
-            <td class="reason">#1 seller by revenue. 17 on hand, 24/wk = 5 days.</td>
+            <td class="reason">8 on hand, 30/wk. Under 2 days.</td>
           </tr>
           <tr>
-            <td><span class="item-name">White Claw Variety 1</span><span class="item-format">C24 12oz</span></td>
+            <td><span class="item-name">White Claw Variety</span><span class="item-format">C24 12oz</span></td>
             <td class="qty">1</td>
             <td class="cost">$30.40</td>
-            <td class="reason">9 smalls on hand, 12.8/wk. Under 1 week.</td>
+            <td class="reason">8 on hand, need to cover the week.</td>
           </tr>
           <tr>
-            <td><span class="item-name">Mickeys Malt</span><span class="item-format">B24 12oz 12P</span></td>
+            <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz LSE</span></td>
             <td class="qty">1</td>
-            <td class="cost">$22.45</td>
-            <td class="reason">Only 4 on hand, 10.7/wk. Under 3 days.</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">Down to 1 bottle. 14/wk velocity.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Beer Subtotal</td>
             <td></td>
-            <td class="cost">$199</td>
+            <td class="cost">~$127</td>
             <td></td>
           </tr>
         </tbody>
@@ -490,10 +534,10 @@
 
   <hr class="glow-divider">
 
-  <!-- Liquor Order -->
+  <!-- Bar Supplies -->
   <section class="order-section">
     <div class="container">
-      <h2><span>Liquor</span> Order</h2>
+      <h2><span>Bar</span> Supplies</h2>
       <table class="order-table">
         <thead>
           <tr>
@@ -505,63 +549,15 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="item-name">Platinum 7X Vodka</span><span class="item-format">B12 1L &mdash; Full Case (well vodka)</span></td>
-            <td class="qty">1</td>
-            <td class="cost">~$88</td>
-            <td class="reason">Well vodka. High volume &mdash; case rate saves vs singles.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Gran Malo Tamarindo</span><span class="item-format">750ml &mdash; Singles</span></td>
-            <td class="qty">/2</td>
-            <td class="cost">$35.48</td>
-            <td class="reason">Half bottle left. 15.4 drinks/wk = will run out.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Fireball Cinnamon</span><span class="item-format">1L &mdash; Singles</span></td>
-            <td class="qty">/2</td>
-            <td class="cost">$32.30</td>
-            <td class="reason">~1/4 btl left. 11.4 drinks/wk, trending up 51%.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Tito's Vodka</span><span class="item-format">1L &mdash; Single</span></td>
+            <td><span class="item-name">Finest Call Sweet &amp; Sour</span><span class="item-format">1L &mdash; Single</span></td>
             <td class="qty">/1</td>
-            <td class="cost">$25.24</td>
-            <td class="reason">Down to ~1 btl. Popular call vodka.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">$27.66</td>
-            <td class="reason">~1 btl left. 11 drinks/wk.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Tullamore Dew Honey</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">~$28</td>
-            <td class="reason">1/4 btl left.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Llords Watermelon</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">$7.07</td>
-            <td class="reason">Mexican Candy + shot ingredient.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Llords Sour Apple</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">$7.07</td>
-            <td class="reason">Apple shot ingredient.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Blue Curacao</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">~$7</td>
-            <td class="reason">AMF + Long Island ingredient.</td>
+            <td class="cost">~$9</td>
+            <td class="reason">Running low.</td>
           </tr>
           <tr class="subtotal-row">
-            <td>Liquor Subtotal</td>
+            <td>Supplies Subtotal</td>
             <td></td>
-            <td class="cost">~$258</td>
+            <td class="cost">~$9</td>
             <td></td>
           </tr>
         </tbody>
@@ -575,9 +571,8 @@
   <section class="grand-total">
     <div class="grand-total-box">
       <div class="label">Estimated Total</div>
-      <div class="amount">~$457</div>
-      <div class="note">Based on confirmed Crest invoice pricing. Vodka case rate estimated (~$88 vs $112 singles).</div>
-      <div class="savings">$563 less than last week &mdash; no kegs, vodka case + cocktail ingredients</div>
+      <div class="amount">~$473</div>
+      <div class="note">Based on confirmed Crest invoice pricing. Essentials only &mdash; wells + top call + critical beer.</div>
     </div>
   </section>
 
@@ -589,7 +584,11 @@
       <h2><span>Notes</span> for Rep</h2>
 
       <div class="note-card">
-        <strong>Platinum 7X</strong> &mdash; full case please, case rate.
+        <strong>Ancient Age</strong> &mdash; full case please, case rate.
+      </div>
+
+      <div class="note-card">
+        <strong>Pueblo Viejo</strong> &mdash; 6 bottles (half case).
       </div>
 
       <div class="note-card">
@@ -597,57 +596,51 @@
       </div>
 
       <div class="note-card">
-        <strong>Liqueurs</strong> (watermelon, sour apple, blue curacao) &mdash; any brand is fine.
-      </div>
-
-      <div class="note-card">
-        Trying to keep this one <strong>under $500</strong>. If it's over, drop the Tullamore Honey.
+        <strong>Tight budget week</strong> &mdash; essentials only, no kegs.
       </div>
 
       <div class="note-card">
         <div class="flag">This Week</div>
-        Thu: 4-band show &bull; Sat: Beer pong tournament &bull; Sun: Darts &bull; Mon: Pong + Vinyl Knights &bull; Tue: Karaoke &bull; Fri/Wed: quiet
+        Fri: Matters Most (live) &bull; Sun: Darts &bull; Mon: Pong + Vinyl Knights &bull; Tue: Karaoke
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="order-footer">
-    <strong>Barkeep</strong> by Rob Logic &middot; Generated Mar 19, 2026 &middot; The Bancroft Bar
+    <strong>Barkeep</strong> by Rob Logic &middot; Generated Mar 26, 2026 &middot; The Bancroft Bar
   </footer>
 
   <!-- Hidden text for copy -->
   <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
-Delivery: Thu Mar 20, 2026
-Week of Mar 20-26 (Thu show + Sat pong)
-
-BEER:
-1  Coors Light B24 12oz 12P
-1  Corona Extra B24 12oz
-1  Pacifico B24 12oz
-2  White Claw Tall C12 19.2oz (any 2 flavors)
-1  White Claw Variety 1 C24 12oz
-1  Mickeys Malt B24 12oz 12P
+Delivery: Fri Mar 27, 2026
+Week of Mar 27 - Apr 2 (Essentials only — tight week)
 
 LIQUOR:
-1 case  Platinum 7X Vodka B12 1L (well vodka — case rate please)
-/2  Gran Malo Spicy Tamarindo 750ml
-/2  Fireball Cinnamon 1L
-/1  Tito's Vodka 1L
+1 case  Ancient Age Bourbon 1L (well whiskey — case rate please)
+6       Pueblo Viejo Tequila 1L (well tequila — half case)
+/2  Tullamore Dew 1L
 /1  Jack Daniels 1L
-/1  Tullamore Dew Honey 1L
-/1  Llords Watermelon 1L
-/1  Llords Sour Apple 1L
-/1  Blue Curacao 1L (any brand)
+/2  Gran Malo Tamarindo 750ml
+/2  Llords Watermelon 1L
+/1  Dr. McGillicuddy Grape 1L
 
-EST. TOTAL: ~$457
+BEER:
+2  White Claw Tall C12 19.2oz (any 2 flavors)
+1  White Claw Variety C24 12oz
+1  Heineken B24 12oz
+
+BAR SUPPLIES:
+/1  Finest Call Sweet & Sour 1L
+
+EST. TOTAL: ~$473
 
 NOTES:
 - No kegs this week.
-- Vodka as full case — case rate please.
-- White Claw tall: any 3 flavors, dealer's choice.
-- Blue curacao, watermelon, sour apple — any brand is fine.
-- If order is over $500, drop the Tullamore Honey.
+- Ancient Age as full case — case rate please.
+- Pueblo Viejo: 6 bottles (half case).
+- White Claw tall: any 2 flavors, dealer's choice.
+- Tight budget week — essentials only.
   </textarea>
 
   <script>
