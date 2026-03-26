@@ -528,7 +528,7 @@
 
 <div id="topbar">
   <span class="title">INVENTORY</span>
-  <span id="progress">0 / 192</span>
+  <span id="progress">0 / 146</span>
   <button id="submitBtn" disabled>SUBMIT</button>
 </div>
 
@@ -573,13 +573,10 @@ const INVENTORY = [
       'Modelo Especial','Heineken','Coors Light','Pacifico','Stella','Corona',
       'Heineken Zero N/A','Budweiser','Miller Lite','Michelob Ultra',
       'Miller High Life','Bud Light','Coors Original','PBR 12oz','Modelo Negra',
-      'Michelob Ultra NA','Corona NA','Surfside','Modelo Oro','805 Bottle',
-      'Dos Equis','Corona Premier',
+      'Michelob Ultra NA','Surfside','Modelo Oro','Corona Premier','Montucky',
       'White Claw Tall 19.2oz (any)','White Claw Small (any)','Happy Dad Seltzer (any)',
       'Buzzball (any)',"Hamm's 12oz",'Natural Light','Rolling Rock 12oz',
-      'Mari-Hi Seltzer','Topo Chico Seltzer (any)','Sierra Nevada Hazy IPA Can',
-      'Twisted Tea 12oz',
-      'Bud Light Chelada Tall Boy','Guinness Stout','PBR Tall Can',
+      'Bud Light Chelada Tall Boy','PBR Tall Can',
       "Hamm's 16oz","Mickey's Grenade"
     ]
   },
@@ -593,7 +590,7 @@ const INVENTORY = [
     ],
     items: [
       'Well Tequila','Well Vodka','Well Whiskey',
-      'Well Rum','Well Gin','Well Scotch','Well Brandy'
+      'Well Rum','Well Gin'
     ]
   },
   {
@@ -604,13 +601,9 @@ const INVENTORY = [
       { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
-      'Tullamore Dew','Jack Daniels','Jameson','Fireball',"Seagram's 7",
+      'Tullamore Dew','Jack Daniels','Jameson','Fireball',
       'Tullamore Dew Honey','Stone Imperial Whiskey',"Blanton's Single Barrel",
-      'Rams Point PB Whiskey','Bulleit Rye','Crown Royal',"Maker's Mark",
-      'Monkey Shoulder','Johnnie Walker Black','Bulleit Bourbon','Glenfiddich',
-      'EH Taylor Barrel Proof','EH Taylor Rye','Skrewball PB Whiskey',
-      'Bushmills Irish',"Dewar's Scotch",'Wild Turkey 101',
-      '8 Ball Chocolate Whiskey','Traveller Bourbon','Nelson Brothers Classic'
+      'Rams Point PB Whiskey','EH Taylor Barrel Proof'
     ]
   },
   {
@@ -622,9 +615,7 @@ const INVENTORY = [
     ],
     items: [
       'Gran Malo Blanco','Cazadores Reposado','Hornitos Reposado','Milagro Reposado',
-      'Mijenta Blanco','Mijenta Reposado','Mi Campo Reposado','Mi Campo Blanco',
-      'Mango Shotta','400 Conejos Mezcal','Corazon Reposado',
-      'Gran Orendain Reposado','Lo Ciento Reposado'
+      'Mijenta Blanco','Mijenta Reposado','Mango Shotta'
     ]
   },
   {
@@ -635,10 +626,9 @@ const INVENTORY = [
       { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
-      "Tito's",'New Amsterdam Pineapple','Hideout Mandarin','Pink Whitney',
-      'Reyka','Hideout Cucumber','New Amsterdam Peach','New Amsterdam (plain)',
-      'Absolut','Absolut Peppar','Stoli','Wheatley',
-      "Seagram's Sweet Tea"
+      "Tito's",'New Amsterdam Pineapple','Pink Whitney',
+      'New Amsterdam Peach','New Amsterdam (plain)',
+      'Absolut Peppar'
     ]
   },
   {
@@ -649,8 +639,8 @@ const INVENTORY = [
       { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
-      'Captain Morgan Spiced','Bacardi Silver','Sailor Jerry','Malibu Coconut',
-      "Myers Dark",'RumChata','RumChata Peppermint','Don Q 151',"Whaler's Dark"
+      'Sailor Jerry','Malibu Coconut',
+      "Myers Dark",'RumChata','RumChata Peppermint','Don Q 151'
     ]
   },
   {
@@ -661,7 +651,7 @@ const INVENTORY = [
       { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
-      "Hendrick's",'Gin Mare','Bombay Sapphire','Tanqueray',
+      "Hendrick's",'Gin Mare',
       'Condesa Pricklberry'
     ]
   },
@@ -673,9 +663,9 @@ const INVENTORY = [
       { key: 'room',    label: 'Room',   inputType: 'number' }
     ],
     items: [
-      'Jagermeister','Fernet Branca','Kahlua','Baileys Irish Cream','Baileys Almond',
+      'Fernet Branca','Kahlua','Baileys Irish Cream','Baileys Almond',
       'Southern Comfort 100','Frangelico','St. Germain','Campari','Midori Melon',
-      'Goldschlager','Rumpleminze','Grind Espresso','Christian Bros Brandy',
+      'Grind Espresso','Christian Bros Brandy',
       'Llords Peach','Llords Watermelon','Dr. McGillicuddy Peppermint',
       'Cribari Dry Vermouth','Cribari Sweet Vermouth','Martini & Rossi Dry',
       'Triple Sec','Amaretto','Blue Curacao','Peachtree','Buttershots',
