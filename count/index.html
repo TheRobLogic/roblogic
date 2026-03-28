@@ -724,7 +724,8 @@ function makeInput(col, sectionId, itemIndex) {
     inp.dataset.col = col.key;
     inp.dataset.section = sectionId;
     inp.dataset.index = idx;
-    inp.placeholder = '—';
+    const hints = { cases: 'sealed', loose: 'bottles', bar: 'each' };
+    inp.placeholder = hints[col.key] || '—';
     inp.min = '0';
     // Block decimals: strip non-digit chars on every keystroke
     inp.addEventListener('input', function() {
