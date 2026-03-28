@@ -292,6 +292,15 @@
       border-color: var(--gold);
     }
     .count-input::placeholder { color: rgba(158,144,128,0.35); }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-4px); }
+      40%, 80% { transform: translateX(4px); }
+    }
+    .count-input.shake {
+      animation: shake 0.4s ease;
+      border-color: var(--red) !important;
+    }
 
     /* ── CYCLE BUTTONS (keg / fill) ── */
     .cycle-btn {
@@ -710,12 +719,26 @@ function makeInput(col, sectionId, itemIndex) {
     inp.type = 'number';
     inp.inputMode = 'numeric';
     inp.pattern = '[0-9]*';
+    inp.step = '1';
     inp.className = 'count-input' + (isAddRow ? ' add-input' : '');
     inp.dataset.col = col.key;
     inp.dataset.section = sectionId;
     inp.dataset.index = idx;
     inp.placeholder = '—';
     inp.min = '0';
+    // Block decimals: strip non-digit chars on every keystroke
+    inp.addEventListener('input', function() {
+      const clean = this.value.replace(/[^0-9]/g, '');
+      if (clean !== this.value) {
+        this.value = clean;
+        this.classList.add('shake');
+        setTimeout(() => this.classList.remove('shake'), 400);
+      }
+    });
+    // Belt & suspenders: block decimal point and minus key
+    inp.addEventListener('keydown', function(e) {
+      if (e.key === '.' || e.key === '-' || e.key === 'e') e.preventDefault();
+    });
     return inp;
   } else {
     // cycle button (keg or fill)
