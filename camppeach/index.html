@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camp Peach — Quick Reference</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1f3d5;&#xfe0f;</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest-dark:   #0d1a0f;
+      --forest-deep:   #142016;
+      --forest-mid:    #1e3320;
+      --forest-light:  #2a4a2c;
+      --forest-muted:  #3d6b40;
+      --bark:          #4a3728;
+      --bark-light:    #6b5040;
+      --ember-glow:    #c84b0a;
+      --ember-bright:  #e8620e;
+      --flame-orange:  #f5861e;
+      --flame-yellow:  #f5c842;
+      --ash:           #c8b89a;
+      --ash-light:     #e8d8c0;
+      --smoke:         #8a9e8c;
+      --smoke-light:   #b0c4b2;
+      --moss:          #4a7a4c;
+      --pine:          #2d5230;
+      --card-bg:       rgba(20, 32, 22, 0.92);
+      --border:        rgba(74, 122, 76, 0.3);
+      --border-glow:   rgba(200, 75, 10, 0.4);
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background-color: var(--forest-dark);
+      color: var(--ash-light);
+      font-family: 'Georgia', 'Times New Roman', serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 60% at 50% 100%, rgba(200,75,10,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(13,26,15,0.8) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(13,26,15,0.8) 0%, transparent 70%),
+        repeating-linear-gradient(90deg, transparent 0px, transparent 3px, rgba(20,32,22,0.4) 3px, rgba(20,32,22,0.4) 4px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      padding: 2.5rem 0 1.5rem;
+      text-align: center;
+    }
+
+    .campfire-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: var(--flame-orange);
+      text-shadow: 0 0 20px rgba(200,75,10,0.4);
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--smoke-light);
+      font-style: italic;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      color: var(--ember-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid var(--border-glow);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card:hover {
+      border-color: var(--border-glow);
+    }
+
+    /* QR codes */
+    .qr-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .qr-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .qr-card canvas {
+      background: white;
+      border-radius: 6px;
+      padding: 8px;
+      display: block;
+      margin: 0 auto 0.75rem;
+    }
+
+    .qr-label {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--ash-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .qr-sub {
+      font-size: 0.75rem;
+      color: var(--smoke);
+      font-style: italic;
+    }
+
+    /* Credential table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      color: var(--ember-glow);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.4rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(74,122,76,0.15);
+    }
+
+    td:first-child {
+      font-weight: bold;
+      color: var(--ash-light);
+    }
+
+    td a {
+      color: var(--flame-orange);
+      text-decoration: none;
+    }
+
+    td a:hover { text-decoration: underline; }
+
+    .mono {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      color: var(--smoke-light);
+    }
+
+    /* WiFi highlight */
+    .wifi-box {
+      background: linear-gradient(135deg, var(--forest-mid), var(--forest-deep));
+      border: 1px solid var(--moss);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .wifi-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--smoke);
+      margin-bottom: 0.5rem;
+    }
+
+    .wifi-name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--flame-yellow);
+      margin-bottom: 0.25rem;
+    }
+
+    .wifi-pass {
+      font-size: 1.1rem;
+      color: var(--ash);
+    }
+
+    .wifi-pass span {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: var(--smoke-light);
+      background: rgba(0,0,0,0.3);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .checklist li {
+      counter-increment: step;
+      padding: 0.6rem 0 0.6rem 2.5rem;
+      position: relative;
+      border-bottom: 1px solid rgba(74,122,76,0.15);
+      line-height: 1.5;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .checklist li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      background: var(--forest-mid);
+      border: 1px solid var(--moss);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--ember-bright);
+    }
+
+    /* How-to section */
+    .howto-step {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(74,122,76,0.15);
+    }
+
+    .howto-step:last-child { border-bottom: none; }
+
+    .howto-step strong {
+      color: var(--flame-orange);
+    }
+
+    .howto-step p {
+      margin-top: 0.3rem;
+      color: var(--smoke-light);
+      line-height: 1.5;
+    }
+
+    .note {
+      background: rgba(200,75,10,0.1);
+      border-left: 3px solid var(--ember-glow);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: var(--ash);
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--forest-mid);
+      border: 1px solid var(--moss);
+      border-radius: 4px;
+      padding: 0.1rem 0.4rem;
+      font-size: 0.75rem;
+      color: var(--smoke-light);
+      font-family: monospace;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+      color: var(--smoke);
+      font-size: 0.8rem;
+    }
+
+    .footer a {
+      color: var(--ember-glow);
+      text-decoration: none;
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: white; color: #222; }
+      body::before { display: none; }
+      .card, .qr-card, .wifi-box { border-color: #ccc; background: #f9f9f9; }
+      h1, .section-title { color: #333; }
+      td a { color: #333; }
+    }
+
+    @media (max-width: 480px) {
+      .qr-row { grid-template-columns: 1fr; }
+      h1 { font-size: 1.8rem; }
+      .wifi-name { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="header">
+      <svg class="campfire-icon" viewBox="0 0 100 100">
+        <ellipse cx="50" cy="88" rx="30" ry="6" fill="#4a3728" opacity="0.5"/>
+        <line x1="25" y1="85" x2="32" y2="60" stroke="#6b5040" stroke-width="4" stroke-linecap="round"/>
+        <line x1="75" y1="85" x2="68" y2="60" stroke="#6b5040" stroke-width="4" stroke-linecap="round"/>
+        <line x1="35" y1="88" x2="40" y2="62" stroke="#4a3728" stroke-width="3" stroke-linecap="round"/>
+        <line x1="65" y1="88" x2="60" y2="62" stroke="#4a3728" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="50" cy="60" rx="18" ry="30" fill="#c84b0a" opacity="0.9">
+          <animate attributeName="ry" values="30;28;31;29;30" dur="1.5s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="50" cy="55" rx="12" ry="22" fill="#e8620e" opacity="0.9">
+          <animate attributeName="ry" values="22;20;23;21;22" dur="1.2s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="50" cy="50" rx="7" ry="14" fill="#f5c842" opacity="0.95">
+          <animate attributeName="ry" values="14;12;15;13;14" dur="0.9s" repeatCount="indefinite"/>
+        </ellipse>
+        <circle cx="42" cy="40" r="2" fill="#f5c842" opacity="0.7">
+          <animate attributeName="cy" values="40;20;10" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;0.3;0" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="55" cy="38" r="1.5" fill="#e8620e" opacity="0.6">
+          <animate attributeName="cy" values="38;22;8" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;0.2;0" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="48" cy="42" r="1" fill="#f5861e" opacity="0.5">
+          <animate attributeName="cy" values="42;25;12" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;0.2;0" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <h1>Camp Peach</h1>
+      <p class="subtitle">Portable Offline Media Server &mdash; Quick Reference</p>
+    </header>
+
+    <!-- WiFi -->
+    <div class="section">
+      <h2 class="section-title">WiFi</h2>
+      <div class="wifi-box">
+        <div class="wifi-label">Network Name</div>
+        <div class="wifi-name">CampPeach</div>
+        <div class="wifi-pass">Password: <span>robisthebest</span></div>
+      </div>
+    </div>
+
+    <!-- QR Codes -->
+    <div class="section">
+      <h2 class="section-title">QR Codes</h2>
+      <div class="qr-row">
+        <div class="qr-card">
+          <canvas id="qr-wifi" width="160" height="160"></canvas>
+          <div class="qr-label">Join WiFi</div>
+          <div class="qr-sub">Scan to auto-connect</div>
+        </div>
+        <div class="qr-card">
+          <canvas id="qr-portal" width="160" height="160"></canvas>
+          <div class="qr-label">Open Portal</div>
+          <div class="qr-sub">http://camp.peach</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services + Passwords -->
+    <div class="section">
+      <h2 class="section-title">Services &amp; Passwords</h2>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>Service</th><th>URL</th><th>Login</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Landing Page</td>
+              <td><a href="http://camp.peach">camp.peach</a></td>
+              <td class="mono">&mdash;</td>
+            </tr>
+            <tr>
+              <td>Movies &amp; TV</td>
+              <td><a href="http://watch.camp.peach">watch.camp.peach</a></td>
+              <td class="mono">camp / camp</td>
+            </tr>
+            <tr>
+              <td>Music</td>
+              <td><a href="http://music.camp.peach">music.camp.peach</a></td>
+              <td class="mono">camp / camp</td>
+            </tr>
+            <tr>
+              <td>Audiobooks</td>
+              <td><a href="http://audiobooks.camp.peach">audiobooks.camp.peach</a></td>
+              <td class="mono">camp / camp</td>
+            </tr>
+            <tr>
+              <td>Books</td>
+              <td><a href="http://books.camp.peach">books.camp.peach</a></td>
+              <td class="mono">camp / campcamp</td>
+            </tr>
+            <tr>
+              <td>Wiki / Reference</td>
+              <td><a href="http://wiki.camp.peach">wiki.camp.peach</a></td>
+              <td class="mono">&mdash;</td>
+            </tr>
+            <tr>
+              <td>AI Chat</td>
+              <td><a href="http://ai.camp.peach">ai.camp.peach</a></td>
+              <td class="mono">camp@camp.peach / camp</td>
+            </tr>
+            <tr>
+              <td>Radio</td>
+              <td><a href="http://radio.camp.peach">radio.camp.peach</a></td>
+              <td class="mono">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          Kavita (Books) requires a 6-character minimum password, so it's <strong>campcamp</strong> instead of camp.
+          AI Chat uses an email-style login: <strong>camp@camp.peach</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Setup Checklist -->
+    <div class="section">
+      <h2 class="section-title">On-Site Setup</h2>
+      <div class="card">
+        <ol class="checklist">
+          <li>Pack: Mac Mini, GL-B1300 router, USB drive (labeled CampPeach), EcoFlow + solar panel, ethernet cable, power cables</li>
+          <li>Plug in Mac Mini and GL-B1300 router. Connect them with an ethernet cable (Mini to any LAN port on the GL-B1300).</li>
+          <li>Power on both devices. Wait about 2 minutes for all services to start automatically.</li>
+          <li>Connect your phone to <strong>CampPeach</strong> WiFi (password: <strong>robisthebest</strong>)</li>
+          <li>Open <strong>http://camp.peach</strong> in your browser. Everything should just work.</li>
+          <li>Print QR stickers beforehand so guests can scan to join.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="section">
+      <h2 class="section-title">How It Works</h2>
+      <div class="card">
+        <div class="howto-step">
+          <strong>The Hardware</strong>
+          <p>A 2014 Mac Mini running Ubuntu Server acts as the media hub. A GL.iNet GL-B1300 travel router creates the "CampPeach" WiFi network. An EcoFlow RIVER 2 Pro battery with a 220W solar panel keeps everything powered off-grid.</p>
+        </div>
+        <div class="howto-step">
+          <strong>No Internet Needed</strong>
+          <p>Everything runs locally. The router's DNS points all <span class="tag">*.camp.peach</span> addresses to the Mac Mini. Phones think they have internet because the server spoofs connectivity check responses for iOS, Android, and Windows.</p>
+        </div>
+        <div class="howto-step">
+          <strong>Media Library</strong>
+          <p>A 2.7TB USB drive holds movies, TV shows, music, audiobooks, ebooks, and Wikipedia. All media is served through dedicated apps: Jellyfin for video, Navidrome for music, Audiobookshelf for audiobooks, Kavita for ebooks, and Kiwix for offline Wikipedia.</p>
+        </div>
+        <div class="howto-step">
+          <strong>AI-Powered Radio</strong>
+          <p>Type a vibe on the landing page (like "chill acoustic" or "90s hip hop") and a custom radio station is created instantly from the music library. The station plays continuously through an Icecast stream. A small local AI model (Qwen 2.5) enhances the playlist in the background.</p>
+        </div>
+        <div class="howto-step">
+          <strong>AI Chat</strong>
+          <p>Open WebUI connects to a local Ollama instance running Qwen 2.5 1.5B. It's a small model (good for camp trivia, cooking tips, general Q&amp;A) but runs entirely on the Mac Mini's CPU. First query after boot takes about 85 seconds to warm up.</p>
+        </div>
+        <div class="howto-step">
+          <strong>Power Budget</strong>
+          <p>The whole system draws about 50W idle. The EcoFlow RIVER 2 Pro (768Wh) provides roughly 15 hours of runtime, and indefinite with the solar panel in good sun.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="section">
+      <h2 class="section-title">Troubleshooting</h2>
+      <div class="card">
+        <div class="howto-step">
+          <strong>"No Internet" warning on phone?</strong>
+          <p>Dismiss it. The server spoofs connectivity probes so this shouldn't happen often, but some devices are persistent. Everything works without real internet.</p>
+        </div>
+        <div class="howto-step">
+          <strong>Page won't load?</strong>
+          <p>Make sure you're on the CampPeach WiFi. Type the full URL with <span class="tag">http://</span> prefix (not https). Example: <span class="tag">http://camp.peach</span></p>
+        </div>
+        <div class="howto-step">
+          <strong>AI Chat is super slow?</strong>
+          <p>The first query after boot takes ~85 seconds (loading the model into RAM). After that it's 5-7 tokens/second. This is normal for CPU-only inference.</p>
+        </div>
+        <div class="howto-step">
+          <strong>USB drive disappeared?</strong>
+          <p>The exFAT drive can disconnect if bumped. SSH in as <span class="tag">camp@192.168.8.10</span> (password: 12345) and run: <span class="tag">sudo mount -a</span> then restart the affected containers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin -->
+    <div class="section">
+      <h2 class="section-title">Admin Access</h2>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>What</th><th>How</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SSH to server</td>
+              <td class="mono">ssh camp@192.168.8.10 (pass: 12345)</td>
+            </tr>
+            <tr>
+              <td>Router admin</td>
+              <td class="mono">http://192.168.8.1 (pass: Cindy$1972)</td>
+            </tr>
+            <tr>
+              <td>Restart all services</td>
+              <td class="mono">cd ~/camp-server && docker compose restart</td>
+            </tr>
+            <tr>
+              <td>Check containers</td>
+              <td class="mono">docker ps</td>
+            </tr>
+            <tr>
+              <td>Remount USB</td>
+              <td class="mono">sudo mount -a</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Camp Peach &mdash; <a href="https://roblogic.org">roblogic.org</a>
+    </footer>
+
+  </div>
+
+  <!-- QR Code Generator (lightweight, no dependencies) -->
+  <script>
+  // Minimal QR Code generator - adapted from kazuhikoarase/qrcode-generator (MIT)
+  // Only includes what's needed for alphanumeric/byte mode QR codes
+  !function(){function a(a){this.mode=c.MODE_8BIT_BYTE,this.data=a,this.parsedData=[];for(var b=0,d=this.data.length;b<d;b++){var e=[],f=this.data.charCodeAt(b);f>65536?(e[0]=240|(1835008&f)>>>18,e[1]=128|(258048&f)>>>12,e[2]=128|(4032&f)>>>6,e[3]=128|63&f):f>2048?(e[0]=224|(61440&f)>>>12,e[1]=128|(4032&f)>>>6,e[2]=128|63&f):f>128?(e[0]=192|(1984&f)>>>6,e[1]=128|63&f):e[0]=f,this.parsedData.push.apply(this.parsedData,e)}this.parsedData.length!=this.data.length&&(this.parsedData.unshift(191),this.parsedData.unshift(187),this.parsedData.unshift(239))}function b(a,b){this.typeNumber=a,this.errorCorrectLevel=b,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}function i(a,b){if(void 0==a.length)throw new Error(a.length+"/"+b);for(var c=0;c<a.length&&0==a[c];)c++;this.num=new Array(a.length-c+b);for(var d=0;d<a.length-c;d++)this.num[d]=a[d+c]}function j(a,b){this.totalCount=a,this.dataCount=b}function k(){this.buffer=[],this.length=0}a.prototype={getLength:function(){return this.parsedData.length},write:function(a){for(var b=0,c=this.parsedData.length;b<c;b++)a.put(this.parsedData[b],8)}};var c={MODE_NUMBER:1,MODE_ALPHA_NUM:2,MODE_8BIT_BYTE:4,MODE_KANJI:8},d={L:1,M:0,Q:3,H:2},e={PATTERN000:0,PATTERN001:1,PATTERN010:2,PATTERN011:3,PATTERN100:4,PATTERN101:5,PATTERN110:6,PATTERN111:7},f=function(){var a=[[]],b=0;return{get:function(b){for(var c=a.length;c<=b;c++){for(var d=new Array(c),e=0;e<c;e++)d[e]=0;d[c]=1,a.push(new i(d,0))}return a[b]},getErrorCorrectPolynomial:function(a){for(var b=new i([1],0),c=0;c<a;c++)b=b.multiply(new i([1,g.gexp(c)],0));return b}}}(),g={glog:function(a){if(a<1)throw new Error("glog("+a+")");return g.LOG_TABLE[a]},gexp:function(a){for(;a<0;)a+=255;for(;a>=256;)a-=255;return g.EXP_TABLE[a]},EXP_TABLE:new Array(256),LOG_TABLE:new Array(256)};!function(){for(var a=0;a<8;a++)g.EXP_TABLE[a]=1<<a;for(var a=8;a<256;a++)g.EXP_TABLE[a]=g.EXP_TABLE[a-4]^g.EXP_TABLE[a-5]^g.EXP_TABLE[a-6]^g.EXP_TABLE[a-8];for(var a=0;a<255;a++)g.LOG_TABLE[g.EXP_TABLE[a]]=a}();var h=function(){var a=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]];return{getRSBlocks:function(b,c){var d=function(b,c){switch(c){case d.L:return a[4*(b-1)];case d.M:return a[4*(b-1)+1];case d.Q:return a[4*(b-1)+2];case d.H:return a[4*(b-1)+3];default:return}}(b,c);if(void 0==d)throw new Error("bad rs block @ typeNumber:"+b+"/errorCorrectLevel:"+c);for(var e=d.length/3,f=[],g=0;g<e;g++)for(var h=d[3*g],i=d[3*g+1],k=d[3*g+2],l=0;l<h;l++)f.push(new j(i,k));return f}}}();b.prototype={addData:function(b){var c=new a(b);this.dataList.push(c),this.dataCache=null},isDark:function(a,b){if(a<0||this.moduleCount<=a||b<0||this.moduleCount<=b)throw new Error(a+","+b);return this.modules[a][b]},getModuleCount:function(){return this.moduleCount},make:function(){this.makeImpl(!1,this.getBestMaskPattern())},makeImpl:function(a,c){this.moduleCount=4*this.typeNumber+17,this.modules=new Array(this.moduleCount);for(var d=0;d<this.moduleCount;d++){this.modules[d]=new Array(this.moduleCount);for(var f=0;f<this.moduleCount;f++)this.modules[d][f]=null}this.setupPositionProbePattern(0,0),this.setupPositionProbePattern(this.moduleCount-7,0),this.setupPositionProbePattern(0,this.moduleCount-7),this.setupPositionAdjustPattern(),this.setupTimingPattern(),this.setupTypeInfo(a,c),this.typeNumber>=7&&this.setupTypeNumber(a),null==this.dataCache&&(this.dataCache=b.createData(this.typeNumber,this.errorCorrectLevel,this.dataList)),this.mapData(this.dataCache,c)},setupPositionProbePattern:function(a,b){for(var c=-1;c<=7;c++)if(!(a+c<=-1||this.moduleCount<=a+c))for(var d=-1;d<=7;d++)b+d<=-1||this.moduleCount<=b+d||(0<=c&&c<=6&&(0==d||6==d)||0<=d&&d<=6&&(0==c||6==c)||2<=c&&c<=4&&2<=d&&d<=4?this.modules[a+c][b+d]=!0:this.modules[a+c][b+d]=!1)},getBestMaskPattern:function(){for(var a=0,b=0,c=0;c<8;c++){this.makeImpl(!0,c);var d=this.getLostPoint();(0==c||a>d)&&(a=d,b=c)}return b},setupTimingPattern:function(){for(var a=8;a<this.moduleCount-8;a++)null==this.modules[a][6]&&(this.modules[a][6]=a%2==0),null==this.modules[6][a]&&(this.modules[6][a]=a%2==0)},setupPositionAdjustPattern:function(){for(var a=function(a){for(var b=0,c=0;c<a.length;c++)b+=a[c];return b}(function(a){for(var b=new Array,c=1;c<=a;c++){for(var d=0,e=f.get(c),g=0;g<e.num.length;g++)d=Math.max(d,e.num[g]);b.push(d)}return b}([this.typeNumber])),c=b.getAlignmentPatternPositions(this.typeNumber),d=0;d<c.length;d++)for(var e=0;e<c.length;e++){var g=c[d],h=c[e];if(null==this.modules[g][h])for(var i=-2;i<=2;i++)for(var j=-2;j<=2;j++)-2==i||2==i||-2==j||2==j||0==i&&0==j?this.modules[g+i][h+j]=!0:this.modules[g+i][h+j]=!1}},setupTypeNumber:function(a){for(var c=b.getBCHTypeNumber(this.typeNumber),d=0;d<18;d++){var e=!a&&1==(c>>d&1);this.modules[Math.floor(d/3)][d%3+this.moduleCount-8-3]=e}for(var d=0;d<18;d++){var e=!a&&1==(c>>d&1);this.modules[d%3+this.moduleCount-8-3][Math.floor(d/3)]=e}},setupTypeInfo:function(a,c){for(var d=this.errorCorrectLevel<<3|c,e=b.getBCHTypeInfo(d),f=0;f<15;f++){var g=!a&&1==(e>>f&1);f<6?this.modules[f][8]=g:f<8?this.modules[f+1][8]=g:this.modules[this.moduleCount-15+f][8]=g}for(var f=0;f<15;f++){var g=!a&&1==(e>>f&1);f<8?this.modules[8][this.moduleCount-f-1]=g:f<9?this.modules[8][15-f-1+1]=g:this.modules[8][15-f-1]=g}this.modules[this.moduleCount-8][8]=!a},mapData:function(a,b){for(var c=-1,d=this.moduleCount-1,e=7,f=0,g=this.moduleCount-1;g>0;g-=2)for(6==g&&g--;;){for(var h=0;h<2;h++)if(null==this.modules[d][g-h]){var i=!1;f<a.length&&(i=1==(a[f]>>>e&1)),this.getMask(b,d,g-h)&&(i=!i),this.modules[d][g-h]=i,e--,-1==e&&(f++,e=7)}if(d+=c,d<0||this.moduleCount<=d){d-=c,c=-c;break}}},getMask:function(a,b,c){switch(a){case e.PATTERN000:return(b+c)%2==0;case e.PATTERN001:return b%2==0;case e.PATTERN010:return c%3==0;case e.PATTERN011:return(b+c)%3==0;case e.PATTERN100:return(Math.floor(b/2)+Math.floor(c/3))%2==0;case e.PATTERN101:return b*c%2+b*c%3==0;case e.PATTERN110:return(b*c%2+b*c%3)%2==0;case e.PATTERN111:return(b*c%3+(b+c)%2)%2==0;default:throw new Error("bad maskPattern:"+a)}},getLostPoint:function(){for(var a=this.moduleCount,b=0,c=0;c<a;c++)for(var d=0;d<a;d++){for(var e=0,f=this.modules[c][d],g=-1;g<=1;g++)if(!(c+g<0||a<=c+g))for(var h=-1;h<=1;h++)d+h<0||a<=d+h||0==g&&0==h||(this.modules[c+g][d+h]==f&&e++);e>5&&(b+=3+e-5)}for(var c=0;c<a-1;c++)for(var d=0;d<a-1;d++){var i=0;this.modules[c][d]&&i++,this.modules[c+1][d]&&i++,this.modules[c][d+1]&&i++,this.modules[c+1][d+1]&&i++,0!=i&&4!=i||(b+=3)}for(var c=0;c<a;c++)for(var d=0;d<a-6;d++)this.modules[c][d]&&!this.modules[c][d+1]&&this.modules[c][d+2]&&this.modules[c][d+3]&&this.modules[c][d+4]&&!this.modules[c][d+5]&&this.modules[c][d+6]&&(b+=40);for(var d=0;d<a;d++)for(var c=0;c<a-6;c++)this.modules[c][d]&&!this.modules[c+1][d]&&this.modules[c+2][d]&&this.modules[c+3][d]&&this.modules[c+4][d]&&!this.modules[c+5][d]&&this.modules[c+6][d]&&(b+=40);for(var j=0,d=0;d<a;d++)for(var c=0;c<a;c++)this.modules[c][d]&&j++;var k=Math.abs(100*j/a/a-50)/5;return b+=10*k}},b.getAlignmentPatternPositions=function(a){if(1==a)return[];for(var b=Math.floor(a/7)+2,c=a>=28?Math.ceil((4*a+4)/(2*b-2))*2:0,d=[0],e=a-7;;){d.unshift(e);if(e-c<=6)break;e-=c}return d.unshift(6),d},b.getBCHTypeInfo=function(a){for(var b=a<<10;0<=this.getBCHDigit(b)-this.getBCHDigit(1335);)b^=1335<<this.getBCHDigit(b)-this.getBCHDigit(1335);return 21522^(a<<10|b)},b.getBCHTypeNumber=function(a){for(var b=a<<12;0<=this.getBCHDigit(b)-this.getBCHDigit(7973);)b^=7973<<this.getBCHDigit(b)-this.getBCHDigit(7973);return a<<12|b},b.getBCHDigit=function(a){for(var b=0;0!=a;)b++,a>>>=1;return b},b.createData=function(a,c,d){for(var e=h.getRSBlocks(a,c),g=new k,i=0;i<d.length;i++){var j=d[i];g.put(j.mode,4),g.put(j.getLength(),b.getLengthInBits(j.mode,a)),j.write(g)}for(var l=0,i=0;i<e.length;i++)l+=e[i].dataCount;if(g.getLengthInBits()>8*l)throw new Error("code length overflow. ("+g.getLengthInBits()+">"+8*l+")");for(g.getLengthInBits()+4<=8*l&&g.put(0,4);g.getLengthInBits()%8!=0;)g.putBit(!1);for(;;){if(g.getLengthInBits()>=8*l)break;if(g.put(236,8),g.getLengthInBits()>=8*l)break;g.put(17,8)}return b.createBytes(g,e)},b.createBytes=function(a,b){for(var c=0,d=0,e=0,h=new Array(b.length),j=new Array(b.length),k=0;k<b.length;k++){var l=b[k].dataCount,m=b[k].totalCount-l;d=Math.max(d,l),e=Math.max(e,m),h[k]=new Array(l);for(var n=0;n<h[k].length;n++)h[k][n]=255&a.buffer[n+c];c+=l;var o=f.getErrorCorrectPolynomial(m),p=new i(h[k],o.getLength()-1),q=p.mod(o);j[k]=new Array(o.getLength()-1);for(var n=0;n<j[k].length;n++){var r=n+q.getLength()-j[k].length;j[k][n]=r>=0?q.get(r):0}}for(var s=0,n=0;n<b.length;n++)s+=b[n].totalCount;for(var t=new Array(s),u=0,n=0;n<d;n++)for(var k=0;k<b.length;k++)n<h[k].length&&(t[u++]=h[k][n]);for(var n=0;n<e;n++)for(var k=0;k<b.length;k++)n<j[k].length&&(t[u++]=j[k][n]);return t},b.getLengthInBits=function(a,b){if(1<=b&&b<10)switch(a){case c.MODE_NUMBER:return 10;case c.MODE_ALPHA_NUM:return 9;case c.MODE_8BIT_BYTE:return 8;case c.MODE_KANJI:return 8;default:throw new Error("mode:"+a)}else if(b<27)switch(a){case c.MODE_NUMBER:return 12;case c.MODE_ALPHA_NUM:return 11;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 10;default:throw new Error("mode:"+a)}else{if(!(b<41))throw new Error("type:"+b);switch(a){case c.MODE_NUMBER:return 14;case c.MODE_ALPHA_NUM:return 13;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 12;default:throw new Error("mode:"+a)}}},i.prototype={get:function(a){return this.num[a]},getLength:function(){return this.num.length},multiply:function(a){for(var b=new Array(this.getLength()+a.getLength()-1),c=0;c<this.getLength();c++)for(var d=0;d<a.getLength();d++)b[c+d]^=g.gexp(g.glog(this.get(c))+g.glog(a.get(d)));return new i(b,0)},mod:function(a){if(this.getLength()-a.getLength()<0)return this;for(var b=g.glog(this.get(0))-g.glog(a.get(0)),c=new Array(this.getLength()),d=0;d<this.getLength();d++)c[d]=this.get(d);for(var d=0;d<a.getLength();d++)c[d]^=g.gexp(g.glog(a.get(d))+b);return new i(c,0).mod(a)}},k.prototype={get:function(a){var b=Math.floor(a/8);return 1==(this.buffer[b]>>>7-a%8&1)},put:function(a,b){for(var c=0;c<b;c++)this.putBit(1==(a>>>b-c-1&1))},getLengthInBits:function(){return this.length},putBit:function(a){var b=Math.floor(this.length/8);this.buffer.length<=b&&this.buffer.push(0),a&&(this.buffer[b]|=128>>>this.length%8),this.length++}},window.QRCode=b,window.QRErrorCorrectLevel=d}();
+
+  function renderQR(canvasId, text, size) {
+    var qr = new QRCode(0, QRErrorCorrectLevel.M);
+    // Auto-detect version
+    for (var t = 1; t <= 40; t++) {
+      try {
+        qr = new QRCode(t, QRErrorCorrectLevel.M);
+        qr.addData(text);
+        qr.make();
+        break;
+      } catch(e) { continue; }
+    }
+    var canvas = document.getElementById(canvasId);
+    var ctx = canvas.getContext('2d');
+    var moduleCount = qr.getModuleCount();
+    var cellSize = Math.floor((size - 16) / moduleCount);
+    var offset = Math.floor((size - cellSize * moduleCount) / 2);
+
+    canvas.width = size;
+    canvas.height = size;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#000000';
+
+    for (var r = 0; r < moduleCount; r++) {
+      for (var c = 0; c < moduleCount; c++) {
+        if (qr.isDark(r, c)) {
+          ctx.fillRect(offset + c * cellSize, offset + r * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+  }
+
+  // Render QR codes on load
+  document.addEventListener('DOMContentLoaded', function() {
+    renderQR('qr-wifi', 'WIFI:T:WPA;S:CampPeach;P:robisthebest;;', 160);
+    renderQR('qr-portal', 'http://camp.peach/', 160);
+  });
+  </script>
+</body>
+</html>
