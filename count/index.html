@@ -578,6 +578,20 @@ const INVENTORY = [
       { key: 'cases',  label: 'Cases', inputType: 'number' },
       { key: 'loose',  label: 'Loose', inputType: 'number' }
     ],
+    // Units per case — staff counts cases, backend multiplies. Verify against invoices.
+    caseSize: {
+      'Modelo Especial': 24, 'Heineken': 24, 'Coors Light': 24, 'Pacifico': 24,
+      'Stella': 24, 'Corona': 24, 'Heineken Zero N/A': 24, 'Budweiser': 24,
+      'Miller Lite': 24, 'Michelob Ultra': 24, 'Miller High Life': 24,
+      'Bud Light': 24, 'Coors Original': 24, 'PBR 12oz': 24, 'Modelo Negra': 24,
+      'Michelob Ultra NA': 24, 'Surfside': 8, 'Modelo Oro': 24,
+      'Corona Premier': 24, 'Montucky': 24,
+      'White Claw Tall 19.2oz (any)': 12, 'White Claw Small (any)': 24,
+      'Happy Dad Seltzer (any)': 24, 'Buzzball (any)': 24,
+      "Hamm's 12oz": 24, 'Natural Light': 24, 'Rolling Rock 12oz': 24,
+      'Bud Light Chelada Tall Boy': 24, 'PBR Tall Can': 24,
+      "Hamm's 16oz": 24, "Mickey's Grenade": 24
+    },
     items: [
       'Modelo Especial','Heineken','Coors Light','Pacifico','Stella','Corona',
       'Heineken Zero N/A','Budweiser','Miller Lite','Michelob Ultra',
@@ -701,10 +715,10 @@ const INVENTORY = [
   }
 ];
 
-// Keg fill states (cycles: empty → F → ½ → ¼ → K → empty)
-const KEG_STATES = ['', 'F', '½', '¼', 'K'];
-// Fill states for well (cycles: empty → F → ½ → ¼ → empty)
-const FILL_STATES = ['', 'F', '½', '¼'];
+// Keg fill states (cycles: empty → F → ½ → ¼ → ⅛ → ☹ → K → empty)
+const KEG_STATES = ['', 'F', '½', '¼', '⅛', '☹', 'K'];
+// Fill states for bottles (cycles: empty → F → ¾ → ½ → ¼ → ⅛ → ☹ → empty)
+const FILL_STATES = ['', 'F', '¾', '½', '¼', '⅛', '☹'];
 
 function totalItems() {
   return INVENTORY.reduce((acc, sec) => acc + sec.items.length, 0);
@@ -1071,8 +1085,8 @@ function restoreFromLocal() {
     document.getElementById('namePicker').style.display = 'none';
   }
 
-  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
-  const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', '\u215b', '\u2639', 'K'];
+  const FILL_VALUES = ['', 'F', '\u00be', '\u00bd', '\u00bc', '\u215b', '\u2639'];
 
   let anyRestored = false;
 
@@ -1190,7 +1204,9 @@ function buildPayload() {
       }
     });
     const added = (allData.addedItems[section.id] || []);
-    sections[section.id] = { items, added };
+    const meta = {};
+    if (section.caseSize) meta.caseSize = section.caseSize;
+    sections[section.id] = { items, added, ...meta };
   });
 
   let counted = 0;
@@ -1276,8 +1292,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', 'K'];
-  const FILL_VALUES = ['', 'F', '\u00bd', '\u00bc'];
+  const KEG_VALUES  = ['', 'F', '\u00bd', '\u00bc', '\u215b', '\u2639', 'K'];
+  const FILL_VALUES = ['', 'F', '\u00be', '\u00bd', '\u00bc', '\u215b', '\u2639'];
 
   document.getElementById('sections').addEventListener('input', (e) => {
     saveToLocal();
