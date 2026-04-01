@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plex Guide — Rob Logic</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1f3ac;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1F1F1F;
+      --bg-card: #2a2a2a;
+      --bg-card-alt: #252525;
+      --gold: #E5A00D;
+      --gold-dim: rgba(229, 160, 13, 0.15);
+      --gold-border: rgba(229, 160, 13, 0.3);
+      --text: #e8e8e8;
+      --text-muted: #999;
+      --text-dim: #777;
+      --green: #4caf50;
+      --blue: #5c9aff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .logo {
+      font-size: 2.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .tagline {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    /* Server cards */
+    .servers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .server-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .server-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .server-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .library-tag {
+      display: inline-block;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 5px;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin: 0.15rem 0.1rem;
+      font-weight: 500;
+    }
+
+    /* Steps */
+    .steps {
+      list-style: none;
+      counter-reset: steps;
+      margin-top: 0.5rem;
+    }
+
+    .steps li {
+      counter-increment: steps;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+    }
+
+    .steps li::before {
+      content: counter(steps);
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--gold);
+      color: var(--bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* Info box */
+    .info-box {
+      background: var(--bg-card);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 0.8rem 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .info-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .info-box .label {
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    /* Warning box */
+    .warning-box {
+      background: rgba(229, 160, 13, 0.08);
+      border: 1px solid var(--gold-border);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .warning-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .warning-box .price {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Tips */
+    .tips {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .tips li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.92rem;
+    }
+
+    .tip-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Highlight */
+    .hl {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    code {
+      background: var(--gold-dim);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gold-border);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+
+    .footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .container { padding: 1.5rem 1rem 3rem; }
+      .servers { grid-template-columns: 1fr; }
+      h1 { font-size: 1.5rem; }
+      .logo { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="logo">&#x1F4FA;</div>
+      <h1>Rob's Plex Guide</h1>
+      <p class="tagline">Everything you need to know in about two minutes</p>
+    </div>
+
+    <!-- What is Plex -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">&#x1F3AC;</span>
+        <h2>What is Plex?</h2>
+      </div>
+      <p>Think of it as Netflix, but it's Rob's personal movie and TV collection. You get a free account, I share my libraries with you, and you stream whatever you want.</p>
+    </div>
+
+    <!-- The Two Servers -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">&#x1F5A5;</span>
+        <h2>The Two Servers</h2>
+      </div>
+      <p>There are two separate Plex servers. Both show up in your sidebar once I've shared them with you.</p>
+      <div class="servers">
+        <div class="server-card">
+          <div class="server-name">Styx</div>
+          <div class="server-desc">Newer movies and current TV shows</div>
+          <span class="library-tag">Movies Styx</span>
+          <span class="library-tag">TV Styx</span>
+        </div>
+        <div class="server-card">
+          <div class="server-name">Jamboree Time</div>
+          <div class="server-desc">Classic and older movies and TV</div>
+          <span class="library-tag">Movies Jamboree Time</span>
+          <span class="library-tag">TV Shows Jamboree Time</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Pin Libraries -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">&#x1F4CC;</span>
+        <h2>Pin Your Libraries</h2>
+      </div>
+      <p>Pinning a library puts it right on your home screen so you don't have to dig for it every time.</p>
+      <ol class="steps">
+        <li>Click <span class="hl">More</span> at the bottom of the left sidebar</li>
+        <li>Find the server's libraries in the list</li>
+        <li>Click the <code>...</code> menu next to a library and hit <span class="hl">Pin</span></li>
+        <li>Drag pinned libraries to reorder them however you like</li>
+      </ol>
+    </div>
+
+    <!-- Switching Servers -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">&#x1F504;</span>
+        <h2>Switching Between Servers</h2>
+      </div>
+      <p>Both servers show up in the left sidebar. Just click a different server's library to switch. No logout or settings change needed.</p>
+    </div>
+
+    <!-- Remote Streaming -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">&#x1F4F6;</span>
+        <h2>Remote Streaming</h2>
+      </div>
+      <div class="warning-box">
+        <p>Plex changed their policy in 2025: streaming from outside your home network now requires a <span class="hl">Remote Watch Pass</span> (<span class="price">$2/mo</span> or <span class="price">$20/yr</span>). This is a Plex thing, not something I can control or get around. If you're on the same Wi-Fi as the server, it's still free.</p>
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-icon">&#x1F4A1;</span>
+        <h2>Tips</h2>
+      </div>
+      <ul class="tips">
+        <li>
+          <span class="tip-icon">&#x2728;</span>
+          <span>Set playback quality to <span class="hl">Original</span> or <span class="hl">Maximum</span> in settings for the best picture and sound.</span>
+        </li>
+        <li>
+          <span class="tip-icon">&#x1F4F1;</span>
+          <span>Use the Plex app on your phone, tablet, or smart TV. It works way better than the browser.</span>
+        </li>
+        <li>
+          <span class="tip-icon">&#x25B6;&#xFE0F;</span>
+          <span><span class="hl">Continue Watching</span> shows up on your home screen and works across both servers, so you won't lose your place.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>Questions? Just text Rob. | <a href="https://roblogic.org">roblogic.org</a></p>
+    </div>
+
+  </div>
+</body>
+</html>
