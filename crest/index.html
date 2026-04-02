@@ -340,7 +340,7 @@
       <h1><span>Crest</span> Order</h1>
       <div class="date">Week of April 3 &ndash; 9, 2026</div>
       <div class="delivery">Delivery: Thursday, April 3</div>
-      <div class="budget-badge">Minimum budget &mdash; essentials only</div>
+      <div class="budget-badge">Budget week &mdash; 3 keg returns</div>
       <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
     </div>
   </header>
@@ -373,10 +373,22 @@
             <td class="cost">$28.27</td>
             <td class="reason">Down to last pour.</td>
           </tr>
+          <tr>
+            <td><span class="item-name">Tito&rsquo;s Vodka</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">$25.24</td>
+            <td class="reason">Quarter bottle left.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">$27.66</td>
+            <td class="reason">Running low. Punk show Saturday.</td>
+          </tr>
           <tr class="subtotal-row">
             <td>Liquor Subtotal</td>
             <td></td>
-            <td class="cost">~$122</td>
+            <td class="cost">~$175</td>
             <td></td>
           </tr>
         </tbody>
@@ -418,10 +430,28 @@
             <td class="cost">$28.15</td>
             <td class="reason">Down to 8 bottles.</td>
           </tr>
+          <tr>
+            <td><span class="item-name">Modelo Especial</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">Festival Saturday buffer.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Miller High Life</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$22.80</td>
+            <td class="reason">Zero bottles on hand.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">PBR</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">~$22</td>
+            <td class="reason">1 bottle left. Punk show.</td>
+          </tr>
           <tr class="subtotal-row">
             <td>Beer Subtotal</td>
             <td></td>
-            <td class="cost">~$125</td>
+            <td class="cost">~$226</td>
             <td></td>
           </tr>
         </tbody>
@@ -435,8 +465,8 @@
   <section class="grand-total">
     <div class="grand-total-box">
       <div class="label">Estimated Total</div>
-      <div class="amount">~$246</div>
-      <div class="note">Bare minimum &mdash; only items that will 86 before next delivery.</div>
+      <div class="amount">~$400</div>
+      <div class="note">3 empty keg returns (~$90 credit) &rarr; net ~$310</div>
     </div>
   </section>
 
@@ -448,6 +478,10 @@
       <h2><span>Notes</span> for Rep</h2>
 
       <div class="note-card">
+        <strong>Keg returns</strong> &mdash; 3 empties coming back: 805 (1/6BBL), Guinness (20L), Modelo Lager (1/4BBL).
+      </div>
+
+      <div class="note-card">
         <strong>Pueblo Viejo</strong> &mdash; 6 bottles (half case). Case rate if available.
       </div>
 
@@ -456,12 +490,12 @@
       </div>
 
       <div class="note-card">
-        <strong>Bare minimum week</strong> &mdash; no kegs, no supplies. Just preventing 86's.
+        <strong>No kegs this week</strong> &mdash; budget order, no supplies.
       </div>
 
       <div class="note-card">
         <div class="flag">This Week</div>
-        Fri: Birdbath (live) &bull; Sat: Whatever68 Festival &bull; Sun: Darts &bull; Mon: Pong + Vinyl Knights &bull; Tue: Karaoke
+        Fri: Birdbath (live) &bull; Sat: Whatever68 Punk Fest &bull; Sun: Darts &bull; Mon: Pong + Vinyl Knights &bull; Tue: Karaoke
       </div>
     </div>
   </section>
@@ -474,24 +508,35 @@
   <!-- Hidden text for copy -->
   <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
 Delivery: Thu Apr 3, 2026
-Week of Apr 3 - 9 (Minimum budget — essentials only)
+Week of Apr 3 - 9
+
+KEG RETURNS:
+- 805 Firestone 1/6BBL (empty)
+- Guinness 20L (empty)
+- Modelo Lager 1/4BBL (kicked)
 
 LIQUOR:
 6  Pueblo Viejo Tequila 1L (well tequila — half case, case rate if available)
 /1  Tullamore Dew 1L
+/1  Tito's Vodka 1L
+/1  Jack Daniels 1L
 
 BEER:
 2  White Claw Tall C12 19.2oz (any 2 flavors)
 1  Heineken B24 12oz
 1  Corona B24 12oz
+1  Modelo Especial B24 12oz
+1  Miller High Life B24 12oz
+1  PBR B24 12oz
 
-EST. TOTAL: ~$246
+EST. TOTAL: ~$400 before keg credits
 
 NOTES:
-- Bare minimum week — just preventing 86's.
-- No kegs, no supplies.
+- 3 empty kegs to return (805, Guinness, Modelo).
+- No new kegs this week.
 - White Claw tall: any 2 flavors, dealer's choice.
-- This week: Fri Birdbath (live), Sat Whatever68 Festival, Sun Darts, Mon Pong + Vinyl Knights, Tue Karaoke.
+- Pueblo Viejo: 6 bottles (half case), case rate if available.
+- This week: Fri Birdbath (live), Sat Whatever68 Punk Fest, Sun Darts, Mon Pong + Vinyl Knights, Tue Karaoke.
   </textarea>
 
   <script>
