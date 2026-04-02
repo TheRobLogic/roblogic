@@ -613,7 +613,7 @@ const INVENTORY = [
     ],
     items: [
       'Well Tequila','Well Vodka','Well Whiskey',
-      'Well Rum','Well Gin'
+      'Well Rum','Well Gin','Triple Sec'
     ]
   },
   {
@@ -626,7 +626,7 @@ const INVENTORY = [
     items: [
       'Tullamore Dew','Jack Daniels','Jameson','Fireball',
       'Tullamore Dew Honey','Stone Imperial Whiskey',"Blanton's Single Barrel",
-      'Rams Point PB Whiskey','EH Taylor Barrel Proof'
+      'Rams Point PB Whiskey','EH Taylor Barrel Proof','Fireball Apple'
     ]
   },
   {
@@ -651,7 +651,7 @@ const INVENTORY = [
     items: [
       "Tito's",'New Amsterdam Pineapple','Pink Whitney',
       'New Amsterdam Peach','New Amsterdam (plain)',
-      'Absolut Peppar'
+      'Absolut Peppar','Western Son Lime'
     ]
   },
   {
@@ -663,7 +663,8 @@ const INVENTORY = [
     ],
     items: [
       'Sailor Jerry','Malibu Coconut',
-      "Myers Dark",'RumChata','RumChata Peppermint','Don Q 151'
+      "Myers Dark",'RumChata','RumChata Peppermint','Don Q 151',
+      'Seven Caves','Diplomatico'
     ]
   },
   {
@@ -675,7 +676,7 @@ const INVENTORY = [
     ],
     items: [
       "Hendrick's",'Gin Mare',
-      'Condesa Pricklberry'
+      'Condesa Pricklberry','Beefeater'
     ]
   },
   {
@@ -691,9 +692,9 @@ const INVENTORY = [
       'Grind Espresso','Christian Bros Brandy',
       'Llords Peach','Llords Watermelon','Dr. McGillicuddy Peppermint',
       'Cribari Dry Vermouth','Cribari Sweet Vermouth','Martini & Rossi Dry',
-      'Triple Sec','Amaretto','Blue Curacao','Peachtree','Buttershots',
-      'Apple Pucker','Sloe Gin','Watermelon','Raspberry','Root Beer',
-      'Dr. McGillicuddy Grape','Cherry','Orange Curacao'
+      'Amaretto','Blue Curacao','Buttershots',
+      'Apple Pucker','Sloe Gin','Watermelon','Root Beer',
+      'Dr. McGillicuddy Grape'
     ]
   },
   {
@@ -708,9 +709,16 @@ const INVENTORY = [
       'Orange Juice','Cranberry Juice','Pineapple Juice','Grapefruit Juice',
       'Lime Juice','Lemon Juice','Bloody Mary Mix',
       'Sweet & Sour Mix','Grenadine','Simple Syrup','Margarita Mix',
-      'Half & Half','Coffee','Hot Chocolate Mix',
+      'Coffee',
       'Lemons','Limes','Oranges','Olives','Cherries',
       'Napkins','Straws','Paper Towels','Trash Bags'
+    ],
+    // Items where "Bar" column uses fill level (F/¾/½/¼/⅛/☹) instead of number count
+    fillItems: [
+      'Orange Juice','Cranberry Juice','Pineapple Juice','Grapefruit Juice',
+      'Lime Juice','Lemon Juice','Bloody Mary Mix',
+      'Sweet & Sour Mix','Grenadine','Simple Syrup','Margarita Mix','Coffee',
+      'Olives','Cherries','Napkins','Straws','Paper Towels','Trash Bags'
     ]
   }
 ];
@@ -914,7 +922,10 @@ function renderSections() {
       inputs.className = 'item-inputs';
 
       sec.columns.forEach(col => {
-        inputs.appendChild(makeInput(col, sec.id, itemIdx));
+        // fillItems override: use fill level instead of number for "bar" column
+        const effectiveCol = (sec.fillItems && sec.fillItems.includes(itemName) && col.key === 'bar')
+          ? Object.assign({}, col, { inputType: 'fill' }) : col;
+        inputs.appendChild(makeInput(effectiveCol, sec.id, itemIdx));
       });
 
       row.appendChild(inputs);
