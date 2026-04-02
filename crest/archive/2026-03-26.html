@@ -104,6 +104,77 @@
       background: linear-gradient(to right, transparent 0%, var(--red-dark) 25%, var(--red) 50%, var(--red-dark) 75%, transparent 100%);
     }
 
+    /* Week context */
+    .week-context {
+      padding: 32px 0;
+      background: rgba(26, 10, 10, 0.9);
+    }
+
+    .week-context h2 {
+      font-size: clamp(18px, 4vw, 26px);
+      color: #fff;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .week-context h2 span { color: var(--red); }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 6px;
+    }
+
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid #222;
+      border-radius: 4px;
+      padding: 12px 8px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .event-card--hot {
+      border-color: var(--red-dark);
+      box-shadow: 0 0 12px var(--red-glow);
+    }
+
+    .event-card .day {
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--red-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .event-card .date-num {
+      font-family: var(--font-accent);
+      font-size: 11px;
+      color: var(--cream-dim);
+      margin-bottom: 6px;
+    }
+
+    .event-card .event-name {
+      font-family: var(--font-accent);
+      font-size: 12px;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .event-card .event-tag {
+      display: inline-block;
+      font-family: var(--font-accent);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 2px 6px;
+      border-radius: 2px;
+      margin-top: 6px;
+    }
+    .tag--show { background: var(--red-dark); color: var(--cream); }
+    .tag--tourney { background: var(--green-dim); color: var(--green); }
+    .tag--holiday { background: #92400e; color: #fbbf24; }
+    .tag--recurring { background: #333; color: var(--cream-dim); }
+    .tag--quiet { background: #1a1a1a; color: #666; }
+
     /* Order sections */
     .order-section {
       padding: 32px 0;
@@ -315,6 +386,7 @@
       .order-table .reason { display: none; }
       .order-table td { padding: 8px 6px; font-size: 14px; }
       .order-table .qty { font-size: 18px; }
+      .event-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     /* Print */
@@ -329,6 +401,7 @@
       .grand-total-box { border-color: #000; box-shadow: none; }
       .grand-total-box .amount { color: #000; }
       .copy-btn { display: none; }
+      .week-context { display: none; }
     }
   </style>
 </head>
@@ -338,16 +411,16 @@
   <header class="order-header">
     <div class="container">
       <h1><span>Crest</span> Order</h1>
-      <div class="date">Week of April 3 &ndash; 9, 2026</div>
-      <div class="delivery">Delivery: Thursday, April 3</div>
-      <div class="budget-badge">Minimum budget &mdash; essentials only</div>
+      <div class="date">Week of March 27 &ndash; April 2, 2026</div>
+      <div class="delivery">Delivery: Friday, March 27</div>
+      <div class="budget-badge">Essentials only &mdash; tight week</div>
       <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
     </div>
   </header>
 
   <hr class="glow-divider">
 
-  <!-- Liquor Order -->
+  <!-- Liquor Order (priority this week) -->
   <section class="order-section">
     <div class="container">
       <h2><span>Liquor</span> Order</h2>
@@ -362,21 +435,51 @@
         </thead>
         <tbody>
           <tr>
+            <td><span class="item-name">Ancient Age Bourbon</span><span class="item-format">1L &mdash; Full Case (well whiskey)</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$97.20</td>
+            <td class="reason">Well whiskey. Nearly empty.</td>
+          </tr>
+          <tr>
             <td><span class="item-name">Pueblo Viejo Tequila</span><span class="item-format">1L &mdash; 6 bottles (well tequila)</span></td>
             <td class="qty">6</td>
             <td class="cost">$93.60</td>
-            <td class="reason">Nearly out. High volume well.</td>
+            <td class="reason">Well tequila. Under 1 week supply.</td>
           </tr>
           <tr>
-            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L &mdash; Single</span></td>
+            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$56.54</td>
+            <td class="reason">Completely out. High demand.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
             <td class="qty">/1</td>
-            <td class="cost">$28.27</td>
+            <td class="cost">$27.66</td>
             <td class="reason">Down to last pour.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Gran Malo Tamarindo</span><span class="item-format">750ml &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$35.48</td>
+            <td class="reason">Half bottle left. Popular call.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Llords Watermelon</span><span class="item-format">1L &mdash; Singles</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$14.14</td>
+            <td class="reason">Mexican Candy + shot ingredient.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Dr. McGillicuddy Grape</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">~$12.85</td>
+            <td class="reason">Out of stock.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Liquor Subtotal</td>
             <td></td>
-            <td class="cost">~$122</td>
+            <td class="cost">~$337</td>
             <td></td>
           </tr>
         </tbody>
@@ -404,24 +507,57 @@
             <td><span class="item-name">White Claw Tall</span><span class="item-format">C12 19.2oz &mdash; any 2 flavors</span></td>
             <td class="qty">2</td>
             <td class="cost">$68.30</td>
-            <td class="reason">Down to 7. Top seller.</td>
+            <td class="reason">8 on hand, 30/wk. Under 2 days.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">White Claw Variety</span><span class="item-format">C24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$30.40</td>
+            <td class="reason">8 on hand, need to cover the week.</td>
           </tr>
           <tr>
             <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz LSE</span></td>
             <td class="qty">1</td>
             <td class="cost">$28.15</td>
-            <td class="reason">Down to 6 bottles.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Corona</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$28.15</td>
-            <td class="reason">Down to 8 bottles.</td>
+            <td class="reason">Down to 1 bottle. 14/wk velocity.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Beer Subtotal</td>
             <td></td>
-            <td class="cost">~$125</td>
+            <td class="cost">~$127</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="glow-divider">
+
+  <!-- Bar Supplies -->
+  <section class="order-section">
+    <div class="container">
+      <h2><span>Bar</span> Supplies</h2>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th style="text-align:center">Qty</th>
+            <th class="right">Est. Cost</th>
+            <th class="reason">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="item-name">Finest Call Sweet &amp; Sour</span><span class="item-format">1L &mdash; Single</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">~$9</td>
+            <td class="reason">Running low.</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td>Supplies Subtotal</td>
+            <td></td>
+            <td class="cost">~$9</td>
             <td></td>
           </tr>
         </tbody>
@@ -435,8 +571,8 @@
   <section class="grand-total">
     <div class="grand-total-box">
       <div class="label">Estimated Total</div>
-      <div class="amount">~$246</div>
-      <div class="note">Bare minimum &mdash; only items that will 86 before next delivery.</div>
+      <div class="amount">~$473</div>
+      <div class="note">Based on confirmed Crest invoice pricing. Essentials only &mdash; wells + top call + critical beer.</div>
     </div>
   </section>
 
@@ -448,7 +584,11 @@
       <h2><span>Notes</span> for Rep</h2>
 
       <div class="note-card">
-        <strong>Pueblo Viejo</strong> &mdash; 6 bottles (half case). Case rate if available.
+        <strong>Ancient Age</strong> &mdash; full case please, case rate.
+      </div>
+
+      <div class="note-card">
+        <strong>Pueblo Viejo</strong> &mdash; 6 bottles (half case).
       </div>
 
       <div class="note-card">
@@ -456,42 +596,51 @@
       </div>
 
       <div class="note-card">
-        <strong>Bare minimum week</strong> &mdash; no kegs, no supplies. Just preventing 86's.
+        <strong>Tight budget week</strong> &mdash; essentials only, no kegs.
       </div>
 
       <div class="note-card">
         <div class="flag">This Week</div>
-        Fri: Birdbath (live) &bull; Sat: Whatever68 Festival &bull; Sun: Darts &bull; Mon: Pong + Vinyl Knights &bull; Tue: Karaoke
+        Fri: Matters Most (live) &bull; Sun: Darts &bull; Mon: Pong + Vinyl Knights &bull; Tue: Karaoke
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="order-footer">
-    <strong>Barkeep</strong> by Rob Logic &middot; Generated Apr 2, 2026 &middot; The Bancroft Bar
+    <strong>Barkeep</strong> by Rob Logic &middot; Generated Mar 26, 2026 &middot; The Bancroft Bar
   </footer>
 
   <!-- Hidden text for copy -->
   <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
-Delivery: Thu Apr 3, 2026
-Week of Apr 3 - 9 (Minimum budget — essentials only)
+Delivery: Fri Mar 27, 2026
+Week of Mar 27 - Apr 2 (Essentials only — tight week)
 
 LIQUOR:
-6  Pueblo Viejo Tequila 1L (well tequila — half case, case rate if available)
-/1  Tullamore Dew 1L
+1 case  Ancient Age Bourbon 1L (well whiskey — case rate please)
+6       Pueblo Viejo Tequila 1L (well tequila — half case)
+/2  Tullamore Dew 1L
+/1  Jack Daniels 1L
+/2  Gran Malo Tamarindo 750ml
+/2  Llords Watermelon 1L
+/1  Dr. McGillicuddy Grape 1L
 
 BEER:
 2  White Claw Tall C12 19.2oz (any 2 flavors)
+1  White Claw Variety C24 12oz
 1  Heineken B24 12oz
-1  Corona B24 12oz
 
-EST. TOTAL: ~$246
+BAR SUPPLIES:
+/1  Finest Call Sweet & Sour 1L
+
+EST. TOTAL: ~$473
 
 NOTES:
-- Bare minimum week — just preventing 86's.
-- No kegs, no supplies.
+- No kegs this week.
+- Ancient Age as full case — case rate please.
+- Pueblo Viejo: 6 bottles (half case).
 - White Claw tall: any 2 flavors, dealer's choice.
-- This week: Fri Birdbath (live), Sat Whatever68 Festival, Sun Darts, Mon Pong + Vinyl Knights, Tue Karaoke.
+- Tight budget week — essentials only.
   </textarea>
 
   <script>
