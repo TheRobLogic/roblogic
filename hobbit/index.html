@@ -723,12 +723,12 @@
     <tbody>
       <tr><td>Type</td><td>Single-cylinder, 2-stroke, air-cooled, horizontal</td></tr>
       <tr><td>Displacement</td><td>49cc (3.0 cu in)</td></tr>
-      <tr><td>Bore × Stroke</td><td>40 mm × 39.3 mm</td></tr>
-      <tr><td>Compression</td><td>6.5:1</td></tr>
+      <tr><td>Bore × Stroke</td><td>40.0 mm × 39.6 mm</td></tr>
+      <tr><td>Compression</td><td>6.7:1</td></tr>
       <tr><td>Power</td><td>~1.7–2.0 hp @ 5,800 rpm</td></tr>
       <tr><td>Fuel System</td><td>Keihin PA-type carburetor</td></tr>
       <tr><td>Main Jet (PA50-II)</td><td>#78</td></tr>
-      <tr><td>Spark Plug</td><td>NGK BP6HS (gap 0.028" / 0.7mm)</td></tr>
+      <tr><td>Spark Plug</td><td>NGK BPR6HS (gap 0.6–0.7 mm / 0.024"–0.028")</td></tr>
       <tr><td>Fuel Mix</td><td>25:1 premix (gas:2-stroke oil)</td></tr>
       <tr><td>Idle Speed</td><td>1,500 RPM</td></tr>
     </tbody>
@@ -771,7 +771,7 @@
 
   <p>The CVT uses a set of weighted rollers inside a ramp plate on the front pulley. As engine RPM climbs, centrifugal force pushes the rollers outward, squeezing the front pulley faces together. This increases the effective drive ratio — smooth, automatic acceleration with no gear changes.</p>
 
-  <p>The key difference between PA50-I and PA50-II is the <strong>variator ramp plate angle</strong>. The PA50-II has a steeper slope, letting the rollers push the pulley faces closer together for a higher top speed. Stock rollers are 15×16mm.</p>
+  <p>The key difference between PA50-I and PA50-II is the <strong>variator ramp plate angle</strong>. The PA50-II has a steeper slope, letting the rollers push the pulley faces closer together for a higher top speed. The PA50 uses 3 rollers (18mm wide × 15mm OD).</p>
 
   <!-- PHOTOS -->
   <div id="photos" class="section-header">
@@ -845,7 +845,7 @@
       <li>Unhook the decompression cable from the cylinder head with needle-nose pliers.</li>
       <li>Unplug the spark plug wire. Loosen and remove the throttle cable from above the carb.</li>
       <li><strong>Place a hydraulic jack under the front tire and slowly raise the front end</strong> — this tilts the engine down and gives you access. Be careful not to stretch electrical wires.</li>
-      <li>Remove the 4 × 10mm carb mounting bolts. Extract the carburetor.</li>
+      <li>Remove the 4 carb mounting nuts (6mm thread, 10mm wrench). Extract the carburetor.</li>
     </ol>
     <h4 style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;margin:0.8rem 0 0.5rem;color:var(--ink-light)">Cleaning &amp; Rebuild</h4>
     <ol>
@@ -865,7 +865,7 @@
     <h4>No-Spark Diagnostic (In Order)</h4>
     <ol>
       <li><strong>Spark plug boot</strong> — is it tight on the plug? Loose boot = no spark. Push it on firmly.</li>
-      <li><strong>Spark plug</strong> — pull it, ground the threads against the cylinder, pedal and look for spark. No spark? Try a known-good <code>NGK BPR6HS</code>.</li>
+      <li><strong>Spark plug</strong> — pull it, ground the threads against the cylinder, pedal and look for spark. No spark? Try a known-good <code>NGK BPR6HS</code> (gap <code>0.6–0.7 mm</code>).</li>
       <li><strong>Kill switch</strong> — make sure it's in the RUN position. Disconnect the kill switch wire and test spark again.</li>
       <li><strong>Points</strong> (stock ignition) — open the flywheel cover. Points gap should be <code>0.3–0.4 mm</code>. Clean contact surfaces with fine sandpaper. Replace if pitted.</li>
       <li><strong>Condenser</strong> — a dying condenser causes arcing at the points. If points look burned/pitted, replace the condenser too.</li>
@@ -875,7 +875,7 @@
 
   <div class="warning-box">
     <strong>CDI Conversion</strong><br>
-    Eliminates points maintenance entirely. The HPI Mini Rotor CDI kit is the go-to upgrade. Available at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a> and <a href="https://www.mopeddivision.com/categories/moped-make/honda/hobbit-pa50-pa50ii-express-urban-express.html" target="_blank" rel="noopener">Moped Division</a>. If you're tired of adjusting points, this is the single best reliability upgrade you can do.
+    Eliminates points maintenance entirely. If you remove the flywheel, reinstall torque is <code>300–400 kg-cm (21.7–28.9 ft-lbs)</code>. The HPI Mini Rotor CDI kit is the go-to upgrade. Available at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a> and <a href="https://www.mopeddivision.com/categories/moped-make/honda/hobbit-pa50-pa50ii-express-urban-express.html" target="_blank" rel="noopener">Moped Division</a>. If you're tired of adjusting points, this is the single best reliability upgrade you can do.
   </div>
 
   <h3>3. Compression Test</h3>
@@ -886,7 +886,7 @@
     <ol>
       <li>Remove spark plug, screw in compression gauge.</li>
       <li>Pedal the engine through several revolutions.</li>
-      <li>Good compression: <strong>~150 PSI</strong>. Minimum for running: ~120 PSI. Below 100 PSI = top end rebuild needed.</li>
+      <li>Shop manual spec: <strong>8–12 kg/cm² (114–171 PSI)</strong>. Below 8 kg/cm² (114 PSI) = top end rebuild needed.</li>
       <li>Low compression causes: worn piston rings, scored cylinder, blown head gasket, cracked reed valve gasket leaking into crankcase.</li>
     </ol>
   </div>
@@ -903,7 +903,7 @@
       <li>Stuff a clean rag into the crankcase opening to prevent debris from falling in.</li>
       <li>Remove wrist pin clips, push out the wrist pin, remove the piston.</li>
       <li>Inspect the cylinder bore for scoring. Light scoring: hone with a ball hone. Deep scoring: new cylinder needed.</li>
-      <li>Install new piston, rings (markings face UP), and wrist pin clips. <strong>Stagger ring end gaps</strong> so they don't align with each other or with the ports.</li>
+      <li>Install new piston, rings (markings face UP), and wrist pin clips. <strong>Align ring end gaps with the locating pins (dowels) on the piston.</strong> Two-stroke rings are pinned to prevent them from rotating into the ports — do not try to position the gaps yourself.</li>
       <li>Lightly oil the piston and cylinder bore with 2-stroke oil.</li>
       <li>Compress the rings and carefully slide the cylinder over the piston.</li>
       <li>Install head with new head gasket. <strong>Torque in a cross pattern to <code>90–120 kg-cm (6.5–8.7 ft-lbs)</code>.</strong></li>
@@ -945,6 +945,11 @@
       <li>Stock equivalent: ~7–8g total roller weight.</li>
     </ol>
     <p><strong>Roller weight inserts</strong> from <a href="https://www.treatland.tv/honda-hobbit-pa50-performance-variator-roller-weig-p/hobbit-rollers.htm" target="_blank" rel="noopener">Treatland ($9.99/set of 3)</a>: available in 1.0g, 2.0g, 2.8g, 4.0g, 5.0g, 6.0g, 7.0g, 7.8g, 9.0g. Start lighter with a performance pipe/big bore and test.</p>
+
+    <div class="warning-box">
+      <strong>Reinstallation Torque</strong><br>
+      Drive pulley nut: <code>300–400 kg-cm (21.7–28.9 ft-lbs)</code>. Driven pulley nut: <code>200–250 kg-cm (14.5–18.1 ft-lbs)</code>. These are high-torque fasteners — use a torque wrench, not a guess.
+    </div>
   </div>
 
   <h3>6. Brakes, Tires, Cables</h3>
@@ -963,7 +968,7 @@
     <p>Stock size is <code>2.25-17</code> front and rear. These are a standard moped tire size and still widely available.</p>
     <ol>
       <li>Check sidewalls for dry rot (cracking). If the bike has sat for years, replace them even if they hold air.</li>
-      <li>Inflate to: Front <code>28 PSI</code>, Rear <code>20 PSI</code> (per the info plate on this bike).</li>
+      <li>Inflate to: Front <code>28 PSI</code>, Rear <code>20 PSI</code> (per the info plate on this 1978 bike). <strong>Note:</strong> the 1983 shop manual lists 2.00–2.50 kg/cm² (28–36 PSI) for both tires. The lower rear pressure may be specific to the '78 US model — check your info plate and tire sidewall.</li>
       <li>Tubes are replaceable separately — carry a spare and a patch kit.</li>
     </ol>
   </div>
@@ -1003,7 +1008,7 @@
   <table class="spec-table">
     <tbody>
       <tr><td>Fuel Mix</td><td>25:1 premix (gas:2-stroke oil)</td></tr>
-      <tr><td>Spark Plug</td><td>NGK BP6HS, gap 0.028" (0.7mm)</td></tr>
+      <tr><td>Spark Plug</td><td>NGK BPR6HS, gap 0.6–0.7 mm (0.024"–0.028")</td></tr>
       <tr><td>Points Gap</td><td>0.3–0.4 mm (points ignition only)</td></tr>
       <tr><td>Brake Freeplay</td><td>10–15 mm (⅜"–⅝") front and rear</td></tr>
       <tr><td>Idle Speed</td><td>1,500 RPM</td></tr>
@@ -1013,7 +1018,7 @@
       <tr><td>Brake Shoes</td><td>80mm × 18–20mm drum</td></tr>
       <tr><td>Head Nut Torque</td><td>90–120 kg-cm (6.5–8.7 ft-lbs)</td></tr>
       <tr><td>Intake Bolt Torque</td><td>80–120 kg-cm (5.8–8.7 ft-lbs)</td></tr>
-      <tr><td>Good Compression</td><td>~150 PSI (min ~120 PSI)</td></tr>
+      <tr><td>Compression</td><td>8–12 kg/cm² (114–171 PSI), below 8 = rebuild</td></tr>
     </tbody>
   </table>
 
