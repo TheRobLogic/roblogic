@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Borg-Warner Table — Restoring a 1960s Fibermold Patio Set</title>
+  <meta name="description" content="Restoration guide for a 1960s Borg-Warner Fibermold fiberglass patio set. History, identification, and step-by-step weekend restoration.">
+  <meta property="og:title" content="The Borg-Warner Table — Restoring a 1960s Fibermold Patio Set">
+  <meta property="og:description" content="A complete set from a forgotten SoCal factory. How to bring it back to life.">
+  <meta property="og:url" content="https://roblogic.org/table/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sage: #5B7B5E;
+      --sage-light: #e8efe9;
+      --sage-dark: #3d5440;
+      --rust: #B85C38;
+      --rust-light: #f5e6df;
+      --cream: #F5F0E6;
+      --cream-dark: #E8E1D3;
+      --ink: #2C2824;
+      --ink-light: #5A5550;
+      --warm-white: #FDFBF7;
+      --divider: #D4CFC5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: flex-end;
+      background: var(--ink);
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--sage-light);
+      font-size: 0.45em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.15rem;
+      font-style: italic;
+      max-width: 500px;
+    }
+
+    /* ===== NAV ===== */
+    .jump-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--warm-white);
+      border-bottom: 2px solid var(--divider);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .jump-nav ul {
+      display: flex;
+      list-style: none;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .jump-nav a {
+      display: block;
+      padding: 0.7rem 1rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink-light);
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .jump-nav a:hover {
+      color: var(--sage-dark);
+      border-bottom-color: var(--sage);
+    }
+
+    /* ===== MAIN ===== */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      line-height: 1.15;
+    }
+
+    h2 .num {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55em;
+      font-weight: 500;
+      color: var(--sage);
+      vertical-align: super;
+      margin-right: 0.3rem;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--sage-dark);
+      margin: 2rem 0 0.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    p { margin-bottom: 1rem; }
+
+    p + p { margin-top: 0; }
+
+    strong { font-weight: 600; }
+
+    /* ===== STAMP CALLOUT ===== */
+    .stamp-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: var(--ink);
+      color: rgba(255,255,255,0.85);
+      border-radius: 2px;
+    }
+
+    .stamp-block img {
+      width: 100%;
+      border-radius: 2px;
+      transform: rotate(180deg);
+    }
+
+    .stamp-block .stamp-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stamp-block .maker {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .stamp-block .addr {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--sage-light);
+      margin-bottom: 1rem;
+    }
+
+    .stamp-block p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* ===== PHOTO LAYOUTS ===== */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 2rem 0;
+    }
+
+    .photo-grid.triple {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      background: var(--cream-dark);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card.tall { grid-row: span 2; }
+    .photo-card.wide { grid-column: span 2; }
+
+    .photo-card figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 0.65rem 0.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: #fff;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+    }
+
+    .single-photo {
+      margin: 2rem 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .single-photo img {
+      width: 100%;
+      display: block;
+    }
+
+    .single-photo figcaption {
+      padding: 0.5rem 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--ink-light);
+    }
+
+    /* ===== STEPS ===== */
+    .step {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 0 1rem;
+      margin: 1.5rem 0;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px dashed var(--divider);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--sage);
+      line-height: 1;
+      padding-top: 0.15rem;
+    }
+
+    .step-body h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-body p {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-body ul {
+      margin: 0.5rem 0 0.5rem 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .step-body li { margin-bottom: 0.3rem; }
+
+    /* ===== SUPPLY TABLE ===== */
+    .supply-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.92rem;
+    }
+
+    .supply-table thead {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-light);
+    }
+
+    .supply-table th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 2px solid var(--ink);
+      font-weight: 500;
+    }
+
+    .supply-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .supply-table .price {
+      font-family: 'IBM Plex Mono', monospace;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .supply-table tfoot td {
+      border-top: 2px solid var(--ink);
+      border-bottom: none;
+      font-weight: 600;
+    }
+
+    /* ===== WARNING CARDS ===== */
+    .warnings {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .warn-card {
+      padding: 1.25rem;
+      background: var(--warm-white);
+      border-left: 4px solid var(--rust);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .warn-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--rust);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .warn-card p {
+      font-size: 0.88rem;
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+
+    /* ===== VALUE CALLOUT ===== */
+    .value-box {
+      background: var(--sage-light);
+      padding: 1.5rem 2rem;
+      border-radius: 2px;
+      margin: 1.5rem 0;
+      border: 1px solid rgba(91,123,94,0.3);
+    }
+
+    .value-box .range {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: var(--sage-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .value-box .context {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      font-style: italic;
+    }
+
+    /* ===== PRODUCT RECS ===== */
+    .product {
+      display: inline;
+      font-weight: 600;
+      color: var(--sage-dark);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    .timeline-row .year {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--sage);
+      flex-shrink: 0;
+      min-width: 4rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      font-size: 0.82rem;
+      color: var(--ink-light);
+    }
+
+    footer a {
+      color: var(--sage-dark);
+    }
+
+    footer .sources {
+      columns: 2;
+      column-gap: 2rem;
+      margin-top: 0.75rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      line-height: 1.8;
+    }
+
+    footer .sources a {
+      text-decoration: none;
+      color: var(--ink-light);
+    }
+
+    footer .sources a:hover {
+      color: var(--sage-dark);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .hero { min-height: 65vh; }
+      .hero-content { padding: 2rem 1.25rem; }
+      .stamp-block {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.25rem;
+      }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid.triple { grid-template-columns: 1fr 1fr; }
+      .warnings { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 2.5rem 1fr; }
+      .step-num { font-size: 1.4rem; }
+      .jump-nav ul { padding: 0 0.5rem; }
+      .jump-nav a { padding: 0.6rem 0.65rem; font-size: 0.7rem; }
+      footer .sources { columns: 1; }
+      .value-box { padding: 1.25rem; }
+      .value-box .range { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-img" src="hero-full-set.jpeg" alt="1960s Borg-Warner Fibermold patio set with four fiberglass shell chairs around a round green table">
+    <div class="hero-content">
+      <h1>
+        <span>Borg-Warner Fibermold Corporation</span>
+        The Patio Table
+      </h1>
+      <p class="hero-sub">A complete 1960s fiberglass patio set from a forgotten South Bay factory. Identification, history, and a weekend restoration guide.</p>
+    </div>
+  </div>
+
+  <!-- STICKY NAV -->
+  <nav class="jump-nav">
+    <ul>
+      <li><a href="#find">The Find</a></li>
+      <li><a href="#set">The Set</a></li>
+      <li><a href="#plan">The Plan</a></li>
+      <li><a href="#weekend1">Weekend 1</a></li>
+      <li><a href="#weekend2">Weekend 2</a></li>
+      <li><a href="#supplies">Supplies</a></li>
+      <li><a href="#warnings">Warnings</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+
+    <!-- THE FIND -->
+    <section id="find">
+      <h2><span class="num">01</span> The Find</h2>
+
+      <p>This is a complete five-piece patio set manufactured by Borg-Warner Fibermold Corporation in Torrance, California, sometime in the early-to-mid 1960s. Four fiberglass shell chairs and a matching round fiberglass-top table on a tubular steel spider base. Both table and chairs carry the Borg-Warner stamp.</p>
+
+      <div class="stamp-block">
+        <img src="stamp.jpeg" alt="Manufacturer stamp reading Borg-Warner Fibermold Corporation, 2321 Abalone Avenue, Torrance, California">
+        <div class="stamp-text">
+          <div class="maker">Borg-Warner Fibermold Corporation</div>
+          <div class="addr">2321 Abalone Avenue, Torrance, California</div>
+          <p>Borg-Warner was a Fortune 500 conglomerate best known for automotive transmissions. Their Marbon Chemical Division developed <strong>Cycolac</strong>, one of the first commercial ABS plastics. Fibermold was the manufacturing arm that turned those materials into consumer products, including these patio sets.</p>
+        </div>
+      </div>
+
+      <h3>The South Bay Connection</h3>
+      <p>The Fibermold factory sat in the same South Bay LA industrial corridor as <strong>Zenith Plastics</strong> in neighboring Gardena, the company that molded the original Eames fiberglass shells for Herman Miller from 1950 to 1953. These aren't Eames chairs and they aren't copies. They're a parallel product from the same era, same neighborhood, same material technology. A corporate furniture line made to showcase Borg-Warner's plastics capabilities.</p>
+
+      <h3>Timeline</h3>
+      <div class="timeline-row"><span class="year">1928</span> Borg-Warner Corporation formed from four Midwest manufacturers</div>
+      <div class="timeline-row"><span class="year">1954</span> Marsene subsidiary renamed Marbon Chemical Division</div>
+      <div class="timeline-row"><span class="year">~1958</span> Cycolac ABS plastic commercialized; Fibermold begins production</div>
+      <div class="timeline-row"><span class="year">~1960-66</span> Peak production era for Fibermold patio furniture</div>
+      <div class="timeline-row"><span class="year">1988</span> Borg-Warner chemicals group sold to GE for $2.3 billion</div>
+
+      <div class="value-box">
+        <div class="range">$400 &ndash; $800</div>
+        <div class="context">Estimated private-sale value for a set of four chairs in decent condition. No named designer has ever been attributed to these pieces. They're industrial product, not gallery furniture, but they have real mid-century provenance and a following among collectors.</div>
+      </div>
+    </section>
+
+    <!-- THE SET -->
+    <section id="set">
+      <h2><span class="num">02</span> The Set</h2>
+
+      <p>What we're working with: one round fiberglass table top on a steel spider-leg base, four fiberglass bucket-shell chairs on white-painted tubular steel X-bases. Everything is structurally sound. The problems are cosmetic: decades of outdoor grime, rust at every metal joint, and worn paint on the table.</p>
+
+      <div class="photo-grid">
+        <figure class="photo-card tall">
+          <img src="table-side.jpeg" alt="Side view of table showing spider leg base" loading="lazy">
+          <figcaption>Steel spider-leg base, painted sage green. Structurally solid.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="table-top.jpeg" alt="Top surface of table showing worn paint" loading="lazy">
+          <figcaption>Top surface. Paint faded and dirty but not peeling.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="table-leg-rust.jpeg" alt="Close-up of rust inside open tube end of table leg" loading="lazy">
+          <figcaption>Open tube ends. Rusting from the inside out.</figcaption>
+        </figure>
+      </div>
+
+      <div class="photo-grid">
+        <figure class="photo-card">
+          <img src="chair-angle.jpeg" alt="Fiberglass shell chair from three-quarter angle" loading="lazy">
+          <figcaption>Classic bucket shell profile. No cracks.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="chair-top.jpeg" alt="Top-down view of dirty chair shell" loading="lazy">
+          <figcaption>60 years of sitting. Dark stains from oxidized skin oils.</figcaption>
+        </figure>
+      </div>
+
+      <div class="photo-grid triple">
+        <figure class="photo-card">
+          <img src="chair-hardware.jpeg" alt="Close-up of rusted chair base hardware" loading="lazy">
+          <figcaption>Shock mount hardware. Heavy rust.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="chair-surface.jpeg" alt="Close-up of fiberglass shell surface" loading="lazy">
+          <figcaption>Shell surface detail. Stained, not damaged.</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="table-underside.jpeg" alt="Underside of table showing cross-brace mounting" loading="lazy">
+          <figcaption>Table underside. Cross-brace to spider base.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="single-photo">
+        <img src="chairs-two.jpeg" alt="Two fiberglass shell chairs seen from above" loading="lazy">
+        <figcaption>Two of the four shells. Same condition across the set.</figcaption>
+      </figure>
+    </section>
+
+    <!-- THE PLAN -->
+    <section id="plan">
+      <h2><span class="num">03</span> The Plan</h2>
+
+      <p>This is a two-weekend project. Weekend one is prep and metalwork. Weekend two is finishing the fiberglass. Total supply cost is around $135. The goal is <em>useable</em>, not museum-grade. We're cleaning, treating rust, repainting the metal, and bringing the fiberglass back with Penetrol. No stripping, no reupholstering, no overthinking.</p>
+
+      <h3>Key Products</h3>
+      <p><span class="product">Penetrol</span> (by Flood/PPG) is the standard finish for vintage fiberglass shell restoration. It penetrates oxidized gelcoat and restores the oils that made the original finish look right. One quart covers all four chairs and the table. ~$18 at any hardware store.</p>
+      <p><span class="product">Rustoleum Stops Rust</span> line handles all the metal: Rusty Metal Primer for the bad spots, Protective Enamel for the topcoat. Proven outdoor formula. $7-8/can.</p>
+      <p><span class="product">Naval Jelly</span> (Loctite brand) chemically converts rust to iron phosphate, giving primer a stable surface. $8 for a bottle.</p>
+    </section>
+
+    <!-- WEEKEND 1 -->
+    <section id="weekend1">
+      <h2><span class="num">04</span> Weekend 1: Prep &amp; Metal</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Disassemble</h4>
+          <p>Remove chairs from bases. Remove any hardware you can. Label parts if needed. You want fiberglass and metal separated so you can treat them independently.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Wash Everything</h4>
+          <p>Hot water, dish soap, stiff nylon brush. Scrub every fiberglass surface, both sides. Rinse thoroughly. Let dry completely. This alone will remove 60% of what looks like "damage."</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Attack the Stains</h4>
+          <p>The dark seat stains are oxidized skin oils and sunscreen baked in over decades. Escalate in order:</p>
+          <ul>
+            <li><strong>Magic Eraser</strong> (melamine foam) &mdash; try first. Wet, wring, scrub.</li>
+            <li><strong>Bar Keepers Friend</strong> (powder) &mdash; paste with water, sit 5 min, scrub with nylon brush, rinse. Contains oxalic acid.</li>
+            <li><strong>Marine gelcoat cleaner</strong> (Meguiar's or similar) &mdash; if stains persist, this cuts deeper without sanding.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Wire Brush All Rust</h4>
+          <p>Wire brush or Dremel with wire wheel on all rusted metal surfaces. Focus on hardware mounting holes, shock mount areas, and the open tube ends. Remove all loose scale, flaking paint, and surface rust. Goal is solid substrate, not shiny bare metal everywhere.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Naval Jelly</h4>
+          <p>Apply <span class="product">Loctite Naval Jelly</span> to all rusted areas with a cheap brush. Wait 10-15 minutes, no more. The phosphoric acid converts iron oxide to iron phosphate. Rinse completely with water. Neutralize with a baking soda/water wipe if you're cautious. Dry thoroughly.</p>
+          <p><strong>Do not leave it on more than 15 minutes.</strong> It will eat through paint on adjacent areas.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Treat Open Tube Ends</h4>
+          <p>Spray <span class="product">Boeshield T-9</span> or <span class="product">Fluid Film</span> into all open tube ends on the table legs. These are waxy corrosion inhibitors originally developed for Boeing. Let drain and dry. You'll cap these with rubber plugs after painting.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <h4>Prime All Metal</h4>
+          <p>Prime within 24 hours of rust treatment. Use <span class="product">Rustoleum Stops Rust Rusty Metal Primer</span> on rust-treated areas. <span class="product">Clean Metal Primer</span> on everything else. Two thin coats. Let cure overnight.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEEKEND 2 -->
+    <section id="weekend2">
+      <h2><span class="num">05</span> Weekend 2: Finishing</h2>
+
+      <div class="step">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <h4>Sand the Fiberglass (If Needed)</h4>
+          <p>If cleaning didn't fully revive the shells, sand. Start with 220 grit sanding sponge in small circles. Follow with 400 grit wet-sand, then 600 grit wet-sand. Wipe with a tack cloth.</p>
+          <p><strong>Wear an N95 mask.</strong> Fiberglass particles embed in lung tissue. Work outdoors, downwind. Wet-sand whenever possible to keep dust down. Safety glasses mandatory.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">9</div>
+        <div class="step-body">
+          <h4>Table Top: Adhesion Promoter</h4>
+          <p>Spray <span class="product">Rustoleum Adhesion Promoter</span> over the entire sanded table top. Let flash off for 15 minutes. This is the step most DIYers skip and then wonder why paint peels. Gelcoat is chemically inert and slick even when scuffed.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">10</div>
+        <div class="step-body">
+          <h4>Prime &amp; Paint the Table Top</h4>
+          <p>One coat of <span class="product">Rustoleum Filler Primer</span>, let cure, light scuff with 220. Then two thin coats of <span class="product">Rustoleum 2X Ultra Cover</span> or <span class="product">Marine Topside Paint</span> in your color of choice. Light sanding with 320 wet between coats. Cure 48-72 hours before use.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">11</div>
+        <div class="step-body">
+          <h4>Topcoat Metal Frames</h4>
+          <p>Two thin coats of <span class="product">Rustoleum Stops Rust Protective Enamel</span> in gloss or semi-gloss. Gloss White (#7792) is a close match to the original mid-century powder-coat white on the chair bases. Two thin coats. Cure 24 hours.</p>
+          <p>For the table base, match whatever color you chose for the top, or keep the original green.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">12</div>
+        <div class="step-body">
+          <h4>Penetrol the Chair Shells</h4>
+          <p>Apply <span class="product">Penetrol</span> with a lint-free cloth (old t-shirt or Swedish dishcloth). Wipe on a thin, even coat. A little goes a long way. Do the bottom first, let cure several hours, then flip and do the top.</p>
+          <p>Two coats total. Let cure 48 hours before use. Follow with carnauba wax for added UV protection if you want.</p>
+          <p><strong>Note:</strong> Penetrol can yellow white shells over time. If your shells are very white and you want to keep them that way, use a standard marine clearcoat instead.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">13</div>
+        <div class="step-body">
+          <h4>Cap the Tube Ends, Add Glides</h4>
+          <p>Press rubber or plastic end caps into all open tube ends. Mid-century patio furniture typically used 7/8" or 1" OD tube. Measure with calipers or the paper-wrap method (circumference divided by 3.14 = OD). Available in packs on Amazon or from <a href="https://www.patiochairsupplies.com" style="color:var(--sage-dark)">Patio Chair Supplies</a>.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">14</div>
+        <div class="step-body">
+          <h4>Reassemble</h4>
+          <p>Bolt the chair shells back onto the bases. Reattach table top to spider base. Set it up. Sit in it. You're done.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPLIES -->
+    <section id="supplies">
+      <h2><span class="num">06</span> Supply List</h2>
+
+      <table class="supply-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th class="price">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Loctite Naval Jelly, 8 oz</td><td class="price">$8</td></tr>
+          <tr><td>Rustoleum Rusty Metal Primer spray (x2)</td><td class="price">$14</td></tr>
+          <tr><td>Rustoleum Clean Metal Primer spray</td><td class="price">$7</td></tr>
+          <tr><td>Rustoleum Stops Rust Protective Enamel, white (x2-3)</td><td class="price">$18-24</td></tr>
+          <tr><td>Rustoleum Adhesion Promoter spray</td><td class="price">$8</td></tr>
+          <tr><td>Rustoleum 2X or Marine Topside, table color (x1-2)</td><td class="price">$10-16</td></tr>
+          <tr><td>Flood Penetrol, quart</td><td class="price">$18</td></tr>
+          <tr><td>Bar Keepers Friend, powder</td><td class="price">$5</td></tr>
+          <tr><td>Sandpaper assorted (220 / 400 / 600)</td><td class="price">$10</td></tr>
+          <tr><td>End caps / glides, pack</td><td class="price">$10</td></tr>
+          <tr><td>Boeshield T-9 aerosol, 12 oz</td><td class="price">$15</td></tr>
+          <tr><td>N95 respirators, nitrile gloves, tack cloths</td><td class="price">$12</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total (estimated)</td><td class="price">$135-150</td></tr>
+        </tfoot>
+      </table>
+
+      <p>Everything is available at Home Depot, Lowe's, or Amazon. The Penetrol and Naval Jelly are the two specialty items; the rest is standard paint aisle stuff.</p>
+    </section>
+
+    <!-- WARNINGS -->
+    <section id="warnings">
+      <h2><span class="num">07</span> Don't Do This</h2>
+
+      <div class="warnings">
+        <div class="warn-card">
+          <h4>No Acetone on Gelcoat</h4>
+          <p>Acetone softens gelcoat surfaces and causes crazing. If you need a solvent, use mineral spirits and wipe off immediately.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Dry Power Sanding</h4>
+          <p>Fiberglass dust embeds in skin and lungs. Always wet-sand or at minimum wear an N95. Work outdoors, downwind.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Pressure Washer</h4>
+          <p>High pressure can delaminate surface layers or force water into micro-cracks in 60-year-old fiberglass.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Paint Without Primer</h4>
+          <p>Topcoat over bare metal without primer will fail within one season. Topcoat over bare gelcoat without adhesion promoter will peel in sheets.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Steel Wool on Fiberglass</h4>
+          <p>Steel fragments embed in the surface and rust, leaving permanent brown spots that weren't there before.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Thick Penetrol Coats</h4>
+          <p>A teaspoon per chair. Thick coats stay tacky and attract dust. Two thin coats with 48 hours between.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Plugging Without Treating</h4>
+          <p>Capping open tube ends without first treating the inside just traps moisture and accelerates rust.</p>
+        </div>
+        <div class="warn-card">
+          <h4>No Painting in Direct Sun</h4>
+          <p>Paint dries too fast, solvents flash off before bonding, and you get bubbles. Work in shade or before 10 AM.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>Page by Rob Logic. Research, verification, and restoration guidance compiled April 2026.</p>
+    <p>Sources consulted:</p>
+    <div class="sources">
+      <a href="https://mikeindustries.com/blog/archive/2021/11/restoring-vintage-fiberglass-eames-chairs">Mike Industries restoration guide</a><br>
+      <a href="https://www.redneckmodern.com/2016/03/restoring-eames-fiberglass-chairs.html">Redneck Modern fiberglass guide</a><br>
+      <a href="https://fiberclassics.org/marbon-chemicals/">Fiberclassics Marbon history</a><br>
+      <a href="http://www.bwcmuseum.com/">BWC Museum</a><br>
+      <a href="https://www.encyclopedia.com/books/politics-and-business-magazines/borg-warner-corporation">Encyclopedia.com Borg-Warner</a><br>
+      <a href="https://industrialartifacts.net/products/pair-of-mid-century-modern-cycolac-chairs-in-yellow">Industrial Artifacts Cycolac listing</a><br>
+      <a href="https://azrust.com/naval-jelly-rust-remover-guide/">AZ Rust naval jelly guide</a><br>
+      <a href="https://www.patiochairsupplies.com">Patio Chair Supplies</a><br>
+      <a href="https://boeshield.com/applications-marine/">Boeshield T-9</a><br>
+      <a href="https://eames.com/en/blog/blog-howshell">Eames.com shell care</a>
+    </div>
+  </footer>
+
+</body>
+</html>
