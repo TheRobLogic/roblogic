@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Tree Named Joshua</title>
+  <meta name="description" content="Night photography from Joshua Tree — April 2026">
+  <meta property="og:title" content="A Tree Named Joshua">
+  <meta property="og:description" content="Night photography from Joshua Tree — April 2026">
+  <meta property="og:url" content="https://roblogic.org/jt/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,700&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --warm: #c4956a;
+      --dim: #6b6259;
+      --faint: #2a2520;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: #e8e0d4;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(0.55) contrast(1.1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        var(--black) 0%,
+        rgba(10,10,10,0.6) 30%,
+        transparent 60%
+      );
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 0.4em;
+    }
+
+    .hero-text p {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--warm);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: clamp(1rem, 3vw, 2rem);
+      right: clamp(1.5rem, 5vw, 4rem);
+      z-index: 1;
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--warm));
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ---- GALLERY ---- */
+    .gallery {
+      padding: clamp(1rem, 4vw, 3rem);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+
+    .gallery-grid .photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: pointer;
+      background: var(--faint);
+      aspect-ratio: auto;
+    }
+
+    .gallery-grid .photo.wide {
+      grid-column: 1 / -1;
+    }
+
+    .gallery-grid .photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+      filter: brightness(0.85);
+    }
+
+    .gallery-grid .photo:hover img {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
+
+    /* Fade-in on scroll */
+    .photo {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .photo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- LIGHTBOX ---- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      cursor: zoom-out;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 2px;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: scale(0.92);
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 2.5rem;
+      cursor: pointer;
+      padding: 1rem;
+      transition: color 0.2s;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .lightbox-nav:hover { color: #fff; }
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover { color: #fff; }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--dim);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      text-align: center;
+      padding: 4rem clamp(1rem, 4vw, 3rem) 3rem;
+      color: var(--dim);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    .footer a {
+      color: var(--warm);
+      text-decoration: none;
+      border-bottom: 1px solid var(--faint);
+      transition: border-color 0.2s;
+    }
+
+    .footer a:hover {
+      border-color: var(--warm);
+    }
+
+    .footer .camp-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: #e8e0d4;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+      .lightbox-nav { font-size: 1.8rem; padding: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero — starlit boulders -->
+  <section class="hero">
+    <img class="hero-img" src="photos/IMG_3459.webp" alt="Moonlit canyon at Joshua Tree" loading="eager">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <h1>A Tree<br>Named Joshua</h1>
+      <p>April 2026</p>
+    </div>
+    <div class="scroll-hint"></div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+    <div class="gallery-grid">
+      <div class="photo wide"><img src="photos/IMG_3463.webp" alt="Standing on boulders under the stars" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3484.webp" alt="Boulder face against the night sky" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3483.webp" alt="Sculpted granite under deep blue sky" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3455.webp" alt="Rock surface detail" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3474.webp" alt="Boulder silhouettes against stars" loading="lazy"></div>
+      <div class="photo wide"><img src="photos/IMG_3497.webp" alt="Desert ridgeline under the stars" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3479.webp" alt="Cliff face lit by stars" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3489.webp" alt="Night climbing among boulders" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3481.webp" alt="Boulders with red glow at night" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3492.webp" alt="Canyon with moonbeam" loading="lazy"></div>
+      <div class="photo wide"><img src="photos/IMG_3458.webp" alt="Night scene among the boulders" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3496.webp" alt="Hiking under the desert stars" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_3469.webp" alt="Dark sky over the desert" loading="lazy"></div>
+      <div class="photo wide"><img src="photos/IMG_5694.webp" alt="Campfire with friends" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_5690.webp" alt="Desert twilight over the campground" loading="lazy"></div>
+      <div class="photo"><img src="photos/IMG_5697.webp" alt="Moon halo over Joshua Tree" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="camp-name">Joshua Tree Lake RV & Campground</span>
+    <a href="https://www.joshuatreelake.com/" target="_blank" rel="noopener">joshuatreelake.com</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
+    <img src="" alt="">
+    <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
+    <div class="lightbox-counter"></div>
+  </div>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.photo').forEach(p => observer.observe(p));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+    const lbCounter = lightbox.querySelector('.lightbox-counter');
+    const photos = [...document.querySelectorAll('.gallery-grid .photo img')];
+    let current = 0;
+
+    function openLightbox(i) {
+      current = i;
+      lbImg.src = photos[i].src;
+      lbImg.alt = photos[i].alt;
+      lbCounter.textContent = `${i + 1} / ${photos.length}`;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function nav(dir) {
+      current = (current + dir + photos.length) % photos.length;
+      lbImg.src = photos[current].src;
+      lbImg.alt = photos[current].alt;
+      lbCounter.textContent = `${current + 1} / ${photos.length}`;
+    }
+
+    photos.forEach((img, i) => {
+      img.closest('.photo').addEventListener('click', () => openLightbox(i));
+    });
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', (e) => { e.stopPropagation(); nav(-1); });
+    lightbox.querySelector('.lightbox-next').addEventListener('click', (e) => { e.stopPropagation(); nav(1); });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') nav(-1);
+      if (e.key === 'ArrowRight') nav(1);
+    });
+
+    // Swipe support for mobile
+    let touchStart = 0;
+    lightbox.addEventListener('touchstart', (e) => { touchStart = e.changedTouches[0].screenX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const diff = e.changedTouches[0].screenX - touchStart;
+      if (Math.abs(diff) > 50) nav(diff > 0 ? -1 : 1);
+    }, { passive: true });
+  </script>
+</body>
+</html>
