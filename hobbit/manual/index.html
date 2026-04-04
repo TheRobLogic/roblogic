@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Honda PA50 Shop Manual (1983) — The Hobbit</title>
+  <meta name="description" content="Official 1983 Honda PA50 Shop Manual. 92 pages of specifications, service procedures, wiring diagrams, and exploded parts views.">
+  <meta property="og:title" content="Honda PA50 Shop Manual (1983)">
+  <meta property="og:description" content="Official Honda PA50 service manual — specs, procedures, wiring diagrams, parts.">
+  <meta property="og:url" content="https://roblogic.org/hobbit/manual/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --honda-yellow: #F5C518;
+      --honda-red: #CC0000;
+      --cream: #FBF7EC;
+      --ink: #1A1612;
+      --ink-light: #3D352A;
+      --steel: #6B7280;
+      --paper: #FAF6ED;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: var(--ink);
+      border-bottom: 3px solid var(--honda-yellow);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-left a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: var(--honda-yellow);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .header-left a:hover { opacity: 1; }
+
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      letter-spacing: 0.06em;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .header h1 span {
+      color: var(--honda-yellow);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-download {
+      background: var(--honda-red);
+      color: #fff;
+    }
+
+    .btn-back {
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-back:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+    .manual-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--steel);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== PDF VIEWER ===== */
+    .viewer {
+      flex: 1;
+      min-height: 0;
+      background: #333;
+    }
+
+    .viewer iframe,
+    .viewer embed,
+    .viewer object {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ===== FALLBACK ===== */
+    .fallback {
+      display: none;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    .fallback h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--honda-yellow);
+      margin-bottom: 1rem;
+    }
+
+    .fallback p {
+      color: var(--steel);
+      margin-bottom: 2rem;
+      max-width: 400px;
+    }
+
+    .fallback .btn-download {
+      font-size: 1.2rem;
+      padding: 0.8rem 2rem;
+      display: inline-block;
+    }
+
+    /* ===== TOC SIDEBAR ===== */
+    .toc-toggle {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+    }
+
+    .toc-toggle:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+    .toc-panel {
+      display: none;
+      background: var(--ink);
+      border-bottom: 2px solid var(--honda-yellow);
+      padding: 1rem 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .toc-panel.open { display: block; }
+
+    .toc-panel h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--honda-yellow);
+      margin-bottom: 0.6rem;
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .toc-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.2rem 2rem;
+    }
+
+    .toc-entry {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem 0;
+      color: rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .toc-entry span:last-child {
+      color: var(--steel);
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    .toc-section {
+      color: var(--honda-yellow);
+      font-weight: 600;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .header { padding: 0.5rem 1rem; }
+      .manual-meta { display: none; }
+      .toc-columns { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-left">
+        <a href="/hobbit/">&larr; The Hobbit</a>
+        <h1><span>Honda PA50</span> Shop Manual</h1>
+        <span class="manual-meta">1983 &middot; 92 pages &middot; No. HM 1051</span>
+      </div>
+      <div class="header-right">
+        <button class="toc-toggle" onclick="toggleTOC()">Contents</button>
+        <a class="btn btn-download" href="Honda_PA50_Shop_Manual_1983.pdf" download>Download PDF</a>
+      </div>
+    </header>
+
+    <div class="toc-panel" id="toc">
+      <h3>Table of Contents</h3>
+      <div class="toc-columns">
+        <div>
+          <div class="toc-section">General</div>
+          <div class="toc-entry"><span>1. Specifications</span><span>p. 1</span></div>
+          <div class="toc-entry"><span>2. Technical Features</span><span>p. 2</span></div>
+          <div class="toc-entry"><span>3. Service Procedures</span><span>p. 3</span></div>
+          <div class="toc-entry"><span>4. Inspection / Adjustment</span><span>p. 36</span></div>
+        </div>
+        <div>
+          <div class="toc-section">Engine</div>
+          <div class="toc-entry"><span>5. Engine Removal / Installation</span><span>p. 43</span></div>
+          <div class="toc-entry"><span>6. Cylinder Head / Cylinder / Piston</span><span>p. 45</span></div>
+          <div class="toc-entry"><span>7. A.C. Generator</span><span>p. 52</span></div>
+          <div class="toc-entry"><span>8. Drive Pulley / Clutch / Driven Pulley</span><span>p. 55</span></div>
+          <div class="toc-entry"><span>9. Crankshaft / Crankcase</span><span>p. 63</span></div>
+          <div class="toc-entry"><span>10. Carburetor / Air Cleaner</span><span>p. 67</span></div>
+        </div>
+        <div>
+          <div class="toc-section">Frame</div>
+          <div class="toc-entry"><span>11. Handlebar / Front Susp. / Front Wheel</span><span>p. 72</span></div>
+          <div class="toc-entry"><span>12. Rear Wheel</span><span>p. 78</span></div>
+          <div class="toc-entry"><span>13. Final Reduction</span><span>p. 82</span></div>
+          <div class="toc-entry"><span>14. Fuel Tank / Rear Shock Absorber</span><span>p. 85</span></div>
+          <div class="toc-entry"><span>15. Electrical</span><span>p. 87</span></div>
+          <div class="toc-entry"><span>16. Wiring</span><span>p. 89–92</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="viewer" id="viewer">
+      <iframe src="Honda_PA50_Shop_Manual_1983.pdf" title="Honda PA50 Shop Manual 1983"></iframe>
+    </div>
+
+    <div class="fallback" id="fallback">
+      <div>
+        <h2>Shop Manual — Honda PA50</h2>
+        <p>Your browser can't display the PDF inline. Download it to view the full 92-page service manual with diagrams, specs, and wiring schematics.</p>
+        <a class="btn btn-download" href="Honda_PA50_Shop_Manual_1983.pdf" download>Download PDF (3.6 MB)</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleTOC() {
+      document.getElementById('toc').classList.toggle('open');
+    }
+
+    // Fallback for browsers that can't render PDFs inline
+    const iframe = document.querySelector('.viewer iframe');
+    iframe.addEventListener('error', showFallback);
+
+    // Some mobile browsers won't fire error — check after load
+    setTimeout(() => {
+      try {
+        // If iframe loaded but is empty or about:blank, show fallback
+        if (iframe.contentDocument && iframe.contentDocument.body &&
+            iframe.contentDocument.body.innerHTML === '') {
+          showFallback();
+        }
+      } catch(e) {
+        // Cross-origin — PDF plugin loaded, we're fine
+      }
+    }, 2000);
+
+    function showFallback() {
+      document.getElementById('viewer').style.display = 'none';
+      document.getElementById('fallback').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
