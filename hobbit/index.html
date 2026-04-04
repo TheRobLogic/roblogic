@@ -728,7 +728,7 @@
       <tr><td>Power</td><td>~1.7–2.0 hp @ 5,800 rpm</td></tr>
       <tr><td>Fuel System</td><td>Keihin PA-type carburetor</td></tr>
       <tr><td>Main Jet (PA50-II)</td><td>#78</td></tr>
-      <tr><td>Spark Plug</td><td>NGK BPR6HS or BP6HS</td></tr>
+      <tr><td>Spark Plug</td><td>NGK BP6HS (gap 0.028" / 0.7mm)</td></tr>
       <tr><td>Fuel Mix</td><td>25:1 premix (gas:2-stroke oil)</td></tr>
       <tr><td>Idle Speed</td><td>1,500 RPM</td></tr>
     </tbody>
@@ -839,14 +839,23 @@
   <div class="repair-step">
     <h4>Carburetor Rebuild</h4>
     <p>The stock <strong>Keihin PA-type</strong> carburetor is described by the community as "the most finicky thing on the bike." Every speck of debris must be removed.</p>
+    <p>The stock <strong>Keihin BB 20A</strong> (PA50-II, 12mm venturi) is flange-mounted with a swinging throttle plate — unlike most moped carbs. It's also buried in the frame.</p>
+    <h4 style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;margin:0.8rem 0 0.5rem;color:var(--ink-light)">Removal Trick</h4>
     <ol>
-      <li>Remove carb from intake manifold (note: intake bolts torque to <code>80–120 kg-cm / 5.8–8.7 ft-lbs</code>).</li>
-      <li>Disassemble completely — float, needle, jets, gaskets.</li>
-      <li>Soak body in carb cleaner for 30 minutes. Blow out every passage with compressed air.</li>
+      <li>Unhook the decompression cable from the cylinder head with needle-nose pliers.</li>
+      <li>Unplug the spark plug wire. Loosen and remove the throttle cable from above the carb.</li>
+      <li><strong>Place a hydraulic jack under the front tire and slowly raise the front end</strong> — this tilts the engine down and gives you access. Be careful not to stretch electrical wires.</li>
+      <li>Remove the 4 × 10mm carb mounting bolts. Extract the carburetor.</li>
+    </ol>
+    <h4 style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.06em;margin:0.8rem 0 0.5rem;color:var(--ink-light)">Cleaning &amp; Rebuild</h4>
+    <ol>
+      <li>Remove float bowl (Phillips screws), float, needle, main jet, and mixture screw (count turns out so you can reset it — typical starting point is 1.5 turns out).</li>
+      <li>Soak metal parts in Pine-Sol/water (50/50) for 30 minutes, or use an ultrasonic cleaner with 80% distilled water + 20% Simple Green HD for 60 minutes.</li>
+      <li>Blow out every passage with compressed air. Use a wire brush bristle for stubborn jets — <strong>never drill them out</strong>.</li>
       <li>Check the <strong>float</strong> — if it sticks, the bike will flood or starve. Replace if dented or saturated.</li>
       <li>Verify main jet: PA50-II stock is <code>#78</code>. PA50-I stock is <code>#60</code>.</li>
-      <li>Replace all gaskets. Rebuild kits available at Treatland and 1977 Mopeds.</li>
-      <li>Reassemble, set float height per service manual, reinstall.</li>
+      <li>Replace all gaskets and O-rings. Rebuild kits at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a> and <a href="https://www.1977mopeds.com/category-s/145.htm" target="_blank" rel="noopener">1977 Mopeds</a>. Full Keihin BB parts catalog at <a href="https://www.myronsmopeds.com/2021/04/keihin-carburetor-parts-family-345/" target="_blank" rel="noopener">Myron's Mopeds</a>.</li>
+      <li>Reassemble, set float height per service manual, reinstall. Torque intake bolts to <code>80–120 kg-cm (5.8–8.7 ft-lbs)</code>.</li>
     </ol>
   </div>
 
@@ -877,7 +886,7 @@
     <ol>
       <li>Remove spark plug, screw in compression gauge.</li>
       <li>Pedal the engine through several revolutions.</li>
-      <li>Stock compression should be <strong>100–120 PSI</strong>. Below 80 PSI = top end rebuild.</li>
+      <li>Good compression: <strong>~150 PSI</strong>. Minimum for running: ~120 PSI. Below 100 PSI = top end rebuild needed.</li>
       <li>Low compression causes: worn piston rings, scored cylinder, blown head gasket, cracked reed valve gasket leaking into crankcase.</li>
     </ol>
   </div>
@@ -888,14 +897,28 @@
     <h4>When and How</h4>
     <p>If compression is low, the top end needs attention. This is a common job on these bikes.</p>
     <ol>
-      <li>Remove exhaust, intake, and cylinder head bolts.</li>
-      <li>Carefully pull the cylinder off the piston. Check the bore for scoring.</li>
-      <li>Inspect piston rings — replace if worn, stuck, or broken.</li>
-      <li>Light scoring: hone the cylinder with a ball hone. Deep scoring: new cylinder needed.</li>
-      <li>Replace gaskets (head gasket, base gasket, exhaust gasket).</li>
-      <li>Reassemble with fresh gaskets. Torque head bolts per manual spec in a cross pattern.</li>
+      <li>Remove exhaust pipe, spark plug, and cylinder head nuts.</li>
+      <li>Lift off the head — if stuck, tap gently with a rubber mallet. <strong>Never pry between sealing surfaces.</strong></li>
+      <li>Carefully slide the cylinder off the piston, supporting the piston so it doesn't slam against the crankcase.</li>
+      <li>Stuff a clean rag into the crankcase opening to prevent debris from falling in.</li>
+      <li>Remove wrist pin clips, push out the wrist pin, remove the piston.</li>
+      <li>Inspect the cylinder bore for scoring. Light scoring: hone with a ball hone. Deep scoring: new cylinder needed.</li>
+      <li>Install new piston, rings (markings face UP), and wrist pin clips. <strong>Stagger ring end gaps</strong> so they don't align with each other or with the ports.</li>
+      <li>Lightly oil the piston and cylinder bore with 2-stroke oil.</li>
+      <li>Compress the rings and carefully slide the cylinder over the piston.</li>
+      <li>Install head with new head gasket. <strong>Torque in a cross pattern to <code>90–120 kg-cm (6.5–8.7 ft-lbs)</code>.</strong></li>
     </ol>
-    <p>OEM and aftermarket cylinders, pistons, rings, and gasket kits available at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a>. For performance: see the <a href="#mods">Mods section</a> on 70cc kits.</p>
+
+    <p><strong>Stock piston (40mm):</strong> <a href="https://www.treatland.tv/honda-hobbit-stock-piston-p/hobbit-stock-piston.htm" target="_blank" rel="noopener">Treatland</a> | <a href="https://www.mopeddivision.com/moped-make/honda/honda-hobbit-40mm-stock-piston-kit/" target="_blank" rel="noopener">Moped Division</a>. Gasket kits: <a href="https://www.mopeddivision.com/moped-make/honda/honda-hobbit-pa50-50cc-top-end-gasket-set-athena/" target="_blank" rel="noopener">Athena 50cc set (Moped Division)</a>. For performance: see the <a href="#mods">Mods section</a> on 70cc kits.</p>
+
+    <h4>Decarbonizing</h4>
+    <p>Carbon buildup on the exhaust port restricts flow and reduces top speed.</p>
+    <ol>
+      <li>With the head off, carefully chip away carbon deposits from the exhaust port with a small screwdriver or gasket scraper.</li>
+      <li><strong>Do not scratch the piston crown or cylinder wall.</strong></li>
+      <li>Vacuum all loose carbon — never let it fall into the crankcase.</li>
+      <li>For the exhaust pipe: burn out internal carbon on a campfire/BBQ, or use a torch.</li>
+    </ol>
   </div>
 
   <h3>5. Variator &amp; Belt</h3>
@@ -913,12 +936,15 @@
   <div class="repair-step">
     <h4>Variator Rollers</h4>
     <p>Worn rollers affect shift characteristics and can cause flat spots in acceleration.</p>
+    <p>The PA50 uses <strong>3 rollers</strong> (not 6 like many scooters). Dimensions: 18mm wide × 15mm OD, cap + insert design.</p>
     <ol>
       <li>Remove the variator front pulley (requires a variator holder tool or impact driver).</li>
-      <li>Inspect the rollers — stock size is <code>15×16mm</code>. Replace if flat-spotted or worn.</li>
-      <li>Heavier rollers = shifts to higher ratio sooner (better top speed, slower acceleration).</li>
-      <li>Lighter rollers = shifts later (faster acceleration, lower top speed).</li>
+      <li>Inspect the rollers — replace if flat-spotted or worn.</li>
+      <li>Heavier rollers = shifts to higher ratio sooner (better top speed, softer launch).</li>
+      <li>Lighter rollers = shifts at higher RPM (faster acceleration — useful with performance exhaust/big bore).</li>
+      <li>Stock equivalent: ~7–8g total roller weight.</li>
     </ol>
+    <p><strong>Roller weight inserts</strong> from <a href="https://www.treatland.tv/honda-hobbit-pa50-performance-variator-roller-weig-p/hobbit-rollers.htm" target="_blank" rel="noopener">Treatland ($9.99/set of 3)</a>: available in 1.0g, 2.0g, 2.8g, 4.0g, 5.0g, 6.0g, 7.0g, 7.8g, 9.0g. Start lighter with a performance pipe/big bore and test.</p>
   </div>
 
   <h3>6. Brakes, Tires, Cables</h3>
@@ -961,7 +987,7 @@
       <li>Headlight, tail light, and turn signals run off the lighting coil. If lights are dim or dead, check the bulbs first.</li>
       <li>Check all ground connections — corrosion on ground wires is the most common electrical gremlin.</li>
       <li>Horn not working? Usually a corroded wire or dead horn unit.</li>
-      <li>For wiring diagrams, download the <a href="https://www.mopedarmy.com/wiki/File:Honda_PA50_Service.pdf" target="_blank" rel="noopener">free service manual PDF from Moped Army</a> (98 pages).</li>
+      <li>For wiring diagrams: <a href="https://www.myronsmopeds.com/category/service/wiring-diagrams/" target="_blank" rel="noopener">colorized schematics at Myron's Mopeds</a> (points and CDI versions) or the <a href="https://www.mopedarmy.com/wiki/File:Honda_PA50_Service.pdf" target="_blank" rel="noopener">free service manual PDF from Moped Army</a> (98 pages).</li>
     </ol>
   </div>
 
@@ -977,13 +1003,17 @@
   <table class="spec-table">
     <tbody>
       <tr><td>Fuel Mix</td><td>25:1 premix (gas:2-stroke oil)</td></tr>
-      <tr><td>Spark Plug</td><td>NGK BPR6HS, gap per plug spec</td></tr>
+      <tr><td>Spark Plug</td><td>NGK BP6HS, gap 0.028" (0.7mm)</td></tr>
       <tr><td>Points Gap</td><td>0.3–0.4 mm (points ignition only)</td></tr>
       <tr><td>Brake Freeplay</td><td>10–15 mm (⅜"–⅝") front and rear</td></tr>
       <tr><td>Idle Speed</td><td>1,500 RPM</td></tr>
       <tr><td>Tire Pressure</td><td>Front 28 PSI / Rear 20 PSI</td></tr>
-      <tr><td>Belt</td><td>½" × 42" — inspect for cracks, glazing</td></tr>
+      <tr><td>Belt</td><td>½" × 42" (OEM Mitsuboshi 23100-148-7030)</td></tr>
+      <tr><td>Variator Rollers</td><td>3×, 18mm × 15mm OD, stock ~7–8g total</td></tr>
+      <tr><td>Brake Shoes</td><td>80mm × 18–20mm drum</td></tr>
+      <tr><td>Head Nut Torque</td><td>90–120 kg-cm (6.5–8.7 ft-lbs)</td></tr>
       <tr><td>Intake Bolt Torque</td><td>80–120 kg-cm (5.8–8.7 ft-lbs)</td></tr>
+      <tr><td>Good Compression</td><td>~150 PSI (min ~120 PSI)</td></tr>
     </tbody>
   </table>
 
@@ -1010,7 +1040,7 @@
       <span class="mod-tier-badge stage1">Stage 1</span>
       Bolt-On Basics
     </div>
-    <p><strong>Exhaust upgrade</strong> — aftermarket pipe (Simonini, Proma, or Leovince) unlocks breathing potential. <strong>Re-jet the carb</strong> to match (go up 1–2 jet sizes). <strong>Notch the variator</strong> — the signature Hobbit mod.</p>
+    <p><strong>Exhaust upgrade</strong> — the <a href="https://www.treatland.tv/honda-hobbit-proma-performance-pipe-p/honda-proma-pipe-hobbit-pa50.htm" target="_blank" rel="noopener">Proma Circuit ($120, Treatland)</a> is the gold standard. 4.5/5 stars from 47 reviews. Very loud. Expect +8 mph. <strong>Re-jet the carb</strong> to match (go up 2–4 jet sizes, try #80–85). Add <a href="https://www.treatland.tv/honda-hobbit-pa50-boyesen-power-reed-p/boyesen-honda-hobbit-reeds-mod.htm" target="_blank" rel="noopener">Boyesen power reeds ($22)</a> for the best bang-for-buck power increase. <strong>Notch the variator</strong> — the signature Hobbit mod. Add <strong>stiffer clutch springs</strong> (<a href="https://www.treatland.tv/polini-clutch-springs-set-for-honda-HOBBIT-p/hobbit-polini-clutch-spring-x3.htm" target="_blank" rel="noopener">Polini set ~$10–15</a>) so the engine revs into the powerband before grabbing.</p>
     <h4>Variator Notching</h4>
     <ol>
       <li>Measure and mark a line 10mm from the outside edge of the variator.</li>
@@ -1028,8 +1058,13 @@
       <span class="mod-tier-badge stage2">Stage 2</span>
       70cc Kit Build
     </div>
-    <p><strong>Cylinder kit</strong> — DR Racing, Parmakit, Malossi, or Stage6 R/T. All are 46mm bore, and include cylinder, piston, rings, gaskets, and wrist pin. Combined with the Stage 1 exhaust and variator mods, this is where it gets fun.</p>
-    <p><strong>Also consider:</strong> CDI ignition conversion (HPI Mini Rotor), larger carburetor (Dell'Orto or Mikuni), performance reed valve.</p>
+    <p><strong>Cylinder kits:</strong></p>
+    <ul>
+      <li><a href="https://www.treatland.tv/honda-hobbit-pa50-moped-DR-46mm-70cc-cylinder-kit-p/honda-hobbit-dr-70cc-kit.htm" target="_blank" rel="noopener">DR 46mm 70cc — $185 (Treatland)</a> — cast iron, 6-port, 4.5/5 stars (26 reviews). The workhorse kit. Includes cylinder, piston, rings, gaskets, clips, wrist pin.</li>
+      <li><a href="https://www.lucky2strokes.com/category-s/2057.htm" target="_blank" rel="noopener">Polini 46mm 70cc — $242 (Lucky 2 Strokes)</a> — cast iron, "stupid fast and reliable."</li>
+      <li><a href="https://www.doscycles.com/products/honda-hobbit-athena-47-6mm-74cc-cylinder-kit" target="_blank" rel="noopener">Athena 47.6mm 74cc — $215 (Dos Cycles)</a> — 7-port, nikasil lined. Maximum displacement.</li>
+    </ul>
+    <p><strong>Also consider:</strong> <a href="https://www.doscycles.com/products/honda-hobbit-malossi-21-phbg-carburetor-kit" target="_blank" rel="noopener">Malossi 21mm PHBG carb kit (Dos Cycles)</a> — massive airflow increase over the stock 12mm Keihin. CDI ignition conversion (see below). Upjet to #88–95 range with a 70cc kit.</p>
     <div class="speed-bar"><div class="speed-bar-fill" style="width: 78%"></div></div>
     <div class="speed-label">40–50 mph</div>
   </div>
@@ -1039,13 +1074,49 @@
       <span class="mod-tier-badge race">Race</span>
       Full Race Build
     </div>
-    <p><strong>Ported cylinder kit, race crankshaft</strong> ("Super Stuffy" cranks available), <strong>tuned expansion chamber exhaust</strong>, performance variator (TJT or TRICKmetric TRICK6), and a properly jetted big carb. At this point you're building a race moped.</p>
+    <p><strong>Ported cylinder kit</strong> + <strong>race crankshaft</strong> (<a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treats "Super Stuffy" $130 / "ULTRA" $150</a>) + <strong>tuned expansion chamber exhaust</strong> + performance variator (<a href="https://www.lucky2strokes.com/category-s/2057.htm" target="_blank" rel="noopener">TJT $138</a> or Treats Variator Party $130) + properly jetted big carb.</p>
+
+    <p><strong>CDI conversion options for this level:</strong></p>
+    <ul>
+      <li><a href="https://www.treatland.tv/wicked-curve-CDI-ignition-kit-honda-PA50-p/wicked-cdi-honda-pa50-dc.htm" target="_blank" rel="noopener">Wicked Curve complete CDI kit — $300 (Treatland)</a> — 12V system, 90W accessory power, 432g flywheel. Includes everything except external coil.</li>
+      <li><a href="https://www.treatland.tv/honda-hobbit-HPI-CDI-ignition-p/honda-hobbit-hpi-cdi-ignition.htm" target="_blank" rel="noopener">HPI Mini Rotor CDI — $369 (Treatland)</a> — advanced timing, faster revving, increased low-end torque.</li>
+      <li><a href="https://www.1977mopeds.com/Honda-Hobbit-Camino-Express-CDI-Ignition-System-p/3008.htm" target="_blank" rel="noopener">1977 Mopeds CDI — $90</a> — budget option (check stock availability).</li>
+    </ul>
+
+    <p>At this point you're building a race moped.</p>
     <div class="warning-box">
       <strong>Warning:</strong> Notching + big bore puts serious torsional stress on the crankshaft. Use a variator cover. Race cranks are recommended at this level. You'll also want to re-evaluate your brakes, tires, and whether the stock drum brakes can actually stop you from 55 mph.
     </div>
     <div class="speed-bar"><div class="speed-bar-fill" style="width: 100%"></div></div>
     <div class="speed-label">50–60+ mph</div>
   </div>
+
+  <h3>Documented Builds</h3>
+
+  <table class="spec-table">
+    <thead>
+      <tr><th>Build</th><th>Parts</th><th>Result</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mild 70cc</td><td>DR 70cc kit, stock head, #95 jet, stock carb, 1500 RPM springs, Simonini pipe</td><td>~40 mph</td></tr>
+      <tr><td>Full send</td><td>DR 70cc, PA50-II carb drilled to 12.7mm, Aprilia ZX Leo pipe, PA50-II ramp plate</td><td>60 mph (from stock 20 mph PA50-I)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Torque Specifications</h3>
+
+  <table class="spec-table">
+    <tbody>
+      <tr><td>Cylinder head nuts</td><td>90–120 kg-cm (6.5–8.7 ft-lbs)</td></tr>
+      <tr><td>Intake pipe nuts</td><td>80–120 kg-cm (5.8–8.7 ft-lbs)</td></tr>
+      <tr><td>Flywheel generator nut</td><td>300–400 kg-cm (21.7–28.9 ft-lbs)</td></tr>
+      <tr><td>Drive pulley nut</td><td>300–400 kg-cm (21.7–28.9 ft-lbs)</td></tr>
+      <tr><td>Driven pulley nut</td><td>200–250 kg-cm (14.5–18.1 ft-lbs)</td></tr>
+      <tr><td>6mm bolts (general)</td><td>80–120 kg-cm (5.8–8.7 ft-lbs)</td></tr>
+      <tr><td>8mm bolts (general)</td><td>200–250 kg-cm (14.5–18.1 ft-lbs)</td></tr>
+      <tr><td>10mm bolts (general)</td><td>300–400 kg-cm (21.7–28.9 ft-lbs)</td></tr>
+    </tbody>
+  </table>
 
   <!-- PARTS & RESOURCES -->
   <div id="parts" class="section-header">
@@ -1090,6 +1161,21 @@
       <div class="resource-card-title">Sunday Morning Motors</div>
       <div class="resource-card-desc">Vintage Honda pedal moped parts. Also operates as a service shop.</div>
       <div class="resource-card-type">Parts + Service</div>
+    </a>
+    <a class="resource-card" href="https://www.myronsmopeds.com/category/parts/honda-parts/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Myron's Mopeds</div>
+      <div class="resource-card-desc">Excellent technical documentation — Keihin carb parts catalog, wiring diagrams, belt specs. Some parts available.</div>
+      <div class="resource-card-type">Reference + Parts</div>
+    </a>
+    <a class="resource-card" href="https://www.nospartsnow.com/honda/pa50/" target="_blank" rel="noopener">
+      <div class="resource-card-title">NOS Parts Now</div>
+      <div class="resource-card-desc">New Old Stock genuine Honda parts — brake cables, springs, OEM bits. Inventory is finite, buy while available.</div>
+      <div class="resource-card-type">Parts — NOS</div>
+    </a>
+    <a class="resource-card" href="https://monsterscooterparts.com/collections/honda-p50-pa50-pc50" target="_blank" rel="noopener">
+      <div class="resource-card-title">Monster Scooter Parts</div>
+      <div class="resource-card-desc">2.25-17 moped tires and basic replacement parts.</div>
+      <div class="resource-card-type">Parts — Tires</div>
     </a>
   </div>
 
