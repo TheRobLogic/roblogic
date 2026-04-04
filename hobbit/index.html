@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Honda Hobbit — 1978 PA50-II Owner's Reference</title>
+  <meta name="description" content="Everything about the Honda Hobbit PA50-II moped. History, specs, repair guide, mods, and parts sources for the cult classic 49cc two-stroke.">
+  <meta property="og:title" content="The Honda Hobbit — 1978 PA50-II Owner's Reference">
+  <meta property="og:description" content="Complete guide to the Honda Hobbit PA50 moped. History, specs, repair, mods, parts.">
+  <meta property="og:url" content="https://roblogic.org/hobbit/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --honda-yellow: #F5C518;
+      --honda-yellow-light: #FFF1A8;
+      --honda-red: #CC0000;
+      --cream: #FBF7EC;
+      --cream-dark: #F0E8D4;
+      --ink: #1A1612;
+      --ink-light: #3D352A;
+      --steel: #6B7280;
+      --steel-light: #D1D5DB;
+      --engine-grey: #9CA3AF;
+      --paper: #FAF6ED;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== AGED PAPER TEXTURE ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 100px,
+          rgba(139,119,80,0.03) 100px,
+          rgba(139,119,80,0.03) 101px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 150px,
+          rgba(139,119,80,0.02) 150px,
+          rgba(139,119,80,0.02) 151px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+      filter: contrast(1.1) saturate(0.8);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--honda-red);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      letter-spacing: 0.25em;
+      padding: 0.4rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 14vw, 9rem);
+      color: var(--honda-yellow);
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 span {
+      display: block;
+      font-size: 0.35em;
+      color: #fff;
+      letter-spacing: 0.15em;
+      margin-top: 0.3rem;
+      opacity: 0.8;
+    }
+
+    .hero-spec {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--honda-yellow-light);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      opacity: 0.7;
+      letter-spacing: 0.1em;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--honda-yellow), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) scaleY(1); }
+      50% { opacity: 0.8; transform: translateX(-50%) scaleY(1.3); }
+    }
+
+    /* ===== STICKY NAV ===== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ink);
+      border-bottom: 3px solid var(--honda-yellow);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-inner {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .nav a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      white-space: nowrap;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav a:hover {
+      color: var(--honda-yellow);
+      border-bottom-color: var(--honda-yellow);
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      margin: 5rem 0 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 3px solid var(--ink);
+      position: relative;
+    }
+
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: var(--honda-red);
+    }
+
+    .section-number {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--honda-red);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin: 2.5rem 0 1rem;
+      padding-left: 0.8rem;
+      border-left: 4px solid var(--honda-yellow);
+    }
+
+    h4 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    /* ===== YOUR BIKE CARD ===== */
+    .bike-card {
+      background: var(--ink);
+      color: #fff;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .bike-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border: 2px solid var(--honda-yellow);
+    }
+
+    .bike-card-info h3 {
+      border-left-color: var(--honda-red);
+      color: var(--honda-yellow);
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    .bike-card-info .stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .bike-card-info .stat-label {
+      color: var(--engine-grey);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+    }
+
+    .bike-card-info .stat-value {
+      color: var(--honda-yellow-light);
+      font-weight: 600;
+    }
+
+    /* ===== PHOTO GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 2px solid var(--cream-dark);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.02);
+      border-color: var(--honda-yellow);
+    }
+
+    .gallery img.wide {
+      grid-column: span 2;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: #fff;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== SPECS TABLE ===== */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .spec-table caption {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-align: left;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 0;
+    }
+
+    .spec-table th {
+      text-align: left;
+      padding: 0.5rem 0.8rem;
+      background: var(--ink);
+      color: var(--honda-yellow);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .spec-table td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .spec-table tr:nth-child(even) td {
+      background: rgba(245,197,24,0.06);
+    }
+
+    .spec-table td:first-child {
+      font-weight: 600;
+      color: var(--ink-light);
+      white-space: nowrap;
+    }
+
+    /* ===== REPAIR GUIDE ===== */
+    .repair-step {
+      background: var(--paper);
+      border: 1px solid var(--cream-dark);
+      border-left: 4px solid var(--honda-red);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .repair-step h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.8rem;
+      color: var(--honda-red);
+    }
+
+    .repair-step ol, .repair-step ul {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .repair-step li {
+      margin: 0.4rem 0;
+      font-size: 0.95rem;
+    }
+
+    .repair-step code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.85em;
+      background: var(--cream-dark);
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+    }
+
+    .warning-box {
+      background: #FFF3CD;
+      border: 2px solid var(--honda-yellow);
+      border-left: 5px solid var(--honda-red);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .warning-box strong {
+      color: var(--honda-red);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== MODS TIERS ===== */
+    .mod-tier {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--cream-dark);
+    }
+
+    .mod-tier-header {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .mod-tier-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .mod-tier-badge.stock { background: var(--steel); }
+    .mod-tier-badge.stage1 { background: var(--honda-yellow); color: var(--ink); }
+    .mod-tier-badge.stage2 { background: #E65100; }
+    .mod-tier-badge.race { background: var(--honda-red); }
+
+    .speed-bar {
+      height: 6px;
+      background: var(--cream-dark);
+      margin: 0.5rem 0 0;
+      position: relative;
+    }
+
+    .speed-bar-fill {
+      height: 100%;
+      background: var(--honda-red);
+      transition: width 0.8s ease;
+    }
+
+    .speed-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--steel);
+      margin-top: 0.3rem;
+    }
+
+    /* ===== RESOURCE LINKS ===== */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .resource-card {
+      border: 1px solid var(--cream-dark);
+      padding: 1rem;
+      background: var(--paper);
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .resource-card:hover {
+      border-color: var(--honda-yellow);
+      transform: translateY(-2px);
+    }
+
+    .resource-card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+    }
+
+    .resource-card-desc {
+      font-size: 0.85rem;
+      color: var(--steel);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    .resource-card-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--honda-red);
+      margin-top: 0.5rem;
+    }
+
+    /* ===== INLINE PHOTO ===== */
+    .inline-photo {
+      margin: 2rem 0;
+    }
+
+    .inline-photo img {
+      width: 100%;
+      border: 2px solid var(--cream-dark);
+    }
+
+    .inline-photo figcaption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--steel);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      margin-top: 5rem;
+      padding: 2rem 1.5rem;
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    .site-footer a {
+      color: var(--honda-yellow);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 700px) {
+      .bike-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+
+      .gallery img.wide {
+        grid-column: span 1;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav a {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.7rem;
+      }
+
+      h2 { font-size: 2rem; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      .nav, .scroll-cue, .lightbox { display: none; }
+      .hero { min-height: auto; padding: 2rem; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <img class="hero-img" src="img/IMG_0170.webp" alt="1978 Honda Hobbit PA50-II in yellow, side profile at golden hour" loading="eager">
+  <div class="hero-content">
+    <div class="hero-badge">1978 Honda PA50-II</div>
+    <h1>The Hobbit<span>Owner's Reference &amp; Repair Guide</span></h1>
+    <div class="hero-spec">49cc &middot; V-Matic CVT &middot; 286 original miles</div>
+  </div>
+  <div class="scroll-cue"></div>
+</section>
+
+<!-- ==================== NAV ==================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#this-bike">This Bike</a>
+    <a href="#history">History</a>
+    <a href="#specs">Specs</a>
+    <a href="#photos">Photos</a>
+    <a href="#repair">Repair Guide</a>
+    <a href="#mods">Mods</a>
+    <a href="#parts">Parts &amp; Resources</a>
+  </div>
+</nav>
+
+<!-- ==================== CONTENT ==================== -->
+<div class="content">
+
+  <!-- THIS BIKE -->
+  <div id="this-bike" class="bike-card">
+    <img class="bike-card-img" src="img/IMG_0165.webp" alt="Front three-quarter view of Rob's 1978 Honda Hobbit">
+    <div class="bike-card-info">
+      <h3>Rob's Hobbit</h3>
+      <div class="stat"><span class="stat-label">Year</span><span class="stat-value">1978</span></div>
+      <div class="stat"><span class="stat-label">Model</span><span class="stat-value">PA50-II (30 mph)</span></div>
+      <div class="stat"><span class="stat-label">Color</span><span class="stat-value">Honda Yellow</span></div>
+      <div class="stat"><span class="stat-label">Odometer</span><span class="stat-value">286 miles</span></div>
+      <div class="stat"><span class="stat-label">Engine</span><span class="stat-value">49cc 2-stroke</span></div>
+      <div class="stat"><span class="stat-label">Transmission</span><span class="stat-value">Honda V-Matic CVT</span></div>
+      <div class="stat"><span class="stat-label">Tires</span><span class="stat-value">Front 28 / Rear 20 PSI</span></div>
+      <div class="stat"><span class="stat-label">Capacity</span><span class="stat-value">180 lbs</span></div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="history" class="section-header">
+    <span class="section-number">Section 01</span>
+    <h2>History &amp; Background</h2>
+  </div>
+
+  <p>The Honda PA50 was manufactured at Honda's facility in <strong>Aalst, Belgium</strong> — Honda's first factory outside of Japan — between 1976 and 1991. In Europe, it was sold as the <strong>Honda Camino</strong>. When Honda brought it to the US market in 1978, they needed a name with personality.</p>
+
+  <p>They picked <strong>"Hobbit."</strong> Tolkien's novels had saturated American pop culture by the late '70s, and Honda leaned all the way in. Their ad campaign featured an original mascot called <strong>"Honda Harold"</strong> — not Bilbo, for trademark reasons — described as having "a love of comfort," "a very agreeable nature," and being "a mighty friendly helpful fellow to take on your travels."</p>
+
+  <figure class="inline-photo">
+    <img src="img/IMG_5746.webp" alt="Honda Hobbit badge on frame">
+    <figcaption>The Honda Hobbit badge on the frame — one of the most recognizable moped brandings of the era</figcaption>
+  </figure>
+
+  <p>The Hobbit arrived during the American <strong>moped boom</strong> of the 1970s energy crisis. Cheap gas killed the market by the mid-'80s, and Honda pulled the PA50 from the US after 1983. But in Belgium and the Netherlands, the Camino kept rolling until 1991, and a robust tuning culture persists there to this day.</p>
+
+  <h3>US Model Variants</h3>
+
+  <table class="spec-table">
+    <thead>
+      <tr><th>Model</th><th>Years</th><th>Top Speed</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PA50-I</td><td>1978–1979</td><td>20 mph</td><td>Restricted for strict moped-law states. Rare today.</td></tr>
+      <tr><td>PA50-II</td><td>1978–1983</td><td>30 mph</td><td>Standard US model. Different jetting, variator, reed valve.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Early color coding: <strong>Red = PA50-I (20 mph), Yellow = PA50-II (30 mph).</strong> Rob's yellow '78 is the faster variant. The speed difference comes from the carburetor main jet (#60 vs #78), reed valve configuration, and a steeper variator ramp plate angle on the PA50-II.</p>
+
+  <h3>Why People Love Them</h3>
+
+  <p>The PA50-II engine has large transfer ports and breathes well compared to other mopeds of the era. With simple modifications — exhaust, carb, variator notching — these engines make real power. A kitted Hobbit with a 70cc cylinder can hit 40–50 mph. Some race builds break 60.</p>
+
+  <p>The V-Matic CVT is unique among mopeds. Most used single-speed or two-speed transmissions. The variator gives smooth automatic acceleration and makes the Hobbit a more interesting tuning platform — you can tune the engine and transmission independently.</p>
+
+  <p>And then there's the Honda build quality. Even 45+ years later, the frames and mechanicals hold up. Parts fit properly. The fundamentals are sound. There's a reason the Hobbit has a cult following at moped rallies across the country.</p>
+
+  <!-- SPECS -->
+  <div id="specs" class="section-header">
+    <span class="section-number">Section 02</span>
+    <h2>Specifications</h2>
+  </div>
+
+  <figure class="inline-photo">
+    <img src="img/IMG_0172.webp" alt="Frame plate showing PA50-II 1978 model designation">
+    <figcaption>Frame plate: PA50-II, 1978 — the model and year stamped right on the downtube</figcaption>
+  </figure>
+
+  <table class="spec-table">
+    <caption>Engine</caption>
+    <tbody>
+      <tr><td>Type</td><td>Single-cylinder, 2-stroke, air-cooled, horizontal</td></tr>
+      <tr><td>Displacement</td><td>49cc (3.0 cu in)</td></tr>
+      <tr><td>Bore × Stroke</td><td>40 mm × 39.3 mm</td></tr>
+      <tr><td>Compression</td><td>6.5:1</td></tr>
+      <tr><td>Power</td><td>~1.7–2.0 hp @ 5,800 rpm</td></tr>
+      <tr><td>Fuel System</td><td>Keihin PA-type carburetor</td></tr>
+      <tr><td>Main Jet (PA50-II)</td><td>#78</td></tr>
+      <tr><td>Spark Plug</td><td>NGK BPR6HS or BP6HS</td></tr>
+      <tr><td>Fuel Mix</td><td>25:1 premix (gas:2-stroke oil)</td></tr>
+      <tr><td>Idle Speed</td><td>1,500 RPM</td></tr>
+    </tbody>
+  </table>
+
+  <table class="spec-table">
+    <caption>Transmission</caption>
+    <tbody>
+      <tr><td>Type</td><td>Honda V-Matic — continuously variable transmission (CVT)</td></tr>
+      <tr><td>Clutch</td><td>Dry centrifugal automatic</td></tr>
+      <tr><td>Drive</td><td>V-belt variator to rear wheel</td></tr>
+      <tr><td>Belt Size</td><td>½" × 42" (OEM 23100-148-7030)</td></tr>
+      <tr><td>Starting</td><td>Pedal start (bicycle-style mechanism)</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="inline-photo">
+    <img src="img/IMG_5744.webp" alt="Honda V-Matic transmission cover on rear wheel">
+    <figcaption>The Honda V-Matic variator cover on the rear hub — this is the CVT that makes the Hobbit unique</figcaption>
+  </figure>
+
+  <table class="spec-table">
+    <caption>Dimensions &amp; Chassis</caption>
+    <tbody>
+      <tr><td>Length</td><td>1670 mm (65.7 in)</td></tr>
+      <tr><td>Width</td><td>620 mm (24.4 in)</td></tr>
+      <tr><td>Wheelbase</td><td>1064 mm (41.9 in)</td></tr>
+      <tr><td>Seat Height</td><td>780 mm (30.7 in)</td></tr>
+      <tr><td>Dry Weight</td><td>~50 kg (110 lbs)</td></tr>
+      <tr><td>Frame</td><td>Backbone step-through</td></tr>
+      <tr><td>Front Suspension</td><td>Telescopic fork, 65 mm travel</td></tr>
+      <tr><td>Rear Suspension</td><td>Pivoted fork, 150 mm travel</td></tr>
+      <tr><td>Brakes</td><td>Drum (front and rear)</td></tr>
+      <tr><td>Tires</td><td>2.25-17 (front and rear)</td></tr>
+      <tr><td>Fuel Tank</td><td>3.0 L (0.79 US gal), 0.6 L reserve</td></tr>
+    </tbody>
+  </table>
+
+  <h3>How the Variator Works</h3>
+
+  <p>The CVT uses a set of weighted rollers inside a ramp plate on the front pulley. As engine RPM climbs, centrifugal force pushes the rollers outward, squeezing the front pulley faces together. This increases the effective drive ratio — smooth, automatic acceleration with no gear changes.</p>
+
+  <p>The key difference between PA50-I and PA50-II is the <strong>variator ramp plate angle</strong>. The PA50-II has a steeper slope, letting the rollers push the pulley faces closer together for a higher top speed. Stock rollers are 15×16mm.</p>
+
+  <!-- PHOTOS -->
+  <div id="photos" class="section-header">
+    <span class="section-number">Section 03</span>
+    <h2>Photo Gallery</h2>
+  </div>
+
+  <p>17 photos of this bike as-found. Click any image to enlarge.</p>
+
+  <div class="gallery">
+    <img class="wide" src="img/IMG_0170.webp" alt="Full bike at golden hour" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_0165.webp" alt="Front three-quarter view" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_0169.webp" alt="Left side from above" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5747.webp" alt="Speedometer showing 286 miles" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5746.webp" alt="Honda Hobbit badge" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_0172.webp" alt="PA50-II 1978 frame plate" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5744.webp" alt="V-Matic transmission cover" loading="lazy" onclick="openLightbox(this)">
+    <img class="wide" src="img/IMG_5745.webp" alt="Left side cockpit view" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5748.webp" alt="Front fender and handlebars" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5749.webp" alt="Left handlebar switch" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5751.webp" alt="Engine and carb area" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5750.webp" alt="Frame and engine detail" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5742.webp" alt="Info plate — tire pressures" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5743.webp" alt="Info plate wider angle" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5752.webp" alt="Headlight and turn signals" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_5753.webp" alt="Rear top-down view" loading="lazy" onclick="openLightbox(this)">
+    <img src="img/IMG_0171.webp" alt="Rear detail — tail light" loading="lazy" onclick="openLightbox(this)">
+  </div>
+
+  <!-- REPAIR GUIDE -->
+  <div id="repair" class="section-header">
+    <span class="section-number">Section 04</span>
+    <h2>Repair &amp; Revival Guide</h2>
+  </div>
+
+  <p>If your Hobbit has been sitting, here's what to check and fix — in order. Most Hobbits that "don't run" have fuel system problems. Start there.</p>
+
+  <h3>1. Fuel System (The #1 Problem Area)</h3>
+
+  <div class="repair-step">
+    <h4>Fuel Tank Rust</h4>
+    <p>The single most common problem on any Hobbit that's been sitting. The steel tank rusts internally and sends particles into the petcock, fuel line, and carb.</p>
+    <ol>
+      <li>Drain all old fuel. Inspect inside the tank with a flashlight.</li>
+      <li>If rusty: fill with <strong>white vinegar</strong>, let soak 24 hours.</li>
+      <li>Drain vinegar, rinse with baking soda + water solution to neutralize acid.</li>
+      <li>Rinse with clean water, then immediately rinse with fresh gasoline to displace water.</li>
+      <li>Severe cases: use a tank sealant kit (Kreem or POR-15) after cleaning.</li>
+      <li><strong>Always install an inline fuel filter</strong> between petcock and carb, even on a clean tank.</li>
+    </ol>
+    <p>Replacement tanks available at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a> and <a href="https://www.hoopriderparts.com/" target="_blank" rel="noopener">Hoop Rider Parts</a> (NOS).</p>
+  </div>
+
+  <div class="repair-step">
+    <h4>Petcock Cleaning</h4>
+    <p>The petcock has a small internal filter screen that clogs with rust and varnish. This is often the cause of "fuel in the tank but won't start."</p>
+    <ol>
+      <li>Remove petcock from tank (two screws).</li>
+      <li>Disassemble and clean the internal screen with carb cleaner.</li>
+      <li>Replace the gasket/O-ring. Check fuel flow with the lever in ON and RES positions.</li>
+      <li>If it still doesn't flow freely, replace the whole petcock.</li>
+    </ol>
+  </div>
+
+  <div class="repair-step">
+    <h4>Carburetor Rebuild</h4>
+    <p>The stock <strong>Keihin PA-type</strong> carburetor is described by the community as "the most finicky thing on the bike." Every speck of debris must be removed.</p>
+    <ol>
+      <li>Remove carb from intake manifold (note: intake bolts torque to <code>80–120 kg-cm / 5.8–8.7 ft-lbs</code>).</li>
+      <li>Disassemble completely — float, needle, jets, gaskets.</li>
+      <li>Soak body in carb cleaner for 30 minutes. Blow out every passage with compressed air.</li>
+      <li>Check the <strong>float</strong> — if it sticks, the bike will flood or starve. Replace if dented or saturated.</li>
+      <li>Verify main jet: PA50-II stock is <code>#78</code>. PA50-I stock is <code>#60</code>.</li>
+      <li>Replace all gaskets. Rebuild kits available at Treatland and 1977 Mopeds.</li>
+      <li>Reassemble, set float height per service manual, reinstall.</li>
+    </ol>
+  </div>
+
+  <h3>2. Ignition System</h3>
+
+  <div class="repair-step">
+    <h4>No-Spark Diagnostic (In Order)</h4>
+    <ol>
+      <li><strong>Spark plug boot</strong> — is it tight on the plug? Loose boot = no spark. Push it on firmly.</li>
+      <li><strong>Spark plug</strong> — pull it, ground the threads against the cylinder, pedal and look for spark. No spark? Try a known-good <code>NGK BPR6HS</code>.</li>
+      <li><strong>Kill switch</strong> — make sure it's in the RUN position. Disconnect the kill switch wire and test spark again.</li>
+      <li><strong>Points</strong> (stock ignition) — open the flywheel cover. Points gap should be <code>0.3–0.4 mm</code>. Clean contact surfaces with fine sandpaper. Replace if pitted.</li>
+      <li><strong>Condenser</strong> — a dying condenser causes arcing at the points. If points look burned/pitted, replace the condenser too.</li>
+      <li><strong>Ignition coil</strong> — test resistance per manual. Replace if out of spec.</li>
+    </ol>
+  </div>
+
+  <div class="warning-box">
+    <strong>CDI Conversion</strong><br>
+    Eliminates points maintenance entirely. The HPI Mini Rotor CDI kit is the go-to upgrade. Available at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a> and <a href="https://www.mopeddivision.com/categories/moped-make/honda/hobbit-pa50-pa50ii-express-urban-express.html" target="_blank" rel="noopener">Moped Division</a>. If you're tired of adjusting points, this is the single best reliability upgrade you can do.
+  </div>
+
+  <h3>3. Compression Test</h3>
+
+  <div class="repair-step">
+    <h4>Testing</h4>
+    <p>If you have spark and fuel but the engine won't fire, check compression.</p>
+    <ol>
+      <li>Remove spark plug, screw in compression gauge.</li>
+      <li>Pedal the engine through several revolutions.</li>
+      <li>Stock compression should be <strong>100–120 PSI</strong>. Below 80 PSI = top end rebuild.</li>
+      <li>Low compression causes: worn piston rings, scored cylinder, blown head gasket, cracked reed valve gasket leaking into crankcase.</li>
+    </ol>
+  </div>
+
+  <h3>4. Top End Rebuild</h3>
+
+  <div class="repair-step">
+    <h4>When and How</h4>
+    <p>If compression is low, the top end needs attention. This is a common job on these bikes.</p>
+    <ol>
+      <li>Remove exhaust, intake, and cylinder head bolts.</li>
+      <li>Carefully pull the cylinder off the piston. Check the bore for scoring.</li>
+      <li>Inspect piston rings — replace if worn, stuck, or broken.</li>
+      <li>Light scoring: hone the cylinder with a ball hone. Deep scoring: new cylinder needed.</li>
+      <li>Replace gaskets (head gasket, base gasket, exhaust gasket).</li>
+      <li>Reassemble with fresh gaskets. Torque head bolts per manual spec in a cross pattern.</li>
+    </ol>
+    <p>OEM and aftermarket cylinders, pistons, rings, and gasket kits available at <a href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">Treatland</a>. For performance: see the <a href="#mods">Mods section</a> on 70cc kits.</p>
+  </div>
+
+  <h3>5. Variator &amp; Belt</h3>
+
+  <div class="repair-step">
+    <h4>Belt Inspection &amp; Replacement</h4>
+    <ol>
+      <li>Remove the variator cover (left side of engine).</li>
+      <li>Inspect belt for cracks, glazing, fraying, or uneven wear.</li>
+      <li>Stock belt: <code>½" × 42"</code> (OEM part 23100-148-7030).</li>
+      <li>Performance option: toothed belts reduce slippage. Available at <a href="https://www.doscycles.com/collections/honda/pa50ii" target="_blank" rel="noopener">Dos Cycles</a>.</li>
+    </ol>
+  </div>
+
+  <div class="repair-step">
+    <h4>Variator Rollers</h4>
+    <p>Worn rollers affect shift characteristics and can cause flat spots in acceleration.</p>
+    <ol>
+      <li>Remove the variator front pulley (requires a variator holder tool or impact driver).</li>
+      <li>Inspect the rollers — stock size is <code>15×16mm</code>. Replace if flat-spotted or worn.</li>
+      <li>Heavier rollers = shifts to higher ratio sooner (better top speed, slower acceleration).</li>
+      <li>Lighter rollers = shifts later (faster acceleration, lower top speed).</li>
+    </ol>
+  </div>
+
+  <h3>6. Brakes, Tires, Cables</h3>
+
+  <div class="repair-step">
+    <h4>Brakes</h4>
+    <ol>
+      <li>Both front and rear are drum brakes. Check lever freeplay: <code>10–15mm (⅜"–⅝")</code>.</li>
+      <li>If brakes are grabby or weak, pull the wheel and inspect the shoes. Replace if glazed or worn past the wear indicator.</li>
+      <li>Clean the drum interior with brake cleaner. Lightly sand the shoes with 120-grit for better bite.</li>
+    </ol>
+  </div>
+
+  <div class="repair-step">
+    <h4>Tires</h4>
+    <p>Stock size is <code>2.25-17</code> front and rear. These are a standard moped tire size and still widely available.</p>
+    <ol>
+      <li>Check sidewalls for dry rot (cracking). If the bike has sat for years, replace them even if they hold air.</li>
+      <li>Inflate to: Front <code>28 PSI</code>, Rear <code>20 PSI</code> (per the info plate on this bike).</li>
+      <li>Tubes are replaceable separately — carry a spare and a patch kit.</li>
+    </ol>
+  </div>
+
+  <div class="repair-step">
+    <h4>Cables</h4>
+    <p>Throttle and brake cables dry out and stick after years of sitting.</p>
+    <ol>
+      <li>Try lubing first — disconnect the cable, drip light oil or cable lube down the housing from the top.</li>
+      <li>Work the cable back and forth. If it's still sticky or frayed, replace it.</li>
+      <li>Replacement throttle and brake cables available at Treatland and 1977 Mopeds.</li>
+    </ol>
+  </div>
+
+  <h3>7. Electrical System</h3>
+
+  <div class="repair-step">
+    <h4>Lighting &amp; Charging</h4>
+    <p>The Hobbit's electrical system is simple — a magneto/flywheel generates power, and there's a separate lighting coil.</p>
+    <ol>
+      <li>Headlight, tail light, and turn signals run off the lighting coil. If lights are dim or dead, check the bulbs first.</li>
+      <li>Check all ground connections — corrosion on ground wires is the most common electrical gremlin.</li>
+      <li>Horn not working? Usually a corroded wire or dead horn unit.</li>
+      <li>For wiring diagrams, download the <a href="https://www.mopedarmy.com/wiki/File:Honda_PA50_Service.pdf" target="_blank" rel="noopener">free service manual PDF from Moped Army</a> (98 pages).</li>
+    </ol>
+  </div>
+
+  <h3>8. Crankshaft Seals &amp; Bearings</h3>
+
+  <div class="warning-box">
+    <strong>Advanced Work</strong><br>
+    This requires splitting the cases. If you're losing compression despite good rings/cylinder, or the engine makes rattling/whining noises, suspect crank bearings or seals. Worn crank seals cause air leaks that lean out the mixture — dangerous on a two-stroke. Stock bearings: 2× 6004 bearings, seals: 2× 15 × 25.5 × 7mm. Test for play by grasping the crankshaft — any wobble means replacement.
+  </div>
+
+  <h3>Quick Reference — Maintenance Specs</h3>
+
+  <table class="spec-table">
+    <tbody>
+      <tr><td>Fuel Mix</td><td>25:1 premix (gas:2-stroke oil)</td></tr>
+      <tr><td>Spark Plug</td><td>NGK BPR6HS, gap per plug spec</td></tr>
+      <tr><td>Points Gap</td><td>0.3–0.4 mm (points ignition only)</td></tr>
+      <tr><td>Brake Freeplay</td><td>10–15 mm (⅜"–⅝") front and rear</td></tr>
+      <tr><td>Idle Speed</td><td>1,500 RPM</td></tr>
+      <tr><td>Tire Pressure</td><td>Front 28 PSI / Rear 20 PSI</td></tr>
+      <tr><td>Belt</td><td>½" × 42" — inspect for cracks, glazing</td></tr>
+      <tr><td>Intake Bolt Torque</td><td>80–120 kg-cm (5.8–8.7 ft-lbs)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- MODS -->
+  <div id="mods" class="section-header">
+    <span class="section-number">Section 05</span>
+    <h2>Modifications</h2>
+  </div>
+
+  <p>The Hobbit is one of the most tunable mopeds ever made. Here's the upgrade path from stock to screaming, with realistic speed expectations at each stage.</p>
+
+  <div class="mod-tier">
+    <div class="mod-tier-header">
+      <span class="mod-tier-badge stock">Stock</span>
+      Bone Stock PA50-II
+    </div>
+    <p>As Honda intended. Reliable, quiet, legal. 25:1 premix, pedal start, wave at your neighbors.</p>
+    <div class="speed-bar"><div class="speed-bar-fill" style="width: 45%"></div></div>
+    <div class="speed-label">27–30 mph</div>
+  </div>
+
+  <div class="mod-tier">
+    <div class="mod-tier-header">
+      <span class="mod-tier-badge stage1">Stage 1</span>
+      Bolt-On Basics
+    </div>
+    <p><strong>Exhaust upgrade</strong> — aftermarket pipe (Simonini, Proma, or Leovince) unlocks breathing potential. <strong>Re-jet the carb</strong> to match (go up 1–2 jet sizes). <strong>Notch the variator</strong> — the signature Hobbit mod.</p>
+    <h4>Variator Notching</h4>
+    <ol>
+      <li>Measure and mark a line 10mm from the outside edge of the variator.</li>
+      <li>Using a Dremel with a cut-off wheel, cut <strong>windows</strong> along the roller tracks.</li>
+      <li>Windows (leaving material at the top) are preferred over full notches — prevents the rollers from getting chewed up by the moving pulley cheek.</li>
+      <li>This lets the rollers travel further outward, increasing front pulley diameter and top speed.</li>
+    </ol>
+    <p>Variator springs (1000 RPM and 1500 RPM sets) tune when shifting begins, matching your exhaust/engine combo.</p>
+    <div class="speed-bar"><div class="speed-bar-fill" style="width: 60%"></div></div>
+    <div class="speed-label">35–38 mph</div>
+  </div>
+
+  <div class="mod-tier">
+    <div class="mod-tier-header">
+      <span class="mod-tier-badge stage2">Stage 2</span>
+      70cc Kit Build
+    </div>
+    <p><strong>Cylinder kit</strong> — DR Racing, Parmakit, Malossi, or Stage6 R/T. All are 46mm bore, and include cylinder, piston, rings, gaskets, and wrist pin. Combined with the Stage 1 exhaust and variator mods, this is where it gets fun.</p>
+    <p><strong>Also consider:</strong> CDI ignition conversion (HPI Mini Rotor), larger carburetor (Dell'Orto or Mikuni), performance reed valve.</p>
+    <div class="speed-bar"><div class="speed-bar-fill" style="width: 78%"></div></div>
+    <div class="speed-label">40–50 mph</div>
+  </div>
+
+  <div class="mod-tier">
+    <div class="mod-tier-header">
+      <span class="mod-tier-badge race">Race</span>
+      Full Race Build
+    </div>
+    <p><strong>Ported cylinder kit, race crankshaft</strong> ("Super Stuffy" cranks available), <strong>tuned expansion chamber exhaust</strong>, performance variator (TJT or TRICKmetric TRICK6), and a properly jetted big carb. At this point you're building a race moped.</p>
+    <div class="warning-box">
+      <strong>Warning:</strong> Notching + big bore puts serious torsional stress on the crankshaft. Use a variator cover. Race cranks are recommended at this level. You'll also want to re-evaluate your brakes, tires, and whether the stock drum brakes can actually stop you from 55 mph.
+    </div>
+    <div class="speed-bar"><div class="speed-bar-fill" style="width: 100%"></div></div>
+    <div class="speed-label">50–60+ mph</div>
+  </div>
+
+  <!-- PARTS & RESOURCES -->
+  <div id="parts" class="section-header">
+    <span class="section-number">Section 06</span>
+    <h2>Parts &amp; Resources</h2>
+  </div>
+
+  <h3>Parts Suppliers</h3>
+
+  <div class="resource-grid">
+    <a class="resource-card" href="https://www.treatland.tv/honda-hobbit-PA50-camino-moped-parts-s/14.htm" target="_blank" rel="noopener">
+      <div class="resource-card-title">Treatland</div>
+      <div class="resource-card-desc">The go-to. Huge selection of OEM and aftermarket Hobbit parts — kits, variators, exhausts, electrical, everything.</div>
+      <div class="resource-card-type">Parts — Primary</div>
+    </a>
+    <a class="resource-card" href="https://www.mopeddivision.com/categories/moped-make/honda/hobbit-pa50-pa50ii-express-urban-express.html" target="_blank" rel="noopener">
+      <div class="resource-card-title">Moped Division</div>
+      <div class="resource-card-desc">Race cranks, bearing kits, CDI ignitions, toothed performance belts, and OEM replacement parts.</div>
+      <div class="resource-card-type">Parts — Performance</div>
+    </a>
+    <a class="resource-card" href="https://www.1977mopeds.com/category-s/145.htm" target="_blank" rel="noopener">
+      <div class="resource-card-title">1977 Mopeds</div>
+      <div class="resource-card-desc">Operating since 2003. Bearings, seals, carburetors, CDI kits, and accessories.</div>
+      <div class="resource-card-type">Parts — OEM + Aftermarket</div>
+    </a>
+    <a class="resource-card" href="https://www.lucky2strokes.com/Honda-Moped-Parts-Hobbit-Camino-PA50-s/1819.htm" target="_blank" rel="noopener">
+      <div class="resource-card-title">Lucky 2 Strokes</div>
+      <div class="resource-card-desc">Race crankshafts, drive belts, and Honda Hobbit/Camino-specific parts.</div>
+      <div class="resource-card-type">Parts — Performance</div>
+    </a>
+    <a class="resource-card" href="https://www.doscycles.com/collections/honda/pa50ii" target="_blank" rel="noopener">
+      <div class="resource-card-title">Dos Cycles</div>
+      <div class="resource-card-desc">Reed blocks, racing belts, and performance parts for the PA50-II.</div>
+      <div class="resource-card-type">Parts — Performance</div>
+    </a>
+    <a class="resource-card" href="https://www.hoopriderparts.com/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Hoop Rider Parts</div>
+      <div class="resource-card-desc">NOS and used Honda PA50 parts including hard-to-find fuel tanks.</div>
+      <div class="resource-card-type">Parts — NOS / Used</div>
+    </a>
+    <a class="resource-card" href="https://www.sundaymorningmotors.com/Vintage-Honda-Moped-Parts-s/1831.htm" target="_blank" rel="noopener">
+      <div class="resource-card-title">Sunday Morning Motors</div>
+      <div class="resource-card-desc">Vintage Honda pedal moped parts. Also operates as a service shop.</div>
+      <div class="resource-card-type">Parts + Service</div>
+    </a>
+  </div>
+
+  <h3>Manuals &amp; Documentation</h3>
+
+  <div class="resource-grid">
+    <a class="resource-card" href="https://www.mopedarmy.com/wiki/File:Honda_PA50_Service.pdf" target="_blank" rel="noopener">
+      <div class="resource-card-title">Service Manual PDF (Free)</div>
+      <div class="resource-card-desc">The essential reference. 98 pages, covers everything. Download this immediately.</div>
+      <div class="resource-card-type">Manual — Moped Army</div>
+    </a>
+    <a class="resource-card" href="https://www.manualslib.com/manual/970345/Honda-Pa50.html" target="_blank" rel="noopener">
+      <div class="resource-card-title">Owner's Manual</div>
+      <div class="resource-card-desc">Original Honda owner's manual, free online viewing at ManualsLib.</div>
+      <div class="resource-card-type">Manual — Online</div>
+    </a>
+    <a class="resource-card" href="https://manualzz.com/doc/13902137/honda-hobbit--pa50--shop-manual" target="_blank" rel="noopener">
+      <div class="resource-card-title">1983 Shop Manual</div>
+      <div class="resource-card-desc">Honda shop manual with detailed procedures and torque specs.</div>
+      <div class="resource-card-type">Manual — Online</div>
+    </a>
+  </div>
+
+  <h3>Community</h3>
+
+  <div class="resource-grid">
+    <a class="resource-card" href="https://www.mopedarmy.com" target="_blank" rel="noopener">
+      <div class="resource-card-title">Moped Army</div>
+      <div class="resource-card-desc">The primary English-language moped forum. Comprehensive wiki with Honda PA-specific pages for troubleshooting, drivetrain, carb, and parts. Decades of Hobbit threads.</div>
+      <div class="resource-card-type">Forum + Wiki</div>
+    </a>
+    <a class="resource-card" href="https://www.hondacaminotuning.be/" target="_blank" rel="noopener">
+      <div class="resource-card-title">HondaCaminoTuning.be</div>
+      <div class="resource-card-desc">Belgian forum dedicated to the PA50. Active tuning community, how-to guides, "Golden Projects" showcase, and marketplace. English sections available.</div>
+      <div class="resource-card-type">Forum — Tuning</div>
+    </a>
+    <a class="resource-card" href="https://www.facebook.com/groups/1417138131852923/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Honda Camino Hobbit PA50 (Facebook)</div>
+      <div class="resource-card-desc">Active Facebook group for owners. Good for quick questions, parts leads, and seeing what other people are building.</div>
+      <div class="resource-card-type">Facebook Group</div>
+    </a>
+    <a class="resource-card" href="https://en.wikipedia.org/wiki/Honda_PA50" target="_blank" rel="noopener">
+      <div class="resource-card-title">Wikipedia — Honda PA50</div>
+      <div class="resource-card-desc">Good overview article with model history, variants, and specifications.</div>
+      <div class="resource-card-type">Reference</div>
+    </a>
+  </div>
+
+  <h3>Guides &amp; Build Logs</h3>
+
+  <div class="resource-grid">
+    <a class="resource-card" href="http://outofcontrolmopeds.blogspot.com/2010/06/honda-hobbit-variator-notching.html" target="_blank" rel="noopener">
+      <div class="resource-card-title">Variator Notching Guide</div>
+      <div class="resource-card-desc">Step-by-step with photos. The definitive guide to the signature Hobbit mod.</div>
+      <div class="resource-card-type">How-To — Blog</div>
+    </a>
+    <a class="resource-card" href="https://rwgresearch.com/open-projects/honda-pa50ii-hot-rod-hobbit/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Hot Rod Hobbit Build</div>
+      <div class="resource-card-desc">70cc kit, race variator, LED conversion. Documented build log with photos.</div>
+      <div class="resource-card-type">Build Log</div>
+    </a>
+    <a class="resource-card" href="https://www.instructables.com/Building-a-Bike-Custom-Honda-Hobbit-Moped/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Custom Hobbit Build (Instructables)</div>
+      <div class="resource-card-desc">Step-by-step custom build from start to finish.</div>
+      <div class="resource-card-type">Build Guide</div>
+    </a>
+    <a class="resource-card" href="http://mopedhq.blogspot.com/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Responsible Jon's Mo-ped-o-rama</div>
+      <div class="resource-card-desc">Detailed PA50-II engine rebuild walkthrough with photos.</div>
+      <div class="resource-card-type">Rebuild Guide — Blog</div>
+    </a>
+    <a class="resource-card" href="https://www.curbsideclassic.com/curbside-classics-asian/kickstand-classic-honda-hobbit-from-a-tiny-extinct-race-of-motorbikes/" target="_blank" rel="noopener">
+      <div class="resource-card-title">Curbside Classic — "From a Tiny, Vanished Race"</div>
+      <div class="resource-card-desc">Well-written retrospective on the Hobbit and the moped era it came from.</div>
+      <div class="resource-card-type">Article</div>
+    </a>
+    <a class="resource-card" href="https://2warpstoneptune.com/2014/08/06/the-honda-pa50-hobbit-moped-1978/" target="_blank" rel="noopener">
+      <div class="resource-card-title">2 Warps to Neptune — PA50 Hobbit, 1978</div>
+      <div class="resource-card-desc">History piece with original advertising images and context.</div>
+      <div class="resource-card-type">Article — History</div>
+    </a>
+  </div>
+
+  <h3>Moped Shops That Know Hobbits</h3>
+
+  <table class="spec-table">
+    <thead>
+      <tr><th>Shop</th><th>Location</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><a href="https://detroitmopedworks.com/" target="_blank" rel="noopener">Detroit Moped Works</a></td><td>5407 Michigan Ave, Detroit MI</td></tr>
+      <tr><td><a href="https://austinmopeds.com/" target="_blank" rel="noopener">Austin Mopeds</a></td><td>310 Oltorf St Suite A, Austin TX</td></tr>
+      <tr><td><a href="https://vintagemopeds.net/" target="_blank" rel="noopener">Sunday Morning Motors</a></td><td>Online + service</td></tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <p>Rob Logic &middot; 2026 &middot; <a href="/">roblogic.org</a></p>
+  <p style="margin-top: 0.5rem; opacity: 0.5;">Built with resentment toward ethanol-blended gasoline</p>
+</footer>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">CLOSE</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(el) {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = el.src;
+    img.alt = el.alt;
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Animate speed bars on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target.querySelector('.speed-bar-fill');
+        if (fill) {
+          const w = fill.style.width;
+          fill.style.width = '0%';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => { fill.style.width = w; });
+          });
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.mod-tier').forEach(t => observer.observe(t));
+</script>
+
+</body>
+</html>
