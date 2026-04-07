@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palm Camera — UniFi Home Security Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4efe4;
+    --olive: #5c6b4f;
+    --rust: #c25b28;
+    --teak: #8b6914;
+    --charcoal: #2d2a26;
+    --warm-gray: #9a938a;
+    --sand: #e6ddd0;
+    --seafoam: #7fa898;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    color: var(--charcoal);
+    background: var(--cream);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  header::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.2rem;
+    background: var(--rust);
+    clip-path: polygon(
+      50% 0%, 61% 35%, 98% 35%, 68% 57%,
+      79% 91%, 50% 70%, 21% 91%, 32% 57%,
+      2% 35%, 39% 35%
+    );
+  }
+
+  h1 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 800;
+    font-size: 2.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 0.3rem;
+  }
+
+  header p {
+    font-size: 1.05rem;
+    color: var(--warm-gray);
+    font-weight: 500;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--sand);
+  }
+
+  .divider span {
+    width: 12px;
+    height: 12px;
+    background: var(--olive);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 0.4rem;
+  }
+
+  h2 .subtitle {
+    display: block;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.01em;
+    text-transform: none;
+    margin-top: 0.2rem;
+  }
+
+  h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.5rem;
+  }
+
+  p, li { font-size: 0.95rem; line-height: 1.65; }
+
+  /* Nav tabs */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+    border-bottom: 2px solid var(--sand);
+  }
+
+  .tab-btn {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    color: var(--warm-gray);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .tab-btn:hover { color: var(--charcoal); }
+
+  .tab-btn.active {
+    color: var(--olive);
+    border-bottom-color: var(--olive);
+  }
+
+  .tab-btn.active[data-tab="her-pick"] {
+    color: var(--rust);
+    border-bottom-color: var(--rust);
+  }
+
+  .tab-panel { display: none; padding-top: 1.5rem; }
+  .tab-panel.active { display: block; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+  }
+
+  thead { border-bottom: 2px solid var(--charcoal); }
+
+  th {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-align: left;
+    padding: 0.5rem 0.8rem;
+  }
+
+  td {
+    padding: 0.55rem 0.8rem;
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--sand);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .total-row td {
+    font-weight: 600;
+    border-top: 2px solid var(--charcoal);
+    border-bottom: none;
+    padding-top: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .subtotal td {
+    color: var(--warm-gray);
+    font-size: 0.88rem;
+    border-bottom: none;
+  }
+
+  .tint-green { background: rgba(92, 107, 79, 0.06); }
+  .tint-rust { background: rgba(194, 91, 40, 0.05); }
+  .tint-gray { background: rgba(154, 147, 138, 0.05); }
+
+  /* Callouts */
+  .callout {
+    background: var(--sand);
+    padding: 1rem 1.3rem;
+    margin: 1.2rem 0;
+    border-left: 4px solid var(--rust);
+    font-size: 0.9rem;
+  }
+
+  .callout strong { color: var(--rust); }
+  .callout.green { border-left-color: var(--olive); }
+  .callout.green strong { color: var(--olive); }
+
+  /* Lists */
+  ul { list-style: none; margin: 0.8rem 0; }
+
+  ul li {
+    padding-left: 1.4rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+  }
+
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 8px;
+    height: 8px;
+    background: var(--olive);
+    transform: rotate(45deg);
+  }
+
+  /* Gotchas */
+  .gotcha {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.6rem;
+    background: white;
+    border-left: 3px solid var(--rust);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  .gotcha strong { font-size: 0.9rem; }
+
+  .gotcha p {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    margin-top: 0.2rem;
+  }
+
+  /* Why grid */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .why-item {
+    padding: 0.8rem 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .why-item strong {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .why-item p {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    line-height: 1.5;
+  }
+
+  /* Pros/cons inline */
+  .pro { color: var(--olive); }
+  .con { color: var(--rust); }
+
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--sand);
+    color: var(--warm-gray);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 2rem 1.2rem; }
+    h1 { font-size: 2rem; }
+    .why-grid { grid-template-columns: 1fr; }
+    .tab-btn { padding: 0.6rem 0.8rem; font-size: 0.8rem; }
+    table { font-size: 0.85rem; }
+    th, td { padding: 0.4rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Home Security Setup</h1>
+    <p>UniFi Protect &mdash; fully local, no subscriptions, all wired</p>
+  </header>
+
+  <!-- ============ TABBED SHOPPING LISTS ============ -->
+  <h2>Shopping Lists</h2>
+  <p style="margin-bottom:1.2rem;">Three options &mdash; pick the one that fits.</p>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="her-pick" onclick="showTab('her-pick')">Your Pick</button>
+    <button class="tab-btn" data-tab="our-pick" onclick="showTab('our-pick')">Our Pick</button>
+    <button class="tab-btn" data-tab="original" onclick="showTab('original')">Original</button>
+  </div>
+
+  <!-- TAB 1: Her Pick — all wired UDM-SE -->
+  <div id="her-pick" class="tab-panel active">
+    <p><strong>All wired, maximum security.</strong> The UDM-SE has built-in PoE so every camera connects via ethernet &mdash; no WiFi cameras, nothing to jam or intercept.</p>
+
+    <table>
+      <thead><tr><th>Item</th><th>Details</th><th>Price</th></tr></thead>
+      <tbody class="tint-rust">
+        <tr><td><strong>UniFi Dream Machine SE</strong></td><td>Router + NVR + 8-port PoE switch, all in one</td><td>~$500</td></tr>
+        <tr><td><strong>WD Purple 8TB</strong></td><td>3.5" surveillance drive, 24/7 rated, fits UDM-SE bay</td><td>~$130</td></tr>
+        <tr><td><strong>3&times; G5 Bullet</strong></td><td>4MP PoE outdoor &mdash; front, side, rear</td><td>~$390</td></tr>
+        <tr><td><strong>G6 Entry Doorbell</strong></td><td>PoE doorbell, 5MP, AI detection, in stock at $249</td><td>~$249</td></tr>
+        <tr><td><strong>UniFi U6 Lite AP</strong></td><td>WiFi 6 access point &mdash; UDM-SE has no built-in WiFi</td><td>~$100</td></tr>
+        <tr><td><strong>UPS Battery Backup</strong></td><td>Keeps everything running through power blips</td><td>~$70</td></tr>
+        <tr><td><strong>Cat6 Cable + Hardware</strong></td><td>Outdoor-rated, solid copper, connectors, wall plates</td><td>~$60</td></tr>
+        <tr class="total-row"><td colspan="2"><strong>Total (hardware)</strong></td><td><strong>~$1,499</strong></td></tr>
+        <tr class="subtotal"><td colspan="2">Low-voltage installer (4 drops + AP + mounting)</td><td>$600&ndash;1,200</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Why this costs more:</strong> The UDM-SE has no WiFi radio &mdash; it's a rack-mount network appliance. You need a separate access point (~$100) for your phones, laptops, and tablets. You're also getting a bigger 3.5" drive bay (more storage, cheaper per TB) and built-in PoE (no separate switch needed).
+    </div>
+
+    <h3>Watch Out For</h3>
+    <div class="gotcha">
+      <strong>Single point of failure.</strong>
+      <p>The UDM-SE is your router, switch, NVR, and controller in one box. If it dies, everything goes down &mdash; network, cameras, all of it.</p>
+    </div>
+    <div class="gotcha">
+      <strong>Power supply failures are a known issue.</strong>
+      <p>The internal PSU can stop outputting 54V. Ubiquiti won't sell replacements and won't fix out of warranty. Always run it on a UPS.</p>
+    </div>
+    <div class="gotcha">
+      <strong>4GB RAM, single drive bay.</strong>
+      <p>The UDM Pro Max ($599) has 8GB RAM, dual drive bays with RAID, and double the device limit. $100 more for meaningfully better hardware. Worth considering.</p>
+    </div>
+  </div>
+
+  <!-- TAB 2: Our Pick — UDR7 -->
+  <div id="our-pick" class="tab-panel">
+    <p><strong>Best value, same ecosystem.</strong> The Dream Router 7 does router + NVR + WiFi 7 in one box. Add a PoE switch for the wired cameras.</p>
+
+    <table>
+      <thead><tr><th>Item</th><th>Details</th><th>Price</th></tr></thead>
+      <tbody class="tint-green">
+        <tr><td><strong>UniFi Dream Router 7</strong></td><td>Router + NVR + WiFi 7 AP, all in one</td><td>~$300</td></tr>
+        <tr><td><strong>USW-Lite-8-PoE Switch</strong></td><td>8-port PoE switch to power cameras</td><td>~$110</td></tr>
+        <tr><td><strong>2.5" HDD (4&ndash;5TB)</strong></td><td>Surveillance-rated, fits UDR7 drive bay</td><td>~$100</td></tr>
+        <tr><td><strong>3&times; G5 Bullet</strong></td><td>4MP PoE outdoor &mdash; front, side, rear</td><td>~$390</td></tr>
+        <tr><td><strong>G6 Entry Doorbell</strong></td><td>PoE doorbell, 5MP, AI detection</td><td>~$249</td></tr>
+        <tr><td><strong>UPS Battery Backup</strong></td><td>Keeps everything running through power blips</td><td>~$70</td></tr>
+        <tr><td><strong>Cat6 Cable + Hardware</strong></td><td>Outdoor-rated, solid copper, connectors, wall plates</td><td>~$60</td></tr>
+        <tr class="total-row"><td colspan="2"><strong>Total (hardware)</strong></td><td><strong>~$1,279</strong></td></tr>
+        <tr class="subtotal"><td colspan="2">Low-voltage installer (4 drops + mounting)</td><td>$600&ndash;1,200</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout green">
+      <strong>Why we like this:</strong> $220 cheaper than the UDM-SE path. Built-in WiFi 7 means no separate access point. Same UniFi Protect software, same cameras, same app. 4 cameras won't stress it. This is the setup Rob runs.
+    </div>
+
+    <h3>Trade-Offs</h3>
+    <div class="gotcha">
+      <strong>2.5" drive bay only.</strong>
+      <p>Max ~5TB vs 8TB on the UDM-SE. Still gives 30&ndash;60 days of recording with 4 cameras. Less headroom if you add more cameras later.</p>
+    </div>
+    <div class="gotcha">
+      <strong>No built-in PoE.</strong>
+      <p>You need the separate $110 switch. One more device, one more power cable, one more thing in the closet.</p>
+    </div>
+    <div class="gotcha">
+      <strong>Less processing power.</strong>
+      <p>Fine for 4 cameras. Would not scale to 10+. If you plan to add a lot of cameras later, the UDM-SE or Pro Max is the better foundation.</p>
+    </div>
+  </div>
+
+  <!-- TAB 3: Original -->
+  <div id="original" class="tab-panel">
+    <p><strong>The starting point.</strong> Good instincts, just some items that need updating based on what's actually available and what we found in research.</p>
+
+    <table>
+      <thead><tr><th>Item</th><th>Details</th><th>Price</th></tr></thead>
+      <tbody class="tint-gray">
+        <tr><td>UniFi Dream Machine SE</td><td>Router + NVR + PoE switch</td><td>~$500</td></tr>
+        <tr><td>WD Purple 8TB</td><td>3.5" surveillance drive</td><td>~$130</td></tr>
+        <tr><td>2&times; G5 Bullet</td><td>4MP outdoor</td><td>~$260</td></tr>
+        <tr><td>G4 Doorbell Pro</td><td>Front door</td><td>~$200</td></tr>
+        <tr><td>G4 Instant</td><td>Indoor, WiFi</td><td>~$70</td></tr>
+        <tr class="total-row"><td colspan="2"><strong>Original Total</strong></td><td><strong>~$1,160</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>What Changed</h3>
+    <div class="why-grid">
+      <div class="why-item">
+        <strong>G4 Doorbell Pro is discontinued</strong>
+        <p>WiFi version is end-of-life, sold out everywhere. The G6 Entry Doorbell ($249, PoE) is the current replacement and actually in stock.</p>
+      </div>
+      <div class="why-item">
+        <strong>G4 Instant has no smart detection</strong>
+        <p>No person/vehicle/animal detection &mdash; motion only. It's also WiFi, which means it can be jammed and will drop frames. We dropped it for an all-wired setup.</p>
+      </div>
+      <div class="why-item">
+        <strong>UDM-SE needs a WiFi AP</strong>
+        <p>The UDM-SE has zero WiFi capability. The original list didn't account for this &mdash; you'd have no wireless for your phone, laptop, or tablet without adding an access point.</p>
+      </div>
+      <div class="why-item">
+        <strong>Added a 3rd bullet camera</strong>
+        <p>Two outdoor cameras leaves blind spots. Three covers front approach, side yard, and rear &mdash; full perimeter for a house with two doors and open yard.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span></span></div>
+
+  <!-- ============ THINGS TO KNOW (ALL VERSIONS) ============ -->
+  <h2>Things to Know <span class="subtitle">Applies to all three options</span></h2>
+
+  <div class="gotcha">
+    <strong>Don't put the router in the attic.</strong>
+    <p>Attics hit 120&deg;F+ in summer. All UniFi consoles are rated to 104&deg;F max. Put it in a closet or conditioned space. Run one cable from the modem in the attic down to it, then cables back up and out to cameras.</p>
+  </div>
+
+  <div class="gotcha">
+    <strong>PoE doorbell means running Cat6 to the front door.</strong>
+    <p>All current UniFi doorbells are PoE &mdash; no WiFi versions available. That means a cable run to the door, not reusing existing doorbell wiring. Factor this into the installer's scope.</p>
+  </div>
+
+  <div class="gotcha">
+    <strong>Pin your firmware versions.</strong>
+    <p>UniFi firmware updates have bricked devices. Turn off auto-update and wait for community confirmation before upgrading. This applies to both the router and camera firmware.</p>
+  </div>
+
+  <div class="gotcha">
+    <strong>Ubiquiti account required for initial setup.</strong>
+    <p>You need a cloud account to configure the router the first time. After that, create a local-only admin account and disable cloud access. Ubiquiti had a major data breach in 2021 &mdash; minimize your cloud exposure.</p>
+  </div>
+
+  <div class="gotcha">
+    <strong>Smart detection is hit or miss.</strong>
+    <p>Person, vehicle, and animal detection works but expect false positives from shadows and tree movement. It's useful, just not perfect.</p>
+  </div>
+
+  <div class="gotcha">
+    <strong>Home Assistant integration breaks on updates.</strong>
+    <p>Both HA and Protect firmware updates can break the integration. Manageable but annoying &mdash; pin versions on both sides if you want stability.</p>
+  </div>
+
+  <div class="divider"><span></span></div>
+
+  <!-- ============ INSTALLER ============ -->
+  <h2>Hiring an Installer</h2>
+
+  <div class="callout green">
+    <strong>What you're hiring for:</strong> 4&ndash;5 Cat6 cable runs from a central closet to exterior camera mounts (and one to the front door for the doorbell), plus camera mounting and live testing. Expect $600&ndash;1,200 depending on difficulty.
+  </div>
+
+  <ul>
+    <li>Must have a <strong>California C-7 Low Voltage license</strong> &mdash; verify at <a href="https://www.cslb.ca.gov" style="color:var(--olive)">cslb.ca.gov</a></li>
+    <li>Ask for proof of <strong>liability insurance and workers' comp</strong></li>
+    <li>Insist on <strong>solid copper Cat6</strong> (not copper-clad aluminum / CCA)</li>
+    <li>They should test every run with a <strong>proper cable tester</strong>, not just "plug and check"</li>
+    <li>Exterior penetrations need <strong>drip loops and silicone sealant</strong></li>
+    <li>Have them <strong>mount the cameras too</strong> &mdash; they own the whole job, test live on-site</li>
+    <li>Mark camera locations with <strong>painter's tape</strong> before they arrive</li>
+    <li>Have cameras on hand so they can <strong>test adoption into Protect</strong> on-site</li>
+    <li>Ask them to leave <strong>service loops</strong> (6&ndash;10 ft of extra cable) in the attic at each end</li>
+  </ul>
+
+  <div class="divider"><span></span></div>
+
+  <!-- ============ WHAT YOU GET ============ -->
+  <h2>What You Get</h2>
+
+  <ul>
+    <li><strong>Fully local</strong> &mdash; no cloud subscription, no monthly fees, ever</li>
+    <li><strong>All wired</strong> &mdash; can't be jammed, no WiFi dropouts, no signal interception</li>
+    <li><strong>One app</strong> &mdash; UniFi Protect on your phone for live view and playback</li>
+    <li><strong>30&ndash;90 days</strong> of continuous local recording</li>
+    <li><strong>Motion alerts</strong> with person, vehicle, and animal detection</li>
+    <li><strong>Remote viewing</strong> via Protect app (no port forwarding needed)</li>
+    <li><strong>Home Assistant integration</strong> for smart home automations</li>
+  </ul>
+
+  <footer>
+    <p>Rob Logic &mdash; April 2026</p>
+  </footer>
+
+</div>
+
+<script>
+function showTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+}
+</script>
+</body>
+</html>
