@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARTEMIS — Images from the Moon</title>
+  <meta name="description" content="67 NASA images from the Artemis I and Artemis II missions — Earthrise, solar eclipse from lunar orbit, surface close-ups, crew photos, and more.">
+  <meta property="og:title" content="ARTEMIS — Images from the Moon">
+  <meta property="og:description" content="67 NASA images from Artemis I & II — Earthrise, solar eclipse, lunar surface, crew photos.">
+  <meta property="og:url" content="https://roblogic.org/moon/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images-assets.nasa.gov/image/art002e009280b/art002e009280b~large.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --nasa-blue: #0B3D91;
+      --nasa-red: #FC3D21;
+      --black: #000000;
+      --deep: #060608;
+      --surface: #0d0f14;
+      --card: #12151c;
+      --border: #1e2230;
+      --text: #e8eaed;
+      --text-dim: #8b92a0;
+      --text-faint: #4a5068;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--deep);
+      color: var(--text);
+      font-family: 'Public Sans', -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images-assets.nasa.gov/image/art002e009280b/art002e009280b~large.jpg') center 40% / cover no-repeat;
+      transform: scale(1.05);
+      animation: heroZoom 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.12); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, var(--deep) 0%, rgba(6,6,8,0.6) 40%, rgba(6,6,8,0.2) 70%, rgba(6,6,8,0.4) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(2rem, 5vw, 5rem);
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(11, 61, 145, 0.4);
+      border: 1px solid rgba(11, 61, 145, 0.6);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7eb3ff;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--nasa-red);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: #fff;
+    }
+
+    .hero-sub {
+      font-family: 'Public Sans', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dim);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bobDown 2s ease-in-out infinite;
+    }
+
+    .hero-scroll .arrow {
+      width: 1px;
+      height: 30px;
+      background: linear-gradient(to bottom, transparent, var(--text-dim));
+    }
+
+    @keyframes bobDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .stat {
+      padding: 1.5rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+
+    /* ── MISSION BRIEF ── */
+    .brief {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .brief h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .brief h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+      width: 3px;
+      height: 1.1em;
+      background: var(--nasa-red);
+    }
+
+    .brief p {
+      color: var(--text-dim);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .brief p:last-child { margin-bottom: 0; }
+
+    /* ── FILTERS ── */
+    .filters {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(6,6,8,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1rem, 3vw, 3rem);
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .filter-btn {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .filter-btn:hover { color: var(--text); }
+
+    .filter-btn.active {
+      color: #fff;
+    }
+
+    .filter-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 1rem;
+      right: 1rem;
+      height: 2px;
+      background: var(--nasa-blue);
+    }
+
+    .filter-count {
+      display: inline-block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem;
+      border-radius: 2px;
+      font-size: 0.6rem;
+      margin-left: 0.4rem;
+      color: var(--text-faint);
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      padding: clamp(1rem, 3vw, 2rem);
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .gallery-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      padding: 2rem 0 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .gallery-section-title .mission-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .gallery-section-title .mission-dot.m1 { background: var(--nasa-blue); }
+    .gallery-section-title .mission-dot.m2 { background: var(--nasa-red); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .card.featured {
+      grid-column: span 2;
+    }
+
+    .card-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 66.67%;
+      overflow: hidden;
+      background: #080a10;
+    }
+
+    .card.featured .card-img-wrap {
+      padding-top: 50%;
+    }
+
+    .card-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover .card-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .card-img-wrap .loading-shimmer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #12151c 25%, #1a1e2a 50%, #12151c 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .card-info {
+      padding: 0.75rem 1rem;
+    }
+
+    .card-mission {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-mission.m1 { color: #5b8fd9; }
+    .card-mission.m2 { color: #fd7b5e; }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .card-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      margin-top: 0.3rem;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lb-img-wrap {
+      position: relative;
+      max-width: 90vw;
+      max-height: 78vh;
+      cursor: default;
+    }
+
+    .lb-img-wrap img {
+      max-width: 90vw;
+      max-height: 78vh;
+      object-fit: contain;
+      border-radius: 2px;
+    }
+
+    .lb-caption {
+      max-width: 700px;
+      text-align: center;
+      margin-top: 1.5rem;
+      cursor: default;
+    }
+
+    .lb-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .lb-desc {
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+
+    .lb-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 80px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 1001;
+    }
+
+    .lb-nav:hover {
+      background: rgba(255,255,255,0.12);
+    }
+
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+
+    .lb-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .lb-close:hover { color: #fff; }
+
+    .lb-counter {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      z-index: 1001;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 2;
+    }
+
+    footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .card.featured { grid-column: span 1; }
+      .card.featured .card-img-wrap { padding-top: 66.67%; }
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .filter-btn { padding: 0.8rem 1rem; font-size: 0.6rem; }
+      .lb-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">NASA Deep Space Imagery</div>
+      <h1>ARTEMIS</h1>
+      <p class="hero-sub">Images from the Moon</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val">2</div>
+      <div class="stat-label">Missions Flown</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">268,563</div>
+      <div class="stat-label">Miles from Earth</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">36</div>
+      <div class="stat-label">Days in Space</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">4</div>
+      <div class="stat-label">Crew Members</div>
+    </div>
+  </div>
+
+  <!-- MISSION BRIEF -->
+  <section class="brief">
+    <h2>Mission Overview</h2>
+    <p>NASA's Artemis program is humanity's return to the Moon, more than half a century after Apollo. Named for the twin sister of Apollo in Greek mythology, the program aims to land the first woman and the first person of color on the lunar surface, establish a sustained human presence, and use the Moon as a proving ground for the technologies needed to send astronauts to Mars. The program uses the Space Launch System (SLS) &mdash; the most powerful rocket ever built &mdash; paired with the Orion crew capsule designed for deep space missions far beyond low Earth orbit.</p>
+    <p>Artemis I proved the hardware in November&ndash;December 2022, sending an uncrewed Orion spacecraft around the Moon on a 25.5-day journey that took it farther from Earth than any spacecraft designed for humans has ever traveled. Artemis II, launched April 1, 2026, carried four astronauts on the first crewed flight around the Moon since Apollo 17 in 1972 &mdash; including the first Canadian to travel beyond low Earth orbit. During their lunar flyby on April 6, the crew spent seven hours photographing the Moon's surface, captured a stunning new Earthrise, and witnessed a total solar eclipse from the far side of the Moon: an event never before seen by human eyes.</p>
+    <p>The images below come from both missions and rank among the most breathtaking photographs in the history of space exploration.</p>
+  </section>
+
+  <!-- FILTERS -->
+  <nav class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all">All<span class="filter-count" id="count-all"></span></button>
+    <button class="filter-btn" data-filter="1">Artemis I<span class="filter-count" id="count-1"></span></button>
+    <button class="filter-btn" data-filter="2">Artemis II<span class="filter-count" id="count-2"></span></button>
+  </nav>
+
+  <!-- GALLERY -->
+  <main class="gallery" id="gallery"></main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close">&times;</button>
+    <span class="lb-counter" id="lb-counter"></span>
+    <button class="lb-nav lb-prev" id="lb-prev">&#8592;</button>
+    <button class="lb-nav lb-next" id="lb-next">&#8594;</button>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="">
+    </div>
+    <div class="lb-caption">
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-desc" id="lb-desc"></div>
+      <div class="lb-meta" id="lb-meta"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>All images courtesy of <a href="https://www.nasa.gov/artemis" target="_blank">NASA / Artemis Program</a></p>
+    <p>Image data via <a href="https://images.nasa.gov" target="_blank">NASA Image and Video Library</a></p>
+  </footer>
+
+<script>
+const IMAGES = [
+  // ── ARTEMIS II: EARTHRISE & EARTH VIEWS ──
+  { id:"art002e009280b", t:"Artemis Era Earthrise", d:"2026-04-06", m:2, desc:"Earthrise captured through the Orion spacecraft window during the crew's flyby of the Moon's far side. Earth appears as a delicate crescent, its soft blue hue standing out against the blackness of space.", f:1 },
+  { id:"art002e009284", t:"Earthset Over the Lunar Limb", d:"2026-04-06", m:2, desc:"Earth appears tiny as the Moon looms large. Taken 36 minutes before Earthset, our home planet is visible off the limb of the illuminated Moon." },
+  { id:"art002e009289", t:"A Setting Earth", d:"2026-04-06", m:2, desc:"The lunar surface fills the frame in sharp detail during the flyby, while a distant Earth sets in the background. Captured just three minutes before Orion went behind the Moon." },
+  { id:"art002e009286", t:"Peeking at the Earth", d:"2026-04-06", m:2, desc:"As the crew came close to passing behind the Moon, they captured this image of a crescent Earth setting on the Moon's limb." },
+  { id:"art002e000190", t:"Earth from Orion", d:"2026-04-03", m:2, desc:"A view of Earth taken by Commander Reid Wiseman from one of Orion's four windows after completing the translunar injection burn." },
+  { id:"art002e000193", t:"Backlit Earth", d:"2026-04-03", m:2, desc:"A view of a backlit Earth taken by Commander Wiseman from Orion's window after the translunar injection burn." },
+
+  // ── ARTEMIS II: ECLIPSE ──
+  { id:"art002e009301", t:"Artemis II in Eclipse", d:"2026-04-06", m:2, desc:"The Moon fully eclipsing the Sun, captured by the crew during their lunar flyby. The Moon appears large enough to completely block the Sun, creating nearly 54 minutes of totality.", f:1 },
+  { id:"art002e009299", t:"Solar Eclipse Emergence", d:"2026-04-06", m:2, desc:"The Sun beginning to peek out from behind the Moon as the eclipse transitions out of totality. The curved lunar edge reveals sunlight returning." },
+  { id:"art002e009298", t:"Total Solar Eclipse, Partial Frame", d:"2026-04-06", m:2, desc:"A close-up from Orion captures a total solar eclipse, with only part of the Moon visible as it fully obscures the Sun. A glowing halo surrounds the dark lunar disk." },
+
+  // ── ARTEMIS II: LUNAR SURFACE ──
+  { id:"art002e009287", t:"A New View of the Moon", d:"2026-04-06", m:2, desc:"Earth sets over the Moon's curved limb. Orientale basin perches on the edge. Hertzsprung Basin appears as the crew journeys around the far side." },
+  { id:"art002e009282", t:"Shadows Across Vavilov Crater", d:"2026-04-06", m:2, desc:"A close-up view of Vavilov Crater on the rim of the older Hertzsprung basin, showing the transition from smooth material within an inner ring of mountains to more rugged terrain." },
+  { id:"art002e009279", t:"It's All in the Details", d:"2026-04-06", m:2, desc:"The crew captured the rings of the Orientale basin, one of the Moon's youngest and best-preserved large impact craters." },
+  { id:"art002e009278", t:"Keeper of the Night Sky", d:"2026-04-06", m:2, desc:"Just over half of the Moon fills the left half of the image. The near side with dark patches of ancient lava is visible. Orientale basin appears as a round crater in the center." },
+  { id:"art002e009277", t:"A Moment with the Moon", d:"2026-04-06", m:2, desc:"View of the Moon taken by the crew just before they began their observation period. Orientale basin visible in center." },
+  { id:"art002e009057", t:"The Nearside of the Moon", d:"2026-04-05", m:2, desc:"The nearside of the Moon, the side we always see from Earth. Some of the far side is also visible on the left edge, beyond Orientale basin." },
+  { id:"art002e009210", t:"Goodnight Moon", d:"2026-04-06", m:2, desc:"Before going to sleep on flight day 5, the crew snapped one more photo of the Moon as it drew close in the window of Orion." },
+  { id:"art002e004411", t:"Hello, Moon", d:"2026-04-03", m:2, desc:"The crew is en route to the Moon on flight day 2. The Moon is in the distance, captured by a camera on Orion's solar array wings." },
+  { id:"art002e004429", t:"Orion and the Moon on Flight Day 2", d:"2026-04-03", m:2, desc:"The Orion spacecraft with the Moon in the distance, captured by a camera on the tip of one of its solar array wings." },
+  { id:"art002e009006", t:"The Moon on Day 4", d:"2026-04-04", m:2, desc:"The Moon is oriented with the South Pole at the top and beginning to show parts of the far side. Orientale basin on the right edge." },
+
+  // ── ARTEMIS II: CREW ──
+  { id:"art002e009296", t:"Lunar Selfie", d:"2026-04-06", m:2, desc:"Midway through lunar observation, the crew \u2014 Wiseman, Glover, Koch, Hansen \u2014 pause for a selfie inside the Orion spacecraft." },
+  { id:"art002e009302", t:"Eclipse Safety First", d:"2026-04-06", m:2, desc:"The crew uses eclipse viewers to view the solar eclipse from inside Orion." },
+  { id:"art002e009293", t:"Choreographed Camera Work", d:"2026-04-06", m:2, desc:"Victor Glover and Christina Koch gather images and observations of the lunar surface during the flyby. The crew spent approximately seven hours taking turns at the window." },
+  { id:"art002e009292", t:"Framing the Shot", d:"2026-04-06", m:2, desc:"Jeremy Hansen takes images through the Orion window early in the lunar flyby." },
+  { id:"art002e009294", t:"Final Flyby Preparations", d:"2026-04-06", m:2, desc:"Glover, Wiseman, and Hansen prepare for their journey around the far side by configuring camera equipment." },
+  { id:"art002e009275", t:"Looking at the Moon", d:"2026-04-06", m:2, desc:"Commander Reid Wiseman looks out one of Orion's main cabin windows at the Moon ahead of the crew's lunar flyby." },
+  { id:"art002e009273", t:"Victor Peers at Earth", d:"2026-04-06", m:2, desc:"Pilot Victor Glover peers out one of Orion's windows looking back at Earth ahead of the lunar flyby." },
+  { id:"art002e009274", t:"Christina Looks Back", d:"2026-04-06", m:2, desc:"Mission Specialist Christina Koch looks out one of Orion's windows back at Earth ahead of the crew's lunar flyby." },
+  { id:"art002e009215", t:"Rest Before Lunar Flyby", d:"2026-04-04", m:2, desc:"Crewmember sleeping bags illuminated inside Orion on Flight Day 5, ahead of the lunar flyby." },
+
+  // ── ARTEMIS II: SPACECRAFT ──
+  { id:"art002e004357", t:"Orion Selfie (Artemis II)", d:"2026-04-03", m:2, desc:"Orion snapped this high-resolution selfie with a camera on its solar array wing during routine external inspection on the second day of the Artemis II mission." },
+
+  // ── ARTEMIS II: LAUNCH & PAD ──
+  { id:"NHQ202604010308", t:"Artemis II Launch", d:"2026-04-01", m:2, desc:"NASA's Space Launch System rocket launches carrying Orion with astronauts Wiseman, Glover, Koch, and Hansen from Launch Complex 39B.", f:1 },
+  { id:"KSC-04012026-Artemis II_Launch-1", t:"Artemis II Launch (KSC View)", d:"2026-04-01", m:2, desc:"The SLS rocket launches with four astronauts aboard from Launch Complex 39B." },
+  { id:"KSC - SLS_03302026_Artemis II Launch wide_1", t:"Artemis II Launch (Wide Angle)", d:"2026-04-01", m:2, desc:"Wide-angle view of SLS launching with Orion and four astronauts." },
+  { id:"Artemis II at the pad Moon 01292026_4", t:"Moon Behind Artemis II at Pad 39B", d:"2026-01-29", m:2, desc:"The Moon behind the SLS and Orion spacecraft atop the mobile launcher at Pad 39B, during wet dress rehearsal preparations." },
+  { id:"KSC-01172026-Artemis II_Rollout-1", t:"Artemis II Arrives at Pad 39B", d:"2026-01-17", m:2, desc:"The sun sets as the crawler-transporter carrying Artemis II rolls toward Launch Complex 39B." },
+  { id:"KSC-01172026-Artemis II_Rollout-18", t:"Artemis II at Pad 39B (Night)", d:"2026-01-18", m:2, desc:"Lights illuminate Artemis II SLS and Orion at Launch Complex 39B." },
+
+  // ── ARTEMIS I: ICONIC ──
+  { id:"art001e000672", t:"Orion, Earth, and Moon at Maximum Distance", d:"2022-11-28", m:1, desc:"On flight day 13, Orion reached its maximum distance from Earth at 268,563 miles \u2014 farther than any other spacecraft built for humans has ever traveled.", f:1 },
+  { id:"cmasaw2_20221118204612_034", t:"Orion Snaps a Selfie", d:"2022-11-18", m:1, desc:"Orion snapped this high-resolution selfie with a camera mounted on its solar array wing during a routine external inspection on the third day of the Artemis I mission.", f:1 },
+  { id:"NHQ202211160028", t:"Artemis I Launch", d:"2022-11-16", m:1, desc:"NASA's Space Launch System rocket carrying the Orion spacecraft launches on the Artemis I flight test from Launch Complex 39B at Kennedy Space Center.", f:1 },
+
+  // ── ARTEMIS I: MOON APPROACH ──
+  { id:"art001e000269", t:"Orion Approaches the Moon", d:"2022-11-21", m:1, desc:"A portion of the Moon looms large just beyond Orion on flight day 6. The spacecraft entered the lunar sphere of influence on Nov. 20." },
+  { id:"art001e000255 FD5", t:"Orion Continues Toward the Moon", d:"2022-11-20", m:1, desc:"Showing Orion with the Moon beyond, captured by a camera on the tip of a solar array. The spacecraft came within 80 miles of the lunar surface the following day." },
+  { id:"art001e002000", t:"Orion Approaches the Moon (Day 19)", d:"2022-12-03", m:1, desc:"The Moon grows larger in frame as Orion prepares for the return powered flyby, passing approximately 79 miles above the surface." },
+
+  // ── ARTEMIS I: EARTH & MOON VIEWS ──
+  { id:"art001e001713", t:"Solar Array Divides Earth and Moon", d:"2022-11-29", m:1, desc:"Orion's solar arrays split the difference between Earth and the Moon on flight day 14." },
+  { id:"art001e001823", t:"Earth, Array, and Moon", d:"2022-11-28", m:1, desc:"Orion captured this view of Earth and the Moon on either side of one of the spacecraft's four solar arrays." },
+  { id:"art001e002092", t:"Earth Rising Behind the Moon", d:"2022-12-05", m:1, desc:"On flight day 20, Orion captured the Earth rising behind the Moon following the return powered flyby." },
+  { id:"art001e002190", t:"Orion and Crescent Earth", d:"2022-12-07", m:1, desc:"Orion continues its journey home. Earth appears as a crescent, still 234,000 miles away." },
+  { id:"Artemis I FD 17 Orion and a Crescent Moon", t:"Orion and a Crescent Moon", d:"2022-12-03", m:1, desc:"A camera on Orion's solar arrays captured this image of the Moon on flight day 17 from more than 222,000 miles." },
+  { id:"art001e000669", t:"Orion and Our Moon (Day 12)", d:"2022-11-27", m:1, desc:"A camera on Orion's solar arrays captured the Moon as Orion travels in distant retrograde orbit." },
+
+  // ── ARTEMIS I: EARTH FROM DEEP SPACE ──
+  { id:"art001e000095 FD1 Earth1", t:"First Image from Space", d:"2022-11-16", m:1, desc:"This first high-resolution image was captured on the first day of the Artemis I mission. The spacecraft was 57,000 miles from Earth." },
+  { id:"art001e000199 FD1", t:"Orion Deploys Solar Arrays", d:"2022-11-16", m:1, desc:"Orion's solar array during deployment shortly after launch, with Earth still close below." },
+  { id:"art001e000475", t:"Orion Looks Back at Earth", d:"2022-11-24", m:1, desc:"On flight day 9, Orion captured imagery looking back at Earth. The spacecraft is en route to distant retrograde orbit." },
+  { id:"art001e000666", t:"Orion and Earth (Day 12)", d:"2022-11-27", m:1, desc:"A camera on Orion's solar arrays captured Earth as Orion travels in distant retrograde orbit around the Moon." },
+  { id:"art001e002002", t:"A Slice of Earth", d:"2022-12-03", m:1, desc:"Orion captures Earth from a solar array camera as it prepares for the return powered flyby of the Moon." },
+  { id:"art001e003002", t:"The Journey Home", d:"2022-12-10", m:1, desc:"Orion captured Earth from a camera on its solar arrays. Now closer to Earth than to the Moon, splashdown on Sunday." },
+  { id:"art001e003069", t:"Home in Sight", d:"2022-12-11", m:1, desc:"On the day of return, Orion's optical navigation camera captured Earth. The spacecraft splashed down at 12:40 p.m. EST." },
+
+  // ── ARTEMIS I: OPTICAL NAV / B&W ──
+  { id:"art001e000194 opnav 6", t:"Orion Captures the Moon (B&W)", d:"2022-11-21", m:1, desc:"Orion used its optical navigation camera to snap this black-and-white photo of the Moon on flight day 6." },
+  { id:"art001e000274", t:"Close-up of the Moon (B&W)", d:"2022-11-21", m:1, desc:"Orion's optical navigation camera captured this black-and-white photo of the lunar surface on flight day 6." },
+  { id:"art001e001924", t:"A Sliver of Home", d:"2022-12-02", m:1, desc:"Orion's optical navigation camera captured this black-and-white image of Earth as the spacecraft sets its sights on splashdown." },
+
+  // ── ARTEMIS I: LUNAR SURFACE CLOSE-UPS ──
+  { id:"art001e002162", t:"The Lunar Surface", d:"2022-12-05", m:1, desc:"Cameras mounted on the crew module captured views of the Moon's surface during the second close approach, ~79 miles above the surface." },
+  { id:"art001e002647", t:"Lunar Close-up (Optical Nav)", d:"2022-12-05", m:1, desc:"The optical navigation camera captured views of the Moon's surface during the second close approach." },
+  { id:"art001e002604", t:"Lunar Surface Detail I", d:"2022-12-05", m:1, desc:"Close-up view of the lunar surface captured during Orion's return flyby on flight day 20." },
+  { id:"art001e002596", t:"Lunar Surface Detail II", d:"2022-12-05", m:1, desc:"Lunar terrain captured by Orion during its closest approach on the return leg." },
+  { id:"art001e002595", t:"Lunar Surface Detail III", d:"2022-12-05", m:1, desc:"Craters and ridges on the Moon's surface during Orion's ~79-mile flyby." },
+  { id:"art001e002594", t:"Lunar Surface Detail IV", d:"2022-12-05", m:1, desc:"The ancient, cratered surface of the Moon as seen from Orion." },
+  { id:"art001e002593", t:"Lunar Surface Detail V", d:"2022-12-05", m:1, desc:"Close-up terrain from Orion's return flyby on flight day 20." },
+  { id:"art001e002655", t:"Lunar Surface Detail VI", d:"2022-12-05", m:1, desc:"The Moon's surface in detail during Orion's second and final close approach." },
+  { id:"art001e002599", t:"Lunar Surface Detail VII", d:"2022-12-05", m:1, desc:"Detailed view of lunar surface features captured during the return flyby." },
+  { id:"art001e002630", t:"Lunar Surface Detail VIII", d:"2022-12-05", m:1, desc:"Lunar surface detail from the optical navigation camera during the final close approach." },
+];
+
+// ── URL BUILDER ──
+function imgUrl(id, size) {
+  const safe = id.replace(/ /g, '%20');
+  return `https://images-assets.nasa.gov/image/${safe}/${safe}~${size}.jpg`;
+}
+
+function formatDate(d) {
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+}
+
+// ── RENDER ──
+let currentFilter = 'all';
+let visibleImages = [...IMAGES];
+
+function render() {
+  const gallery = document.getElementById('gallery');
+
+  visibleImages = currentFilter === 'all'
+    ? [...IMAGES]
+    : IMAGES.filter(img => String(img.m) === currentFilter);
+
+  // Group by mission
+  const groups = {};
+  visibleImages.forEach(img => {
+    const key = img.m;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(img);
+  });
+
+  let html = '';
+  const missionNames = { 1: 'Artemis I \u2014 Nov\u2013Dec 2022', 2: 'Artemis II \u2014 April 2026' };
+  const order = currentFilter === '1' ? [1] : currentFilter === '2' ? [2] : [2, 1];
+
+  order.forEach(mKey => {
+    const imgs = groups[mKey];
+    if (!imgs) return;
+
+    html += `<div class="gallery-section-title">
+      <span class="mission-dot m${mKey}"></span>
+      ${missionNames[mKey]}
+    </div>`;
+    html += '<div class="grid">';
+
+    imgs.forEach((img, i) => {
+      const globalIdx = IMAGES.indexOf(img);
+      html += `<div class="card${img.f ? ' featured' : ''}" data-idx="${globalIdx}" onclick="openLightbox(${globalIdx})">
+        <div class="card-img-wrap">
+          <div class="loading-shimmer"></div>
+          <img src="${imgUrl(img.id, 'medium')}" alt="${img.t}" loading="lazy"
+               onload="this.previousElementSibling.remove()"
+               onerror="this.closest('.card').style.display='none'">
+        </div>
+        <div class="card-info">
+          <div class="card-mission m${img.m}">Artemis ${img.m === 1 ? 'I' : 'II'}</div>
+          <div class="card-title">${img.t}</div>
+          <div class="card-date">${formatDate(img.d)}</div>
+        </div>
+      </div>`;
+    });
+
+    html += '</div>';
+  });
+
+  gallery.innerHTML = html;
+}
+
+// ── FILTERS ──
+document.getElementById('count-all').textContent = IMAGES.length;
+document.getElementById('count-1').textContent = IMAGES.filter(i => i.m === 1).length;
+document.getElementById('count-2').textContent = IMAGES.filter(i => i.m === 2).length;
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    render();
+    document.getElementById('gallery').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ── LIGHTBOX ──
+let lbIndex = 0;
+
+function openLightbox(idx) {
+  lbIndex = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function updateLightbox() {
+  const img = IMAGES[lbIndex];
+  document.getElementById('lb-img').src = imgUrl(img.id, 'large');
+  document.getElementById('lb-img').alt = img.t;
+  document.getElementById('lb-title').textContent = img.t;
+  document.getElementById('lb-desc').textContent = img.desc;
+  document.getElementById('lb-meta').textContent = `Artemis ${img.m === 1 ? 'I' : 'II'} \u00B7 ${formatDate(img.d)} \u00B7 ${img.id}`;
+  document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${IMAGES.length}`;
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+
+document.getElementById('lb-prev').addEventListener('click', e => {
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + IMAGES.length) % IMAGES.length;
+  updateLightbox();
+});
+
+document.getElementById('lb-next').addEventListener('click', e => {
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % IMAGES.length;
+  updateLightbox();
+});
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + IMAGES.length) % IMAGES.length; updateLightbox(); }
+  if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % IMAGES.length; updateLightbox(); }
+});
+
+// ── INIT ──
+render();
+</script>
+
+</body>
+</html>
