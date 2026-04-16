@@ -53,7 +53,6 @@
       padding: 0 20px;
     }
 
-    /* Header */
     .order-header {
       padding: 48px 0 32px;
       text-align: center;
@@ -90,13 +89,12 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       padding: 4px 14px;
-      border: 1px solid var(--red);
+      border: 1px solid var(--green-dim);
       border-radius: 3px;
-      color: var(--red-bright);
+      color: var(--green);
       margin-top: 10px;
     }
 
-    /* Glow divider */
     .glow-divider {
       width: 100%;
       height: 1px;
@@ -104,7 +102,6 @@
       background: linear-gradient(to right, transparent 0%, var(--red-dark) 25%, var(--red) 50%, var(--red-dark) 75%, transparent 100%);
     }
 
-    /* Order sections */
     .order-section {
       padding: 32px 0;
     }
@@ -118,7 +115,6 @@
     }
     .order-section h2 span { color: var(--red); }
 
-    /* Order table */
     .order-table {
       width: 100%;
       border-collapse: collapse;
@@ -200,7 +196,6 @@
       font-family: var(--font-display);
     }
 
-    /* Grand total */
     .grand-total {
       padding: 24px 0 40px;
       text-align: center;
@@ -237,7 +232,6 @@
       margin-top: 4px;
     }
 
-    /* Notes section */
     .notes {
       padding: 24px 0 48px;
     }
@@ -272,7 +266,6 @@
       color: var(--red-bright);
     }
 
-    /* Footer */
     .order-footer {
       padding: 24px;
       text-align: center;
@@ -284,7 +277,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* Copy button */
     .copy-btn {
       display: inline-block;
       padding: 12px 32px;
@@ -310,14 +302,12 @@
       color: var(--green);
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       .order-table .reason { display: none; }
       .order-table td { padding: 8px 6px; font-size: 14px; }
       .order-table .qty { font-size: 18px; }
     }
 
-    /* Print */
     @media print {
       body { background: #fff; color: #000; font-size: 12px; }
       .order-header { background: none; border-bottom: 2px solid #000; padding: 16px 0; }
@@ -334,20 +324,18 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header class="order-header">
     <div class="container">
       <h1><span>Crest</span> Order</h1>
       <div class="date">Week of April 17 &ndash; 23, 2026</div>
       <div class="delivery">Delivery: Friday, April 17</div>
-      <div class="budget-badge">Catch-up week &mdash; 3 kegs kicked, bottles dry</div>
+      <div class="budget-badge">Lean week &mdash; top sellers only</div>
       <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
     </div>
   </header>
 
   <hr class="glow-divider">
 
-  <!-- Kegs -->
   <section class="order-section">
     <div class="container">
       <h2><span>Kegs</span></h2>
@@ -367,22 +355,10 @@
             <td class="cost">$190.00</td>
             <td class="reason">Kicked. #1 draft.</td>
           </tr>
-          <tr>
-            <td><span class="item-name">Modelo Lager</span><span class="item-format">1/2 BBL</span></td>
-            <td class="qty">1</td>
-            <td class="cost">~$220.00</td>
-            <td class="reason">Kicked.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Miller High Life</span><span class="item-format">1/2 BBL</span></td>
-            <td class="qty">1</td>
-            <td class="cost">~$140.00</td>
-            <td class="reason">Kicked.</td>
-          </tr>
           <tr class="subtotal-row">
             <td>Keg Subtotal</td>
             <td></td>
-            <td class="cost">~$550</td>
+            <td class="cost">$190</td>
             <td></td>
           </tr>
         </tbody>
@@ -392,7 +368,6 @@
 
   <hr class="glow-divider">
 
-  <!-- Liquor Order -->
   <section class="order-section">
     <div class="container">
       <h2><span>Liquor</span> Order</h2>
@@ -424,34 +399,10 @@
             <td class="cost">$25.24</td>
             <td class="reason">OUT.</td>
           </tr>
-          <tr>
-            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">$28.27</td>
-            <td class="reason">0 backup, ½ open.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Tullamore Dew Honey</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">~$28.27</td>
-            <td class="reason">OUT.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">$27.66</td>
-            <td class="reason">0 backup, ¾ open.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Fireball</span><span class="item-format">1L &mdash; Single</span></td>
-            <td class="qty">/1</td>
-            <td class="cost">$16.15</td>
-            <td class="reason">0 backup, ½ open.</td>
-          </tr>
           <tr class="subtotal-row">
             <td>Liquor Subtotal</td>
             <td></td>
-            <td class="cost">~$230</td>
+            <td class="cost">~$130</td>
             <td></td>
           </tr>
         </tbody>
@@ -461,7 +412,6 @@
 
   <hr class="glow-divider">
 
-  <!-- Beer -->
   <section class="order-section">
     <div class="container">
       <h2><span>Beer</span> Order</h2>
@@ -476,28 +426,16 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="item-name">White Claw Tall</span><span class="item-format">C12 19.2oz &mdash; any 3 flavors</span></td>
-            <td class="qty">3</td>
-            <td class="cost">$102.45</td>
-            <td class="reason">4 left. Band Sat.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">White Claw Small</span><span class="item-format">C24 &mdash; any</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$30.40</td>
-            <td class="reason">5 left.</td>
+            <td><span class="item-name">White Claw Tall</span><span class="item-format">C12 19.2oz &mdash; any 2 flavors</span></td>
+            <td class="qty">2</td>
+            <td class="cost">$68.30</td>
+            <td class="reason">4 left. Top bottle seller.</td>
           </tr>
           <tr>
             <td><span class="item-name">Corona Extra</span><span class="item-format">B24 12oz</span></td>
             <td class="qty">1</td>
             <td class="cost">$28.15</td>
-            <td class="reason">OUT.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$28.15</td>
-            <td class="reason">OUT.</td>
+            <td class="reason">OUT. Band Sat.</td>
           </tr>
           <tr>
             <td><span class="item-name">Modelo Especial</span><span class="item-format">B24 12oz</span></td>
@@ -506,39 +444,21 @@
             <td class="reason">3 left.</td>
           </tr>
           <tr>
+            <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$28.15</td>
+            <td class="reason">OUT.</td>
+          </tr>
+          <tr>
             <td><span class="item-name">Coors Light</span><span class="item-format">B24 12oz</span></td>
             <td class="qty">1</td>
             <td class="cost">$22.80</td>
             <td class="reason">OUT.</td>
           </tr>
-          <tr>
-            <td><span class="item-name">Pacifico</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$26.80</td>
-            <td class="reason">OUT.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Coors Original</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">~$26.00</td>
-            <td class="reason">OUT.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Miller High Life</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$22.80</td>
-            <td class="reason">OUT.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">Mickey&rsquo;s Grenade</span><span class="item-format">B24</span></td>
-            <td class="qty">1</td>
-            <td class="cost">~$22.45</td>
-            <td class="reason">OUT.</td>
-          </tr>
           <tr class="subtotal-row">
             <td>Beer Subtotal</td>
             <td></td>
-            <td class="cost">~$338</td>
+            <td class="cost">~$175</td>
             <td></td>
           </tr>
         </tbody>
@@ -548,18 +468,16 @@
 
   <hr class="glow-divider">
 
-  <!-- Grand Total -->
   <section class="grand-total">
     <div class="grand-total-box">
       <div class="label">Estimated Total</div>
-      <div class="amount">~$1,120</div>
+      <div class="amount">~$495</div>
       <div class="note">Keg returns offset (credits on invoice)</div>
     </div>
   </section>
 
   <hr class="glow-divider">
 
-  <!-- Notes -->
   <section class="notes">
     <div class="container">
       <h2><span>Notes</span> for Rep</h2>
@@ -570,11 +488,15 @@
       </div>
 
       <div class="note-card">
+        <strong>Only replacing Coors Light keg</strong> &mdash; holding off on Modelo / MHL / 805 / Guinness rebuilds for a week. Will rebuild taps next order.
+      </div>
+
+      <div class="note-card">
         <strong>Ancient Age &amp; Platinum 7X</strong> &mdash; 6 bottles each (half case). Case rate if available.
       </div>
 
       <div class="note-card">
-        <strong>White Claw Tall</strong> &mdash; any 3 flavors, dealer&rsquo;s choice. <strong>White Claw Small</strong> &mdash; variety OK.
+        <strong>White Claw Tall</strong> &mdash; any 2 flavors, dealer&rsquo;s choice.
       </div>
 
       <div class="note-card">
@@ -584,12 +506,10 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="order-footer">
     <strong>Barkeep</strong> by Rob Logic &middot; Generated Apr 16, 2026 &middot; The Bancroft Bar
   </footer>
 
-  <!-- Hidden text for copy -->
   <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
 Delivery: Fri Apr 17, 2026
 Week of Apr 17 - 23
@@ -603,37 +523,26 @@ KEG PICKUP (5 empties ready, disconnected and sitting out):
 
 KEGS:
 1  Coors Light 1/2 BBL
-1  Modelo Lager 1/2 BBL
-1  Miller High Life 1/2 BBL
 
 LIQUOR:
 6  Ancient Age 1L (well whiskey — half case, case rate if available)
 6  Platinum 7X Vodka 1L (well vodka — half case, case rate if available)
 /1  Tito's Vodka 1L
-/1  Tullamore Dew 1L
-/1  Tullamore Dew Honey 1L
-/1  Jack Daniels 1L
-/1  Fireball 1L
 
 BEER:
-3  White Claw Tall C12 19.2oz (any 3 flavors)
-1  White Claw Small C24 (any)
+2  White Claw Tall C12 19.2oz (any 2 flavors)
 1  Corona Extra B24 12oz
-1  Heineken B24 12oz
 1  Modelo Especial B24 12oz
+1  Heineken B24 12oz
 1  Coors Light B24 12oz
-1  Pacifico B24 12oz
-1  Coors Original B24 12oz
-1  Miller High Life B24 12oz
-1  Mickey's Grenade B24
 
-EST. TOTAL: ~$1,120 before keg credits
+EST. TOTAL: ~$495 before keg credits
 
 NOTES:
-- 3 kegs kicked this week (Coors Light, Modelo, MHL). All replacement kegs + empties for pickup.
-- Wells (Ancient Age + Platinum 7X) very low with no backup — need half cases.
-- Tito's and Tully Honey completely out.
-- White Claw Tall at 4 total — band Saturday, ordering 3 cases.
+- Only replacing Coors Light keg — holding Modelo/MHL/805/Guinness rebuilds for next week.
+- Wells (Ancient Age + Platinum 7X) empty with no backup — need half cases.
+- Tito's completely out.
+- White Claw Tall: any 2 flavors, dealer's choice.
 - This week: Fri Lenny's Karaoke Bday, Sat 4-band bill (Astrodice/Memory Theatre/Sangre Bruja/Vanta After Dark), Sun Darts, Mon Pong + Vinyl Knights (4/20), Tue Karaoke.
   </textarea>
 
