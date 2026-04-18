@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Field — 14 CA-26 Governor Candidate Dossiers · Rob Logic</title>
+<meta name="description" content="14 candidate dossiers for the 2026 California governor's race. Money trails, documented scandals, live conspiracies, weird biographical facts. All sources linked.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗂️</text></svg>">
+<meta property="og:title" content="The Field — 14 Candidate Dossiers for CA-26 Governor">
+<meta property="og:description" content="Who's running. Who's paying. What they're hiding. Fourteen candidate dossiers with funding sources, documented scandals, and weird biographical facts.">
+<meta property="og:url" content="https://roblogic.org/vote/candidates/">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #f4ede0;
+    --cream-deep: #ebe0cc;
+    --ink: #1a1a1a;
+    --ink-soft: #3a3a3a;
+    --rule: rgba(26,26,26,0.16);
+    --rule-strong: rgba(26,26,26,0.35);
+    --red: #c1272d;
+    --red-dark: #8c1a1f;
+    --navy: #1d3557;
+    --gold: #c79a3a;
+    --ochre: #a87c29;
+    --green-stamp: #3d6b38;
+    --blue-stamp: #2c4f7a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 12% 6%, rgba(0,0,0,0.035) 0%, transparent 40%),
+      radial-gradient(circle at 88% 94%, rgba(0,0,0,0.03) 0%, transparent 40%);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.55;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  /* ===== MASTHEAD ===== */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    padding: 20px 40px 16px;
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+
+  .masthead-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .masthead-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 3.2vw, 40px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .masthead-title .red { color: var(--red); font-style: italic; }
+
+  .masthead-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .masthead-meta .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .back-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: all 0.15s;
+  }
+
+  .back-link:hover { color: var(--red); border-bottom-color: var(--red); }
+
+  /* ===== HERO ===== */
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 50px;
+    align-items: end;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 8vw, 104px);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-title em { color: var(--red); }
+
+  .hero-sub {
+    font-family: 'Special Elite', 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 420px;
+    color: var(--ink-soft);
+  }
+
+  .hero-sub strong { color: var(--ink); background: var(--gold); padding: 0 4px; }
+
+  /* ===== LEGEND ===== */
+  .legend {
+    max-width: 1400px;
+    margin: 30px auto 40px;
+    padding: 0 40px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .legend-dot.fact { background: var(--green-stamp); }
+  .legend-dot.alleg { background: var(--gold); }
+  .legend-dot.conspiracy { background: var(--red); }
+  .legend-dot.weird { background: var(--blue-stamp); }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 60px;
+  }
+
+  /* ===== SIDEBAR TOC ===== */
+  .toc {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+  }
+
+  .toc-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .toc-group {
+    margin-bottom: 22px;
+  }
+
+  .toc-group-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+    border-bottom: 1px dashed var(--rule);
+    padding-bottom: 4px;
+  }
+
+  .toc a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 3px 0;
+    transition: all 0.12s;
+    border-left: 2px solid transparent;
+    padding-left: 8px;
+    margin-left: -10px;
+  }
+
+  .toc a:hover {
+    color: var(--red);
+    border-left-color: var(--red);
+  }
+
+  .toc a .status-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-left: 4px;
+    padding: 0 4px;
+    border-radius: 2px;
+  }
+
+  .status-tag.out { background: var(--ink); color: var(--cream); }
+  .status-tag.trouble { background: var(--red); color: var(--cream); }
+  .status-tag.dq { background: var(--ink-soft); color: var(--cream); text-decoration: line-through; }
+
+  /* ===== DOSSIER CARDS ===== */
+  .dossiers {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .dossier {
+    border: 2px solid var(--ink);
+    background: #fdfaf2;
+    padding: 0;
+    position: relative;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+  }
+
+  .dossier.withdrew {
+    opacity: 0.92;
+    border-color: var(--ink-soft);
+  }
+
+  .dossier.withdrew::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 20px,
+      rgba(26,26,26,0.015) 20px,
+      rgba(26,26,26,0.015) 40px
+    );
+    pointer-events: none;
+  }
+
+  /* file tab */
+  .file-tab {
+    position: absolute;
+    top: -18px;
+    left: 28px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 4px 14px;
+  }
+
+  .dossier.dem .file-tab { background: var(--navy); }
+  .dossier.rep .file-tab { background: var(--red-dark); }
+  .dossier.minor .file-tab { background: var(--ochre); }
+
+  .dossier-header {
+    padding: 32px 36px 24px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    z-index: 1;
+  }
+
+  .mugshot {
+    width: 80px;
+    height: 100px;
+    border: 2px solid var(--ink);
+    background: var(--cream-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--ink);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .mugshot::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid var(--rule);
+  }
+
+  .mugshot::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 10px);
+  }
+
+  .name-block {
+    min-width: 0;
+  }
+
+  .candidate-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+
+  .candidate-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .stamp {
+    font-family: 'Special Elite', monospace;
+    border: 3px solid;
+    padding: 8px 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 13px;
+    font-weight: 700;
+    transform: rotate(-4deg);
+    text-align: center;
+    line-height: 1.1;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .stamp.active { color: var(--green-stamp); border-color: var(--green-stamp); }
+  .stamp.trouble { color: var(--red); border-color: var(--red); }
+  .stamp.withdrew { color: var(--ink-soft); border-color: var(--ink-soft); transform: rotate(4deg); }
+  .stamp.imploded { color: var(--red-dark); border-color: var(--red-dark); transform: rotate(-8deg); }
+  .stamp.dq { color: var(--ink-soft); border-color: var(--ink-soft); text-decoration: line-through; }
+
+  /* money bar */
+  .money-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream-deep);
+  }
+
+  .money-cell {
+    padding: 16px 20px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .money-cell:last-child { border-right: none; }
+
+  .money-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+
+  .money-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .money-value.small {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .money-value.red { color: var(--red); }
+
+  /* body sections */
+  .dossier-body {
+    padding: 30px 36px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .section {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+  }
+
+  .section-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--red);
+    border-right: 2px solid var(--red);
+    padding-right: 16px;
+    text-align: right;
+    line-height: 1.3;
+    padding-top: 2px;
+  }
+
+  .section-content {
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .section-content p + p { margin-top: 10px; }
+
+  .section-content .item {
+    padding: 10px 0 10px 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+
+  .section-content .item:last-child { border-bottom: none; }
+
+  .section-content .item:first-child { padding-top: 0; }
+
+  .label-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    margin-right: 8px;
+    color: var(--cream);
+    vertical-align: 2px;
+  }
+
+  .label-tag.fact { background: var(--green-stamp); }
+  .label-tag.alleg { background: var(--gold); color: var(--ink); }
+  .label-tag.conspiracy { background: var(--red); }
+  .label-tag.weird { background: var(--blue-stamp); }
+
+  .why-box {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 24px;
+    margin-top: 8px;
+    border-left: 8px solid var(--gold);
+  }
+
+  .why-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .why-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* donor list */
+  .donor-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    margin-top: 8px;
+  }
+
+  .donor-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--rule);
+    align-items: baseline;
+  }
+
+  .donor-name { color: var(--ink); }
+  .donor-amount { color: var(--red); font-weight: 700; }
+  .donor-note { color: var(--ink-soft); font-size: 11px; font-style: italic; }
+
+  /* source links */
+  a.src {
+    color: var(--red);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 0 4px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-left: 4px;
+    vertical-align: 2px;
+    transition: all 0.12s;
+  }
+
+  a.src:hover { background: var(--red); color: var(--cream); border-color: var(--red); }
+
+  /* party badges in header */
+  .party-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: 2px;
+  }
+
+  .party-badge.dem { background: var(--navy); color: var(--cream); }
+  .party-badge.rep { background: var(--red-dark); color: var(--cream); }
+  .party-badge.minor { background: var(--ochre); color: var(--cream); }
+
+  /* FOOTER */
+  .footer {
+    max-width: 1400px;
+    margin: 80px auto 40px;
+    padding: 40px 40px 0;
+    border-top: 3px double var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-note {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .footer-note strong { color: var(--ink); }
+
+  /* key insights box */
+  .insights {
+    max-width: 1400px;
+    margin: 0 auto 60px;
+    padding: 0 40px;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .insight-card {
+    border: 2px solid var(--ink);
+    padding: 20px 22px;
+    background: #fdfaf2;
+    position: relative;
+  }
+
+  .insight-card .num {
+    position: absolute;
+    top: -14px;
+    right: 16px;
+    background: var(--red);
+    color: var(--cream);
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .insight-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .insight-card p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 960px) {
+    body { font-size: 15.5px; }
+    .hero { grid-template-columns: 1fr; gap: 28px; padding: 44px 20px 28px; border-bottom: none; }
+    .hero-title { font-size: clamp(40px, 10vw, 68px); line-height: 0.92; }
+    .hero-sub { max-width: none; font-size: 13px; }
+    .main-container { grid-template-columns: 1fr; padding: 0 20px 60px; gap: 30px; }
+    .toc { position: static; border-top: 2px solid var(--ink); padding: 14px 0 8px; }
+    .toc-group { margin-bottom: 16px; }
+    .masthead { padding: 14px 20px; }
+    .masthead-inner { gap: 14px; }
+    .masthead-title { font-size: clamp(22px, 5vw, 30px); }
+    .masthead-meta { font-size: 10px; gap: 12px; width: 100%; flex-basis: 100%; flex-wrap: wrap; }
+    .file-tab { font-size: 9px; padding: 3px 10px; left: 18px; top: -14px; }
+    .dossier { box-shadow: 3px 3px 0 rgba(0,0,0,0.08); }
+    .dossier-header { grid-template-columns: 60px 1fr; gap: 14px; padding: 22px 18px 18px; }
+    .dossier-header .stamp { grid-column: 1 / -1; justify-self: start; margin-top: 4px; font-size: 11px; padding: 6px 12px; }
+    .mugshot { width: 58px; height: 74px; font-size: 26px; }
+    .mugshot::before { inset: 4px; }
+    .candidate-name { font-size: clamp(22px, 6vw, 30px); line-height: 1.05; }
+    .candidate-subtitle { font-size: 10.5px; letter-spacing: 0.04em; }
+    .party-badge { font-size: 9.5px; padding: 1px 6px; letter-spacing: 0.08em; }
+    .money-bar { grid-template-columns: 1fr 1fr; }
+    .money-cell { padding: 12px 14px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .money-cell:nth-child(2n) { border-right: none; }
+    .money-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .money-value { font-size: 18px; }
+    .money-value.small { font-size: 11.5px; }
+    .dossier-body { padding: 20px 18px 22px; gap: 20px; }
+    .section { grid-template-columns: 1fr; gap: 8px; }
+    .section-label { border-right: none; border-bottom: 2px solid var(--red); padding: 0 0 4px 0; text-align: left; font-size: 11.5px; max-width: fit-content; }
+    .section-content { font-size: 14px; line-height: 1.6; }
+    .section-content .item { padding: 8px 0; }
+    .label-tag { font-size: 8.5px; padding: 2px 5px; margin-right: 6px; }
+    .donor-list { font-size: 11.5px; }
+    .donor-row { grid-template-columns: 1fr; gap: 2px; padding: 5px 0; }
+    .donor-amount { font-size: 11px; }
+    .why-box { padding: 14px 16px; }
+    .why-text { font-size: 16px; line-height: 1.35; }
+    .why-label { font-size: 9px; }
+    a.src { font-size: 9px; padding: 0 3px; margin-left: 2px; }
+    .legend { padding: 0 20px; gap: 16px; font-size: 10px; }
+    .insights { padding: 0 20px; margin-bottom: 44px; }
+    .insights-grid { gap: 14px; }
+    .insight-card { padding: 16px 18px; }
+    .insight-card h3 { font-size: 16px; }
+    .insight-card p { font-size: 12.5px; }
+    .insight-card .num { font-size: 18px; width: 30px; height: 30px; top: -12px; right: 12px; }
+    .footer { grid-template-columns: 1fr; gap: 22px; padding: 30px 20px 0; margin-top: 56px; }
+    .footer-note { font-size: 11.5px; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 15px; }
+    .masthead { padding: 12px 14px; }
+    .back-link { font-size: 10px; }
+    .hero { padding: 36px 14px 22px; gap: 20px; }
+    .hero-title { font-size: clamp(34px, 11vw, 52px); }
+    .hero-sub { font-size: 12.5px; line-height: 1.6; }
+    .legend { padding: 0 14px; gap: 10px 14px; font-size: 9.5px; margin: 22px auto 28px; }
+    .insights { padding: 0 14px; margin-bottom: 32px; }
+    .main-container { padding: 0 14px 50px; gap: 24px; }
+    .dossier { box-shadow: 2px 2px 0 rgba(0,0,0,0.08); }
+    .file-tab { font-size: 8.5px; padding: 2px 8px; left: 14px; }
+    .dossier-header { grid-template-columns: 54px 1fr; padding: 22px 14px 16px; gap: 12px; }
+    .mugshot { width: 54px; height: 68px; font-size: 22px; }
+    .candidate-name { font-size: clamp(20px, 6.5vw, 26px); }
+    .candidate-subtitle { font-size: 10px; line-height: 1.35; }
+    .dossier-header .stamp { font-size: 10px; padding: 5px 10px; }
+    .money-bar { grid-template-columns: 1fr; }
+    .money-cell { border-right: none !important; }
+    .money-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .money-cell:last-child { border-bottom: none; }
+    .money-value { font-size: 19px; }
+    .dossier-body { padding: 18px 14px 20px; gap: 18px; }
+    .section-content { font-size: 13.5px; }
+    .why-box { padding: 12px 14px; border-left-width: 6px; }
+    .why-text { font-size: 14.5px; }
+    .dossiers { gap: 44px; }
+    .footer { padding: 24px 14px 0; margin-top: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1 class="masthead-title">The <span class="red">Field</span>.</h1>
+    <div class="masthead-meta">
+      <span><span class="dot"></span> Primary D-45</span>
+      <span>· 14 candidates profiled</span>
+      <a href="/vote/" class="back-link">← back to overview</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <h2 class="hero-title">Who's running. Who's <em>paying</em>. What they're hiding.</h2>
+  <p class="hero-sub">
+    Fourteen dossiers on every candidate worth watching in California's 2026 gubernatorial primary —
+    funding sources, <strong>documented scandals</strong>, live conspiracy theories, and the
+    weird biographical facts most voters never hear.<br><br>
+    All factual claims carry source links. <strong>Allegations are labeled.</strong>
+  </p>
+</section>
+
+<!-- ===== LEGEND ===== -->
+<div class="legend">
+  <div class="legend-item"><span class="legend-dot fact"></span> Fact — documented &amp; sourced</div>
+  <div class="legend-item"><span class="legend-dot alleg"></span> Allegation — reported, disputed</div>
+  <div class="legend-item"><span class="legend-dot conspiracy"></span> Conspiracy — uncategorized theory</div>
+  <div class="legend-item"><span class="legend-dot weird"></span> Weird but true — rarely-cited fact</div>
+</div>
+
+<!-- ===== INSIGHTS STRIP ===== -->
+<section class="insights">
+  <div class="insights-grid">
+    <div class="insight-card">
+      <div class="num">1</div>
+      <h3>The establishment is sitting out</h3>
+      <p>Newsom, Pelosi, and Harris have <strong>all</strong> pointedly refused to endorse any Democrat. The party is rudderless in its own primary.</p>
+    </div>
+    <div class="insight-card">
+      <div class="num">2</div>
+      <h3>Two billionaire money models</h3>
+      <p>Steyer self-funds ($112M). Mahan is bankrolled by a Thiel-adjacent Silicon Valley billionaire coalition ($8.6M from ~25 tech moguls).</p>
+    </div>
+    <div class="insight-card">
+      <div class="num">3</div>
+      <h3>The GOP is split in two</h3>
+      <p>Hilton = tech-right + Murdoch + Trump endorsement. Bianco = cops + MAGA + stop-the-steal. CAGOP convention refused to pick either.</p>
+    </div>
+    <div class="insight-card">
+      <div class="num">4</div>
+      <h3>Live scandal on the Republican side</h3>
+      <p>AG Bonta has an active civil-rights investigation of Bianco's sheriff's department. CA Supreme Court halted his 650K-ballot seizure stunt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN GRID ===== -->
+<div class="main-container">
+
+  <!-- ===== SIDEBAR TOC ===== -->
+  <aside class="toc">
+    <div class="toc-header">Dossiers / jump to</div>
+
+    <div class="toc-group">
+      <div class="toc-group-label">Dems — In</div>
+      <a href="#porter">Katie Porter</a>
+      <a href="#steyer">Tom Steyer</a>
+      <a href="#mahan">Matt Mahan</a>
+      <a href="#villaraigosa">Villaraigosa</a>
+      <a href="#becerra">Xavier Becerra</a>
+      <a href="#yee">Betty Yee</a>
+      <a href="#thurmond">Tony Thurmond</a>
+    </div>
+
+    <div class="toc-group">
+      <div class="toc-group-label">Reps — In</div>
+      <a href="#hilton">Steve Hilton</a>
+      <a href="#bianco">Chad Bianco</a>
+    </div>
+
+    <div class="toc-group">
+      <div class="toc-group-label">Dems — Out</div>
+      <a href="#swalwell">Swalwell <span class="status-tag trouble">Imploded</span></a>
+      <a href="#kounalakis">Kounalakis <span class="status-tag out">Out</span></a>
+      <a href="#atkins">Toni Atkins <span class="status-tag out">Out</span></a>
+    </div>
+
+    <div class="toc-group">
+      <div class="toc-group-label">Third-Party</div>
+      <a href="#robinson">Ramsey Robinson</a>
+      <a href="#ware">Butch Ware <span class="status-tag dq">DQ</span></a>
+    </div>
+  </aside>
+
+  <!-- ===== DOSSIERS ===== -->
+  <div class="dossiers">
+
+    <!-- ========== PORTER ========== -->
+    <article class="dossier dem" id="porter">
+      <div class="file-tab">File 01 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">KP</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Katie Porter</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Former US Rep (CA-47) · Orange County · Frontrunner</div>
+        </div>
+        <div class="stamp active">Polling<br>Leader</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Total raised</div>
+          <div class="money-value">$6.07M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Cash on hand</div>
+          <div class="money-value">$3.23M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Model</div>
+          <div class="money-value small">12K small donors · No corporate PACs</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Kingmaker</div>
+          <div class="money-value small">EMILY's List<br>(Feb 2026)</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>Small-dollar grassroots machine — inherited Warren network. No dominant super PAC. Labor: NUHW healthcare, UNAC/UHCP, OCEA county employees, UAW locals, Teamsters affiliates.</p>
+            <p><strong>Pointedly NOT endorsed by:</strong> Pelosi, Newsom, or Harris. CNN reported Newsom privately worries Porter would "drive business out." Her October 2025 viral blowups softened the fundraising momentum.
+              <a class="src" href="https://calmatters.org/politics/2026/02/governors-race-fundraising-reports/" target="_blank">CalMatters</a>
+              <a class="src" href="https://katieporter.com/2026/02/u-s-senator-elizabeth-warren-endorses-katie-porter-for-california-governor/" target="_blank">EW endorse</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Mashed potatoes, 2013.</strong> In her divorce filing, ex-husband Matthew Hoffman alleged Porter dumped a bowl of scalding mashed potatoes on his head and smashed a glass coffee pot over cleanliness complaints. Porter obtained a protective order against him and counter-alleged physical abuse. Both sought anger management.
+              <a class="src" href="https://www.yahoo.com/news/katie-porter-ex-husband-accused-194829562.html" target="_blank">Daily Beast</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>"Get out of my f***ing shot."</strong> October 2025: viral CBS Sacramento clip threatening to cut an interview over a Trump-voters question. Days later, 2022 Zoom footage surfaced of her screaming at a staffer during a call with then-Energy Secretary Granholm.
+              <a class="src" href="https://www.washingtonpost.com/politics/2025/10/09/katie-porter-california-governor-viral-videos/" target="_blank">WaPo</a>
+            </div>
+            <div class="item">
+              <span class="label-tag alleg">Allegation</span>
+              <strong>Toxic office, 2023.</strong> Former staffer Sasha Georgiades (Navy veteran, Wounded Warrior fellow) publicly accused Porter of dismissing a staff sexual-harassment claim, telling off-color jokes about race and sexuality, and belittling employees. Multiple ex-staffers corroborated. Porter deflected as "women get called bad bosses too."
+              <a class="src" href="https://freebeacon.com/democrats/katie-porter-responds-to-toxic-workplace-allegations-lots-of-the-so-called-bad-bosses-are-women/" target="_blank">Free Beacon</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>She's a Kamala hire from way back.</strong> In 2012, then-AG Kamala Harris personally appointed Porter as California's independent monitor of the $25B national mortgage settlement — a decade before the whiteboard.
+              <a class="src" href="https://en.wikipedia.org/wiki/Katie_Porter" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>She named her kid after Warren.</strong> Porter was Elizabeth Warren's Harvard Law student, then co-chaired Warren's 2020 presidential run, and one of her children has "Warren" as a namesake.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">The workplace stories aren't gossip — they're documented on-camera patterns. A governor runs a 230,000-person workforce.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== STEYER ========== -->
+    <article class="dossier dem" id="steyer">
+      <div class="file-tab">File 02 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">TS</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Tom Steyer</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Hedge-fund billionaire · Farallon Capital founder · Prior 2020 candidate</div>
+        </div>
+        <div class="stamp trouble">Self-<br>Funded</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Total committed</div>
+          <div class="money-value red">$121.8M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Self-funded</div>
+          <div class="money-value">~$112M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Net worth</div>
+          <div class="money-value small">~$2B<br>(Farallon wealth)</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Donor list</div>
+          <div class="money-value small">Tom Steyer.<br>That's the list.</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>Steyer is the super PAC. He's personally funded ~90% of all candidate self-funding in the race. Union support: California Nurses Association, domestic workers. No meaningful outside bundling network — he doesn't need one.</p>
+            <p><strong>Previous burn-rates:</strong> $253M on his 2020 presidential run. $75M+ on "Need to Impeach" during Trump's first term. A track record of spending enormous sums for underwhelming results.
+              <a class="src" href="https://www.sfexaminer.com/news/politics/steyer-self-funding-spending-dwarfs-gubernatorial-rivals/article_111f9db5-5cb0-412b-b7bd-59825b45df7c.html" target="_blank">SF Exam</a>
+              <a class="src" href="https://time.com/7335185/tom-steyer-california-governor-2026-billionaire-newsom/" target="_blank">TIME</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Farallon's coal empire.</strong> A 2014 NYT investigation documented Farallon-backed coal companies boosting production by 70 million tons/year during Steyer's tenure. Farallon invested hundreds of millions in coal mines and coal-fired plants across Indonesia, China, and Australia. He also held Kinder Morgan stock (tar-sands pipelines). Left Farallon in 2012; has called the investments a mistake.
+              <a class="src" href="https://en.wikipedia.org/wiki/Tom_Steyer" target="_blank">Bio</a>
+              <a class="src" href="https://www.politifact.com/factchecks/2014/sep/19/american-crossroads/would-billionaire-environmentalist-tom-steyer-prof/" target="_blank">PolitiFact</a>
+            </div>
+            <div class="item">
+              <span class="label-tag alleg">Allegation</span>
+              <strong>Private detention exposure.</strong> Fox News and Newsweek have reported (2026) that Farallon-era investments had ties to private detention contractors — a vulnerability on his current anti-ICE messaging. He has not conceded the linkage.
+              <a class="src" href="https://www.foxnews.com/politics/who-tom-steyer-anti-ice-billionaire-ca-governors-race-faces-scrutiny-over-detention-investments" target="_blank">Fox</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>TomKat Ranch.</strong> Owns a 1,800-acre regenerative-agriculture operation in Pescadero with wife Kat Taylor (who founded Beneficial State Bank). It's a serious holistic-grazing research operation, not a lifestyle play.
+              <a class="src" href="https://www.tomkatranch.org/who-we-are/" target="_blank">TomKat</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>He's spent $450M+ trying to buy political outcomes.</strong> Rough running total across 2020 presidential, Need to Impeach, NextGen America, and 2026 CA governor. Return on investment: zero wins so far.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">The coal past is not ancient history — he ran Farallon through 2012. Any opponent who wants to neutralize his climate credentials has a loaded bat.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== MAHAN ========== -->
+    <article class="dossier dem" id="mahan">
+      <div class="file-tab">File 03 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">MM</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Matt Mahan</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> San Jose Mayor · Ex-tech CEO · Thiel-adjacent donor network</div>
+        </div>
+        <div class="stamp trouble">Tech<br>Money</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Committee</div>
+          <div class="money-value">~$12M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">IE / Super PAC</div>
+          <div class="money-value">~$15M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Billionaire donors</div>
+          <div class="money-value small">25+<br>($8.6M combined)</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Poll share</div>
+          <div class="money-value small red">Single digits<br>(April 2026)</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>This is the most remarkable money story in the race: a Democratic candidate whose primary donors overlap significantly with the GOP tech-right.</p>
+            <div class="donor-list">
+              <div class="donor-row"><span class="donor-name">Sergey Brin (Google co-founder)</span><span class="donor-amount">$78,400 max</span></div>
+              <div class="donor-row"><span class="donor-name">Joe Lonsdale (Palantir / Thiel orbit)</span><span class="donor-amount">$78,400 max</span></div>
+              <div class="donor-row"><span class="donor-name">Garry Tan (YCombinator CEO)</span><span class="donor-amount">$78,400 max</span></div>
+              <div class="donor-row"><span class="donor-name">David + Jan Baszucki (Roblox)</span><span class="donor-amount">$156,800</span></div>
+              <div class="donor-row"><span class="donor-name">Paul Buchheit (Gmail creator) → IE PAC</span><span class="donor-amount">$1,000,000</span></div>
+              <div class="donor-row"><span class="donor-name">Michael Moritz (Sequoia / SF Standard)</span><span class="donor-amount">max</span></div>
+              <div class="donor-row"><span class="donor-name">Brian Armstrong (Coinbase), Vinod Khosla, Reid Hoffman, Evan Spiegel, Rick Caruso, Kyle Vogt, Marc Merrill (Riot), Harjeet Taggar</span><span class="donor-amount">max/near</span></div>
+            </div>
+            <p style="margin-top: 12px;">Pro-Mahan IE committee bought the <strong>Super Bowl ad</strong> — $1.5M single-spot buy. <strong>Not endorsed</strong> by Newsom, Pelosi, or Harris. Newsom reportedly hostile (Mahan endorsed Prop 36 against Newsom's opposition, and that broke the relationship).
+              <a class="src" href="https://abc7news.com/post/california-governors-race-matt-mahans-campaign-largely-backed-silicon-valley-tech-moguls-billionaires-report-says/18592083/" target="_blank">ABC7</a>
+              <a class="src" href="https://localnewsmatters.org/2026/02/14/matt-mahan-billionaire-tech-donors-california-governor/" target="_blank">LNM</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Arrest-the-unhoused policy.</strong> San Jose City Council approved Mahan's plan to arrest unhoused people who refuse shelter three times in 18 months — policy language more aligned with Trump's Executive Order on Homelessness than with the Democratic caucus. Progressive Assemblymembers Alex Lee and Ash Kalra publicly oppose him.
+              <a class="src" href="https://www.kqed.org/news/12043418/san-jose-council-approves-mahans-shelter-enforcement-plan" target="_blank">KQED</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Prop 36 cost him Newsom.</strong> Mahan endorsed Prop 36 (tougher theft/drug penalties) against Newsom's personal opposition. The measure passed. Newsom has been icy since. This race is his revenge tour.
+              <a class="src" href="https://calmatters.org/politics/2026/01/governors-race-matt-mahan/" target="_blank">CalMatters</a>
+            </div>
+            <div class="item">
+              <span class="label-tag conspiracy">Theory</span>
+              <strong>Thiel stalking horse?</strong> Left-leaning observers have flagged the Lonsdale-Palantir / YC / Cicero Institute overlap in his donor base as evidence he's a "Democrat on paper, tech-right in practice." Cicero (founded by Lonsdale) is the policy shop explicitly building anti-progressive state governance playbooks.
+              <a class="src" href="https://localnewsmatters.org/2026/04/15/campaign-strain-matt-mahans-gubernatorial-run-hobbled-by-staff-upheaval-low-polling/" target="_blank">Strain</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>Co-founded Causes with Sean Parker.</strong> Yes — that Sean Parker (Napster, Facebook). Ron Conway and Marc Benioff invested in his follow-up company Brigade Media (2014), whose tech was eventually sold to Pinterest/Countable in 2019. Teach for America before the tech career; Harvard undergrad.
+              <a class="src" href="https://en.wikipedia.org/wiki/Matt_Mahan" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>The campaign is struggling despite the money.</strong> Top strategist departed mid-April 2026. Polling remains in single digits after Super Bowl ad spend. Bloomberg cited "billionaire-paved road to Sacramento may turn to gravel."
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">A Democrat whose biggest backers overlap with Peter Thiel's network is a candidate the party base has every right to scrutinize. The Prop 36 / Newsom breach reveals the strategic lane he's running in.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== VILLARAIGOSA ========== -->
+    <article class="dossier dem" id="villaraigosa">
+      <div class="file-tab">File 04 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">AV</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Antonio Villaraigosa</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Former LA Mayor (2005–2013) · Building trades' favorite · Second 2018 run</div>
+        </div>
+        <div class="stamp active">Trades<br>Backed</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Direct raised</div>
+          <div class="money-value">~$4.2M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Cash on hand</div>
+          <div class="money-value">$3.4M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Coalition</div>
+          <div class="money-value small">Trades + LA<br>real estate</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Labor anchor</div>
+          <div class="money-value small">CA Building &amp;<br>Construction Trades</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>The real-estate / developer money is the tell. <strong>Kurt Rappaport</strong> (Westside luxury broker) maxed at $72,800. <strong>Joseph Moinian</strong> (developer), <strong>Bill Witte</strong> (Related California), <strong>Jay Luchs</strong> (Newmark commercial) — all clustered around the anti-Measure ULA real-estate crowd.</p>
+            <p>Sole solo labor endorsement: <strong>CA State Building &amp; Construction Trades Council</strong>. Split labor endorsement: CA Federation of Labor Unions (co-endorsed with Porter/Steyer/Swalwell). PORAC (police). Operating Engineers, Pipe Trades, Ironworkers.
+              <a class="src" href="https://therealdeal.com/la/2025/10/14/real-estate-execs-fund-villaraigosa-for-california-governor/" target="_blank">Real Deal</a>
+              <a class="src" href="https://www.antonio2026.com/news/villaraigosa-endorsed-by-the-california-federation-of-labor-unions" target="_blank">Labor fed</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>The Mirthala affair.</strong> In 2007 as LA Mayor, Villaraigosa confirmed an affair with Telemundo reporter Mirthala Salinas — who had literally announced his separation on-air. Ended his 20-year marriage. Corina Villaraigosa filed for divorce citing adultery. Salinas was suspended and forced out by Telemundo.
+              <a class="src" href="https://www.nbcnews.com/id/wbna20100417" target="_blank">NBC</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Largest ethics fine in state history.</strong> 2011: FPPC and LA Ethics Commission fined him a combined $41,849 — then the largest state ethics fine against a CA politician — for accepting and failing to report 21 gifts including Dodgers games, Grammys, Golden Globes, and concerts by Shakira and Aretha Franklin.
+              <a class="src" href="https://www.nbclosangeles.com/news/politics/mayor-antonio-villaraigosa-fine/1920348/" target="_blank">NBC LA</a>
+              <a class="src" href="https://www.fppc.ca.gov/content/dam/fppc/documents/Stipulations/2011/April/30-Villarigosa.pdf" target="_blank">FPPC PDF</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Herbalife's $4M man.</strong> 2017 tax returns showed $4M+ earned as a post-mayor consultant — including for <strong>Herbalife</strong> (the MLM supplement company that paid $200M in an FTC pyramid-scheme settlement in 2016), <strong>Banc of California</strong>, water company <strong>Cadiz</strong>, and AltaMed clinics. Herbalife especially hammered his 2018 run.
+              <a class="src" href="https://www.huffingtonpost.com/michael-sigman/villaraigosa-and-herbalif_b_3914606.html" target="_blank">HuffPost</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>He failed the bar exam four times.</strong> JD from the <strong>People's College of Law</strong> — an unaccredited Marxist-oriented LA law school — not UCLA Law as sometimes claimed. Never practiced. Zero state-law chops despite running for statewide exec.
+              <a class="src" href="https://en.wikipedia.org/wiki/Antonio_Villaraigosa" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>Eli Broad dropped $2.5M on him in 2018.</strong> The billionaire charter-school activist put $2.5M into supporting his last gov run — a factor in the permanent CTA hostility that dogs him now.
+              <a class="src" href="https://calmatters.org/education/2018/05/billionaires-vs-teachers-union-a-fight-over-charter-schools-amps-up-race-for-california-governor/" target="_blank">CalMatters</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">Largest ethics fine in state history + Herbalife paychecks + developer money = the textbook "rich guy's friend" record. Newsom-Villaraigosa friction is a decade old.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== BECERRA ========== -->
+    <article class="dossier dem" id="becerra">
+      <div class="file-tab">File 05 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">XB</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Xavier Becerra</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Former HHS Secretary · Former CA AG · 30 years in Congress</div>
+        </div>
+        <div class="stamp active">Post-<br>Swalwell<br>Surge</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Combined raised</div>
+          <div class="money-value">~$4M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Cash on hand</div>
+          <div class="money-value">$3.8M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Post-Swalwell</div>
+          <div class="money-value small">+$400K<br>small-dollar bump</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Coalition</div>
+          <div class="money-value small">Latino + healthcare<br>+ Laborers</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>Highest cash-on-hand among Democrats — he transferred ~$1.4M from a prior federal committee and spent modestly in H2 2025. Base: DC-connected Democratic bundlers from his HHS tenure, Latino business leaders, healthcare-industry donors.</p>
+            <p><strong>Endorsements:</strong> CHIRLA Action Fund (immigrant rights), California State Council of Laborers. <strong>No Pelosi, no Newsom, no Harris.</strong> Becerra was Brown's AG pick, not Newsom's — he's a post-Biden-administration re-entry in a race that was already crowded.
+              <a class="src" href="https://www.scopeweekly.com/2026/04/becerra-secures-debate-spot-as-swalwell-exit-triggers-grassroots-surge-in-california-governor-race/" target="_blank">Scope</a>
+              <a class="src" href="https://www.calonews.com/communities/los-angeles/chirla-action-fund-endorses-xavier-becerra-for-california-governor/article_095a8745-bcc9-43ef-833a-9e736ace7ae0.html" target="_blank">CHIRLA</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>The Daleiden prosecution.</strong> As CA AG in 2017, Becerra charged anti-abortion activists David Daleiden and Sandra Merritt with 15 felony counts for secretly recording Planned Parenthood staff. The LA Times editorial board called it "disturbingly aggressive." Planned Parenthood had given to his campaign. A Superior Court dismissed 14 of 15 charges in 2019 on First Amendment grounds.
+              <a class="src" href="https://www.npr.org/sections/thetwo-way/2017/03/29/521919322/2-activists-who-secretly-recorded-planned-parenthood-face-new-felony-charges" target="_blank">NPR</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>"The invisible secretary."</strong> STAT News and others described his HHS tenure as thin — confirmed 50-49 (narrowest Biden cabinet vote), criticized for communication failures on monkeypox, hands-off management style, no signature accomplishment.
+              <a class="src" href="https://www.statnews.com/2024/01/09/xavier-becerra-hhs-secretary-legacy/" target="_blank">Stat</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>30 years in Congress, no major committee chair.</strong> Longtime member 1993–2017, never led a major committee. As AG he sued the first Trump administration 100+ times. First in his family to graduate college (Stanford). Net worth ~$1.5M in 2017 — modest for a cabinet-level figure.
+              <a class="src" href="https://www.opensecrets.org/personal-finances/xavier-becerra/net-worth?cid=N00009774" target="_blank">OpenSecrets</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">No personal scandal, but the Daleiden prosecution gives right-wing media permanent ammo, and his HHS record is the thinnest résumé-defender in the field. Would be CA's first Latino governor.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== YEE ========== -->
+    <article class="dossier dem" id="yee">
+      <div class="file-tab">File 06 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">BY</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Betty Yee</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Former State Controller (2015–2023) · CalPERS/CalSTRS board veteran</div>
+        </div>
+        <div class="stamp active">Clean<br>Record</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Total raised</div>
+          <div class="money-value">~$1.9M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Cash on hand</div>
+          <div class="money-value">~$600K</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Polling</div>
+          <div class="money-value small red">1%</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Base</div>
+          <div class="money-value small">AAPI · Bay Area<br>progressives</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>No dominant donor or PAC. Spent more than she raised in H2 2025. CalMatters described her as "fiscally-minded, scandal-free" — which is accurate but hasn't translated into movement. Opposed Prop 36. Pushes mental-health parity enforcement and EITC expansion.
+              <a class="src" href="https://asamnews.com/2026/04/08/asian-american-candidate-betty-yee-falls-behind/" target="_blank">AsAmNews</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              None identified. Unusually clean record for a long-serving California executive officer. Two terms managing the state's books, plus service on the CalPERS and CalSTRS boards overseeing $800B+ in pension assets — no scandal, no ethics findings.
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>She grew up above a dry cleaner.</strong> Born in SF to Chinese immigrants from Guangdong; shared a sofa bed with four sisters in the family dry-cleaning shop. Would be CA's first Asian American governor.
+              <a class="src" href="https://bettyyee.com/meet-betty/" target="_blank">Bio</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">Deepest fiscal résumé in the field. No scandal, no juice, no money, no poll numbers. The "what if voters rewarded competence" test case.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== THURMOND ========== -->
+    <article class="dossier dem" id="thurmond">
+      <div class="file-tab">File 07 / Democrat</div>
+      <div class="dossier-header">
+        <div class="mugshot">TT</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Tony Thurmond</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> State Superintendent of Public Instruction · Former social worker</div>
+        </div>
+        <div class="stamp trouble">Cronyism<br>Shadow</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Total raised</div>
+          <div class="money-value">~$1.6M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Cash on hand</div>
+          <div class="money-value">~$600K</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">H2 2025 raise</div>
+          <div class="money-value small red">$181K<br>("less than some Assembly races")</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Polling</div>
+          <div class="money-value small">Low single digits</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>Education-adjacent donors, social workers, Bay Area progressive base. <strong>Lost the big prize</strong> — the CTA (California Teachers Association) endorsement went to Swalwell, who then imploded. No dominant pro-Thurmond super PAC. No Pelosi, Newsom, or Harris endorsement.
+              <a class="src" href="https://calmatters.org/politics/2026/02/governors-race-fundraising-reports/" target="_blank">CalMatters</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>The "Superintendent of Equity" crony hire (2021).</strong> Politico revealed Thurmond hired his longtime personal friend Daniel Lee — a Pennsylvania-based life coach — as California's "Superintendent of Equity" at a salary up to $179,832, with no public job posting. Lee continued running his psychology consulting firm on the East Coast while holding the state job, apparently violating CA residency requirements. Initially backdoored through a $700K Hewlett Foundation grant routed through a CDE nonprofit affiliate. Lee resigned December 14, 2021 under pressure.
+              <a class="src" href="https://www.foxnews.com/politics/california-equity-superintendent-works-east-coast" target="_blank">Fox/Politico</a>
+              <a class="src" href="https://californiaglobe.com/fl/tony-thurmonds-philadelphia-crony-californias-superintendent-of-equity-forced-to-resign/" target="_blank">CA Globe</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Chino Valley ejection.</strong> July 2023: physically removed from a Chino Valley Unified School Board meeting by President Sonja Shaw for exceeding a one-minute speaking cap while opposing a forced-outing transgender policy. A viral moment that cut both ways.
+              <a class="src" href="https://edsource.org/updates/conservative-school-board-kicks-out-state-superintendent-tony-thurmond-from-meeting" target="_blank">EdSource</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>He'd be CA's first Black governor.</strong> If elected — which he almost certainly won't be, given the fundraising trajectory.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">The Daniel Lee story is real cronyism — no-bid hire, personal friend, East Coast ghost employee, six-figure state salary. The kind of detail that hurts.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== HILTON ========== -->
+    <article class="dossier rep" id="hilton">
+      <div class="file-tab">File 08 / Republican</div>
+      <div class="dossier-header">
+        <div class="mugshot">SH</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Steve Hilton</h2>
+          <div class="candidate-subtitle"><span class="party-badge rep">GOP</span> Fox News host · Ex-Cameron strategist · Trump-endorsed</div>
+        </div>
+        <div class="stamp trouble">Trump<br>Backed</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Total raised</div>
+          <div class="money-value">$6.6M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Small donors</div>
+          <div class="money-value">30,000+</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Coalition</div>
+          <div class="money-value small">Tech-right + Murdoch<br>+ Trump + DOGE</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">CAGOP delegate share</div>
+          <div class="money-value small red">44% (under 60% threshold)</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <p>Third in the overall race for fundraising, GOP leader. Unusually large small-donor base for a California Republican — powered by Fox News audience.</p>
+            <div class="donor-list">
+              <div class="donor-row"><span class="donor-name">Sergey Brin (Google co-founder)</span><span class="donor-amount">$39,200 max</span></div>
+              <div class="donor-row"><span class="donor-name">Rupert Murdoch (Fox Corp.)</span><span class="donor-amount">max</span></div>
+              <div class="donor-row"><span class="donor-name">Chris Larsen (Ripple / crypto)</span><span class="donor-amount">max</span></div>
+              <div class="donor-row"><span class="donor-name">Uber</span><span class="donor-amount">$39,200</span><span class="donor-note">also gave $2M to Swalwell, $150K to Porter — hedged bets</span></div>
+              <div class="donor-row"><span class="donor-name">Joe Lonsdale / Cicero Institute</span><span class="donor-amount">policy + network</span></div>
+            </div>
+            <p style="margin-top: 12px;"><strong>TRUMP'S COMPLETE &amp; TOTAL ENDORSEMENT</strong> on Truth Social, April 6, 2026. Close with David Sacks (Trump's crypto/AI czar) and Chamath Palihapitiya via the All-In podcast orbit. Runs the Golden Together think tank.
+              <a class="src" href="https://www.bloomberg.com/news/articles/2026-03-10/billionaire-brin-now-bets-on-a-republican-to-govern-california" target="_blank">Bloomberg</a>
+              <a class="src" href="https://www.cnn.com/2026/04/06/politics/steve-hilton-trump-endorsement-california-hnk" target="_blank">CNN</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>CAGOP rejected him.</strong> At the April 2026 state convention, Hilton got only 44% of delegates vs. Bianco's 49%, failing to clear the 60% endorsement threshold — <em>despite</em> Trump's April 5 endorsement. An unusual limit on Trump's CA influence. Bianco has publicly questioned Hilton's "real California" ties.
+              <a class="src" href="https://calmatters.org/politics/2026/04/california-gop-convention-governor/" target="_blank">CalMatters</a>
+            </div>
+            <div class="item">
+              <span class="label-tag conspiracy">Theory</span>
+              <strong>"British Manchurian candidate."</strong> Born British; UK citizen until 2021; only renounced UK citizenship after becoming a US citizen. Right-wing grassroots (especially Bianco's base) have circulated loyalty questions about a former Tory strategist running for the biggest US state office.
+              <a class="src" href="https://www.primetimer.com/news/where-is-steve-hilton-from-california-governor-candidate-chad-bianco-questions-opponent-and-fox-commentator-s-citizenship" target="_blank">Primetimer</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>He was David Cameron's "Director of Strategy."</strong> 2010-2012 — a principal architect of the Tory "Big Society" agenda in the UK. Split with Cameron over Brexit (Hilton publicly backed Leave from the US while Cameron campaigned Remain). Taught at Stanford d.school, Hoover Institution visiting fellow. Hosted "The Next Revolution" on Fox News 2017-2023.
+              <a class="src" href="https://en.wikipedia.org/wiki/Steve_Hilton" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>His wife is the most connected tech PR exec alive.</strong> <strong>Rachel Whetstone</strong>: head of global comms at Google for nearly a decade → SVP Communications at Uber → Facebook/WhatsApp/Instagram → Chief Comms Officer at Netflix. That's the entire FAANG comms Rolodex in one household — for a candidate running as an outsider disruptor.
+              <a class="src" href="https://en.wikipedia.org/wiki/Rachel_Whetstone" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>Founded Crowdpac (2014).</strong> The same crowdfunding platform that raised $4M+ in 2018 to fund whoever would challenge Susan Collins if she confirmed Kavanaugh. He resigned as CEO in 2018.
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">Tory strategist → Fox host → Trump's pick to govern California — a 15-year arc voters won't instinctively trace. His wife's Google/Uber/Facebook/Netflix PR résumé is the ultimate insider credential for a candidate selling himself as a disruptor.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== BIANCO ========== -->
+    <article class="dossier rep" id="bianco">
+      <div class="file-tab">File 09 / Republican</div>
+      <div class="dossier-header">
+        <div class="mugshot">CB</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Chad Bianco</h2>
+          <div class="candidate-subtitle"><span class="party-badge rep">GOP</span> Riverside County Sheriff · "Real MAGA" · Snubbed by Trump</div>
+        </div>
+        <div class="stamp imploded">Under<br>Investigation</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Total raised</div>
+          <div class="money-value">$4.6M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Cash on hand</div>
+          <div class="money-value">~$2M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">CA donors</div>
+          <div class="money-value small">2x Hilton's count<br>(smaller avg check)</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">CAGOP delegate share</div>
+          <div class="money-value small red">49% (still no<br>endorsement)</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Follow the<br>money</div>
+          <div class="section-content">
+            <div class="donor-list">
+              <div class="donor-row"><span class="donor-name">M&amp;D Development</span><span class="donor-amount">$78,400 max</span></div>
+              <div class="donor-row"><span class="donor-name">Downs Energy <em>(same family as M&amp;D)</em></span><span class="donor-amount">$78,400 max</span><span class="donor-note">combined $156,800 — under FPPC scrutiny</span></div>
+              <div class="donor-row"><span class="donor-name">PORAC (Peace Officers Research Assoc.)</span><span class="donor-amount">endorsed + funded</span></div>
+              <div class="donor-row"><span class="donor-name">1,527 LA-area small donors</span><span class="donor-amount">$1.1M total</span></div>
+            </div>
+            <p style="margin-top: 12px;"><strong>Legal defense fund</strong> launched Oct 2025 to cover two civil suits — no public donor list. Common Cause calls these funds "a way to curry favor." Backed by the Take Back California super PAC (dual-endorses Bianco and Hilton under a top-two lockout strategy).
+              <a class="src" href="https://www.pressdemocrat.com/2025/11/26/chad-bianco-whos-running-for-governor-asks-donors-to-help-pay-legal-bills/" target="_blank">PressDem</a>
+              <a class="src" href="https://hoodline.com/2026/03/bianco-s-twin-donor-dilemma-rattles-california-governor-s-race/" target="_blank">Hoodline</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The dirt</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Active AG civil-rights investigation.</strong> California Attorney General Rob Bonta opened a pattern-and-practice investigation into the Riverside Sheriff's Department in 2023 over jail deaths and use of force. 18 people died in Riverside jails in 2022 — the most in 15+ years. Riverside houses 6% of CA's jail population but recorded 17% of the state's jail homicides. The Desert Sun found the department broke state law by failing to report deaths to DOJ on time, and filed inaccurate reports.
+              <a class="src" href="https://laist.com/news/criminal-justice/ca-attorney-general-investigating-riverside-sheriffs-department-focusing-on-jail-deaths-use-of-force" target="_blank">LAist</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Worst clearance rate in California.</strong> 2019–2024: Bianco's deputies cleared just 9.2% of reported Part 1 crimes — less than half the state average, the worst major-county clearance rate in California.
+              <a class="src" href="https://www.cjcj.org/reports-publications/fact-sheet/the-sheriff-with-californias-worst-crime-solving-record-is-running-for-governor" target="_blank">CJCJ</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>The 650,000-ballot seizure.</strong> March-April 2026: Bianco seized 650,000+ ballots from Riverside County's 2025 special election based on claims from an activist group. A judge (who had publicly praised Bianco) authorized it; the CA Supreme Court halted the seizure; AG Bonta sued; CalMatters obtained unsealed warrants showing no direct evidence of fraud. Widely read as campaign theater to energize the stop-the-steal base.
+              <a class="src" href="https://calmatters.org/politics/2026/04/chad-bianco-election-warrants/" target="_blank">CalMatters</a>
+              <a class="src" href="https://www.washingtonpost.com/politics/2026/04/07/chad-bianco-riverside-ballot-seizure/" target="_blank">WaPo</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Confirmed Oath Keepers member.</strong> After the 2021 hack of the militia's database, Bianco was exposed as having paid a $40 one-year Oath Keepers membership in 2014. He has confirmed paying it; did not renew.
+              <a class="src" href="https://en.wikipedia.org/wiki/Chad_Bianco" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>"Anti-vax for Chad."</strong> Refused to enforce state COVID vaccine or mask mandates. Refused to vaccinate county jail prisoners.
+              <a class="src" href="https://laist.com/news/criminal-justice/riverside-sheriff-bianco-covid-19-mandate-spreads-propaganda-lies-vaccination" target="_blank">LAist</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Weird but<br>true</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>Trump snubbed him.</strong> Bianco brands as "real MAGA" (2024 "felon in the White House" video for Trump). Trump endorsed <em>Hilton</em> instead. Bianco publicly trashed the decision: "That's not leadership. That's a coronation."
+              <a class="src" href="https://www.nbclosangeles.com/news/local/chad-bianco-trump-steve-hilton-california-governor-race/3872118/" target="_blank">NBC LA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">Live AG investigation. Oath Keepers membership. Worst clearance rate in the state. An active election-seizure scandal in the state's highest court. This isn't a hot-button profile — it's a record.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== SWALWELL (IMPLODED) ========== -->
+    <article class="dossier dem withdrew" id="swalwell">
+      <div class="file-tab">File 10 / Withdrew Apr 12, 2026</div>
+      <div class="dossier-header">
+        <div class="mugshot">ES</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Eric Swalwell</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Former US Rep (CA-14) · Resigned April 13, 2026 · Criminal investigations active</div>
+        </div>
+        <div class="stamp imploded">Imploded</div>
+      </div>
+
+      <div class="money-bar">
+        <div class="money-cell">
+          <div class="money-label">Raised before exit</div>
+          <div class="money-value">$7M+</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Hollywood H2 2025</div>
+          <div class="money-value">$3.1M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Uber alone</div>
+          <div class="money-value">$2M</div>
+        </div>
+        <div class="money-cell">
+          <div class="money-label">Ballot status</div>
+          <div class="money-value small red">Name still on<br>June 2 ballot</div>
+        </div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">The<br>implosion</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>48 hours.</strong>
+              <strong>Fri April 10:</strong> SF Chronicle + CNN publish accounts from four women. A former staffer alleged Swalwell raped her while she was too drunk to consent, leaving her bruised and bleeding (2024, NYC). Three other women described unsolicited nude photos and graphic Snapchat messages. Labor unions suspend endorsements same day.
+              <strong>Fri/Sat:</strong> Pelosi privately tells him to drop out. Jeffries publicly calls for it. Schiff and Gallego pull endorsements. 50+ former staffers issue open letter calling him unfit.
+              <strong>Sun April 12 evening:</strong> Suspends campaign. Denies assault; admits "mistakes in judgment."
+              <strong>Mon April 13 afternoon:</strong> Resigns from Congress under threat of expulsion.
+              <strong>This week:</strong> Manhattan DA and Alameda County DA both open criminal investigations.
+              <a class="src" href="https://www.cnn.com/2026/04/15/politics/eric-swalwell-allegations-congress-downfall" target="_blank">CNN</a>
+              <a class="src" href="https://www.npr.org/2026/04/15/nx-s1-5784021/eric-swalwell-resignation-california-congress" target="_blank">NPR</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Prior<br>scandal</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>"Fang Fang," 2020.</strong> Axios reported Swalwell was targeted by Christine "Fang Fang" Fang, a suspected Chinese intelligence operative who fundraised for his 2014 re-election. Swalwell cut ties in 2015 after an FBI briefing; House Ethics closed its investigation in May 2023 without action. McCarthy expelled him from the Intel Committee January 2023.
+              <a class="src" href="https://www.washingtonpost.com/politics/2020/12/11/what-we-know-about-rep-eric-swalwells-ties-an-alleged-chinese-spy/" target="_blank">WaPo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-box">
+          <div class="why-label">Why it matters</div>
+          <div class="why-text">He's out, but the two live DA investigations mean this is not done. His $7M+ war chest and CTA, Hollywood, and labor-federation endorsements are now scrambled — Becerra, Steyer, and Porter are circling the debris.</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== KOUNALAKIS ========== -->
+    <article class="dossier dem withdrew" id="kounalakis">
+      <div class="file-tab">File 11 / Withdrew Aug 2025</div>
+      <div class="dossier-header">
+        <div class="mugshot">EK</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Eleni Kounalakis</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Lt Governor · Withdrew Aug 8, 2025 · Now running for Treasurer</div>
+        </div>
+        <div class="stamp withdrew">Withdrew</div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">The exit</div>
+          <div class="section-content">
+            <p>Dropped the gubernatorial bid August 8, 2025. Filed for Treasurer same week. Polling at 3% at the time, trailing both Porter and both Republicans. On the day she withdrew, <strong>Nancy Pelosi "unofficially" endorsed her</strong> in a TV interview — the closest thing to a Pelosi gubernatorial stamp, and it was for a candidate who quit.
+              <a class="src" href="https://calmatters.org/politics/2025/08/california-governors-race-kounalakis/" target="_blank">CalMatters</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">The<br>conflicts</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Daughter of a Sacramento mega-developer.</strong> Father Angelo Tsakopoulos (AKT Development) chaired Greek-Americans for Clinton in 1992 and 1996. She was president of AKT before Obama named her Ambassador to Hungary (2010-2013). Husband Markos Kounalakis is an AKT director. Family has given ~$439K to federal Democrats since 1989.
+              <a class="src" href="https://en.wikipedia.org/wiki/Eleni_Kounalakis" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag fact">Fact</span>
+              <strong>Rented to the state she'd govern.</strong> CalMatters (April 2025) reported her property portfolio includes Sacramento office buildings rented to at least three state agencies and dozens of organizations with business before the state. Pledged a blind trust if elected — without detailing what would be included.
+              <a class="src" href="https://calmatters.org/politics/2025/04/california-governor-eleni-kounalakis/" target="_blank">CalMatters</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== ATKINS ========== -->
+    <article class="dossier dem withdrew" id="atkins">
+      <div class="file-tab">File 12 / Withdrew Sept 2025</div>
+      <div class="dossier-header">
+        <div class="mugshot">TA</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Toni Atkins</h2>
+          <div class="candidate-subtitle"><span class="party-badge dem">DEM</span> Former State Senate pro Tem · Withdrew Sept 2025</div>
+        </div>
+        <div class="stamp withdrew">Withdrew</div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">The exit</div>
+          <div class="section-content">
+            <p>Suspended her campaign September 2025 citing "no viable path forward to victory." Had raised ~$4.2M cash on hand at exit — one of the higher COH balances in the field, but the polling never materialized.
+              <a class="src" href="https://hanfordsentinel.com/news/state-and-regional/former-state-senate-leader-toni-atkins-drops-out-of-2026-california-governor-s-race/article_714ef4c8-6d99-480f-ae2b-13ad940a3d0b.html" target="_blank">Hanford</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">For the record</div>
+          <div class="section-content">
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>Historic first.</strong> First woman and first openly LGBT person to lead the CA State Senate (2018). First person ever to lead both chambers of the CA legislature.
+              <a class="src" href="https://en.wikipedia.org/wiki/Toni_Atkins" target="_blank">Bio</a>
+            </div>
+            <div class="item">
+              <span class="label-tag weird">Weird</span>
+              <strong>No running water growing up.</strong> Raised in Appalachian Virginia, daughter of a miner. Worked at an abortion clinic before entering politics.
+            </div>
+            <div class="item">
+              <span class="label-tag alleg">Allegation</span>
+              <strong>Property conflicts.</strong> iNewsource reported her property holdings overlapped with state business — a small-scale version of the Kounalakis conflict story.
+              <a class="src" href="https://inewsource.org/2025/08/11/california-governor-race-san-diego-toni-atkins-conflict-interest/" target="_blank">iNewsource</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== ROBINSON (PEACE AND FREEDOM) ========== -->
+    <article class="dossier minor" id="robinson">
+      <div class="file-tab">File 13 / Peace &amp; Freedom</div>
+      <div class="dossier-header">
+        <div class="mugshot">RR</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Ramsey Robinson</h2>
+          <div class="candidate-subtitle"><span class="party-badge minor">P&amp;F</span> SF mental-health social worker · PSL member · Protest candidate</div>
+        </div>
+        <div class="stamp active">Protest</div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">Who he is</div>
+          <div class="section-content">
+            <p>San Francisco mental-health social worker, member of the <strong>Party for Socialism and Liberation (PSL)</strong>. Running on the Peace and Freedom Party line.</p>
+            <p><strong>Platform:</strong> Tax California's 194 billionaires. Abolish billionaires. $30/hr minimum wage. Day 1 rent/eviction/foreclosure freeze. Reparations. Demilitarize police.</p>
+            <p>Endorsed by Peace and Freedom Party and Vote Socialist California 2026. No meaningful fundraising; small-donor movement model. Coalition = DSA-adjacent left, tenants' rights, PSL organizing network.
+              <a class="src" href="https://www.ramsey4gov.com" target="_blank">Site</a>
+              <a class="src" href="https://ballot-access.org/2025/06/19/peace-and-freedom-party-member-ramsey-robinson-declares-for-california-governor/" target="_blank">Ballot</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ========== WARE (GREEN, DISQUALIFIED) ========== -->
+    <article class="dossier minor withdrew" id="ware">
+      <div class="file-tab">File 14 / Disqualified March 2026</div>
+      <div class="dossier-header">
+        <div class="mugshot">BW</div>
+        <div class="name-block">
+          <h2 class="candidate-name">Rudolph "Butch" Ware</h2>
+          <div class="candidate-subtitle"><span class="party-badge minor">GRN</span> UCSB History Prof · Disqualified for late tax returns</div>
+        </div>
+        <div class="stamp dq">DQ'd</div>
+      </div>
+
+      <div class="dossier-body">
+        <div class="section">
+          <div class="section-label">The DQ</div>
+          <div class="section-content">
+            <p>UC Santa Barbara history professor. Disqualified by a Sacramento judge in March 2026 for untimely tax filings. No Green Party candidate on the June 2 ballot as a result — a significant loss for California's Green ballot presence. Ware had been Jill Stein's 2024 VP running mate.
+              <a class="src" href="https://calmatters.org/politics/2026/03/green-party-candidate-governor/" target="_blank">CalMatters</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /.dossiers -->
+</div><!-- /.main-container -->
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-note">
+    <strong>Methodology.</strong> Three research agents were dispatched in parallel on April 18, 2026:
+    (1) Democratic candidate funding, (2) Republican + minor-party funding, (3) scandals and conspiracies across all candidates.
+    Their outputs were verified, cross-referenced, and synthesized into these dossiers.<br><br>
+    <strong>Labeling.</strong> All factual claims carry source links. Items marked "Allegation" are disputed accusations under active reporting. Items marked "Theory" are circulating conspiracies flagged as such — not endorsed as fact.<br><br>
+    <strong>Caveats.</strong> Campaign finance figures reflect filings through Dec 31, 2025 unless noted. Q1 2026 semi-annual reports will reshuffle. Independent expenditure disclosures lag and typically spike closer to the primary. CalAccess (CA Sec of State) is the authoritative primary source.
+  </div>
+  <div class="footer-note">
+    <strong>What's next.</strong> Emerson polling continues every ~3 weeks through the primary. The June 2 top-two election will produce two finalists for the November general. Given the current fragmentation of the Democratic field and the coordinated Republican top-two lockout attempt, a <strong>Hilton-vs-Bianco November</strong> remains the modal scenario.<br><br>
+    <strong>Companion pages:</strong><br>
+    <a href="/vote/" style="color: var(--red); text-decoration: none; border-bottom: 1px dashed;">← Race overview</a>, with ELI5, CEO brief, policy matrix, scenarios.<br><br>
+    <strong>Independent research.</strong> No campaign affiliation. No advertising. Sources linked inline throughout.
+  </div>
+</footer>
+
+<script>
+  // Smooth-scroll offset for sticky masthead
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      history.pushState(null, '', '#' + id);
+    });
+  });
+
+  // Live D-N counter from June 2, 2026
+  const primary = new Date('2026-06-02T00:00:00-07:00');
+  const now = new Date();
+  const days = Math.max(0, Math.ceil((primary - now) / (1000 * 60 * 60 * 24)));
+  const el = document.querySelector('.masthead-meta span:first-of-type');
+  if (el) el.innerHTML = '<span class="dot"></span> Primary D-' + days;
+</script>
+
+</body>
+</html>

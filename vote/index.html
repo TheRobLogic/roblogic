@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CA-26 Governor Race — The Whole Deal · Rob Logic</title>
+<meta name="description" content="The 2026 California governor's race explained: 8 Democrats splitting the vote, 2 Republicans consolidating, Swalwell's implosion, and how it all shakes out. Six framings from ELI5 to tech-deep.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>">
+<meta property="og:title" content="CA-26 Governor Race — The Whole Deal">
+<meta property="og:description" content="A Dem dumpster fire, a GOP sideshow, and 45 days to figure it out. The 2026 California governor's race, from ELI5 to deep-dive.">
+<meta property="og:url" content="https://roblogic.org/vote/">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#141414;
+  --cream:#f4ede0;
+  --cream-2:#ebe3d2;
+  --paper:#fbf7ed;
+  --red:#c1272d;
+  --blue:#1d3557;
+  --gold:#c79a3a;
+  --mute:#6b6355;
+  --rule:#2a2520;
+  --green:#3f6b3f;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(20,20,20,.015) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at top, rgba(193,39,45,.04) 0%, transparent 60%);
+}
+a{color:var(--red);text-decoration:none;border-bottom:1px solid rgba(193,39,45,.3)}
+a:hover{border-bottom-color:var(--red);background:rgba(193,39,45,.06)}
+strong{font-weight:600}
+em{font-style:italic;color:var(--ink)}
+
+/* MASTHEAD */
+.masthead{
+  background:var(--ink);
+  color:var(--cream);
+  padding:14px 0;
+  border-bottom:6px double var(--red);
+  position:sticky;top:0;z-index:100;
+}
+.mast-inner{
+  max-width:1180px;margin:0 auto;padding:0 24px;
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.mast-title{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(1.2rem,2.6vw,1.75rem);
+  letter-spacing:-.01em;
+}
+.mast-title .dot{color:var(--red)}
+.mast-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
+  color:#bfb5a3;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  display:flex;gap:16px;flex-wrap:wrap;
+}
+.mast-meta .live{color:#69d18d}
+.mast-meta .live::before{content:"●";margin-right:4px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.4}}
+
+/* HERO */
+.hero{
+  padding:54px 24px 40px;
+  max-width:1180px;margin:0 auto;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+}
+.hero::before{
+  content:"VOL. I · NO. 1 · APRIL 18 2026 · ROB LOGIC PRESS";
+  font-family:'JetBrains Mono',monospace;
+  font-size:.7rem;letter-spacing:.15em;
+  color:var(--mute);
+  position:absolute;top:22px;left:24px;
+}
+.hero h1{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(2.4rem,7vw,5.5rem);
+  line-height:.94;
+  letter-spacing:-.02em;
+  margin-top:24px;
+  max-width:14ch;
+}
+.hero h1 em{color:var(--red);font-style:italic}
+.hero .kicker{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-style:italic;
+  font-size:clamp(1.1rem,2vw,1.45rem);
+  color:var(--mute);
+  margin-top:22px;
+  max-width:52ch;
+  line-height:1.35;
+}
+.hero .countdown{
+  display:inline-flex;align-items:baseline;gap:10px;
+  margin-top:28px;
+  padding:10px 18px;
+  background:var(--ink);color:var(--cream);
+  font-family:'JetBrains Mono',monospace;
+  font-size:.9rem;letter-spacing:.05em;
+}
+.hero .countdown b{color:var(--red);font-size:1.6rem;font-weight:700}
+
+/* TAB NAV */
+.tabs{
+  background:var(--paper);
+  border-bottom:2px solid var(--ink);
+  position:sticky;top:64px;z-index:90;
+  overflow-x:auto;
+}
+.tabs-inner{
+  max-width:1180px;margin:0 auto;padding:0 8px;
+  display:flex;gap:2px;
+}
+.tab-btn{
+  background:transparent;border:0;
+  padding:14px 18px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.78rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;
+  color:var(--mute);cursor:pointer;
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+  transition:all .15s;
+}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--red);border-bottom-color:var(--red);background:var(--cream-2)}
+.tab-btn .num{font-family:'JetBrains Mono',monospace;color:var(--gold);margin-right:6px;font-size:.7rem}
+
+/* MAIN */
+main{max-width:1180px;margin:0 auto;padding:48px 24px 96px}
+.panel{display:none}
+.panel.active{display:block;animation:fadein .3s ease-out}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.panel h2{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(1.8rem,4.5vw,3rem);
+  line-height:1.02;margin-bottom:8px;letter-spacing:-.015em;
+}
+.panel .dek{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-style:italic;
+  color:var(--mute);
+  font-size:1.15rem;
+  margin-bottom:36px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--rule);
+  max-width:65ch;
+}
+.panel h3{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:1.65rem;
+  margin:40px 0 14px;
+  letter-spacing:-.01em;
+}
+.panel h3 .numy{color:var(--red);font-family:'JetBrains Mono',monospace;font-size:.9rem;margin-right:10px;vertical-align:middle}
+.panel h4{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:.85rem;
+  letter-spacing:.1em;
+  color:var(--red);
+  margin:28px 0 10px;
+}
+.panel p{margin-bottom:14px;max-width:70ch}
+.panel ul, .panel ol{margin:0 0 18px 22px;max-width:70ch}
+.panel li{margin-bottom:8px}
+.panel blockquote{
+  border-left:4px solid var(--red);
+  padding:6px 0 6px 20px;
+  margin:22px 0;
+  font-family:'DM Serif Display',Georgia,serif;
+  font-style:italic;
+  font-size:1.12rem;
+  color:var(--ink);
+}
+
+/* PULL QUOTE */
+.pullquote{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  line-height:1.2;
+  color:var(--ink);
+  margin:36px 0;
+  padding:24px;
+  border-top:3px solid var(--ink);
+  border-bottom:1px solid var(--rule);
+  max-width:none;
+  letter-spacing:-.01em;
+}
+.pullquote::before{content:"❝ ";color:var(--red);font-size:1.4em;line-height:0;vertical-align:-.3em}
+
+/* CARDS / CANDIDATE GRID */
+.cand-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  margin:24px 0;
+}
+.cand{
+  background:var(--paper);
+  padding:20px;
+}
+.cand-head{
+  display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;
+  border-bottom:1px dashed var(--rule);padding-bottom:8px;
+}
+.cand-name{font-family:'DM Serif Display',Georgia,serif;font-size:1.3rem;line-height:1.1}
+.cand-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:2px 6px;text-transform:uppercase;letter-spacing:.05em}
+.tag-D{background:var(--blue);color:#fff}
+.tag-R{background:var(--red);color:#fff}
+.tag-OUT{background:#333;color:#aaa;text-decoration:line-through}
+.cand p{font-size:.9rem;margin-bottom:8px}
+.cand .poll{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--mute)}
+
+/* POLL BAR */
+.pollbar{margin:16px 0;font-family:'JetBrains Mono',monospace}
+.pollbar-row{display:flex;align-items:center;gap:10px;font-size:.8rem;margin-bottom:4px}
+.pollbar-row .name{width:90px;flex-shrink:0;font-weight:600}
+.pollbar-row .bar{height:14px;background:var(--mute);position:relative}
+.pollbar-row .bar span{display:block;height:100%}
+.pollbar-row .pct{font-size:.75rem;color:var(--mute)}
+.bar-R span{background:var(--red)}
+.bar-D span{background:var(--blue)}
+.bar-UND span{background:#999}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;margin:24px 0;border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;min-width:720px;background:var(--paper)}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--rule);font-size:.88rem;vertical-align:top}
+th{background:var(--ink);color:var(--cream);font-family:'Space Grotesk';font-weight:600;text-transform:uppercase;font-size:.72rem;letter-spacing:.08em}
+tr:nth-child(even) td{background:var(--cream-2)}
+td:first-child{font-weight:600}
+
+/* SCENARIO BOX */
+.scenario{
+  background:var(--paper);
+  border:1px solid var(--rule);
+  border-left:6px solid var(--red);
+  padding:20px 24px;
+  margin:20px 0;
+}
+.scenario .sc-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:1px dashed var(--rule);padding-bottom:8px;margin-bottom:12px;gap:12px;flex-wrap:wrap;
+}
+.scenario h4{margin:0;color:var(--ink);font-family:'DM Serif Display';font-weight:400;text-transform:none;font-size:1.35rem;letter-spacing:-.01em}
+.scenario .prob{font-family:'JetBrains Mono',monospace;font-size:.85rem;background:var(--ink);color:var(--cream);padding:4px 10px}
+.scenario-D{border-left-color:var(--blue)}
+.scenario-X{border-left-color:var(--gold)}
+
+/* STAT BOX */
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;margin:24px 0;
+}
+.stat{
+  background:var(--paper);
+  border:1px solid var(--rule);
+  padding:18px;
+}
+.stat .num{
+  font-family:'DM Serif Display';
+  font-size:2.4rem;
+  line-height:1;
+  color:var(--red);
+}
+.stat .lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--mute);
+  margin-top:6px;
+}
+
+/* TOC ASIDE */
+.toc{
+  background:var(--paper);
+  border:1px solid var(--rule);
+  padding:16px 20px;
+  margin:24px 0 32px;
+  font-size:.9rem;
+}
+.toc strong{display:block;font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--mute);margin-bottom:8px}
+.toc a{border:0;margin-right:14px;display:inline-block;margin-bottom:4px}
+
+/* ELI5 specific */
+.eli5-style{font-size:1.2rem;line-height:1.7;max-width:60ch}
+.eli5-style p{font-size:1.2rem;margin-bottom:16px}
+
+/* Footer */
+footer{
+  background:var(--ink);color:var(--cream);
+  padding:40px 24px;
+  margin-top:60px;
+  border-top:6px double var(--red);
+}
+.foot-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:36px}
+.foot-inner h5{font-family:'DM Serif Display';font-size:1.1rem;margin-bottom:10px;color:var(--gold)}
+.foot-inner p,.foot-inner li{font-size:.82rem;color:#bfb5a3;margin-bottom:6px;list-style:none}
+.foot-inner a{color:var(--cream);border-bottom-color:#555}
+.foot-bottom{
+  max-width:1180px;margin:36px auto 0;padding-top:24px;
+  border-top:1px solid #333;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  color:#7a7160;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+
+.cite{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--mute)}
+.cite a{color:var(--mute);border-bottom-color:rgba(107,99,85,.3)}
+
+.warn{
+  background:#fff4d9;border-left:4px solid var(--gold);
+  padding:14px 18px;margin:18px 0;font-size:.95rem;
+}
+.warn strong{color:var(--gold);text-transform:uppercase;font-size:.8rem;letter-spacing:.05em;display:block;margin-bottom:4px}
+
+@media (max-width:960px){
+  body{font-size:16px}
+  .mast-inner{padding:0 18px;gap:12px}
+  .mast-title{font-size:1.1rem}
+  .mast-meta{font-size:.62rem;gap:10px 14px;justify-content:flex-start;width:100%;flex-basis:100%}
+  .hero{padding:58px 20px 32px}
+  .hero::before{font-size:.6rem;letter-spacing:.1em;top:18px;left:20px}
+  .hero h1{margin-top:32px;max-width:none}
+  .hero .kicker{font-size:1.02rem;margin-top:18px}
+  .hero .countdown{padding:8px 14px;font-size:.82rem;margin-top:22px}
+  .hero .countdown b{font-size:1.4rem}
+  .tabs{top:56px}
+  .tab-btn{padding:12px 14px;font-size:.72rem;letter-spacing:.05em}
+  .tab-btn .num{display:none}
+  main{padding:36px 20px 60px}
+  .panel h2{font-size:clamp(1.7rem,6.4vw,2.5rem);line-height:1.03;margin-bottom:10px}
+  .panel h3{font-size:1.35rem;margin:30px 0 10px}
+  .panel .dek{font-size:1rem;margin-bottom:24px;padding-bottom:16px}
+  .panel p{max-width:none}
+  .panel ul,.panel ol{max-width:none}
+  .pullquote{font-size:1.25rem;padding:20px 18px;margin:26px 0}
+  .scenario{padding:16px 18px;margin:18px 0}
+  .scenario h4{font-size:1.15rem}
+  .cand-grid{grid-template-columns:1fr}
+  .stat .num{font-size:2rem}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .pollbar-row{flex-wrap:wrap;gap:6px 10px}
+  .pollbar-row .name{width:auto;min-width:80px}
+  .pollbar-row .bar{flex:1 1 60%;min-width:140px}
+  .foot-inner{gap:24px}
+  .toc a{margin-right:10px;font-size:.85rem}
+}
+@media (max-width:520px){
+  .mast-inner{padding:0 14px}
+  .mast-title{font-size:1rem;letter-spacing:-.02em}
+  .hero{padding:48px 16px 26px}
+  .hero::before{font-size:.52rem;left:16px;top:14px}
+  .hero h1{margin-top:24px;font-size:clamp(1.9rem,9vw,2.6rem)}
+  .hero .kicker{font-size:.96rem;margin-top:14px}
+  .hero .countdown{padding:7px 12px;font-size:.75rem}
+  .hero .countdown b{font-size:1.2rem}
+  main{padding:24px 16px 42px}
+  .tab-btn{padding:10px 12px;font-size:.68rem}
+  .panel h3{font-size:1.2rem}
+  .panel p,.panel li{font-size:.95rem}
+  .eli5-style,.eli5-style p{font-size:1.05rem;line-height:1.6}
+  .pullquote{font-size:1.08rem;padding:16px 14px;margin:20px 0}
+  .scenario{padding:14px 14px;margin:14px 0}
+  .scenario h4{font-size:1.05rem}
+  .scenario .prob{font-size:.72rem;padding:3px 8px}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .stat{padding:13px}
+  .stat .num{font-size:1.7rem}
+  table{min-width:520px}
+  th,td{padding:7px 9px;font-size:.78rem}
+  .warn{padding:11px 14px;font-size:.88rem}
+  footer{padding:28px 18px}
+  .foot-bottom{font-size:.65rem;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="mast-inner">
+    <div class="mast-title">vote<span class="dot">.</span>roblogic<span class="dot">.</span>org <span style="color:#bfb5a3;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;margin-left:12px">CA-26 GOV</span></div>
+    <div class="mast-meta">
+      <span class="live">LIVE</span>
+      <span>UPDATED 2026-04-18</span>
+      <span>D-45 TO PRIMARY</span>
+      <a href="/vote/candidates/" style="color:var(--red);text-decoration:none;border-bottom:1px dashed var(--red);font-weight:600">→ candidate dossiers</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>A Dem dumpster fire, a GOP sideshow, and <em>45 days</em> to figure it out.</h1>
+  <p class="kicker">Newsom is termed out. Eight Democrats are splitting the vote. Two Republicans are quietly consolidating. The frontrunner just resigned from Congress. And because California uses top-two, the whole thing could hand the governorship to a Fox News Brit or a sheriff who seized 650,000 ballots.</p>
+  <div class="countdown"><b>45</b> days until June 2, 2026. Vote-by-mail ballots drop May 4.</div>
+</section>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="full"><span class="num">00</span>The Full Story</button>
+    <button class="tab-btn" data-tab="overview"><span class="num">01</span>Overview</button>
+    <button class="tab-btn" data-tab="ceo"><span class="num">02</span>CEO Brief</button>
+    <button class="tab-btn" data-tab="tech"><span class="num">03</span>The Data</button>
+    <button class="tab-btn" data-tab="eli13"><span class="num">04</span>ELI13</button>
+    <button class="tab-btn" data-tab="eli5"><span class="num">05</span>ELI5</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============================================ FULL STORY ============================================ -->
+<section class="panel active" id="full">
+<h2>The whole messy thing.</h2>
+<p class="dek">Intermediate reader, ~20-minute read. You know California politics. This catches you up on everything that happened between January and now and tells you where it lands.</p>
+
+<div class="toc">
+  <strong>Jump to</strong>
+  <a href="#swalwell">The Swalwell Implosion</a>
+  <a href="#dems">The Democratic Dumpster Fire</a>
+  <a href="#gop">The Republican Sideshow</a>
+  <a href="#policy">Where They Stand</a>
+  <a href="#money">Follow the Money</a>
+  <a href="#scenarios">How It Shakes Out</a>
+  <a href="#bottom">The Bottom Line</a>
+</div>
+
+<p>Gavin Newsom can't run again. That should be the simple headline. California Democrats have a 23-point registration advantage, haven't lost a statewide race since 2006, and have roughly a dozen plausible succession candidates on their bench. In any normal cycle, this is a coronation with a primary speed bump.</p>
+
+<p>Instead, on April 18, 2026 — 45 days out from the June 2 primary — the Democratic field is splintered across <strong>eight candidates</strong> who can't break 20% each, the party's frontrunner just resigned from Congress over sexual assault allegations, Newsom and Pelosi have publicly announced they won't endorse anyone, and the two leading Republicans are <em>quietly</em> the best-polling candidates in the race.</p>
+
+<p>Because California uses a top-two primary — all candidates on one ballot regardless of party; the top two advance to November — there is a real, mathematical scenario where the November 2026 ballot for governor has <strong>no Democrat on it</strong>. Democratic strategists put that scenario at 15–27% probability depending on the day.</p>
+
+<div class="pullquote">The Democratic Party had fifteen years to build a bench and produced this. Gavin Newsom's successor may well be wearing red.</div>
+
+<h3 id="swalwell"><span class="numy">§1</span>The Swalwell Implosion</h3>
+<p><strong>TL;DR:</strong> In under 96 hours between Friday April 10 and Monday April 13, Rep. Eric Swalwell went from leading Democratic contender for California governor to a resigned ex-congressman facing a Manhattan DA investigation, a House Ethics probe, and a growing roster of accusers. By April 15, a fifth woman had come forward on the record.</p>
+
+<h4>Timeline</h4>
+<ul>
+  <li><strong>Friday April 10</strong> — <em>San Francisco Chronicle</em> and CNN publish near-simultaneous investigations. The Chronicle details allegations from a former Castro Valley district staffer (hired at 21 in 2019); CNN surfaces three additional women alleging unsolicited explicit messages, nude photos, and unwanted advances. Swalwell calls the reports "flat false."</li>
+  <li><strong>Saturday April 11</strong> — Manhattan DA confirms it is investigating the staffer's 2024 New York allegation.</li>
+  <li><strong>Sunday April 12</strong> — Swalwell suspends his campaign: <em>"I am deeply sorry for mistakes in judgment I've made in my past. I will fight the serious, false allegations that have been made — but that's my fight, not a campaign's."</em> 55 former staffers sign an open letter calling the reporting "serious, credible" and demanding he resign from Congress.</li>
+  <li><strong>Monday April 13</strong> — Swalwell resigns from Congress, effective Tuesday. House Ethics opens an investigation the same morning.</li>
+  <li><strong>Tuesday April 15</strong> — Lonna Drewes holds an LA press conference alleging Swalwell <strong>drugged and raped her</strong> in a West Hollywood hotel in 2018 under the pretense of retrieving "papers." She is the fifth accuser on the record. Her attorney says more have made contact.</li>
+</ul>
+
+<h4>The Collapse</h4>
+<p>Within hours of the Friday reports, the support floor dropped out. Campaign chair <strong>Rep. Jimmy Gomez</strong> resigned his role and publicly called for Swalwell to exit. <strong>Sens. Gallego, Schiff, Padilla</strong> all pulled support Friday afternoon. <strong>Reps. Ted Lieu, Doris Matsui, Mike Thompson</strong> rescinded endorsements. The <strong>California Teachers Association</strong> and <strong>SEIU</strong> suspended their backing. Pelosi reportedly called Swalwell Sunday urging resignation.</p>
+
+<div class="warn">
+<strong>Ballot Reality</strong>
+Swalwell suspended <em>after the statutory withdrawal deadline</em>, so his name will still appear on the June 2 ballot. Any votes he receives are effectively wasted — a real risk given the compressed timeline and vote-by-mail ballots already en route May 4.
+</div>
+
+<h4>Prior Baggage, for Context</h4>
+<p><strong>Fang Fang (2020):</strong> Swalwell had a long-running association with Christine Fang, a suspected Chinese intelligence operative who cultivated Bay Area politicians from his Dublin city council days and bundled for his early House campaigns. FBI gave him a defensive briefing in 2015; House Ethics closed a probe with no action. In March 2026, FBI Director Kash Patel pushed to release the old investigative file; Swalwell sent a cease-and-desist.</p>
+<p><strong>Trump impeachment manager (2020):</strong> Swalwell served as one of the House managers in the second Trump impeachment trial — which raised his national profile, made him a persistent Trump-administration target, and is the context for Patel's March 2026 push to release the Fang files.</p>
+<p>Rep. Sam Liccardo (D-CA) told ABC7 on April 14 that rumors of Swalwell's misconduct had <em>"swirled for years"</em> in California political circles — a claim now being cited by House Ethics and the Manhattan DA as a starting point.</p>
+
+<p class="cite">Sources: <a href="https://www.cnn.com/2026/04/12/politics/eric-swalwell-ends-campaign-california-governor">CNN</a> · <a href="https://www.npr.org/2026/04/12/nx-s1-5782055/swalwell-suspends-campaign-assault-allegations-governor-california">NPR</a> · <a href="https://www.washingtonpost.com/politics/2026/04/12/eric-swalwell-resign-expelled/">WaPo</a> · <a href="https://calmatters.org/politics/2026/04/california-governor-race-swalwell-allegations/">CalMatters</a> · <a href="https://sfstandard.com/2026/04/14/all-investigations-raining-hell-eric-swalwell/">SF Standard</a></p>
+
+<h3 id="dems"><span class="numy">§2</span>The Democratic Dumpster Fire</h3>
+<p>California's bench was supposed to be the deepest in the country. Instead, voters get this lineup — a rogues' gallery of ghosts, grifters, retreads, and until last Sunday, the frontrunner was under federal investigation.</p>
+
+<div class="cand-grid">
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Tom Steyer</span><span class="cand-tag tag-D">D · 14%</span></div>
+    <p><em>Billionaire climate populist.</em> Hedge fund manager on his third vanity campaign after burning $200M on 2020 presidential bid.</p>
+    <p><strong>Dirt:</strong> $112M self-funded so far. His Farallon Capital sank ~$90M into CoreCivic (private ICE detention) under his watch — he admitted on-trail it was "a mistake." Farallon also financed $2B+ in Indonesian/Australian coal acquisitions. Climate conversion arrived after the checks cleared.</p>
+    <p class="poll">Why he can't win: San Francisco hedge fund manager running as populist. Coal footage on loop until November.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Katie Porter</span><span class="cand-tag tag-D">D · 10%</span></div>
+    <p><em>Whiteboard progressive.</em> Finished third in 2024 Senate top-two (behind Schiff and Garvey) — didn't even make the runoff.</p>
+    <p><strong>Dirt:</strong> Ex-husband Matt Hoffman stands by filings that she dumped boiling mashed potatoes on him during their divorce. Navy veteran staffer Sasha Georgiades accused her of dismissing sexual harassment complaints. Video of her yelling <em>"get out of my f***ing shot"</em> at a staffer on a Granholm call.</p>
+    <p class="poll">Why she can't win: Already rejected statewide once. Defended on The View by blaming sexism.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Xavier Becerra</span><span class="cand-tag tag-D">D · 10%</span></div>
+    <p><em>Biden's forgettable HHS Secretary.</em> Biggest gainer from Swalwell collapse — establishment lane.</p>
+    <p><strong>Dirt:</strong> HHS lost track of ~85,000 unaccompanied migrant children placed with sponsors — some at addresses traced to strip clubs and labor traffickers. NYT documented child-labor outcomes. Becerra told staff to process kids faster "like an assembly line." House Homeland Security subpoenaed him September 2024.</p>
+    <p class="poll">Why he can't win: Low name recognition, Washington stink, "he lost 85,000 kids" writes itself.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Antonio Villaraigosa</span><span class="cand-tag tag-D">D · ~5%</span></div>
+    <p><em>The ghost of 2018.</em> Got 13% against Newsom in the 2018 primary. Now back, older, with the same baggage.</p>
+    <p><strong>Dirt:</strong> Still defined by the 2007 Mirthala Salinas affair that ended his marriage. Paid advisor to Herbalife — MLM the League of United Latin American Citizens publicly condemned him over for targeting Hispanics. In 2018, charter-school billionaires (Reed Hastings $7M, Eli Broad $2.5M, Bloomberg $2M) dumped $22M into his losing bid. Same donors now.</p>
+    <p class="poll">Why he can't win: Couldn't beat Newsom. Teachers' unions already hate him.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Matt Mahan</span><span class="cand-tag tag-D">D · 5%</span></div>
+    <p><em>Silicon Valley's pick.</em> Mayor of San Jose in year three trying to skip straight to governor.</p>
+    <p><strong>Dirt:</strong> Signature "Responsibility to Shelter" plan authorizes arresting homeless after three shelter refusals — in a city with 5,477 homeless and 2,968 beds. ACLU alleged federal ADA violations. Backed Prop 36 publicly (broke with state Dem leadership). $35M in his ecosystem ($12M direct + $23M tech-IE from Brin, Lonsdale, Tan, Baszucki, Sethi) — and still polling 5%.</p>
+    <p class="poll">Why he can't win: Name ID outside Santa Clara is a rounding error. Left will call him Trump-lite.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Betty Yee</span><span class="cand-tag tag-D">D · 1–2%</span></div>
+    <p><em>The respected Rolodex.</em> Former Controller; universally liked in Sacramento, barely recognized by voters.</p>
+    <p><strong>Dirt:</strong> Raised $342K H2 2025 (vs. Steyer's $112M). Out of office since 2023. Shocked the convention with 17% of delegates, then immediately lost the news cycle. The only Dem who openly voted NO on Prop 36 — makes her the genuinely-progressive conscience, also the one least likely to win.</p>
+    <p class="poll">Why she can't win: She can't win the primary. Next.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Tony Thurmond</span><span class="cand-tag tag-D">D · 1–2%</span></div>
+    <p><em>The scandal-plagued schools chief.</em> State Superintendent whose own governor Newsom is trying to strip powers from the job.</p>
+    <p><strong>Dirt:</strong> Politico (Dec 2021): engineered hiring of Philadelphia associate Daniel Lee as "Superintendent of Equity" at $179,832 — apparent residency-rule violation, originally funded by a $700K grant before taxpayers took over. Lee resigned 14 Dec 2021. Multiple outlets reported toxic-workplace turnover at CDE. CTA didn't endorse him; they went to Swalwell, then Steyer.</p>
+    <p class="poll">Why he can't win: State schools chief in GOP's favorite culture-war lane, abandoned by his own constituency.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Eric Swalwell</span><span class="cand-tag tag-OUT">OUT · SUSPENDED</span></div>
+    <p><em>Was leading. Now under federal investigation.</em></p>
+    <p>See §1 above. Still on the June 2 ballot due to late-withdrawal statute. Any votes = wasted votes.</p>
+  </div>
+</div>
+
+<div class="pullquote">This is what happens when a state party has been losing its best talent to Washington for 15 years: the serious people leave, the retreads stay, and the median candidate is a retired billionaire with a coal portfolio.</div>
+
+<h3 id="gop"><span class="numy">§3</span>The Republican Sideshow</h3>
+<p>The California GOP's "path back to power" in 2026 is two guys who couldn't even clear 60% at their own party's convention — a Fox News expat Brit who moved to Atherton and a sheriff whose jails can't stop killing people. But because of top-two math, they are currently the best-polling candidates in the field.</p>
+
+<div class="cand-grid">
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Steve Hilton</span><span class="cand-tag tag-R">R · 17% (lead)</span></div>
+    <p><em>Atherton Oompa-Loompa.</em> British political consultant who spent 11 years explaining America to Fox News from a $10M Atherton mansion.</p>
+    <p><strong>Dirt:</strong> David Cameron's "director of strategy" — yes, the Brexit architect. Became US citizen <strong>May 2021</strong>. Renounced UK citizenship in 2025 for £492. Wife Rachel Whetstone is CCO at Netflix, ex-Google, ex-Uber. Lectures California on elitism from the most elite ZIP code in America. Book literally titled <em>Positive Populism</em>. Called the "pint-sized Rasputin" at Downing Street.</p>
+    <p><strong>The Trump wrinkle:</strong> Trump endorsed him April 6. Six days later, CA GOP convention <strong>refused</strong> to endorse him — 44% Hilton, 49% Bianco, neither hitting 60%.</p>
+    <p class="poll">Why he can't win the general: GOP hasn't won statewide since 2006. 23-point registration gap. British accent over Atherton footage is the attack ad.</p>
+  </div>
+  <div class="cand">
+    <div class="cand-head"><span class="cand-name">Chad Bianco</span><span class="cand-tag tag-R">R · 14%</span></div>
+    <p><em>The sheriff who can't solve crimes.</em> Running on "law and order" with the <strong>worst crime-clearance rate of any sheriff in California</strong>.</p>
+    <p><strong>The record:</strong> 9.2% clearance rate over 2019–2024 — dead last among CA's 57 sheriffs, less than half the state average. 18 inmate deaths in Riverside jails in 2022 (most in 15 years). Riverside = 6% of state jail population, 17% of jail homicides. Under California DOJ investigation.</p>
+    <p><strong>The politics:</strong> Confirmed 2014 Oath Keepers member (paid $40, exposed in 2021 leak). April 2026: seized <strong>650,000 ballots</strong> from CA's redistricting referendum on election-fraud grounds; courts unsealed the warrants. Constitutional Sheriffs movement. Endorsed Trump in 2024: <em>"It's time we put a felon in the White House."</em></p>
+    <p class="poll">Why he can't win the general: "Oath Keeper sheriff seized 650,000 ballots" is a Netflix docuseries logline, not a campaign pitch.</p>
+  </div>
+</div>
+
+<h3 id="policy"><span class="numy">§4</span>Where They Stand</h3>
+<p class="dek">The policy splits that actually matter.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Issue</th><th>Left edge</th><th>Right edge of Dems</th><th>GOP</th></tr></thead>
+<tbody>
+<tr><td>Prop 36 (tougher drug/theft)</td><td>Yee (No)</td><td>Mahan, Porter (Yes)</td><td>Both Yes</td></tr>
+<tr><td>CEQA reform</td><td>Thurmond, Yee (soft)</td><td>Villaraigosa, Mahan, Steyer (hard)</td><td>Both repeal-minded</td></tr>
+<tr><td>High-speed rail</td><td>Most Dems defend</td><td><strong>Porter opposes</strong></td><td>Both kill it</td></tr>
+<tr><td>Wealth tax</td><td>Steyer (yes); Thurmond (billionaire tax for schools)</td><td>Others silent/no</td><td>No</td></tr>
+<tr><td>Prop 13 reform</td><td>Steyer (split roll)</td><td>Others silent</td><td>Hilton opposes any change</td></tr>
+<tr><td>Sanctuary/ICE</td><td>Thurmond (abolish ICE); Steyer (prosecute agents)</td><td>Villaraigosa (reform/accountability)</td><td>Full cooperation, repeal SB 54</td></tr>
+<tr><td>Reparations</td><td>Becerra (soft yes, fund TBD)</td><td>Villaraigosa (no)</td><td>Both no</td></tr>
+<tr><td>Homelessness</td><td>Porter (prevention/housing-first)</td><td>Mahan (arrest refusers)</td><td>Treatment-mandate + enforcement</td></tr>
+<tr><td>Oil drilling</td><td>Steyer, Thurmond (tax polluters)</td><td>Villaraigosa (all-of-above incl. gas)</td><td>Expand drilling</td></tr>
+<tr><td>Newsom legacy</td><td>Becerra (closest defender)</td><td>Mahan, Villaraigosa (course-correct)</td><td>Full repudiation</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Key candidate positions at a glance</h4>
+<ul>
+  <li><strong>Porter</strong> — only major Dem to explicitly oppose high-speed rail; voted YES on Prop 36 despite progressive lane.</li>
+  <li><strong>Steyer</strong> — only candidate backing billionaire wealth tax ballot measure; would call special election on Prop 13 split roll.</li>
+  <li><strong>Becerra</strong> — closest to a Newsom successor-lane candidate; soft yes on reparations but "how do you fund it?"</li>
+  <li><strong>Villaraigosa</strong> — furthest right Dem: pro-nuclear, pro-gas-car, anti-reparations, aggressive CEQA reform.</li>
+  <li><strong>Mahan</strong> — most Newsom-critical Dem; endorsed Prop 36; pushing gas-tax holiday to sub-$5 pump prices.</li>
+  <li><strong>Thurmond</strong> — most aggressive on immigration: tax ICE-contracting companies, "work with Congress until we abolish ICE."</li>
+  <li><strong>Hilton</strong> — no income tax under $100K; kill low-carbon fuel standard; target $3 gas; 100% ICE cooperation.</li>
+  <li><strong>Bianco</strong> — suing state to end sanctuary status; every arrested undocumented person "should be deported"; 100% oil independence.</li>
+</ul>
+
+<h3 id="money"><span class="numy">§5</span>Follow the Money</h3>
+<p class="dek">The $112M checkbook, the $23M tech IE, and the labor split nobody's covering.</p>
+
+<div class="stat-grid">
+  <div class="stat"><div class="num">$112M</div><div class="lbl">Steyer self-funding, YTD</div></div>
+  <div class="stat"><div class="num">$35M</div><div class="lbl">Mahan ecosystem (incl. $23M tech IE)</div></div>
+  <div class="stat"><div class="num">$6.6M</div><div class="lbl">Hilton raised — top GOP</div></div>
+  <div class="stat"><div class="num">$3.2M</div><div class="lbl">Porter cash on hand (small-dollar)</div></div>
+  <div class="stat"><div class="num">$1.6M</div><div class="lbl">Bianco — asking donors for legal bills</div></div>
+  <div class="stat"><div class="num">0</div><div class="lbl">Newsom / Pelosi / Harris endorsements</div></div>
+</div>
+
+<h4>The three money stories that matter</h4>
+<p><strong>1. Steyer can outspend the universe.</strong> $112M already in, effectively unlimited ceiling, pattern from 2020 ($340M torched). Won the CTA endorsement after it flipped off Swalwell — huge labor catch. If TV saturation works, Steyer wins second place in June on money alone.</p>
+<p><strong>2. Mahan is the "can money buy CA?" test case.</strong> $23M in outside tech-IE spending from Brin, Lonsdale, Tan, Baszucki, Sethi, Solana — and he's polling 5%. Strategist Eric Jaye already left. This is the cycle's proof-of-concept that tech oligarch money doesn't translate in CA.</p>
+<p><strong>3. The Newsom ghost.</strong> Newsom, Pelosi, Harris, Padilla, Biden, Obama, Hillary, SEIU California — all silent. The absence is itself the story. Newsom doesn't want a Dem successor complicating his 2028 lane; he <em>really</em> doesn't want a GOP successor hanging over him. Either way, he won't intervene.</p>
+
+<h4>Labor split summary</h4>
+<ul>
+  <li><strong>CTA</strong> → Steyer (flipped from Swalwell)</li>
+  <li><strong>CA Fed of Labor</strong> → multi-endorsed Steyer, Porter, Villaraigosa (and Swalwell before he exited)</li>
+  <li><strong>State Building &amp; Construction Trades</strong> → Villaraigosa (trades muscle)</li>
+  <li><strong>Teamsters, UAW, NUHW, SMART</strong> → Porter</li>
+  <li><strong>PORAC (police)</strong> → Villaraigosa</li>
+  <li><strong>CHIRLA Action Fund</strong> (immigrant rights) → Becerra</li>
+  <li><strong>SEIU California</strong> → unresolved post-Swalwell; diverting resources to wealth-tax ballot initiative</li>
+</ul>
+
+<h3 id="scenarios"><span class="numy">§6</span>How It Shakes Out</h3>
+<p class="dek">Three scenarios for the June 2 top-two primary. Probabilities as of April 18, 45 days out.</p>
+
+<div class="scenario">
+<div class="sc-head"><h4>Scenario 1 · R-vs-R November ballot</h4><span class="prob">~15–20% probability</span></div>
+<p>Both Hilton and Bianco finish top-2. The Dem field stays fractured. Combined GOP share ticks from 31% to 34–36% via late undecided consolidation in Central Valley / Inland Empire.</p>
+<p><strong>What pushes toward this:</strong> Scandal/collapse for Steyer or Becerra before May 4 VBM drop. Low-polling Dems refuse to quit. Opposition research drop on the Dem frontrunner.</p>
+<p><strong>November dynamics:</strong> A guaranteed Democratic governor — California hasn't elected a statewide Republican since 2006. Race becomes a GOP ideology referendum: Hilton (Trump-aligned) vs. Bianco (Oath Keeper). Dem turnout collapses, hurting down-ballot House districts (CA-22, CA-27, CA-41, CA-45). <strong>Hilton likely beats Bianco ~58–42 in general.</strong></p>
+</div>
+
+<div class="scenario scenario-D">
+<div class="sc-head"><h4>Scenario 2 · R-vs-D November ballot (most likely — Hilton + Steyer or Hilton + Becerra)</h4><span class="prob">~70–75% probability</span></div>
+<p>Hilton consolidates the GOP to 20–23% and finishes first. One Democrat breaks from the pack to 16–19% and takes second. Bianco lands third at 12–14%.</p>
+<p><strong>Who's the Dem?</strong> <strong>Steyer</strong> is likeliest — self-funds at unlimited scale, CTA endorsement, leads voters under 50. <strong>Becerra</strong> is the live alternative — gained most from Swalwell exit, statewide name ID, can consolidate Latinos. <strong>Porter</strong> is fading — "disastrous week" coverage, slipping polls.</p>
+<p><strong>Catalysts:</strong> April 22 debate (all 9 remaining on stage — breakout moment decides second place). Low-polling Dems quitting and endorsing. Steyer dumping $20–30M on broadcast in the final two weeks.</p>
+<p><strong>November dynamics:</strong> Democrat wins 15–20 points. Steyer wins 58–42 (climate + affordability). Becerra wins 60–40 (healthcare + experience). Porter wins narrower 55–45 (weaker general-election debater than her CFPB rep suggests).</p>
+</div>
+
+<div class="scenario scenario-X">
+<div class="sc-head"><h4>Scenario 3 · D-vs-D November ballot</h4><span class="prob">~5–10% probability</span></div>
+<p>Simultaneous collapse of both Republicans. Combined GOP share falls from 31% to 22–24%. Two Democrats consolidate into high teens — likeliest pairing Steyer (19%) + Becerra (17%).</p>
+<p><strong>What pushes toward this:</strong> Federal indictment/civil finding against Bianco; damaging Trump-Hilton joint appearance; CAGOP split where Bianco's 49% convention supporters openly sabotage Hilton; a late unifying Newsom/Obama endorsement (unlikely but decisive).</p>
+<p><strong>November dynamics:</strong> Policy race between two Democrats — Steyer's wealth-tax populism vs. Becerra's institutional experience. Republican turnout craters. Slight edge to Becerra head-to-head (Steyer's billionaire profile cuts against his populism one-on-one).</p>
+</div>
+
+<h4>The cross-cutting factors</h4>
+<p><strong>Trump's Hilton endorsement splits, doesn't consolidate.</strong> The convention vote (Bianco 49, Hilton 44) is the tell: Bianco's base sees Hilton as a carpetbagging Fox personality, and Trump's thumb on the scale activated anti-establishment GOP grievance. Net effect: +3–5 pts for Hilton with MAGA-aligned indies, −2–3 pts with Bianco-loyal grassroots. Helps Hilton finish first, <em>hurts</em> combined GOP total.</p>
+<p><strong>Unifying Dem endorsement is not coming.</strong> Newsom's April 15 statement ("I have full confidence voters will choose…") explicitly declined. Historical precedent: Brown stayed out of 2018 Newsom-Villaraigosa. Absence is priced in. A late Obama nod would lock Scenario 2 and decide which Democrat advances. Don't bet on it.</p>
+<p><strong>Turnout.</strong> Non-presidential June primaries run 35–40%, skewing older, whiter, higher-propensity — which helps Republicans (Hilton leads over-50 at 24%) and hurts fragmented Democrats. Undecideds (23%) break late and toward name-ID + TV saturation. Steyer's self-funding is the clearest late-break advantage; Hilton's Fox tenure is second.</p>
+
+<h3 id="bottom"><span class="numy">§7</span>The Bottom Line</h3>
+<p>The most likely outcome, consensus view as of April 18:</p>
+<ol>
+  <li><strong>June 2 primary:</strong> Hilton finishes first (~19%). Steyer or Becerra finishes second (~16–18%). Bianco third (~13%).</li>
+  <li><strong>November general:</strong> A Democrat wins by 12–20 points. California doesn't elect Republicans statewide.</li>
+  <li><strong>The 20% risk:</strong> Dem field stays fractured through May 4 VBM drop and both Republicans advance. In that world, Hilton becomes governor. That's the real stakes of this primary.</li>
+</ol>
+
+<p>The Democratic Party has 45 days to consolidate. The tools — one or two low-polling Dems dropping out and endorsing, a Newsom statement (won't happen), a Steyer blitz on broadcast — are sitting on the table. The question is whether the party can pick them up in time.</p>
+
+<div class="pullquote">If California ends up with a Republican governor in January 2027, it won't be because voters wanted one. It'll be because the Democratic field refused to do subtraction.</div>
+
+</section>
+
+<!-- ============================================ OVERVIEW ============================================ -->
+<section class="panel" id="overview">
+<h2>Overview.</h2>
+<p class="dek">The five-minute version. Bullets, no fluff.</p>
+
+<h4>The setup</h4>
+<ul>
+  <li>Newsom termed out. First open-seat CA governor race since 2010.</li>
+  <li>California uses <strong>top-two primary</strong>: all 61 candidates on one ballot June 2, top two advance to November regardless of party.</li>
+  <li>Early voting May 4. Primary June 2. General Nov 3.</li>
+</ul>
+
+<h4>The Democratic field (splintered)</h4>
+<ul>
+  <li><strong>8 major candidates</strong> splitting the Dem vote. Nobody above 14%.</li>
+  <li>Rankings: Steyer 14, Becerra 10, Porter 10, Villaraigosa ~5, Mahan 5, Yee 1–2, Thurmond 1–2.</li>
+  <li>Eric Swalwell — was leading — <strong>suspended campaign April 12</strong> after 5 women alleged sexual misconduct. Resigned from Congress April 13. Under Manhattan DA and House Ethics investigation. Name still on ballot.</li>
+</ul>
+
+<h4>The Republican field (two real candidates)</h4>
+<ul>
+  <li><strong>Steve Hilton (17%)</strong> — ex-Fox News, Trump-endorsed April 6, failed to win CA GOP convention endorsement.</li>
+  <li><strong>Chad Bianco (14%)</strong> — Riverside sheriff, ex-Oath Keeper, worst crime-clearance rate in CA, seized 650K ballots last week.</li>
+</ul>
+
+<h4>The real question</h4>
+<ul>
+  <li>Can <em>two Republicans</em> advance to November past a fractured Dem field? <strong>~15–20% chance.</strong></li>
+  <li>Most likely: one R + one D. <strong>~70–75% chance.</strong></li>
+  <li>Two Ds advance: <strong>~5–10% chance.</strong></li>
+</ul>
+
+<h4>The November math</h4>
+<ul>
+  <li>CA hasn't elected a statewide Republican since 2006.</li>
+  <li>Registration: 46.8% D, 23.9% R. A Republican can't win a Dem-vs-Republican general.</li>
+  <li>But a Republican-vs-Republican runoff guarantees a GOP governor.</li>
+</ul>
+
+<h4>The money</h4>
+<ul>
+  <li>Steyer self-funding <strong>$112M</strong> (zero ceiling).</li>
+  <li>Mahan ecosystem $35M (mostly tech billionaire IE — Brin, Lonsdale, Tan).</li>
+  <li>Hilton $6.6M (top GOP fundraiser).</li>
+  <li>Porter $3.2M cash on hand (small-dollar champ).</li>
+  <li>Bianco asking donors to cover legal bills — bad sign.</li>
+</ul>
+
+<h4>The endorsements</h4>
+<ul>
+  <li><strong>Newsom, Pelosi, Harris, Obama</strong> — all silent. Staying out.</li>
+  <li>CTA flipped to Steyer after Swalwell. Building Trades → Villaraigosa. Most Porter labor (Teamsters, UAW). SEIU unresolved.</li>
+  <li>CA GOP declined to endorse anyone at convention (neither R hit 60%).</li>
+  <li>Trump endorsed Hilton. Party ignored him.</li>
+</ul>
+
+<h4>The bottom line</h4>
+<p>A Dem probably still wins in November, but the Democratic field has 45 days to consolidate or it hands a free runoff to the GOP. Odds say they figure it out. Not a lock.</p>
+</section>
+
+<!-- ============================================ CEO BRIEF ============================================ -->
+<section class="panel" id="ceo">
+<h2>CEO Briefing.</h2>
+<p class="dek">Two-minute read. What matters, what to watch, where the risk is.</p>
+
+<div class="warn">
+<strong>Bottom line up front</strong>
+Democrats will likely hold the CA governorship in November 2026, but with a meaningful (15–20%) tail risk of losing it to a Republican because the D field is too fractured to clear top-two primary math. Election June 2; 45 days remaining.
+</div>
+
+<h4>The asset at stake</h4>
+<p>California governor controls the fifth-largest economy in the world, $320B state budget, judicial appointments, and a bully pulpit on federal immigration / environmental / labor policy. Losing this seat would be a 20-year outlier.</p>
+
+<h4>The structural issue</h4>
+<p>California uses a top-two, non-partisan primary. Eight Democrats are splitting a 40–45% Democratic-leaning electorate. Two Republicans are consolidating a 25% GOP electorate. On current polling, the math works: Hilton (R) leads at 17%, and if no Democrat breaks 15%, two Republicans advance.</p>
+
+<h4>Three base-case watches</h4>
+<ul>
+  <li><strong>April 22 debate:</strong> All 9 remaining on stage. Breakout moment likely decides second place. Watch Becerra.</li>
+  <li><strong>April 23 fundraising deadline:</strong> Q1 2026 filings. Low-polling candidates with no cash face pressure to quit and endorse.</li>
+  <li><strong>May 4 VBM drop:</strong> Decision window closes. After that, late consolidation is mostly impossible.</li>
+</ul>
+
+<h4>Three catalysts that change the base case</h4>
+<ul>
+  <li><strong>Late Obama/Pelosi endorsement.</strong> Unlikely but decisive. Would lock a Dem into the runoff.</li>
+  <li><strong>Second scandal.</strong> Another Swalwell-style collapse — most exposed: Porter (staffer complaints, ex-husband filings), Villaraigosa (Herbalife, old affair), Becerra (HHS migrant-children record).</li>
+  <li><strong>Bianco legal event.</strong> He's asking donors to pay legal bills. A federal indictment or DOJ finding on the Riverside jail investigation would tank the GOP share and push toward Scenario 3 (D-vs-D).</li>
+</ul>
+
+<h4>The two-line takeaway</h4>
+<p>Democrats should win but aren't acting like it. The Republican field is a joke everywhere except the only math that matters — which is how many Democrats there are.</p>
+</section>
+
+<!-- ============================================ TECH / DATA ============================================ -->
+<section class="panel" id="tech">
+<h2>The Data.</h2>
+<p class="dek">Polling averages, money, demographic splits, and the actual math behind the scenarios.</p>
+
+<h4>Current polling · Emerson College Polling · field Apr 14–15 · n=1,000 LV · ±3%</h4>
+<div class="pollbar">
+  <div class="pollbar-row"><span class="name">Hilton (R)</span><div class="bar bar-R" style="width:100%"><span style="width:70%"></span></div><span class="pct">17%</span></div>
+  <div class="pollbar-row"><span class="name">Steyer (D)</span><div class="bar bar-D" style="width:100%"><span style="width:58%"></span></div><span class="pct">14%</span></div>
+  <div class="pollbar-row"><span class="name">Bianco (R)</span><div class="bar bar-R" style="width:100%"><span style="width:58%"></span></div><span class="pct">14%</span></div>
+  <div class="pollbar-row"><span class="name">Becerra (D)</span><div class="bar bar-D" style="width:100%"><span style="width:42%"></span></div><span class="pct">10%</span></div>
+  <div class="pollbar-row"><span class="name">Porter (D)</span><div class="bar bar-D" style="width:100%"><span style="width:42%"></span></div><span class="pct">10%</span></div>
+  <div class="pollbar-row"><span class="name">Mahan (D)</span><div class="bar bar-D" style="width:100%"><span style="width:21%"></span></div><span class="pct">5%</span></div>
+  <div class="pollbar-row"><span class="name">Villaraigosa</span><div class="bar bar-D" style="width:100%"><span style="width:21%"></span></div><span class="pct">~5%</span></div>
+  <div class="pollbar-row"><span class="name">Undecided</span><div class="bar bar-UND" style="width:100%"><span style="width:95%"></span></div><span class="pct">23%</span></div>
+</div>
+
+<h4>Among Democrats only</h4>
+<div class="pollbar">
+  <div class="pollbar-row"><span class="name">Steyer</span><div class="bar bar-D"><span style="width:80%"></span></div><span class="pct">20%</span></div>
+  <div class="pollbar-row"><span class="name">Becerra</span><div class="bar bar-D"><span style="width:76%"></span></div><span class="pct">19% (+15 post-Swalwell)</span></div>
+  <div class="pollbar-row"><span class="name">Porter</span><div class="bar bar-D"><span style="width:60%"></span></div><span class="pct">15%</span></div>
+</div>
+
+<h4>Money · latest disclosures, as of Q4 2025 / early 2026</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Candidate</th><th>Raised / Self-funded</th><th>Cash on hand</th><th>Notable</th></tr></thead>
+<tbody>
+<tr><td>Steyer (D)</td><td>$112M self</td><td>~$1.9M (post-TV burn)</td><td>No ceiling. Pattern: $340M on 2020 pres run.</td></tr>
+<tr><td>Mahan (D)</td><td>$12M direct + $23M IE</td><td>~$35M ecosystem</td><td>Tech oligarch IE: Brin, Lonsdale, Tan, Baszucki</td></tr>
+<tr><td>Hilton (R)</td><td>$6.6M</td><td>~$2M</td><td>Top GOP fundraiser</td></tr>
+<tr><td>Villaraigosa (D)</td><td>$4.2M</td><td>n/a</td><td>Trades-funded; charter-school money from 2018</td></tr>
+<tr><td>Porter (D)</td><td>$3M (12,000 donors H2)</td><td>$3.2M</td><td>Small-dollar; $68 avg; 66K lifetime donors</td></tr>
+<tr><td>Becerra (D)</td><td>$2.6M + $1.4M rolled</td><td>~$4M</td><td>Biden-HHS donor base; undercapitalized</td></tr>
+<tr><td>Bianco (R)</td><td>$1.6M</td><td>n/a</td><td>Asking donors to cover legal bills</td></tr>
+<tr><td>Yee (D)</td><td>$342K H2 2025</td><td>negative</td><td>Functionally dead</td></tr>
+<tr><td>Thurmond (D)</td><td>$181K H2 2025</td><td>negative</td><td>Even lower than Yee</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Registration · CA Secretary of State · Feb 2026</h4>
+<ul>
+  <li>Democratic: <strong>46.8%</strong></li>
+  <li>Republican: <strong>23.9%</strong></li>
+  <li>No Party Preference: <strong>23.1%</strong></li>
+  <li>Other minor parties: <strong>6.2%</strong></li>
+</ul>
+
+<h4>Historical baseline</h4>
+<ul>
+  <li>Last statewide GOP win: <strong>2006 (Schwarzenegger re-election)</strong>.</li>
+  <li>Last GOP statewide office-holder: <strong>2011 (Steve Poizner, Insurance Commissioner).</strong></li>
+  <li>Newsom 2022 general: <strong>D+18</strong>.</li>
+  <li>Newsom 2018 general: <strong>D+24</strong>.</li>
+</ul>
+
+<h4>Top-two primary math (current polling projection)</h4>
+<p><strong>P(R-vs-R November)</strong>: combined GOP share needs to hit ~34%; current 31%. Requires late GOP consolidation AND Dem field holding eight candidates under 15%. Mitchell model: 27% pre-Swalwell; ~15–20% now.</p>
+<p><strong>P(R-vs-D November)</strong>: one R (Hilton) gets ~20–22%; one D breaks above Bianco's 14%. Highest-probability outcome. ~70–75%.</p>
+<p><strong>P(D-vs-D November)</strong>: requires both Rs to drop below 14%. Needs Bianco legal event OR Hilton implosion + Newsom/Obama endorsement of a D. ~5–10%.</p>
+
+<h4>Turnout assumptions</h4>
+<ul>
+  <li>Non-presidential June primary historical turnout: <strong>35–40%</strong>.</li>
+  <li>Skews older (median age ~55), whiter, higher-income, higher-propensity — favors GOP / name-ID candidates.</li>
+  <li>Undecided 23% breaks last-72-hour: 40% to name-ID leaders, 30% to late-TV, 20% to party default, 10% skips race.</li>
+  <li>VBM ballots drop May 4. Traditionally ~65% of CA votes cast via mail. Decision window effectively closes ~May 10.</li>
+</ul>
+
+<h4>Endorsement-weighted probabilities</h4>
+<p>No endorsement ≈ Newsom/Obama/Pelosi stay out (current state): P(R-vs-R) = 18%, P(R-vs-D Dem=Steyer) = 38%, P(R-vs-D Dem=Becerra) = 24%, P(R-vs-D Dem=Porter) = 11%, P(D-vs-D) = 8%, P(other) = 1%.</p>
+<p>With hypothetical Obama endorsement of Becerra: P(R-vs-R) drops to 5%, P(R-vs-D Dem=Becerra) jumps to 62%.</p>
+</section>
+
+<!-- ============================================ ELI13 ============================================ -->
+<section class="panel" id="eli13">
+<h2>ELI13.</h2>
+<p class="dek">You're in 8th grade. You know how elections work. Here's what's weird about this one.</p>
+
+<p>California picks a new governor every four years. Gavin Newsom has been governor for 8 years, which is the maximum — he has to leave in January 2027. So this June, Californians vote in a primary to start picking his replacement.</p>
+
+<p>Here's the twist that makes California different: <strong>everyone runs on the same ballot.</strong> In most states, Democrats have their own primary and Republicans have their own primary. In California, all 61 candidates — Democrats, Republicans, Greens, everyone — are on one ballot, and whichever two get the most votes advance to the November election. Doesn't matter what party they're from.</p>
+
+<p>Usually this doesn't cause problems because usually one Democrat and one Republican finish top-two, and then in November the Democrat wins because California has way more Democrats than Republicans (about twice as many).</p>
+
+<p><strong>But this year is weird.</strong></p>
+
+<p>There are <em>eight</em> major Democrats running — billionaires, ex-Congress people, mayors, a schools superintendent — and they're all splitting the Democratic vote. Nobody is winning. The highest-polling Democrat is only at 14%.</p>
+
+<p>Meanwhile there are only <em>two</em> Republicans running, and they're at 17% and 14%. Higher than every Democrat.</p>
+
+<p>So mathematically, it's possible that in June, both Republicans will get more votes than any single Democrat, and they'll both advance to November. That would mean the November ballot has <strong>no Democrat on it at all</strong>. And then no matter who Californians pick, they get a Republican governor. In a state that's voted Democratic for 20 years.</p>
+
+<p>This is called "spoiling your own primary," and it's happening because the Democrats can't agree on one person to back.</p>
+
+<p><strong>It got worse last week.</strong> The Democrat who was leading — Eric Swalwell, a congressman from the Bay Area — was accused by five women of sexual assault. He dropped out of the race on Sunday and resigned from Congress on Monday. His supporters are now spread across the other seven Democrats, which makes the splitting problem even worse.</p>
+
+<p><strong>The two Republicans are not great either.</strong></p>
+
+<p>Steve Hilton is a former Fox News host who used to work for the British Prime Minister. He became an American citizen in 2021. Donald Trump endorsed him two weeks ago.</p>
+
+<p>Chad Bianco is a sheriff from Riverside County. He used to belong to a militia group called the Oath Keepers (some members were involved in the January 6 Capitol riot). His jails have had more deaths than any other county. Last week he seized 650,000 ballots from a different election because he claimed there was fraud.</p>
+
+<p>These are the two candidates who might win the governorship of California.</p>
+
+<p><strong>What will probably happen?</strong> Most likely — maybe 70% chance — one Democrat will break out of the pack and make it to November, and then beat a Republican in the general election. Democrats always beat Republicans in California because there are so many more of them.</p>
+
+<p>But there's a 15–20% chance the Democrats stay splintered, both Republicans advance, and the next governor of California is a Republican for the first time in 25 years.</p>
+
+<p>That's the whole story. 45 days until the primary.</p>
+</section>
+
+<!-- ============================================ ELI5 ============================================ -->
+<section class="panel" id="eli5">
+<h2>ELI5.</h2>
+<p class="dek">You're five. Here's the story with no big words.</p>
+
+<div class="eli5-style">
+<p>California is a big place with a boss called the governor. The boss has to leave soon because he's been boss a long time.</p>
+
+<p>Now people want to be the new boss. One team — the Blue team — has EIGHT people who want to be boss. The other team — the Red team — has only two.</p>
+
+<p>The rule is: everyone counts up their votes, and the top two get to be in the big final. It doesn't matter what team they're on.</p>
+
+<p>California is mostly a Blue state. Usually Blue wins. But this time Blue has too many people wanting the same job, and they're all sharing their votes with each other. Nobody has very many.</p>
+
+<p>The two Red team people don't have to share their votes with as many people, so they have more.</p>
+
+<p>If the Blue team doesn't figure out how to pick just one or two people really soon, BOTH Red people might win the top two, and then the new boss HAS to be Red. Even though most Californians are Blue!</p>
+
+<p>Also, the Blue team's best person got in big trouble and had to quit last week. So now it's even harder for them.</p>
+
+<p>Most grown-ups think Blue will still win. But nobody is sure. The vote is in 45 days.</p>
+
+<p>That's the story.</p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="foot-inner">
+  <div>
+    <h5>The Dates</h5>
+    <p>Early voting begins <strong>May 4, 2026</strong></p>
+    <p>Primary: <strong>June 2, 2026</strong></p>
+    <p>General: <strong>November 3, 2026</strong></p>
+    <p>Next inauguration: <strong>January 4, 2027</strong></p>
+  </div>
+  <div>
+    <h5>Key Sources</h5>
+    <ul>
+      <li><a href="https://calmatters.org/">CalMatters</a> — best CA political reporting</li>
+      <li><a href="https://emersoncollegepolling.com/">Emerson Polling</a> — latest numbers</li>
+      <li><a href="https://en.wikipedia.org/wiki/2026_California_gubernatorial_election">Wikipedia — 2026 race tracker</a></li>
+      <li><a href="https://ballotpedia.org/California_gubernatorial_election,_2026">Ballotpedia — candidate profiles</a></li>
+      <li><a href="https://www.racetothewh.com/governor/california26">Race to the WH — polling average</a></li>
+    </ul>
+  </div>
+  <div>
+    <h5>About This Page</h5>
+    <p>Built from 6 parallel research agents + live web sources. Synthesized April 18, 2026, 45 days before the CA gov primary. Internal explainer for Rob Logic — not journalism, not advocacy, just a briefing.</p>
+    <p>If facts are wrong, they will be wrong until someone fixes them. Check the source links.</p>
+  </div>
+</div>
+<div class="foot-bottom">
+  <span>roblogic.org/vote · last build 2026-04-18</span>
+  <span>research &amp; analysis · no affiliations</span>
+</div>
+</footer>
+
+<script>
+(function(){
+  const btns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    panels.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const p = document.getElementById(b.dataset.tab);
+    if (p) p.classList.add('active');
+    window.scrollTo({top: document.querySelector('.tabs').offsetTop - 60, behavior:'smooth'});
+  }));
+
+  // hash nav support
+  if (location.hash) {
+    const h = location.hash.slice(1);
+    const btn = document.querySelector(`.tab-btn[data-tab="${h}"]`);
+    if (btn) btn.click();
+  }
+})();
+</script>
+</body>
+</html>
