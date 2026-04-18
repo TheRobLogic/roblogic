@@ -102,17 +102,40 @@
   }
 
   .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--red);
+    color: var(--cream);
+    padding: 8px 14px 7px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    border-bottom: 1px solid transparent;
-    transition: all 0.15s;
+    text-decoration: none;
+    border: 2px solid var(--red);
+    box-shadow: 3px 3px 0 rgba(193,39,45,0.25);
+    transition: all 0.15s ease-out;
+    white-space: nowrap;
+    margin-left: auto;
   }
 
-  .back-link:hover { color: var(--red); border-bottom-color: var(--red); }
+  .back-link .arrow {
+    font-size: 1.1em;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .back-link:hover {
+    background: var(--cream);
+    color: var(--red);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 rgba(193,39,45,0.35);
+  }
+
+  .back-link:hover .arrow { transform: translateX(-3px); }
 
   /* ===== HERO ===== */
   .hero {
@@ -728,7 +751,7 @@
     <div class="masthead-meta">
       <span><span class="dot"></span> Primary D-45</span>
       <span>· 14 candidates profiled</span>
-      <a href="/vote/" class="back-link">← back to overview</a>
+      <a href="/vote/" class="back-link"><span class="arrow">←</span> Race Overview</a>
     </div>
   </div>
 </header>

@@ -72,6 +72,27 @@ em{font-style:italic;color:var(--ink)}
 .mast-meta .live{color:#69d18d}
 .mast-meta .live::before{content:"●";margin-right:4px;animation:pulse 1.6s infinite}
 @keyframes pulse{50%{opacity:.4}}
+.cross-link{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--red);color:var(--cream);
+  padding:8px 14px 7px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;
+  border:2px solid var(--red);
+  text-decoration:none;
+  box-shadow:3px 3px 0 rgba(193,39,45,.25);
+  transition:all .15s ease-out;
+  white-space:nowrap;
+  margin-left:auto;
+}
+.cross-link:hover{
+  background:var(--cream);color:var(--red);
+  transform:translate(-2px,-2px);
+  box-shadow:5px 5px 0 rgba(193,39,45,.35);
+}
+.cross-link .arrow{font-size:1.1em;line-height:1;display:inline-block;transition:transform .15s}
+.cross-link:hover .arrow{transform:translateX(3px)}
 
 /* HERO */
 .hero{
@@ -406,7 +427,7 @@ footer{
       <span class="live">LIVE</span>
       <span>UPDATED 2026-04-18</span>
       <span>D-45 TO PRIMARY</span>
-      <a href="/vote/candidates/" style="color:var(--red);text-decoration:none;border-bottom:1px dashed var(--red);font-weight:600">→ candidate dossiers</a>
+      <a href="/vote/candidates/" class="cross-link">Candidate Dossiers <span class="arrow">→</span></a>
     </div>
   </div>
 </header>
