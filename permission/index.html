@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landlord Permission Letter — The Bancroft Bar</title>
+<meta name="description" content="Landlord permission letter for entertainment and dance at The Bancroft Bar, 9143 Campo Rd, Spring Valley, CA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍸</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #fafaf7;
+  --rule: #1a1a1a;
+  --muted: #666;
+}
+
+html, body {
+  background: #e5e5e2;
+  color: var(--ink);
+  font-family: 'Libre Baskerville', Georgia, serif;
+  min-height: 100vh;
+}
+
+.toolbar {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.btn {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 0.65rem 1.25rem;
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.15s ease;
+}
+
+.btn:hover { opacity: 0.8; }
+
+.page {
+  background: var(--paper);
+  width: 8.5in;
+  min-height: 11in;
+  margin: 2rem auto;
+  padding: 1in 1.25in;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.letterhead {
+  text-align: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+.letterhead h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.35rem;
+}
+
+.letterhead .addr {
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.body {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  flex: 1;
+}
+
+.body p {
+  margin-bottom: 1.75rem;
+}
+
+.body p.intro {
+  margin-bottom: 2.25rem;
+}
+
+.signature-block {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2.5rem;
+  align-items: end;
+}
+
+.sig-line, .date-line {
+  border-bottom: 1.5px solid var(--ink);
+  height: 2.75rem;
+}
+
+.sig-label, .date-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+.printed-name {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.printed-name .field {
+  border-bottom: 1.5px solid var(--ink);
+  height: 2.25rem;
+}
+
+.printed-name .label {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+@media print {
+  @page {
+    size: letter;
+    margin: 0;
+  }
+  html, body {
+    background: white;
+  }
+  .toolbar { display: none; }
+  .page {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    width: 100%;
+    margin: 0;
+    padding: 2rem 1.5rem;
+    box-shadow: none;
+  }
+  .letterhead h1 {
+    font-size: 1.5rem;
+  }
+  .signature-block, .printed-name {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="btn" onclick="window.print()">Print</button>
+</div>
+
+<div class="page">
+  <header class="letterhead">
+    <h1>The Bancroft Bar</h1>
+    <div class="addr">9143 Campo Road &nbsp;·&nbsp; Spring Valley, CA 91977</div>
+  </header>
+
+  <div class="body">
+    <p class="intro">To whom it may concern,</p>
+
+    <p>I, the undersigned, am the owner and landlord of the property located at <strong>9143 Campo Road, Spring Valley, California 91977</strong>. I hereby give <strong>The Bancroft Bar</strong> (Bancroft Bar LLC), tenant of the property, my permission to have live entertainment and dancing on the premises.</p>
+
+    <div class="signature-block">
+      <div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Signature of Owner / Landlord</div>
+      </div>
+      <div>
+        <div class="date-line"></div>
+        <div class="date-label">Date</div>
+      </div>
+    </div>
+
+    <div class="printed-name">
+      <div>
+        <div class="field"></div>
+        <div class="label">Printed Name</div>
+      </div>
+      <div>
+        <div class="field"></div>
+        <div class="label">Phone</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
