@@ -416,6 +416,22 @@ footer{
   footer{padding:28px 18px}
   .foot-bottom{font-size:.65rem;gap:10px}
 }
+.updates{max-width:1200px;margin:28px auto 0;padding:0 24px}
+.updates-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--red);padding-bottom:8px;margin-bottom:14px;flex-wrap:wrap}
+.updates-flag{background:var(--red);color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.12em;padding:4px 9px;animation:pulse 1.8s ease-in-out infinite}
+.updates-head h2{font-family:'Libre Caslon Text',Georgia,serif;font-size:clamp(1.2rem,2.4vw,1.55rem);font-weight:400;letter-spacing:-.01em;margin:0}
+.updates-date{color:#8a8473;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;margin-left:auto}
+.updates-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.updates-list li{padding:11px 14px 11px 16px;background:rgba(193,39,45,.05);border-left:3px solid var(--red);font-size:.98rem;line-height:1.5}
+.updates-list li b{color:var(--ink);font-weight:700}
+.updates-list li a{font-size:.85rem;white-space:nowrap}
+.updates-list li .tag{display:inline-block;background:var(--ink);color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;letter-spacing:.1em;padding:2px 6px;margin-right:6px;vertical-align:2px;text-transform:uppercase}
+.updates-list li .tag.breaking{background:var(--red)}
+@media (max-width:720px){
+  .updates{padding:0 16px}
+  .updates-date{margin-left:0;width:100%}
+  .updates-list li{padding:9px 12px;font-size:.93rem}
+}
 </style>
 </head>
 <body>
@@ -436,6 +452,22 @@ footer{
   <h1>A Dem dumpster fire, a GOP sideshow, and <em><span class="js-days">42</span> days</em> to figure it out.</h1>
   <p class="kicker">Newsom is termed out. Eight Democrats are splitting the vote. Two Republicans are quietly consolidating. The frontrunner just resigned from Congress. And because California uses top-two, the whole thing could hand the governorship to a Fox News Brit or a sheriff who seized 650,000 ballots.</p>
   <div class="countdown"><b class="js-days">42</b> days until June 2, 2026. Vote-by-mail ballots drop May 4.</div>
+</section>
+
+<section class="updates" id="updates">
+  <div class="updates-head">
+    <span class="updates-flag">NEW</span>
+    <h2>What's changed since April 18</h2>
+    <span class="updates-date">as of April 21</span>
+  </div>
+  <ul class="updates-list">
+    <li><span class="tag breaking">Tomorrow</span><b>First major debate — Wed Apr 22, 7pm PT.</b> Nexstar "Inside California Politics" / KRON4. Stage: Hilton, Bianco, Steyer, Becerra, Porter, Mahan. <strong>Villaraigosa and Thurmond did not qualify</strong> — notable ahead of the VBM ballot drop. <a href="https://ktla.com" target="_blank" rel="noopener">KTLA</a></li>
+    <li><span class="tag">Apr 21</span><b>CalMatters investigation drops on Bianco's 650K-ballot seizure.</b> Internal emails show the case was built on fringe-group claims, warrant sealed by an ally judge (Jay Kiel), AG Bonta's directives ignored. <strong>Now pending at the CA Supreme Court.</strong> <a href="https://calmatters.org/investigation/2026/04/chad-bianco-emails/" target="_blank" rel="noopener">CalMatters</a></li>
+    <li><span class="tag">Apr 20</span><b>Betty Yee withdrew.</b> Cited polling and fundraising; exited attacking Porter. <strong>Active Dems now 7, not 8.</strong> <a href="https://calmatters.org/politics/2026/04/california-governor-race-yee/" target="_blank" rel="noopener">CalMatters</a></li>
+    <li><span class="tag">Apr 20</span><b>CA Dem Party chair publicly called for more low-polling Dems to drop.</b> Party machinery is finally trying to force consolidation. <a href="https://www.kcra.com" target="_blank" rel="noopener">KCRA</a></li>
+    <li><span class="tag">Apr 20</span><b>New CADEM internal poll (fielded Apr 15–17):</b> Hilton 17 · Bianco 14 · Steyer 13 · <strong>Becerra 13 (tied)</strong> · Porter 10 · Mahan 5. Becerra up ~9 points post-Swalwell — he's the surging Dem to watch. <a href="https://www.pressdemocrat.com/2026/04/20/" target="_blank" rel="noopener">Press Democrat</a></li>
+    <li><span class="tag">Apr 20</span><b>Our Revolution (Sanders) endorsed Tom Steyer.</b> Immediate progressive backlash over endorsing a billionaire. <a href="https://theintercept.com" target="_blank" rel="noopener">The Intercept</a></li>
+  </ul>
 </section>
 
 <nav class="tabs">
