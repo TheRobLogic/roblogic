@@ -425,17 +425,17 @@ footer{
     <div class="mast-title">vote<span class="dot">.</span>roblogic<span class="dot">.</span>org <span style="color:#bfb5a3;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;margin-left:12px">CA-26 GOV</span></div>
     <div class="mast-meta">
       <span class="live">LIVE</span>
-      <span>UPDATED 2026-04-18</span>
-      <span>D-45 TO PRIMARY</span>
+      <span>UPDATED 2026-04-21</span>
+      <span>D-<span class="js-days">42</span> TO PRIMARY</span>
       <a href="/vote/candidates/" class="cross-link">Candidate Dossiers <span class="arrow">→</span></a>
     </div>
   </div>
 </header>
 
 <section class="hero">
-  <h1>A Dem dumpster fire, a GOP sideshow, and <em>45 days</em> to figure it out.</h1>
+  <h1>A Dem dumpster fire, a GOP sideshow, and <em><span class="js-days">42</span> days</em> to figure it out.</h1>
   <p class="kicker">Newsom is termed out. Eight Democrats are splitting the vote. Two Republicans are quietly consolidating. The frontrunner just resigned from Congress. And because California uses top-two, the whole thing could hand the governorship to a Fox News Brit or a sheriff who seized 650,000 ballots.</p>
-  <div class="countdown"><b>45</b> days until June 2, 2026. Vote-by-mail ballots drop May 4.</div>
+  <div class="countdown"><b class="js-days">42</b> days until June 2, 2026. Vote-by-mail ballots drop May 4.</div>
 </section>
 
 <nav class="tabs">
@@ -944,7 +944,7 @@ Democrats will likely hold the CA governorship in November 2026, but with a mean
   </div>
 </div>
 <div class="foot-bottom">
-  <span>roblogic.org/vote · last build 2026-04-18</span>
+  <span>roblogic.org/vote · last build 2026-04-21</span>
   <span>research &amp; analysis · no affiliations</span>
 </div>
 </footer>
@@ -968,6 +968,12 @@ Democrats will likely hold the CA governorship in November 2026, but with a mean
     const btn = document.querySelector(`.tab-btn[data-tab="${h}"]`);
     if (btn) btn.click();
   }
+
+  // live countdown to CA-26 primary
+  const PRIMARY = new Date('2026-06-02T00:00:00-07:00');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const days = Math.max(0, Math.ceil((PRIMARY - today) / 86400000));
+  document.querySelectorAll('.js-days').forEach(el => el.textContent = days);
 })();
 </script>
 </body>
