@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>La Mesa Portal &amp; SD Assessor Findings — Palm Ave</title>
+<style>
+  body { font-family: -apple-system, Helvetica, Arial, sans-serif; max-width: 980px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.55; }
+  h1 { border-bottom: 3px solid #000; padding-bottom: 8px; }
+  h2 { border-bottom: 1px solid #999; padding-bottom: 4px; margin-top: 2em; }
+  h3 { color: #333; margin-top: 1.4em; }
+  .alert { background: #ffeaea; border-left: 5px solid #b00; padding: 12px 16px; margin: 16px 0; font-weight: 500; }
+  .highlight { background: #fff4e0; border-left: 5px solid #d48500; padding: 10px 14px; margin: 12px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 0.93em; }
+  th, td { border: 1px solid #bbb; padding: 6px 9px; text-align: left; vertical-align: top; }
+  th { background: #f0f0f0; }
+  .cite { font-family: 'Menlo', monospace; font-size: 0.9em; background: #eee; padding: 2px 5px; border-radius: 3px; }
+  a { color: #0858a3; word-break: break-word; }
+  .meta { color: #666; font-size: 0.9em; }
+  .rob { background: #e6f2ff; }
+  .waleed { background: #fff0e6; }
+</style>
+</head>
+<body>
+
+<div style="background:#1a1a1a;color:#eee;padding:10px 20px;margin-bottom:24px;font-family:-apple-system,Helvetica,Arial,sans-serif;font-size:0.92em;border-left:4px solid #d48500;border-radius:4px;">
+<a href="/palm-ave/" style="color:#ccc;margin-right:14px;text-decoration:none;">◀ Home</a>
+<a href="/palm-ave/evidence/salameh-dossier-2026-04-16.html" style="color:#ccc;margin-right:14px;text-decoration:none;">Salameh</a>
+<a href="/palm-ave/evidence/lmmc-citations-2026-04-16.html" style="color:#ccc;margin-right:14px;text-decoration:none;">La Mesa Code</a>
+<a href="/palm-ave/evidence/ca-law-and-agency-intake-2026-04-16.html" style="color:#ccc;margin-right:14px;text-decoration:none;">CA Law</a>
+<a href="/palm-ave/evidence/la-mesa-portal-findings-2026-04-16.html" style="color:#fff;margin-right:14px;text-decoration:none;font-weight:600;">Portal / Parcels</a>
+<a href="/palm-ave/evidence/photos/" style="color:#ccc;margin-right:14px;text-decoration:none;">Photos</a>
+<a href="/palm-ave/evidence/4862-4870-Palm-permits-history.pdf" style="color:#ccc;margin-right:14px;text-decoration:none;">Permits PDF</a>
+<a href="/palm-ave/drafts/cpra-request-v1.html" style="color:#ccc;margin-right:14px;text-decoration:none;">CPRA</a>
+<a href="/palm-ave/drafts/neighbor-letter-v3.html" style="color:#ccc;margin-right:14px;text-decoration:none;">Neighbor Letter</a>
+<a href="/palm-ave/drafts/complaint-letter-v5.html" style="color:#ccc;text-decoration:none;">City Complaint</a>
+</div>
+
+<h1>La Mesa Portal &amp; SD Parcel Findings</h1>
+<p class="meta">Compiled 2026-04-16. Public sources only: La Mesa MaintStar portal, NextRequest PRA system, SANDAG/SanGIS REST API.</p>
+
+<div class="alert">
+<strong>Two things you need to know right now:</strong><br>
+1. A <strong>California Public Records Act request (#26-237)</strong> was already filed <strong>April 14, 2026</strong> and <strong>closed April 16, 2026</strong> (today) on the La Mesa NextRequest portal. If that's you, check your email — the city likely sent records by email rather than attaching them to the public record. Also a <strong>prior PRA #24-289</strong> was filed 5/30/2024 on these same parcels.<br>
+2. <strong>Zoning is R-3 (Medium-Density Multiple-Family Residential)</strong> per the City of La Mesa's own authoritative ZoningOverlay layer (<code>services1.arcgis.com/&hellip;/ZoningOverlay/FeatureServer</code>), consistent with the 1988 permit. The <span class="cite">§24.05.030</span> citations used in the complaint letter (lot coverage, grading, retaining-wall in side-yard setback) and the <span class="cite">§24.05.020(D)(16)</span> lighting citation all correctly apply to R-3 parcels.
+</div>
+
+<div class="alert" style="background:#fff6e5;border-left-color:#b86500;">
+<strong>Correction filed 2026-04-22.</strong> An earlier version of this page reported that SANDAG data "corrected" the zoning to R-4 and framed the 1988 permit as wrong. <strong>That was wrong and has been reverted.</strong> The SANDAG parcel layer's <code>asr_zone</code> field is the San Diego County Assessor's land-use / tax category (e.g. "R4" as an Assessor code), <em>not</em> the City of La Mesa zoning district. City zoning is determined by the La Mesa ZoningOverlay FeatureServer, which returns <strong>R-3</strong> for APNs 4942510400, 4942510500, 4942510600, and 4942510700. The parcel table below now reflects the authoritative city zoning. No claim in the complaint letter or elsewhere in this file ever turned on the R-4 misstatement; it is corrected here for the record.
+</div>
+
+<h2>B21-885 — The Core Permit</h2>
+
+<div class="highlight">
+<strong>Parent permit B21-885 is suppressed as "Confidential" in the public La Mesa portal.</strong> It exists — <span class="cite">B21-885-REV-01</span> is indexed and <strong>Finaled January 5, 2026</strong> at situs <strong>4860 Palm Ave</strong> — but the parent record's description, applicant, contractor, valuation, and plan-sheet list are not viewable without portal login.
+</div>
+
+<ul>
+<li>The existence of REV-01 (Finaled 1/5/2026) <strong>proves the parent permit was actually issued and work was legally completed at some point</strong> — after the 2024 plan-change (PORT2024-0816) was voided, Salameh got a revision through and finaled it less than four months ago.</li>
+<li>Situs "4860 Palm Ave" is a new address — likely a sub-unit address created during the buildout. Consistent with the voided 2024 plan's "Unit 1 / Unit 2" language.</li>
+<li><strong>Zero inspections</strong> returned for B21-885 or REV-01 under public search.</li>
+<li>PORT2024-0816 does not surface in public search — also suppressed.</li>
+</ul>
+
+<p><strong>URLs:</strong></p>
+<ul>
+<li>La Mesa MaintStar permit portal: <a href="https://h9.maintstar.co/LaMesa/portal/#/search">h9.maintstar.co/LaMesa/portal/#/search</a> (login required for detail)</li>
+<li>PRA #26-237 (closed 4/16/2026, zero public attachments): <a href="https://la-mesa-ca.nextrequest.com/requests/26-237">la-mesa-ca.nextrequest.com/requests/26-237</a></li>
+<li>Prior PRA #24-289 (5/30/2024): <a href="https://la-mesa-ca.nextrequest.com/requests/24-289">la-mesa-ca.nextrequest.com/requests/24-289</a></li>
+</ul>
+
+<h2>All Permits Publicly Indexed on 4862 / 4870 Palm</h2>
+<table>
+<tr><th>Permit #</th><th>Date</th><th>Status</th><th>Description</th><th>Address shown</th></tr>
+<tr><td>2023-1411</td><td>Issued 5/22/2023</td><td>Issued (2 BLDG-FINAL inspections cancelled 7/23–7/24/2024)</td><td>Roof Mount Solar-PV (Confidential)</td><td>4862 Palm</td></tr>
+<tr><td>2023-1384</td><td>Issued 5/17/2023</td><td>Issued</td><td>Roof Mount Solar-PV (Confidential)</td><td>4862 Palm</td></tr>
+<tr><td>2023-1609</td><td>Finaled 11/13/2023</td><td>Finaled (BLDG-FINAL Pass 10/24/23; ELEC-FINAL Fail 10/6/23)</td><td>Roof Mount Solar-PV (Confidential)</td><td>4870 Palm</td></tr>
+<tr><td><strong>B21-885-REV-01</strong></td><td><strong>Finaled 1/5/2026</strong></td><td><strong>Finaled</strong></td><td>Revision (Confidential)</td><td><strong>4860 Palm</strong></td></tr>
+</table>
+<p class="meta">Parent <strong>B21-885</strong> not in public index; only its revision surfaces. Two cancelled BLDG-FINAL inspections on the 2023-1411 solar permit are unusual — worth asking the Building Division about.</p>
+
+<h2>Parcel Records (SANDAG / SanGIS)</h2>
+<table>
+<tr><th>Address</th><th>APN</th><th>Lot Size</th><th>Year Built</th><th>Zoning</th><th>Units / BR-BA / SF</th><th>Assessed</th><th>Last Doc</th></tr>
+<tr class="rob"><td><strong>4852 Palm</strong> (Rob)</td><td>4942510700</td><td>2,027 sf</td><td>1954</td><td>R-3</td><td>1 · 2BR/1BA 528 sf</td><td>$154,482</td><td>Doc #509959 · 9/30/2011</td></tr>
+<tr class="rob"><td><strong>4854 Palm</strong> (Rob)</td><td>4942510600</td><td>6,096 sf</td><td>1925</td><td>R-3</td><td>1 · 2BR/1BA 720 sf</td><td>$307,094</td><td>Doc #509959 · 9/30/2011</td></tr>
+<tr class="waleed"><td>4862 Palm (Salameh)</td><td>4942510500</td><td>8,561 sf</td><td>(blank)</td><td>R-3</td><td><strong>3 · 11BR / 6.5BA / 3,809 sf · 4-car garage</strong></td><td>$513,846</td><td>Doc #469378 · 7/23/1993</td></tr>
+<tr class="waleed"><td>4868-4870 Palm (Salameh)</td><td>4942510400</td><td>4,785 sf</td><td>1926</td><td>R-3</td><td>2 · 5BR/4BA 1,412 sf</td><td>$255,240</td><td>Doc #469384 · 7/23/1993</td></tr>
+</table>
+<p class="meta"><strong>Zoning column source:</strong> City of La Mesa ZoningOverlay FeatureServer (authoritative city zoning). SANDAG's parcel layer exposes an <code>asr_zone</code> field, which is the Assessor's land-use code, <em>not</em> the city zoning district &mdash; do not substitute one for the other.</p>
+<p>All four are in <strong>Wheeler Tract Block 1</strong> (Lots 15, 16, 17 with Lot 17 split W42/remainder). Salameh has owned 4862 and 4870 since <strong>July 1993</strong> — 33 years. Rob acquired 4852 and 4854 <strong>September 30, 2011</strong> via one recorded document (#509959).</p>
+
+<div class="highlight">
+<strong>Note the density on 4862:</strong> 3 units · 11 bedrooms · 6.5 bathrooms · 3,809 sf living · 4-car garage on 8,561 sf lot. That's student-housing / rooming-house style density. Consistent with the rest of his portfolio near SDSU.
+</div>
+
+<h2>Spatial Layout (south → north along west side of Palm Ave)</h2>
+<ol>
+<li class="rob"><strong>4852 Palm (Rob)</strong> — southernmost</li>
+<li class="rob"><strong>4854 Palm (Rob)</strong></li>
+<li class="waleed"><strong>4862 Palm (Salameh)</strong> — <em>immediately north of Rob; the damaged side</em></li>
+<li class="waleed"><strong>4868-4870 Palm (Salameh)</strong> — northernmost</li>
+</ol>
+<p>All on the west side of Palm (no Palm-frontage override).</p>
+<p>Map: <a href="https://geo.sandag.org/server/rest/services/Hosted/Parcels/FeatureServer/0/query?where=apn+IN+('4942510400','4942510500','4942510600','4942510700')&amp;outFields=*&amp;f=html">SANDAG Parcel REST for all four APNs</a> · <a href="https://geo.sandag.org/portal/apps/experiencebuilder/experience/?id=1d105857933641e0a8496d2769b31aec">SANDAG interactive lookup</a></p>
+
+<h2>What's Still Missing — Next Actions</h2>
+<ol>
+<li><strong>Open PRA #26-237 from the filer's own email</strong> — NextRequest typically emails document-access links that aren't visible in the public record. If the records came back, everything we need is already in Rob's inbox.</li>
+<li>If PRA #26-237 didn't produce the B21-885 file, file a follow-up PRA citing REV-01 (Finaled 1/5/2026) as proof the parent exists — demand the full file including approved plans, permit card, inspection history, conditions of approval, and all revisions.</li>
+<li>Walk-in at La Mesa Building Division (8130 Allison Ave, 619-667-1176). Per their FAQ, hard copies back to annexation + plans for last 20 years are on file.</li>
+<li>ParcelQuest Lite (<a href="https://assr.parcelquest.com/impl/sdxassr">assr.parcelquest.com</a>) — pull official owner of record, last sale price, homeowners exemption status for all four APNs. Needs a human to complete the reCAPTCHA.</li>
+</ol>
+
+<p class="meta">Public records only. Owner names on Salameh parcels per client/permit data + Wheeler Tract Lot 15-16 consistency, not SANDAG (which doesn't expose owner). This is general research, not legal advice.</p>
+
+</body>
+</html>
