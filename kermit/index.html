@@ -41,6 +41,19 @@
     font-size: 1.05em;
     color: #444;
   }
+  .part-label {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 0.8em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2.4em;
+    margin-bottom: -0.6em;
+    border-radius: 2px;
+  }
+  .part-label.new { background: #c84a00; }
   .verdict {
     background: #fff;
     border-left: 5px solid #0858a3;
@@ -71,11 +84,16 @@
   }
   .callout {
     background: #fff7dc;
-    border: 1px solid #e5c97a;
-    padding: 12px 16px;
-    margin: 16px 0;
+    border: 2px solid #e5c97a;
+    padding: 16px 20px;
+    margin: 20px 0 28px 0;
     border-radius: 3px;
-    font-size: 0.97em;
+    font-size: 0.98em;
+  }
+  .callout h3 {
+    margin-top: 0;
+    color: #6d4c00;
+    font-size: 1.1em;
   }
   .phone-list {
     background: #fff;
@@ -106,16 +124,119 @@
   <div class="sub">Research summary for your dad's situation. Plain English, no lawyer talk.</div>
 </header>
 
-<p>You asked three things when I sent you the Cyberdyne writeup. I ran each one down. Also took a look at the "no real RMO" theory you floated. Here's where everything lands.</p>
+<p>Short version first, then the details. Latest round (certs &amp; filings, April 22) is in the first half. Original Q&amp;A from April 21 is further down if you want to revisit those.</p>
 
-<h2>1. "Kermit owns Cyberdyne" — nope, that's a stale record you're looking at</h2>
+<div class="callout">
+  <h3>The short version you can give Kermit</h3>
+  <ul>
+    <li>"Kermit owns Cyberdyne" — no. You're looking at a stale BuildZoom page. CSLB record has him off since 11/18/2022.</li>
+    <li>Gene McCormick isn't on Cyberdyne.</li>
+    <li>James Garner case — real but not located yet. Fastest path: phone CSLB Legal Action Disclosure.</li>
+    <li><b>$6K total for 3 years of "supervision"</b> is exactly the compensation pattern §7068.1 was written to catch. That detail strengthens the qualifier-for-hire theory meaningfully.</li>
+    <li>Cyberdyne holds <b>zero</b> industry certifications — NABCEP, Tesla, Enphase, CALSSA, SEIA. They're not BBB accredited either (A+ rating ≠ accredited).</li>
+    <li>Cyberdyne has <b>zero SWPPP NOIs</b> despite BuildZoom showing 442+ permits — only defensible if all projects were rooftop-only.</li>
+    <li>Cyberdyne claims "no employees" on their CSLB workers' comp exemption but <b>actively posts W-2 jobs with benefits.</b> That's a separate CSLB §7110/§7125.2 workers' comp fraud angle — and an EDD misclassification audit trigger — with or without the §7068.1 issue.</li>
+    <li>Strongest customer-side lever: <b>B&amp;P Code §7031(b)</b> — past customers can sue for 100% refund of what they paid, even on work done correctly, if the license was effectively unlicensed (qualifier wasn't supervising).</li>
+  </ul>
+  <p style="margin-bottom:0;">These are serious enforcement pressure points. Full detail below.</p>
+</div>
+
+<div class="part-label new">Latest round — April 22</div>
+
+<h2>1. What Cyberdyne has — and doesn't have — on file</h2>
+
+<p>You asked about environmental, SWPPP, and health &amp; safety certifications. Three research agents went through the state and federal databases. Here's the rundown.</p>
+
+<h3>Environmental &amp; stormwater</h3>
+<table>
+  <tr><th>Filing</th><th>Status</th></tr>
+  <tr><td>SWPPP / Construction General Permit coverage (CA SMARTS)</td><td><b>No filings.</b> Zero Notices of Intent statewide.</td></tr>
+  <tr><td>Cal EPA regulated facility status</td><td>Not listed.</td></tr>
+  <tr><td>Federal EPA ECHO (air, water, hazmat, waste)</td><td>No records, no violations, no enforcement.</td></tr>
+  <tr><td>Hazardous waste generator registration</td><td>None filed.</td></tr>
+  <tr><td>San Diego Regional Water Quality Control Board (Region 9)</td><td>No enforcement actions.</td></tr>
+</table>
+
+<div class="verdict yellow">
+  <strong>Potential red flag.</strong>
+  California's Construction General Permit (Order 2022-0057-DWQ) requires any project disturbing <b>1+ acre of soil</b> to file an NOI before breaking ground. BuildZoom indexes 442+ pulled permits for Cyberdyne over 2 years; the SMARTS database shows <b>zero SWPPP NOIs.</b> That's defensible if every project was rooftop-only (solar panels on existing structures disturb no soil). It's <b>not</b> defensible if any permits involved ground-mount systems, trenching, or site prep over the 1-acre threshold. Worth checking against their actual permit list.
+</div>
+
+<h3>Labor &amp; safety</h3>
+<table>
+  <tr><th>Filing</th><th>Status</th></tr>
+  <tr><td>DIR public works contractor registration #1000026740</td><td>Listed but appears dormant (no public-works projects surfaced).</td></tr>
+  <tr><td>Workers' comp</td><td><b>"No employees" exemption</b> self-certified 02/21/2025.</td></tr>
+  <tr><td>Cal/OSHA + federal OSHA inspections</td><td>No inspections, no citations, no reported accidents.</td></tr>
+  <tr><td>DOL Wage &amp; Hour Division</td><td>No public actions.</td></tr>
+  <tr><td>CA Labor Commissioner wage-theft judgments</td><td>No public findings.</td></tr>
+</table>
+
+<div class="verdict red">
+  <strong>Counter-signal on the "no employees" claim.</strong>
+  Cyberdyne is <b>actively running W-2 job postings</b> on ZipRecruiter and WayUp out of their San Marcos office — Residential Solar Representative, Solar Appointment Setter, and related roles — with full medical/dental/vision/401K benefits listed. Their own website names in-house installers Jesus Marquez and Edward, plus a sales rep Cole Swartwood.
+  <br><br>
+  A "no employees" self-certification is made <b>under penalty of perjury.</b> If those postings describe actual W-2 roles, the certification is a misrepresentation. That's a real exposure under <b>CSLB §7110 / §7125.2</b> (workers' comp fraud / failure to maintain coverage) and an EDD misclassification audit trigger — regardless of the §7068.1 qualifier issue.
+</div>
+
+<h3>Solar industry certifications</h3>
+<table>
+  <tr><th>Credential</th><th>Status</th></tr>
+  <tr><td>NABCEP (PV installer certification)</td><td>Not held. Zero matches in the national directory.</td></tr>
+  <tr><td>Tesla / Powerwall Certified Installer</td><td>Not held.</td></tr>
+  <tr><td>Enphase Installer Network</td><td>Not held.</td></tr>
+  <tr><td>SunPower Elite Dealer</td><td>Not held.</td></tr>
+  <tr><td>LG, Panasonic, Q CELLS, Jinko, REC authorized installer</td><td>None claimed, none verified.</td></tr>
+  <tr><td>CALSSA (California Solar &amp; Storage Association)</td><td>Not a member.</td></tr>
+  <tr><td>SEIA (Solar Energy Industries Association)</td><td>Not a member.</td></tr>
+</table>
+
+<p>The only trade affiliation they publicly claim is <b>Tiny Home Industry Association (THIA)</b> commercial membership — a paid trade membership, not a technical certification.</p>
+
+<h3>BBB correction</h3>
+<p>I said in my earlier writeup they were "A+ accredited." That's not quite right. They have an <b>A+ rating but are not BBB accredited.</b> Rating = BBB's independent evaluation of complaint history. Accreditation = a paid membership with adherence to BBB standards. They haven't pursued accreditation. File opened Jan 2024.</p>
+
+<h3>The B-only license question</h3>
+<p>Per City of San Diego Information Bulletin 301 and CA B&amp;P Code §7057 / §832.46, a B general building license <b>can</b> pull residential PV permits as a standalone solar scope — no bundling with reroof or structural work is required. A C-10 electrical contractor is only triggered when the job includes a main panel upgrade or new-service electrical work beyond the PV scope itself. Cyberdyne's recurring electrical sub is named "<b>Geezus Renewable Solutions</b>" — research couldn't locate that business name in the CSLB license database. <b>Worth verifying:</b> if Geezus Renewable Solutions isn't actually licensed as a C-10, that changes the legality of any install that required electrical work beyond the PV scope.</p>
+
+<h2>2. The "Kermit never actually RMO'd" theory — sharper now with the $6K detail</h2>
+
+<div class="verdict yellow">
+  <strong>Verdict: partially right, but the mechanism works differently than you think.</strong>
+  There IS a real legal issue here. It's called "qualifier-for-hire" under California Business &amp; Professions Code §7068.1. But it cuts against your dad first, not Cyberdyne — because the qualifier has the duty to supervise. And it doesn't automatically void every contract Cyberdyne ever signed.
+</div>
+
+<p>The way this actually works in California:</p>
+
+<ul>
+  <li>A "qualifier" (RMO or RMG) on a license has a legal duty to <b>actively supervise</b> the company's construction activity. Not just lend their name.</li>
+  <li>If the qualifier <i>didn't</i> supervise, that's a violation — and CSLB can come after <b>both</b> the qualifier (your dad) AND the license holder (Cyberdyne).</li>
+  <li>Penalties: CSLB accusation, license revocation, administrative fines, restitution orders. §7068.1 also carries <b>misdemeanor exposure</b> — up to 6 months jail and $3,000–$5,000 fine. Not automatic refunds to every customer.</li>
+  <li>"All their work is illegal" isn't quite right. The work still happened. The contracts aren't automatically void. But <b>§7031(b)</b> gives past customers a separate civil remedy: they can sue for 100% refund of what they paid if the license was effectively unlicensed (qualifier wasn't supervising). That's the sharpest customer-side lever — bigger stick than complaint-driven CSLB discipline.</li>
+</ul>
+
+<p>You mentioned Kermit was paid <b>$6,000 total for the whole 3-year stretch</b> (2019–2022). That's roughly $167 a month. For context, a full-time qualifier actively running a busy contractor's operations is a serious role — typically $60K–$120K+ a year, or a meaningful equity stake, or both. <b>A flat $6K over 3 years IS consistent with a paper-qualifier arrangement</b> — which is exactly what §7068.1 was written to stop. If there's a case to be made, that compensation number is a key piece of it.</p>
+
+<p>Practically: the §7068.1 angle is a pressure point on Cyberdyne — but pulling that lever also exposes your dad, because he signed on as the qualifier. If this is a path you and Kermit want to walk, you'd want a contractor-law attorney talking to CSLB. CSLB doesn't publish a formal "voluntary disclosure" program, but coming in represented — with a narrative and documentation — is a very different posture from getting hit cold with an accusation after a customer complaint drops.</p>
+
+<h2>3. Other things worth knowing</h2>
+
+<ul>
+  <li><b>Frank Dean Torresleon</b> was also a member of Cyberdyne from 02/2019 through 01/20/2023. Left about two months after your dad.</li>
+  <li><b>Wadhams Construction #441195 suspension</b> (07/01/2025) — the public record doesn't say why. Separate question from the Cyberdyne one. CSLB at the numbers below can tell you.</li>
+  <li>Current RMO Jonny Castaneda also holds CSLB #1051360 (inactive), issued to an individual as "JONNY CASTANEDA" (no DBA). Under B&amp;P Code §7068(c), serving as RMO for more than one firm requires either ≥20% ownership in each additional firm, or CSLB approval — capped at 3 firms regardless. He's at two listings and not obviously overextended on the face of the record.</li>
+</ul>
+
+<div class="part-label">Earlier round — April 21</div>
+
+<h2>4. "Kermit owns Cyberdyne" — nope, that's a stale record you're looking at</h2>
 
 <div class="verdict green">
   <strong>Verdict: false as a current record.</strong>
   Your dad's been off Cyberdyne Construction LLC (CSLB #1050614) since <b>November 18, 2022.</b> The rumor is real but the source is a website called BuildZoom that scrapes old CSLB data and hasn't updated in years. It still auto-labels him as "owner" because he used to be the license qualifier. That's the thing you saw.
 </div>
 
-<p>I pulled the live CSLB record today (April 21, 2026). Here's who's actually on it:</p>
+<p>I pulled the live CSLB record on April 21, 2026. Here's who's actually on it:</p>
 
 <table>
   <tr><th>Name</th><th>Role</th><th>Since</th></tr>
@@ -129,7 +250,7 @@
 <h3>One honest caveat</h3>
 <p>The public record can't rule out a quiet handshake deal where your dad still has some financial stake. California LLCs only have to name their <i>managers</i> on public filings, not silent investors. If there's a side agreement, it wouldn't show up. But if Kermit says he has nothing to do with them, and the filings say he has nothing to do with them — then as far as anyone can prove publicly, he has nothing to do with them.</p>
 
-<h2>2. Eugene McCormick — not connected to Cyberdyne</h2>
+<h2>5. Eugene McCormick — not connected to Cyberdyne</h2>
 
 <div class="verdict green">
   <strong>Verdict: no tie to Cyberdyne.</strong>
@@ -145,7 +266,7 @@
 
 <p>I checked Cyberdyne's BBB profile, LinkedIn, Yelp, the contractor search aggregators, and their permit history as indexed by BuildZoom. No McCormick name anywhere on Cyberdyne. If Gene ever worked on a Cyberdyne job as a subcontractor, it wasn't documented publicly.</p>
 
-<h2>3. The James Garner case — I couldn't find it. I need your help.</h2>
+<h2>6. The James Garner case — I couldn't find it. I need your help.</h2>
 
 <div class="verdict yellow">
   <strong>Verdict: not located yet.</strong>
@@ -169,105 +290,6 @@
 </ol>
 
 <p>If you can give me any more detail — was it criminal or civil? Did the court send a subpoena or a letter? Did it name a company? — I can narrow it down.</p>
-
-<h2>4. Your theory: "Kermit never actually RMO'd, so everything Cyberdyne built is illegal"</h2>
-
-<div class="verdict yellow">
-  <strong>Verdict: partially right, but the mechanism works differently than you think.</strong>
-  There IS a real legal issue here. It's called "qualifier-for-hire" under California Business & Professions Code §7068.1. But it cuts against your dad first, not Cyberdyne — because the qualifier has the duty to supervise. And it doesn't automatically void every contract Cyberdyne ever signed.
-</div>
-
-<p>The way this actually works in California:</p>
-
-<ul>
-  <li>A "qualifier" (RMO or RMG) on a license has a legal duty to <b>actively supervise</b> the company's construction activity. Not just lend their name.</li>
-  <li>If the qualifier <i>didn't</i> supervise, that's a violation — and CSLB can come after <b>both</b> the qualifier (your dad) AND the license holder (Cyberdyne).</li>
-  <li>Penalties: CSLB accusation, license revocation, fines, restitution orders. Not automatic refunds to every customer.</li>
-  <li>"All their work is illegal" isn't quite right. The work still happened. The contracts aren't automatically void. But if a past Cyberdyne customer complains, they have strong standing if the qualifier wasn't really on the job.</li>
-</ul>
-
-<p>You mentioned Kermit was paid <b>$6,000 total for the whole 3-year stretch</b> (2019–2022). That's roughly $167 a month. For context, a full-time qualifier actively running a busy contractor's operations is a serious role — typically $60K–$120K+ a year, or a meaningful equity stake, or both. <b>A flat $6K over 3 years IS consistent with a paper-qualifier arrangement</b> — which is exactly what §7068.1 was written to stop. If there's a case to be made, that compensation number is a key piece of it.</p>
-
-<p>Practically: the §7068.1 angle is a pressure point on Cyberdyne — but pulling that lever also exposes your dad, because he signed on as the qualifier. If this is a path you and Kermit want to walk, you'd want a contractor-law attorney talking to CSLB together, not separately. CSLB has a voluntary disclosure process that's different from getting hit cold with an accusation.</p>
-
-<h2>5. What Cyberdyne has — and doesn't have — on file</h2>
-
-<p>You asked about environmental, SWPPP, and health &amp; safety certifications. Three research agents went through the state and federal databases. Here's the rundown.</p>
-
-<h3>Environmental &amp; stormwater</h3>
-<table>
-  <tr><th>Filing</th><th>Status</th></tr>
-  <tr><td>SWPPP / Construction General Permit coverage (CA SMARTS)</td><td><b>No filings.</b> Zero Notices of Intent statewide.</td></tr>
-  <tr><td>Cal EPA regulated facility status</td><td>Not listed.</td></tr>
-  <tr><td>Federal EPA ECHO (air, water, hazmat, waste)</td><td>No records, no violations, no enforcement.</td></tr>
-  <tr><td>Hazardous waste generator registration</td><td>None filed.</td></tr>
-  <tr><td>San Diego Regional Water Quality Control Board (Region 9)</td><td>No enforcement actions.</td></tr>
-</table>
-
-<div class="verdict yellow">
-  <strong>Potential red flag.</strong>
-  California's Construction General Permit requires any project disturbing <b>1+ acre of soil</b> to file an NOI before breaking ground. Cyberdyne has 442+ pulled permits over 2 years and <b>zero SWPPP NOIs.</b> That's defensible if every project was rooftop-only (solar panels on existing structures disturb no soil). It's <b>not</b> defensible if any permits involved ground-mount systems, trenching, or site prep over the 1-acre threshold. Worth checking against their actual permit list.
-</div>
-
-<h3>Labor &amp; safety</h3>
-<table>
-  <tr><th>Filing</th><th>Status</th></tr>
-  <tr><td>DIR public works contractor registration #1000026740</td><td>Listed but appears dormant (no public-works projects surfaced).</td></tr>
-  <tr><td>Workers' comp</td><td><b>"No employees" exemption</b> self-certified 02/21/2025.</td></tr>
-  <tr><td>Cal/OSHA + federal OSHA inspections</td><td>No inspections, no citations, no reported accidents.</td></tr>
-  <tr><td>DOL Wage &amp; Hour Division</td><td>No public actions.</td></tr>
-  <tr><td>CA Labor Commissioner wage-theft judgments</td><td>No public findings.</td></tr>
-</table>
-
-<div class="verdict red">
-  <strong>Counter-signal on the "no employees" claim.</strong>
-  Cyberdyne is <b>actively running W-2 job postings</b> on ZipRecruiter and WayUp — "Residential Solar Representative" at $18/hr base with full medical/dental/vision/401K, plus "Solar Appointment Setter" and "Solar Site Surveyor." Their own website names in-house installers by first name (Jesus, Jorge — both USMC veterans) and a sales rep (Kohl Swartwood).
-  <br><br>
-  A "no employees" self-certification is made <b>under penalty of perjury.</b> If those postings describe actual W-2 roles, the certification is a misrepresentation. That's a real exposure under <b>CSLB §7114 / §7125</b> (workers' comp fraud) and an EDD misclassification audit trigger — regardless of the §7068.1 qualifier issue.
-</div>
-
-<h3>Solar industry certifications</h3>
-<table>
-  <tr><th>Credential</th><th>Status</th></tr>
-  <tr><td>NABCEP (PV installer certification)</td><td>Not held. Zero matches in the national directory.</td></tr>
-  <tr><td>Tesla / Powerwall Certified Installer</td><td>Not held.</td></tr>
-  <tr><td>Enphase Installer Network</td><td>Not held.</td></tr>
-  <tr><td>SunPower Elite Dealer</td><td>Not held.</td></tr>
-  <tr><td>LG, Panasonic, Q CELLS, Jinko, REC authorized installer</td><td>None claimed, none verified.</td></tr>
-  <tr><td>CALSSA (California Solar &amp; Storage Association)</td><td>Not a member.</td></tr>
-  <tr><td>SEIA (Solar Energy Industries Association)</td><td>Not a member.</td></tr>
-</table>
-
-<p>The only trade affiliation they publicly claim is <b>Tiny Home Industry Association (THIA)</b> commercial membership — a paid trade membership, not a technical certification.</p>
-
-<h3>BBB correction</h3>
-<p>I said in an earlier writeup they were "A+ accredited." That's not quite right. They have an <b>A+ rating but are not BBB accredited.</b> Rating = BBB's independent evaluation of complaint history. Accreditation = a paid membership with adherence to BBB standards. They haven't pursued accreditation. File opened Jan 2024.</p>
-
-<h3>The B-only license question</h3>
-<p>Per the City of San Diego's Information Bulletin 301, a B general building license <b>can</b> pull residential solar permits if the project is bundled with reroof or structural work. The electrical must still be performed by a C-10 holder. Cyberdyne's recurring electrical sub is named "<b>Geezus Renewables</b>" (possibly a DBA or a spelling variant of "Jesus") — research couldn't confirm that name in the CSLB database under that spelling. <b>Worth verifying:</b> if Geezus isn't actually licensed as a C-10, that changes the legality of every install they've done.</p>
-
-<h3>Other things worth knowing</h3>
-<ul>
-  <li><b>Frank Dean Torresleon</b> was also a member of Cyberdyne from 02/2019 through 01/20/2023. Left about two months after your dad.</li>
-  <li><b>Wadhams Construction #441195 suspension</b> (07/01/2025) — the public record doesn't say why. Separate question from the Cyberdyne one. CSLB at the numbers above can tell you.</li>
-  <li>Current RMO Jonny Castaneda also holds CSLB #1051360 (inactive) under Jonny Castaneda Construction. Serving as RMO for multiple licenses is limited (~3 firms max) but he's not obviously overextended.</li>
-</ul>
-
-<h2>Bottom line</h2>
-
-<div class="callout">
-  <p><b>Short version you can give Kermit:</b></p>
-  <ul>
-    <li>"Kermit owns Cyberdyne" — no, you're looking at a stale BuildZoom page. CSLB record has him off since 11/18/2022.</li>
-    <li>Gene McCormick isn't on Cyberdyne.</li>
-    <li>James Garner case — real but not located yet. Fastest path: phone CSLB Legal Action Disclosure.</li>
-    <li><b>$6K total for 3 years of "supervision"</b> is exactly the compensation pattern §7068.1 was written to catch. That detail strengthens the qualifier-for-hire theory meaningfully.</li>
-    <li>Cyberdyne holds <b>zero</b> industry certifications (NABCEP, Tesla, Enphase, CALSSA, SEIA — none). They're not BBB accredited either (A+ rating ≠ accredited).</li>
-    <li>Cyberdyne has <b>zero SWPPP NOIs</b> despite 442+ permits — only defensible if all projects were rooftop-only.</li>
-    <li>Cyberdyne claims "no employees" on their CSLB exemption but <b>actively posts W-2 jobs with benefits.</b> That's a separate CSLB §7114/§7125 workers' comp fraud angle — and an EDD misclassification audit trigger — with or without the §7068.1 issue.</li>
-  </ul>
-  <p>These are serious enforcement pressure points. Anything else you want me to run down, let me know.</p>
-</div>
 
 <footer>
   Research compiled April 21, 2026. Updated April 22, 2026 with cert / filing posture research. Sources: live CSLB license lookup for #1050614 and #441195, CA Secretary of State entity 201812510057 (Statement of Information filed 12/24/2024), CA SMARTS stormwater database, EPA ECHO, Cal EPA Regulated Site Portal, OSHA IMIS, DIR PWCR, NABCEP/CALSSA/SEIA/Tesla/Enphase/SunPower installer directories, BBB, ZipRecruiter/WayUp/Indeed job boards, and a stack of aggregators. Nothing here is legal advice — for strategy on any of this, talk to a California contractor-law attorney. Good luck.
