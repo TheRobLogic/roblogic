@@ -29,6 +29,27 @@ export async function onRequestPost({ request }) {
     if (url.searchParams.has('alive')) {
       return new Response('alive ' + Date.now(), { status: 200 });
     }
+    // Stage probes: each short-circuits after a specific step so we can
+    // isolate where the full-path 502 is coming from.
+    const stage = url.searchParams.get('stage');
+    if (stage === 'post-ua') {
+      const ua0 = request.headers.get('user-agent') || '';
+      return new Response('ua=' + ua0.length, { status: 200 });
+    }
+    if (stage === 'post-text') {
+      const txt = await request.text();
+      return new Response('body-len=' + (txt || '').length, { status: 200 });
+    }
+    if (stage === 'post-parse') {
+      const txt = await request.text();
+      let p = {};
+      try { p = JSON.parse(txt); } catch (_) {}
+      return new Response('parsed=' + JSON.stringify(p).length, { status: 200 });
+    }
+    if (stage === 'post-cf') {
+      const cf = request.cf || {};
+      return new Response(JSON.stringify({ country: cf.country, region: cf.region, city: cf.city }), { status: 200, headers: { 'content-type': 'application/json' } });
+    }
     const ua = request.headers.get('user-agent') || '';
     if (BOT_RE.test(ua)) {
       return new Response(null, { status: 204 });
