@@ -1081,16 +1081,17 @@
     }
 
     // ── Visitor beacon — every hit, skip bots, fail silent ──
-    // Hits /jordon/beacon (CF Pages Function) which adds IP + geo server-side.
+    // Hits /beacon (generic CF Pages Function) which adds IP + geo server-side.
     try {
       const ua = navigator.userAgent.toLowerCase();
       if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
-        fetch('/jordon/beacon', {
+        fetch('/beacon', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             page: 'jordon',
-            ref: document.referrer || 'direct'
+            ref: document.referrer || 'direct',
+            tag: 'cocktail'
           })
         }).catch(() => {});
       }

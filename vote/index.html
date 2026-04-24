@@ -1042,16 +1042,17 @@ A Democrat is most likely to win the CA governorship in November 2026, but with 
   document.querySelectorAll('.js-days').forEach(el => el.textContent = days);
 
   // visit beacon — every hit, skip bots, fail silent
-  // Hits /vote/beacon (CF Pages Function) which adds IP + geo server-side.
+  // Hits /beacon (generic CF Pages Function) which adds IP + geo server-side.
   try {
     const ua = navigator.userAgent.toLowerCase();
     if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
-      fetch('/vote/beacon', {
+      fetch('/beacon', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           page: 'vote',
-          ref: document.referrer || 'direct'
+          ref: document.referrer || 'direct',
+          tag: 'ballot_box'
         })
       }).catch(() => {});
     }
