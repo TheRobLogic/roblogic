@@ -50,6 +50,27 @@ export async function onRequestPost({ request }) {
       const cf = request.cf || {};
       return new Response(JSON.stringify({ country: cf.country, region: cf.region, city: cf.city }), { status: 200, headers: { 'content-type': 'application/json' } });
     }
+    if (stage === 'fetch-httpbin') {
+      try {
+        const r = await fetch('https://httpbin.org/post', { method: 'POST', body: 'hi' });
+        return new Response('httpbin=' + r.status, { status: 200 });
+      } catch (e) {
+        return new Response('httpbin-err=' + (e && e.message), { status: 200 });
+      }
+    }
+    if (stage === 'fetch-ntfy-no-body') {
+      try {
+        const r = await fetch('https://ntfy.sh/roblogic-claude', {
+          method: 'POST',
+          headers: { 'Title': 'stage-probe' },
+          body: 'probe'
+        });
+        const txt = await r.text().catch(() => '');
+        return new Response('ntfy=' + r.status + ':' + txt.slice(0, 200), { status: 200 });
+      } catch (e) {
+        return new Response('ntfy-err=' + (e && e.name) + ':' + (e && e.message), { status: 200 });
+      }
+    }
     const ua = request.headers.get('user-agent') || '';
     if (BOT_RE.test(ua)) {
       return new Response(null, { status: 204 });
