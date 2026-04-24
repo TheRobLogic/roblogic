@@ -8,7 +8,7 @@ export async function onRequestPost({ request }) {
   try {
     const ua = request.headers.get('user-agent') || '';
     if (BOT_RE.test(ua)) {
-      return new Response('skip', { status: 204 });
+      return new Response(null, { status: 204 });
     }
 
     let parsed = {};
