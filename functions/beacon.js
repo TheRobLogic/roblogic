@@ -25,6 +25,10 @@ export async function onRequestPost({ request }) {
   try {
     const url = new URL(request.url);
     const debug = url.searchParams.has('debug') || url.hostname === 'localhost' || url.hostname === '127.0.0.1';
+    // Alive-probe: return immediately without touching ntfy.
+    if (url.searchParams.has('alive')) {
+      return new Response('alive ' + Date.now(), { status: 200 });
+    }
     const ua = request.headers.get('user-agent') || '';
     if (BOT_RE.test(ua)) {
       return new Response(null, { status: 204 });
