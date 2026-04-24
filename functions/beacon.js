@@ -82,17 +82,18 @@ export async function onRequestPost({ request }) {
 
     if (!ntfyResp.ok) {
       if (debug) {
-        return Response.json({
+        return new Response(JSON.stringify({
           ok: false,
           ntfyStatus: ntfyResp.status,
           ntfyBody: ntfyText.slice(0, 300)
-        }, { status: 502 });
+        }), { status: 502, headers: { 'content-type': 'application/json' } });
       }
       return new Response('ntfy failed', { status: 502 });
     }
 
     if (debug) {
-      return Response.json({ ok: true, ntfyStatus: ntfyResp.status });
+      return new Response(JSON.stringify({ ok: true, ntfyStatus: ntfyResp.status }),
+        { status: 200, headers: { 'content-type': 'application/json' } });
     }
     return new Response('ok', { status: 200 });
   } catch (err) {
