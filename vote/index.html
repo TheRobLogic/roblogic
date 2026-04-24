@@ -1041,23 +1041,19 @@ A Democrat is most likely to win the CA governorship in November 2026, but with 
   const days = Math.max(0, Math.ceil((PRIMARY - today) / 86400000));
   document.querySelectorAll('.js-days').forEach(el => el.textContent = days);
 
-  // visit beacon — 1/hr per browser, skip bots, fail silent
+  // visit beacon — every hit, skip bots, fail silent
   // Hits /vote/beacon (CF Pages Function) which adds IP + geo server-side.
   try {
     const ua = navigator.userAgent.toLowerCase();
     if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
-      const last = +(localStorage.getItem('voteBeacon') || 0);
-      if (Date.now() - last > 3600000) {
-        localStorage.setItem('voteBeacon', Date.now());
-        fetch('/vote/beacon', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            page: 'vote',
-            ref: document.referrer || 'direct'
-          })
-        }).catch(() => {});
-      }
+      fetch('/vote/beacon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          page: 'vote',
+          ref: document.referrer || 'direct'
+        })
+      }).catch(() => {});
     }
   } catch (e) {}
 })();
