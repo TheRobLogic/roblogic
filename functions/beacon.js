@@ -61,14 +61,36 @@ export async function onRequestPost({ request }) {
       `UA: ${ua.slice(0, 100)}`
     ].filter(Boolean).join('\n');
 
-    const ntfyResp = await fetch('https://ntfy.sh/roblogic-claude', {
-      method: 'POST',
-      headers: {
-        'Title': title,
-        'Tags': tags
-      },
-      body
-    });
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000);
+    let ntfyResp;
+    let abortedByTimeout = false;
+    try {
+      ntfyResp = await fetch('https://ntfy.sh/roblogic-claude', {
+        method: 'POST',
+        headers: {
+          'Title': title,
+          'Tags': tags
+        },
+        body,
+        signal: ctrl.signal
+      });
+    } catch (fetchErr) {
+      clearTimeout(timer);
+      abortedByTimeout = fetchErr && fetchErr.name === 'AbortError';
+      console.log('beacon ntfy fetch failed', { name: fetchErr && fetchErr.name, message: fetchErr && fetchErr.message, abortedByTimeout });
+      if (debug) {
+        return new Response(JSON.stringify({
+          ok: false,
+          error: 'ntfy-fetch-threw',
+          name: fetchErr && fetchErr.name,
+          message: fetchErr && fetchErr.message,
+          abortedByTimeout
+        }), { status: 502, headers: { 'content-type': 'application/json' } });
+      }
+      return new Response('ntfy fetch failed', { status: 502 });
+    }
+    clearTimeout(timer);
 
     const ntfyText = ntfyResp.ok ? '' : await ntfyResp.text().catch(() => '');
     console.log('beacon ntfy response', {
