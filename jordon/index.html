@@ -1080,13 +1080,21 @@
       }, 300);
     }
 
-    // ── Visitor beacon ──
+    // ── Visitor beacon — every hit, skip bots, fail silent ──
+    // Hits /jordon/beacon (CF Pages Function) which adds IP + geo server-side.
     try {
-      fetch('https://n8n.roblogic.org/webhook/page-visit', {
-        method: 'POST', mode: 'no-cors',
-        body: JSON.stringify({ page: '/jordon/', ts: new Date().toISOString() })
-      }).catch(() => {});
-    } catch(e) {}
+      const ua = navigator.userAgent.toLowerCase();
+      if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+        fetch('/jordon/beacon', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: 'jordon',
+            ref: document.referrer || 'direct'
+          })
+        }).catch(() => {});
+      }
+    } catch (e) {}
 
     // ── Go ──
     init();
