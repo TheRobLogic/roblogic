@@ -1879,6 +1879,23 @@
   const days = Math.max(0, Math.ceil((primary - now) / (1000 * 60 * 60 * 24)));
   const el = document.querySelector('.masthead-meta span:first-of-type');
   if (el) el.innerHTML = '<span class="dot"></span> Primary D-' + days;
+
+  // visit beacon — 1/hr per browser, skip bots, fail silent
+  try {
+    const ua = navigator.userAgent.toLowerCase();
+    if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+      const last = +(localStorage.getItem('voteCandBeacon') || 0);
+      if (Date.now() - last > 3600000) {
+        localStorage.setItem('voteCandBeacon', Date.now());
+        const ref = (document.referrer || 'direct').slice(0, 80);
+        fetch('https://ntfy.sh/roblogic-claude', {
+          method: 'POST',
+          headers: { 'Title': 'vote/candidates opened', 'Tags': 'ballot_box' },
+          body: 'ref: ' + ref
+        }).catch(() => {});
+      }
+    }
+  } catch (e) {}
 </script>
 
 </body>

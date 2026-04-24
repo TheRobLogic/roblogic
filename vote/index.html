@@ -1040,6 +1040,23 @@ A Democrat is most likely to win the CA governorship in November 2026, but with 
   const today = new Date(); today.setHours(0,0,0,0);
   const days = Math.max(0, Math.ceil((PRIMARY - today) / 86400000));
   document.querySelectorAll('.js-days').forEach(el => el.textContent = days);
+
+  // visit beacon — 1/hr per browser, skip bots, fail silent
+  try {
+    const ua = navigator.userAgent.toLowerCase();
+    if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+      const last = +(localStorage.getItem('voteBeacon') || 0);
+      if (Date.now() - last > 3600000) {
+        localStorage.setItem('voteBeacon', Date.now());
+        const ref = (document.referrer || 'direct').slice(0, 80);
+        fetch('https://ntfy.sh/roblogic-claude', {
+          method: 'POST',
+          headers: { 'Title': 'vote.roblogic.org opened', 'Tags': 'ballot_box' },
+          body: 'ref: ' + ref
+        }).catch(() => {});
+      }
+    }
+  } catch (e) {}
 })();
 </script>
 </body>
