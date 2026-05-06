@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-06T22:32:18.941Z",
+  "updated": "2026-05-06T22:35:45.075Z",
   "count": 211,
   "licenses": [
     {
@@ -21,8 +21,8 @@
       "lng": -117.217616255195,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00676437",
@@ -43,8 +43,8 @@
       "lng": -117.107731902431,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676371",
@@ -87,8 +87,8 @@
       "lng": -117.065672276068,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675896",
@@ -131,8 +131,8 @@
       "lng": -117.271986801184,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00677639",
@@ -153,8 +153,8 @@
       "lng": -117.301388890029,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00673899",
@@ -175,8 +175,8 @@
       "lng": -117.178734436313,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676851",
@@ -197,8 +197,8 @@
       "lng": -117.153548697729,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00646899",
@@ -219,8 +219,8 @@
       "lng": -117.1629025371,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00646899",
@@ -241,8 +241,8 @@
       "lng": -117.1629025371,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00646899",
@@ -263,8 +263,8 @@
       "lng": -117.1629025371,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00669867",
@@ -307,8 +307,8 @@
       "lng": -117.1629025371,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00676380",
@@ -329,8 +329,8 @@
       "lng": -117.145404954884,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00677634",
@@ -351,8 +351,8 @@
       "lng": -117.167848186977,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00659617",
@@ -373,8 +373,8 @@
       "lng": -117.3629223015,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00659617",
@@ -395,8 +395,8 @@
       "lng": -117.3629223015,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00676229",
@@ -417,8 +417,8 @@
       "lng": -117.326850739931,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00650418",
@@ -439,8 +439,8 @@
       "lng": -116.960815912936,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00669920",
@@ -461,8 +461,8 @@
       "lng": -117.355881503372,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00677778",
@@ -505,8 +505,8 @@
       "lng": -117.227748306948,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00677778",
@@ -549,8 +549,8 @@
       "lng": -117.022032057777,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00676448",
@@ -571,8 +571,8 @@
       "lng": -117.077886779446,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676453",
@@ -593,8 +593,8 @@
       "lng": -117.102714825484,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674793",
@@ -615,8 +615,8 @@
       "lng": -117.123845259196,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00671387",
@@ -637,8 +637,8 @@
       "lng": -117.25139327232,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00671477",
@@ -659,8 +659,8 @@
       "lng": -117.170360474017,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00674306",
@@ -681,8 +681,8 @@
       "lng": -117.074682413377,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676879",
@@ -703,8 +703,8 @@
       "lng": -117.251871164078,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675833",
@@ -725,8 +725,8 @@
       "lng": -117.270246816047,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00674210",
@@ -769,8 +769,8 @@
       "lng": -117.253164672996,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675803",
@@ -791,8 +791,8 @@
       "lng": -117.328461743848,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675890",
@@ -813,8 +813,8 @@
       "lng": -117.146542799407,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674640",
@@ -835,8 +835,8 @@
       "lng": -117.165972515823,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00674640",
@@ -857,8 +857,8 @@
       "lng": -117.165972515823,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00674735",
@@ -967,8 +967,8 @@
       "lng": -116.67427,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00677560",
@@ -989,8 +989,8 @@
       "lng": -117.091113186662,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00671530",
@@ -1011,8 +1011,8 @@
       "lng": -117.07433283942,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00666550",
@@ -1033,8 +1033,8 @@
       "lng": -116.94071816664,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00644039",
@@ -1055,8 +1055,8 @@
       "lng": -117.178806908689,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00670372",
@@ -1077,8 +1077,8 @@
       "lng": -117.150093967283,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00674405",
@@ -1099,8 +1099,8 @@
       "lng": -116.95206478973,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675172",
@@ -1121,8 +1121,8 @@
       "lng": -117.160626316197,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00672177",
@@ -1143,8 +1143,8 @@
       "lng": -117.335916693626,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00673086",
@@ -1165,8 +1165,8 @@
       "lng": -116.988112003159,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675830",
@@ -1187,8 +1187,8 @@
       "lng": -117.379764937543,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675897",
@@ -1209,8 +1209,8 @@
       "lng": -117.312707476298,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00669837",
@@ -1231,8 +1231,8 @@
       "lng": -117.088053733668,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676318",
@@ -1253,8 +1253,8 @@
       "lng": -117.071678753115,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675898",
@@ -1275,8 +1275,8 @@
       "lng": -117.3109079,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675897",
@@ -1297,8 +1297,8 @@
       "lng": -117.312707476298,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675605",
@@ -1319,8 +1319,8 @@
       "lng": -117.379335234133,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674827",
@@ -1341,8 +1341,8 @@
       "lng": -117.206927487836,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675581",
@@ -1363,8 +1363,8 @@
       "lng": -117.071446033608,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675998",
@@ -1385,8 +1385,8 @@
       "lng": -117.111838103507,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675676",
@@ -1407,8 +1407,8 @@
       "lng": -117.127476205037,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00669853",
@@ -1429,8 +1429,8 @@
       "lng": -117.120465081574,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "FID",
+      "isNew": false
     },
     {
       "fileNumber": "00669853",
@@ -1451,8 +1451,8 @@
       "lng": -117.120465081574,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "FID",
+      "isNew": false
     },
     {
       "fileNumber": "00674619",
@@ -1473,8 +1473,8 @@
       "lng": -117.270061350629,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675899",
@@ -1495,8 +1495,8 @@
       "lng": -117.171506334946,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674149",
@@ -1517,8 +1517,8 @@
       "lng": -117.160072309287,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674161",
@@ -1539,8 +1539,8 @@
       "lng": -117.160072309287,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675272",
@@ -1561,8 +1561,8 @@
       "lng": -117.111857343852,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "FID",
+      "isNew": false
     },
     {
       "fileNumber": "00676440",
@@ -1605,8 +1605,8 @@
       "lng": -117.159844306565,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675272",
@@ -1627,8 +1627,8 @@
       "lng": -117.111857343852,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "FID",
+      "isNew": false
     },
     {
       "fileNumber": "00676549",
@@ -1649,8 +1649,8 @@
       "lng": -117.235349462875,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675843",
@@ -1671,8 +1671,8 @@
       "lng": -117.125658656309,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675319",
@@ -1693,8 +1693,8 @@
       "lng": -117.30196787897,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675319",
@@ -1715,8 +1715,8 @@
       "lng": -117.30196787897,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00673656",
@@ -1737,8 +1737,8 @@
       "lng": -117.224437096644,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00673656",
@@ -1759,8 +1759,8 @@
       "lng": -117.224437096644,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00673829",
@@ -1781,8 +1781,8 @@
       "lng": -117.257896555412,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00662642",
@@ -1803,8 +1803,8 @@
       "lng": -117.17360982522,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00669178",
@@ -1825,8 +1825,8 @@
       "lng": -117.134676071207,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675324",
@@ -1847,8 +1847,8 @@
       "lng": -117.12299448444,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675321",
@@ -1869,8 +1869,8 @@
       "lng": -117.123485307321,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00673656",
@@ -1891,8 +1891,8 @@
       "lng": -117.224437096644,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00670289",
@@ -1913,8 +1913,8 @@
       "lng": -117.247700724942,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00676322",
@@ -1935,8 +1935,8 @@
       "lng": -117.258453789698,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676338",
@@ -1957,8 +1957,8 @@
       "lng": -117.175849391985,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676147",
@@ -1979,8 +1979,8 @@
       "lng": -117.348278565845,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674488",
@@ -2001,8 +2001,8 @@
       "lng": -117.112408332298,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674488",
@@ -2023,8 +2023,8 @@
       "lng": -117.112408332298,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00676112",
@@ -2045,8 +2045,8 @@
       "lng": -117.253270465856,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00677798",
@@ -2067,8 +2067,8 @@
       "lng": -117.07893789783,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00676022",
@@ -2089,8 +2089,8 @@
       "lng": -117.343768836035,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00642287",
@@ -2111,8 +2111,8 @@
       "lng": -117.160625872536,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00671921",
@@ -2155,8 +2155,8 @@
       "lng": -117.155136780564,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00673997",
@@ -2177,8 +2177,8 @@
       "lng": -117.189675789732,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00671549",
@@ -2199,8 +2199,8 @@
       "lng": -116.625874147845,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675023",
@@ -2221,8 +2221,8 @@
       "lng": -117.326749055369,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00669819",
@@ -2243,8 +2243,8 @@
       "lng": -117.1606352353,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "FID",
+      "isNew": false
     },
     {
       "fileNumber": "00671771",
@@ -2265,8 +2265,8 @@
       "lng": -117.131644117646,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00669143",
@@ -2287,8 +2287,8 @@
       "lng": -117.037606,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00673997",
@@ -2309,8 +2309,8 @@
       "lng": -117.189675789732,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00675379",
@@ -2331,8 +2331,8 @@
       "lng": -117.160467717635,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00671984",
@@ -2353,8 +2353,8 @@
       "lng": -117.076400682202,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00674936",
@@ -2375,8 +2375,8 @@
       "lng": -117.302461311025,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00670600",
@@ -2397,8 +2397,8 @@
       "lng": -117.163987478755,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675878",
@@ -2419,8 +2419,8 @@
       "lng": -117.230723465733,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00672043",
@@ -2441,8 +2441,8 @@
       "lng": -117.154867228049,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "ORI",
+      "isNew": true
     },
     {
       "fileNumber": "00675666",
@@ -2463,8 +2463,8 @@
       "lng": -117.158522303733,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER",
+      "isNew": false
     },
     {
       "fileNumber": "00674100",
