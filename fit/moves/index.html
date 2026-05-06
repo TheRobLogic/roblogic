@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Moves — Glossary</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper: #ede5d3;
+    --paper-soft: rgba(0,0,0,0.04);
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --strength: #c0392b;
+    --walk: #2d6a4f;
+    --pull: #2c5282;
+    --core: #b8860b;
+  }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.035) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.025) 0%, transparent 50%);
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 4rem;
+  }
+
+  .top-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .top-rule a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 1px;
+  }
+
+  .top-rule a:hover { border-color: var(--ink); }
+
+  .stamp {
+    font-family: 'Special Elite', monospace;
+    color: var(--strength);
+    transform: rotate(-2deg);
+    border: 2px solid var(--strength);
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  h1.page-title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 0.8rem 1rem;
+    background: var(--paper-soft);
+    border-left: 3px solid var(--ink);
+  }
+
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  .toc a:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .category {
+    margin-top: 2.5rem;
+  }
+
+  .category-header {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: 0.15em;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px dashed var(--ink-soft);
+    padding: 0.6rem 0 0.4rem;
+    margin-bottom: 1.5rem;
+    color: var(--paper);
+    background: var(--ink);
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+
+  .category.lower .category-header { background: var(--strength); }
+  .category.push .category-header { background: var(--ink); }
+  .category.pull .category-header { background: var(--pull); }
+  .category.core .category-header { background: var(--core); color: var(--ink); }
+
+  .move {
+    border: 2px solid var(--ink);
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: var(--paper);
+    scroll-margin-top: 1rem;
+  }
+
+  .move-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .move-grid { grid-template-columns: 1fr; }
+  }
+
+  .move h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 3.5vw, 1.7rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .move-thumb {
+    display: block;
+    position: relative;
+    border: 1px solid var(--ink);
+    overflow: hidden;
+    text-decoration: none;
+    line-height: 0;
+  }
+
+  .move-thumb img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .move-thumb:hover img { transform: scale(1.04); }
+
+  .move-thumb::after {
+    content: "▶";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    padding-left: 6px;
+    pointer-events: none;
+    transition: background 0.2s;
+  }
+
+  .move-thumb:hover::after { background: var(--strength); }
+
+  .move-body { font-size: 0.92rem; }
+
+  .move-body .desc {
+    margin-bottom: 0.7rem;
+  }
+
+  .move-body .channel {
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .move-body .label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  .move-body ul.cues {
+    list-style: none;
+    margin-bottom: 0.4rem;
+    padding-left: 0;
+  }
+
+  .move-body ul.cues li {
+    padding: 0.1rem 0 0.1rem 1rem;
+    position: relative;
+    font-size: 0.88rem;
+  }
+
+  .move-body ul.cues li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--ink-soft);
+  }
+
+  .move-body .mistake {
+    font-size: 0.85rem;
+    border-left: 2px solid var(--strength);
+    padding-left: 0.6rem;
+    color: var(--ink-soft);
+  }
+
+  .move-body .modifier {
+    font-size: 0.85rem;
+    border-left: 2px solid var(--pull);
+    padding-left: 0.6rem;
+    color: var(--ink-soft);
+    margin-top: 0.4rem;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--ink-soft);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="top-rule">
+    <a href="../">‹ BACK TO TODAY</a>
+    <span class="stamp">THE MOVES</span>
+  </div>
+
+  <h1 class="page-title">— THE MOVES —</h1>
+
+  <div class="toc">
+    <a href="#lower">Lower</a>
+    <a href="#push">Upper Push</a>
+    <a href="#pull">Upper Pull</a>
+    <a href="#core">Core & Mobility</a>
+  </div>
+
+  <!-- ══ LOWER ══ -->
+  <section class="category lower" id="lower">
+    <div class="category-header">LOWER BODY</div>
+
+    <div class="move" id="goblet-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=ShvTpCsgTiw" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/ShvTpCsgTiw/hqdefault.jpg" alt="Goblet squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Goblet Squat</h3>
+          <p class="desc">A beginner-friendly squat variation holding a dumbbell vertically at chest height. Trains quads, glutes, adductors, and trunk/upper-back as a postural anti-flexion brace.</p>
+          <p class="channel">Demo: Squat University</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Hold weight at sternum, elbows tucked down</li>
+            <li>Sit hips back and down between heels</li>
+            <li>Drive knees out, chest tall throughout</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the chest collapse forward and lower back round at the bottom.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Squat to a box at a height that lets you keep a neutral spine; avoid deep flexion if anything tweaks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="goblet-box-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=5Qb9ZnsnQ2s" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/5Qb9ZnsnQ2s/hqdefault.jpg" alt="Goblet box squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Goblet Box Squat</h3>
+          <p class="desc">Goblet squat performed to a box or bench, sitting briefly before standing back up. Reinforces depth control and posterior-chain loading through quads, glutes, and hamstrings.</p>
+          <p class="channel">Demo: Jason Brown</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Reach hips back to the box, not straight down</li>
+            <li>Pause seated, then drive feet through floor</li>
+            <li>Keep shins fairly vertical and chest proud</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Crashing onto the box and rocking backward instead of controlling the descent and pausing.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Higher box + lighter dumbbell keeps spine neutral and avoids any lumbar collapse onto the box.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="bulgarian-split-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=hiLF_pF3EJM" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/hiLF_pF3EJM/hqdefault.jpg" alt="Bulgarian split squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Bulgarian Split Squat</h3>
+          <p class="desc">Single-leg squat with the rear foot elevated on a bench, loaded with dumbbells at the sides. Hammers quads and glutes of the front leg while challenging hip stability and balance.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Long stance, rear foot laces-down on bench</li>
+            <li>Drop straight down, front shin tracks over toes</li>
+            <li>Drive through whole front foot to stand</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Stance too short so the front knee jams forward past the toes and the lower back arches.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Hold a wall or rail for balance and reduce range; keep torso slightly forward over front leg.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-romanian-deadlift">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=5zmlnbWb-g4" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/5zmlnbWb-g4/hqdefault.jpg" alt="DB Romanian deadlift demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Romanian Deadlift</h3>
+          <p class="desc">Hip-hinge pattern with dumbbells held in front of the thighs, lowered along the legs with soft knees. Primarily trains hamstrings and glutes with strong lat and erector engagement.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Push hips back, dumbbells slide down thighs</li>
+            <li>Long spine, ribs stacked over pelvis</li>
+            <li>Squeeze glutes to lock out hips at top</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bending from the lower back instead of hinging at the hips, letting the spine round at the bottom.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Stop the dumbbells just below the kneecaps to keep a neutral spine; elevate dumbbells on plates if hamstrings are tight.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-sumo-deadlift">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=De9OUZz5W_I" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/De9OUZz5W_I/hqdefault.jpg" alt="DB sumo deadlift demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Sumo Deadlift</h3>
+          <p class="desc">Wide-stance deadlift with toes turned out, dumbbell held vertically between the legs. Targets glutes, adductors, quads, and hamstrings while keeping the torso more upright than conventional.</p>
+          <p class="channel">Demo: Mike J2FIT</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Wide stance, toes 30–45 degrees out</li>
+            <li>Knees track over second and third toes</li>
+            <li>Push floor away — hips and chest rise together</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the hips shoot up first so the lift turns into a stiff-legged deadlift with a rounded back.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Elevate the dumbbell on a low block to shorten range and keep spine neutral.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-hip-thrust">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=xDmFkJxPzeM" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/xDmFkJxPzeM/hqdefault.jpg" alt="DB hip thrust demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Hip Thrust</h3>
+          <p class="desc">Glute-focused bridge with shoulders on a bench and a dumbbell across the hip crease. Loads hip extension, prioritizing glute max with hamstring assistance.</p>
+          <p class="channel">Demo: Jeff Nippard</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Shoulder blades on bench, chin tucked</li>
+            <li>Drive heels down, ribs stay stacked</li>
+            <li>Squeeze glutes to lock out, hips fully extend</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hyperextending the lower back at the top instead of finishing with glute contraction.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Floor bridges with a folded towel under the dumbbell; cue posterior pelvic tilt to keep load off the lumbar spine.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-reverse-lunge">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Q59ZvPhpySM" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Q59ZvPhpySM/hqdefault.jpg" alt="DB reverse lunge demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Reverse Lunge</h3>
+          <p class="desc">Single-leg lunge stepping backward with dumbbells at the sides. Trains quads, glutes, and hamstrings with less stress on the front knee than forward lunges.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Step back long, lower rear knee toward floor</li>
+            <li>Front shin near vertical, weight in front heel</li>
+            <li>Drive front foot to stand, return tall</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Step too short so the front knee shoots forward and the front foot lifts at the heel.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Reduce range or hold a single goblet to keep torso upright.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-step-up">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Zp7RG4jFScw" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Zp7RG4jFScw/hqdefault.jpg" alt="DB step-up demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Step-up</h3>
+          <p class="desc">Single-leg step onto a knee-height box or bench with dumbbells at the sides. Trains quads, glutes, and hamstrings of the working leg while challenging single-leg stability.</p>
+          <p class="channel">Demo: OPEX Fitness</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Whole foot on box, knee tracks over toes</li>
+            <li>Drive through working heel, no pushoff from rear</li>
+            <li>Stand tall, lower under control</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pushing off the trailing foot to bounce up instead of driving through the working leg.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Lower box (mid-shin to just-below-knee) with lighter dumbbells; keep torso slightly forward over the working leg.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ UPPER PUSH ══ -->
+  <section class="category push" id="push">
+    <div class="category-header">UPPER PUSH</div>
+
+    <div class="move" id="db-bench-press">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=SHsUIZiNdeY" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/SHsUIZiNdeY/hqdefault.jpg" alt="DB bench press demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Bench Press</h3>
+          <p class="desc">Lying flat-bench press with a dumbbell in each hand, driving them up from chest level to lockout. Primary movers: pectoralis major, anterior deltoid, triceps.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Pinch shoulder blades back and down into bench</li>
+            <li>Slight arch, feet planted, drive through floor</li>
+            <li>Press in a slight arc, dumbbells over chest</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Flaring elbows to 90 degrees and bouncing dumbbells off the chest, which strains the shoulders.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Low incline (15–30°) and neutral (palms-facing) grip reduces shoulder strain.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-floor-press">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=oRAF41LDrW8" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/oRAF41LDrW8/hqdefault.jpg" alt="DB floor press demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Floor Press</h3>
+          <p class="desc">Pressing dumbbells from the floor with the back of the upper arms used as a stop. Primary movers: pectoralis major (lockout portion), triceps, anterior deltoid.</p>
+          <p class="channel">Demo: Mike J2FIT</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Knees bent, dumbbells start above the chest</li>
+            <li>Lower until upper arms gently touch the floor</li>
+            <li>Pause briefly, then press straight back up</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Crashing the elbows into the floor instead of a controlled, paused tap.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Naturally shoulder-friendly. Cap reps in strongest range; keep elbows ~45° from torso.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-seated-shoulder-press">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Gu1t7X2yq4M" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Gu1t7X2yq4M/hqdefault.jpg" alt="DB seated shoulder press demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Seated Shoulder Press</h3>
+          <p class="desc">Seated overhead press with dumbbells, driving from shoulder height to lockout overhead. Primary movers: anterior and lateral deltoids, triceps, upper traps.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Sit tall against pad, ribs down, core braced</li>
+            <li>Press in scapular plane (slightly forward of frontal)</li>
+            <li>Stop just before elbows fully lock, control down</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the lower back over-arch and the dumbbells drift behind the head.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Neutral (palms-facing) grip and stop at forehead height to spare the shoulders.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-push-press">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=MqvN10OF5fo" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/MqvN10OF5fo/hqdefault.jpg" alt="DB push press demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Push Press</h3>
+          <p class="desc">Standing overhead press with a leg drive to launch the dumbbells past the sticking point. Primary movers: deltoids, triceps, plus quads, glutes, and core for the dip-drive.</p>
+          <p class="channel">Demo: CrossFit</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Shallow knee dip with vertical torso</li>
+            <li>Explode through the heels to drive dumbbells up</li>
+            <li>Finish with arms locked, ribs over hips</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Turning the dip into a quarter-squat or leaning back to muscle the weight overhead.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Sub the seated DB shoulder press if loaded spinal compression bothers you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-tricep-overhead-extension">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=popGXI-qs98" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/popGXI-qs98/hqdefault.jpg" alt="DB tricep overhead extension demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Tricep Overhead Extension</h3>
+          <p class="desc">Two-handed dumbbell extension performed with the weight lowered behind the head, stretching the long head of the triceps under load. Primary mover: triceps brachii (especially long head).</p>
+          <p class="channel">Demo: Jeff Nippard</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Cup one dumbbell with both hands overhead</li>
+            <li>Keep elbows tucked and pointed forward</li>
+            <li>Lower behind head with control, then extend fully</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Flaring the elbows out so the load shifts off the triceps and onto the shoulders.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Sit on a bench with back support, run single-arm to spare lumbar and shoulders.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-chest-fly">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=S298ziysRdI" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/S298ziysRdI/hqdefault.jpg" alt="DB chest fly demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Chest Fly</h3>
+          <p class="desc">Lying chest fly arcing the dumbbells out to the sides and back together, isolating the pecs through adduction. Primary mover: pectoralis major (sternal fibers).</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Soft bend in the elbows, locked through the rep</li>
+            <li>Lower wide in an arc until pecs feel the stretch</li>
+            <li>Squeeze hands toward each other, not just up</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bending the elbows like a press at the bottom — turns into a sloppy bench press.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Floor-fly variant caps range of motion and protects the anterior shoulder.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-lateral-raise">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=n5dsI9qQXwY" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/n5dsI9qQXwY/hqdefault.jpg" alt="DB lateral raise demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Lateral Raise</h3>
+          <p class="desc">Standing or seated raise of dumbbells out to the sides until arms are roughly parallel to the floor. Primary mover: lateral (medial) deltoid.</p>
+          <p class="channel">Demo: Renaissance Periodization</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Slight forward lean, soft elbow bend held constant</li>
+            <li>Lead with the elbows, not the hands</li>
+            <li>Raise to about shoulder height, lower under control</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Swinging the torso and shrugging the traps to heave the dumbbells up.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Sit on an incline bench or against a wall to remove momentum.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ UPPER PULL ══ -->
+  <section class="category pull" id="pull">
+    <div class="category-header">UPPER PULL</div>
+
+    <div class="move" id="one-arm-db-row">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=gfUg6qWohTk" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/gfUg6qWohTk/hqdefault.jpg" alt="One-arm DB row demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>One-arm DB Row</h3>
+          <p class="desc">Single-arm dumbbell row performed with the off-hand braced on a bench so the torso stays supported and the working side can pull through a full range. Primary muscles: lats, mid-traps, rhomboids, rear delts, biceps.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Brace torso parallel to floor, lock spine neutral</li>
+            <li>Drive elbow back toward the hip, not straight up</li>
+            <li>Pause at top with shoulder blade pulled toward spine</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Yanking the dumbbell with body twist — sheds load to lower back and erases lat tension.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Chest-supported variation on an incline bench takes the lumbar spine out of it entirely.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-renegade-row">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Ek5xHUVSsAM" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Ek5xHUVSsAM/hqdefault.jpg" alt="DB renegade row demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Renegade Row</h3>
+          <p class="desc">A plank position held on two dumbbells while alternating one-arm rows, blending an anti-rotation core challenge with a pulling pattern. Primary muscles: lats, rhomboids, rear delts, obliques, deep core.</p>
+          <p class="channel">Demo: Mind Pump TV</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Set feet wide, squeeze glutes to lock the plank</li>
+            <li>Row elbow tight to ribs without rotating hips</li>
+            <li>Keep both dumbbells stacked under the shoulders</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the hips twist toward the ceiling on each rep — kills the anti-rotation purpose.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Regress to chest-supported row on an incline bench if shoulder/wrist sensitive.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-pullover">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=AAjlNtI1NiI" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/AAjlNtI1NiI/hqdefault.jpg" alt="DB pullover demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Pullover</h3>
+          <p class="desc">Lying across or along a bench, lower a single dumbbell behind the head with a slight elbow bend, then pull it back over the chest. Primary muscles: lats, long head of triceps, serratus, pecs.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Soft, fixed elbow bend — no flexion or extension at elbow</li>
+            <li>Drive ribcage down so the lats own the stretch</li>
+            <li>Stop the pull when dumbbell is over the upper chest</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bending and straightening the elbows turns it into a triceps extension.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Shorten the bottom range so the dumbbell doesn't pass the plane of the head if shoulder is cranky.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-curl">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=yTWO2th-RIY" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/yTWO2th-RIY/hqdefault.jpg" alt="DB curl demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Curl</h3>
+          <p class="desc">Standing dumbbell curl with both arms simultaneously and a supinated grip. Primary muscles: biceps brachii (long and short heads), brachialis, brachioradialis.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Pin elbows at ribs, don't let them drift forward</li>
+            <li>Supinate as dumbbell rises — palms face shoulder at top</li>
+            <li>Lower under control until arm is fully extended</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Swinging at the hips and using momentum to lift heavier weight.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Seated on a bench with a back pad locks out body english.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="db-hammer-curl">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=7jqi2qWAUJk" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/7jqi2qWAUJk/hqdefault.jpg" alt="DB hammer curl demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>DB Hammer Curl</h3>
+          <p class="desc">Curl variation performed with a neutral grip (palms facing each other) so the wrists never supinate. Primary muscles: brachialis, brachioradialis, biceps long head.</p>
+          <p class="channel">Demo: Mind Pump TV</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>True neutral grip throughout, no rotation</li>
+            <li>Elbows pinned, curl straight up toward shoulder</li>
+            <li>2–3 second eccentric on the way down</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting elbows flare forward at the top — converts to a partial front raise.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Cross-body hammer curl tracking toward the opposite shoulder is gentler on the joint.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="banded-pull-apart">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=JObYtU7Y7ag" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/JObYtU7Y7ag/hqdefault.jpg" alt="Banded pull-apart demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Banded Pull-apart</h3>
+          <p class="desc">Standing with arms extended forward, pull a light resistance band apart by retracting the shoulder blades. Primary muscles: rhomboids, mid and lower traps, rear delts, external rotators.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Start with arms straight at chest height, thumbs up</li>
+            <li>Pull from shoulder blades, not hands</li>
+            <li>Ribs stacked over hips, no lower-back arch</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bending elbows to compensate when the band is too heavy — converts to a row.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Lighter band, palms supinated to bias external rotation if shoulder is cranky.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="band-face-pull">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=ljgqer1ZpXg" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/ljgqer1ZpXg/hqdefault.jpg" alt="Band face-pull demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Band Face-pull</h3>
+          <p class="desc">Pull a band anchored at face height back toward the forehead while flaring the elbows up and rotating the shoulders externally. Primary muscles: rear delts, mid and lower traps, rotator cuff.</p>
+          <p class="channel">Demo: Athlean-X</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Anchor at or just above forehead height</li>
+            <li>Lead with the elbows up and out, not down</li>
+            <li>Finish with hands beside temples, knuckles back</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pulling toward the chin with elbows dropped — turns it into a row.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Lower the anchor to chest height and reduce range, focus on external rotation only.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CORE & MOBILITY ══ -->
+  <section class="category core" id="core">
+    <div class="category-header">CORE &amp; MOBILITY</div>
+
+    <div class="move" id="bird-dog">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=GSuicJneDQU" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/GSuicJneDQU/hqdefault.jpg" alt="Bird-dog demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Bird-dog</h3>
+          <p class="desc">Quadruped anti-rotation core stability drill — extend opposite arm and leg while holding the trunk still. Trains spinal stiffness and cross-body coordination without loading the spine.</p>
+          <p class="channel">Demo: Squat University</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Make a flat tabletop — hips and shoulders square</li>
+            <li>Reach arm and opposite leg long, not high</li>
+            <li>Brace abs as if bracing for a punch the entire rep</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the hips rotate or the low back sag when the leg lifts.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Lift just the arm or just the leg first, holding 5–10 seconds, before adding both.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="modified-curl-up">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=sPxbYHh3caQ" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/sPxbYHh3caQ/hqdefault.jpg" alt="Modified curl-up demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Modified Curl-up (McGill)</h3>
+          <p class="desc">Dr. Stuart McGill's spine-sparing abdominal exercise: hands wedged under the lumbar spine, one knee bent, head and shoulders lifted as one rigid unit. Builds anterior core endurance without flexing the lumbar spine.</p>
+          <p class="channel">Demo: Brian Carroll (with Stuart McGill)</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Hands palm-down under small of low back to preserve curve</li>
+            <li>Lift head, shoulders, and upper chest as one block</li>
+            <li>Hold 7–10 seconds with steady breathing</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Crunching the lumbar spine into the floor — kills the spine-sparing intent.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">3–5 second holds and lift only the head if shoulders cranky.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="side-plank">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=fkjglpAWEHs" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/fkjglpAWEHs/hqdefault.jpg" alt="Side plank demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Side Plank</h3>
+          <p class="desc">A lateral isometric loading the obliques, quadratus lumborum, and glute medius while keeping the spine neutral. Key for frontal-plane core stability and hip stability.</p>
+          <p class="channel">Demo: Squat University</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Stack shoulder directly over the support elbow</li>
+            <li>Drive hips up — straight line head to feet</li>
+            <li>Squeeze the down-side glute and brace obliques</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting hips sag toward the floor or rotating chest down.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">From-knees side plank — bend knees 90° and pivot off the bottom knee.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="dead-bug">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=igCDY1tdOP0" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/igCDY1tdOP0/hqdefault.jpg" alt="Dead bug demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Dead Bug</h3>
+          <p class="desc">Supine anti-extension core exercise — opposite arm and leg lower while the low back stays pinned to the floor. Trains lumbar stability with limb movement.</p>
+          <p class="channel">Demo: Mike Robertson</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Press low back firmly into floor before any limb moves</li>
+            <li>Exhale fully as arm and opposite leg extend</li>
+            <li>Move slow, only as low as you keep back flat</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the lower back arch off the floor as the leg extends.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Tabletop dead bug — keep knees bent at 90°, only lower one heel to tap the floor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="pallof-press">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=VNFKpJ9eSBI" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/VNFKpJ9eSBI/hqdefault.jpg" alt="Pallof press demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Pallof Press</h3>
+          <p class="desc">Standing anti-rotation press — holding a band at chest level, press the handle straight out while resisting being twisted toward the anchor. Trains rotary core stability.</p>
+          <p class="channel">Demo: Mind Pump TV</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Stand perpendicular to anchor, ribs stacked over hips</li>
+            <li>Press hands out from sternum without trunk rotation</li>
+            <li>Pause 2 seconds at extension before pulling slowly back</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Allowing shoulders or hips to twist toward the anchor instead of staying square.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Half-kneeling Pallof press with the inside knee down to remove balance demand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="suitcase-carry">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=LJaq4BS7KpE" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/LJaq4BS7KpE/hqdefault.jpg" alt="Suitcase carry demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Suitcase Carry</h3>
+          <p class="desc">Loaded one-arm walking carry with a single dumbbell or kettlebell at the side. Trains lateral core stability, grip, and posture under asymmetrical load.</p>
+          <p class="channel">Demo: Squat University</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Stand tall, ribs down, shoulders packed before step one</li>
+            <li>Don't let loaded shoulder dip — stay square and even</li>
+            <li>Short controlled steps, breathe through a braced trunk</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Side-bending toward the weight or hiking the loaded shoulder up to the ear.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Suitcase HOLD — stand still in posture for 20–30s before adding walking.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="cat-cow">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=mU1iRLuVpPw" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/mU1iRLuVpPw/hqdefault.jpg" alt="Cat-cow demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Cat-cow</h3>
+          <p class="desc">Quadruped spinal mobility drill that gently moves the spine through flexion (cat) and extension (cow). Lubricates spinal segments and reduces morning stiffness.</p>
+          <p class="channel">Demo: Physiofitness PT</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Hands under shoulders, knees under hips — neutral start</li>
+            <li>Inhale into cow: tailbone up, chest forward, gentle gaze ahead</li>
+            <li>Exhale into cat: tuck tailbone, round mid-back, chin to chest</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Forcing end-range arching or rounding instead of moving smoothly.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Reduce range to small pain-free oscillations if either direction tweaks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="move" id="90-90-hip-stretch">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=42s8tcC92qQ" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/42s8tcC92qQ/hqdefault.jpg" alt="90/90 hip stretch demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>90/90 Hip Stretch</h3>
+          <p class="desc">Seated hip mobility position with the front leg in 90° external rotation and the back leg in 90° internal rotation. Opens the hip capsule in both rotational directions.</p>
+          <p class="channel">Demo: Tom Morrison</p>
+          <span class="label">Form</span>
+          <ul class="cues">
+            <li>Both knees bent to 90 — front shin parallel to chest</li>
+            <li>Sit tall, chest up, no low-back round</li>
+            <li>Lean forward only as far as front sit-bone stays grounded</li>
+          </ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the front-side hip lift off the floor to chase more forward lean.</p>
+          <span class="label">Mod</span>
+          <p class="modifier">Sit on a yoga block or folded towel under front-side glute to reduce required hip rotation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    THE MOVES ▸ 30 LIFTS, STRETCHES, &amp; CARRIES<br>
+    DEMOS FROM SQUAT U / JEFF NIPPARD / ATHLEAN-X / RP / MCGILL / MIND PUMP / OTHERS
+  </div>
+
+</div>
+</body>
+</html>

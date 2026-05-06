@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Work — Daily</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper: #ede5d3;
+    --paper-soft: rgba(0,0,0,0.04);
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --strength: #c0392b;
+    --walk: #2d6a4f;
+    --mobility: #2c5282;
+    --rest: #6b6b6b;
+    --assess: #b8860b;
+  }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.035) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.025) 0%, transparent 50%);
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 4rem;
+  }
+
+  .top-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .meta-day { font-weight: 600; }
+
+  .top-rule .glossary-link {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 1px;
+    font-size: 0.7rem;
+  }
+
+  .top-rule .glossary-link:hover { border-color: var(--ink); }
+
+  .stamp {
+    font-family: 'Special Elite', monospace;
+    color: var(--strength);
+    transform: rotate(-2deg);
+    border: 2px solid var(--strength);
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  .date-line {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .type-bar {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .type-bar.strength { background: var(--strength); }
+  .type-bar.walk { background: var(--walk); }
+  .type-bar.mobility { background: var(--mobility); }
+  .type-bar.rest { background: var(--rest); }
+  .type-bar.assess { background: var(--assess); color: var(--ink); }
+
+  .duration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+
+  .notes {
+    background: var(--paper-soft);
+    border-left: 3px solid var(--ink);
+    padding: 0.65rem 0.9rem;
+    font-size: 0.88rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .notes p { margin: 0.2rem 0; }
+  .notes p::before { content: "» "; color: var(--ink-soft); }
+
+  .section { margin: 1.5rem 0; }
+
+  .section-label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--ink-soft);
+    padding-top: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .exercise-list {
+    list-style: none;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .exercise-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0.22rem 0;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .exercise-list input[type="checkbox"] {
+    margin-top: 0.32rem;
+    accent-color: var(--ink);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .exercise-list li.done span { opacity: 0.5; }
+  .exercise-list li.done span a { text-decoration: line-through; }
+
+  .exercise-list a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--ink-soft);
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .exercise-list a:hover {
+    text-decoration-color: var(--ink);
+    text-decoration-style: solid;
+  }
+
+  .exercise-list .sets {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+
+  .calendar {
+    margin-top: 2.5rem;
+    border-top: 2px solid var(--ink);
+    padding-top: 1rem;
+  }
+
+  .calendar-label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.8rem;
+  }
+
+  .weekday-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+
+  .weekday-row span {
+    font-size: 0.65rem;
+    text-align: center;
+    color: var(--ink-soft);
+    letter-spacing: 0.1em;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .cal-cell {
+    aspect-ratio: 1;
+    border: 1px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+    background: transparent;
+    transition: transform 0.1s, outline 0.1s;
+    padding: 2px;
+  }
+
+  .cal-cell:hover { transform: scale(1.08); }
+
+  .cal-cell .day-num {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+    margin-bottom: 1px;
+  }
+
+  .cal-cell .type-mini { font-size: 0.55rem; letter-spacing: 0.05em; }
+
+  .cal-cell.strength { background: var(--strength); color: var(--paper); }
+  .cal-cell.walk { background: var(--walk); color: var(--paper); }
+  .cal-cell.mobility { background: var(--mobility); color: var(--paper); }
+  .cal-cell.rest { background: var(--rest); color: var(--paper); }
+  .cal-cell.assess { background: var(--assess); color: var(--ink); }
+
+  .cal-cell.today {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+    z-index: 1;
+  }
+
+  .cal-cell.future { opacity: 0.55; }
+  .cal-cell.blank { border: none; cursor: default; pointer-events: none; }
+  .cal-cell.blank:hover { transform: none; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0.8rem 0 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .legend-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border: 1px solid var(--ink);
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--ink-soft);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-row a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 1px;
+  }
+
+  .nav-row a:hover { border-color: var(--ink); }
+  .nav-row a.disabled { opacity: 0.3; pointer-events: none; }
+
+  @media (max-width: 480px) {
+    .container { padding: 1rem 0.85rem 3rem; }
+    .stamp { font-size: 0.65rem; }
+  }
+  .cap-rules {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1rem;
+    border: 1px dashed var(--ink-soft);
+    background: var(--paper-soft);
+    font-size: 0.8rem;
+  }
+  .cap-rules .cap-label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+  .cap-rules ul { list-style: none; padding-left: 0; line-height: 1.55; }
+  .cap-rules li { padding-left: 0.85rem; position: relative; }
+  .cap-rules li::before { content: "▸"; position: absolute; left: 0; color: var(--ink-soft); }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="top-rule">
+    <span class="meta-day" id="day-marker">DAY 01 / 30</span>
+    <a href="moves/" class="glossary-link" target="_blank">THE MOVES ↗</a>
+    <span class="stamp">THE WORK</span>
+  </div>
+
+  <h1 class="date-line" id="date-line">— / — / —</h1>
+
+  <div class="type-bar" id="type-bar">
+    <span id="type-name">—</span>
+    <span class="duration" id="duration">—</span>
+  </div>
+
+  <div class="notes" id="notes-block"></div>
+
+  <div class="section" id="main-section">
+    <div class="section-label" id="main-label">The Work</div>
+    <ul class="exercise-list" id="main-list"></ul>
+  </div>
+
+  <div class="cap-rules" id="cap-rules-block">
+    <div class="cap-label">When 50 lb caps a lift</div>
+    <ul>
+      <li>Slow eccentric (3s down) — same load, harder rep</li>
+      <li>Pause (2s) at bottom or hardest position</li>
+      <li>1.5 reps: full down → halfway up → all the way up = 1</li>
+      <li>Higher reps: 15–20 instead of 8–10</li>
+      <li>Unilateral version (see "MOD" in glossary)</li>
+    </ul>
+  </div>
+
+  <div class="nav-row">
+    <a href="#" id="prev-day">‹ PREV</a>
+    <a href="?" id="today-link">TODAY</a>
+    <a href="#" id="next-day">NEXT ›</a>
+  </div>
+
+  <div class="calendar">
+    <div class="calendar-label">— THE 30 —</div>
+    <div class="weekday-row">
+      <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--strength)"></span>STRENGTH</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--walk)"></span>WALK</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--assess)"></span>ASSESS</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    BORING CONSISTENCY ▸ NOT INTENSITY THEATER<br>
+    Day 1: May 6, 2026 ▸ Day 30: Jun 4, 2026
+  </div>
+
+</div>
+
+<script>
+const PLAN = [
+  // ══ WEEK 1 ── BUILD BASE, FIND LOADS, RPE 7 (last set leaves 2-3 reps)
+  { num: 1, date: "2026-05-06", type: "strength", typeName: "LOWER A — Quads", duration: "~50 MIN",
+    notes: ["Walk warm-up 15 min before lifting.", "First session — find your starting load. Last set should leave 2-3 reps in the tank.", "Form first. No grinding."],
+    main: [
+      { name: "Goblet squat", slug: "goblet-squat", sets: "3 × 10" },
+      { name: "DB Romanian deadlift", slug: "db-romanian-deadlift", sets: "3 × 10" },
+      { name: "DB reverse lunge", slug: "db-reverse-lunge", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 12" },
+      { name: "Bird-dog", slug: "bird-dog", sets: "3 × 10/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 30s/side" }
+    ]
+  },
+  { num: 2, date: "2026-05-07", type: "walk", typeName: "WALK", duration: "30-40 MIN",
+    notes: ["Easy aerobic. Comfortable-to-brisk pace, build to brisk if it feels good."],
+    main: ["5 min easy warm-up", "20-30 min continuous, comfortable-to-brisk", "5 min easy cool-down"]
+  },
+  { num: 3, date: "2026-05-08", type: "strength", typeName: "UPPER A — Push", duration: "~50 MIN",
+    notes: ["Walk warm-up 15 min.", "Bench first while fresh. RPE 7. Find your loads."],
+    main: [
+      { name: "DB bench press", slug: "db-bench-press", sets: "3 × 10" },
+      { name: "DB seated shoulder press", slug: "db-seated-shoulder-press", sets: "3 × 10" },
+      { name: "One-arm DB row", slug: "one-arm-db-row", sets: "3 × 10/side" },
+      { name: "DB tricep overhead extension", slug: "db-tricep-overhead-extension", sets: "3 × 12" },
+      { name: "Band face-pull", slug: "band-face-pull", sets: "3 × 15" },
+      { name: "Modified curl-up", slug: "modified-curl-up", sets: "3 × 8s holds" }
+    ]
+  },
+  { num: 4, date: "2026-05-09", type: "walk", typeName: "WALK", duration: "30-40 MIN",
+    notes: ["Same shape as Day 2."],
+    main: ["5 min easy warm-up", "20-30 min continuous", "5 min easy cool-down"]
+  },
+  { num: 5, date: "2026-05-10", type: "strength", typeName: "LOWER B — Posterior", duration: "~50 MIN",
+    notes: ["Walk warm-up 15 min.", "Posterior emphasis. Sumo first — push the floor away."],
+    main: [
+      { name: "DB sumo deadlift", slug: "db-sumo-deadlift", sets: "3 × 10" },
+      { name: "Goblet box squat", slug: "goblet-box-squat", sets: "3 × 10" },
+      { name: "DB step-up", slug: "db-step-up", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 12" },
+      { name: "Side plank", slug: "side-plank", sets: "3 × 20s/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 30s/side" }
+    ]
+  },
+  { num: 6, date: "2026-05-11", type: "strength", typeName: "UPPER B — Pull", duration: "~50 MIN",
+    notes: ["Walk warm-up 15 min.", "Pull day. Row hard, control the lower."],
+    main: [
+      { name: "One-arm DB row", slug: "one-arm-db-row", sets: "3 × 10/side" },
+      { name: "DB pullover", slug: "db-pullover", sets: "3 × 12" },
+      { name: "DB seated shoulder press", slug: "db-seated-shoulder-press", sets: "3 × 10" },
+      { name: "DB curl", slug: "db-curl", sets: "3 × 12" },
+      { name: "Band face-pull", slug: "band-face-pull", sets: "3 × 15" },
+      { name: "Side plank", slug: "side-plank", sets: "3 × 20s/side" }
+    ]
+  },
+  { num: 7, date: "2026-05-12", type: "walk", typeName: "WALK", duration: "30-40 MIN",
+    notes: ["End of Week 1. Throw in 60s brisk pickups every 5 min if you want extra."],
+    main: ["5 min easy warm-up", "25-30 min continuous, brisk if cleared", "5 min cool-down"]
+  },
+
+  // ══ WEEK 2 ── ROTATED EXERCISES, RPE 7-8, +5 LB ON ANYTHING THAT FELT EASY
+  { num: 8, date: "2026-05-13", type: "strength", typeName: "LOWER A v2 — Quads", duration: "~50 MIN",
+    notes: ["+5 lb on anything that felt easy last week. New exercise rotation today."],
+    main: [
+      { name: "Goblet box squat", slug: "goblet-box-squat", sets: "3 × 10" },
+      { name: "DB sumo deadlift", slug: "db-sumo-deadlift", sets: "3 × 10" },
+      { name: "DB step-up", slug: "db-step-up", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 12" },
+      { name: "Dead bug", slug: "dead-bug", sets: "3 × 10/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 30s/side" }
+    ]
+  },
+  { num: 9, date: "2026-05-14", type: "walk", typeName: "WALK", duration: "35-45 MIN",
+    notes: ["Bumping up duration. Same comfortable-to-brisk pace."],
+    main: ["5 min easy", "25-35 min continuous", "5 min cool-down"]
+  },
+  { num: 10, date: "2026-05-15", type: "strength", typeName: "UPPER A v2 — Push", duration: "~50 MIN",
+    notes: ["Tempo press today — 3s eccentric, strict overhead, no leg drive.", "Renegade row challenges your core. Hips square, no twisting."],
+    main: [
+      { name: "DB floor press", slug: "db-floor-press", sets: "3 × 10" },
+      { name: "DB seated shoulder press", slug: "db-seated-shoulder-press", sets: "3 × 8 (3s down)" },
+      { name: "DB lateral raise", slug: "db-lateral-raise", sets: "3 × 12" },
+      { name: "DB tricep overhead extension", slug: "db-tricep-overhead-extension", sets: "3 × 12" },
+      { name: "DB renegade row", slug: "db-renegade-row", sets: "3 × 8/side" },
+      { name: "Pallof press", slug: "pallof-press", sets: "3 × 10/side" }
+    ]
+  },
+  { num: 11, date: "2026-05-16", type: "walk", typeName: "WALK", duration: "35-45 MIN",
+    notes: ["Continuous, comfortable-to-brisk."],
+    main: ["5 min easy", "25-35 min continuous", "5 min cool-down"]
+  },
+  { num: 12, date: "2026-05-17", type: "strength", typeName: "LOWER B v2 — Posterior", duration: "~50 MIN",
+    notes: ["RDL primary today. Hinge from the hips, push hips back."],
+    main: [
+      { name: "DB Romanian deadlift", slug: "db-romanian-deadlift", sets: "3 × 10" },
+      { name: "Bulgarian split squat", slug: "bulgarian-split-squat", sets: "3 × 8/leg" },
+      { name: "DB reverse lunge", slug: "db-reverse-lunge", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 12" },
+      { name: "Bird-dog", slug: "bird-dog", sets: "3 × 10/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 30s/side" }
+    ]
+  },
+  { num: 13, date: "2026-05-18", type: "strength", typeName: "UPPER B v2 — Pull", duration: "~50 MIN",
+    notes: ["Renegade row challenges your core. Keep hips square, no twisting."],
+    main: [
+      { name: "DB renegade row", slug: "db-renegade-row", sets: "3 × 8/side" },
+      { name: "Banded pull-apart", slug: "banded-pull-apart", sets: "3 × 20" },
+      { name: "DB bench press", slug: "db-bench-press", sets: "3 × 10" },
+      { name: "DB hammer curl", slug: "db-hammer-curl", sets: "3 × 12" },
+      { name: "Band face-pull", slug: "band-face-pull", sets: "3 × 15" },
+      { name: "Pallof press", slug: "pallof-press", sets: "3 × 10/side" }
+    ]
+  },
+  { num: 14, date: "2026-05-19", type: "walk", typeName: "WALK", duration: "35-45 MIN",
+    notes: ["End of Week 2. Optional: 60s brisk pickups every 5 min."],
+    main: ["5 min easy", "25-35 min continuous", "5 min cool-down"]
+  },
+
+  // ══ WEEK 3 ── PEAK LOADING, +5 LB ON COMPOUNDS, RPE 8
+  { num: 15, date: "2026-05-20", type: "strength", typeName: "LOWER A — Peak", duration: "~55 MIN",
+    notes: ["Peak loading week. +5 lb on compounds vs Week 1. RPE 8 — last set is hard but clean."],
+    main: [
+      { name: "Goblet squat", slug: "goblet-squat", sets: "4 × 8" },
+      { name: "DB Romanian deadlift", slug: "db-romanian-deadlift", sets: "4 × 8" },
+      { name: "DB reverse lunge", slug: "db-reverse-lunge", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 10" },
+      { name: "Bird-dog", slug: "bird-dog", sets: "3 × 12/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 40s/side" }
+    ]
+  },
+  { num: 16, date: "2026-05-21", type: "walk", typeName: "WALK", duration: "40-50 MIN",
+    notes: ["Continuous, push pace if it feels good."],
+    main: ["5 min easy", "30-40 min continuous, brisk if cleared", "5 min cool-down"]
+  },
+  { num: 17, date: "2026-05-22", type: "strength", typeName: "UPPER A — Peak", duration: "~55 MIN",
+    notes: ["+5 lb on bench and press if Week 1 was clean."],
+    main: [
+      { name: "DB bench press", slug: "db-bench-press", sets: "4 × 8" },
+      { name: "DB seated shoulder press", slug: "db-seated-shoulder-press", sets: "4 × 8" },
+      { name: "One-arm DB row", slug: "one-arm-db-row", sets: "3 × 10/side" },
+      { name: "DB tricep overhead extension", slug: "db-tricep-overhead-extension", sets: "3 × 12" },
+      { name: "Band face-pull", slug: "band-face-pull", sets: "3 × 15" },
+      { name: "Modified curl-up", slug: "modified-curl-up", sets: "3 × 10s holds" }
+    ]
+  },
+  { num: 18, date: "2026-05-23", type: "walk", typeName: "WALK", duration: "40-50 MIN",
+    notes: ["Continuous."],
+    main: ["5 min easy", "30-40 min continuous", "5 min cool-down"]
+  },
+  { num: 19, date: "2026-05-24", type: "strength", typeName: "LOWER B — Peak", duration: "~55 MIN",
+    notes: ["+5 lb on sumo if Week 1 was clean. RPE 8."],
+    main: [
+      { name: "DB sumo deadlift", slug: "db-sumo-deadlift", sets: "4 × 8" },
+      { name: "Goblet box squat", slug: "goblet-box-squat", sets: "4 × 8" },
+      { name: "DB step-up", slug: "db-step-up", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 10" },
+      { name: "Side plank", slug: "side-plank", sets: "3 × 25s/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 40s/side" }
+    ]
+  },
+  { num: 20, date: "2026-05-25", type: "strength", typeName: "UPPER B — Peak", duration: "~55 MIN",
+    notes: ["Peak pull day. +5 lb on row."],
+    main: [
+      { name: "One-arm DB row", slug: "one-arm-db-row", sets: "4 × 8/side" },
+      { name: "DB pullover", slug: "db-pullover", sets: "3 × 12" },
+      { name: "DB seated shoulder press", slug: "db-seated-shoulder-press", sets: "3 × 10" },
+      { name: "DB curl", slug: "db-curl", sets: "3 × 12" },
+      { name: "Band face-pull", slug: "band-face-pull", sets: "3 × 15" },
+      { name: "Side plank", slug: "side-plank", sets: "3 × 25s/side" }
+    ]
+  },
+  { num: 21, date: "2026-05-26", type: "walk", typeName: "WALK", duration: "40-50 MIN",
+    notes: ["End of Week 3. Pickups OK."],
+    main: ["5 min easy", "30-40 min continuous", "5 min cool-down"]
+  },
+
+  // ══ WEEK 4 ── DELOAD, DROP LOADS ~20%, FORM FOCUS, RPE 6
+  { num: 22, date: "2026-05-27", type: "strength", typeName: "LOWER A — Deload", duration: "~40 MIN",
+    notes: ["DELOAD week. Drop loads ~20%, 2 working sets, form-focus.", "Not a wasted week — this is how you stack progress into Month 2."],
+    main: [
+      { name: "Goblet box squat", slug: "goblet-box-squat", sets: "2 × 10" },
+      { name: "DB sumo deadlift", slug: "db-sumo-deadlift", sets: "2 × 10" },
+      { name: "DB step-up", slug: "db-step-up", sets: "2 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "2 × 12" },
+      { name: "Dead bug", slug: "dead-bug", sets: "2 × 10/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "2 × 30s/side" }
+    ]
+  },
+  { num: 23, date: "2026-05-28", type: "walk", typeName: "WALK — EASY", duration: "30 MIN",
+    notes: ["Deload applies to walks too. Easy pace only."],
+    main: ["5 min easy", "20 min easy", "5 min cool-down"]
+  },
+  { num: 24, date: "2026-05-29", type: "strength", typeName: "UPPER A — Deload", duration: "~40 MIN",
+    notes: ["DELOAD. ~20% off, 2 sets, form-focus."],
+    main: [
+      { name: "DB floor press", slug: "db-floor-press", sets: "2 × 10" },
+      { name: "DB seated shoulder press", slug: "db-seated-shoulder-press", sets: "2 × 10" },
+      { name: "DB lateral raise", slug: "db-lateral-raise", sets: "2 × 12" },
+      { name: "DB tricep overhead extension", slug: "db-tricep-overhead-extension", sets: "2 × 12" },
+      { name: "DB renegade row", slug: "db-renegade-row", sets: "2 × 8/side" },
+      { name: "Pallof press", slug: "pallof-press", sets: "2 × 10/side" }
+    ]
+  },
+  { num: 25, date: "2026-05-30", type: "walk", typeName: "WALK — EASY", duration: "30 MIN",
+    notes: ["Easy pace."],
+    main: ["5 min easy", "20 min easy", "5 min cool-down"]
+  },
+  { num: 26, date: "2026-05-31", type: "strength", typeName: "LOWER B — Deload", duration: "~40 MIN",
+    notes: ["DELOAD."],
+    main: [
+      { name: "DB Romanian deadlift", slug: "db-romanian-deadlift", sets: "2 × 10" },
+      { name: "Bulgarian split squat", slug: "bulgarian-split-squat", sets: "2 × 8/leg" },
+      { name: "DB reverse lunge", slug: "db-reverse-lunge", sets: "2 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "2 × 12" },
+      { name: "Bird-dog", slug: "bird-dog", sets: "2 × 10/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "2 × 30s/side" }
+    ]
+  },
+  { num: 27, date: "2026-06-01", type: "strength", typeName: "UPPER B — Deload", duration: "~40 MIN",
+    notes: ["DELOAD."],
+    main: [
+      { name: "DB renegade row", slug: "db-renegade-row", sets: "2 × 8/side" },
+      { name: "Banded pull-apart", slug: "banded-pull-apart", sets: "2 × 20" },
+      { name: "DB bench press", slug: "db-bench-press", sets: "2 × 10" },
+      { name: "DB hammer curl", slug: "db-hammer-curl", sets: "2 × 12" },
+      { name: "Band face-pull", slug: "band-face-pull", sets: "2 × 15" },
+      { name: "Pallof press", slug: "pallof-press", sets: "2 × 10/side" }
+    ]
+  },
+  { num: 28, date: "2026-06-02", type: "walk", typeName: "WALK", duration: "30-45 MIN",
+    notes: ["Back to normal walk. Comfortable pace."],
+    main: ["5 min easy", "20-35 min continuous", "5 min cool-down"]
+  },
+  { num: 29, date: "2026-06-03", type: "strength", typeName: "LOWER A — Return", duration: "~50 MIN",
+    notes: ["Back to Week 3 working loads. Don't try to PR — just hit the same loads cleanly.", "If they feel light, you have your answer for Month 2."],
+    main: [
+      { name: "Bulgarian split squat", slug: "bulgarian-split-squat", sets: "3 × 8/leg" },
+      { name: "DB Romanian deadlift", slug: "db-romanian-deadlift", sets: "3 × 8 @ Wk 3 load" },
+      { name: "DB reverse lunge", slug: "db-reverse-lunge", sets: "3 × 8/leg" },
+      { name: "DB hip thrust", slug: "db-hip-thrust", sets: "3 × 10" },
+      { name: "Bird-dog", slug: "bird-dog", sets: "3 × 10/side" },
+      { name: "Suitcase carry", slug: "suitcase-carry", sets: "3 × 40s/side" }
+    ]
+  },
+  { num: 30, date: "2026-06-04", type: "assess", typeName: "DAY 30 — ASSESS", duration: "~45 MIN",
+    notes: ["Final day. Take the data, write the retro, plan Month 2.", "Not a PR day. Measure where you are."],
+    main: [
+      "Body weight reading (compare to Day 1)",
+      "Walking tolerance: longest comfortable continuous walk this week",
+      "Strength check: working loads on RDL, bench, row vs Week 1",
+      "Sleep review: count fragmented vs solid nights this month",
+      "Write retro: what worked, what didn't",
+      "Decide Month 2 focus: more strength? more conditioning? swap split?"
+    ]
+  }
+];
+
+function dayIndex() {
+  const params = new URLSearchParams(location.search);
+  if (params.has('d')) {
+    const n = parseInt(params.get('d'), 10);
+    return Math.max(0, Math.min(PLAN.length - 1, n - 1));
+  }
+  const start = new Date(2026, 4, 6); // May 6 2026 (month 0-indexed)
+  start.setHours(0,0,0,0);
+  const now = new Date();
+  now.setHours(0,0,0,0);
+  const diff = Math.floor((now - start) / 86400000);
+  if (diff < 0) return 0;
+  if (diff >= PLAN.length) return PLAN.length - 1;
+  return diff;
+}
+
+function todayIndex() {
+  const start = new Date(2026, 4, 6);
+  start.setHours(0,0,0,0);
+  const now = new Date();
+  now.setHours(0,0,0,0);
+  return Math.floor((now - start) / 86400000);
+}
+
+function formatDate(iso) {
+  const [y,m,d] = iso.split('-').map(Number);
+  const dt = new Date(y, m-1, d);
+  const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  return `${days[dt.getDay()]} / ${months[m-1]} ${String(d).padStart(2,'0')} / ${y}`;
+}
+
+function getWeekday(iso) {
+  const [y,m,d] = iso.split('-').map(Number);
+  return new Date(y, m-1, d).getDay();
+}
+
+function renderList(ul, items, dayKey, prefix) {
+  ul.innerHTML = '';
+  items.forEach((item, i) => {
+    const li = document.createElement('li');
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    const span = document.createElement('span');
+    if (typeof item === 'string') {
+      span.textContent = item;
+    } else {
+      const a = document.createElement('a');
+      a.href = `moves/#${item.slug}`;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = item.name;
+      span.appendChild(a);
+      const setsSpan = document.createElement('span');
+      setsSpan.className = 'sets';
+      setsSpan.textContent = ` — ${item.sets}`;
+      span.appendChild(setsSpan);
+    }
+    const key = `${dayKey}::${prefix}::${i}`;
+    cb.checked = localStorage.getItem(key) === '1';
+    if (cb.checked) li.classList.add('done');
+    li.appendChild(cb);
+    li.appendChild(span);
+    li.addEventListener('click', (e) => {
+      const tag = e.target.tagName;
+      if (tag !== 'INPUT' && tag !== 'A') {
+        cb.checked = !cb.checked;
+        localStorage.setItem(key, cb.checked ? '1' : '0');
+        li.classList.toggle('done', cb.checked);
+      } else if (tag === 'INPUT') {
+        localStorage.setItem(key, cb.checked ? '1' : '0');
+        li.classList.toggle('done', cb.checked);
+      }
+    });
+    ul.appendChild(li);
+  });
+}
+
+function render() {
+  const idx = dayIndex();
+  const day = PLAN[idx];
+  const dayKey = day.date;
+
+  document.getElementById('day-marker').textContent = `DAY ${String(day.num).padStart(2,'0')} / 30`;
+  document.getElementById('date-line').textContent = formatDate(day.date);
+
+  const typeBar = document.getElementById('type-bar');
+  typeBar.className = 'type-bar ' + day.type;
+  document.getElementById('type-name').textContent = day.typeName;
+  document.getElementById('duration').textContent = day.duration;
+
+  const notesEl = document.getElementById('notes-block');
+  notesEl.innerHTML = day.notes.map(n => `<p>${n}</p>`).join('');
+
+  const mainLabel = day.type === 'strength' ? 'The Lift'
+                  : day.type === 'walk' ? 'The Walk'
+                  : day.type === 'assess' ? 'The Assessment'
+                  : 'The Work';
+  document.getElementById('main-label').textContent = mainLabel;
+  renderList(document.getElementById('main-list'), day.main, dayKey, 'main');
+
+  document.getElementById('cap-rules-block').style.display = day.type === 'strength' ? 'block' : 'none';
+
+  const prev = document.getElementById('prev-day');
+  const next = document.getElementById('next-day');
+  if (idx > 0) { prev.href = `?d=${idx}`; prev.classList.remove('disabled'); }
+  else { prev.classList.add('disabled'); }
+  if (idx < PLAN.length - 1) { next.href = `?d=${idx+2}`; next.classList.remove('disabled'); }
+  else { next.classList.add('disabled'); }
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+  const firstWd = getWeekday(PLAN[0].date);
+  for (let i = 0; i < firstWd; i++) {
+    const blank = document.createElement('div');
+    blank.className = 'cal-cell blank';
+    grid.appendChild(blank);
+  }
+  const todayIdx = todayIndex();
+  PLAN.forEach((d, i) => {
+    const a = document.createElement('a');
+    a.href = `?d=${i+1}`;
+    a.className = `cal-cell ${d.type}`;
+    if (i === idx) a.classList.add('today');
+    if (i > todayIdx) a.classList.add('future');
+    const num = document.createElement('span');
+    num.className = 'day-num';
+    num.textContent = d.num;
+    const t = document.createElement('span');
+    t.className = 'type-mini';
+    t.textContent = d.type === 'strength' ? (d.typeName.includes('LOWER') ? 'L' : 'U')
+                  : d.type === 'walk' ? 'W'
+                  : d.type === 'assess' ? 'X'
+                  : '—';
+    a.appendChild(num);
+    a.appendChild(t);
+    grid.appendChild(a);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
