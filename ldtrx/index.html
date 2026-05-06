@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LD — TRX Supplement</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪢</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper: #ede5d3;
+    --paper-soft: rgba(0,0,0,0.04);
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-faint: #7a7a7a;
+    --pull: #c0392b;
+    --control: #2c5282;
+    --tag: #2d6a4f;
+    --warn: #b8860b;
+  }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.035) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.025) 0%, transparent 50%);
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 4rem;
+  }
+
+  .top-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .meta-day { font-weight: 600; }
+
+  .stamp {
+    font-family: 'Special Elite', monospace;
+    color: var(--pull);
+    transform: rotate(-2deg);
+    border: 2px solid var(--pull);
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  .title-line {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 8vw, 4rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0.5rem 0 0.25rem;
+  }
+
+  .subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+  }
+
+  .thesis {
+    background: var(--paper-soft);
+    border-left: 3px solid var(--ink);
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 2rem;
+    line-height: 1.55;
+  }
+
+  .thesis p { margin: 0.35rem 0; }
+  .thesis p:first-child { margin-top: 0; }
+  .thesis p:last-child { margin-bottom: 0; }
+  .thesis strong { font-weight: 600; }
+
+  .session {
+    margin: 2.5rem 0;
+  }
+
+  .type-bar {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 3.6vw, 1.5rem);
+    letter-spacing: 0.08em;
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    gap: 1rem;
+  }
+
+  .type-bar.pull { background: var(--pull); }
+  .type-bar.control { background: var(--control); }
+
+  .duration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .session-tag {
+    background: var(--paper-soft);
+    border-left: 3px solid currentColor;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.82rem;
+    margin: 0.6rem 0 1rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .session-tag.pull { color: var(--pull); }
+  .session-tag.control { color: var(--control); }
+  .session-tag span { color: var(--ink); }
+
+  .block {
+    margin: 1.5rem 0;
+  }
+
+  .block-label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 0.88rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-top: 1px dashed var(--ink-soft);
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .block-label .block-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    text-transform: none;
+  }
+
+  .exercise {
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted rgba(0,0,0,0.12);
+  }
+  .exercise:last-child { border-bottom: none; }
+
+  .exercise-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .exercise-row input[type="checkbox"] {
+    margin-top: 0.4rem;
+    accent-color: var(--ink);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .exercise-name {
+    font-weight: 500;
+    font-size: 0.96rem;
+    flex: 1;
+  }
+
+  .exercise-row.done .exercise-name { opacity: 0.5; text-decoration: line-through; }
+  .exercise-row.done .sets-line { opacity: 0.5; }
+
+  .sets-line {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .alts {
+    margin: 0.35rem 0 0 1.7rem;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+
+  .alts-label {
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    margin-right: 0.3rem;
+  }
+
+  .alts span {
+    display: inline-block;
+    margin-right: 0.4rem;
+  }
+
+  .alts em {
+    font-style: normal;
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    opacity: 0.85;
+  }
+
+  .alts em::before { content: "("; }
+  .alts em::after { content: ")"; }
+
+  .reset-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .reset-row button {
+    background: transparent;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink-soft);
+    padding: 0.25rem 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .reset-row button:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  .footnotes {
+    margin-top: 3rem;
+    border-top: 2px solid var(--ink);
+    padding-top: 1.25rem;
+  }
+
+  .footnote-section {
+    margin-bottom: 1.75rem;
+  }
+
+  .footnote-label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .footnote-section p,
+  .footnote-section li {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin: 0.25rem 0;
+  }
+
+  .footnote-section ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .footnote-section li {
+    padding-left: 0.85rem;
+    position: relative;
+  }
+
+  .footnote-section li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--ink-soft);
+  }
+
+  .math {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    background: var(--paper-soft);
+    border: 1px dashed var(--ink-soft);
+    padding: 0.7rem 0.9rem;
+    line-height: 1.7;
+  }
+
+  .math .ratio {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--pull);
+    letter-spacing: 0.05em;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--ink-soft);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 1rem 0.85rem 3rem; }
+    .stamp { font-size: 0.65rem; }
+    .type-bar { font-size: 1.05rem; padding: 0.5rem 0.8rem; }
+    .alts { font-size: 0.72rem; }
+    .exercise-name { font-size: 0.92rem; }
+  }
+
+  .exercise-name a, .alts a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(0,0,0,0.25);
+  }
+  .exercise-name a:hover, .alts a:hover {
+    border-bottom-color: var(--ink);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="top-rule">
+    <span class="meta-day">LD / TRX SUPPLEMENT</span>
+    <span class="stamp">2× / WK</span>
+  </div>
+
+  <h1 class="title-line">THE STRAPS</h1>
+  <div class="subtitle">Two TRX sessions. 45 minutes each, twice a week.</div>
+
+  <!-- ═══════════════════════════════════════════════════════ SESSION A -->
+  <div class="session" id="session-a">
+    <div class="type-bar pull">
+      <span>Session A — Strength · Pull-dominant</span>
+      <span class="duration">~47 MIN</span>
+    </div>
+    <div class="session-tag pull">
+      Rep range 8–12. Pull-dominant day.
+    </div>
+
+    <div class="block">
+      <div class="block-label">Warm-up <span class="block-meta">7 min</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:warm:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#deep-squat-hold" target="_blank" rel="noopener">TRX deep squat hold + reach</a></span><span class="sets-line">3 × :20 + 5 reaches/side</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:warm:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#scap-y-t-w" target="_blank" rel="noopener">TRX scap Y-T-W</a></span><span class="sets-line">1 × 5 each letter</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:warm:2"><input type="checkbox"><span class="exercise-name"><a href="moves/#trx-hip-hinge" target="_blank" rel="noopener">TRX hip hinge (strap-supported)</a></span><span class="sets-line">2 × 8 @ 3-0-1-0</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:warm:3"><input type="checkbox"><span class="exercise-name"><a href="moves/#cossack-squat" target="_blank" rel="noopener">TRX cossack squat (assisted)</a></span><span class="sets-line">2 × 4/side</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Main A — Hinge + Pull superset <span class="block-meta">12 min · :60–:90 between supersets</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:mainA:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#single-leg-rdl" target="_blank" rel="noopener">A1. TRX single-leg RDL</a></span><span class="sets-line">4 × 8/side @ 4-1-1-0</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#single-leg-rdl" target="_blank" rel="noopener">SL-RDL with reach to anchor</a> <em>stability</em></span><span><a href="moves/#skater-squat" target="_blank" rel="noopener">Skater squat</a> <em>plane</em></span><span><a href="moves/#single-leg-rdl" target="_blank" rel="noopener">B-stance RDL</a> <em>stance</em></span><span><a href="moves/#trx-good-morning" target="_blank" rel="noopener">TRX good morning slow ecc</a> <em>tempo</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:mainA:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#inverted-row" target="_blank" rel="noopener">A2. Inverted row, feet under anchor</a></span><span class="sets-line">4 × 10 @ 2-1-X-1</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#archer-row" target="_blank" rel="noopener">Archer row</a> <em>stance</em></span><span><a href="moves/#inverted-row" target="_blank" rel="noopener">Feet on box under anchor</a> <em>strap-length</em></span><span><a href="moves/#inverted-row" target="_blank" rel="noopener">Wide-grip row</a> <em>plane</em></span><span><a href="moves/#inverted-row" target="_blank" rel="noopener">Row + :2 hold at top</a> <em>tempo</em></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Main B — Posterior + Scap superset <span class="block-meta">10 min · :60 between</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:mainB:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#hamstring-curl" target="_blank" rel="noopener">B1. Hamstring curl + bridge hold</a></span><span class="sets-line">3 × 12 @ 2-0-1-1</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#hamstring-curl" target="_blank" rel="noopener">Single-leg ham curl</a> <em>stability</em></span><span><a href="moves/#hamstring-curl" target="_blank" rel="noopener">Slow eccentric 5-0-1-0</a> <em>tempo</em></span><span><a href="moves/#hip-thrust-trx" target="_blank" rel="noopener">Hip thrust w/ feet in straps</a> <em>plane</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:mainB:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#face-pull" target="_blank" rel="noopener">B2. Face pull + external rotation</a></span><span class="sets-line">3 × 12 @ 2-1-1-1</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#scap-y-t-w" target="_blank" rel="noopener">Y raise to overhead</a> <em>plane</em></span><span><a href="moves/#face-pull" target="_blank" rel="noopener">Single-arm face pull</a> <em>stance</em></span><span><a href="moves/#face-pull" target="_blank" rel="noopener">Face pull + :3 hold</a> <em>tempo</em></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Finisher — Anti-rotation iso <span class="block-meta">8 min · 3 rounds, :30 between, 1:30 between rounds</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:fin:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#pallof-press" target="_blank" rel="noopener">Pallof press hold (split-anchor)</a></span><span class="sets-line">:30/side</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#pallof-press" target="_blank" rel="noopener">Half-kneeling Pallof + rotation hold</a> <em>stance</em></span><span><a href="moves/#pallof-press" target="_blank" rel="noopener">Pallof rainbow arc</a> <em>plane</em></span><span><a href="moves/#pallof-press" target="_blank" rel="noopener">Tall-kneeling Pallof</a> <em>stance</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:fin:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#plank-row" target="_blank" rel="noopener">Plank with single-arm row</a></span><span class="sets-line">6/side @ 2-1-1-1</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#plank-row" target="_blank" rel="noopener">Renegade row from suspended plank</a> <em>stability</em></span><span><a href="moves/#plank-row" target="_blank" rel="noopener">Plank w/ row + :2 hold</a> <em>tempo</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:fin:2"><input type="checkbox"><span class="exercise-name"><a href="moves/#side-plank" target="_blank" rel="noopener">Side plank with top-leg lift</a></span><span class="sets-line">:25/side</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#copenhagen-plank" target="_blank" rel="noopener">Copenhagen plank w/ strap top-leg</a> <em>plane</em></span><span><a href="moves/#side-plank" target="_blank" rel="noopener">Side plank + reach-through</a> <em>stance</em></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Cool-down <span class="block-meta">3 min</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:cool:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#couch-stretch" target="_blank" rel="noopener">TRX-assisted couch stretch</a></span><span class="sets-line">:60/side</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="A:cool:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#lat-hang" target="_blank" rel="noopener">TRX lat hang</a></span><span class="sets-line">:30 × 2</span></div>
+      </div>
+    </div>
+
+    <div class="reset-row"><button data-reset="A">Reset Session A</button></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ SESSION B -->
+  <div class="session" id="session-b">
+    <div class="type-bar control">
+      <span>Session B — Control · Unilateral + horizontal pull + 1 press</span>
+      <span class="duration">~48 MIN</span>
+    </div>
+    <div class="session-tag control">
+      Rep range 6–8 with 3-1-3-0 tempo. Slow is the stimulus.
+    </div>
+
+    <div class="block">
+      <div class="block-label">Warm-up <span class="block-meta">7 min</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:warm:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#overhead-squat-trx" target="_blank" rel="noopener">TRX-assisted overhead squat</a></span><span class="sets-line">2 × 6 @ 3-1-1-0</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:warm:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#scap-y-t-w" target="_blank" rel="noopener">I-Y-T iso holds</a></span><span class="sets-line">1 × :15 each position</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:warm:2"><input type="checkbox"><span class="exercise-name"><a href="moves/#fallout" target="_blank" rel="noopener">Kneeling rollout</a></span><span class="sets-line">2 × 6 @ 3-0-1-0</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:warm:3"><input type="checkbox"><span class="exercise-name"><a href="moves/#lateral-lunge" target="_blank" rel="noopener">Lateral lunge (TRX-assisted)</a></span><span class="sets-line">2 × 5/side</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Main A — Unilateral lower + horizontal pull <span class="block-meta">13 min · :75–:90 between supersets</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:mainA:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#bulgarian-split-squat" target="_blank" rel="noopener">A1. Bulgarian split squat (rear foot in cradle)</a></span><span class="sets-line">4 × 6/side @ 3-1-3-0</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#bulgarian-split-squat" target="_blank" rel="noopener">BSS + :3 pause in hole</a> <em>tempo</em></span><span><a href="moves/#cossack-squat" target="_blank" rel="noopener">Cossack squat</a> <em>plane</em></span><span><a href="moves/#step-up" target="_blank" rel="noopener">Step-up w/ TRX assist</a> <em>stance</em></span><span><a href="moves/#bulgarian-split-squat" target="_blank" rel="noopener">BSS + front-foot elevation</a> <em>strap-length</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:mainA:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#archer-row" target="_blank" rel="noopener">A2. Archer row</a></span><span class="sets-line">4 × 6/side @ 3-1-X-1</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#archer-row" target="_blank" rel="noopener">Single-arm row + rotation</a> <em>plane</em></span><span><a href="moves/#archer-row" target="_blank" rel="noopener">Archer row + :2 pause</a> <em>tempo</em></span><span><a href="moves/#inverted-row" target="_blank" rel="noopener">Inverted row narrow grip</a> <em>stance</em></span><span><a href="moves/#archer-row" target="_blank" rel="noopener">Sliding archer (one strap held, one slides)</a> <em>stability</em></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Main B — Pistol + 1 press <span class="block-meta">10 min · :60–:75 between</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:mainB:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#pistol-squat" target="_blank" rel="noopener">B1. Pistol squat (TRX-assisted as needed)</a></span><span class="sets-line">3 × 5/side @ 3-1-3-0</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#skater-squat" target="_blank" rel="noopener">Skater squat</a> <em>plane</em></span><span><a href="moves/#pistol-squat" target="_blank" rel="noopener">Pistol + :3 pause at bottom</a> <em>tempo</em></span><span><a href="moves/#shrimp-squat" target="_blank" rel="noopener">Shrimp squat assisted</a> <em>stance</em></span><span><a href="moves/#pistol-squat" target="_blank" rel="noopener">Pistol to box</a> <em>strap-length</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:mainB:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#archer-push-up" target="_blank" rel="noopener">B2. TRX archer push-up</a></span><span class="sets-line">3 × 6/side @ 3-1-3-0</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#trx-push-up" target="_blank" rel="noopener">TRX push-up + reach</a> <em>stability</em></span><span><a href="moves/#trx-push-up" target="_blank" rel="noopener">Wide-to-narrow push-up complex</a> <em>stance</em></span><span><a href="moves/#archer-push-up" target="_blank" rel="noopener">Archer push-up + :3 pause</a> <em>tempo</em></span><span><a href="moves/#trx-push-up" target="_blank" rel="noopener">Decline push-up (feet in cradle)</a> <em>strap-length</em></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Finisher — Anti-extension iso <span class="block-meta">7 min · 3 rounds, :30 between, 1:30 between rounds</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:fin:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#body-saw" target="_blank" rel="noopener">Body saw hold (top of plank)</a></span><span class="sets-line">:20–:30</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#body-saw" target="_blank" rel="noopener">Side body saw</a> <em>plane</em></span><span><a href="moves/#body-saw" target="_blank" rel="noopener">Body saw + :2 pull-back hold</a> <em>tempo</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:fin:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#fallout" target="_blank" rel="noopener">Fallout hold (kneeling, arms extended)</a></span><span class="sets-line">:15–:25</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#fallout" target="_blank" rel="noopener">Fallout hold half-kneeling</a> <em>stance</em></span><span><a href="moves/#pike" target="_blank" rel="noopener">Pike hold</a> <em>plane</em></span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:fin:2"><input type="checkbox"><span class="exercise-name"><a href="moves/#mountain-climber" target="_blank" rel="noopener">Mountain climber, slow alternating</a></span><span class="sets-line">8/side @ 3-0-3-0</span></div>
+        <div class="alts"><span class="alts-label">Alts:</span><span><a href="moves/#knee-tuck" target="_blank" rel="noopener">Knee tuck → pike combo</a> <em>plane</em></span><span><a href="moves/#knee-tuck" target="_blank" rel="noopener">Oblique knee tuck</a> <em>plane</em></span><span><a href="moves/#pike" target="_blank" rel="noopener">Single-leg pike</a> <em>stability</em></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-label">Cool-down <span class="block-meta">3 min</span></div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:cool:0"><input type="checkbox"><span class="exercise-name"><a href="moves/#hip-flexor-stretch" target="_blank" rel="noopener">Hip flexor stretch</a></span><span class="sets-line">:60/side</span></div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-row" data-key="B:cool:1"><input type="checkbox"><span class="exercise-name"><a href="moves/#t-spine-90-90" target="_blank" rel="noopener">90/90 thoracic rotation</a></span><span class="sets-line">5/side</span></div>
+      </div>
+    </div>
+
+    <div class="reset-row"><button data-reset="B">Reset Session B</button></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ FOOTNOTES -->
+  <div class="footnotes">
+
+    <div class="footnote-section">
+      <div class="footnote-label">Progression</div>
+      <ul>
+        <li><strong>Strap angle is the primary lever.</strong> Pulls: walk feet toward the anchor (steeper body angle = harder). Feet on a box positioned <em>under</em> the anchor is the hardest variation. Pushes: walk feet farther from anchor or elevate them. <strong>Do not progress pulls by elevating feet on a wall away from the anchor — that reduces lever and is regression, not progression.</strong></li>
+        <li><strong>Tempo before reps.</strong> Add :1 to the eccentric before adding reps. So 3-0-1-0 → 4-0-1-0 → 4-1-1-0 over 3 weeks before bumping reps.</li>
+        <li><strong>Volume rules.</strong> Start at the lower bound of prescribed sets. Add a set when all reps hit at RPE ≤ 7. Cap at +1 set per block per 3 weeks.</li>
+        <li><strong>RPE / RIR.</strong> Mains run RPE 7–8 (2–3 RIR). Finishers run RPE 7–8 on iso quality, not breathing. If finishers turn into a metcon, regress strap angle.</li>
+        <li><strong>Session B tempo is non-negotiable.</strong> 3-1-3-0 on Session B mains is the control-bias. Slow is the stimulus — if it gets easy, progress strap angle, not tempo.</li>
+        <li><strong>Variety axis rotation.</strong> Hold a base template for 2 weeks, then swap one slot to an alt for 2 weeks. After ~6 weeks, audit progression markers and reset the base with the alts you've improved on most.</li>
+      </ul>
+    </div>
+
+    <div class="footnote-section">
+      <div class="footnote-label">Weekly Placement</div>
+      <ul>
+        <li><strong>48 hr minimum between A and B.</strong> Never back-to-back.</li>
+        <li>Mix the order however fits your week — A first, B first, doesn't matter.</li>
+      </ul>
+    </div>
+
+    <div class="footnote-section">
+      <div class="footnote-label">Skip / Scale Rules</div>
+      <ul>
+        <li><strong>Beat up?</strong> Drop the finisher, drop one set off A1/A2, keep the warm-up + main work.</li>
+        <li><strong>Smoked?</strong> Skip. It can wait.</li>
+        <li><strong>Feeling good?</strong> Add a set, drop rest, slow the tempo down further.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    BUILT FOR LD<br>
+    Strength on the strength day · Control on the control day · Variety in the rotation
+  </div>
+
+</div>
+
+<script>
+const KEY_PREFIX = 'ldtrx::';
+
+document.querySelectorAll('.exercise-row').forEach(row => {
+  const key = KEY_PREFIX + row.dataset.key;
+  const cb = row.querySelector('input[type="checkbox"]');
+  if (localStorage.getItem(key) === '1') { cb.checked = true; row.classList.add('done'); }
+
+  row.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
+    const tag = e.target.tagName;
+    if (tag !== 'INPUT') {
+      cb.checked = !cb.checked;
+    }
+    localStorage.setItem(key, cb.checked ? '1' : '0');
+    row.classList.toggle('done', cb.checked);
+  });
+});
+
+document.querySelectorAll('button[data-reset]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const session = btn.dataset.reset;
+    document.querySelectorAll(`.exercise-row[data-key^="${session}:"]`).forEach(row => {
+      const key = KEY_PREFIX + row.dataset.key;
+      localStorage.removeItem(key);
+      row.querySelector('input[type="checkbox"]').checked = false;
+      row.classList.remove('done');
+    });
+  });
+});
+</script>
+</body>
+</html>

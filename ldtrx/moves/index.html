@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Moves — TRX Glossary</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper: #ede5d3;
+    --paper-soft: rgba(0,0,0,0.04);
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --strength: #c0392b;
+    --pull: #2c5282;
+    --control: #2d6a4f;
+    --core: #b8860b;
+  }
+
+  body {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.035) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0,0,0,0.025) 0%, transparent 50%);
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 4rem;
+  }
+
+  .top-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .top-rule a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 1px;
+  }
+
+  .top-rule a:hover { border-color: var(--ink); }
+
+  .stamp {
+    font-family: 'Special Elite', monospace;
+    color: var(--strength);
+    transform: rotate(-2deg);
+    border: 2px solid var(--strength);
+    padding: 0.1rem 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  h1.page-title {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 0.8rem 1rem;
+    background: var(--paper-soft);
+    border-left: 3px solid var(--ink);
+  }
+
+  .toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  .toc a:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .category { margin-top: 2.5rem; }
+
+  .category-header {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: 0.15em;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px dashed var(--ink-soft);
+    padding: 0.6rem 0.8rem 0.4rem;
+    margin-bottom: 1.5rem;
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .category.lower .category-header { background: var(--strength); }
+  .category.push .category-header { background: var(--ink); }
+  .category.pull .category-header { background: var(--pull); }
+  .category.core .category-header { background: var(--core); color: var(--ink); }
+  .category.mobility .category-header { background: var(--control); }
+
+  .move {
+    border: 2px solid var(--ink);
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: var(--paper);
+    scroll-margin-top: 1rem;
+  }
+
+  .move-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .move-grid { grid-template-columns: 1fr; }
+  }
+
+  .move h3 {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 3.5vw, 1.7rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .move-thumb {
+    display: block;
+    position: relative;
+    border: 1px solid var(--ink);
+    overflow: hidden;
+    text-decoration: none;
+    line-height: 0;
+  }
+
+  .move-thumb img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .move-thumb:hover img { transform: scale(1.04); }
+
+  .move-thumb::after {
+    content: "▶";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    padding-left: 6px;
+    pointer-events: none;
+    transition: background 0.2s;
+  }
+
+  .move-thumb:hover::after { background: var(--strength); }
+
+  .move-body { font-size: 0.92rem; }
+
+  .move-body .desc { margin-bottom: 0.7rem; }
+
+  .move-body .channel {
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .move-body .label {
+    font-family: 'Big Shoulders Display', sans-serif;
+    font-weight: 900;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 0.7rem;
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+
+  .move-body ul.cues {
+    list-style: none;
+    margin-bottom: 0.4rem;
+    padding-left: 0;
+  }
+
+  .move-body ul.cues li {
+    padding: 0.1rem 0 0.1rem 1rem;
+    position: relative;
+    font-size: 0.88rem;
+  }
+
+  .move-body ul.cues li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--ink-soft);
+  }
+
+  .move-body .mistake {
+    font-size: 0.85rem;
+    border-left: 2px solid var(--strength);
+    padding-left: 0.6rem;
+    color: var(--ink-soft);
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--ink-soft);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="top-rule">
+    <a href="../">‹ BACK TO THE STRAPS</a>
+    <span class="stamp">THE MOVES</span>
+  </div>
+
+  <h1 class="page-title">— THE MOVES —</h1>
+
+  <div class="toc">
+    <a href="#lower">Lower Body</a>
+    <a href="#push">Upper Push</a>
+    <a href="#pull">Upper Pull</a>
+    <a href="#core">Core & Anti-Rot</a>
+    <a href="#mobility">Warm-Up & Mobility</a>
+  </div>
+
+  <section class="category lower" id="lower">
+    <div class="category-header">LOWER BODY</div>
+    <div class="move" id="single-leg-rdl">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=F0VO_y04-JQ" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/F0VO_y04-JQ/hqdefault.jpg" alt="TRX Single-leg RDL demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Single-leg RDL</h3>
+          <p class="desc">Single-leg hip hinge with the TRX straps as light balance assist. Trains glute, hamstring, posterior chain — and frontal-plane hip stability the bilateral version misses.</p>
+          <p class="channel">Demo: Heather Oliva Fit</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Hands light on straps for balance, not load</li><li>Hips square — don&#x27;t rotate as the leg swings back</li><li>Drive through the heel, hinge from the hip not the spine</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pulling on the straps to muscle through. The strap is a balance scaffold, not a row handle.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="bulgarian-split-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Z9hYNycitBM" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Z9hYNycitBM/hqdefault.jpg" alt="Bulgarian Split Squat (TRX) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Bulgarian Split Squat (TRX)</h3>
+          <p class="desc">Single-leg squat with the rear foot suspended in a TRX foot cradle. Hammers quads and glutes of the front leg; rear foot stays a balance point, not a pusher.</p>
+          <p class="channel">Demo: Marc Pro</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Front foot far enough that knee tracks toe at depth</li><li>Torso vertical, ribs stacked over hips</li><li>Drop straight down — don&#x27;t lunge forward</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pushing off the rear foot to assist. The rear foot only stabilizes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="pistol-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=HqCHXb91yMQ" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/HqCHXb91yMQ/hqdefault.jpg" alt="Pistol Squat (TRX-assisted) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Pistol Squat (TRX-assisted)</h3>
+          <p class="desc">Full-depth single-leg squat with the TRX as adjustable assist. Goal over weeks: reduce strap tension until the assist disappears.</p>
+          <p class="channel">Demo: Third Space London</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Use just enough strap tension to hit full ROM</li><li>Working heel stays planted through the rep</li><li>Free leg long, ankle dorsiflexed</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Cranking reps with heavy strap pull. Less assist, more reps means progression — same assist, more reps means cheating.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="cossack-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=lRAlX5kC5Ok" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/lRAlX5kC5Ok/hqdefault.jpg" alt="Cossack Squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Cossack Squat</h3>
+          <p class="desc">Wide-stance lateral squat shifting body weight side to side. Frontal-plane hip mobility + adductor strength.</p>
+          <p class="channel">Demo: Functional Effect Fitness &amp; Rehabilitation </p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Sit deep into one hip, opposite leg extends straight</li><li>Keep the planted foot flat — heel doesn&#x27;t lift</li><li>Chest up, sweep across the bottom</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Lifting the heel off the floor on the loaded side.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="skater-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Liy8w_coxCg" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Liy8w_coxCg/hqdefault.jpg" alt="Skater Squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Skater Squat</h3>
+          <p class="desc">Single-leg squat patterning where the trail leg sweeps behind the standing leg. Knee-dominant unilateral pattern that complements the hip-dominant SL-RDL.</p>
+          <p class="channel">Demo: Fitness Pain Free</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Trail knee reaches toward standing-foot heel, just off the floor</li><li>Slight forward lean from the hip</li><li>Strap or counterweight as balance only</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Touching the trail knee hard onto the floor and rebounding off it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="step-up">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=sHKpQoVlQQ4" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/sHKpQoVlQQ4/hqdefault.jpg" alt="Step-up (TRX-assisted) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Step-up (TRX-assisted)</h3>
+          <p class="desc">Single-leg step onto a knee-height box, TRX for balance assist. Concentric-only loading of the working leg.</p>
+          <p class="channel">Demo: Reign SportsPerformance</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Whole foot on box, knee tracks over toes</li><li>Drive through the working heel — no pushoff from trailing foot</li><li>Stand tall, lower under control</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bouncing off the trailing foot to launch up.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="lateral-lunge">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=1kkCxPAmXIk" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/1kkCxPAmXIk/hqdefault.jpg" alt="Lateral Lunge (TRX-assisted) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Lateral Lunge (TRX-assisted)</h3>
+          <p class="desc">Side-step lunge with one leg straight, the other in a deep frontal-plane squat. TRX as assist if depth is limited.</p>
+          <p class="channel">Demo: Club Sweat Fitness </p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Sit back into the bent-knee hip, opposite leg extends straight</li><li>Keep both feet flat — full sole contact</li><li>Chest up, weight in the heel of the bent leg</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the loaded knee cave inward as you sit down.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="shrimp-squat">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=FcQ77QxcotE" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/FcQ77QxcotE/hqdefault.jpg" alt="Shrimp Squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Shrimp Squat</h3>
+          <p class="desc">Single-leg squat where the trail leg&#x27;s knee lowers to the floor while the foot stays held behind. More knee-dominant than a pistol; less ankle-mobility-dependent.</p>
+          <p class="channel">Demo: The Active Life</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Hold the trail foot or use the strap as a brake</li><li>Touch trail knee softly to a pad</li><li>Drive through the front heel to stand</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Crashing the trail knee into the floor.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="overhead-squat-trx">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=HJT1vMpGJ6g" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/HJT1vMpGJ6g/hqdefault.jpg" alt="TRX-assisted Overhead Squat demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX-assisted Overhead Squat</h3>
+          <p class="desc">Full-depth squat with arms held overhead in TRX straps. Forces T-spine extension and shoulder flexion through depth.</p>
+          <p class="channel">Demo: The Masters of Strength</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Arms overhead, slight tension on straps</li><li>Sit hips down between heels</li><li>Chest stays up — ribs don&#x27;t dump forward</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Using strap pull to muscle the squat. Straps support form, not load.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="trx-good-morning">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=E9bOCGmlNdA" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/E9bOCGmlNdA/hqdefault.jpg" alt="TRX Good Morning (slow eccentric) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Good Morning (slow eccentric)</h3>
+          <p class="desc">Bilateral hip hinge with hands in TRX straps for spinal positioning feedback. Slow eccentric loads the posterior chain.</p>
+          <p class="channel">Demo: My PT Hub</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Hands chest-height in straps, light tension</li><li>Push hips back, knees soft</li><li>Lower until you feel hamstrings, then drive hips through</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bending from the spine instead of hinging at the hips.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="hamstring-curl">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=vI4kpwXIcZ8" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/vI4kpwXIcZ8/hqdefault.jpg" alt="TRX Hamstring Curl + Bridge demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Hamstring Curl + Bridge</h3>
+          <p class="desc">Supine hamstring curl with heels in foot cradles. Bridge held throughout — glutes locked, hamstrings curl heels toward butt.</p>
+          <p class="channel">Demo: Austin Longevity Clinic</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Heels in cradle, drive hips up first</li><li>Hold the bridge — don&#x27;t drop hips as heels curl</li><li>Lower under control on the eccentric</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the hips sag during the curl. The bridge is the brace.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="hip-thrust-trx">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Me744Xowzfk" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Me744Xowzfk/hqdefault.jpg" alt="Hip Thrust (TRX feet-in-straps) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Hip Thrust (TRX feet-in-straps)</h3>
+          <p class="desc">Glute-dominant bridge with feet suspended in TRX cradles. Removes the floor&#x27;s stability, forcing more glute control.</p>
+          <p class="channel">Demo:  TRX Hip Thrust </p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Feet shoulder-width, heels driving down through straps</li><li>Squeeze glutes to lock hips at top</li><li>Ribs stay stacked — no lumbar overarch</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hyperextending the lower back at the top instead of finishing with glutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="category push" id="push">
+    <div class="category-header">UPPER PUSH</div>
+    <div class="move" id="archer-push-up">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=qQI1jvvZYvs" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/qQI1jvvZYvs/hqdefault.jpg" alt="TRX Archer Push-up demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Archer Push-up</h3>
+          <p class="desc">Suspended push-up where one arm straightens out as the pressing arm lowers. Closed-chain unilateral push with significant scap and serratus demand.</p>
+          <p class="channel">Demo: Integrated Strength</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Hands suspended, body locked plank-rigid</li><li>One arm straightens to the side as the other lowers</li><li>Press up explosively, switch sides</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the hips sag or rotate as the offset arm extends.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="trx-push-up">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=IPpEDpkCYUI" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/IPpEDpkCYUI/hqdefault.jpg" alt="TRX Push-up demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Push-up</h3>
+          <p class="desc">Suspended push-up with hands in straps. Instability forces serratus and scap stabilizers to work hard alongside chest and triceps.</p>
+          <p class="channel">Demo: Austin Longevity Clinic</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Walk feet to set difficulty — farther from anchor = harder</li><li>Body straight, abs braced, no sag</li><li>Elbows track ~45° from torso, not flared</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hips sagging or piking up. Lock the plank shape and don&#x27;t break it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="category pull" id="pull">
+    <div class="category-header">UPPER PULL</div>
+    <div class="move" id="inverted-row">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=iY6HcOrPVB0" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/iY6HcOrPVB0/hqdefault.jpg" alt="TRX Inverted Row demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Inverted Row</h3>
+          <p class="desc">Horizontal pull from a suspended position. The single most useful TRX movement — fixes the horizontal-pull deficit most CrossFit/upper-body programs leave.</p>
+          <p class="channel">Demo: Gerardi Performance</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Walk feet TOWARD the anchor for harder load (steeper body angle)</li><li>Pull elbows to ribs, drive shoulder blades back and down</li><li>Pause at top with chest near hands</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hips sag at the bottom or pelvis pikes up. Body stays a rigid plank line.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="archer-row">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=fwM82d-Gmp8" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/fwM82d-Gmp8/hqdefault.jpg" alt="TRX Archer Row demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Archer Row</h3>
+          <p class="desc">Unilateral horizontal pull where the off-arm extends out as the working arm rows. Anti-rotation co-stimulus on top of the pull.</p>
+          <p class="channel">Demo: Witty Wellness</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Stagger hands wide on the straps, pull one elbow to ribs</li><li>Working shoulder blade drives down and back</li><li>Off-arm stays long — don&#x27;t bend it for assist</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting the torso twist toward the working side.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="face-pull">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Jbyoxer58j4" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Jbyoxer58j4/hqdefault.jpg" alt="TRX Face Pull + External Rotation demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Face Pull + External Rotation</h3>
+          <p class="desc">High-anchor pull with elbows leading and rotation at the top. Rear delts, mid/lower traps, rotator cuff in one move.</p>
+          <p class="channel">Demo: Champion Physical Therapy and Performance</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Walk feet forward for tension, anchor is high</li><li>Pull hands toward temples — elbows up and out</li><li>Finish with pinkies up, knuckles back</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pulling toward the chin with elbows dropped — turns it into a row.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="scap-y-t-w">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=HfHGqWaWn4w" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/HfHGqWaWn4w/hqdefault.jpg" alt="TRX Scap Y-T-W (and I-Y-T iso) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Scap Y-T-W (and I-Y-T iso)</h3>
+          <p class="desc">Slow, low-load shaping work for the scapular stabilizers. Y = lower trap, T = mid trap + rear delt, W = rotator cuff + lower trap.</p>
+          <p class="channel">Demo: Duke Chiropractic</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Lean back slightly to load — short straps</li><li>Slow, controlled, end-range pause at each letter</li><li>Thumbs up throughout, ribs down</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Rushing the reps or shrugging the upper traps.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="lat-hang">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=a9rO4HeWI7Y" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/a9rO4HeWI7Y/hqdefault.jpg" alt="TRX Lat Hang (decompression stretch) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Lat Hang (decompression stretch)</h3>
+          <p class="desc">Hold the straps overhead, sink hips back and let lats stretch under bodyweight tension. Cool-down spinal/lat decompression.</p>
+          <p class="channel">Demo: Body Basics</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Grip straps overhead at slight angle</li><li>Hips sit back, arms long, breathe into ribs</li><li>Hold 30 seconds, two rounds</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hunching shoulders up to ears. Let them settle long.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="category core" id="core">
+    <div class="category-header">CORE & ANTI-ROT</div>
+    <div class="move" id="pallof-press">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=uCrkeY8dees" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/uCrkeY8dees/hqdefault.jpg" alt="TRX Pallof Press (anti-rotation) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Pallof Press (anti-rotation)</h3>
+          <p class="desc">Stand perpendicular to a split-anchor TRX, press hands out at sternum height while resisting the pull toward the anchor. Pure rotary core.</p>
+          <p class="channel">Demo: Integrated Strength</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Stand perpendicular, ribs over hips</li><li>Press straight out from sternum without trunk twist</li><li>Pause :2 at lockout — feel the rotation pull</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting shoulders or hips rotate toward the anchor.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="plank-row">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=0Rcy_1iU7p4" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/0Rcy_1iU7p4/hqdefault.jpg" alt="Plank with Single-arm Row demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Plank with Single-arm Row</h3>
+          <p class="desc">Suspended plank holding both straps; one arm rows while the other holds the plank. Anti-rotation under loaded asymmetry.</p>
+          <p class="channel">Demo: Austin Longevity Clinic</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Wide feet for plank stability</li><li>Row elbow tight to ribs without hip rotation</li><li>Both straps stay stacked under the shoulders</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hips twist toward the rowing side. Lock them.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="side-plank">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=NQsqPcarPXY" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/NQsqPcarPXY/hqdefault.jpg" alt="Side Plank with Top-leg Lift demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Side Plank with Top-leg Lift</h3>
+          <p class="desc">Lateral isometric — obliques, QL, glute medius all work. Top-leg lift adds glute medius load.</p>
+          <p class="channel">Demo:  San Diego Chiropractic and Functional Fitness</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Stack shoulder over support elbow</li><li>Drive hips up — straight line head to feet</li><li>Lift top leg slow, no hip drop</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hips sag toward the floor or shoulder rolls forward.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="copenhagen-plank">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=AiYzzRoXOEY" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/AiYzzRoXOEY/hqdefault.jpg" alt="Copenhagen Plank demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Copenhagen Plank</h3>
+          <p class="desc">Side plank variant with top leg supported (often by a bench or strap). Loads adductor + obliques together — known posterior-chain protector.</p>
+          <p class="channel">Demo: [P]rehab</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Top inner-knee or ankle on bench/strap</li><li>Drive top leg down into the support</li><li>Hips up, straight line head to bottom foot</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Resting on the bottom hip instead of holding it up.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="body-saw">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=HmyWstLop08" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/HmyWstLop08/hqdefault.jpg" alt="TRX Body Saw demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Body Saw</h3>
+          <p class="desc">Suspended-foot plank that rocks forward and back through the shoulders. Anti-extension under shifting lever.</p>
+          <p class="channel">Demo: CORE Strong Fitness</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Forearms down, feet in cradles</li><li>Rock forward and back from the shoulders, not the hips</li><li>Brace abs hard — body stays a plank line throughout</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting hips sag as you rock back.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="fallout">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=vXES8oB5RZA" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/vXES8oB5RZA/hqdefault.jpg" alt="TRX Fallout (kneeling rollout) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Fallout (kneeling rollout)</h3>
+          <p class="desc">Kneeling, arms in straps, fall forward through the shoulders while keeping the trunk rigid. Anti-extension, pure.</p>
+          <p class="channel">Demo: COR</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Arms long, hands straight under shoulders to start</li><li>Reach forward — abs and lats hold the line</li><li>Only go as far as the lower back stays neutral</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Lower back arches as you fall forward. Stop at the limit of your brace.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="pike">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=xk4FBzaUFE4" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/xk4FBzaUFE4/hqdefault.jpg" alt="TRX Pike demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Pike</h3>
+          <p class="desc">Suspended-foot plank to a tucked or straight-leg pike. Drives hips up while keeping legs long.</p>
+          <p class="channel">Demo:  How To Perform It Correctly</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Start in a tight plank, feet in cradles</li><li>Lift hips up toward ceiling, legs straight (or knees in for a tuck regression)</li><li>Lower under control to the plank line</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pushing hips back instead of up. The motion is vertical, not horizontal.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="knee-tuck">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=Nr8pgtq2oDc" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/Nr8pgtq2oDc/hqdefault.jpg" alt="TRX Knee Tuck demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Knee Tuck</h3>
+          <p class="desc">Suspended-foot plank with knees driving in toward the chest. Lower-ab focus, also trains shoulder stability.</p>
+          <p class="channel">Demo: Strongher Programming</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Plank on hands, feet in cradles</li><li>Drive both knees in toward chest</li><li>Extend back to plank without sagging hips</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Pulling with hip flexors and forgetting to brace the trunk.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="mountain-climber">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=InIKovtYzCQ" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/InIKovtYzCQ/hqdefault.jpg" alt="TRX Mountain Climber (slow) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Mountain Climber (slow)</h3>
+          <p class="desc">Suspended-foot plank alternating knees toward chest. Slow cadence keeps it core-dominant; fast cadence turns it into metcon.</p>
+          <p class="channel">Demo: Jenny LaBaw</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Plank on hands, feet in cradles</li><li>Drive one knee in slow with control</li><li>Extend back, switch — no hip rocking</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bouncing the hips up and down. Hips stay level.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="category mobility" id="mobility">
+    <div class="category-header">WARM-UP & MOBILITY</div>
+    <div class="move" id="deep-squat-hold">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=LENyTY-MKy4" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/LENyTY-MKy4/hqdefault.jpg" alt="TRX Deep Squat Hold + Reach demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Deep Squat Hold + Reach</h3>
+          <p class="desc">Hold a deep bodyweight squat with TRX support. Add T-spine reaches across the body to open thoracic rotation in the bottom.</p>
+          <p class="channel">Demo: Eric Cressey</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Sit deep, heels down, light strap support</li><li>Drive knees out, chest up</li><li>Reach one hand across to opposite shoulder — slow rotation</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Letting heels lift. Drop the depth or use more strap assist instead.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="trx-hip-hinge">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=IyoxsESvCjc" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/IyoxsESvCjc/hqdefault.jpg" alt="TRX Hip Hinge (strap-supported) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX Hip Hinge (strap-supported)</h3>
+          <p class="desc">Standing hip hinge with hands lightly on straps to groove the pattern. Used in warm-up to prime the RDL pattern.</p>
+          <p class="channel">Demo: U.S. Forces Fitness</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Hands at chest height in straps, light tension</li><li>Push hips back, soft knees</li><li>Eccentric is the work — slow down on the way back</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Bending from the spine. Hinge is at the hip joint, not the lumbar.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="couch-stretch">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=TIJu5aWPke0" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/TIJu5aWPke0/hqdefault.jpg" alt="TRX-assisted Couch Stretch demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>TRX-assisted Couch Stretch</h3>
+          <p class="desc">Hip-flexor + quad stretch with rear foot in TRX strap. Strap holds the foot up so you can focus on tucking the pelvis.</p>
+          <p class="channel">Demo: Vitality Wellness </p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Rear foot in cradle, front foot planted in lunge</li><li>Tuck pelvis posteriorly — squeeze the rear glute</li><li>Hold :60 each side, breathe</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hyperextending the lower back instead of tucking the pelvis.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="hip-flexor-stretch">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=34SlL-PPCWQ" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/34SlL-PPCWQ/hqdefault.jpg" alt="Hip Flexor Stretch (kneeling) demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>Hip Flexor Stretch (kneeling)</h3>
+          <p class="desc">Half-kneeling lunge with the back-leg hip extended. Stretches psoas + rectus femoris.</p>
+          <p class="channel">Demo: MGHOrthopaedics</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Back knee down, front foot flat</li><li>Tuck pelvis under — feel the stretch in the back hip, not the back</li><li>Slight forward shift to deepen, no lumbar arch</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Arching the lower back to fake the stretch instead of pelvic-tilting it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="move" id="t-spine-90-90">
+      <div class="move-grid">
+        <a class="move-thumb" href="https://www.youtube.com/watch?v=_Q2CiwSeWN8" target="_blank" rel="noopener">
+          <img src="https://img.youtube.com/vi/_Q2CiwSeWN8/hqdefault.jpg" alt="90/90 Thoracic Rotation demo" loading="lazy">
+        </a>
+        <div class="move-body">
+          <h3>90/90 Thoracic Rotation</h3>
+          <p class="desc">Side-lying or seated position with knees stacked at 90/90. Open and rotate the top arm across the body, keeping hips locked.</p>
+          <p class="channel">Demo: Optimize Ottawa</p>
+          <span class="label">Form</span>
+          <ul class="cues"><li>Knees stacked, top hand reaches to ceiling</li><li>Rotate top arm across, follow with the eyes</li><li>Keep both hips and knees stacked — don&#x27;t let hips open</li></ul>
+          <span class="label">Avoid</span>
+          <p class="mistake">Hip rotation cheating the t-spine motion. The hips stay locked; only the upper body moves.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="footer">
+    33 TRX MOVEMENTS &amp; ANCHORS<br>
+    DEMOS FROM TRX TRAINING / ATHLEAN-X / SQUAT U / NIPPARD / OTHERS
+  </div>
+
+</div>
+</body>
+</html>
