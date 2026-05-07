@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-06T23:49:37.526Z",
-  "count": 211,
+  "updated": "2026-05-07T03:53:25.716Z",
+  "count": 210,
   "licenses": [
     {
       "fileNumber": "00676909",
@@ -4621,28 +4621,6 @@
       "website": null,
       "actionCode": "PER",
       "isNew": false
-    },
-    {
-      "fileNumber": "00673697",
-      "licenseType": 20,
-      "typeLabel": "Off-Sale Beer & Wine",
-      "category": "off-premise",
-      "status": "ACTIVE",
-      "issueDate": "2026-02-06",
-      "expirationDate": "2027-01-31",
-      "businessName": "SUNCOAST MARKET COOPERATIVE INC",
-      "dbaName": null,
-      "displayName": "SUNCOAST MARKET COOPERATIVE INC",
-      "address": "600 PALM AVE",
-      "address2": "STE 107",
-      "city": "IMPERIAL BEACH",
-      "zip": "91932-1244",
-      "lat": 32.5846037,
-      "lng": -117.1205433,
-      "phone": null,
-      "website": null,
-      "actionCode": "ORI",
-      "isNew": true
     }
   ]
 }
