@@ -859,7 +859,7 @@
         if (categoryFilter && lic.category !== categoryFilter) return false;
 
         // Action filter (new vs transfer)
-        if (actionFilter === 'new' && !lic.isNew) return false;
+        if (actionFilter === 'new' && lic.isNew === false) return false;
         if (actionFilter === 'transfer' && (lic.isNew || lic.isNew === null)) return false;
 
         // Type filter
