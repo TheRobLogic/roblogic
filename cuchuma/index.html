@@ -427,6 +427,62 @@ blockquote cite {
   margin-top: 0.4rem;
 }
 
+/* Figures */
+figure {
+  margin: 2.2rem 0;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(0.88) contrast(1.02);
+  border: 1px solid var(--rule-soft);
+  box-shadow: 0 1px 8px var(--shadow);
+}
+
+figure.hero {
+  margin: 0 0 2.5rem 0;
+}
+
+figure.hero img {
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+figcaption {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 0.7rem;
+  font-style: italic;
+  line-height: 1.5;
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--rule-soft);
+}
+
+figcaption .credit {
+  display: block;
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--sage);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+  font-weight: 600;
+}
+
+figcaption .credit a {
+  color: var(--sage);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--rule-soft);
+}
+
+figcaption .credit a:hover {
+  border-bottom-color: var(--sage);
+}
+
 /* Print */
 @media print {
   body::before { display: none; }
@@ -445,6 +501,14 @@ blockquote cite {
   <div class="alt-names">Kuuchamaa · Tecate Peak · the Sacred Mountain</div>
   <p class="dek">A Kumeyaay sacred mountain on the California–Baja California border. Cosmology, archaeology, and the events of 2025–2026.</p>
 </header>
+
+<figure class="hero">
+  <img src="images/cuchuma-us.jpg" alt="Tecate Peak (Kuuchamaa) seen from Potrero, California — a desert mountain rising from chaparral hills" loading="eager">
+  <figcaption>
+    Tecate Peak (Kuuchamaa) seen from Potrero, California — the U.S. side, looking south toward the sacred mountain.
+    <span class="credit">UncleMunkle · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Kuuchamaa.jpg">Wikimedia Commons</a></span>
+  </figcaption>
+</figure>
 
 <dl class="strip">
   <div>
@@ -498,6 +562,14 @@ blockquote cite {
     <li><span class="term">Tipay</span> — southern, including four bands in Baja California (San José de la Zorra, San Antonio Necua, La Huerta, Juntas de Nejí)</li>
   </ul>
   <p>Thirteen federally recognized bands occupy reservations in San Diego County. Four communities operate in Baja. "Diegueño" is the Spanish-mission exonym now largely retired in favor of self-designations.</p>
+
+  <figure>
+    <img src="images/kumeyaay-basket.jpg" alt="Coiled juncus basketry tray with concentric geometric pattern" loading="lazy">
+    <figcaption>
+      Juncus basketry tray woven in 1936 by Carmalita LaChappa, Campo Kumeyaay Nation. Collection of the San Diego Museum of Man (now Museum of Us).
+      <span class="credit">Photo by Daderot · CC0 / Public Domain · <a href="https://commons.wikimedia.org/wiki/File:Basketry_tray_of_the_Kumeyaay_people,_made_by_Carmalita_LaChappa,_Campo,_California,_1936_-_San_Diego_Museum_of_Man_-_DSC06902.JPG">Wikimedia Commons</a></span>
+    </figcaption>
+  </figure>
 </section>
 
 <section>
@@ -514,6 +586,14 @@ blockquote cite {
   <h2>Where the Songs Point</h2>
   <p>The dominant regional Yuman emergence point is <strong>Avi Kwa Ame / Wikami</strong> — Spirit Mountain, on the present Nevada–Arizona border south of Laughlin, designated a national monument in 2023.</p>
   <p>Kumeyaay creation tradition centers on twin brothers <span class="term">Tuchaipa</span> (elder, also Tcaipakomat or Maayhaay) and <span class="term">Yokomatis</span>. The world was originally covered in salt water; the brothers raised the land and shaped the people. The Viejas Band publicly identifies <strong>Jacumba Hot Springs</strong> as the place where the brothers emerged from the ground. Tuchaipa was poisoned by Frog and died; his death instituted the mourning ceremony, and his spirit became the moon.<a href="#r5" class="ref">5</a></p>
+
+  <figure>
+    <img src="images/avi-kwa-ame.jpg" alt="Rugged granitic summit ridge of Spirit Mountain in the Newberry Mountains" loading="lazy">
+    <figcaption>
+      Summit ridge of Spirit Mountain (Avi Kwa Ame), Newberry Mountains, southern Nevada — the regional Yuman origin place, designated a U.S. national monument in 2023.
+      <span class="credit">Stan Shebs · CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Spirit_Mountain_descent_1.jpg">Wikimedia Commons</a></span>
+    </figcaption>
+  </figure>
 </section>
 
 <section>
@@ -533,9 +613,25 @@ blockquote cite {
   <p>Maximum stand was approximately <strong>+13 m above modern sea level</strong> (~43 ft). The travertine "bathtub ring" along the base of the Santa Rosa Mountains, visible from I-10 between Indio and the Salton Sea, is mineral precipitated at that old waterline.</p>
   <p>The modern Salton Sea — created in 1905 by a Colorado River canal breach — sits roughly 70 m below sea level, well under the prehistoric lake's footprint.</p>
 
+  <figure>
+    <img src="images/salton-iss.jpg" alt="Aerial view from orbit of the Salton Trough basin between mountain ranges" loading="lazy">
+    <figcaption>
+      The Salton Trough seen from the International Space Station — the modern Salton Sea sits inside the same basin once occupied by prehistoric Lake Cahuilla.
+      <span class="credit">NASA / Image Science &amp; Analysis Laboratory · Public Domain · ISS036-E-011034</span>
+    </figcaption>
+  </figure>
+
   <h3>The Kamia along the shore</h3>
   <p>The Kamia branch of the Kumeyaay lived in the eastern desert and southern Salton Trough, with territory extending well south of the present US–Mexico border into Mexicali. Unlike the coastal Kumeyaay (acorn and shellfish economy), the Kamia were <strong>floodplain horticulturalists</strong> — growing corn, beans, and squash when Colorado overflow fed the New and Alamo Rivers.</p>
   <p>Approximately <strong>650 stone fish weirs</strong> are mapped along the southwestern shoreline and at Travertine Point near Mecca. The traps follow the lake's recessional terraces and caught bonytail chub, razorback sucker, and Colorado pikeminnow. The youngest fish-camp use dates to approximately AD 1700, consistent with protohistoric Kamia exploitation of the final highstand.<a href="#r7" class="ref">7</a></p>
+
+  <figure>
+    <img src="images/lake-cahuilla.jpg" alt="Horizontal travertine band visible on a desert mountainside marking an ancient shoreline" loading="lazy">
+    <figcaption>
+      The ancient shoreline of Lake Cahuilla on the Santa Rosa Mountains, just south of Travertine Rock — the "bathtub ring" left by the prehistoric freshwater lake at its highstand.
+      <span class="credit">Takwish · CC BY-SA 2.5 · <a href="https://commons.wikimedia.org/wiki/File:LakeCahuillaShoreline-1.jpg">Wikimedia Commons</a></span>
+    </figcaption>
+  </figure>
 </section>
 
 <section>
@@ -591,6 +687,14 @@ blockquote cite {
   <div class="section-label">VII. The Mountain</div>
   <h2>Cuchumá</h2>
   <p>The name <strong>Kuuchamaa</strong> is glossed by linguist J. P. Harrington as "exalted high place."<a href="#r8" class="ref">8</a> Variant spellings include Cuchumá, Kuchamaa, Kuuchama, and Cuchamá.</p>
+
+  <figure>
+    <img src="images/cuchuma-mx.jpg" alt="Cuchumá mountain seen from the Mexican side after chaparral fires" loading="lazy">
+    <figcaption>
+      Cuchumá seen from Tecate, Baja California, after the October 2007 chaparral fires. The same mountain pictured in the masthead above, viewed from the opposite (southern) side of the international border.
+      <span class="credit">Gabriel Flores Romero · CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Cuchumamontana.jpg">Wikimedia Commons</a></span>
+    </figcaption>
+  </figure>
 
   <h3>Cosmology</h3>
   <p>In Kumeyaay tradition the Creator-spirit <span class="term">Maayhaay</span> set the mountain as the central locus of power for healing and peace. <span class="term">Kuuchamaa</span> is also the name of the shaman-spirit who taught regional peoples to stop fighting one another.</p>
