@@ -298,7 +298,7 @@ body{
 </style>
 </head>
 <body>
-<header class="l80-topbar"><div class="l80-topbar-inner"><div class="l80-topbar-hero"><h1 class="l80-wordmark-sm">Logic’s Lucky Lottos</h1><div class="l80-topbar-meta"><div class="today">Today’s Picks</div><div>Sun · May 17, 2026 · 12:35 AM PT</div></div></div><nav class="l80-denom-nav" aria-label="Jump to denomination"><a class="l80-denom-btn overall" href="#sec-overall"><span class="price">Overall</span></a>
+<header class="l80-topbar"><div class="l80-topbar-inner"><div class="l80-topbar-hero"><h1 class="l80-wordmark-sm">Logic’s Lucky Lottos</h1><div class="l80-topbar-meta"><div class="today">Today’s Picks</div><div>Sun · May 17, 2026 · 12:42 AM PT</div></div></div><nav class="l80-denom-nav" aria-label="Jump to denomination"><a class="l80-denom-btn overall" href="#sec-overall"><span class="price">Overall</span></a>
       <a class="l80-denom-btn" href="#sec-1"><span class="price">$1</span><span class="lbl">Scratchers</span></a>
       <a class="l80-denom-btn" href="#sec-2"><span class="price">$2</span><span class="lbl">Scratchers</span></a>
       <a class="l80-denom-btn" href="#sec-3"><span class="price">$3</span><span class="lbl">Scratchers</span></a>
@@ -306,7 +306,7 @@ body{
       <a class="l80-denom-btn" href="#sec-10"><span class="price">$10</span><span class="lbl">Scratchers</span></a>
       <a class="l80-denom-btn best" href="#sec-20"><span class="price">$20</span><span class="lbl">Scratchers</span></a>
       <a class="l80-denom-btn best" href="#sec-30"><span class="price">$30</span><span class="lbl">Scratchers</span></a></nav></div></header>
-<div class="l80-draw-callout" id="draw-block"><div class="inner"><div class="game-blurb"><h3>Fantasy 5 Tonight</h3><p>Jackpot $176K — California’s most playable nightly draw.</p></div><div class="l80-pick-block"><h4>Hot picks</h4><div class="l80-pick-row"><span class="l80-num">5</span><span class="l80-num">8</span><span class="l80-num">26</span><span class="l80-num">29</span><span class="l80-num">36</span></div><div class="l80-pick-row"><span class="l80-num">6</span><span class="l80-num">25</span><span class="l80-num">28</span><span class="l80-num">33</span><span class="l80-num">39</span></div></div><div class="l80-pick-block"><h4>Due / cold picks</h4><div class="l80-pick-row"><span class="l80-num">16</span><span class="l80-num">23</span><span class="l80-num">25</span><span class="l80-num">35</span><span class="l80-num">39</span></div><div class="l80-pick-row"><span class="l80-num">4</span><span class="l80-num">7</span><span class="l80-num">33</span><span class="l80-num">34</span><span class="l80-num">39</span></div></div></div></div>
+<div class="l80-draw-callout" id="draw-block"><div class="inner"><div class="game-blurb"><h3>Fantasy 5 Tonight</h3><p>Jackpot $176K — California’s most playable nightly draw.</p></div><div class="l80-pick-block"><h4>Hot picks</h4><div class="l80-pick-row"><span class="l80-num">2</span><span class="l80-num">5</span><span class="l80-num">12</span><span class="l80-num">18</span><span class="l80-num">39</span></div><div class="l80-pick-row"><span class="l80-num">10</span><span class="l80-num">13</span><span class="l80-num">16</span><span class="l80-num">26</span><span class="l80-num">39</span></div></div><div class="l80-pick-block"><h4>Due / cold picks</h4><div class="l80-pick-row"><span class="l80-num">5</span><span class="l80-num">24</span><span class="l80-num">30</span><span class="l80-num">33</span><span class="l80-num">38</span></div><div class="l80-pick-row"><span class="l80-num">5</span><span class="l80-num">10</span><span class="l80-num">16</span><span class="l80-num">28</span><span class="l80-num">33</span></div></div></div></div>
 <main class="l80-wrap">
 <section class="l80-section open" id="sec-overall"><button type="button" class="l80-section-head" data-toggle aria-expanded="true" aria-controls="body-overall"><h2 class="title">Best Overall Picks Today</h2><span class="toggle" aria-hidden="true">+</span></button><div class="l80-section-body" id="body-overall"><div class="scratcher-grid"><div class="scratcher-card"><div class="scratcher-art"><img src="https://static.www.calottery.com/-/media/project/calottery/pws/scratchers/1682-20-instant-prize-crossword-thumbnail.jpg?rev=83ba441f092040f58d3aa9b9013b0d7d" alt="Instant Prize Crossword" loading="eager"></div><div class="scratcher-title">Instant Prize Crossword</div><div class="scratcher-price">$20</div><div class="scratcher-reason">1 in 3 tickets wins. 2 top $2M prizes still in play.</div></div>
 <div class="scratcher-card"><div class="scratcher-art"><img src="https://static.www.calottery.com/-/media/project/calottery/pws/scratchers/1692-30-7s-thumbnail.jpg?rev=83ac220fe81848f8b75249c5b10bfbff" alt="7&#x27;s" loading="eager"></div><div class="scratcher-title">7&#x27;s</div><div class="scratcher-price">$30</div><div class="scratcher-reason">1 in 3 tickets wins. 4 top $10M prizes still in play.</div></div>
@@ -368,8 +368,13 @@ document.querySelectorAll('.l80-section-head[data-toggle]').forEach(h => {
   h.addEventListener('click', () => {
     const sec = h.parentElement;
     const wasOpen = sec.classList.contains('open');
-    setOpen(sec, !wasOpen);
-    if (wasOpen) scrollToTop(true);
+    closeAllSections();
+    if (!wasOpen) {
+      setOpen(sec, true);
+      requestAnimationFrame(() => sec.scrollIntoView({behavior: 'smooth', block: 'start'}));
+    } else {
+      scrollToTop(true);
+    }
   });
 });
 
