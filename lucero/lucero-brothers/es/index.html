@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Hermanos Lucero — Una Historia Oral</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕯️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #f3ebd8;
+  --paper-warm: #ede2c9;
+  --ink: #1d1612;
+  --ink-soft: #4a3f30;
+  --ink-faded: #7a6a55;
+  --accent: #8b2e1f;
+  --accent-soft: #a8503e;
+  --rule: #c9b994;
+  --rule-dark: #8a7855;
+  --highlight: #f8e9b6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1a1410;
+    --paper-warm: #221a14;
+    --ink: #ede2c9;
+    --ink-soft: #c2b399;
+    --ink-faded: #8a7855;
+    --accent: #d97a5e;
+    --accent-soft: #b8553f;
+    --rule: #4a3f30;
+    --rule-dark: #6a5a40;
+    --highlight: #3a2e1a;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(139, 46, 31, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(122, 106, 85, 0.05) 0%, transparent 40%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+main { position: relative; z-index: 2; }
+
+.lang-toggle {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 1.75rem 1rem 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-variation-settings: 'opsz' 9;
+}
+.lang-toggle a {
+  color: var(--ink-faded);
+  text-decoration: none;
+  margin: 0 0.6rem;
+  padding-bottom: 3px;
+  transition: color 0.2s;
+}
+.lang-toggle a:hover { color: var(--accent); }
+.lang-toggle a.active { color: var(--ink); border-bottom: 1px solid var(--accent); }
+.lang-toggle .sep { color: var(--rule); }
+
+/* HERO */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+.hero-eyebrow {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 2rem;
+  font-variation-settings: 'opsz' 9;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  line-height: 0.92;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+  margin-bottom: 0.5rem;
+}
+.hero-amp {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144;
+}
+.hero-subtitle {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  color: var(--ink-soft);
+  max-width: 38rem;
+  margin: 1.5rem auto 0;
+  line-height: 1.4;
+  font-variation-settings: 'opsz' 60;
+}
+.hero-meta {
+  margin-top: 3rem;
+  font-family: 'Fraunces', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.hero-meta span { margin: 0 0.6rem; color: var(--rule-dark); }
+
+/* CAST */
+.cast {
+  max-width: 56rem;
+  margin: 4rem auto 6rem;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.cast-label {
+  font-family: 'Fraunces', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.cast-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+@media (max-width: 640px) {
+  .cast-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+.cast-person h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 60;
+  margin-bottom: 0.25rem;
+}
+.cast-person .role {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  font-variation-settings: 'opsz' 14;
+}
+.cast-person p {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* INTRO */
+.intro {
+  max-width: 38rem;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.25rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.intro::first-letter {
+  font-family: 'Fraunces', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 4.5rem;
+  line-height: 0.85;
+  float: left;
+  padding: 0.15em 0.12em 0 0;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144;
+}
+
+/* Q SECTIONS */
+.q-section {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+.q-number {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-variation-settings: 'opsz' 14;
+}
+.q-question {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  font-variation-settings: 'opsz' 72, 'SOFT' 50;
+  letter-spacing: -0.01em;
+}
+.q-question::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.speaker {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 2rem 0 0.65rem;
+  font-variation-settings: 'opsz' 9;
+}
+.speaker.first { margin-top: 0; }
+.q-section p { margin-bottom: 1.1rem; color: var(--ink); }
+.q-section p em { color: var(--ink-soft); }
+.aside {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-faded);
+  font-variation-settings: 'opsz' 14;
+}
+.aside::before { content: '— '; }
+.aside::after { content: ' —'; }
+
+/* Pull quotes */
+.pullquote {
+  max-width: 44rem;
+  margin: 4rem auto;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+}
+.pullquote::before, .pullquote::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--accent);
+  margin: 0 auto 1.5rem;
+}
+.pullquote::after { margin: 1.5rem auto 0; }
+.pullquote p {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  line-height: 1.3;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144, 'SOFT' 80;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.pullquote cite {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: 'Fraunces', serif;
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  font-variation-settings: 'opsz' 9;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem auto;
+  max-width: 38rem;
+  padding: 0 2rem;
+  gap: 1.5rem;
+}
+.divider .line { flex: 1; height: 1px; background: var(--rule); max-width: 8rem; }
+.divider .ornament {
+  color: var(--rule-dark);
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-variation-settings: 'opsz' 14;
+}
+
+.subhead {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 2.5rem 0 1.25rem;
+  font-variation-settings: 'opsz' 24;
+  letter-spacing: 0.02em;
+}
+
+/* CODA */
+.coda {
+  max-width: 42rem;
+  margin: 5rem auto 4rem;
+  padding: 5rem 2rem 4rem;
+  border-top: 2px solid var(--accent);
+  background: var(--paper-warm);
+  position: relative;
+}
+.coda::before {
+  content: '✦';
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 1rem;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+.coda-label {
+  font-family: 'Fraunces', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.coda h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.02em;
+}
+.coda h2 em { font-style: italic; color: var(--accent); font-weight: 300; }
+.coda .epitaph {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  text-align: center;
+  color: var(--ink-faded);
+  margin-bottom: 3rem;
+  font-size: 1.05rem;
+  font-variation-settings: 'opsz' 14;
+}
+.coda p { margin-bottom: 1.1rem; }
+
+footer {
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
+  background: var(--paper-warm);
+}
+footer .colophon {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-faded);
+  max-width: 32rem;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+  font-variation-settings: 'opsz' 14;
+}
+footer .credit {
+  font-family: 'Fraunces', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--rule-dark);
+  margin-top: 1rem;
+}
+footer .credit span { margin: 0 0.5rem; color: var(--rule); }
+
+@media print { body { background: white; color: black; } body::before { display: none; } .hero { min-height: auto; } }
+@media (max-width: 480px) {
+  .hero { padding: 3rem 1.25rem; }
+  .q-section { padding: 3rem 1.25rem; }
+  .pullquote { padding: 1.5rem 1.25rem; }
+  .coda { padding: 4rem 1.5rem 3rem; }
+  .cast { padding: 2.5rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<nav class="lang-toggle">
+  <a href="/lucero/">Index</a>
+  <span class="sep">·</span>
+  <a href="/lucero/lucero-brothers/">English</a>
+  <span class="sep">·</span>
+  <a href="/lucero/lucero-brothers/es/" class="active">Español</a>
+  <span class="sep">·</span>
+  <a href="/lucero/lucero-brothers/transcript-en/">Transcript&nbsp;EN</a>
+  <span class="sep">·</span>
+  <a href="/lucero/lucero-brothers/transcript-es/">Transcript&nbsp;ES</a>
+  <span class="sep">·</span>
+  <a href="/lucero/dad-and-vale/">Dad &amp; Vale ↗</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-eyebrow">Una Historia Oral</div>
+  <h1 class="hero-title">Los Hermanos<br><span class="hero-amp">Lucero</span></h1>
+  <p class="hero-subtitle">Una tarde con Reinaldo &laquo;Pipo&raquo; y su hermano menor Valentín, con una cerveza &mdash; grabada por Lisa.</p>
+</section>
+
+<!-- ============ CAST ============ -->
+<section class="cast">
+  <div class="cast-label">Los Hermanos</div>
+  <div class="cast-grid">
+    <div class="cast-person">
+      <h3>Reinaldo &laquo;Pipo&raquo; Lucero</h3>
+      <div class="role">el hermano mayor</div>
+      <p>Cruzó la frontera a los dieciocho, en enero de 1971 &mdash; una semana antes de que llegara la carta del draft de Vietnam. El dedo que le faltaba lo libró. Pasó cuarenta y cinco años poniendo pisos. Padre de Lisa y Rogelio.</p>
+    </div>
+    <div class="cast-person">
+      <h3>Valentín Lucero</h3>
+      <div class="role">el menor</div>
+      <p>Vendía periódico a los seis años. Emigró a los dieciséis con sus padres. Tomó clases de ESL en Indio, luego high school en California. Trabajó los files, luego soldador en el shipyard para la Navy, construcción de high-rises para Qualcomm, y de regreso al shipyard. Habla, lee y escribe los dos idiomas. Padre de tres.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro">
+  <p>Lisa grabó esta conversación con su papá Reinaldo &mdash; todos le dicen Pipo &mdash; y su tío Valentín. Las preguntas venían de una lista, catorce de ellas. Las respuestas vagaron. Por la pobreza del Mexicali de los años cincuenta. Por un barrio bravo donde aprendías a pelear o te fregaban. Por la carta del draft de Vietnam que llegó una semana después de cruzar la frontera, y el dedo que le faltaba a Pipo y que lo libró. Por una historia de venganza con un plomero, un hermano mayor que dormía en los carros para traer a la familia, y un niño de seis años que se tomó una botella de tequila. Esto fue lo que dijeron.</p>
+</section>
+
+<!-- ============ Q1 ============ -->
+<section class="q-section">
+  <div class="q-number">No. I</div>
+  <h2 class="q-question">¿Cómo se describiría a sí mismo cuando era niño?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>De niño, recuerdo que éramos pobres. Una familia pobre, pero con dos muy buenos padres. Yo a mi edad tuve que empezar a trabajar a los seis, siete años. Vendía periódico. Me levantaba a las seis de la mañana, iba a agarrar mi periódico, lo distribuía y ganaba dinero. Poquito ganaba, pero ganaba. Primero lo hacía caminando. Después ahorré dinero y me compré una bicicletita. Tengo que decirle gracias a mi hermano mayor, Carlos &mdash; él fue el que me enseñó a vender periódico, me llevó a donde iba. De ahí me gustó tener dinero. ¿A quién no? Y de ahí en adelante seguí trabajando.</p>
+
+  <p>Pero mi niñez fue muy bonita. Carente de muchas cosas que envidiaba que otros niños tuvieran y yo no. Pero fue bonita, porque la niñez es la mejor parte de tu vida. Cuando eres niño no te tienes que preocupar si vas a comer, dónde vas a dormir, qué ropa. Mis padres se encargaban de eso. Después de la pubertad, ya se complicó. Salud.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Yo era un niño feliz. Un niño contento. Me mandaban a la escuela &mdash; fue lo primero que yo empecé a saber de mí. Me mandaban a la escuela a estudiar. A veces éramos pobres, a veces descalzos, a veces con zapatos. Pero fue una niñez feliz, en México, para mí.</p>
+</section>
+
+<aside class="pullquote">
+  <p>La niñez es la mejor parte de tu vida. No te tienes que preocupar si vas a comer, dónde vas a dormir, qué ropa. Mis padres se encargaban de eso.</p>
+  <cite>Valentín</cite>
+</aside>
+
+<!-- ============ Q2: FAMILIA ============ -->
+<section class="q-section">
+  <div class="q-number">No. II</div>
+  <h2 class="q-question">Háblame de su familia &mdash; sus padres, abuelos, hermanos.</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>Tengo cuatro hermanos &mdash; bueno, ahorita tres nomás. El mayor falleció. Nos casamos todos, cada quien tuvo su familia, cada quien crió a sus hijos. A los dieciséis, diecisiete años, nuestros padres nos emigraron. Mi papá, mi mamá y yo nos vinimos a Estados Unidos. A mis abuelos no los conocí. A mis hermanos sí. Hermanas no tuvimos, fuimos cuatro hermanos. Yo tuve la oportunidad de estudiar en México hasta la <span style="font-style:italic">secundaria</span>, que viene siendo el high school allá, y luego high school aquí en Estados Unidos.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>A los abuelos no los conocimos. Dos padres: papá y mamá. Mi padre, un hombre muy trabajador, muy cumplido. No era perfecto, pero era muy buen hombre. Mi madre, un poquito más dura. Era la que nos arrimaba la rienda cuando nos portábamos mal. O a veces cuando nos portábamos bien.</p>
+
+  <p>Un hermano mayor que siempre se preocupó por nosotros, siempre estuvo ahí. Otro hermano, el que sigue, también buen hermano se puede decir, porque me enseñó a trabajar y me llegó a defender de muchachos más grandes. Nuestros padres nos enseñaron a protegernos uno al otro. En una familia de cuatro hermanos, estábamos obligados. No era si queríamos o no &mdash; teníamos que hacerlo.</p>
+
+  <p>Valentín y yo tuvimos una pubertad un poquito más junta de la que yo tuve con mis hermanos mayores. A veces yo tenía pleitos con alguien y él se metía en mis pleitos. Él tenía pleito con alguien y yo lo obligaba a pelear. Y también teníamos nuestros bullies. Una anécdota de mi vida que nunca se me va a olvidar &mdash; yo tenía un bully que siempre me agarraba. Y a él también. Un día decidimos él y yo, los dos juntos, <em>ándale</em>. Lo pusimos en paz. Desde entonces se acabó el bully con él. Yo también recuerdo haberle enseñado a defenderse de sus bullies. Hacerlo pelear a fuerzas para que lo dejaran en paz. Eso fue lo que me enseñó mi hermano mayor, Lucero. Me dijo: <em>aquí es un barrio &mdash; el que coma más saliva, traiga más pinole</em>. Era un barrio bravo. Tenías que defenderte a fuerzas. Si no, te fregaban. Y nosotros nomás éramos cuatro en la colonia.</p>
+
+  <p>Yo cuando iba a vender periódico, en el camino me salían chamacos a pelear. Era el chaparrito y trataba la gente de abusar de mí. Pero así aprendí a pelear y me gané el respeto de todos.</p>
+
+  <p>Tíos &mdash; nada más uno por parte de mi papá, muy seco, nunca tuvimos mucha relación con él. Tías sí, las hermanas de mi mamá, muy buenas personas. María de Jesús. Tía María. Tía Sole, una señora muy grandota, muy guapa, muy vacilona. Esas fueron las tías que conocí. Primos sí, pero pocos, nada más como unos primos cerquita. Mi papá no tenía familia. Los primos cerca eran unos siete &mdash; nunca tuve problemas con ellos. Me defendieron, me ayudaron. Yo me acuerdo la primera vez que miré una televisión &mdash; estoy hablando del año cincuenta y dos, cincuenta y cinco, cincuenta y seis &mdash; fui a mirar televisión por primera vez en la casa de ellos, que eran nuestros vecinos. Ahí conocí a mis primos: Ricardo, Olivia, Beto, Kiko, Socorro, Pepe. Mucho mayores que nosotros. Pero a mí me trataron muy bien. Olivia cumple ochenta años en junio. Voy a ir al cumpleaños. Ya nomás tenemos dos primas: ella y Socorro.</p>
+
+  <h3 class="subhead">¿Por qué no conocieron a la familia de su papá?</h3>
+
+  <div class="speaker">Valentín</div>
+  <p>Mi papá no tuvo familia. Quedó huérfano a los cuatro meses de edad. Su mamá murió a los cuatro meses. A su papá nunca supimos quién fue. Eran tiempos de la Revolución en México. Mi papá conoció a un tío de sangre en Los Ángeles como en 1982, 1983. Pero de su lado no tuvimos nada. Ni primos de sangre, ni abuelos, ni tíos, ni nada.</p>
+
+  <h3 class="subhead">¿Cómo le tocó a la familia el apellido Lucero?</h3>
+
+  <div class="speaker">Valentín</div>
+  <p>Mi mamá se llamaba Carlota Ochoa Rendón. Cuando se casó con mi papá &mdash; en México se usa primero el apellido del papá y luego el de la mamá. Mi papá nomás conocía a su tío, Maximino Lucero. Entonces mi papá era Ángel Lucero. Cuando se casó con mi mamá, nos dieron a nosotros los apellidos Lucero Rendón. En México fuimos Lucero Rendón. Cuando emigramos para acá en Estados Unidos, solamente se usa el último apellido. Y todos fuimos Lucero. Por eso somos todos Lucero.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>¿Puedo agregar algo? No es que te quiera corregir, pero así me sale la historia a mí. Mi papá era Ochoa. Ochoa fue el nombre de su mamá, no de su papá. Quedó huérfano a los cuatro meses. Un tío, hermano de su mamá, lo recogió y le dio <em>su</em> apellido &mdash; Lucero. Así que en realidad nosotros deberíamos ser Ochoa Rendón en México. Rendón por mi nana, Ochoa por mi tata.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>En tiempos de los padres de nosotros había mucha contrariedad en los apellidos. Matrimonios mixtos. Los nombres exactos de los abuelos &mdash; en realidad no lo sabemos. Eso fue lo que ellos nos contaron. Pero en realidad en México, en esos tiempos de la Revolución, venían soldados de la Ciudad de México y se mezclaban con gente de los pueblos. Con la promesa de que iban a volver. Nunca volvieron. Eso era muy común.</p>
+
+  <h3 class="subhead">El hombre que salvó a Nacozari.</h3>
+
+  <div class="speaker">Valentín</div>
+  <p>Lo que sí sabemos de la familia de mi mamá es que ella era Rendón. Tenía un tío, o un abuelo, que estuvo en un accidente muy fuerte en el estado de Sonora. En un pueblo que se llama Nacozari de Jesús García. Él iba en un tren. El tren llevaba dinamita &mdash; explosivos. Cuando vieron que el tren se estaba quemando, un hombre llamado Jesús García lo sacó del pueblo para que no explotara dentro y matara a la gente. Un abuelo de mi mamá trabajaba en ese tren. Fue uno de los que salieron con Jesús García a sacar el tren fuera de la ciudad antes de que explotara. Jesús García es un héroe nacional mexicano. Hay canciones. Hay anécdotas. Hay historias.</p>
+</section>
+
+<aside class="pullquote">
+  <p>Aquí es un barrio &mdash; <em>el que coma más saliva, traiga más pinole</em>. Tenías que defenderte a fuerzas. Si no, te fregaban.</p>
+  <cite>Reinaldo, citando a su hermano mayor</cite>
+</aside>
+
+<!-- ============ Q3: IDIOMA ============ -->
+<section class="q-section">
+  <div class="q-number">No. III</div>
+  <h2 class="q-question">¿Qué idioma se hablaba en su casa?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>Español.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Español. Claro. Chino &mdash; mi papá nos hablaba en chino. No, fíjate que no, nunca hablamos otra cosa.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Sí hablábamos español. Como nosotros nos criamos en la frontera &mdash; a mí y a Reinaldo nos criaron en la frontera, a nuestro otro hermano también &mdash; oíamos inglés. Había mucha gente de Estados Unidos que iba para allá. Mucha gente hablaba inglés. Para nosotros el inglés no era algo raro. Crecimos oyéndolo. Había canciones, había historias. Muchas no las entendíamos porque no sabíamos el idioma. Pero sabíamos que existía.</p>
+
+  <h3 class="subhead">¿Cómo aprendió inglés?</h3>
+
+  <div class="speaker">Valentín</div>
+  <p>Mis primeras clases de inglés fueron en la secundaria en México. Como medio año, un año. Alcancé a aprender palabras &mdash; muchas palabras, no para hablarlo, pero sí para comprender lo que querían decir. Teníamos una hora de clase de inglés al día. Después fue en High School en 1971, en Indio, California. Yo era el único que estaba con mis padres viviendo allá. Ahí continué mis estudios pero ya en inglés. Fui primero a clases de ESL &mdash; English as a Second Language. Tuve un año ahí. Después ya hablaba &mdash; no completamente, pero con acento. Me pasaron al grado diez. Y ya en el grado diez y once aprendí parte de la historia de Estados Unidos. En México ya había aprendido la historia de México. Hablo los dos idiomas, escribo los dos, leo los dos.</p>
+
+  <p>A mis hijos les enseñamos inglés y español, para que crecieran en un ambiente donde se pudieran defender, darse a entender. Vivimos cerca de la frontera. Para conseguir mejores trabajos, mejores beneficios &mdash; si hablas los dos idiomas, tu currículum es mucho más fuerte. Muchas más chanzas que puedes tener para avanzar.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Yo tuve clases de inglés en la secundaria y en la preparatoria. Me gustó desde un principio. La maestra de inglés me cayó bien y a mí no me daba vergüenza practicarlo. Yo era muy vago, siempre andaba en la calle. Cuando iba al pueblo a trabajar a lo que sea, había americanos que pasaban y querían saber dónde estaba la botica, dónde estaba esto. Yo ya tenía nociones. Le agarré la onda a los verbos. No me daba vergüenza. Así que interpretaba mal &mdash; pero interpretaba.</p>
+
+  <p>Después, cuando emigramos, en lugar de quedarme con la familia me fui para Los Ángeles. Ahí aprendí un poquito más. Luego me regresé a Indio. Fue cuando conocí a Nancy. Con ella aprendí más inglés. Y con sus amigos, los amigos de Valentín. No lo aprendí por completo, pero se me facilitó en mi trabajo &mdash; instalando pisos tenía que comunicarme en inglés todos los días. <em>La práctica hace al chango.</em> Me costó trabajo, pero lo aprendí. Todavía no lo hablo bien. Pero me defiendo más o menos. Gracias a Nancy.</p>
+
+  <p class="aside">— ¿Cuando la conoció a mi mamá, le habló en inglés o en español? — Esa es una historia larga y apasionada... no, mejor no.</p>
+</section>
+
+<!-- ============ Q4: COMUNIDAD ============ -->
+<section class="q-section">
+  <div class="q-number">No. IV</div>
+  <h2 class="q-question">¿Podría hablarme de la comunidad en la que creció?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>Crecimos en una <em>colonia</em> &mdash; lo que en inglés se llama <em>neighborhood</em>. Era una colonia pobre. No tenía calles pavimentadas. No teníamos mucha agua. Sí teníamos agua potable, pero era pobre. Para trasladarnos de un lugar a otro muchas veces teníamos que caminar. O si había dinero, podíamos tomar un camión. Aprendimos a sobrevivir en las colonias. Pero muy bonita, una infancia muy bonita. Pobre, pero bonita.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Yo soy cuatro años mayor que él. Cuando él estaba más chico, no se acuerda de muchas cosas. Cuando a mí me tocó, no había agua potable. Había un canal que pasaba por todas las calles. Por ahí pasaba el agua. Agarrabas un balde, lo metías, lo llevabas para adentro. <em>Agua potable</em> quería decir: agarrabas el agua, la hervías, la tomabas. Tenía que hervirse antes de tomarla. Después, cuando la ciudad prosperó, ya vendían garrafones de agua. Quitaron los canales. Llegó el agua por tubería &mdash; una sola llave para cada casa, nada más.</p>
+
+  <p>La transportación era el otro problema. En unas ocho o diez cuadras alrededor, había unas cuatro o cinco familias que tenían carro. Los demás caminábamos o tomábamos el camión. A donde íbamos le decíamos <em>el pueblo</em> &mdash; el centro mexicano, pegadito a la garita de Caléxico. De nuestra casa al pueblo eran como tres millas, cuatro millas. Caminábamos. Pero no era fácil porque en el camino te encontrabas gente mala. Caminando, te encontrabas gente mala. Y en el camión necesitabas dinero. Para el mandado, al pueblo. No había tienditas, no había mercados, casi no había lugares donde comprar. Las tienditas salieron después.</p>
+</section>
+
+<!-- ============ Q5: DÍA TÍPICO ============ -->
+<section class="q-section">
+  <div class="q-number">No. V</div>
+  <h2 class="q-question">¿Cómo era un día típico durante su infancia?</h2>
+
+  <div class="speaker first">Reinaldo</div>
+  <p>Seis de la mañana. Nos levantaban. Cinco y media, seis. Siete de la mañana &mdash; un huevo crudo. Y si no nos lo comíamos, <em>¡pa!</em> Nos mandaban a la escuela. Salíamos de la escuela a jugar hasta las siete de la tarde. Siete de la tarde a hacer tarea. Desde los seis o siete años. Tarea, y luego a las nueve a dormir.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Seis de la mañana yo también. Me iba como un cuarto de milla a levantar mi periódico. Lo vendía, lo entregaba. Para las once ya estaba en la casa. Comía &mdash; ah, no, primero lavaba los trastes. Tenía que ayudar en la casa. Lavaba trastes, barría. Luego mi mamá me daba de comer. La escuela empezaba a la una, salía a las cinco. Después a jugar.</p>
+
+  <p class="aside">— ¿Tu ibas a la escuela de la una a las cinco? — Sí. Por seis años. — Yo iba de las siete a la una.</p>
+
+  <p>Los fines de semana &mdash; sábados, a trabajar con mi papá. Construcción. Cemento, concreto, poniendo banquetas en la casa. Domingo: el sábado en la noche tenía que hacer <em>two-tone</em> &mdash; bolear los zapatos de toda la familia. El domingo nos levantábamos a las cinco y media. Para las siete teníamos que estar cambiados, peinados &mdash; íbamos a misa. De siete a ocho. Luego de regreso a quitarnos la ropa, ponernos ropa de trabajo, porque teníamos que terminar lo que empezamos el sábado. Ese era un weekend típico. Hacíamos tiempo para jugar &mdash; cuando terminábamos de trabajar nos daban veinte centavos para gastar. El resto del día era nuestro.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Después de los once años, las cosas cambiaron. Tuvimos bicicletas. Cada quien tenía la suya. Ya no andábamos a pie. Podíamos ir distancias más lejos, conocer más gente. Gente buena. Gente que nos quería quitar la bicicleta. Gente a la que le corríamos. Eran experiencias.</p>
+
+  <p>También éramos traviesos. Travesuras más lejos. A donde nos prohibían ir. Mi papá andaba trabajando. Mi mamá decía <em>no te vayas para el barranco</em>. Y yo iba al barranco. <em>No te vayas con Silverio.</em> Iba con Silverio. <em>No te vayas para el bosque.</em> Y yo decía: ¿qué hay en el bosque? Vamos a ver. Le decía a mi amigo, vamos, mi mamá dice que no vayamos al bosque porque... no sé. Éramos curiosos. Íbamos. Si no nos pasaba nada, regresábamos con la experiencia. Y luego inventábamos historias &mdash; cuando nos volvían a decir <em>no te vayas por allá</em>, ya sabíamos para dónde ir. A veces sí nos pasaban cosas. Muchas veces nos pegaban. Veníamos todos golpeados. Nos preguntaban: <em>¿qué pasó?</em> &mdash; Me caí de la bicicleta. Aprendimos a echarles mentiras a los papás.</p>
+
+  <p>El barranco era un río que pasaba como a tres cuadras de nuestra casa. Un río cochino de desagüe. Ahí aprendimos a nadar. Nos tirábamos clavados desde arriba, nadábamos. En el calor seguíamos el río. <span class="aside">en broma</span> &laquo;Aguas, ahí viene un submarino. Una rata muerta como un boulevard.&raquo;</p>
+
+  <p>Mi mamá siempre sabía dónde habíamos andado. Llegábamos con el cabello quemado por el sol, los cachetes colorados, la piel quemada. <em>¿Dónde andabas?</em> &mdash; <em>Con el Coque, por allá.</em> Nos miraba: quemados, el cabello güerito, los cachetes rojos, con un hambre como solo da nadar toda la tarde. <em>Tonta, no la hacíamos.</em> Pero esas eran parte de las aventuras.</p>
+</section>
+
+<aside class="pullquote">
+  <p>Mi mamá siempre sabía. Llegábamos con el cabello güerito, los cachetes rojos, con un hambre como solo da nadar toda la tarde. <em>¿Dónde andabas?</em> Tonta, no la hacíamos.</p>
+  <cite>Reinaldo</cite>
+</aside>
+
+<!-- ============ Q6: ESCUELA ============ -->
+<section class="q-section">
+  <div class="q-number">No. VI</div>
+  <h2 class="q-question">¿Cuál era la actitud de su familia hacia la escuela?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>&laquo;O te pego.&raquo; Tienes que ir a la escuela. Tienes que aprender a multiplicar. Tienes que aprender a leer. Y lo que te enseñen en la escuela, tienes que venir y enseñármelo a mí. Mi mamá era muy fuerte. Nos ponían en su lugar con una vara. Te pegaban en la escuela. Y si en el trayecto de la escuela a la casa se nos olvidaba algo, <em>¡palo!</em> Nos volvían a pegar hasta que aprendiéramos. Las primeras enseñanzas fueron muy estrictas. Tuvimos que aprender de un modo u otro. Era una regla familiar: <em>tienes que demostrarme a mí que aprendiste lo que te dieron en la escuela. Porque si yo creo que estás aprendiendo, y después me dices que no aprendiste nada, fue tiempo perdido. Mejor vete a trabajar.</em> Para mi mamá era esencial: multiplicar, leer y escribir. Lo más fundamental para un muchacho de siete u ocho años apenas empezando.</p>
+
+  <p>En México en ese tiempo, la escuela era &mdash; ¿cuál es la palabra? <em>Obligatoria.</em> Del primero al sexto. Seis años. Obligatoria y gratis. Después de la primaria seguía la secundaria &mdash; tres años. Si querías ir, ibas. Si no, tenías dos caminos: la escuela, o el trabajo. <em>Aquí tienes un pico, una pala y vente conmigo. Te voy a enseñar construcción. Vas a andar todo el día en el sol, haciendo digging, un montón de cosas, puro trabajo pesado.</em> Pero era tu decisión. Mucha gente prefirió irse a trabajar. Después decían: yo quiero ir a la escuela. Y los padres les decían: no, ya tomaste tu decisión. Si quieres ir ahora, vas después del trabajo.</p>
+</section>
+
+<!-- ============ Q7: DISCRIMINACIÓN ============ -->
+<section class="q-section">
+  <div class="q-number">No. VII</div>
+  <h2 class="q-question">¿Le ha tocado enfrentar dificultades, racismo, discriminación &mdash; momentos donde se topó con un muro por ser quien era?</h2>
+
+  <div class="speaker first">Reinaldo</div>
+  <p>Racismo plenamente lo experimenté en Estados Unidos, no en México. Cuando empecé a trabajar acá. La preferencia a los blancos contra los morenos &mdash; los mexicanos, eso éramos nosotros. En el trabajo, sí. Cuando estaba aprendiendo a poner pisos, sí me tocaron americanos muy culeros.</p>
+
+  <p>Empecé con un mexicano, un pocho. Después me mandaron a trabajar con un güero &mdash; perro racista, gacho. Un día me dice que cargue una caja de herramientas grande. Estábamos arriba en un segundo piso. Me dijo: <em>ve a la van y tráeme la llana para poner la goma, la de tres octavos.</em> Yo más o menos le entendí. Bajé en chinga &mdash; quería aprender rápido. Llego a la van: &laquo;la van está abierta.&raquo; Pero todas las cajas tenían candado. <em>Todas.</em> Yo sabía qué me había pedido pero no lo encontraba. Él me decía <em>la quiero rápido</em>. No quería volver a subir a preguntarle.</p>
+
+  <p>Volteo y lo miro. Había prendido la van. La ignición. Un montón de llaveros colgando. Lo había hecho a propósito &mdash; me iba a hacer subir y bajar. Fui llave por llave hasta que encontré la correcta. Agarré la herramienta, se la llevé. ¿Y sabes qué me dijo el güero? Me acuerdo bien: se llamaba Barry Brolins. Me dijo: <em>esta chingada madre, te debo una.</em> Así me dijo. Porque eso ya se le había hecho a otros, pero a un mexicano no. Yo lo tomé como un cumplido. Pudo haberme dicho nomás <em>las llaves están en la ignición</em>. Pero no. Nomás me lo pidió para ver cómo reaccionaba.</p>
+
+  <h3 class="subhead">La única vez que golpeé a un cliente.</h3>
+
+  <p>Trabajando en un campo de golf, poniendo alfombra. El trabajo iba a durar varios días. Llegamos a esa casa &mdash; gente de dinero. El güero ahí me agarró a mí nomás de carrilla. Habíamos otros mexicanos trabajando, gringos también &mdash; nomás a mí me chingaba. <em>¿Sabes lo que estás haciendo?</em> Sí, sí, sí. Dos días así. Al tercero, ya no aguanté. Yo venía cargando un rollote de padding sobre los hombros. En lugar de decirme cualquier otra cosa, me dijo otra vez <em>¿sabes lo que estás haciendo?</em> Se lo aventé. Lo arrinconé contra la pared con el pecho. Era mayor el señor. Lo golpeé con la cabeza, <em>pum</em> &mdash; cayó.</p>
+
+  <p>Fui y le dije a mi instalador: le hice eso al señor. Me dijo: <em>te van a correr.</em></p>
+
+  <p class="aside">— ¿Y lo corrieron? — No.</p>
+
+  <p>Me llamaron al trabajo. Hablé con el dueño &mdash; también un güero. Le dije: tenía tres días dándome carrilla. Nomás a mí. A nadie más. Ya no aguanté. Me dijo: <em>casi lo matas.</em> No era mi intención. Pero si se hubiera desmayado, qué gusto me hubiera dado. Se lo merecía.</p>
+
+  <p>El final feliz: me decía Randy, por Reynaldo. Me dijo: <em>Don't worry, Randy. No te preocupes.</em> Al siguiente día me mandó a otro trabajo. En cuanto llegué, el dueño de la casa me llamó. Me dijo: <em>quiero hablar contigo. Tengo demasiados &laquo;amigos&raquo; en esta vida. Quiero pedirte disculpas por todo lo que te hice. Me enseñaste una lección. Aguantaste, pero llegaste a tu límite. Te felicito por eso. Te pido disculpas. Ya no me vas a mirar aquí. No te voy a decir nada.</em> Yo me sentí muy bien. El señor reconoció su error. No digo que quedé como héroe. Pero la compañía se dio cuenta.</p>
+
+  <h3 class="subhead">El baño y el barniz.</h3>
+
+  <p>Aquí en San Diego también &mdash; una vez estábamos trabajando en una casa. Le pregunté a la señora: <em>¿tienes baño que pueda usar?</em> Me dijo: <em>no. Mejor vete a la gasolinera.</em> Le dije OK. Fui a la gasolinera. Tomé mi tiempo. Regresé. Me dolió. Entonces dije: todo se paga. El último día que trabajamos ahí, agarré una botella de Sim-Seal, este barniz, y se lo eché en el tubo del lavadero. Eso tarda un día en secar bien duro. Hizo una bolota ahí. Para el tercer día yo ya me había ido. Ella tuvo que llamar al plomero. No iba a saber de dónde venía. Mi venganza. Mal hecho, lo sé. Pero ahora me da gusto contarlo.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Yo no alcancé a sufrir eso, gracias a Dios. Como sabía inglés y español, podía defenderme de las dos maneras. Hubo gente que trató &mdash; algunos lograron su objetivo &mdash; pero también les di yo su trabajito a ellos. No voy a decir cómo, pero estuvo medio feo. La mayoría no, no tuve muchos problemas. Me decían <em>apúrate</em> y yo me movía más despacio. Me decían <em>este trabajo tiene que salir, ándale</em> y yo les decía <em>pues ábreles la puerta</em>. O <em>este trabajo está caliente</em>, y yo decía <em>échale agua</em>. Aprendí a moverme en esos ambientes hostiles. A esquivar.</p>
+
+  <p>Hubo uno &mdash; uno de mis últimos trabajos. Batallé con un señor. Le dije: <em>he conocido víboras de todos los tamaños en mi vida. Pero nunca, nunca he conocido un viborón como tú.</em> Era un señor que se presentaba contigo, te daba la mano, te decía <em>hola, ¿cómo estás?</em> y se volteaba y hablaba de ti. Tuve muchos problemas con él. Un día vino a mi casa, tocó la puerta. Lo corrí de aquí. <em>No te quiero volver a ver. Vas a tardar 150 años en morirte. Y te vas a morir con dolor.</em> Así me trataba.</p>
+</section>
+
+<aside class="pullquote">
+  <p>No era mi intención. Pero si se hubiera desmayado, qué gusto me hubiera dado. Se lo merecía.</p>
+  <cite>Reinaldo, sobre el único cliente al que golpeó</cite>
+</aside>
+
+<!-- ============ Q8: PATERNIDAD ============ -->
+<section class="q-section">
+  <div class="q-number">No. VIII</div>
+  <h2 class="q-question">Ahora ya tuvieron hijos. ¿Cómo ha sido la experiencia de la paternidad?</h2>
+
+  <div class="speaker first">Reinaldo</div>
+  <p>Dos hijos. Hombre y mujer. Hijos muy hermosos. Cuando estaban chamaquillos, me dieron poquita carrilla, pero no mucho. Rogelio no, Lisa sí. That's OK. Ya pasó. Rogelio también, pero no tanto. Todo bien. Muy buenas personas, gracias a Dios. Los amo mucho. Estoy contento con la vida por esa parte.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Tres hijos. Muy estudiosos. Todos profesionales. Tuvimos que aplicar el mismo método que aplicó mi mamá. Y un poquito de la mamá también, que los crió a su manera. Nos da mucho orgullo que aprendieron inglés y español. Eso les va a ayudar mucho en la vida.</p>
+
+  <h3 class="subhead">¿Han cambiado las cosas en cómo criaron a sus hijos comparado con cómo los criaron a ustedes?</h3>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Oh sí. Completamente. Los hijos ahorita tienen todas las herramientas, toda la tecnología, todo en un teléfono celular. Nosotros nunca tuvimos eso. Pero también &mdash; en la manera de tratar a nuestros hijos. Tratamos de cortar la cadena. La cadena de golpes, de todo eso. Cortamos la cadena de cómo nos criaron a nosotros, para criarlos mejor. Para que fueran mejor que nosotros.</p>
+</section>
+
+<!-- ============ Q9: RELIGIÓN ============ -->
+<section class="q-section">
+  <div class="q-number">No. IX</div>
+  <h2 class="q-question">¿Es importante para usted la religión, la espiritualidad o la fe?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>La fe y la religión son muy importantes en una familia. Aunque muchas veces no vamos a la iglesia, tenemos la fe y tenemos la religión que nuestros padres nos enseñaron. Tratamos de inculcársela a los hijos hasta donde ellos quieran. Ya son grandes. Ellos saben el camino que toman, la fe que tienen, la religión que escogen.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Yo no creo en la religión.</p>
+
+  <p class="aside">— ¿Por qué? —</p>
+
+  <p>La religión es una cosa, y Dios es otra. Yo sí creo en Dios. No creo en la religión. En mi punto de vista muy personal, la religión se hizo para controlar a las multitudes. Hasta cierto punto está bien &mdash; si no, sería un caos. Pero la religión en sí, las iglesias, las sectas &mdash; no creo nada en eso. Cada quien es libre de hacer lo que quiera. Con mis hijos lo que a mí me enseñaron fue la religión católica. Los llevé. Pero no se las inculqué. <em>Tienes que ir a misa el domingo, tienes que, tienes que.</em> No. Es cuestión de ellos con sus hijos. Ellos saben lo que quieren.</p>
+</section>
+
+<aside class="pullquote">
+  <p>La religión es una cosa, y Dios es otra. Yo creo en Dios. No creo en la religión.</p>
+  <cite>Reinaldo</cite>
+</aside>
+
+<!-- ============ Q10: TRABAJO ============ -->
+<section class="q-section">
+  <div class="q-number">No. X</div>
+  <h2 class="q-question">¿Qué tipos de trabajos ha realizado a lo largo de los años?</h2>
+
+  <div class="speaker first">Reinaldo</div>
+  <p>No tuve muchos trabajos. De pequeño vendía periódicos, daba bola, levantaba botellas. En México trabajé en compañías, no muy grandes. En Estados Unidos trabajé en una fábrica poquito tiempo, en los files no mucho tiempo. Cuando encontré mi trabajo de pisos, duré cuarenta y cinco años haciéndolo.</p>
+
+  <h3 class="subhead">¿Cómo encontró ese trabajo?</h3>
+  <p>Trabajaba en un campo de golf. El hijo del mayordomo andaba buscando un ayudante. Me preguntó si quería ayudarle a trabajar con él. Yo le dije: <em>¿cuánto pagan?</em> Me dijo: <em>no sé &mdash; pero ¿cuánto ganas aquí?</em> Tres dólares con veinte centavos la hora. Me dijo: <em>te van a comenzar con menos, pero hay dinero. Si sabes usar el martillo, el serrucho y la cinta de medir, y te gusta el trabajo, vas a hacer dinero.</em> Tomé mi chanza. Tenía a Rogelio recién nacido. Tomé la chanza porque si me quedaba en el campo de golf, no iba a pasar de ahí. Me fue muy bien. Gracias a Dios.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Yo tuve varios. Trabajé en los files &mdash; piscaba tomate, calabacita, melón, sandía. Fui forklift driver. Después shipping and receiving. Luego en chip yards, barcos para la Navy. Me hice soldador. Cambié de soldador de producción a soldador de pipa, high pressure fit-welder. Después construcción, high-risers &mdash; la mayoría para Qualcomm, construcción de edificios desde abajo hasta arriba. Luego volví al chip yard otra vez. Como veintitrés años en chip yard. Once en construcción. Luego otros tres más en chip yard.</p>
+
+  <h3 class="subhead">¿Es cierto que los corrieron a los dos por dormir en los files?</h3>
+
+  <div class="speaker">Valentín</div>
+  <p>En una ocasión &mdash; cuando estábamos bellos, jóvenes y sin experiencia &mdash; pensábamos que el mayordomo nunca nos iba a ver. Lo que nunca pensamos fue que nuestro mayordomo tenía binoculars. Nos estaba mirando desde lejos. Escondido.</p>
+
+  <p>Un fil de alfalfa. La alfalfa crecía grandota. Teníamos la oportunidad de acostarnos. No imaginábamos que el mayordomo nos miraba con binoculars. Cuando vino, nos dijo: <em>muchachos, agarren sus cosas, vámonos.</em> &laquo;Pero, pero, pero...&raquo; <em>No, no, no.</em> Nos sacó del fil. Ya en el camino nos dijo: <em>están corridos.</em> &laquo;¿Pero por qué?&raquo; <em>Porque están durmiéndose en el fil. No se hagan pendejos.</em> Evaristo. Nos corrió. Uno de los primeros trabajos que tuvimos.</p>
+
+  <p class="aside">— ¿Cuántos años tenían? — Como quince. Él tenía diecisiete, dieciocho.</p>
+
+  <p>Era una oportunidad de hacer algo que a nadie más le gustaba hacer. Nos iban a pagar. No teníamos otra cosa que hacer. Pero ya que nos pusimos a hacerlo, nos dio flojera. Uno tenía marihuana. Solo. Y a mí me dio sueño. Y los binoculars &mdash; cornudos.</p>
+
+  <h3 class="subhead">Una historia de aprender inglés en el trabajo.</h3>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Estaba aprendiendo más inglés. Todavía no lo sé todo &mdash; hay cosas que les estoy hablando y me detengo porque no sé bien cómo explicarlo. Le doy la vuelta y me hago entender. En esa ocasión estaba trabajando en la mañana, y había tomado la noche anterior. Estaba trabajando al lado de un señor de color. Estaba bien malo yo &mdash; tenía una cruda tremenda. Se me ocurrió decirle: <em>I can't work much, I'm bien hangover.</em> Cuando le dije <em>I'm bien hangover</em>, se soltó riendo. Se rió un buen rato. Cinco minutos. Me dijo: <em>no se dice así.</em> Yo le dije: <em>I'm hangup. I don't feel good.</em> Se rió de mí cinco minutos más. Luego me dijo: <em>no &mdash; se dice hangover.</em> Me dio mucha vergüenza. Pero así nomás se me cayó. Y seguí aprendiendo. Así fue como aprendí más inglés &mdash; me corregían, a veces se reían de mí, a veces no. Era parte del aprendizaje.</p>
+</section>
+
+<!-- ============ Q11: HISTORIAS DE LOS PADRES ============ -->
+<section class="q-section">
+  <div class="q-number">No. XI</div>
+  <h2 class="q-question">¿Hay historias que le contaban sus papás de su propia vida?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>Mi mamá nos contaba historias. Ella era de Nacozari. Su familia tenía un poquito más &mdash; muchos animales: gallinas, chivos, caballos. Era un rancho ya bien formado. No tenían educación, salvo la hermana mayor. Cuando los padres de mi mamá murieron, le dejaron el rancho a la hermana mayor, que era la que corría todo. <span class="aside">esa era mi nana</span></p>
+
+  <p>Mi mamá era la más pequeña de todas. Entonces la ponían a vender huevos, queso y todas las cosas que podían vender. La mandaban en la mañana a vender huevos. Eran como tres horas de escuela. Tenía que <em>primero</em> vender los huevos y el queso, y luego ir a la escuela. En la tarde salía y vendía otros productos. Así fue como mi mamá aprendió a hacer cuentas. Era muy buena. Fue muy poco a la escuela. Pero aprendió a multiplicar, a leer poquito, a escribir poquito. A hacerse valer por ella misma.</p>
+
+  <p>En aquel entonces todo era muy diferente. Vida del campo. No vida de ciudad. Un rancho aquí, otro a dos kilómetros, otro más allá. Toda la familia. Todos estaban impuestos a subirse a caballos, a cuidar animales, a cuidarse de las víboras. Esa fue parte de la historia de mi mamá.</p>
+
+  <h3 class="subhead">Mi padre, el minero.</h3>
+
+  <p>Mi papá fue minero en Nacozari. Había una mina muy grande que se llamaba Mina de Pilares &mdash; sacaban cobre. Una vez me contó una historia que le pasó a él. Estaba trabajando con pico y pala. Se fijaba siempre en un hombre que estaba en una grúa, que levantaba piedras y las movía. Le decía a su mayordomo: <em>yo sé manejar esa máquina.</em> Le decían: <em>estás loco, no sabes, nunca te has subido. Tú sabes manejar la pala y el pico.</em> Pero mi papá insistía. <em>Yo sé manejar esa máquina.</em></p>
+
+  <p>Pasaron los días. En una ocasión, el que manejaba la máquina se enfermó y no fue a trabajar. Necesitaban que la máquina trabajara. Mi papá volvió a decir: <em>yo sé.</em> El mayordomo lo miró y le dijo: <em>a ver si es cierto. Súbete.</em> Se subió, la manejó. Dos o tres días después regresó el operador y bajaron a mi papá &mdash; pero ya sabían que él podía. Después había unas máquinas iguales afuera de la mina. Lo pusieron en una. Él aprendió nomás de ver.</p>
+
+  <h3 class="subhead">La dinamita.</h3>
+
+  <p>Otra historia &mdash; estaba dentro de la mina perforando hoyos para meter dinamita. Prendieron la dinamita. No alcanzaron a salir. La explosión le golpeó cerca. Las piedras le pegaron en el oído. Perdió parte de su oído de ese lado, para toda la vida.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Lo dieron por muerto. Después de muchos meses, todavía sacaba piedritas de entre los ojos. Le salían piedras de los oídos, de las narices que le explotaron. Tenía cicatrices en el cuerpo. Le sacaron algunas. Pedazos de piedra le quedaron enterrados.</p>
+</section>
+
+<!-- ============ Q12: VALORES ============ -->
+<section class="q-section">
+  <div class="q-number">No. XII</div>
+  <h2 class="q-question">¿Qué valores intentaron transmitirles sus padres?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>Respeto. No mentir &mdash; bueno, aprendimos a echar mentiritas piadosas, chiquitas, que no se daban cuenta. No robar. No codiciar la mujer del prójimo. No pegarle a las mujeres. Una lista de cosas que no se hacen. Aparte de la iglesia: los Diez Mandamientos. Cosas que nos fueron formando.</p>
+
+  <p>La razón que ellos nos daban: al no hacer esas cosas, puedes dormir tranquilo en la noche. Pero cuando tienes cosas en la cabeza &mdash; cosas que hiciste mal, daño que le causaste a alguien sin que te hubiera hecho nada &mdash; en la noche es cuando te vienen esos recuerdos. Mucha gente no puede dormir. Por eso hay gente que dura muchos años para morirse. A la hora de morirse es cuando todos esos recuerdos vuelven a la mente. Y no pueden descansar en paz.</p>
+</section>
+
+<aside class="pullquote">
+  <p>Por eso hay gente que dura mucho para morirse. A la hora de morirse, los recuerdos vuelven, y no pueden descansar en paz.</p>
+  <cite>Valentín, sobre lo que enseñaban sus padres</cite>
+</aside>
+
+<!-- ============ Q13: SABIDURÍA ============ -->
+<section class="q-section">
+  <div class="q-number">No. XIII</div>
+  <h2 class="q-question">¿Tiene alguna historia o pensamiento que quisiera transmitirle a la próxima generación?</h2>
+
+  <div class="speaker first">Reinaldo</div>
+  <p>De lo que he visto, mis sobrinos y nietos tienen la misma escuela que tuvimos nosotros. Por eso somos tan unidos. No hay nada que recomendar. Ya lo aprendieron.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Mis hijos aprendieron mucho de nosotros. Aprendieron que la familia hay que tenerla unida &mdash; o cómo dé lugar. Las enseñanzas que les hemos dado: tiempos difíciles en la escuela, tiempos difíciles que tuvimos como padres, situaciones buenas, situaciones malas, cosas que tratas de arreglar y muchas veces ya es muy tarde. Son cosas con las que uno se va a morir. Espero que nadie dure cien años para morirse.</p>
+
+  <p>La vida está hecha de errores. Como padres, nunca tuvimos un libro, un manual, que nos dijera cómo criar a los hijos. Entonces el libro que nosotros como padres escribimos &mdash; nunca lo vamos a terminar. Porque cada día tenemos una experiencia diferente con nuestros hijos, aunque sean mayores o menores. Cada día es una experiencia, una llamada, una historia diferente. Todo el tiempo algo nuevo. Y muchas veces algo que aprender de nuestros hijos más jóvenes.</p>
+
+  <p>Hay que estar abiertos para aprender de la gente más joven que nosotros. No hay que pensar que por ser viejos sabemos todo. Porque no es así. Cada gente es diferente. Cada uno tiene historias diferentes. Nosotros estamos terminando la nuestra. <em>Ustedes</em> están escribiendo la suya. Y a sus hijos, a su familia, ustedes les van a transmitir sus enseñanzas, sus historias &mdash; así como nosotros se las estamos contando a ustedes.</p>
+</section>
+
+<aside class="pullquote">
+  <p>Nosotros estamos terminando nuestra historia. Ustedes están escribiendo la suya.</p>
+  <cite>Valentín, a sus hijos</cite>
+</aside>
+
+<!-- ============ Q14: EVENTO HISTÓRICO ============ -->
+<section class="q-section">
+  <div class="q-number">No. XIV</div>
+  <h2 class="q-question">Mirando hacia el pasado, ¿cuál considera que es el evento histórico más importante en la historia de su familia?</h2>
+
+  <div class="speaker first">Valentín</div>
+  <p>La inmigración. Venir para acá.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Desde mi punto de vista, eso. Cuando Valentín y yo &mdash; porque mi papá ya estaba inmigrado. Carlos fue el primero. Carlos se vino al fil de alfalfa. Creció ahí, se casó, se asentó. Le decían a Lucero que se inmigrara, pero Lucero no quiso. Tenía muy buen trabajo en México. Al final ya nomás quedamos él y yo.</p>
+
+  <p>Mi papá ya estaba muy cansado de pasar a Caléxico todos los días. Quería vivir acá. Cuando por fin se decidieron a venirse para el otro lado, la guerra de Vietnam estaba en su apogeo. Yo tenía dieciocho. Él tenía dieciséis. Estaban agarrando carne de cañón &mdash; de volada. Nos dieron la inmigración rapidito &mdash; mi mamá era ciudadana americana.</p>
+
+  <h3 class="subhead">11 de enero de 1971 &mdash; y el dedo que faltaba.</h3>
+
+  <p>Me acuerdo de la fecha. 11 de enero del 71. Fuimos a Tijuana, nos dieron la inmigración. <em>A la siguiente semana</em> me llegó una carta para que me presentara en el centro de registro de California. Para el army.</p>
+
+  <p>Ese fin de semana fui, y Valentín fue conmigo. Él sí sabía inglés. Llegamos, tomamos asiento, nos atendió una señora mayor. No había computadoras. Una máquina de escribir. Empezó a preguntarme &mdash; nombre, mamá, papá. Luego: <em>¿tienes un lunar o un defecto, una mutilación, por la cual se te pueda identificar en caso de que te pasara algo en combate?</em></p>
+
+  <p>Y yo le enseñé mi dedo.</p>
+
+  <p>Cuando se lo enseñé, ella estaba escribiendo <em>left hand pinky</em> o algo así. Le hablaron. Se levantó. Tres, cuatro minutos. Regresó. Terminó de escribir. Me dio mi tarjeta y una carta &mdash; <em>vuelve la próxima semana al mismo lugar para tu examen físico en Los Ángeles. Te van a llevar a LA.</em></p>
+
+  <p>Salimos. En el parking lot Valentín me dice: <em>Pipo &mdash; déjame ver tu tarjeta.</em> Y mira. Decía: <em>LEFT HAND MISSING.</em></p>
+
+  <p>&laquo;Pipo,&raquo; me dijo, &laquo;dice que te falta toda la mano. Vamos a decirles. <em>Vamos a la madre.</em>&raquo; ¿Cómo? Fíjate &mdash; cuando no te toca, no te toca. Aunque te pongas el tocadero, no te toca. Me dijo <em>vamos.</em> Yo no quise ir. La siguiente semana &mdash; fíjate &mdash; semana tras semana &mdash; al fin de semana me llegó una carta que decía: <em>missing &mdash; descartado.</em> Por eso no fui yo a Vietnam.</p>
+
+  <p>Estaban mandando más a negros y mexicanos. Yo tenía dieciocho años. Me dieron una tarjeta del servicio militar. Decía <em>no draft time</em> &mdash; ya no era tiempo de hacer draft. La guerra ya pasaba. Tengo la tarjeta. Por ahí la tengo guardada.</p>
+</section>
+
+<aside class="pullquote">
+  <p>Cuando no te toca, no te toca. Aunque te pongas el tocadero. No te toca.</p>
+  <cite>Reinaldo, sobre la señora que le salvó la vida</cite>
+</aside>
+
+<!-- ============ Q14 cont ============ -->
+<section class="q-section">
+  <div class="q-number">Continúa</div>
+  <h2 class="q-question">¿Cómo afectó a la familia el haber emigrado a los Estados Unidos &mdash; para bien o para mal?</h2>
+
+  <div class="speaker first">Reinaldo</div>
+  <p>Para bien y para mal. Para bien &mdash; no nos conformamos con quedarnos en el fil para siempre. Nos fuimos más allá. Yo me fui para Los Ángeles. Sin permiso &mdash; <em>papá, me voy</em>. Después me llevé a Carlos. Después se fue Martín. Fue otra vida. Ya no de campo. Otras chingas &mdash; fábricas, la fábrica de sombreros. Pero fue una evolución. Un cambio de vida. Más para bien que para mal.</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Para mí, salir del calor. Salir del calorón del Valle Imperial. Eso solo fue un cambio. Él hizo un cambio grande. Yo hice un cambio grande. Pero el que se llevó las caritas felices y las palomitas &mdash; fue Lucero. El hermano mayor. Él fue el que se cargó con todo. San Diego. Sin inglés. Inteligente, pero sin inglés. Se metió a trabajar de panadero, día y noche, durmiendo en los carros &mdash; y se trajo al resto de la familia. Esa es una historia larga aparte. Ya ven lo que levantó.</p>
+</section>
+
+<!-- ============ CODA ============ -->
+<section class="coda">
+  <div class="coda-label">Coda</div>
+  <h2>La Historia de <em>Tío Lucero</em></h2>
+  <p class="epitaph">&laquo;Él se llevó todas las estrellitas y las caritas.&raquo;</p>
+
+  <div class="speaker">Valentín</div>
+  <p>Les voy a contar una anécdota de tu tío Lucero que a lo mejor no se la saben.</p>
+
+  <p>Reinaldo y yo vivíamos en Los Ángeles con Carlos. Después nos cambiamos a un departamento aparte &mdash; ahí te tuvimos. Bueno, naciste en el hospital. Pero ahí fue donde estuvimos. En una ocasión llegó tu tío Lucero, cuando se le había acabado el trabajo en Mexicali y no tenía. Tenía a los muchachos: Eva, Beto, Carmen. Lourdes todavía no nacía. Se quedó viviendo con nosotros.</p>
+
+  <p>Me acuerdo &mdash; una vez estaba lloviendo. Le dije a Lucero: <em>vamos al licor.</em> &laquo;Vamos.&raquo; Para que vean cómo evoluciona la gente &mdash; yo ya tenía un par de años aquí. Tenía una sombrilla. Al salir, agarré la sombrilla, la abrí, y le dije <em>vente.</em></p>
+
+  <p><em>¿Qué? ¿Estás loco? ¿Yo con sombrilla?</em> &laquo;Hombre, mejor no voy a la chingada.&raquo; Le dije: <em>Lucero, aquí todo el mundo anda con sombrilla. Hombres, mujeres, todos.</em> &laquo;Sí, pero yo no.&raquo;</p>
+
+  <p>Y llegó el día en que él también andaba con sombrilla. Para que vean cómo evoluciona uno. En Mexicali, a un hombre con sombrilla lo tildaban de homosexual, le decían mujer, le hacían un montón de cosas. México era muy machista. Aquí es nomás lluvia.</p>
+
+  <h3 class="subhead">El número de Social Security.</h3>
+
+  <p>Un día me dijo: <em>no tengo Social Security number. Préstame el tuyo.</em> Le dije: <em>ahí te va.</em> Trabajó un tiempo con mi Social. A Carlos no le quería pedir nada. Trabajó ahí un rato, después se fue para otro lado, terminó en San Diego.</p>
+
+  <p>Pero el que se llevó las palomitas &mdash; el que cargó con la familia &mdash; fue él. Siempre. Antes de morirse, en el hospital, me dijo: <em>discúlpame si en alguna ocasión de tu vida me metí en algo que no me importaba. Yo simplemente estaba cuidando de ti.</em> Así fue. Cuando se estaba muriendo, se despidió de cada uno de nosotros, a su manera.</p>
+
+  <h3 class="subhead">La noche que Reinaldo se tomó el tequila.</h3>
+
+  <p>Se llevó todas las estrellitas y las caritas chiquitas. Aparte de mi papá y mi mamá &mdash; ellos se llevaron la estrella grande. Pero él se llevó todas las chiquitas. Cuidó a cada uno de nosotros. Se peleaba por cada uno de nosotros. Siempre estuvo cuando lo necesitábamos. La noche que Reinaldo se tomó una botella de tequila a los seis años &mdash; Lucero también estuvo ahí. Él fue el que le salvó la vida.</p>
+
+  <div class="speaker">Reinaldo</div>
+  <p>Me acuerdo que estaba en una plancha helada redonda. Vomitaba por un lado, vomitaba por el otro. Necesitaban una inyección para contrarrestar el alcohol &mdash; una grande. Mi mamá no tenía dinero para pagarla. No la ponían sin pagarla. Lucero &mdash; no sé cómo, consiguió el dinero. La pagó. Me pusieron la inyección.</p>
+
+  <div class="divider" style="margin-top: 3rem;">
+    <span class="line"></span>
+    <span class="ornament">✦</span>
+    <span class="line"></span>
+  </div>
+
+  <p style="text-align:center; font-style:italic; color: var(--ink-soft); margin-top: 2rem;">Tenemos historias. Muchas historias. Lo que les contamos es nada más una parte.</p>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <p class="colophon">
+    Grabado por Lisa, para la familia.<br>
+    En su voz, en español, levemente editado para claridad.
+  </p>
+  <div class="credit">
+    Reinaldo &laquo;Pipo&raquo; Lucero <span>·</span> Valentín Lucero <span>·</span> para la familia
+  </div>
+</footer>
+
+</main>
+</body>
+</html>

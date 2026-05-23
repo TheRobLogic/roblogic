@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lucero Brothers — An Oral History</title>
+<meta name="description" content="An afternoon with Reinaldo 'Pipo' and Valentín Lucero, recorded by Lisa — transcribed and translated two ways.">
+<meta property="og:title" content="The Lucero Brothers — An Oral History">
+<meta property="og:description" content="Two brothers, two passes, one conversation. Recorded by Lisa for the family.">
+<meta property="og:url" content="https://roblogic.org/lucero/">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Spectral+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #faf7f1;
+  --paper-tint: #f4eee2;
+  --ink: #221d18;
+  --ink-soft: #4a4035;
+  --ink-mute: #8a7c6c;
+  --terra: #b04a2c;
+  --terra-deep: #7d2e1a;
+  --rule: #d6cdb9;
+  --rule-faint: #ebe3d2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #181410;
+    --paper-tint: #211b15;
+    --ink: #ede5d4;
+    --ink-soft: #c5b89d;
+    --ink-mute: #8a7c6c;
+    --terra: #d8704f;
+    --terra-deep: #b04a2c;
+    --rule: #3a3025;
+    --rule-faint: #2a221a;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: clamp(1.0625rem, 1.55vw, 1.1875rem);
+  line-height: 1.72;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== Masthead ===== */
+header.masthead {
+  max-width: 42rem;
+  margin: 5.5rem auto 3.5rem;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.masthead .dateline {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  margin-bottom: 2rem;
+}
+
+.masthead .dateline span { margin: 0 0.5rem; color: var(--rule); }
+
+.masthead h1 {
+  font-family: 'Spectral', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.4rem, 7vw, 4.2rem);
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.masthead h1 .article {
+  font-weight: 300;
+  color: var(--terra);
+  font-style: italic;
+  display: block;
+  font-size: 0.42em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-family: 'Spectral SC', serif;
+  color: var(--ink-mute);
+}
+
+.masthead .subtitle {
+  margin-top: 1.5rem;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+  color: var(--ink-soft);
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* ===== Cast box ===== */
+.cast {
+  max-width: 38rem;
+  margin: 0 auto 4.5rem;
+  padding: 1.75rem 1.5rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 560px) {
+  .cast { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+.cast .who {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.cast .role {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--terra);
+  margin-top: 0.15rem;
+}
+
+.cast .blurb {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* ===== Lede ===== */
+.lede {
+  max-width: 38rem;
+  margin: 0 auto 3.5rem;
+  padding: 0 1.5rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.lede::first-letter {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.85;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--terra);
+}
+
+/* ===== Section label ===== */
+.section-tag {
+  max-width: 38rem;
+  margin: 4rem auto 1rem;
+  padding: 0 1.5rem;
+  font-family: 'Spectral SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  text-align: center;
+}
+
+.section-tag::before,
+.section-tag::after {
+  content: '';
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  background: var(--rule);
+  vertical-align: middle;
+  margin: 0 1rem;
+}
+
+/* ===== Version cards ===== */
+.versions {
+  max-width: 56rem;
+  margin: 1.5rem auto 4rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+@media (max-width: 720px) {
+  .versions { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+.version-card {
+  display: block;
+  padding: 2.25rem 2rem 2rem;
+  background: var(--paper-tint);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  position: relative;
+}
+
+.version-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--terra);
+  background: var(--paper);
+}
+
+.version-card .label {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  color: var(--terra);
+  margin-bottom: 1rem;
+}
+
+.version-card h2 {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.65rem;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 1.25rem;
+}
+
+.version-card p {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.version-card .meta {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--ink-mute);
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-faint);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+}
+
+.version-card .meta span::before {
+  content: '·';
+  margin-right: 0.7rem;
+  color: var(--rule);
+}
+
+.version-card .meta span:first-child::before {
+  content: '';
+  margin-right: 0;
+}
+
+.version-card .open {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--terra-deep);
+  margin-top: 1.5rem;
+  display: inline-block;
+}
+
+.version-card .open::after {
+  content: ' →';
+  transition: margin-left 0.2s ease;
+  display: inline-block;
+}
+
+.version-card:hover .open::after {
+  margin-left: 0.25rem;
+}
+
+/* ===== Note ===== */
+.note {
+  max-width: 38rem;
+  margin: 0 auto 5rem;
+  padding: 0 1.5rem;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ===== Footer ===== */
+footer {
+  max-width: 38rem;
+  margin: 3rem auto 3rem;
+  padding: 3rem 1.5rem 0;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+
+footer .colophon {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media print {
+  body { background: white; color: black; }
+  .version-card { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="dateline">
+    <span>·</span>
+    <span>Recorded April 28, 2026 — San Diego</span>
+    <span>·</span>
+  </div>
+  <h1>
+    <span class="article">An Oral History</span>
+    The Lucero Brothers
+  </h1>
+  <p class="subtitle">
+    An afternoon with Reinaldo &ldquo;Pipo&rdquo; and Valentín, recorded by Lisa &mdash; transcribed and translated two ways.
+  </p>
+</header>
+
+<section class="cast">
+  <div>
+    <div class="who">Reinaldo &ldquo;Pipo&rdquo; Lucero</div>
+    <div class="role">Lisa&rsquo;s Dad</div>
+    <div class="blurb">Forty-five years installing floors. Crossed from Mexicali in January 1971 &mdash; one week before the Vietnam draft notice arrived. Married Nancy. Father of two.</div>
+  </div>
+  <div>
+    <div class="who">Valentín &ldquo;Vale&rdquo; Lucero</div>
+    <div class="role">Lisa&rsquo;s Tío</div>
+    <div class="blurb">Sold newspapers at six. ESL classes after emigrating, then high school in California. Welded warships, built Qualcomm high-rises, came back to the shipyard. Father of three.</div>
+  </div>
+</section>
+
+<p class="lede">
+  Lisa sat down with her dad Reinaldo and her tío Valentín on an April afternoon, with a list of oral-history questions. They came from Mexicali. They emigrated as teenagers. The Vietnam draft notice arrived the week after they crossed. The recording runs nearly two hours. What follows is what they said &mdash; rendered two ways by two different machines, each with its own ear.
+</p>
+
+<div class="section-tag">Two Renderings</div>
+
+<section class="versions">
+  <a class="version-card" href="/lucero/dad-and-vale/">
+    <div class="label">Pass One</div>
+    <h2>Dad &amp; Vale</h2>
+    <p>A bilingual edit. English and Spanish side by side on the same page, with a toggle. Organized by question. Tighter, closer to the spoken cadence &mdash; the dateline and the aside about salud and the room sounds left in.</p>
+    <div class="meta">
+      <span>Bilingual toggle</span>
+      <span>14 questions</span>
+      <span>EN &amp; ES transcripts</span>
+    </div>
+    <span class="open">Open the conversation</span>
+  </a>
+
+  <a class="version-card" href="/lucero/lucero-brothers/">
+    <div class="label">Pass Two</div>
+    <h2>The Lucero Brothers</h2>
+    <p>A long-form narrative pass. Separate English and Spanish editions. Roman-numeral chapters, pull quotes, paper-grain texture &mdash; and a Coda about Tío Lucero, the older brother who carried the family across, that the other rendering does not have.</p>
+    <div class="meta">
+      <span>Separate EN / ES</span>
+      <span>14 chapters + Coda</span>
+      <span>EN &amp; ES transcripts</span>
+    </div>
+    <span class="open">Open the conversation</span>
+  </a>
+</section>
+
+<p class="note">
+  Both renderings were transcribed and translated from the same recording by different language models, on different passes. They disagree in small ways &mdash; even on who is the older brother. Read either, or both.
+</p>
+
+<footer>
+  <p class="colophon">
+    Recorded by Lisa, for the family.<br>
+    Translated from the original Spanish, lightly edited for clarity, kept in their voice.
+  </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dad & Vale — A Conversation</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Spectral+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #faf7f1;
+  --paper-tint: #f4eee2;
+  --ink: #221d18;
+  --ink-soft: #4a4035;
+  --ink-mute: #8a7c6c;
+  --terra: #b04a2c;
+  --terra-deep: #7d2e1a;
+  --rule: #d6cdb9;
+  --rule-faint: #ebe3d2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #181410;
+    --paper-tint: #211b15;
+    --ink: #ede5d4;
+    --ink-soft: #c5b89d;
+    --ink-mute: #8a7c6c;
+    --terra: #d8704f;
+    --terra-deep: #b04a2c;
+    --rule: #3a3025;
+    --rule-faint: #2a221a;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: clamp(1.0625rem, 1.55vw, 1.1875rem);
+  line-height: 1.72;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== Sticky page-set nav ===== */
+nav.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.55rem 1rem;
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  backdrop-filter: blur(6px);
+  background-color: color-mix(in oklab, var(--paper) 92%, transparent);
+}
+nav.topbar a {
+  color: var(--ink-mute);
+  text-decoration: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+nav.topbar a:hover { color: var(--ink); }
+nav.topbar a.current { background: var(--ink); color: var(--paper); }
+
+/* ===== Sticky language toggle ===== */
+.langbar {
+  position: sticky;
+  top: 2.4rem;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(6px);
+  background-color: color-mix(in oklab, var(--paper) 92%, transparent);
+}
+
+.langbar button {
+  font-family: 'Spectral SC', 'Spectral', serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  padding: 0.45rem 1.2rem;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  border-radius: 1px;
+}
+
+.langbar button:hover {
+  color: var(--ink);
+  border-color: var(--ink-mute);
+}
+
+.langbar button.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ===== Header ===== */
+header.masthead {
+  max-width: 42rem;
+  margin: 4.5rem auto 3.5rem;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+.masthead .dateline {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  color: var(--ink-mute);
+  margin-bottom: 2rem;
+}
+
+.masthead .dateline span { margin: 0 0.5rem; color: var(--rule); }
+
+.masthead h1 {
+  font-family: 'Spectral', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.masthead h1 .ampersand {
+  font-weight: 300;
+  color: var(--terra);
+  font-size: 1.15em;
+  margin: 0 0.05em;
+}
+
+.masthead .subtitle {
+  margin-top: 1.25rem;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--ink-soft);
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Cast box ===== */
+.cast {
+  max-width: 38rem;
+  margin: 0 auto 4rem;
+  padding: 1.75rem 1.5rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 560px) {
+  .cast { grid-template-columns: 1fr; gap: 1.25rem; }
+}
+
+.cast .who {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.cast .role {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--terra);
+  margin-top: 0.15rem;
+}
+
+.cast .blurb {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+/* ===== Body content ===== */
+article {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.lede {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.12rem;
+  line-height: 1.65;
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule-faint);
+}
+
+.lede::first-letter {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.85;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--terra);
+}
+
+/* Chapter heading */
+h2.chapter {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.6vw, 1.65rem);
+  font-style: italic;
+  color: var(--ink);
+  margin: 3.5rem 0 0.4rem;
+  letter-spacing: -0.005em;
+}
+
+h2.chapter::before {
+  content: '';
+  display: block;
+  width: 1.75rem;
+  height: 1px;
+  background: var(--terra);
+  margin-bottom: 1.1rem;
+}
+
+.chapter-tag {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  color: var(--ink-mute);
+  margin-bottom: 1.5rem;
+}
+
+/* Speaker label */
+.who-said {
+  font-family: 'Spectral SC', serif;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--terra-deep);
+  margin: 1.5rem 0 0.45rem;
+}
+
+.who-said.first { margin-top: 0.5rem; }
+
+/* Body paragraphs */
+article p {
+  margin-bottom: 1.05rem;
+  color: var(--ink);
+}
+
+article p em.note {
+  color: var(--ink-mute);
+  font-size: 0.92em;
+}
+
+/* Inline Spanish word/phrase in English version */
+.es-inline {
+  font-style: italic;
+  color: var(--terra-deep);
+}
+
+/* Aside (banter, room sounds, interruptions) */
+.aside {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 0.95em;
+  display: block;
+  margin: 0.4rem 0 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--rule);
+}
+
+/* Pull quote between chapters */
+.pull {
+  margin: 4rem 0;
+  padding: 1.5rem 0;
+  text-align: center;
+  border-top: 1px solid var(--rule-faint);
+  border-bottom: 1px solid var(--rule-faint);
+}
+
+.pull blockquote {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  line-height: 1.35;
+  color: var(--terra-deep);
+  letter-spacing: -0.005em;
+}
+
+.pull cite {
+  display: block;
+  margin-top: 1rem;
+  font-family: 'Spectral SC', serif;
+  font-style: normal;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: var(--ink-mute);
+}
+
+/* Divider */
+.divider {
+  text-align: center;
+  margin: 3.5rem 0;
+  color: var(--rule);
+  font-size: 0.9rem;
+  letter-spacing: 0.6em;
+}
+
+/* Footer */
+footer {
+  max-width: 38rem;
+  margin: 5rem auto 3rem;
+  padding: 3rem 1.5rem 0;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+
+footer .colophon {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+footer .files {
+  font-family: 'Spectral SC', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  color: var(--rule);
+}
+
+footer .files span { margin: 0 0.5rem; }
+
+/* Language switch behavior */
+body[data-lang="en"] .lang-es { display: none; }
+body[data-lang="es"] .lang-en { display: none; }
+
+/* Print */
+@media print {
+  body { background: white; color: black; }
+  .langbar { display: none; }
+  .lang-es, .lang-en { display: block !important; }
+  .lang-es { page-break-before: always; }
+}
+</style>
+</head>
+<body data-lang="en">
+
+<nav class="topbar">
+  <a href="/lucero/">Index</a>
+  <a href="/lucero/dad-and-vale/" class="current">Edit</a>
+  <a href="/lucero/dad-and-vale/transcript-es.html">Transcripción ES</a>
+  <a href="/lucero/dad-and-vale/transcript-en.html">Transcript EN</a>
+  <a href="/lucero/lucero-brothers/">Lucero Brothers ↗</a>
+</nav>
+
+<nav class="langbar">
+  <button id="btn-en" class="active" type="button">ENGLISH</button>
+  <button id="btn-es" type="button">ESPAÑOL</button>
+</nav>
+
+<header class="masthead">
+  <div class="dateline">
+    <span>·</span>
+    <span class="lang-en">Recorded April 28, 2026 — San Diego</span>
+    <span class="lang-es">Grabado el 28 de abril, 2026 — San Diego</span>
+    <span>·</span>
+  </div>
+  <h1>
+    <span class="lang-en">Dad <span class="ampersand">&</span> Vale</span>
+    <span class="lang-es">Papá <span class="ampersand">y</span> Vale</span>
+  </h1>
+  <p class="subtitle">
+    <span class="lang-en">An afternoon with Lisa's father and uncle.</span>
+    <span class="lang-es">Una tarde con el papá y el tío de Lisa.</span>
+  </p>
+</header>
+
+<section class="cast">
+  <div>
+    <div class="who">Reinaldo "Pipo" Lucero</div>
+    <div class="role"><span class="lang-en">Lisa's Dad</span><span class="lang-es">El papá de Lisa</span></div>
+    <div class="blurb">
+      <span class="lang-en">Started selling newspapers at six or seven. Emigrated at sixteen. Forty-five years installing floors. Married Nancy. Father of two.</span>
+      <span class="lang-es">Empezó vendiendo periódicos a los seis o siete años. Emigró a los dieciséis. Cuarenta y cinco años instalando pisos. Casado con Nancy. Padre de dos.</span>
+    </div>
+  </div>
+  <div>
+    <div class="who">Valentín "Vale" Lucero</div>
+    <div class="role"><span class="lang-en">Lisa's Tío</span><span class="lang-es">El tío de Lisa</span></div>
+    <div class="blurb">
+      <span class="lang-en">The older brother. Finished high school in California after the family emigrated. Welded warships at the Navy yard, built high-rises for Qualcomm, came back to the shipyard. Father of three.</span>
+      <span class="lang-es">El hermano mayor. Terminó la high school en California cuando la familia emigró. Soldó barcos en el yard de la Navy, construyó edificios para Qualcomm, regresó al shipyard. Padre de tres.</span>
+    </div>
+  </div>
+</section>
+
+<article>
+
+<p class="lede">
+  <span class="lang-en">Lisa sat down with her dad Reinaldo and her tío Valentín on an April afternoon, with a list of oral-history questions. They are two of four brothers — the oldest, Carlos, has passed; another, also called Lucero, was the brother who later carried much of the family across. They came to the United States as teenagers in early 1971, and the Vietnam draft notice arrived the following week. The recording runs nearly two hours. What follows is what they said, lightly edited and translated from the Spanish — kept, where it counts, in their voices.</span>
+  <span class="lang-es">Lisa se sentó con su papá Reinaldo y su tío Valentín una tarde de abril, con una lista de preguntas de historia oral. Son dos de cuatro hermanos — el mayor, Carlos, ya falleció; otro, también de nombre Lucero, fue el hermano que después cargó a buena parte de la familia para cruzar. Llegaron a los Estados Unidos siendo adolescentes a principios de 1971, y la carta del draft para Vietnam llegó la siguiente semana. La grabación dura casi dos horas. Lo que sigue es lo que contaron, ligeramente editado y traducido del español — manteniendo, donde importa, sus propias palabras.</span>
+</p>
+
+<!-- ====== CHAPTER 1: CHILDHOOD ====== -->
+<div class="chapter-tag"><span class="lang-en">Question One</span><span class="lang-es">Pregunta Uno</span></div>
+<h2 class="chapter">
+  <span class="lang-en">How would you describe yourself as a child?</span>
+  <span class="lang-es">¿Cómo se describiría a sí mismo cuando era niño?</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>From childhood — what I remember, what my mind remembers — we were poor. A poor family. With two very good parents. At my age, I had to start working. Six, seven years old, I was selling newspapers. I'd get up at six in the morning, go pick up my paper, deliver it, earn money. Not much. But I earned money.</p>
+<p>First I did it on foot. Then I saved up, bought myself a little bicycle. And — for this I have to thank my older brother Carlos. He taught me how to sell newspapers. Took me where I needed to go. From there I learned I liked money. Who doesn't, right? From there I just kept working.</p>
+<p>But my childhood was beautiful. I lacked a lot of things other kids had and I didn't — I envied them. But it was beautiful, because childhood is the best part of your life. When you're a kid you don't have to worry about whether you'll eat, where you'll sleep, what you'll wear. Our parents took care of all that.</p>
+<p>That's about childhood. After puberty, things get complicated.</p>
+<p class="aside">— You're not recording faces, right? <br>— Yes. <br>— Salud.</p>
+</div>
+
+<div class="lang-es">
+<p>De niño — lo que yo recuerdo, lo que mi mente me recuerda — éramos pobres. Una familia pobre. Pero con dos muy buenos padres. A mi edad tuve que empezar a trabajar. A los seis, siete años de edad, vendía periódico. Me levantaba en la mañana, a las seis, iba a agarrar mi periódico, lo distribuía y ganaba dinero. Poquito. Pero ganaba dinero.</p>
+<p>Primero lo hacía caminando. Después ahorré dinero, me compré una bicicletita. Y — para esto tengo que decir gracias a mi hermano mayor Carlos. Él fue el que me enseñó a vender periódico. Me llevó a donde iba. De ahí me gustó el dinero. ¿A quién no, verdad? De ahí en adelante ya seguí trabajando.</p>
+<p>Pero mi niñez fue muy bonita. Carente de muchas cosas que envidiaba que otros niños tenían y yo no. Pero fue bonita, porque la niñez es la mejor parte de tu vida. Cuando eres niño, no tienes que preocuparte si tienes que comer, dónde dormir, ropa. Mis padres, nuestros padres, ellos se encargaban de eso.</p>
+<p>Eso, referente a la niñez. Ya después de la pubertad, ya se atropella.</p>
+<p class="aside">— ¿No estás grabando caras, verdad? <br>— Sí. <br>— Salud.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>I was a happy child. A content child. They sent me to school — that was the first thing I started knowing about myself. They sent me to school to study. Sometimes we were poor, sometimes barefoot, sometimes with shoes. But it was a happy childhood, in Mexico, for me.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo era un niño feliz. Un niño contento. Me mandaban a la escuela — fue lo primero que yo empecé a saber de mí. Me mandaban a la escuela a que estudiara. En veces éramos pobres, en veces descalzos, en veces con zapatos. Pero fue una niñez feliz, en México, para mí.</p>
+</div>
+
+<!-- ====== CHAPTER 2: FAMILY ====== -->
+<div class="chapter-tag"><span class="lang-en">Two</span><span class="lang-es">Dos</span></div>
+<h2 class="chapter">
+  <span class="lang-en">Tell me about your family.</span>
+  <span class="lang-es">Hábleme de su familia.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>I have four brothers. Well — three now. The oldest passed away. We all married. Every one of us. Each had his own family. We've raised our kids.</p>
+<p>At seventeen, sixteen — our parents emigrated us. My dad, my mom and I came to the United States. I never knew my grandparents. I knew my brothers. I have no sisters. Just the four of us — four brothers. That's how we grew up. A family of four brothers, no sisters.</p>
+<p>I had the chance to study in Mexico through <span class="es-inline">secundaria</span> — which is more or less high school there — and then high school here in the States.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo tengo cuatro hermanos. Bueno — ahorita son tres nomás. El mayor falleció. Todos nos casamos. Cada quien tuvo sus familias. Hemos crecido nuestros hijos.</p>
+<p>A la edad de diecisiete años, dieciséis — nuestros padres nos emigraron. Mi papá, mi mamá y yo nos vinimos a Estados Unidos. A mis abuelos no los conocí. A mis hermanos sí. Hermanas no tengo. Nomás fuimos cuatro hermanos. Así crecimos. Una familia de cuatro hermanos, hermanas no tuvimos.</p>
+<p>Yo tuve la oportunidad de estudiar en México hasta la secundaria — que viene siendo como high school allá — y luego la high school aquí en Estados Unidos.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>The family — well, we never knew our grandparents. Two parents, dad and mom. My father was a hardworking man, very dependable. He wasn't perfect, but he was a very good man. My mother — a little tougher. She was the one who'd lay down the law. <em class="note">Tierrita</em> when we behaved badly. Or sometimes when we behaved fine.</p>
+<p>An older brother who was always concerned about us, always there. Another brother, the one next in line — also a good brother, you could say, because he taught me to work, stepped in to defend me from older boys. Our parents taught us to protect one another. Four brothers. We were obliged. It wasn't a question of whether we wanted to. We had to.</p>
+<p>Vale and I had a closer adolescence than I did with my older brothers. I'd have a fight with somebody, he'd jump in. He'd have a fight, I'd make him fight. We had bullies. There's one anecdote I'll never forget. I had a bully who always grabbed me. Grabbed Vale too. One day he and I decided — between the two of us — we put him in his place. After that, the bully was finished. <span class="es-inline">El Checo. El Piteco.</span> Done.</p>
+<p>I taught him to defend himself from his bullies, too. Even forced him to fight when he had to, so they'd leave him alone.</p>
+</div>
+
+<div class="lang-es">
+<p>La familia — pues, abuelos no nos conocimos. Dos padres, papá y mamá. Mi padre fue un hombre muy trabajador, muy cumplido. No era perfecto, pero era muy buen hombre. Mi madre — un poquito más dura. Era la que nos arrimaba <em class="note">tierrita</em> cuando nos portábamos mal. O a veces cuando nos portábamos bien.</p>
+<p>Un hermano mayor que siempre se preocupó por nosotros, siempre estuvo ahí. Otro hermano, el que sigue — también buen hermano, se puede decir, porque me enseñó a trabajar, me llegó a defender de muchachos más grandes. Nuestros padres nos enseñaron a protegernos uno al otro. Cuatro hermanos. Estábamos obligados. No era si queríamos o no. Teníamos que.</p>
+<p>Vale y yo tuvimos una adolescencia más junta que la que yo tuve con mis hermanos mayores. Yo tenía pleitos con alguien, él se metía. Él tenía pleitos, yo lo obligaba a pelear. Teníamos nuestros bullies. Hay una anécdota que nunca se me va a olvidar. Yo tenía un bully que siempre me agarraba. A él también. Un día decidimos, él y yo, entre los dos — lo pusimos en paz. Desde entonces, <span class="es-inline">el Checo, el Piteco</span> — se acabó.</p>
+<p>Yo a él también lo enseñé a defenderse de sus bullies. Hasta lo obligaba a pelear, para que lo dejaran en paz.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>That's what my older brother Lucero taught me. He told me: <em>this is a barrio. The one who eats the most spit, swallows the most pinole.</em> It was a tough barrio. You defended yourself by force, or you got rolled. We were only four in the colonia. Lucero had his own respect. But Lucero taught me — you have to defend yourself, even if just once, even if they hit you. It doesn't matter. You'll earn respect.</p>
+<p>He was right. When I went to sell papers, kids would come out on the way to fight me. I was never big. You can see — short little guy. People tried to take advantage. But that's how I learned to fight. And I earned everyone's respect.</p>
+</div>
+
+<div class="lang-es">
+<p>Eso fue lo que me enseñó mi hermano mayor, Lucero. Me dijo: <em>aquí es un barrio. El que come más saliva, traga más pinole.</em> Era un barrio bravo. Tenías que defenderte a fuerzas, o te fregaban. Nosotros éramos cuatro nada más en la colonia. Lucero tenía sus propios respetos. Pero Lucero me enseñó esto — que tienes que defenderte, aunque sea una sola vez, aunque te peguen. No le hace. Te vas a ganar respeto.</p>
+<p>Tenía razón. Yo cuando iba a vender periódicos, en el camino me salían chamacos a pelear. Nunca fui grande. Ya ven — chaparrito. La gente trataba de abusar. Pero así aprendí a pelear. Y me gané respeto de todos.</p>
+</div>
+
+<!-- ====== CHAPTER 3: THE LUCERO NAME ====== -->
+<div class="chapter-tag"><span class="lang-en">An Aside</span><span class="lang-es">Un Aparte</span></div>
+<h2 class="chapter">
+  <span class="lang-en">How we got the name Lucero.</span>
+  <span class="lang-es">Cómo obtuvimos el nombre Lucero.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>My mom was named Carlota Ochoa Rendón. When she married my dad — in Mexico you use the mother's name and the father's name, with the father's last. Mother's name last in the middle position. The family middle name was Lucero.</p>
+<p>When they married, my dad only knew his uncle, who was named Maximino Lucero. My dad's name was just Ángel, and he adopted the name — they gave him the name Ángel Lucero. So when he married my mom, they gave us the names Lucero Rendón. Lucero Rendón.</p>
+<p>Through the years in Mexico, we were Lucero Rendón. When we emigrated to the United States — here only the last name is used. So all of us became <em>Lucero</em>. That's why we're Lucero.</p>
+</div>
+
+<div class="lang-es">
+<p>Mi mamá se llamaba Carlota Ochoa Rendón. Cuando ella se casó con mi papá — en México se usa el nombre de la mamá y el del papá, con el del papá al último. El de la mamá al final, en el middle. El middle name de la familia era Lucero.</p>
+<p>Cuando ellos se casaron, mi papá nomás conocía a su tío, que se llamaba Maximino Lucero. El nombre de mi papá nomás era Ángel, y él adoptó el nombre — le dieron el nombre Ángel Lucero. Cuando él se casó con mi mamá, ellos nos dieron los nombres Lucero Rendón. Lucero Rendón.</p>
+<p>A través del tiempo en México fuimos Lucero Rendón. Cuando emigramos a Estados Unidos — aquí se usa solamente el último apellido. Entonces todos fuimos <em>Lucero</em>. Por eso somos Lucero.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>Can I add something? Not to correct you — but the way I have the story: my dad was Ochoa. Ochoa was his mother's name, not his father's. He was orphaned at four months old. His mom died at four months. His dad — we never knew who that was. Those were the times of the revolution in Mexico. So my dad had no family.</p>
+<p>An uncle on his mother's side — her brother — took him in and gave him <em>his</em> last name, Lucero. So really, in Mexico, we should be Ochoa Rendón. Rendón from <span class="es-inline">mi nana</span>. Ochoa from <span class="es-inline">mi tata</span>.</p>
+<p>My dad met his blood uncle in Los Angeles — around 1982, '83. About fifty years later. But he never had family before then. No blood cousins. No mom or dad. No uncles. Nothing.</p>
+</div>
+
+<div class="lang-es">
+<p>¿Puedo agregar algo? No para corregirte — pero así me sale la historia a mí: mi papá era Ochoa. Ochoa fue el nombre de su mamá, no de su papá. Quedó huérfano a los cuatro meses de edad. Su mamá murió a los cuatro meses. A su papá — nunca supimos quién fue. Eran tiempos de la revolución en México. Mi papá no tuvo familia.</p>
+<p>Un tío de su mamá — el hermano de ella — lo recogió y le dio su apellido, Lucero. Así que en realidad, en México, deberíamos de ser Ochoa Rendón. Rendón por <span class="es-inline">mi nana</span>. Ochoa por <span class="es-inline">mi tata</span>.</p>
+<p>Mi papá conoció a su tío de sangre en Los Ángeles — como en 1982, 83. Unos cincuenta años después. Pero antes, nunca tuvo familia. Ni primos de sangre. Ni papá, ni mamá. Ni tíos. Nada.</p>
+</div>
+
+<!-- ====== CHAPTER 4: NACOZARI ====== -->
+<div class="chapter-tag"><span class="lang-en">A Story From Mom's Side</span><span class="lang-es">Una Historia Por Parte de Mamá</span></div>
+<h2 class="chapter">
+  <span class="lang-en">A grandfather, a burning train, a hero named Jesús García.</span>
+  <span class="lang-es">Un abuelo, un tren ardiendo, un héroe llamado Jesús García.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>What we know of our parents' history is what they told us. In Mexico, in those revolutionary times — many people moved around. Soldiers came from Mexico City and mixed with people from the towns. They left, with the promise they'd return. They didn't return. That was very common. So we don't really know exactly.</p>
+<p>What we do know about my mom — she was a Rendón — she had a great-uncle, an uncle, I remember her telling. He worked in a town called <em>Nacozari de Jesús García</em>, in the state of Sonora. He was on a train that Jesús García took out of town. The train was carrying dynamite — explosives. When they saw the train was burning, that man, Jesús García, drove it out of town so the explosion wouldn't kill the whole population.</p>
+<p>My mom's great-uncle was on that train. He worked on it. And he was one of the men who went out with Jesús García to let it explode outside the city.</p>
+<p>Jesús García is a national hero. Mexican. There are songs about him. Stories. Anecdotes.</p>
+</div>
+
+<div class="lang-es">
+<p>Lo que sabemos de nuestros padres es lo que ellos nos contaron. En México, en esos tiempos de la revolución — había mucha gente que se movía. Venían soldados de la Ciudad de México y se mezclaban con la gente de los pueblos. Se iban, con la promesa de que iban a volver. Pero nunca volvían. Eso era muy común. Entonces, en realidad, no sabemos exactamente.</p>
+<p>De mi mamá — ella era Rendón — ella tenía un tío, un abuelo, me acuerdo. Trabajaba en un pueblo llamado <em>Nacozari de Jesús García</em>, en el estado de Sonora. Él estuvo en un tren que Jesús García sacó del pueblo. El tren llevaba dinamita — explosivos. Cuando vieron que el tren se estaba quemando, esa persona, Jesús García, lo sacó del pueblo para que no explotara dentro y matara a la población.</p>
+<p>El tío abuelo de mi mamá iba en ese tren. Trabajaba ahí. Y fue uno de los hombres que salió con Jesús García a que el tren explotara fuera de la ciudad.</p>
+<p>Jesús García es un héroe nacional mexicano. Hay canciones sobre él. Historias. Anécdotas.</p>
+</div>
+
+<!-- ====== CHAPTER 5: LANGUAGES ====== -->
+<div class="chapter-tag"><span class="lang-en">Three</span><span class="lang-es">Tres</span></div>
+<h2 class="chapter">
+  <span class="lang-en">What language did you speak at home?</span>
+  <span class="lang-es">¿Cuál idioma se hablaba en su casa?</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>Spanish. Of course. <em>You don't speak Chinese in Mexico, do you?</em> No — my dad used to talk to us in Chinese. <em>Yeah, that means he was cussing.</em> No, look — never. We never used much foul language.</p>
+</div>
+
+<div class="lang-es">
+<p>Español. Claro. <em>No hablan chinito como digas en México.</em> Sí, mi papá nos hablaba en chino. <em>Ah, oí — malas palabras.</em> No, fíjate que no. Nunca hablamos malas palabras.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>Spanish. The thing is — at least Reinaldo and I, and the brother above us — we were raised on the border. We heard English. There was a lot of American foot traffic going across. So we knew English existed. It wasn't strange to us. We grew up listening to it. There were songs, stories. Many of those stories we didn't understand, because we didn't know English. But we knew it was there.</p>
+</div>
+
+<div class="lang-es">
+<p>Español. Lo que pasa es — al menos Reinaldo y yo, y el hermano que nos sigue — nos criaron en la frontera. Oíamos inglés. Había mucha gente de Estados Unidos que iba para allá. Sabíamos que existía el inglés. No era algo raro para nosotros. Crecimos oyéndolo. Había canciones, historias. Muchas de esas historias no las entendíamos, porque no sabíamos inglés. Pero sabíamos que existía.</p>
+</div>
+
+<div class="who-said">Vale</div>
+<div class="lang-en">
+<p>My first English classes were in <span class="es-inline">secundaria</span> in Mexico. Maybe half a year, a year. I picked up a lot of words. Couldn't speak it — but I understood what words meant.</p>
+<p>Then in 1971, my parents emigrated me. I was the only one with them — living in Hollywood, California. That's where I continued my studies, but in English. First I went to ESL — English as a Second Language. After a year I could speak. Not completely, but I could speak. They moved me up to tenth grade, then eleventh. That's where I learned American history. In Mexico I'd already learned Mexican history. So I have both. I speak both languages, write both, read both.</p>
+<p>And we taught our kids English and Spanish, so they could grow up able to defend themselves and make themselves understood. We live near the Mexican border. Here, to get better jobs, better benefits — if you speak both, your résumé doubles. That's a lot more chances to advance.</p>
+</div>
+
+<div class="lang-es">
+<p>Mis primeras clases de inglés fueron en la secundaria en México. Como medio año, un año. Aprendí muchas palabras. No podía hablarlo — pero comprendía lo que querían decir.</p>
+<p>Después, en 1971, mis papás me emigraron. Fui el único que estuve con ellos — viviendo en Hollywood, California. Ahí continué mis estudios, pero ya en inglés. Primero fui a unas clases que se llamaban ESL — English as a Second Language. Después de un año podía hablar. No completamente, pero podía. Me pasaron al grado 10, luego al 11. Ahí aprendí parte de la historia de Estados Unidos. En México ya había aprendido la historia de México. Así que sé las dos. Hablo los dos idiomas, escribo los dos, leo los dos.</p>
+<p>Y a mis hijos les enseñamos inglés y español, para que crecieran en un ambiente donde se pudieran defender y darse a entender. Vivimos cerca de la frontera con México. Aquí, para obtener mejores trabajos, mejores beneficios — si hablas inglés y español, tu currículum es mucho más. Son muchas más chances para avanzar.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>I had English in <span class="es-inline">secundaria</span> and <span class="es-inline">preparatoria</span>. I liked it from the start. Liked the teacher. I wasn't shy about practicing. I was a vagabond — always in the streets. I'd go from the colonia into town to work at whatever. Americans came through, asking where the pharmacy was, where this and that. I had English notions. I'd picked up the verbs. I wasn't ashamed. So I'd interpret — badly, but I'd interpret.</p>
+<p>Later, when we emigrated, instead of staying with the family I went to Los Angeles. Learned a little more there. Then I came back to Indio. That's when I met Nancy. With her I learned more English. Then with her friends, and Vale's friends. I never learned it completely — but it came faster on the job. Installing floors, I had to communicate in English every single day. <span class="es-inline">La práctica hace al chango.</span> Practice makes the monkey. It cost me work — but I learned. I still don't speak it well. But I get by, more or less.</p>
+<p>Thanks to Nancy.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo tuve inglés en la secundaria y en la preparatoria. Me gustó desde el principio. Me caía bien la maestra. No me daba vergüenza practicarlo. Yo era muy vago — siempre andaba en la calle. De la colonia me iba al pueblo a trabajar en lo que sea. Pasaban americanos por ahí, querían saber dónde estaba la botica, dónde estaba esto. Yo tenía nociones de inglés. Le agarré la onda a los verbos. No me daba vergüenza. Así que me metía a interpretar — mal, pero interpretar.</p>
+<p>Después, cuando nos emigramos, en lugar de quedarme con la familia me fui para Los Ángeles. Ahí aprendí poquito más. Luego me regresé a Indio. Ahí conocí a Nancy. Con ella aprendí más inglés. Luego con los amigos de ella, y los amigos de Vale. Nunca lo aprendí por completo — pero se me facilitó en el trabajo. Instalando pisos, tenía que comunicarme en inglés todos los días. <span class="es-inline">La práctica hace al chango.</span> Me costó trabajo — pero lo aprendí. Todavía no lo hablo bien. Pero me defiendo, más o menos.</p>
+<p>Gracias a Nancy.</p>
+</div>
+
+<!-- ====== PULL QUOTE ====== -->
+<aside class="pull">
+  <blockquote>
+    <span class="lang-en">"<em>El que come más saliva, traga más pinole.</em>"</span>
+    <span class="lang-es">"<em>El que come más saliva, traga más pinole.</em>"</span>
+  </blockquote>
+  <cite>
+    <span class="lang-en">— Lucero, the older brother</span>
+    <span class="lang-es">— Lucero, el hermano mayor</span>
+  </cite>
+</aside>
+
+<!-- ====== CHAPTER 6: THE COLONIA ====== -->
+<div class="chapter-tag"><span class="lang-en">Four</span><span class="lang-es">Cuatro</span></div>
+<h2 class="chapter">
+  <span class="lang-en">Tell me about the community where you grew up.</span>
+  <span class="lang-es">Hábleme de la comunidad donde creció.</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>We grew up in a <span class="es-inline">colonia</span> — what English calls a neighborhood. A poor one. No paved streets. We did have drinking water — barely. To get from one place to another, we walked. Or, if there was money, we took a bus. We learned to survive there. Beautiful, though. A poor childhood. But beautiful.</p>
+</div>
+
+<div class="lang-es">
+<p>Crecimos en una colonia — que en inglés se le llama <em>neighborhood</em>. Una colonia pobre. No tenía calles pavimentadas. Sí teníamos agua potable, pero apenas. Para trasladarnos de un lugar a otro, caminábamos. O si había dinero, podíamos tomar un camión. Aprendimos a sobrevivir ahí. Pero muy bonita infancia. Pobre, pero muy bonita.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>I'm four years older than him, so when he was younger he doesn't remember some things. When it was my turn, there was no drinking water. There was a canal — every street had a canal. Water passed through it. You'd grab a bucket, put it in, take it out, boil it. The parents boiled it. Then we drank.</p>
+<p>Later the city prospered. People started selling water in jugs. The canals were taken out. Then the water came in by pipe — one tap per house.</p>
+<p>For transportation: in eight or ten blocks around, four or five families had cars. The rest of us walked or took the bus. We called downtown <em>el pueblo</em> — the Mexican center, right next to the Calexico crossing. From the colonia to the pueblo was three or four miles. We'd walk it.</p>
+<p>But it wasn't easy. On the way, you ran into bad people. On the bus, you needed money. There were no little shops, no markets. Almost nowhere to buy anything. The corner stores came later.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo soy cuatro años mayor que él, así que cuando él estaba más chico, no se acuerda de muchas cosas. Cuando a mí me tocó, no había agua potable. Había un canal — todas las calles tenían un canal. Por ahí pasaba el agua. Agarrabas un balde, lo metías, sacabas el agua, la hervías. Los papás la hervían. Y de ahí tomábamos.</p>
+<p>Después la ciudad prosperó. Empezaban a vender garrafones de agua. Quitaron los canales. Luego ya llegó el agua por tubería — una sola llave para cada casa.</p>
+<p>Para la transportación: en unas ocho, diez cuadras a la redonda, había unas cuatro o cinco familias que tenían carro. Los demás, caminábamos o tomábamos camión. Al centro le llamábamos <em>el pueblo</em> — el centro mexicano, pegadito a la garita de Caléxico. De la colonia al pueblo eran como tres o cuatro millas. Caminábamos.</p>
+<p>Pero no era fácil. En el camino te encontrabas gente mala. Y en el camión, tenías que tener dinero. No había tienditas, no había mercados. Casi no había lugares donde comprar. Las tienditas salieron después.</p>
+</div>
+
+<!-- ====== CHAPTER 7: A TYPICAL DAY ====== -->
+<h2 class="chapter">
+  <span class="lang-en">A typical day.</span>
+  <span class="lang-es">Un día típico.</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>School from one in the afternoon to five. After school we played until seven. Then homework. Six, seven years old. Homework, then nine, bed. Typical day.</p>
+</div>
+
+<div class="lang-es">
+<p>Escuela de la una de la tarde a las cinco. Saliendo de la escuela, a jugar hasta las siete. Luego tarea. Seis, siete años. Tarea, y a las nueve, a dormir. Típico día.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>Mine was different. Six in the morning, I'd wake up, walk a quarter mile, pick up my newspaper, sell it, do my deliveries. By eleven I was back home. Wash the dishes — I had to help in the house, sweep. Then my mom gave me food. Then to school — one to five. Then play.</p>
+<p>That was the routine. Every day. School from one to six, six years of that. Then weekends — Saturdays were construction with my dad. Bags of cement. Mixing concrete. Pouring sidewalks at the house.</p>
+<p>Saturday night I had to do <em>chuchay</em> — shine the family's shoes. Sunday we got up at 5:30. By seven we had to be dressed, hair combed, all of it — to go to mass. Seven to eight. Then home, change out of those clothes into work clothes, because we had to finish what we'd started Saturday. Until noon. After noon, the rest of Sunday was ours. To play, to do whatever.</p>
+<p>So we still made time to play. After we worked. They'd give us twenty cents to spend.</p>
+</div>
+
+<div class="lang-es">
+<p>El mío era diferente. Seis de la mañana me levantaba, iba como a un cuarto de milla a levantar mi periódico, me iba a venderlo, hacía mis entregas. Para las once estaba de regreso en la casa. Lavaba los trastes — tenía que ayudar en la casa, barrer. Luego mi mamá me daba comida. Y a la escuela — de una a cinco. Y luego a jugar.</p>
+<p>Esa era la rutina. Todos los días. Escuela de una a seis, seis años así. Y los fines de semana — los sábados eran construcción con mi papá. Sacos de cemento. Hacer concreto. Poner banquetas en la casa.</p>
+<p>El sábado en la noche, yo tenía que hacer <em>chuchay</em> — bolear los zapatos de toda la familia. El domingo nos levantábamos a las 5:30. Para las siete teníamos que estar cambiaditos, bien peinados, todo — para ir a misa. De siete a ocho. Luego salíamos, nos quitábamos esa ropa, nos poníamos ropa de trabajo, porque teníamos que terminar lo del sábado. Hasta el mediodía. Después del mediodía, el resto del domingo era nuestro. Para jugar, para lo que quisiéramos.</p>
+<p>Así que sí nos dábamos tiempo para jugar. Después de trabajar. Nos daban veinte centavos para gastar.</p>
+</div>
+
+<!-- ====== CHAPTER 8: ADOLESCENT MISCHIEF ====== -->
+<h2 class="chapter">
+  <span class="lang-en">Adolescence and the river.</span>
+  <span class="lang-es">La adolescencia y el río.</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>From eleven on, it was different — we had bicycles. Not all of us, but we had something to move on. We could go further. The further we went, the more we knew. We met good people, people who wanted to take our bicycles, people we ran from because we knew. They were experiences. The day. The day's experiences.</p>
+<p>And we got more mischievous. We'd go further on adventures, to places we were forbidden to go. When my mom and dad were working, my mom would say, <em>don't go to the barranco. Don't go to the woods.</em> And we went, of course. The classic. <em>Don't go to the woods</em> — and I'd say to my friend, <em>let's go. My mom said don't go to the woods. Why? I don't know. Let's go see.</em> We were curious. So we went. If nothing happened, we came back with the experience. Sometimes things did happen — they'd hit us, we'd come home a mess, and we'd say: <em>fell off the bike.</em></p>
+<p>That's how we learned to lie to our parents.</p>
+</div>
+
+<div class="lang-es">
+<p>De los once en adelante, era diferente — ya teníamos bicicletas. No todos, pero ya teníamos algo en qué movernos. Podíamos ir más lejos. Cada vez que íbamos a lugares más retirados, conocíamos más. Conocíamos gente buena, gente que nos quería quitar la bicicleta, gente a la que le corríamos porque ya sabíamos. Eran experiencias. El día. Las experiencias del día.</p>
+<p>Y éramos más traviesos. Hacíamos travesuras de más lejos. Nos íbamos a donde nos prohibían ir. Cuando mi mamá y mi papá estaban trabajando, mi mamá decía, <em>no te vayas para el barranco. No te vayas al bosque.</em> Y nos íbamos, claro. La clásica. <em>No te vayas al bosque</em> — y yo le decía a mi amigo, <em>vamos. Mi mamá dijo que no fuéramos al bosque. ¿Por qué? No sé. Vamos a ver.</em> Éramos curiosos. Y íbamos. Si no nos pasaba nada, regresábamos con la experiencia. A veces sí nos pasaban cosas — nos pegaban, regresábamos todos golpeados, y decíamos: <em>me caí de la bicicleta.</em></p>
+<p>Así aprendimos a mentirles a los papás.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>The barranco was a river. Three blocks from the house. It was a filthy drainage river. And that's where we learned to swim. We dove off the side. The river ran for miles. In the heat we'd go follow it. <em>Submarine!</em> we'd yell when we'd see one — a dead dog floating by. <em>Salud for that.</em> What was in that river? Dead dogs. <span class="es-inline">Pupudrinos</span> — that's what we called them. <em>Heads up — submarine!</em></p>
+<p>That's what's a boulevard now. Was the river then.</p>
+<p>And listen — my mom knew where we were. We'd come home from the damn river, the heat had baked our hair. We'd come home with red cheeks, hungry as hell, hair burned the color of straw. <em>Where were you?</em> "Oh — I was with Coque, just over here." Yeah, sure. Hair red red red. She wasn't fooled. But it was part of the adventure.</p>
+</div>
+
+<div class="lang-es">
+<p>El barranco era un río. A tres cuadras de la casa. Era un río cochino, de desagüe. Y ahí aprendimos a nadar. Nos tirábamos clavados de arriba. El río corría por millas. En tiempos de calor nos íbamos siguiéndolo. <em>¡Ahí viene un submarino!</em> gritábamos cuando se asomaba uno — un perro muerto flotando. <em>Salud por eso.</em> ¿Qué había en ese río? Perros muertos. <span class="es-inline">Pupudrinos</span>, les decíamos. <em>¡Aguas — submarino!</em></p>
+<p>Lo que ahora es el bulevar. Antes era el río.</p>
+<p>Y mira — mi mamá sí sabía dónde andábamos. Llegábamos del pinche río, el calorón nos había quemado el cabello. Llegábamos con los cachetes colorados, con un chingo de hambre, el cabello quemado del sol. <em>¿Dónde andabas?</em> "Estaba con el Coque, por acá." Sí, claro. El cabello rojo rojo rojo. No la engañábamos. Pero era parte de la aventura.</p>
+</div>
+
+<!-- ====== CHAPTER 9: SCHOOL ====== -->
+<div class="chapter-tag"><span class="lang-en">Five</span><span class="lang-es">Cinco</span></div>
+<h2 class="chapter">
+  <span class="lang-en">Your family's attitude toward school.</span>
+  <span class="lang-es">La actitud de su familia hacia la escuela.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>The attitude was: <em>you go, or I hit you.</em> You have to go to school. You have to learn to add. To multiply. You have to learn to read. And what they teach you at school — you come back and teach <em>me</em>. My mom was very strong about school. She wanted us to learn, no matter what.</p>
+<p>With a stick — they hit us at school. And if on the way home we forgot what we'd learned, in the house, more stick. They kept hitting us until we learned. The first lessons of school, for us, were strict. Very strict. We had to learn — like a family rule. <em>You have to do it. And you have to prove it to me. If you go to school and don't learn, and I think you're learning, and later you tell me you didn't learn anything — well, that's wasted time. Better go work.</em></p>
+<p>For my mom, it was essential — that we learn to multiply at minimum, to read, to write. That was the foundation. For a kid of seven, eight, just starting out.</p>
+<p>And in Mexico back then it was — what's the word — <em>mandatory</em>. By law. Grades one through six, six years. Even basic school: required. And free.</p>
+<p>After elementary came secondary — three years. But for secondary you had to want to go. If you didn't, two roads to choose: school, or work. <em>Here's a pickaxe and a shovel. Come with me. I'll teach you construction. You'll spend the whole day in the sun.</em> Hard labor. But it was your decision.</p>
+<p>A lot of people who chose to work later said, <em>no — I want to go to school.</em> And the parents said, <em>you already made your decision. I can't take you to school now. If you want to go, you go after work.</em> Same as turning eighteen here. Don't want to study? Go work. Want to work? Fine — get going.</p>
+</div>
+
+<div class="lang-es">
+<p>La actitud era: <em>vas, o te pego.</em> Tienes que ir a la escuela. Tienes que aprender a sumar. A multiplicar. A leer. Y lo que te enseñen en la escuela — tú vienes y me lo enseñas a mí. Mi mamá era muy fuerte en lo de la escuela. Quería que aprendiéramos, como diera lugar.</p>
+<p>Con vara — nos pegaban en la escuela. Y si del trayecto a la casa se nos olvidaba, en la casa, más palo. Nos seguían pegando hasta que aprendíamos. Las primeras enseñanzas, para nosotros, fueron estrictas. Muy estrictas. Teníamos que aprender — era como una regla familiar. <em>Tienes que hacerlo. Y tienes que demostrármelo. Si vas a la escuela y no aprendes, y yo creo que sí, y después me dices que no aprendiste nada — pues fue un tiempo perdido. Mejor vete a trabajar.</em></p>
+<p>Para mi mamá era esencial — que aprendiéramos por lo menos a multiplicar, a leer, a escribir. Era lo fundamental. Para un muchacho de siete, ocho años, apenas empezando.</p>
+<p>En México en esos tiempos era — ¿cómo se dice — <em>mandatory</em>. Obligatorio. Por ley. Del primero al sexto, seis años. Aunque sea básico: obligatorio. Y gratis.</p>
+<p>Después de la primaria seguía la secundaria — tres años. Pero a la secundaria tenías que querer ir. Si no querías, dos caminos: escuela, o trabajo. <em>Aquí tienes un pico y una pala. Vente conmigo. Te voy a enseñar a trabajar construcción. Te vas a pasar todo el día en el sol.</em> Trabajo pesado. Pero era tu decisión.</p>
+<p>Mucha gente que escogió trabajar después decía, <em>no — yo quiero ir a la escuela.</em> Y los padres decían, <em>ya tomaste tu decisión. Ya no te puedo llevar a la escuela. Si quieres ir, vas después del trabajo.</em> Es como aquí cuando cumples dieciocho. Si no quieres estudiar, a trabajar. Y si quieres trabajar, pues órale.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>I was a donkey. I was a donkey at school. I admit it. I was a donkey.</p>
+<p>And in the secundaria they kicked me out of the classroom three times. They kicked me out of church. They'd give us tests, and we hadn't studied — we'd been out goofing off. We'd make <em>acordeones</em> — cheat sheets. Wrote the words on our hands. Then we'd scratch — <em>oh, my hand itches.</em> And while we scratched, we'd glance.</p>
+<p>And the religion — religion didn't help us. It was strict. They wanted us under their thumb, doing what they said.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo era burro. Yo era bien burro en la escuela. Lo admito. Era burro.</p>
+<p>En la secundaria me corrieron tres veces del salón. Me corrieron de la iglesia. Nos hacían pruebas, y nosotros no habíamos estudiado — habíamos andado de vagos. Hacíamos <em>acordeones</em>. Nos escribíamos las palabras en la mano. Y luego nos rascábamos — <em>ay, me da comezón.</em> Y mientras nos rascábamos, mirábamos.</p>
+<p>Y la religión — la religión no nos ayudaba. Era estricta. Nos quería tener bajo lo que ellos decían.</p>
+</div>
+
+<!-- ====== CHAPTER 10: DISCRIMINATION ====== -->
+<div class="chapter-tag"><span class="lang-en">Eight</span><span class="lang-es">Ocho</span></div>
+<h2 class="chapter">
+  <span class="lang-en">Have you faced difficulties or obstacles — discrimination, racism?</span>
+  <span class="lang-es">¿Ha enfrentado dificultades — discriminación, racismo?</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>Discrimination and racism, fully — I experienced it in the United States. Not in Mexico.</p>
+<p>When I started working here. The preference for whites over <em>morenos</em>. Yes — I felt it when I was learning to install floors. I had some real <em>culero</em> Americans. There was one — I started with a Mexican, a <em>pocho</em>. Then they sent me to work with a <em>güero</em>, a real racist dog. Mean.</p>
+<p>One day he said — we'd been working on a second floor — he had a big work van down below, full of tools. He says, <em>go to the van and bring me the trowel for laying the rubber, the three-eighths one.</em> I more or less understood. So I run down — fast, I wanted to learn fast. Get to the van. He'd told me, <em>the van is unlocked.</em> I get to the van — every toolbox has a padlock. Every single one. I knew what he'd asked for, but I couldn't find it fast.</p>
+<p>I look around — and on a pegboard where the lights were, there's a whole jangle of keys. <em>One of these keys has to fit. One of these has to.</em> Found it. Pop, another key — got the tool. Brought it up.</p>
+<p>And you know what the güero said? I remember exactly. His name was Barry Brotens. <em>Son of a bitch</em> — he said: <em>"You are not that dumb."</em> "You are not that dumb." He'd done that to others, but not to a Mexican. I took it as a kind of compliment. But — he could've just said, <em>here are the keys, the tool is in this box.</em> No. He gave it to me to see how I'd react.</p>
+</div>
+
+<div class="lang-es">
+<p>Discriminación y racismo, así plenamente — lo experimenté en Estados Unidos. En México no.</p>
+<p>Cuando empecé a trabajar aquí. La preferencia a los blancos contra los morenos. Sí me tocó cuando estaba aprendiendo a poner pisos. Tuve unos americanos muy <em>culeros</em>. Uno — empecé con un mexicano, un <em>pocho</em>. Después me mandaron a trabajar con un <em>güero</em>, perro racista. Gacho.</p>
+<p>Un día me dijo — estábamos trabajando en un segundo piso — él tenía una <em>van</em> grandota abajo, con herramientas. Me dijo, <em>ve al carro y tráeme la llana para poner la goma, la de tres octavos.</em> Yo más o menos la entendí. Bajé en chinga, yo quería aprender en chinga. Llego a la van. Me había dicho que la van estaba abierta. Llego — todas las cajas tenían candado. Todas. Yo sabía lo que me había pedido, pero no la encontré rápido.</p>
+<p>Volteo — y donde se prendía la ventana, había un montón de llaveros colgando. <em>Una de estas llaves tiene que abrir. Una de estas.</em> La encontré. Pum, otra llave — agarré la herramienta. Se la subí.</p>
+<p>¿Y sabes qué me dijo el güero? Me acuerdo muy bien. Se llamaba Barry Brotens. Hijo de su chingada — me dijo: <em>"You are not that dumb."</em> "You are not that dumb." Ya se lo había hecho a otros, pero a un mexicano no. Lo tomé como cumplido. Pero — me podía haber dicho, <em>aquí están las llaves, la herramienta está en esta caja.</em> No. Me lo pidió para ver cómo reaccionaba.</p>
+</div>
+
+<h3 class="subhead" style="font-family:'Spectral',serif;font-style:italic;color:var(--terra);margin:2.25rem 0 1rem;font-size:1.15rem;">
+  <span class="lang-en">The only time in my life I hit a client.</span>
+  <span class="lang-es">La única vez en mi vida que golpeé a un cliente.</span>
+</h3>
+
+<div class="lang-en">
+<p>We were working at a country club, laying carpet. The job was going to take several days. I show up at the house — money people, golf-course people. The güero there grabs me right away. Just me. There were other Mexicans working there, white guys too — but he zeroed in on me. Started riding me. <em>Ride me, ride me.</em> I was an apprentice. Not the installer.</p>
+<p><em>Do you know what you're doing?</em> "Yes, yes, yes." Two days. The third day, I couldn't take it.</p>
+<p>I was carrying a roll of carpet on my shoulder, a big one. He starts in again — instead of saying anything else, he says, <em>do you know what you're doing?</em> I threw the roll. Slammed it into his chest, into the wall behind him, and hit him. He was older. Not very, but older. Hit him with my head. Threw him to the ground.</p>
+<p>I went and told my installer. <em>I just did this to that man. They're going to fire me?</em> He said, <em>let me handle it.</em></p>
+<p>When we got back to the shop, they called me in. The boss — also a güero — said, <em>tell me what happened.</em> I said, <em>I had three pinche days of him riding me, and only me. Nobody else. Just me.</em> I said, <em>I couldn't take it. I threw the roll.</em></p>
+<p>He said: <em>were you trying to kill him?</em></p>
+<p>I said, <em>no — but if I'd missed, I would've been disappointed.</em></p>
+<p>Zero to zero. The happy ending: he says — they used to call me <em>Rendi</em> at work, like Rendito — he says, <em>don't worry, Rendito, don't worry about it.</em> Next day he sent me to a different job.</p>
+<p>When I got there, the man told me he wanted to talk. <em>I want to talk to you in English.</em> He said: <em>I have too many monsters in my life. I want to apologize for everything I did to you. You taught me a lesson. You held it in. But you reached your limit. And you know what — I respect you for that. I'm sorry. You won't see me here again. I won't say a word to you.</em></p>
+<p>And I felt good. Because the man recognized his mistake. He could've had me fired — said, <em>I never want to see him in my house again.</em> It was his house. Money people. But he apologized.</p>
+<p>I don't say it like a hero. But word got around the company. I felt good about it. But yes — I felt the racism with that one.</p>
+</div>
+
+<div class="lang-es">
+<p>Estábamos trabajando en un campo de golf, poniendo alfombra. El trabajo iba a durar varios días. Llego a esa casa — gente de dinero, campo de golf. El <em>güero</em> de ahí me agarra, nomás a mí. Había otros mexicanos trabajando, gringos también — pero nomás a mí me empezó a chingar. Yo era aprendiz, no era el instalador.</p>
+<p><em>¿Sabes lo que estás haciendo?</em> "Sí, sí, sí." Dos días. Al tercer día, no aguanté.</p>
+<p>Yo venía cargando un rollote de alfombra al hombro, así de grande. Empieza otra vez — en lugar de decirme algo más, me dice, <em>¿sabes lo que estás haciendo?</em> Le aventé el rollo. Se lo estallé en el pecho contra la pared, y lo golpeé. Era mayor. No muy mayor, pero mayor. Lo golpeé con la cabeza. Cayó.</p>
+<p>Fui y le dije a mi instalador. <em>Le acabo de hacer esto al señor. ¿Me van a correr?</em> Me dijo, <em>déjame hablar con ellos.</em></p>
+<p>Cuando regresamos al shop, me llamaron. El dueño — también gringo — me dijo, <em>cuéntame qué pasó.</em> Le dije, <em>tenía tres pinches días dándome carrilla, y nomás a mí. A nadie más. Nomás a mí.</em> Le dije, <em>ya no aguanté. Le aventé el rollo.</em></p>
+<p>Me dijo: <em>¿lo querías matar?</em></p>
+<p>Le dije, <em>no — pero si hubiera fallado, me hubiera quedado frustrado.</em></p>
+<p>Cero a cero. El final feliz: me dice — me decían en el trabajo <em>Rendi</em>, como Rendito — me dice, <em>don't worry, Rendito, don't worry about it.</em> Al siguiente día me mandó a otro trabajo.</p>
+<p>Cuando llegué, el señor me dijo que quería hablar conmigo. <em>I want to talk to you in English.</em> Me dijo: <em>tengo demasiados monstruos en mi vida. Quiero pedirte disculpas por todo lo que te hice. Me enseñaste una lección. Aguantaste. Pero llegaste a tu límite. Y sabes qué — te respeto por eso. Te pido disculpas. Ya no me vas a ver aquí. No te voy a decir nada.</em></p>
+<p>Y me sentí bien. Porque el señor reconoció su error. Pudo haberme corrido — pudo haber dicho, <em>no quiero verlo más en mi casa.</em> Era su casa. Gente de dinero. Pero pidió disculpas.</p>
+<p>No lo digo como héroe. Pero los chismes corrieron por la compañía. Me sentí bien con eso. Pero sí — sentí el racismo con esa persona.</p>
+</div>
+
+<h3 class="subhead" style="font-family:'Spectral',serif;font-style:italic;color:var(--terra);margin:2.25rem 0 1rem;font-size:1.15rem;">
+  <span class="lang-en">The bathroom in San Diego.</span>
+  <span class="lang-es">El baño en San Diego.</span>
+</h3>
+
+<div class="lang-en">
+<p>Once we were working on a house in San Diego. I asked the lady, <em>can I use your bathroom?</em> She said, <em>no. Go to the gas station.</em> "Better." OK. I went. Took my time. Came back. It hurt — that she said that.</p>
+<p><em>You can't use the bathroom.</em> So I said, <em>everything has its price.</em></p>
+<p>The last day we worked there, I grabbed a bottle of zinc sealer. For the bathroom. Poured it down her sink. That stuff takes about a day to fully cure. I made a big ball of it. By the third day, I was gone. She had to call the plumber. He never knew where it came from. It hardens like a plastic ball. Solid. Solid. Clogged her sink. Yeah. That was my revenge. Done wrong or not — it makes me happy to tell.</p>
+</div>
+
+<div class="lang-es">
+<p>Una vez estábamos trabajando en una casa en San Diego. Le dije a la señora, <em>¿puedo usar su baño?</em> Me dijo, <em>no. Vete a la gasolinera.</em> "Mejor." OK. Fui. Tomé mi tiempo. Regresé. Sí me dolió — que me lo hubiera dicho así.</p>
+<p><em>No puedes usar el baño.</em> Entonces dije, <em>todo se paga.</em></p>
+<p>El último día que trabajamos ahí, agarré una botella de zinc sealer. Para el baño. Se la eché en el zinc del lavabo. Esa materia tarda como un día en secar bien. Hice una bolota ahí. Para el tercer día, yo ya me había ido. Ella tuvo que llamar al plomero. Él nunca supo de dónde salía. Se hace una bola de plástico. Dura, dura. Le tapó el lavabo. Sí. Esa fue mi venganza. Mal hecha o no — me da gusto contarla.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>I didn't suffer that — thank God. Because I knew English and Spanish, I could defend myself either way. Some people tried. Some succeeded. I gave them their little number too — the same way Pipo did. I won't say how. But it got ugly sometimes.</p>
+<p>I had bosses say, <em>hurry up,</em> and pile work on me. I'd move slower. <em>This job has to come out.</em> I'd say, <em>open the door for it, then.</em> <em>This job is hot.</em> "Throw water on it." That's how I learned to move in those environments. Hostile. I learned to move sideways. So no — not much of that for me. Thanks to God I understood what they were saying and could answer.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo no alcancé a sufrir eso — gracias a Dios. Porque sabía inglés y español, me podía defender de las dos maneras. Hubo gente que trató. Algunos lo lograron. Yo también les di su numerito — así como dice Pipo. No voy a decir cómo. Pero estuvo medio feo a veces.</p>
+<p>Hubo jefes que me decían, <em>apúrate</em>, y me apilaban trabajo. Yo me movía más despacio. <em>Este trabajo tiene que salir.</em> Yo les decía, <em>pues ábreles la puerta.</em> <em>Este trabajo está caliente.</em> "Échale agua." Así aprendí a moverme en ese tipo de ambientes. Hostiles. Aprendí a moverme por un lado. Entonces no — no tuve mucho de eso. Gracias a Dios entendí lo que me decían y supe contestar.</p>
+</div>
+
+<!-- ====== CHAPTER 11: PARENTHOOD ====== -->
+<div class="chapter-tag"><span class="lang-en">Nine</span><span class="lang-es">Nueve</span></div>
+<h2 class="chapter">
+  <span class="lang-en">How has fatherhood been for you?</span>
+  <span class="lang-es">¿Cómo ha sido la experiencia de la paternidad?</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>Two kids. A boy and a girl. I'm good at that. Two beautiful kids. When they were little, they gave me a little hassle. Little troubles, but no — Rogelio, no. Lisa, yes. <em>That what?</em> Doesn't matter, it passed. Rogelio too — but not as much. Two beautiful kids. Very good people. Thank God. I love them very much. And I'm content with life on that score.</p>
+</div>
+
+<div class="lang-es">
+<p>Dos hijos. Hombre y mujer. Soy bueno para eso. Dos hijos muy hermosos. Cuando estuvieron chamacos me dieron poquita carrilla. Poquitos problemas, pero no — Rogelio no. Lisa sí. <em>¿Eso qué?</em> Da igual, ya pasó. Rogelio también — pero no tanto. Dos hijos muy hermosos. Muy buenas personas. Gracias a Dios. Los amo mucho. Y estoy contento con la vida por esa parte.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>Three kids. All studious. All professionals. We had to apply the same method my mom did — plus a little of their own mom's, who raised them her way. We're proud they learned English and Spanish. That's going to help them a lot in life.</p>
+</div>
+
+<div class="lang-es">
+<p>Tres hijos. Todos estudiosos. Todos profesionales. Tuvimos que aplicar el mismo método de mi mamá — más un poquito del de la mamá también, que los crió a su manera. Nos da mucho orgullo que hayan aprendido inglés y español. Eso les va a ayudar mucho en la vida.</p>
+</div>
+
+<div class="who-said">Lisa</div>
+<div class="lang-en"><p><em class="note">Have things changed in how you raised your kids, compared to how Nana and Tata raised you?</em></p></div>
+<div class="lang-es"><p><em class="note">¿Han cambiado las cosas en cómo creció a sus hijos, de cómo mi nana y mi tata los criaron a ustedes?</em></p></div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>Yes. Completely. Completely. Because now our kids have all the tools — all the technology, all of it in a cell phone. We never had that.</p>
+</div>
+
+<div class="lang-es">
+<p>Sí. Completamente. Completamente. Porque ahora los hijos de nosotros tienen todas las herramientas — toda la tecnología, todo en un teléfono. Nosotros nunca tuvimos eso.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>And we tried — we turned it around. We broke the chain of beatings. We cut the chain. The way we were raised — we raised you better. Better than we were. So you'd be better than us.</p>
+</div>
+
+<div class="lang-es">
+<p>Y nosotros tratamos — le dimos la vuelta. Rompimos la cadena de golpes. Cortamos la cadena. Como nos criaron a nosotros — a ustedes los criamos mejor. Mejor que nosotros. Para que ustedes fueran mejor que nosotros.</p>
+</div>
+
+<!-- ====== CHAPTER 12: RELIGION ====== -->
+<div class="chapter-tag"><span class="lang-en">Ten</span><span class="lang-es">Diez</span></div>
+<h2 class="chapter">
+  <span class="lang-en">Is religion important to you?</span>
+  <span class="lang-es">¿Es importante la religión para usted?</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>Faith and religion are very important in a family. Even though we don't always go to church — we have the faith. We have the religion our parents taught us. And we tried to instill it in our kids, as far as they wanted to take it. They're grown now. They know which path they take, what faith they have, what religion they choose.</p>
+</div>
+
+<div class="lang-es">
+<p>La fe y la religión son muy importantes en una familia. Aunque muchas veces no vamos a la iglesia — tenemos la fe. Tenemos la religión que nuestros padres nos enseñaron. Y tratamos de inculcársela a los hijos, hasta donde ellos quisieran. Ya son grandes. Ya saben el camino que toman, la fe que tienen, la religión que escogen.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>Religion — I don't believe in religion.</p>
+<p>Religion is one thing. God is another. Yes — I believe in God. I don't believe in religion. That's my view. Very personal.</p>
+<p>Religion was made to control the masses. To a point, that's fine — otherwise, chaos. But me, in religion, in the church, in sects? I don't believe in any of it. Each person is free to do what they want. My kids — what was taught to me, the Catholic religion, I took them there. But I didn't insist they go to mass on Sundays. That's their business. With their own kids, they'll do what they want. I won't.</p>
+</div>
+
+<div class="lang-es">
+<p>Religión — yo no creo en la religión.</p>
+<p>La religión es una cosa. Dios es otra. Sí — yo creo en Dios. No creo en la religión. Es mi punto de vista. Muy personal.</p>
+<p>La religión se hizo para controlar a las multitudes. Hasta cierto punto está bien — si no, sería un caos. Pero yo, en la religión, en la iglesia, en las sectas? No creo nada de eso. Cada quien es muy libre de hacer lo que quiera. A mis hijos — lo que a mí me enseñaron, la religión católica, los llevé. Pero no les inculqué que tienen que ir el domingo a misa. Es cuestión de ellos. Con sus hijos, ellos harán lo que quieran. Yo ahí no.</p>
+</div>
+
+<!-- ====== CHAPTER 13: WORK HISTORY ====== -->
+<div class="chapter-tag"><span class="lang-en">Eleven</span><span class="lang-es">Once</span></div>
+<h2 class="chapter">
+  <span class="lang-en">What jobs have you held over the years?</span>
+  <span class="lang-es">¿Qué tipo de trabajos han realizado a lo largo de los años?</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>I didn't have many jobs. Worked the fields. Sold newspapers as a kid. Shined shoes. Picked up bottles. In Mexico I worked for some companies — not big ones. In the States I worked in factories, not for long. In the fields, not for long. When I found my floor work, I lasted forty-five years doing it.</p>
+<p>How did I find it? I was working at a golf course. The supervisor's son came around looking for a helper. He asked if I wanted to help him work. I said, <em>how much do they pay?</em> He said, <em>I don't know. But how much do you make here?</em> I said, <em>3.20 an hour.</em> He said, <em>they'll start you with less. But there's money. If you can use a hammer, a saw, and a tape measure — and you like the work — you'll make money.</em> I took the chance. Rogelio had just been born. If I'd stayed at the golf course, I wasn't going to get past what I was making. So I took it. Went well. Thank God.</p>
+</div>
+
+<div class="lang-es">
+<p>No tuve muchos trabajos. Trabajé en los campos. De chamaco vendía periódicos. Boleaba. Recogía botellas. En México trabajé en compañías — no muy grandes. En Estados Unidos trabajé en fábricas, no mucho tiempo. En los files, no mucho tiempo. Cuando encontré mi trabajo de pisos, duré cuarenta y cinco años.</p>
+<p>¿Cómo lo encontré? Trabajaba en un campo de golf. El hijo del mayordomo llegó buscando un ayudante. Me preguntó si quería ayudarle a trabajar. Le dije, <em>¿cuánto pagan?</em> Dijo, <em>no sé. ¿Pero cuánto ganas aquí?</em> Le dije, <em>3.20 la hora.</em> Dijo, <em>te van a comenzar con menos. Pero hay dinero. Si sabes usar el martillo, el serrucho, y la cinta de medir — y te gusta el trabajo — vas a hacer dinero.</em> Tomé la chance. Rogelio acababa de nacer. Si me quedaba en el campo de golf, no iba a pasar de lo que hacía. Así que tomé el riesgo. Me fue bien. Gracias a Dios.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>I had several jobs. I worked in the fields. Picking tomato. Squash. Tomato. Melon. Watermelon. I was a truck driver. Also in the fields. Then I worked shipping and receiving. Then fiberglass. Then the shipyard — Navy boats. Welder. Started in production welding. Switched to pipe welding — high-pressure. High-pressure welder. Then construction — high-rises. Mostly Qualcomm. From the bottom to the top. Building the buildings. Then back to the shipyard.</p>
+<p>Twenty-three years at the shipyard, more or less. Eleven in construction. Then three more at the shipyard.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo tuve varios trabajos. Trabajé en los files. Piscaba tomate. Calabacita. Tomate. Melón. Sandía. Fui truck driver, también en los files. Después trabajé shipping and receiving. Luego fiberglass. Luego el shipyard — barcos para la Navy. Welder. Empecé como soldador de producción. Cambié a soldador de pipa — high-pressure. Welder de alta presión. Después construcción — high-risers. La mayoría para Qualcomm. Desde abajo hasta arriba. Construyendo edificios. Luego volví al shipyard otra vez.</p>
+<p>Veintitrés años en el shipyard, más o menos. Once en construcción. Y tres más en el shipyard.</p>
+</div>
+
+<!-- ====== CHAPTER 14: ALFALFA FIELD ====== -->
+<h2 class="chapter">
+  <span class="lang-en">The day they fired us for sleeping in the alfalfa.</span>
+  <span class="lang-es">El día que nos corrieron por dormir en el alfalfar.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>One time — when we were young and inexperienced — we thought the supervisor would never see us. We never imagined he was up on a hill with binoculars, hidden, watching us from far away.</p>
+</div>
+
+<div class="lang-es">
+<p>En una ocasión — cuando estábamos jóvenes y sin experiencia — pensábamos que el mayordomo nunca nos iba a ver. Nunca imaginábamos que estaba en una loma con unos binoculars, escondido, mirándonos de lejos.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+<div class="lang-en"><p><em class="note">In what kind of field were you hiding?</em></p></div>
+<div class="lang-es"><p><em class="note">¿En qué tipo de file se escondieron?</em></p></div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>An alfalfa field. The alfalfa grew tall. We had the chance to lie down. Pipo got himself a joint and got nicely high. I just got sleepy.</p>
+<p>We never thought the supervisor was watching with binoculars. He saw everything. So when he came over to us, he said: <em>boys, get your stuff. Let's go.</em> Took us out of the field. Once we were on the road, he said: <em>you're fired. Why? Because you were sleeping in the field. Don't play stupid.</em> And he fired us.</p>
+<p>That was one of our first jobs. I was about fifteen, Pipo about eighteen. Temporary work. Pipo didn't keep working in the fields after that. I did, for a while.</p>
+</div>
+
+<div class="lang-es">
+<p>Un alfalfar. La alfalfa crecía alta. Tuvimos la oportunidad de acostarnos. Pipo se hizo un churrito y se puso bien marihuana. A mí nomás me dio sueño.</p>
+<p>Nunca pensamos que el mayordomo nos estaba mirando con los binoculars. Él vio todo. Cuando vino a nosotros, dijo: <em>muchachos, agarren sus cosas. Vámonos.</em> Nos sacó del file. Ya en el camino, dijo: <em>están corridos. ¿Por qué? Porque estaban durmiendo en el file. No se hagan pendejos.</em> Y nos corrió.</p>
+<p>Fue uno de nuestros primeros trabajos. Yo tenía como quince años, Pipo como dieciocho. Trabajo temporal. Pipo no siguió en los files después. Yo seguí, un tiempo más.</p>
+</div>
+
+<!-- ====== CHAPTER 15: HANGABLE ====== -->
+<h2 class="chapter">
+  <span class="lang-en">Learning English on the job.</span>
+  <span class="lang-es">Aprendiendo inglés en el trabajo.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>I'll tell you about a work experience I had. When I was learning more English. Still didn't know it all. Don't, even now. There are words I'm saying right now where I have to stop, because I don't quite know how to explain it. I work around it. Make myself understood.</p>
+<p>That morning, I was working — I'd been drinking the night before. Bad. Working next to a Black man. I felt awful — terrible hangover. So I got the idea to tell him. I said: <em>look. I can't work much. I'm <strong>hang-up</strong>.</em> "I'm hang-up." When I said <em>hang-up</em>, he started laughing. He laughed for a long time. Five minutes. He was just dying.</p>
+<p>Finally he said: <em>it's not "hang-up." It's "hangover."</em></p>
+<p>I was embarrassed. But — that's how I learned. They corrected me. Sometimes they laughed at me. Sometimes they didn't. It was part of learning.</p>
+</div>
+
+<div class="lang-es">
+<p>Les voy a contar una experiencia de trabajo. Cuando estaba aprendiendo más inglés. Todavía no lo sabía todo. Tampoco ahora. Hay palabras que estoy hablando que me detengo, porque no sé bien cómo explicarlo. Le doy la vuelta. Me hago entender.</p>
+<p>Esa mañana estaba trabajando — había tomado la noche antes. Mucho. Trabajaba a un lado de un señor de color. Me sentía bien malo — una cruda tremenda. Se me ocurrió decirle. Le dije: <em>mira. No puedo trabajar mucho. I'm <strong>hang-up</strong>.</em> "I'm hang-up." Cuando dije "hang-up", se soltó riéndose. Se rió mucho tiempo. Cinco minutos. Bien muerto de risa.</p>
+<p>Por fin me dijo: <em>no se dice "hang-up". Se dice "hangover".</em></p>
+<p>Me dio mucha vergüenza. Pero — así fue que aprendí. Me corregían. A veces se reían de mí. A veces no. Fue parte del aprendizaje.</p>
+</div>
+
+<!-- ====== CHAPTER 16: FATHER'S MINING STORIES ====== -->
+<div class="chapter-tag"><span class="lang-en">Stories Of Our Father</span><span class="lang-es">Historias de Nuestro Padre</span></div>
+<h2 class="chapter">
+  <span class="lang-en">My dad in the mine at Nacozari.</span>
+  <span class="lang-es">Mi papá en la mina de Nacozari.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>My dad was a miner in Nacozari. There was a mine called <em>la mina de Pilares</em> — they called it the Pillars Mine. They extracted copper there. A lot of copper.</p>
+<p>One time he told me a story that happened to him in the mine. He was working with a pick and a shovel. And the whole time, he kept watching a man who was operating something — like a crane, like a small machine, inside the mine. It would lift stones, move stones. Some kind of apparatus. My dad watched how the machine moved. He saw the operator, watched the way the machine worked.</p>
+<p>So he says to his foreman: <em>I know how to operate that machine.</em> The foreman says: <em>You're crazy. You don't know how to operate that. You've never even gotten on it. You know how to use the pick and the shovel.</em> My dad says: <em>No — I know how to work that machine.</em></p>
+<p>Days went by. One day, the operator got sick. Didn't come to work. They needed the machine running. My dad goes back: <em>I told you — I know how to operate it.</em></p>
+<p>The foreman looked at him. Said: <em>let's see if it's true. Get on. Run it.</em></p>
+<p>My dad got on. Ran it. Ran it well. The next day, two days later, the regular operator came back. They had to take my dad off — but they knew now. <em>We know you can do it.</em> And they kept him on.</p>
+<p>Some time later, there were similar machines outside the mine, above ground. They pulled my dad out of the mine and put him on one. He knew how to run it. Just from watching.</p>
+</div>
+
+<div class="lang-es">
+<p>Mi papá fue minero en Nacozari. Había una mina que se llamaba <em>la mina de Pilares</em> — le decían así. Se extraía cobre. Mucho cobre.</p>
+<p>Una vez me contó una historia que le pasó dentro de la mina. Estaba trabajando con una pala y un pico. Y todo el tiempo se fijaba en un hombre que manejaba algo — como una grúa, una máquina chica, dentro de la mina. Levantaba piedras, las movía. Una especie de aparato. Mi papá miraba cómo se movía la máquina. Veía al operador, veía cómo trabajaba.</p>
+<p>Así que le dijo a su mayordomo: <em>yo sé manejar esa máquina.</em> El mayordomo le dijo: <em>estás loco. Tú no sabes manejar eso. Nunca te has subido. Tú sabes manejar el pico y la pala.</em> Mi papá decía: <em>no — yo sé manejar esa máquina.</em></p>
+<p>Pasaron los días. Una ocasión, el que la operaba se enfermó. No fue a trabajar. Necesitaban que la máquina estuviera trabajando. Mi papá regresó: <em>ya te dije — yo sé manejarla.</em></p>
+<p>El mayordomo lo miró. Dijo: <em>a ver si es cierto. Súbete. Manéjala.</em></p>
+<p>Mi papá se subió. La manejó. La manejó bien. Al día siguiente, a los dos días, regresó el operador. Lo bajaron — pero ya sabían. <em>Ya sabemos que sí puedes.</em> Y lo siguieron trabajando.</p>
+<p>Tiempo después, había unas máquinas iguales afuera de la mina, en la superficie. Lo sacaron a él de la mina y lo pusieron en una. La supo manejar. Nomás de ver.</p>
+</div>
+
+<h3 class="subhead" style="font-family:'Spectral',serif;font-style:italic;color:var(--terra);margin:2.25rem 0 1rem;font-size:1.15rem;">
+  <span class="lang-en">The dynamite.</span>
+  <span class="lang-es">La dinamita.</span>
+</h3>
+
+<div class="lang-en">
+<p>Another story. He was inside the mine. They were drilling holes — for dynamite. They lit it, didn't have time to get to safety. One of the charges blew. Stones hit his ear. He lost part of his hearing. He survived the explosion. But he never heard well again. One side of his ear, gone.</p>
+<p>My mom told me — months later, they were still pulling stones out of his face, between his eyes, out of his ears. Stones embedded in him. They had scars on his body. They were already married then. He had scars where the stones had buried in. They'd dig them out. But you could see them. Stones, buried.</p>
+</div>
+
+<div class="lang-es">
+<p>Otra historia. Estaba dentro de la mina. Estaban perforando hoyos — para meter dinamita. La prendieron. No alcanzaron a ponerse a salvo. Una de las cargas explotó. Las piedras le golpearon el oído. Perdió parte de la audición. Sobrevivió la explosión. Pero nunca volvió a oír bien. Un lado del oído, perdido.</p>
+<p>Mi mamá me contó — meses después, todavía le sacaban piedras de la cara, de entre los ojos, de los oídos. Piedras enterradas. Tenía cicatrices por el cuerpo. Ya estaban casados entonces. Tenía cicatrices donde las piedras se habían enterrado. Se las sacaban. Pero se veían. Piedras, enterradas.</p>
+</div>
+
+<!-- ====== CHAPTER 17: VALUES ====== -->
+<div class="chapter-tag"><span class="lang-en">Twelve</span><span class="lang-es">Doce</span></div>
+<h2 class="chapter">
+  <span class="lang-en">What values did your parents pass down?</span>
+  <span class="lang-es">¿Qué valores le instilaron sus padres?</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>Respect. Don't lie — well, white lies, the small ones, the kind nobody notices. Don't steal. Don't hit women. They taught us several. Things we shouldn't do. And on top of that, the lessons at church — the ten commandments. Things that shaped us. About what not to do in our lives.</p>
+<p>The reason they gave us was: when you don't do these things, you can sleep in peace at night. But when you have things in your head — things you did wrong, that hurt someone, without that person ever even saying anything to you — at night, those memories come back. And many times you can't sleep. That's why people take many years to die. At the moment of dying, all those memories come back to your mind. And you can't rest in peace, for many reasons.</p>
+</div>
+
+<div class="lang-es">
+<p>Respeto. No mentir — bueno, mentiras piadosas, las chiquitas, las que no se den cuenta. No robar. No pegarle a las mujeres. Nos enseñaron varios. Cosas que no debemos hacer. Y aparte, lo que aprendimos en la iglesia — los diez mandamientos. Cosas que nos fueron formando. De lo que no hay que hacer en la vida.</p>
+<p>La razón que ellos nos daban era: cuando no haces esas cosas, puedes dormir tranquilo en la noche. Pero cuando tienes cosas en la cabeza — cosas que hiciste mal, que le causaron daño a alguien, sin que esa persona te haya dicho nada — en la noche, esos recuerdos te vuelven. Y muchas veces no puedes ni dormir. Por eso hay gente que dura muchos años para morirse. A la hora de morirse es cuando todos esos recuerdos te vuelven a la mente. Y no puedes descansar en paz, por muchas razones.</p>
+</div>
+
+<!-- ====== PULL QUOTE 2 ====== -->
+<aside class="pull">
+  <blockquote>
+    <span class="lang-en">"Life is made of mistakes. We never had a manual that told us how to raise children. So the book we wrote, as parents — we'll never finish it."</span>
+    <span class="lang-es">"La vida está hecha de errores. Nunca tuvimos un manual que nos dijera cómo crear a los hijos. Entonces el libro que nosotros, como padres, escribimos — nunca lo vamos a terminar."</span>
+  </blockquote>
+  <cite>
+    <span class="lang-en">— Vale</span>
+    <span class="lang-es">— Vale</span>
+  </cite>
+</aside>
+
+<!-- ====== CHAPTER 18: NEXT GENERATION ====== -->
+<div class="chapter-tag"><span class="lang-en">Thirteen</span><span class="lang-es">Trece</span></div>
+<h2 class="chapter">
+  <span class="lang-en">A story or thought to pass on to the next generation.</span>
+  <span class="lang-es">Una historia o pensamiento para la próxima generación.</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+
+<div class="lang-en">
+<p>My nephews, my niece — they have the same school we had. That's why we're so close. I think we're fine. There's nothing to recommend to them. They already learned it.</p>
+</div>
+
+<div class="lang-es">
+<p>Mis sobrinos, mis sobrinas — tienen la misma escuela que tuvimos nosotros. Por eso estamos tan unidos. Creo que estamos bien. No hay nada que recomendarles. Ya lo aprendieron.</p>
+</div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>To our kids — they learned a lot from us. They learned the family has to stay together, however it has to be. Lessons we gave them — the hard times at school, the hard times we had as parents, good situations, bad situations, things we tried to fix and many times it was too late, and you can't fix them. Things you'll die with.</p>
+<p>Life is made of mistakes. We never had a manual telling us how to raise children. The book we wrote, as parents — we'll never finish it. Every day we have a new experience with our kids, even when they're grown. Every day brings something. A phone call. A different story. Always something new. And often, something to learn from our younger kids.</p>
+<p>You have to be open. To learn from people younger than you. Don't think because we're old we know everything. We don't. Each person is different. Each has different stories. We're finishing our story. You're writing yours. And to your kids, to whoever you can — you'll pass on your lessons, your stories. So they can tell them. Just like we're telling them to you.</p>
+</div>
+
+<div class="lang-es">
+<p>A nuestros hijos — aprendieron mucho de nosotros. Aprendieron que la familia hay que tenerla unida, como dé lugar. Las enseñanzas que les hemos dado — los tiempos difíciles en la escuela, los tiempos difíciles que tuvimos como padres, situaciones buenas, malas, cosas que tratamos de arreglar y muchas veces ya era muy tarde, y no se podían arreglar. Cosas con las que uno se va a morir.</p>
+<p>La vida está hecha de errores. Nunca tuvimos un manual que nos dijera cómo criar a los hijos. El libro que escribimos como padres — nunca lo vamos a terminar. Cada día tenemos una experiencia nueva con nuestros hijos, aunque ya estén mayores. Cada día trae algo. Una llamada de teléfono. Una historia diferente. Siempre algo nuevo. Y muchas veces, algo que aprender de los hijos más jóvenes.</p>
+<p>Hay que estar abiertos. Aprender de gente más joven que nosotros. No hay que pensar que por viejos sabemos todo. No es así. Cada gente es diferente. Cada uno tiene historias diferentes. Nosotros estamos terminando la historia nuestra. Ustedes están escribiendo la suya. Y a sus hijos, a quien puedan — ustedes les van a transmitir sus enseñanzas, sus historias. Para que ellos las cuenten. Así como nosotros se las estamos contando a ustedes.</p>
+</div>
+
+<!-- ====== CHAPTER 19: IMMIGRATION ====== -->
+<div class="chapter-tag"><span class="lang-en">Fourteen — The Pivotal Event</span><span class="lang-es">Catorce — El Evento Que Lo Cambió Todo</span></div>
+<h2 class="chapter">
+  <span class="lang-en">The most important historical event in your family's life.</span>
+  <span class="lang-es">El evento histórico más importante en la historia de su familia.</span>
+</h2>
+
+<div class="who-said first">Pipo</div>
+<div class="lang-en"><p>Immigration.</p></div>
+<div class="lang-es"><p>La inmigración.</p></div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>When Pipo and I — my dad was already a resident. He emigrated Carlos first. Carlos came up to work the fields. He grew up, married, separated. He told Lucero he'd sponsor him too — Lucero didn't want it. Lucero had a good job in Mexico. He didn't want to come.</p>
+<p>So just Pipo and I were left. My dad was tired of crossing back to Mexicali every day. He wanted to live here. So when they finally decided to bring us across — the Vietnam War was at its peak. I was eighteen, Pipo was sixteen. They were grabbing cannon fodder.</p>
+<p>So they gave us our papers fast. Real fast. Plus my mom was already an American citizen — they'd kind of forgotten — but she was. So we got it fast.</p>
+</div>
+
+<div class="lang-es">
+<p>Cuando Pipo y yo — mi papá ya era residente. Le emigró a Carlos primero. Carlos se vino al fil a trabajar. Creció, se casó, se separó. Le dijo a Lucero que también lo emigraba — Lucero no quiso. Lucero tenía un buen trabajo en México. No quiso.</p>
+<p>Así que nada más quedamos Pipo y yo. Mi papá estaba muy cansado de pasar a Mexicali todos los días. Quería vivir acá. Cuando por fin decidieron traernos — la guerra de Vietnam estaba en su empuje. Yo tenía dieciocho, Pipo tenía dieciséis. Estaban agarrando carne de cañón.</p>
+<p>Nos dieron los papeles de volada. De volada. Aparte, mi mamá ya era ciudadana americana — ya casi se había olvidado — pero lo era. Así que nos lo dieron rápido.</p>
+</div>
+
+<h3 class="subhead" style="font-family:'Spectral',serif;font-style:italic;color:var(--terra);margin:2.25rem 0 1rem;font-size:1.15rem;">
+  <span class="lang-en">Left hand missing.</span>
+  <span class="lang-es">Le falta toda la mano izquierda.</span>
+</h3>
+
+<div class="lang-en">
+<p>I was the older one. They processed me first. I remember — January 11, 1971. We got our immigration papers. Both of us. I went to Tijuana, got the papers, all the paperwork.</p>
+<p>The next week, a letter came: report to the center in California to register for the Army. The following week, my friend SEBE went with me. He knew English — he'd studied in Calexico.</p>
+<p>This is the funny part of my life.</p>
+<p>We get there. Take a seat. A lady — a big lady, no computers in those days, just a typewriter — starts asking me questions. Name, mother, father. Then she asks: <em>do you have any moles, defects, or mutilations on your body, by which you could be identified — in case something happens to you in combat? In case there's a misfortune?</em></p>
+<p>I showed her my finger. She's typing — <em>Left hand…</em> I figured she'd type "pinky," or whatever I was going to put. But somebody called her on the phone. She got up. Came back three or four minutes later. Finished typing. <em>Tap, tap, tap, tap, tap.</em> Gave me my card. A letter saying come back next week, same place, for my physical exam in Los Angeles. They'd take me to Los Angeles.</p>
+<p>SEBE and I walk out. Get to the parking lot. I say, <em>SEBE, let me see what that says.</em> He looks. Says: <em>Pipo. It says <strong>left hand missing.</strong></em></p>
+<p>"Wow!"</p>
+<p>"It says you're missing your whole hand."</p>
+<p>"Let's tell them. Let's go back."</p>
+<p>Pipo says — <em>nope. Don't say a word.</em></p>
+<p>It says missing. So how am I going to show up? I figured — when it's your time, it's your time. When it's not, you can put yourself in the way and it won't be your time. So I didn't go. Next week, week after week. One week a letter came: <em>dismissed.</em></p>
+<p>And that's why I didn't go to Vietnam.</p>
+<p>But they were sending everyone — they were sending Black and Mexican kids most of all.</p>
+<p>Pipo got a card too — military service. But it said <em>no draft time.</em> The war was past. He has it somewhere still.</p>
+</div>
+
+<div class="lang-es">
+<p>Yo era el mayor. Me procesaron primero. Me acuerdo — un 11 de enero del 71. Nos dieron la inmigración. A los dos. Fui a Tijuana, recogí los papeles, todo el papeleo.</p>
+<p>A la siguiente semana, llegó una carta: que me presentara al centro en California para mi registro del Army. La siguiente semana, mi amigo SEBE fue conmigo. Él sabía inglés — había estudiado en Caléxico.</p>
+<p>Esta es la parte chistosa de mi vida.</p>
+<p>Llegamos. Tomamos asiento. Una señora — una señora grande, no había computadoras en esos tiempos, era máquina de escribir — empieza a preguntarme cosas. Nombre, madre, padre. Luego me pregunta: <em>¿tiene algún lunar, defecto, o mutilación en su cuerpo, por la cual se le pudiera identificar — en caso de que le pase algo en combate? ¿En caso de una desgracia?</em></p>
+<p>Le enseñé mi dedo. Ella estaba escribiendo — <em>Left hand…</em> Yo pensé que iba a poner "pinky," o no sé qué iba a poner. Pero la llamaron al teléfono. Se levantó. Regresó como a los tres, cuatro minutos. Acabó de escribir. <em>Ta, ta, ta, ta, ta.</em> Me dio mi tarjeta. Y una carta: regrese la próxima semana, al mismo lugar, para su examen físico en Los Ángeles. Me iban a llevar a Los Ángeles.</p>
+<p>SEBE y yo salimos. Llegamos al parking. Le digo, <em>SEBE, déjame ver qué dice.</em> Mira. Dice: <em>Pipo. Aquí dice <strong>left hand missing.</strong></em></p>
+<p>"¡Wow!"</p>
+<p>"Dice que te falta toda la mano."</p>
+<p>"Vamos a decirle. Vamos a volver."</p>
+<p>Pipo dice — <em>no. No digas nada.</em></p>
+<p>Dice missing. ¿Cómo voy a ir? Yo dije — cuando te toca, te toca. Cuando no te toca, aunque te pongas en el tocadero, no te toca. Así que no fui. La siguiente semana, semana tras semana. Llegó una carta: <em>dismissed.</em></p>
+<p>Y por eso no fui yo a Vietnam.</p>
+<p>Pero estaban mandando a todos — estaban mandando más raza negra y mexicana.</p>
+<p>Pipo también recibió una tarjeta — del servicio militar. Pero decía <em>no draft time.</em> La guerra ya había pasado. La tiene guardada por ahí.</p>
+</div>
+
+<div class="who-said">Lisa</div>
+<div class="lang-en"><p><em class="note">How did emigrating affect the family?</em></p></div>
+<div class="lang-es"><p><em class="note">¿Cómo afectó a la familia el haber emigrado?</em></p></div>
+
+<div class="who-said">Vale</div>
+
+<div class="lang-en">
+<p>For the better. The way we didn't conform to staying in the field, working the fields, being shoved around in the fields. I went to Los Angeles — without my dad's permission. I went. Then I brought Carlos. Then Pipo went his way. Our life stopped being labor, stopped being field work. It changed.</p>
+<p>The shift was — leaving the heat. Leaving the brutal heat of the Imperial Valley. That was big. A big change. Pipo did it too. But the one who really got the smiley faces and the gold stars — that was Lucero.</p>
+</div>
+
+<div class="lang-es">
+<p>Para bien. La manera en que no nos conformamos con quedarnos en el fil, trabajando, regalando el cuerpo en el fil. Yo me fui para Los Ángeles — sin permiso de mi papá. Me fui. Después traje a Carlos. Después Pipo se fue por su lado. Nuestra vida ya no fue laboral, ya no fue de campo. Cambió.</p>
+<p>El cambio fue — salir del calor. Salir de los calorones tan fuertes del Valle Imperial. Fue grande. Un cambio grande. Pipo también lo hizo. Pero el que de veras se llevó las caritas felices y las palomitas — fue Lucero.</p>
+</div>
+
+<!-- ====== CHAPTER 20: BROTHER LUCERO ====== -->
+<div class="chapter-tag"><span class="lang-en">For The Older Brother</span><span class="lang-es">Para El Hermano Mayor</span></div>
+<h2 class="chapter">
+  <span class="lang-en">Brother Lucero — the one who carried us.</span>
+  <span class="lang-es">El hermano Lucero — el que nos cargó.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>That cabrón came to San Diego. No English. Smart, but no English. He took a job as a baker, day and night. Slept in his car. Then he brought up the family.</p>
+<p>Let me tell you a story about Tío Lucero you might not know.</p>
+<p>Pipo and I were living in Los Angeles. With Carlos. Then we moved to a separate apartment — that's where you were born, Lisa. Well — you were born in the hospital. But that's the place we had you. <span class="aside">— Wait, you mean where Rogelio was born. — Right, Rogelio.</span></p>
+<p>One time, Lucero came up. His work in Mexicali had ended. He had no work. He had the kids — Eva, Beto, Carmen, I think. Lourdes wasn't born yet. So he was living with us.</p>
+<p>I remember — once it was raining. I said, <em>Lucero, let's go to the liquor store.</em> "Let's go." Now — to show you how things change — I'd been here a couple of years already. I had an umbrella. We get to the door. I open the umbrella. I say, <em>vamos.</em></p>
+<p><em>What? Are you crazy? Me with an umbrella? Hombre, forget it. I'm not going to the liquor store like that. With an umbrella?</em></p>
+<p>I told him: <em>Lucero, here everyone walks with umbrellas. Men, women, everyone.</em></p>
+<p>"Yeah — but not me."</p>
+<p>And the day came when he too had an umbrella. To show you how people change. In Mexicali, a man with an umbrella was tagged a homosexual. Called a woman. Mocked. <em>What kind of step is that, cabrón?</em> They'd say a hundred things. Mexico was very <em>machista.</em> Here it's just rain.</p>
+</div>
+
+<div class="lang-es">
+<p>Ese cabrón vino a San Diego. Sin inglés. Inteligente, sí — pero sin inglés. Se metió a trabajar de panadero, de día y de noche. Durmiendo en los carros. Y se trajo la familia.</p>
+<p>Les voy a contar una anécdota de tu Tío Lucero que a lo mejor no se la saben.</p>
+<p>Pipo y yo vivíamos en Los Ángeles. Con Carlos. Después nos cambiamos a un departamento aparte — fue donde naciste tú, Lisa. Bueno — tú naciste en el hospital. Pero ahí te tuvimos. <span class="aside">— Espera, te refieres a donde nació Rogelio. — Sí, Rogelio.</span></p>
+<p>Una ocasión, Lucero llegó. Se le había acabado el trabajo en Mexicali. No tenía. Tenía a los muchachos — a Eva, Beto, Carmen, creo. Lourdes no había nacido todavía. Así que estaba viviendo con nosotros.</p>
+<p>Me acuerdo — una vez estaba lloviendo. Le dije, <em>Lucero, vamos a la licorería.</em> "Vamos." Ahora — para que veas cómo cambia la gente — yo ya tenía como un par de años aquí. Tenía una sombrilla. Llegamos a la puerta. Abro la sombrilla. Digo, <em>vamos.</em></p>
+<p><em>¿Qué? ¿Estás loco? ¿Yo con sombrilla? Hombre, olvídate. No voy a la licorería así. ¿Con sombrilla?</em></p>
+<p>Le dije: <em>Lucero, aquí todo el mundo anda con sombrilla. Hombres, mujeres, todos.</em></p>
+<p>"Sí — pero yo no."</p>
+<p>Y llegó el día en que él también traía sombrilla. Para que veas cómo evoluciona la gente. En Mexicali, a un hombre con sombrilla lo tildaban de homosexual. Le decían mujer. Se burlaban. <em>¿Qué pasito llevas, cabrón?</em> Le decían un montón de cosas. México era muy machista. Aquí — es nomás la lluvia.</p>
+</div>
+
+<h3 class="subhead" style="font-family:'Spectral',serif;font-style:italic;color:var(--terra);margin:2.25rem 0 1rem;font-size:1.15rem;">
+  <span class="lang-en">The Social Security number.</span>
+  <span class="lang-es">El número de Social Security.</span>
+</h3>
+
+<div class="lang-en">
+<p>One day he said: <em>Alejo. I don't have a Social Security. Lend me yours.</em> "Open it." I gave it to him. He worked a stretch on my Social. He didn't want to ask Carlos for anything. Wouldn't ask Carlos. Worked a while there. Then went elsewhere. Ended up here in San Diego.</p>
+<p>But he was the one who took the gold stars. As he himself said. The little stars and the smiley faces. Because the whole time — he was looking out for us. Right up until he died, he told me: <em>forgive me — if at some point in your life I got into something that wasn't my business. I was just looking out for you.</em></p>
+<p>And he did it. When he was dying in the hospital, he said goodbye to each of us, his own way.</p>
+<p>He took all the smaller stars. My dad and mom took the big star. But he took all the smaller ones. He took care of every one of us. Fought for every one of us. Was always there in the moment we needed him. The night Pipo had his accident — Lucero was there. The night I — </p>
+</div>
+
+<div class="lang-es">
+<p>Un día me dijo: <em>Alejo. No tengo Social Security. Préstame el tuyo.</em> "Ábrele." Se lo presté. Trabajó un tiempo con mi Social. No le quería pedir nada a Carlos. No le pedía. Trabajó un tiempo ahí. Luego se fue para otro lado. Vino a terminar aquí en San Diego.</p>
+<p>Pero él se llevó las estrellitas. Como él mismo dijo. Las estrellitas y las caritas chiquitas. Porque todo el tiempo — estuvo al pendiente de nosotros. Hasta antes de morirse, me dijo: <em>discúlpame — si en alguna ocasión de tu vida me metí en algo que no me importaba. Yo simplemente estaba cuidando de ti.</em></p>
+<p>Y así lo hizo. Cuando se estaba muriendo en el hospital, se despidió de cada uno, a su manera.</p>
+<p>Él se llevó todas las estrellitas chiquitas. Mi papá y mi mamá se llevaron la estrellita grandota. Pero él se llevó todas las chiquitas. Cuidó a todos, a cada uno. Peleó por todos. Siempre estuvo ahí cuando lo necesitábamos. La noche que Pipo tuvo su accidente — Lucero estuvo ahí. La noche que yo —</p>
+</div>
+
+<!-- ====== CHAPTER 21: TEQUILA ====== -->
+<h2 class="chapter">
+  <span class="lang-en">The night Pipo drank a bottle of tequila at six.</span>
+  <span class="lang-es">La noche que Pipo se tomó la botella de tequila a los seis.</span>
+</h2>
+
+<div class="who-said first">Vale</div>
+
+<div class="lang-en">
+<p>The night Pipo drank a bottle of tequila at six years old — Lucero was there too. He's the one who saved his life.</p>
+</div>
+
+<div class="lang-es">
+<p>La noche que Pipo se tomó una botella de tequila a los seis años — Lucero también estuvo ahí. Fue él quien le salvó la vida.</p>
+</div>
+
+<div class="who-said">Pipo</div>
+
+<div class="lang-en">
+<p>I remember being on a cold metal table. Round. Vomiting on one side. Vomiting on the other. They needed an injection — to counteract the alcohol. A big one.</p>
+<p>My mom didn't have money to pay for it. They wouldn't give it without payment. Lucero — somehow, nobody knew how — got the money. Paid for the injection. So they could give it to me.</p>
+<p>And I lived.</p>
+</div>
+
+<div class="lang-es">
+<p>Me acuerdo de estar en una plancha fría de metal. Redonda. Vomitaba por un lado. Vomitaba por el otro. Necesitaban una inyección — para contrarrestar el alcohol. Una grande.</p>
+<p>Mi mamá no tenía dinero para pagarla. Sin pagar, no la ponían. Lucero — quién sabe de dónde, nadie supo de dónde — consiguió el dinero. Pagó la inyección. Para que me la pusieran.</p>
+<p>Y viví.</p>
+</div>
+
+<div class="divider">· · ·</div>
+
+<p style="text-align:center; font-style: italic; color: var(--ink-soft); margin-top: 2rem;">
+  <span class="lang-en">— We have stories. Many. What we told you is just a part.</span>
+  <span class="lang-es">— Tenemos historias. Muchas. Lo que les contamos es nomás una parte.</span>
+</p>
+
+</article>
+
+<footer>
+  <p class="colophon">
+    <span class="lang-en">
+      Recorded by Lisa on April 28, 2026, in San Diego.<br>
+      Transcribed locally with whisper.cpp (large-v3-turbo) on a Mac mini.<br>
+      Translated and lightly edited for readability — kept, where it counts, in their own words.
+    </span>
+    <span class="lang-es">
+      Grabado por Lisa el 28 de abril de 2026, en San Diego.<br>
+      Transcrito localmente con whisper.cpp (large-v3-turbo) en una Mac mini.<br>
+      Traducido y ligeramente editado para legibilidad — manteniendo, donde importa, sus propias palabras.
+    </span>
+  </p>
+  <div class="files">
+    <span>Pipo</span> · <span>Vale</span> · <span>Lisa</span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const body = document.body;
+  const btnEN = document.getElementById('btn-en');
+  const btnES = document.getElementById('btn-es');
+
+  function setLang(lang) {
+    body.setAttribute('data-lang', lang);
+    btnEN.classList.toggle('active', lang === 'en');
+    btnES.classList.toggle('active', lang === 'es');
+    try { localStorage.setItem('dad-vale-lang', lang); } catch(e) {}
+    document.documentElement.lang = lang;
+  }
+
+  let stored = null;
+  try { stored = localStorage.getItem('dad-vale-lang'); } catch(e) {}
+  if (stored === 'es' || stored === 'en') setLang(stored);
+
+  btnEN.addEventListener('click', () => setLang('en'));
+  btnES.addEventListener('click', () => setLang('es'));
+})();
+</script>
+
+</body>
+</html>
