@@ -3,111 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>grip-inventory — README</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex">
+<title>grip-inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: #0e0f0d; }
+  html, body { background: #15171a; }
   body {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 14px;
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    font-size: 17px;
     line-height: 1.65;
-    color: #c8d4c0;
-    padding: 0 24px 80px;
+    color: #d6dcd2;
+    padding: 0 28px 96px;
   }
-  .wrap { max-width: 760px; margin: 0 auto; }
+  .wrap { max-width: 740px; margin: 0 auto; }
 
-  /* menu bar */
+  /* tab bar */
   nav.modes {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #0e0f0d;
-    padding: 18px 0 14px;
-    border-bottom: 1px solid #2c3528;
-    margin-bottom: 24px;
+    background: #15171a;
+    padding: 24px 0 16px;
+    border-bottom: 1px solid #2c3037;
+    margin-bottom: 28px;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 0;
+    gap: 6px 0;
   }
   nav.modes button {
     background: transparent;
-    border: 1px solid #2c3528;
-    color: #738068;
+    border: 1px solid #2c3037;
+    color: #8a948a;
     font-family: inherit;
-    font-size: 13px;
-    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
     cursor: pointer;
-    letter-spacing: 0;
     margin-right: -1px;
     transition: color 0.08s, background 0.08s, border-color 0.08s;
   }
-  nav.modes button:hover { color: #c8d4c0; border-color: #4a5a40; }
+  nav.modes button:hover { color: #e8f0e0; border-color: #525c52; }
   nav.modes button.active {
     background: #d4a05a;
-    color: #0e0f0d;
+    color: #15171a;
     border-color: #d4a05a;
-    font-weight: 700;
+    font-weight: 600;
   }
   nav.modes button:focus { outline: none; }
-  nav.modes button:focus-visible { outline: 1px dashed #d4a05a; outline-offset: 2px; }
-
-  /* prompt line */
-  .prompt { color: #6b8a5c; padding-top: 8px; }
-  .prompt::before { content: "$ "; color: #4a6840; }
-  .prompt .arg { color: #d4a05a; }
+  nav.modes button:focus-visible { outline: 2px dashed #d4a05a; outline-offset: 2px; }
 
   /* content */
-  .panel { display: none; padding-top: 6px; }
+  .panel { display: none; }
   .panel.active { display: block; }
 
   h1 {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 700;
-    color: #e8f0e0;
-    margin: 8px 0 6px;
-    letter-spacing: -0.01em;
+    color: #f0f4ec;
+    margin: 12px 0 8px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
   }
-  h1::before { content: "# "; color: #d4a05a; }
   h2 {
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 21px;
+    font-weight: 600;
     color: #d4a05a;
-    margin: 36px 0 10px;
+    margin: 44px 0 10px;
+    letter-spacing: -0.005em;
   }
-  h2::before { content: "## "; color: #6b8a5c; }
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #f0f4ec;
+    margin: 22px 0 6px;
+  }
   blockquote {
     border-left: 3px solid #d4a05a;
-    color: #d4a05a;
-    padding: 4px 14px;
+    color: #c9b890;
+    padding: 4px 16px;
+    margin: 18px 0;
+    font-style: italic;
+    font-size: 17px;
+  }
+  p { margin: 12px 0; max-width: 64ch; }
+  hr { display: none; }
+
+  /* tables */
+  table.lines, table.spec {
+    border-collapse: collapse;
     margin: 14px 0;
+    font-size: 15px;
+    width: 100%;
+  }
+  table.lines th, table.lines td,
+  table.spec td {
+    padding: 10px 18px 10px 0;
+    vertical-align: top;
+    text-align: left;
+    border-bottom: 1px solid #2c3037;
+  }
+  table.lines th {
+    color: #8a948a;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+  }
+  table.lines td.k, table.spec td:first-child {
+    color: #d4a05a;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    padding-right: 20px;
+  }
+  table.lines td.note, table.spec td.note {
+    color: #8a948a;
     font-style: italic;
   }
-  blockquote::before { content: "> "; }
-  p { margin: 10px 0; max-width: 68ch; }
-  hr { border: 0; border-top: 1px dashed #2c3528; margin: 24px 0; }
-  table {
-    border-collapse: collapse;
-    margin: 10px 0;
-    font-size: 13px;
-    width: 100%;
-    max-width: 660px;
-  }
-  td {
-    padding: 4px 16px 4px 0;
-    vertical-align: top;
-    color: #c8d4c0;
-  }
-  td:first-child { color: #d4a05a; white-space: nowrap; width: 220px; }
-  td.note { color: #738068; font-style: italic; padding-left: 0; }
-  ol { margin: 10px 0 10px 30px; }
-  ol li { margin: 6px 0; padding-left: 8px; }
-  ol li::marker { color: #d4a05a; font-weight: 700; }
+
+  ol { margin: 12px 0 12px 26px; }
+  ol li { margin: 8px 0; padding-left: 6px; }
+  ol li::marker { color: #d4a05a; font-weight: 600; }
   ul.dash { list-style: none; padding: 0; }
   ul.dash li {
-    padding-left: 18px;
+    padding-left: 20px;
     position: relative;
-    margin: 4px 0;
+    margin: 6px 0;
   }
   ul.dash li::before {
     content: "—";
@@ -117,32 +140,81 @@
   }
   code, .inline {
     color: #d4a05a;
-    background: #1a1d18;
-    padding: 1px 6px;
-    border-radius: 2px;
-    font-size: 12.5px;
+    background: #20242a;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 14px;
   }
-  .em { color: #e8f0e0; font-weight: 600; }
-  .totals { border-top: 1px solid #2c3528; border-bottom: 1px solid #2c3528; padding: 6px 0; margin: 14px 0; max-width: 540px; }
-  .row { display: flex; justify-content: space-between; padding: 2px 0; gap: 24px; }
-  .row .v { color: #e8f0e0; }
-  .row.sum .v { color: #d4a05a; font-weight: 700; }
+  .em { color: #f0f4ec; font-weight: 600; }
+  .accent { color: #d4a05a; font-weight: 600; }
+
+  /* hater verdict callouts */
+  .verdict {
+    border: 1px solid #2c3037;
+    border-left: 3px solid #c8543d;
+    padding: 16px 20px;
+    margin: 14px 0;
+    background: #1a1d20;
+  }
+  .verdict h3 {
+    margin-top: 0;
+    color: #f0f4ec;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .verdict p { margin: 6px 0 0; font-size: 15.5px; }
+
+  /* totals (cost block) */
+  .totals {
+    border-top: 1px solid #2c3037;
+    border-bottom: 1px solid #2c3037;
+    padding: 8px 0;
+    margin: 16px 0;
+    max-width: 560px;
+    font-size: 15px;
+  }
+  .totals .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    gap: 24px;
+  }
+  .totals .row .v { color: #f0f4ec; font-weight: 500; }
+  .totals .row.sum {
+    border-top: 1px solid #2c3037;
+    margin-top: 6px;
+    padding-top: 8px;
+    font-weight: 600;
+  }
+  .totals .row.sum .v { color: #d4a05a; }
 
   footer.eof {
-    margin-top: 50px;
-    padding-top: 16px;
-    border-top: 1px dashed #2c3528;
-    color: #4a6840;
-    font-size: 12px;
+    margin-top: 60px;
+    padding-top: 18px;
+    border-top: 1px solid #2c3037;
+    color: #6b746b;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
   }
-  a { color: #d4a05a; }
+  footer.eof a { color: #d4a05a; text-decoration: none; }
+  footer.eof a:hover { text-decoration: underline; }
+  a { color: #d4a05a; text-decoration: underline; text-decoration-color: #5a4525; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: #d4a05a; }
+  table.lines a, .verdict a { text-decoration: none; }
+  table.lines a:hover, .verdict a:hover { text-decoration: underline; text-decoration-color: #d4a05a; text-underline-offset: 3px; }
 
-  @media (max-width: 540px) {
-    body { padding: 0 16px 60px; font-size: 13px; }
-    td:first-child { width: 160px; font-size: 12px; }
-    nav.modes button { padding: 6px 10px; font-size: 12px; }
-    h1 { font-size: 19px; }
-    h2 { font-size: 15px; }
+  @media (max-width: 580px) {
+    body { padding: 0 18px 60px; font-size: 16px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 18px; }
+    nav.modes button { padding: 7px 12px; font-size: 13px; }
+    table.lines, table.spec { font-size: 14px; }
+    table.lines td.k, table.spec td:first-child { font-size: 13px; }
   }
 </style>
 </head>
@@ -150,158 +222,127 @@
 <div class="wrap">
 
 <nav class="modes" role="tablist" aria-label="view mode">
-  <button data-mode="exec" class="active" aria-controls="m-exec" role="tab">exec overview</button>
-  <button data-mode="tech" aria-controls="m-tech" role="tab">tech talk</button>
+  <button data-mode="overview" class="active" aria-controls="m-overview" role="tab">overview</button>
+  <button data-mode="exec" aria-controls="m-exec" role="tab">exec</button>
   <button data-mode="plain" aria-controls="m-plain" role="tab">plain english</button>
+  <button data-mode="tech" aria-controls="m-tech" role="tab">tech talk</button>
   <button data-mode="eli5" aria-controls="m-eli5" role="tab">eli5</button>
+  <button data-mode="resources" aria-controls="m-resources" role="tab">resources</button>
 </nav>
 
-<!-- TECH TALK -->
-<section id="m-tech" class="panel" role="tabpanel" aria-labelledby="tech">
-  <p class="prompt">cat README.md <span class="arg">--mode=tech</span></p>
-  <hr>
+<!-- OVERVIEW -->
+<section id="m-overview" class="panel active" role="tabpanel" aria-labelledby="overview">
 
-  <h1>grip-inventory</h1>
-  <p>Self-hosted gear tracker. Talk or text it. SQLite + FastAPI + Claude Haiku. One person, one box, no SaaS.</p>
+  <h1>What's possible. What isn't.</h1>
+  <blockquote>A recon pass: what already exists for tracking grip gear, why none of it fits a working freelancer, and what survives once we send the haters in.</blockquote>
 
-  <h2>what</h2>
-  <p>One-time walkthrough of the kit, voice + photos. After that, every move is a sentence — <span class="em">"Marco took the C-stand kit to truck B"</span> — and the LLM parses it into a structured DB write. Background job watches for loans older than N days and fires a push. Runs on whatever box stays on at the house, reached from set over Tailscale.</p>
+  <h2>tl;dr</h2>
+  <p>Nothing on the market is built for a freelance key grip with natural-language input. Selling our own version as a SaaS doesn't survive scrutiny. Building it for self-use does. The other four tabs above are the actual build dossier in four reading levels.</p>
 
-  <h2>stack</h2>
-  <table>
-    <tr><td>language</td><td>python 3.12</td><td class="note">AI tools generate it most reliably</td></tr>
-    <tr><td>backend</td><td>fastapi</td><td class="note">single file, hot reload</td></tr>
-    <tr><td>db</td><td>sqlite (WAL)</td><td class="note">one file, copy to back up</td></tr>
-    <tr><td>frontend</td><td>PWA, single HTML</td><td class="note">installs to iPhone home screen</td></tr>
-    <tr><td>STT</td><td>browser web speech</td><td class="note">free, built into Safari</td></tr>
-    <tr><td>LLM</td><td>claude haiku 4.5</td><td class="note">~$0.07/mo at projected use</td></tr>
-    <tr><td>push</td><td>ntfy.sh</td><td class="note">free, iOS app on App Store</td></tr>
-    <tr><td>remote</td><td>tailscale</td><td class="note">free personal, no port-fwd</td></tr>
-    <tr><td>repo</td><td>github public, MIT</td><td class="note">Rob added as collaborator</td></tr>
-    <tr><td>host</td><td>always-on box at home</td><td class="note">whatever you've got</td></tr>
+  <h2>What's already out there</h2>
+  <p>The film inventory software universe splits four ways. None of them target a freelance grip.</p>
+  <table class="lines">
+    <tr><th>category</th><th>examples</th><th>why it misses</th></tr>
+    <tr><td class="k">production-office</td><td><a href="https://www.studiobinder.com" target="_blank" rel="noopener">StudioBinder</a>, <a href="https://www.sethero.com" target="_blank" rel="noopener">SetHero</a>, <a href="https://yamdu.com" target="_blank" rel="noopener">Yamdu</a></td><td class="note">schedules &amp; paperwork, not gear</td></tr>
+    <tr><td class="k">rental-house ERPs</td><td><a href="https://current-rms.com" target="_blank" rel="noopener">Current RMS</a>, <a href="https://rentman.io" target="_blank" rel="noopener">Rentman</a>, <a href="https://www.cheqroom.com" target="_blank" rel="noopener">Cheqroom</a> ($184+/mo)</td><td class="note">priced for businesses, not freelancers</td></tr>
+    <tr><td class="k">generic asset trackers</td><td><a href="https://www.sortly.com" target="_blank" rel="noopener">Sortly</a>, <a href="https://www.shelf.nu" target="_blank" rel="noopener">Shelf.nu</a>, <a href="https://www.assetpanda.com" target="_blank" rel="noopener">Asset Panda</a></td><td class="note">works, doesn't know what a Cardellini is</td></tr>
+    <tr><td class="k">owner-operator loggers</td><td><a href="https://mygearvault.com" target="_blank" rel="noopener">MyGearVault</a>, <a href="https://apps.apple.com/us/app/griplist/id1511692565" target="_blank" rel="noopener">Griplist</a></td><td class="note">abandoned or catalog-only</td></tr>
   </table>
+  <p><span class="em">Zero accept natural-language input.</span> That's the open lane.</p>
 
-  <h2>build</h2>
-  <ol>
-    <li>install <code>cursor</code> or <code>claude code</code>, make github account, get anthropic api key</li>
-    <li>scaffold: <code>fastapi + sqlite + items/locations/people tables + html list view</code></li>
-    <li>seed your kit + aliases (stinger, cardellini, 4-by, etc.)</li>
-    <li>add the parse endpoint: sentence in → tool call → db write</li>
-    <li>add the reminder cron: loans older than N days → ntfy push</li>
-    <li>move to the home box, set up tailscale on phone + box</li>
-    <li>use it on a job, fix what doesn't work, repeat</li>
-  </ol>
+  <h2>Closest existing — free trials worth checking first</h2>
+  <table class="lines">
+    <tr><th>tool</th><th>why try</th><th>the catch</th></tr>
+    <tr><td class="k"><a href="https://www.scanlily.com" target="_blank" rel="noopener">Scanlily</a></td><td>AI walk-through video — talk while it watches</td><td class="note">offline support unclear</td></tr>
+    <tr><td class="k"><a href="https://www.sortly.com" target="_blank" rel="noopener">Sortly</a></td><td>gold-standard offline mode, free 100 items</td><td class="note">no voice, form-only</td></tr>
+    <tr><td class="k"><a href="https://www.shelf.nu" target="_blank" rel="noopener">Shelf.nu</a></td><td>free unlimited single-user, open-source, QR</td><td class="note">no AI; best as a backend if we wrap it</td></tr>
+    <tr><td class="k"><a href="https://small-business-inventory-management.com/ai/voice-ai-inventory-app.htm" target="_blank" rel="noopener">QR Inventory</a></td><td>actual on-device voice AI works</td><td class="note">$45/mo, built for warehouses</td></tr>
+  </table>
+  <p>Honest take — Scanlily + Sortly side-by-side for two weeks would tell us whether off-the-shelf AI inventory survives on a real set.</p>
 
-  <h2>cost</h2>
-  <div class="totals">
-    <div class="row"><span>editor (cursor or claude code)</span><span class="v">$0 – $20/mo</span></div>
-    <div class="row"><span>claude haiku api</span><span class="v">~$0.07/mo</span></div>
-    <div class="row"><span>github, tailscale, ntfy</span><span class="v">$0</span></div>
-    <div class="row"><span>home box</span><span class="v">whatever you have</span></div>
-    <div class="row sum"><span>all-in monthly</span><span class="v">&lt; $25</span></div>
-  </div>
-
-  <h2>git</h2>
-  <p>Public repo on your github, MIT license, Rob added as collaborator. Code is just CRUD plumbing — no secrets in it (API keys in env vars, inventory data stays in your db). Public unlocks fork/contribution if other grips want it later. Default unless you flag a reason.</p>
-</section>
-
-<!-- PLAIN ENGLISH -->
-<section id="m-plain" class="panel" role="tabpanel" aria-labelledby="plain">
-  <p class="prompt">cat README.md <span class="arg">--mode=plain</span></p>
-  <hr>
-
-  <h1>grip-inventory</h1>
-  <p>A small app you run on a computer at your house that tracks your gear. You talk to it. It writes things down. Nobody else sees it.</p>
-
-  <h2>what it does</h2>
-  <p>The first time, you walk your kit and tell the app what you have, snapping photos as you go. After that, you just talk to it like a person. <span class="em">"Marco took the C-stand kit to truck B."</span> The app understands the sentence and updates your list. It pings your phone when something you loaned out has been gone too long. You reach it from set through a private connection — it never sits on the public internet.</p>
-
-  <h2>the parts</h2>
+  <h2>Why the gap is real</h2>
   <ul class="dash">
-    <li>a code editor with AI built in (Cursor or Claude Code) — the tool you use to build the app</li>
-    <li>Python — the language the AI writes the app in, you mostly read it</li>
-    <li>a simple web server framework called FastAPI — one file, easy to follow</li>
-    <li>a small database file (SQLite) — your data lives here; copy the file to back it up</li>
-    <li>a web page that installs on your iPhone like a real app</li>
-    <li>an AI "brain" (Claude) — turns your sentences into updates to the list</li>
-    <li>a free push notification service (ntfy.sh) — for the reminder pings</li>
-    <li>a private network tool (Tailscale) — lets your phone reach the home computer from anywhere</li>
-    <li>GitHub — where the source code is kept; open so others can use it too</li>
-    <li>an always-on computer at your house — whatever you've got, even an old laptop</li>
+    <li><span class="em">Wrap = lost gear.</span> 2am, you throw it in the truck, the missing C-clamp becomes an L&amp;D charge a week later.</li>
+    <li><span class="em">L&amp;D liability with no docs.</span> Freelancers eat damage costs they can't prove weren't pre-existing.</li>
+    <li><span class="em">Multi-truck attribution.</span> On a 3-truck show, nothing tracks which truck the 40" C-stand is on. The best boy IS the database.</li>
+    <li><span class="em">Sub-rentals slip through.</span> Gaffer rents from a competitor, gets returned to the wrong house at wrap.</li>
+    <li><span class="em">Pull-list vs truck reality.</span> Hand-counting C-stands at 6am.</li>
   </ul>
 
-  <h2>how it gets built</h2>
-  <ol>
-    <li>install the editor, make a GitHub account, get an API key from Anthropic</li>
-    <li>ask the AI to write the basic skeleton — a list of items, a place to add new ones</li>
-    <li>type in your own gear and your slang ("stinger" is a particular cable, etc.)</li>
-    <li>wire up the part that reads your sentences and changes the list</li>
-    <li>add the reminders for loans</li>
-    <li>move the whole thing to your home computer and set up the private network</li>
-    <li>use it on a job, see what breaks, ask the AI to fix it</li>
-  </ol>
+  <h2>Methodology</h2>
+  <p>This page is the output of two passes through the problem.</p>
+  <h3>Pass 1 — landscape research</h3>
+  <p>Four parallel research agents (all Claude Opus, web-enabled) sent out to map the territory: existing software, what working grips actually do today, the technical build options if we make it ourselves, and the closest AI/voice inventory tools in adjacent industries.</p>
+  <h3>Pass 2 — hater agents</h3>
+  <p>Once the build pitch had a shape, we sent four <span class="accent">adversarial "hater" agents</span> in parallel, each told to attack one vulnerability surface and find every reason the plan fails. No balance, no steelmanning — just looking for cracks.</p>
+  <ul class="dash">
+    <li><span class="em">Tech-reality hater</span> — STT accuracy, offline behavior, hallucination, push reliability, battery drain</li>
+    <li><span class="em">Market hater</span> — TAM, distribution channels, buyer culture, industry contraction</li>
+    <li><span class="em">Unit-economics hater</span> — LLM cost per user, churn, CAC vs LTV, solo-founder bandwidth</li>
+    <li><span class="em">Legal / IP hater</span> — defamation, two-party consent, FRE 803(6), App Store policy, IATSE rules</li>
+  </ul>
+  <p>What survives both passes is what's actually worth doing. The rest is below.</p>
 
-  <h2>what it costs each month</h2>
-  <div class="totals">
-    <div class="row"><span>editor</span><span class="v">free, or $20</span></div>
-    <div class="row"><span>AI brain</span><span class="v">about 7 cents</span></div>
-    <div class="row"><span>github, tailscale, ntfy</span><span class="v">free</span></div>
-    <div class="row"><span>home computer</span><span class="v">whatever you have</span></div>
-    <div class="row sum"><span>all-in monthly</span><span class="v">under $25</span></div>
+  <h2>Why we're not selling it</h2>
+  <p>The four haters came back from different directions and pointed at the same answer: this is not a SaaS.</p>
+
+  <div class="verdict">
+    <h3>Tech reality</h3>
+    <p>STT word-error-rate on grip jargon ("Cardellini," "Mafer," "1.2k Joker") is ~20% even with vocabulary biasing. Every miss feeds a confident-looking hallucinated DB write. Voice-assistant research is unambiguous — three retries at 2am and the user is on Notes.app forever. iOS silent push is throttled by design and blocked entirely in Low Power Mode, which crew triggers by 6pm.</p>
   </div>
 
-  <h2>about the code</h2>
-  <p>The code lives in a public folder on GitHub under an open license — anyone can read it, fork it, use it. Rob has access too, so he can help when you're stuck. Your actual gear list never goes in the code; it stays on your computer.</p>
-</section>
+  <div class="verdict">
+    <h3>Market reality</h3>
+    <p>TAM is ~15–25k working grips &amp; best boys in North America. Realistic paid-sub ceiling: 300–800 = $72–192k ARR at peak. Closest historical competitor (Griplist): dead since Jan 2021. Cinematographers pay once, not monthly. FilmLA 2025 shoot days down 16% YoY — lowest non-pandemic year on record.</p>
+  </div>
 
-<!-- ELI5 -->
-<section id="m-eli5" class="panel" role="tabpanel" aria-labelledby="eli5">
-  <p class="prompt">cat README.md <span class="arg">--mode=eli5</span></p>
-  <hr>
+  <div class="verdict">
+    <h3>Unit economics</h3>
+    <p>Heavy user gross margin: <span class="em">negative</span> on every plan we modeled. LTV ~$48 vs CAC $80–200, ratio 1.6 (need 3+). Solo-founder support burns out around month 14–20 at 150–300 users. The math doesn't close.</p>
+  </div>
 
-  <h1>grip-inventory</h1>
-  <p>It's a magic notebook. You talk to it. It writes things down for you. It lives in your house.</p>
+  <div class="verdict">
+    <h3>Legal exposure</h3>
+    <p>Hallucinated writes naming coworkers = defamation suit. California §632 two-party consent = $5k per voice captured in the background. FRE 803(6) makes AI-transcribed records inadmissible in exactly the L&amp;D disputes the product was supposed to win. Production NDAs cover gear lists — founder personally on the hook to every studio his customers work for.</p>
+  </div>
 
-  <h2>what it does</h2>
-  <p>You point at every piece of gear once and tell the notebook what it is. The notebook listens. After that, you just say things like <span class="em">"Marco took the dolly"</span> and it remembers. When you ask <span class="em">"where's the dolly?"</span> it tells you. When Marco still has the dolly three days later, the notebook taps your phone on the shoulder: <span class="em">"hey, Marco still has the dolly."</span></p>
-
-  <h2>the parts (don't sweat the names)</h2>
+  <h2>What survives — the self-host build</h2>
+  <p>Strip the SaaS dream and every landmine in the section above disappears.</p>
   <ul class="dash">
-    <li>a <span class="em">robot helper</span> that writes computer code for you — you tell it what you want, it types the code</li>
-    <li>a <span class="em">box</span> that runs the notebook — a computer at your house, always on</li>
-    <li>a <span class="em">secret tunnel</span> so your phone can talk to the box from anywhere (Tailscale)</li>
-    <li>a <span class="em">brain</span> inside the notebook that understands sentences (we rent it for pennies)</li>
-    <li>a <span class="em">bell</span> that rings on your phone when something needs your attention</li>
+    <li>No paying customers → no defamation exposure on third parties.</li>
+    <li>No App Store review → no AI rejection cascades.</li>
+    <li>Own data only → no NDA breach, no two-party consent issue (you speak, you consent).</li>
+    <li>No L&amp;D evidence claim in TOS → no FRE 803(6) trap.</li>
+    <li>Self-hosted → no LLM-per-user cost spiral, just your own bill.</li>
+    <li>No support burden, no churn, no CAC, no support pings at 2am.</li>
   </ul>
 
-  <h2>how you build it</h2>
-  <ol>
-    <li>get the robot helper installed on your computer</li>
-    <li>tell it: <span class="em">"make me a notebook with pages for my stuff"</span> — it writes the code</li>
-    <li>write down all your gear in the notebook</li>
-    <li>hook up the brain so it understands what you say</li>
-    <li>hook up the bell</li>
-    <li>move the whole thing to the box at your house and open the secret tunnel</li>
-    <li>try it on a job — when something is dumb, tell the robot helper to fix it</li>
-  </ol>
+  <h2>Three build paths considered</h2>
+  <table class="lines">
+    <tr><th>path</th><th>ship</th><th>runtime cost</th><th>tradeoff</th></tr>
+    <tr><td class="k">PWA + hosted LLM <span class="accent">★</span></td><td>2–3 weeks</td><td>~$10–35/mo</td><td class="note">works on any phone, queues offline writes</td></tr>
+    <tr><td class="k">native iOS + Apple Intelligence</td><td>6–8 weeks</td><td>~$15–25/mo + $99/yr Apple dev</td><td class="note">fully offline, native UX, requires Swift</td></tr>
+    <tr><td class="k">SMS / iMessage bot</td><td>~1 week</td><td>~$35–50/mo Twilio</td><td class="note">zero install, free offline queue, conversational only</td></tr>
+  </table>
+  <p>The PWA path is the one we're recommending. Cheap, fast, swappable. Detail in the other tabs.</p>
 
-  <h2>money</h2>
-  <p>A few bucks a month. Less than coffee. Most of the parts are free.</p>
-
-  <h2>the recipe</h2>
-  <p>The recipe for the notebook lives on the internet for anyone to read. Rob can read along too and help when you're stuck. The stuff inside the notebook — your gear — only you can see. That part stays in your house.</p>
+  <h2>The recommendation</h2>
+  <ul class="dash">
+    <li><span class="em">Build it for yourself.</span> PWA, your own API key, your own box.</li>
+    <li><span class="em">Self-host.</span> Data stays on your computer, never goes to a third party.</li>
+    <li><span class="em">Open-source it if you want.</span> No liability since you're not selling. Builds your rep in the grip community.</li>
+    <li><span class="em">Don't pitch it as an L&amp;D evidence tool.</span> Frame as personal kit organizer + loan tracker. Every legal landmine in this brief traces back to the L&amp;D positioning.</li>
+  </ul>
 </section>
 
-<!-- EXEC OVERVIEW -->
-<section id="m-exec" class="panel active" role="tabpanel" aria-labelledby="exec">
-  <p class="prompt">cat README.md <span class="arg">--mode=exec</span></p>
-  <hr>
+<!-- EXEC -->
+<section id="m-exec" class="panel" role="tabpanel" aria-labelledby="exec">
 
-  <h1>grip-inventory — exec summary</h1>
+  <h1>Exec summary</h1>
   <blockquote>Self-hosted natural-language gear tracker for a working key grip. Built solo, run solo. Not a SaaS, not for sale.</blockquote>
 
-  <h2>the line</h2>
-  <table>
+  <h2>The line</h2>
+  <table class="spec">
     <tr><td>build time</td><td>~1 week of evenings</td></tr>
     <tr><td>monthly run cost</td><td>&lt; $25</td></tr>
     <tr><td>third-party deps</td><td>5, all free or pay-per-use</td></tr>
@@ -310,33 +351,244 @@
     <tr><td>vendor lock-in</td><td>none — open stack, swappable LLM</td></tr>
   </table>
 
-  <h2>value</h2>
+  <h2>Value</h2>
   <ul class="dash">
-    <li>one-time inventory capture, then conversational maintenance — no forms</li>
-    <li>reminders catch loaned gear before it becomes L&amp;D liability</li>
-    <li>entire stack is open or commodity — no platform risk</li>
-    <li>repo is public, Rob is collaborator — coaching path is built in</li>
+    <li>One-time inventory capture, then conversational maintenance — no forms.</li>
+    <li>Reminders catch loaned gear before it becomes L&amp;D liability.</li>
+    <li>Entire stack is open or commodity — no platform risk.</li>
+    <li>Repo is public, Rob is collaborator — coaching path is built in.</li>
   </ul>
 
-  <h2>risks</h2>
+  <h2>Risks</h2>
   <ul class="dash">
-    <li>requires an always-on box at home + basic Tailscale literacy</li>
-    <li>voice accuracy on grip jargon is decent, not 100% — type fallback always works</li>
-    <li>single-user only — multi-crew sharing is a separate, later build</li>
+    <li>Requires an always-on box at home + basic Tailscale literacy.</li>
+    <li>Voice accuracy on grip jargon is decent, not 100% — type fallback always works.</li>
+    <li>Single-user only — multi-crew sharing is a separate, later build.</li>
   </ul>
 
-  <h2>decision</h2>
-  <p>Build. Solo PoC, friend owns and hosts. Two open calls: <span class="em">pick code editor</span> (Cursor or Claude Code) and <span class="em">confirm home-box hardware</span>. Everything else is settled.</p>
+  <h2>Decision</h2>
+  <p>Build. Solo PoC, self-owned and self-hosted. Two open calls: <span class="em">pick code editor</span> (Cursor or Claude Code) and <span class="em">confirm home-box hardware</span>. Everything else is settled.</p>
+</section>
+
+<!-- TECH -->
+<section id="m-tech" class="panel" role="tabpanel" aria-labelledby="tech">
+
+  <h1>grip-inventory</h1>
+  <p>Self-hosted gear tracker. Talk or text it. SQLite + FastAPI + Claude Haiku. One person, one box, no SaaS.</p>
+
+  <h2>What</h2>
+  <p>One-time walkthrough of the kit, voice + photos. After that, every move is a sentence — <span class="em">"Marco took the C-stand kit to truck B"</span> — and the LLM parses it into a structured DB write. Background job watches for loans older than N days and fires a push. Runs on whatever box stays on at the house, reached from set over Tailscale.</p>
+
+  <h2>Stack</h2>
+  <table class="spec">
+    <tr><td>language</td><td><a href="https://www.python.org" target="_blank" rel="noopener">python 3.12</a></td><td class="note">AI tools generate it most reliably</td></tr>
+    <tr><td>backend</td><td><a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener">fastapi</a></td><td class="note">single file, hot reload</td></tr>
+    <tr><td>db</td><td><a href="https://www.sqlite.org" target="_blank" rel="noopener">sqlite</a> (WAL)</td><td class="note">one file, copy to back up</td></tr>
+    <tr><td>frontend</td><td>PWA, single HTML</td><td class="note">installs to iPhone home screen</td></tr>
+    <tr><td>STT</td><td>browser web speech</td><td class="note">free, built into Safari</td></tr>
+    <tr><td>LLM</td><td><a href="https://www.anthropic.com/claude/haiku" target="_blank" rel="noopener">claude haiku 4.5</a></td><td class="note">~$0.07/mo at projected use</td></tr>
+    <tr><td>push</td><td><a href="https://ntfy.sh" target="_blank" rel="noopener">ntfy.sh</a></td><td class="note">free, iOS app on App Store</td></tr>
+    <tr><td>remote</td><td><a href="https://tailscale.com" target="_blank" rel="noopener">tailscale</a></td><td class="note">free personal, no port-fwd</td></tr>
+    <tr><td>repo</td><td><a href="https://github.com" target="_blank" rel="noopener">github</a> public, MIT</td><td class="note">Rob added as collaborator</td></tr>
+    <tr><td>host</td><td>always-on box at home</td><td class="note">whatever you've got</td></tr>
+  </table>
+
+  <h2>Build</h2>
+  <ol>
+    <li>Install <a href="https://cursor.com" target="_blank" rel="noopener"><code>cursor</code></a> or <a href="https://www.claude.com/product/claude-code" target="_blank" rel="noopener"><code>claude code</code></a>, make a GitHub account, get an <a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener">Anthropic API key</a>.</li>
+    <li>Scaffold: <code>fastapi + sqlite + items/locations/people tables + html list view</code>.</li>
+    <li>Seed your kit + aliases (stinger, cardellini, 4-by, etc.).</li>
+    <li>Add the parse endpoint: sentence in → tool call → db write.</li>
+    <li>Add the reminder cron: loans older than N days → ntfy push.</li>
+    <li>Move to the home box, set up Tailscale on phone + box.</li>
+    <li>Use it on a job, fix what doesn't work, repeat.</li>
+  </ol>
+
+  <h2>Cost</h2>
+  <div class="totals">
+    <div class="row"><span>editor (cursor or claude code)</span><span class="v">$0 – $20/mo</span></div>
+    <div class="row"><span>claude haiku api</span><span class="v">~$0.07/mo</span></div>
+    <div class="row"><span>github, tailscale, ntfy</span><span class="v">$0</span></div>
+    <div class="row"><span>home box</span><span class="v">whatever you have</span></div>
+    <div class="row sum"><span>all-in monthly</span><span class="v">&lt; $25</span></div>
+  </div>
+
+  <h2>Git</h2>
+  <p>Public repo on your GitHub, MIT license, Rob added as collaborator. Code is just CRUD plumbing — no secrets in it (API keys in env vars, inventory data stays in your db). Public unlocks fork/contribution if other grips want it later. Default unless you flag a reason.</p>
+</section>
+
+<!-- PLAIN -->
+<section id="m-plain" class="panel" role="tabpanel" aria-labelledby="plain">
+
+  <h1>grip-inventory</h1>
+  <p>A small app you run on a computer at your house that tracks your gear. You talk to it. It writes things down. Nobody else sees it.</p>
+
+  <h2>What it does</h2>
+  <p>The first time, you walk your kit and tell the app what you have, snapping photos as you go. After that, you just talk to it like a person. <span class="em">"Marco took the C-stand kit to truck B."</span> The app understands the sentence and updates your list. It pings your phone when something you loaned out has been gone too long. You reach it from set through a private connection — it never sits on the public internet.</p>
+
+  <h2>The parts</h2>
+  <ul class="dash">
+    <li>A code editor with AI built in (Cursor or Claude Code) — the tool you use to build the app.</li>
+    <li>Python — the language the AI writes the app in, you mostly read it.</li>
+    <li>A simple web server framework called FastAPI — one file, easy to follow.</li>
+    <li>A small database file (SQLite) — your data lives here; copy the file to back it up.</li>
+    <li>A web page that installs on your iPhone like a real app.</li>
+    <li>An AI "brain" (Claude) — turns your sentences into updates to the list.</li>
+    <li>A free push notification service (ntfy.sh) — for the reminder pings.</li>
+    <li>A private network tool (Tailscale) — lets your phone reach the home computer from anywhere.</li>
+    <li>GitHub — where the source code is kept; open so others can use it too.</li>
+    <li>An always-on computer at your house — whatever you've got, even an old laptop.</li>
+  </ul>
+
+  <h2>How it gets built</h2>
+  <ol>
+    <li>Install the editor, make a GitHub account, get an API key from Anthropic.</li>
+    <li>Ask the AI to write the basic skeleton — a list of items, a place to add new ones.</li>
+    <li>Type in your own gear and your slang ("stinger" is a particular cable, etc.).</li>
+    <li>Wire up the part that reads your sentences and changes the list.</li>
+    <li>Add the reminders for loans.</li>
+    <li>Move the whole thing to your home computer and set up the private network.</li>
+    <li>Use it on a job, see what breaks, ask the AI to fix it.</li>
+  </ol>
+
+  <h2>What it costs each month</h2>
+  <div class="totals">
+    <div class="row"><span>editor</span><span class="v">free, or $20</span></div>
+    <div class="row"><span>AI brain</span><span class="v">about 7 cents</span></div>
+    <div class="row"><span>github, tailscale, ntfy</span><span class="v">free</span></div>
+    <div class="row"><span>home computer</span><span class="v">whatever you have</span></div>
+    <div class="row sum"><span>all-in monthly</span><span class="v">under $25</span></div>
+  </div>
+
+  <h2>About the code</h2>
+  <p>The code lives in a public folder on GitHub under an open license — anyone can read it, fork it, use it. Rob has access too, so he can help when you're stuck. Your actual gear list never goes in the code; it stays on your computer.</p>
+</section>
+
+<!-- ELI5 -->
+<section id="m-eli5" class="panel" role="tabpanel" aria-labelledby="eli5">
+
+  <h1>grip-inventory</h1>
+  <p>It's a magic notebook. You talk to it. It writes things down for you. It lives in your house.</p>
+
+  <h2>What it does</h2>
+  <p>You point at every piece of gear once and tell the notebook what it is. The notebook listens. After that, you just say things like <span class="em">"Marco took the dolly"</span> and it remembers. When you ask <span class="em">"where's the dolly?"</span> it tells you. When Marco still has the dolly three days later, the notebook taps your phone on the shoulder: <span class="em">"hey, Marco still has the dolly."</span></p>
+
+  <h2>The parts (don't sweat the names)</h2>
+  <ul class="dash">
+    <li>A <span class="em">robot helper</span> that writes computer code for you — you tell it what you want, it types the code.</li>
+    <li>A <span class="em">box</span> that runs the notebook — a computer at your house, always on.</li>
+    <li>A <span class="em">secret tunnel</span> so your phone can talk to the box from anywhere (Tailscale).</li>
+    <li>A <span class="em">brain</span> inside the notebook that understands sentences (we rent it for pennies).</li>
+    <li>A <span class="em">bell</span> that rings on your phone when something needs your attention.</li>
+  </ul>
+
+  <h2>How you build it</h2>
+  <ol>
+    <li>Get the robot helper installed on your computer.</li>
+    <li>Tell it: <span class="em">"make me a notebook with pages for my stuff"</span> — it writes the code.</li>
+    <li>Write down all your gear in the notebook.</li>
+    <li>Hook up the brain so it understands what you say.</li>
+    <li>Hook up the bell.</li>
+    <li>Move the whole thing to the box at your house and open the secret tunnel.</li>
+    <li>Try it on a job — when something is dumb, tell the robot helper to fix it.</li>
+  </ol>
+
+  <h2>Money</h2>
+  <p>A few bucks a month. Less than coffee. Most of the parts are free.</p>
+
+  <h2>The recipe</h2>
+  <p>The recipe for the notebook lives on the internet for anyone to read. Rob can read along too and help when you're stuck. The stuff inside the notebook — your gear — only you can see. That part stays in your house.</p>
+</section>
+
+<!-- RESOURCES -->
+<section id="m-resources" class="panel" role="tabpanel" aria-labelledby="resources">
+
+  <h1>Resources</h1>
+  <blockquote>Every tool mentioned and every source we leaned on, grouped by where it showed up in the brief.</blockquote>
+
+  <h2>Tools surveyed</h2>
+  <h3>Production-office software</h3>
+  <ul class="dash">
+    <li><a href="https://www.studiobinder.com" target="_blank" rel="noopener">StudioBinder</a> — script breakdown, schedules, call sheets</li>
+    <li><a href="https://www.sethero.com" target="_blank" rel="noopener">SetHero</a> — call sheets &amp; production paperwork</li>
+    <li><a href="https://yamdu.com" target="_blank" rel="noopener">Yamdu</a> — production management; has an "assets" module but it's metadata, not gear-on-truck</li>
+  </ul>
+
+  <h3>Rental-house ERPs</h3>
+  <ul class="dash">
+    <li><a href="https://current-rms.com" target="_blank" rel="noopener">Current RMS</a> — rental management, ~$79/user/mo</li>
+    <li><a href="https://rentman.io" target="_blank" rel="noopener">Rentman</a> — rental management, multi-tier pricing</li>
+    <li><a href="https://www.cheqroom.com" target="_blank" rel="noopener">Cheqroom</a> — production-focused rental ops, $184+/mo entry</li>
+  </ul>
+
+  <h3>Generic asset trackers</h3>
+  <ul class="dash">
+    <li><a href="https://www.sortly.com" target="_blank" rel="noopener">Sortly</a> — photo-first, true offline mode, free 100-item tier</li>
+    <li><a href="https://www.shelf.nu" target="_blank" rel="noopener">Shelf.nu</a> — open-source, free unlimited single-user, QR-based</li>
+    <li><a href="https://www.assetpanda.com" target="_blank" rel="noopener">Asset Panda</a> — generic enterprise asset tracking</li>
+  </ul>
+
+  <h3>Owner-operator gear loggers</h3>
+  <ul class="dash">
+    <li><a href="https://mygearvault.com" target="_blank" rel="noopener">MyGearVault</a> — free photo/video gear logger, run by Jared Polin</li>
+    <li><a href="https://apps.apple.com/us/app/griplist/id1511692565" target="_blank" rel="noopener">Griplist (App Store)</a> — grip catalog, last updated Jan 2021</li>
+  </ul>
+
+  <h3>AI-first contenders worth a free trial</h3>
+  <ul class="dash">
+    <li><a href="https://www.scanlily.com" target="_blank" rel="noopener">Scanlily</a> — AI walk-through video, photo recognition, free tier</li>
+    <li><a href="https://small-business-inventory-management.com/ai/voice-ai-inventory-app.htm" target="_blank" rel="noopener">QR Inventory by AHG</a> — on-device voice AI, $45/mo</li>
+  </ul>
+
+  <h2>The recommended stack</h2>
+  <ul class="dash">
+    <li><a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a> — AI-first code editor</li>
+    <li><a href="https://www.claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a> — terminal-based AI coding agent</li>
+    <li><a href="https://www.anthropic.com/claude/haiku" target="_blank" rel="noopener">Anthropic — Claude Haiku 4.5</a> — the LLM "brain"</li>
+    <li><a href="https://www.anthropic.com/pricing" target="_blank" rel="noopener">Anthropic API pricing</a></li>
+    <li><a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener">FastAPI</a> — Python web framework</li>
+    <li><a href="https://www.sqlite.org" target="_blank" rel="noopener">SQLite</a> — single-file database</li>
+    <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a> — code hosting</li>
+    <li><a href="https://tailscale.com" target="_blank" rel="noopener">Tailscale</a> — private mesh networking</li>
+    <li><a href="https://ntfy.sh" target="_blank" rel="noopener">ntfy.sh</a> — free push notifications</li>
+    <li><a href="https://www.twilio.com" target="_blank" rel="noopener">Twilio</a> — used in the SMS bot path (option, not the recommended path)</li>
+  </ul>
+
+  <h2>Industry &amp; market data</h2>
+  <ul class="dash">
+    <li><a href="https://iatse.net" target="_blank" rel="noopener">IATSE</a> — union of theatrical &amp; stage employees, ~168,000 N. American members</li>
+    <li><a href="https://www.iatselocal80.org" target="_blank" rel="noopener">IATSE Local 80</a> — LA grips, ~2,900 members</li>
+    <li><a href="https://filmla.com" target="_blank" rel="noopener">FilmLA</a> — official LA production tracking org</li>
+    <li><a href="https://deadline.com/2026/01/los-angeles-film-tv-on-location-production-2025-q4-filmla-1236684296/" target="_blank" rel="noopener">Deadline — LA shoot days down 16% in 2025</a></li>
+  </ul>
+
+  <h2>Tech research (hater pass)</h2>
+  <ul class="dash">
+    <li><a href="https://www.forasoft.com/blog/article/speech-recognition-accuracy-noisy-environments" target="_blank" rel="noopener">Forasoft — Whisper WER in noisy environments</a></li>
+    <li><a href="https://arxiv.org/abs/2303.00164" target="_blank" rel="noopener">arxiv — Mixed-Methods Approach to Voice Assistant Failures (CHI 2023 preprint)</a></li>
+    <li><a href="https://arxiv.org/abs/2508.06585" target="_blank" rel="noopener">arxiv — CountQA: counting accuracy of multimodal LLMs</a></li>
+  </ul>
+
+  <h2>Legal &amp; policy</h2>
+  <ul class="dash">
+    <li><a href="https://www.law.cornell.edu/rules/fre/rule_803" target="_blank" rel="noopener">FRE 803(6)</a> — federal business-records exception to hearsay (Cornell LII)</li>
+    <li><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=632.&amp;lawCode=PEN" target="_blank" rel="noopener">California Penal Code §632</a> — two-party consent for recording</li>
+    <li><a href="https://www.quinnemanuel.com/the-firm/publications/client-alert-defamation-in-the-ai-era/" target="_blank" rel="noopener">Quinn Emanuel — Defamation in the AI Era</a> (Walters v. OpenAI analysis)</li>
+    <li><a href="https://leg.colorado.gov/bills/sb24-205" target="_blank" rel="noopener">Colorado AI Act (SB 24-205)</a></li>
+    <li><a href="https://developer.apple.com/app-store/small-business-program/" target="_blank" rel="noopener">Apple App Store Small Business Program</a></li>
+  </ul>
+
 </section>
 
 <footer class="eof">
-  <p class="prompt">_</p>
+  <span>RobLogic · grip-inventory</span>
+  <span>May 2026</span>
+  <span><a href="/other">← index</a></span>
 </footer>
 
 </div>
 
 <script>
-  // visit beacon — every hit, skip bots, fail silent
   try {
     const ua = navigator.userAgent.toLowerCase();
     if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
@@ -359,13 +611,10 @@
       const mode = b.dataset.mode;
       buttons.forEach(x => x.classList.toggle('active', x === b));
       panels.forEach(p => p.classList.toggle('active', p.id === 'm-' + mode));
-      // remember selection
       try { localStorage.setItem('grip-mode', mode); } catch (e) {}
-      // scroll to top of content
       window.scrollTo({ top: 0, behavior: 'instant' });
     });
   });
-  // restore
   try {
     const saved = localStorage.getItem('grip-mode');
     if (saved) {
