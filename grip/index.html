@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>The Inventory You Can Talk To — Dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Inconsolata:wght@400;600&family=Newsreader:opsz,wght@6..72,300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4EFE6;
+    --paper-deep: #ECE6DA;
+    --ink: #1B1814;
+    --ink-soft: #4A4339;
+    --rule: #C9C0B0;
+    --accent: #B0532C;
+    --accent-soft: #DA9678;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--paper); }
+  body {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.62;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: 0 24px;
+  }
+  .sheet {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 0 120px;
+    position: relative;
+  }
+  .crown {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 64px;
+  }
+  .crown .badge {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 8px;
+    letter-spacing: 0.22em;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 800;
+    font-style: normal;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(48px, 7.5vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1 .italic {
+    font-style: italic;
+    font-weight: 500;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .dek {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 22px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 80px;
+  }
+  section {
+    margin-bottom: 72px;
+  }
+  .marker {
+    font-family: 'Inconsolata', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .marker::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-variation-settings: "opsz" 72, "SOFT" 40;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+  }
+  p { margin-bottom: 18px; max-width: 640px; }
+  p.lede {
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  p.lede::first-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 0.85;
+    float: left;
+    padding: 6px 10px 0 0;
+    color: var(--accent);
+  }
+  em { font-style: italic; color: var(--ink); }
+  strong { font-weight: 600; }
+  .pull {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.35;
+    color: var(--ink);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+    margin: 40px 0;
+    text-align: center;
+  }
+  .pull .source {
+    display: block;
+    font-family: 'Inconsolata', monospace;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+  table.spec {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inconsolata', monospace;
+    font-size: 14px;
+    margin: 8px 0 24px;
+  }
+  table.spec th, table.spec td {
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0;
+    vertical-align: top;
+    text-align: left;
+  }
+  table.spec th {
+    width: 32%;
+    color: var(--ink-soft);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    padding-right: 24px;
+  }
+  table.spec td { color: var(--ink); }
+  table.spec td .annot {
+    color: var(--ink-soft);
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 14px;
+    display: block;
+    margin-top: 4px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .steps {
+    list-style: none;
+    counter-reset: step;
+    margin-top: 16px;
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 22px 0 22px 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 22px;
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-variation-settings: "opsz" 72;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .steps h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .steps p {
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+  .steps code {
+    font-family: 'Inconsolata', monospace;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--paper-deep);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .math {
+    background: var(--paper-deep);
+    padding: 32px 36px;
+    margin: 8px 0;
+    border-left: 0;
+  }
+  .math .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    font-family: 'Inconsolata', monospace;
+    font-size: 14px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .math .row:last-child { border-bottom: none; }
+  .math .row .label { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; }
+  .math .row .val { color: var(--ink); font-weight: 600; font-size: 16px; }
+  .math .total {
+    margin-top: 16px;
+    padding-top: 18px;
+    border-top: 2px solid var(--ink);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .math .total .val {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  ul.bullets {
+    list-style: none;
+    margin: 0;
+  }
+  ul.bullets li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+  ul.bullets li:last-child { border-bottom: none; }
+  ul.bullets li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'Inconsolata', monospace;
+  }
+  .colophon {
+    margin-top: 100px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: 'Inconsolata', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .colophon a { color: var(--accent); text-decoration: none; }
+  .colophon a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    body { font-size: 18px; padding: 0 20px; }
+    h1 { font-size: 44px; }
+    h2 { font-size: 28px; }
+    .dek { font-size: 19px; margin-bottom: 56px; }
+    .sheet { padding: 40px 0 80px; }
+    .math { padding: 24px 20px; }
+    .steps li { padding-left: 52px; }
+    table.spec th { width: 42%; }
+  }
+</style>
+</head>
+<body>
+<article class="sheet">
+
+  <header class="crown">
+    <span class="badge">Dossier</span>
+    <span>Vol. I &middot; Issue 01</span>
+    <span>2026</span>
+  </header>
+
+  <h1>The Inventory<br>You Can <span class="italic">Talk To.</span></h1>
+  <p class="dek">A self-hosted gear tracker for a working key grip. It listens. It remembers. It pings you when Marco still has the dolly.</p>
+
+  <section>
+    <div class="marker">01 &mdash; The Idea</div>
+    <h2>One walkthrough. Then conversation.</h2>
+    <p class="lede">Take inventory once, the slow way — walk the truck, the kit, the cage, talking and snapping photos as you go. After that, every update is a sentence. <em>"Marco took the C-stand kit to truck B."</em> <em>"Got the floppy back, scrim got bent."</em> <em>"Where's the 1.2k Joker?"</em> The app keeps the ledger. You keep working.</p>
+    <p>It nudges you when something you loaned hasn't come back. It generates a wrap-out check at the end of a job. It learns your slang — your <em>Cardellini</em>, your <em>stinger</em>, your favorite ratty C47 box. Nobody else's data goes into it, and nobody else's eyes go on it. It runs on a small box at your house and reaches your phone through Tailscale, no public URL, no sign-in screen for the world to see.</p>
+  </section>
+
+  <section>
+    <div class="marker">02 &mdash; The Build</div>
+    <h2>The stack, plain.</h2>
+    <p>The pieces below are all free or near-free, mature, and well-supported by the AI coding tools you'll be using to write the code. None of them are exotic. None of them lock you in.</p>
+    <table class="spec">
+      <tr><th>Code editor</th><td>Cursor <span class="annot">— or Claude Code if you want the same tool Rob lives in.</span></td></tr>
+      <tr><th>Language</th><td>Python <span class="annot">— the AI writes it most reliably. Easy to read later.</span></td></tr>
+      <tr><th>Web framework</th><td>FastAPI <span class="annot">— one file. Hot reload. No build step.</span></td></tr>
+      <tr><th>Database</th><td>SQLite <span class="annot">— a single file. Back it up by copying it.</span></td></tr>
+      <tr><th>Frontend</th><td>PWA (single HTML page) <span class="annot">— installs on your phone like a real app.</span></td></tr>
+      <tr><th>Voice in</th><td>Browser Web Speech <span class="annot">— free, built into Safari. Type if you'd rather.</span></td></tr>
+      <tr><th>The brain</th><td>Claude Haiku 4.5 (API) <span class="annot">— turns sentences into structured updates. About seven cents a month.</span></td></tr>
+      <tr><th>Push reminders</th><td>ntfy.sh <span class="annot">— free push to your phone. The app is on the App Store.</span></td></tr>
+      <tr><th>Remote access</th><td>Tailscale <span class="annot">— so your phone reaches your home box from set.</span></td></tr>
+      <tr><th>Code home</th><td>GitHub (public repo, MIT) <span class="annot">— Rob added as collaborator.</span></td></tr>
+      <tr><th>Where it runs</th><td>An always-on box at home <span class="annot">— whatever you have. We'll wire it up.</span></td></tr>
+    </table>
+  </section>
+
+  <div class="pull">"Built once, fixed forever, owned outright."<span class="source">&mdash; the case for self-host</span></div>
+
+  <section>
+    <div class="marker">03 &mdash; The Path</div>
+    <h2>How it actually gets built.</h2>
+    <p>Each step is an evening or two. None of it requires you to write code from scratch — you'll be prompting an AI to write it, then reading what it makes, then asking it to fix what's wrong.</p>
+    <ol class="steps">
+      <li>
+        <h3>Stand up the workshop.</h3>
+        <p>Install Cursor (or Claude Code). Make a GitHub account if you don't have one. Create the public repo. Get a Claude API key. About an hour.</p>
+      </li>
+      <li>
+        <h3>Scaffold the skeleton.</h3>
+        <p>Tell the AI: <code>FastAPI app, SQLite DB, items + locations + people tables, single HTML page that lists items.</code> Get it running on your laptop. See your first row land.</p>
+      </li>
+      <li>
+        <h3>Teach it your vocabulary.</h3>
+        <p>Seed the DB with your actual kit. Add the aliases — <em>stinger</em>, <em>Cardellini</em>, <em>4-by</em>. This is the one slow part. Do it once, never again.</p>
+      </li>
+      <li>
+        <h3>Wire the brain.</h3>
+        <p>Add a single endpoint that takes a sentence and asks Claude what to do with it. Tool-calls back into your database. Now you can talk to it.</p>
+      </li>
+      <li>
+        <h3>Add the nudge.</h3>
+        <p>A small background job checks for loans older than N days, fires a push to ntfy. The HelperMonkey trick, but for your gear.</p>
+      </li>
+      <li>
+        <h3>Move it home.</h3>
+        <p>Copy the project onto the always-on box at home. Set up Tailscale on your phone and that box. Now it reaches you on set — through your own private network, not the public internet.</p>
+      </li>
+      <li>
+        <h3>Live with it.</h3>
+        <p>Use it for a job. Notice what it can't do. Tell the AI to fix it. Repeat. After three jobs you'll have a tool nobody else has.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="marker">04 &mdash; The Math</div>
+    <h2>What it costs to run.</h2>
+    <p>The numbers below are real, not aspirational. The expensive piece — a full-time engineering team — is replaced by the AI you're already prompting. The Claude API costs less than a coffee per month because the model is small and the messages are short.</p>
+    <div class="math">
+      <div class="row"><span class="label">Editor (Cursor / Claude Code)</span><span class="val">$0 – $20 / mo</span></div>
+      <div class="row"><span class="label">Claude Haiku API (the brain)</span><span class="val">~ $0.07 / mo</span></div>
+      <div class="row"><span class="label">GitHub repo</span><span class="val">$0</span></div>
+      <div class="row"><span class="label">Tailscale (personal)</span><span class="val">$0</span></div>
+      <div class="row"><span class="label">ntfy.sh push</span><span class="val">$0</span></div>
+      <div class="row"><span class="label">Home hardware (one time)</span><span class="val">whatever you have</span></div>
+      <div class="total"><span>All-in monthly</span><span class="val">under $25</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="marker">05 &mdash; What You Pick Up</div>
+    <h2>The other thing you're building.</h2>
+    <p>The app is one outcome. The skills are the other. By the time this thing is running, you'll know how to do the following — and that knowledge transfers to anything else you ever want to build.</p>
+    <ul class="bullets">
+      <li><strong>The terminal.</strong> Enough to feel at home in it. Not a wizard, but unafraid.</li>
+      <li><strong>Git.</strong> Saving versions of your work and being able to roll back when you break something.</li>
+      <li><strong>Prompting an AI to write code.</strong> The real skill of 2026 — describing what you want clearly enough that the machine can make it.</li>
+      <li><strong>Reading code.</strong> Not writing from scratch, but knowing what a function does and where to change one number.</li>
+      <li><strong>How a web app works.</strong> Frontend, backend, database, API. The four pieces. Once you see them you see them everywhere.</li>
+      <li><strong>Self-hosting.</strong> Running a thing at home and reaching it from the outside. The internet stops feeling like other people's computers.</li>
+    </ul>
+  </section>
+
+  <footer class="colophon">
+    <span>RobLogic &middot; Dossier 01</span>
+    <span>May 2026</span>
+    <span><a href="/other">← Index</a></span>
+  </footer>
+
+</article>
+<script>
+  // visit beacon — every hit, skip bots, fail silent
+  try {
+    const ua = navigator.userAgent.toLowerCase();
+    if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+      fetch('/beacon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          page: 'grip',
+          ref: document.referrer || 'direct',
+          tag: 'clapper'
+        })
+      }).catch(() => {});
+    }
+  } catch (e) {}
+</script>
+</body>
+</html>
