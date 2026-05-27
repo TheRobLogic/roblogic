@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Orientation Guide &mdash; Microsoft 365 at Work</title>
+<meta name="description" content="A practical orientation to using Microsoft 365 for daily work after the migration from the office file server.">
+<meta property="og:title" content="Staff Orientation Guide &mdash; Microsoft 365 at Work">
+<meta property="og:description" content="A practical orientation to using Microsoft 365 for daily work after the migration from the office file server.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='48' height='48' x='2' y='2' fill='%23f25022'/><rect width='48' height='48' x='52' y='2' fill='%237fba00'/><rect width='48' height='48' x='2' y='52' fill='%2300a4ef'/><rect width='48' height='48' x='52' y='52' fill='%23ffb900'/></svg>">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ms-blue: #0078d4;
+  --ms-blue-hover: #106ebe;
+  --ms-blue-active: #005a9e;
+  --ms-blue-tint: #deecf9;
+  --text-primary: #242424;
+  --text-secondary: #616161;
+  --text-muted: #8a8886;
+  --bg-canvas: #ffffff;
+  --bg-alt: #faf9f8;
+  --bg-soft: #f3f2f1;
+  --border-subtle: #edebe9;
+  --border: #e1dfdd;
+  --border-strong: #c8c6c4;
+  --warn-bg: #fff4ce;
+  --warn-border: #ffd335;
+  --warn-text: #635214;
+  --info-bg: #deecf9;
+  --info-border: #0078d4;
+  --success-bg: #dff6dd;
+  --success-border: #107c10;
+  --success-text: #0e6515;
+  --excel-green: #107c41;
+  --word-blue: #185abd;
+  --outlook-blue: #0078d4;
+  --teams-purple: #6264a7;
+  --onedrive-blue: #0078d4;
+  --sharepoint-teal: #038387;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+.topbar {
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(20px);
+}
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.logo svg {
+  width: 20px;
+  height: 20px;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.topbar-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+
+.topbar-nav a:hover { background: var(--bg-soft); color: var(--text-primary); }
+.topbar-nav a.active { color: var(--ms-blue); font-weight: 600; }
+
+.hero {
+  background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-canvas) 100%);
+  padding: 64px 32px 48px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a { color: var(--ms-blue); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; color: var(--text-muted); }
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 720px;
+}
+
+.meta {
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+section { margin-bottom: 56px; scroll-margin-top: 80px; }
+
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+p { margin-bottom: 16px; }
+
+ul, ol { margin-bottom: 16px; padding-left: 24px; }
+ul li, ol li { margin-bottom: 8px; line-height: 1.55; }
+
+strong { font-weight: 600; }
+
+a {
+  color: var(--ms-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.1s;
+}
+
+a:hover { border-bottom-color: var(--ms-blue); }
+
+a.external::after {
+  content: " \2197";
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+code {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-family: "Cascadia Code", Consolas, Monaco, monospace;
+  font-size: 0.875em;
+}
+
+kbd {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-family: "Segoe UI Variable", "Segoe UI", sans-serif;
+  font-size: 0.85em;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  color: var(--text-primary);
+}
+
+.callout {
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.callout-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.callout-body { flex: 1; }
+.callout-body p:last-child { margin-bottom: 0; }
+.callout-title { font-weight: 600; margin-bottom: 4px; }
+
+.callout.info {
+  background: var(--info-bg);
+  border-left: 4px solid var(--info-border);
+}
+.callout.info .callout-icon { color: var(--ms-blue); }
+
+.callout.warn {
+  background: var(--warn-bg);
+  border-left: 4px solid var(--warn-border);
+}
+.callout.warn .callout-icon, .callout.warn .callout-title { color: var(--warn-text); }
+
+.callout.success {
+  background: var(--success-bg);
+  border-left: 4px solid var(--success-border);
+}
+.callout.success .callout-icon, .callout.success .callout-title { color: var(--success-text); }
+
+.callout.danger {
+  background: #fde7e9;
+  border-left: 4px solid #d13438;
+}
+.callout.danger .callout-icon, .callout.danger .callout-title { color: #a4262c; }
+
+.app-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.app-card {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.app-card:hover {
+  box-shadow: 0 3.2px 7.2px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.app-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.app-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.app-icon svg { width: 22px; height: 22px; }
+
+.app-icon.sharepoint { background: var(--sharepoint-teal); color: white; }
+.app-icon.onedrive { background: var(--onedrive-blue); color: white; }
+.app-icon.teams { background: var(--teams-purple); color: white; }
+
+.app-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.app-summary {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.app-card p { font-size: 14px; margin-bottom: 0; color: var(--text-secondary); }
+
+.step-list {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px 28px;
+  margin: 20px 0;
+  counter-reset: step;
+  list-style: none;
+  padding-left: 28px;
+}
+
+.step-list li {
+  counter-increment: step;
+  padding-left: 36px;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.step-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--ms-blue);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background: var(--bg-canvas);
+}
+
+.faq-item summary {
+  padding: 16px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 20px;
+  color: var(--ms-blue);
+  font-weight: 400;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after { transform: rotate(45deg); }
+
+.faq-item summary:hover { background: var(--bg-alt); }
+
+.faq-body {
+  padding: 0 20px 16px;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.faq-body p:last-child { margin-bottom: 0; }
+
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.training-card {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--text-primary);
+  display: block;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+
+.training-card:hover {
+  border-color: var(--ms-blue);
+  box-shadow: 0 2px 6px rgba(0,120,212,0.08);
+  border-bottom-color: var(--ms-blue);
+}
+
+.training-card .card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ms-blue);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.training-card .card-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.training-card .card-meta {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.path-example {
+  background: var(--bg-soft);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-family: "Cascadia Code", Consolas, Monaco, monospace;
+  font-size: 13px;
+  color: var(--text-primary);
+  overflow-x: auto;
+}
+
+.path-example .arrow {
+  color: var(--ms-blue);
+  margin: 0 8px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 10px 20px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.back-link:hover {
+  background: var(--bg-soft);
+  border-bottom-color: var(--border-strong);
+}
+
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 32px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 80px;
+}
+
+.footer-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .topbar-inner { padding: 12px 20px; }
+  .hero { padding: 40px 20px 32px; }
+  main { padding: 32px 20px 60px; }
+  .topbar-nav a { padding: 6px 8px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="48" height="48" x="0" y="0" fill="#f25022"/>
+        <rect width="48" height="48" x="52" y="0" fill="#7fba00"/>
+        <rect width="48" height="48" x="0" y="52" fill="#00a4ef"/>
+        <rect width="48" height="48" x="52" y="52" fill="#ffb900"/>
+      </svg>
+      <span>Microsoft 365 Migration Brief</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="/gus/">Recommendation</a>
+      <a href="/gus/staff/" class="active">Staff Guide</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="/gus/">Migration Brief</a>
+      <span>/</span>
+      Staff Orientation
+    </div>
+    <h1>Working with Microsoft 365</h1>
+    <p class="subtitle">A practical guide to where your files live, how to open and share them, and what to do differently now that the office file server has been replaced by Microsoft 365.</p>
+    <div class="meta">For all agency staff &middot; Updated May 27, 2026</div>
+  </div>
+</section>
+
+<main>
+
+<p class="intro">The office is transitioning shared files off the local file server and onto Microsoft 365. The change is mostly transparent: files open the same way, save the same way, and look the same in File Explorer. A few things are genuinely better &mdash; you can now edit the same spreadsheet at the same time as a colleague without locking them out, and accidentally deleted files can be recovered for 93 days. A few things are different and worth knowing in advance. This guide covers both.</p>
+
+<section id="overview">
+  <h2>The three tools and what each is for</h2>
+
+  <p>Microsoft 365 includes three different places that hold files. They look related, and they are, but each has a clear purpose. Knowing which is which will save you confusion.</p>
+
+  <div class="app-card-grid">
+    <div class="app-card">
+      <div class="app-card-header">
+        <div class="app-icon sharepoint">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v3H4zm0 5h16v3H4zm0 5h16v3H4zm0 5h16v3H4z"/></svg>
+        </div>
+        <div>
+          <div class="app-name">SharePoint</div>
+          <div class="app-summary">Shared office files</div>
+        </div>
+      </div>
+      <p>This is where everything that used to be on the office file server now lives. Anything your colleagues need to see &mdash; policies, claim files, accounting, shared spreadsheets &mdash; lives in SharePoint.</p>
+    </div>
+
+    <div class="app-card">
+      <div class="app-card-header">
+        <div class="app-icon onedrive">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 13.5q1.7 0 2.85 1.15T23 17.5q0 1.7-1.15 2.85T19 21.5H6q-2.075 0-3.538-1.463T1 16.5q0-1.875 1.213-3.275T5.275 11.55q.575-2.275 2.413-3.663T12 6.5q2.65 0 4.6 1.95T18.55 13.05q-.025.025-.075.275t-.075.275q.275-.05.45-.075T19 13.5z"/></svg>
+        </div>
+        <div>
+          <div class="app-name">OneDrive</div>
+          <div class="app-summary">Your personal cloud drive</div>
+        </div>
+      </div>
+      <p>The cloud equivalent of your old &ldquo;My Documents&rdquo; folder. Files here are visible only to you (unless you share them). Use it for drafts, personal scratch work, or anything you haven&rsquo;t shared yet.</p>
+    </div>
+
+    <div class="app-card">
+      <div class="app-card-header">
+        <div class="app-icon teams">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h18v14H3zm2 2v10h14V7H5zm2 2h4v2H7zm0 3h10v2H7zm0 3h10v2H7z"/></svg>
+        </div>
+        <div>
+          <div class="app-name">Teams</div>
+          <div class="app-summary">Chat and file sharing</div>
+        </div>
+      </div>
+      <p>Microsoft Teams handles chat and meetings. When you drop a file into a Teams channel, the file actually lives in a SharePoint library behind the scenes &mdash; Teams is just a faster way to find it.</p>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 5v0.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Simple rule</div>
+      <p>If your colleagues need to see it, save it in <strong>SharePoint</strong>. If only you need it, save it in <strong>OneDrive</strong>. If you&rsquo;re chatting about a file with someone, drop it in <strong>Teams</strong> &mdash; it will land in the right SharePoint library automatically.</p>
+    </div>
+  </div>
+</section>
+
+<section id="where-files-live">
+  <h2>Where the shared files now live</h2>
+
+  <p>The office&rsquo;s SharePoint site is organized into <strong>document libraries</strong>, one for each part of the business. Think of each library as the equivalent of one folder on the old file server &mdash; but with proper permissions, version history, and the ability for multiple people to edit at once.</p>
+
+  <p>You will see libraries appropriate to your role. A typical staff member sees some combination of:</p>
+  <ul>
+    <li><strong>Producers</strong> &mdash; new&#8209;business work, applications in progress, prospect material</li>
+    <li><strong>Claims</strong> &mdash; active and closed claim files, carrier correspondence</li>
+    <li><strong>Underwriting</strong> &mdash; binders, declarations, endorsements, policy archives</li>
+    <li><strong>Accounting</strong> &mdash; commission statements and agency financials</li>
+    <li><strong>Admin</strong> &mdash; HR, licensing, E&amp;O, vendor records</li>
+  </ul>
+
+  <p>If you don&rsquo;t see a library you used to have access to, ask the agency administrator. Access is set per&#8209;library by your role, the way the old folder permissions worked &mdash; but now it&rsquo;s explicit instead of inherited from a network share.</p>
+</section>
+
+<section id="opening-files">
+  <h2>Opening files the way you always have</h2>
+
+  <p>The big change is what replaces the mapped <code>H:\</code> (or similar) drive on your computer. Instead of a network drive letter, your SharePoint libraries appear in <strong>File Explorer</strong> under your OneDrive folder.</p>
+
+  <p>To set this up the first time:</p>
+
+  <ol class="step-list">
+    <li>Open <strong>Microsoft Edge</strong> (or any browser) and sign in to <a class="external" href="https://www.office.com" target="_blank" rel="noopener">office.com</a> with your work email.</li>
+    <li>Click <strong>SharePoint</strong> in the app launcher, then open the agency team site.</li>
+    <li>For each library you want in File Explorer, click <strong>Documents</strong> at the top, then click <strong>Add shortcut to OneDrive</strong>. (<a class="external" href="https://support.microsoft.com/en-us/office/add-shortcuts-to-shared-folders-in-onedrive-d66b1347-99b7-4470-9360-ffc048d35a33" target="_blank" rel="noopener">Microsoft&rsquo;s instructions, with screenshots</a>.)</li>
+    <li>Open File Explorer on your desktop. The shortcut will appear under your name in the left&#8209;hand pane, inside the cloud&#8209;icon &ldquo;OneDrive&rdquo; entry.</li>
+  </ol>
+
+  <p>From that point on, opening a shared file looks exactly like it always did:</p>
+
+  <div class="path-example">File Explorer <span class="arrow">&rarr;</span> OneDrive &mdash; Agency <span class="arrow">&rarr;</span> Claims <span class="arrow">&rarr;</span> 2026 <span class="arrow">&rarr;</span> Smith.xlsx</div>
+
+  <p>Double&#8209;click a file and it opens in Excel, Word, or whichever app handles that file type. You can use the new system the same way you used the file server.</p>
+
+  <div class="callout info">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 5v0.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">About the cloud icons next to filenames</div>
+      <p>Files in OneDrive have a small icon next to them in File Explorer. A blue cloud means the file lives in the cloud and downloads on demand when you open it. A green checkmark means it&rsquo;s also stored locally on your computer. If you know you&rsquo;ll need a file while offline, right&#8209;click it and choose <strong>Always keep on this device</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="saving-files">
+  <h2>Saving, autosave, and version history</h2>
+
+  <h3>Autosave is on by default</h3>
+  <p>When you open an Office file (Word, Excel, PowerPoint) that lives in SharePoint or OneDrive, you&rsquo;ll see an <strong>AutoSave</strong> toggle in the top&#8209;left corner of the app. It will be on automatically. Your changes save continuously as you type &mdash; you do not need to press <kbd>Ctrl</kbd>+<kbd>S</kbd>.</p>
+
+  <p>If you prefer the older behavior, you can turn AutoSave off for an individual file. Most people leave it on after a day or two.</p>
+
+  <h3>Version history</h3>
+  <p>Every file keeps a history of approximately 500 prior versions. If you need to undo a change someone made yesterday, or recover a previous version of a spreadsheet:</p>
+
+  <ol class="step-list">
+    <li>Right&#8209;click the file in File Explorer (or on the web) and choose <strong>Version history</strong>.</li>
+    <li>Browse the list of saved versions by date and editor.</li>
+    <li>Open any version to preview it, or restore it as the current copy.</li>
+  </ol>
+
+  <h3>Recovering deleted files</h3>
+  <p>If you delete a file by accident, it goes to the SharePoint <strong>Recycle Bin</strong> for 93 days. The administrator can recover it from there at any point in that window. Beyond 93 days, the agency&rsquo;s separate backup system can recover the file from a longer&#8209;term copy.</p>
+</section>
+
+<section id="excel-coauthoring">
+  <h2>Editing Excel at the same time as a colleague</h2>
+
+  <p>One of the most useful improvements: you can now edit the same Excel file as a colleague at the same time. No more &ldquo;Locked by another user&rdquo; messages on shared workbooks.</p>
+
+  <p>When you open a file that&rsquo;s also open by someone else, you&rsquo;ll see their initials at the top of the Excel window, and their cursor will appear inside the spreadsheet as you both work. Changes flow back and forth in real time. (<a class="external" href="https://support.microsoft.com/en-us/office/collaborate-on-excel-workbooks-at-the-same-time-with-co-authoring-7152aa8b-b791-414c-a3bb-3024e46fb104" target="_blank" rel="noopener">Microsoft&rsquo;s reference, with examples</a>.)</p>
+
+  <div class="callout warn">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 14h14L8 1zm0 4l5 8H3l5-8zm-1 3v2h2V8H7zm0 3v1h2v-1H7z"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Macro&#8209;enabled spreadsheets behave differently</div>
+      <p>Files ending in <code>.xlsm</code> (workbooks with macros) cannot be co&#8209;edited. If you open one, you may see a &ldquo;file locked by&rdquo; notice if someone else has it open. For these files, only one person can edit at a time &mdash; the same way it worked on the file server. If you frequently share a macro&#8209;enabled file, talk with the agency administrator about whether the macros can be converted or replaced.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sharing">
+  <h2>Sharing files with colleagues and clients</h2>
+
+  <h3>Inside the office</h3>
+  <p>You usually don&rsquo;t need to share files with colleagues explicitly &mdash; if they have access to the same library, they already see the file. Just tell them where it is.</p>
+
+  <h3>Outside the office</h3>
+  <p>To share a file with a client, carrier, or other outside party:</p>
+
+  <ol class="step-list">
+    <li>Right&#8209;click the file in File Explorer (or click the <strong>Share</strong> button in Excel/Word).</li>
+    <li>Choose <strong>Share</strong> &rarr; <strong>OneDrive</strong> or the SharePoint sharing dialog.</li>
+    <li>Enter the recipient&rsquo;s email address. Choose whether they can <strong>view only</strong> or <strong>edit</strong>.</li>
+    <li>Click <strong>Send</strong>. The recipient gets an email with a link that opens the file in their browser.</li>
+  </ol>
+
+  <div class="callout success">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M14 4l-7 7-4-4-1 1 5 5 8-8z"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Recipients do not need a Microsoft 365 account</div>
+      <p>External recipients can view and edit files in their browser without signing up for anything. They will receive a verification code by email the first time they open the link.</p>
+    </div>
+  </div>
+
+  <h3>Avoid email attachments where possible</h3>
+  <p>For files that live in SharePoint or OneDrive, sharing a link is preferable to sending an attachment. The recipient always sees the latest version, the link can be revoked, and the file does not duplicate across mailboxes. Excel and Word will offer to send a link instead of an attachment when you use <strong>File &rarr; Share</strong>.</p>
+</section>
+
+<section id="working-offline">
+  <h2>Working without an internet connection</h2>
+
+  <p>You can work on cloud files even when your internet is out, with one preparation step.</p>
+
+  <p>If you know you&rsquo;ll be working away from the office, or want a particular folder available regardless of connection, right&#8209;click the file or folder in File Explorer and choose <strong>Always keep on this device</strong>. The cloud icon next to it changes to a green checkmark, and the contents are stored locally on your laptop.</p>
+
+  <p>Changes you make offline are saved locally. When your connection returns, OneDrive automatically uploads the changes to the cloud. If you and a colleague both edited the same file offline, OneDrive will create a conflict copy with both names so nothing is lost.</p>
+</section>
+
+<section id="avoid">
+  <h2>A few things to avoid</h2>
+
+  <div class="callout danger">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4v5M8 11v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Do not move Outlook PST files into OneDrive or SharePoint</div>
+      <p>If you have an old Outlook archive file (<code>.pst</code>), do not drag it into your OneDrive or any SharePoint library. Outlook keeps these files open in a way that breaks cloud sync and can corrupt the file. If you need to archive old mail, ask the agency administrator about importing it into your mailbox instead.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 14h14L8 1zm0 4l5 8H3l5-8zm-1 3v2h2V8H7zm0 3v1h2v-1H7z"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Be careful with very long folder paths</div>
+      <p>SharePoint has a 400&#8209;character limit on the full path to a file. If you create folders inside folders inside folders, you can eventually exceed this and files become unsavable. Keep folder structures reasonably shallow &mdash; three or four levels deep, not seven or eight.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 14h14L8 1zm0 4l5 8H3l5-8zm-1 3v2h2V8H7zm0 3v1h2v-1H7z"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Avoid certain characters in filenames</div>
+      <p>SharePoint does not allow the following characters in filenames: <code>" * : &lt; &gt; ? / \ |</code>. If you try to save a file with one of these, Office will warn you and offer to rename it.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Common questions</h2>
+
+  <details class="faq-item">
+    <summary>What happens if my internet goes out in the middle of editing?</summary>
+    <div class="faq-body">
+      <p>Office will continue to let you edit and save the file locally. When your connection returns, your changes upload automatically. If a colleague edited the same file while you were offline, you will see a notice and OneDrive will reconcile the changes &mdash; in rare cases creating a conflict copy with both versions so nothing is lost.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>How do I see who else is editing a file right now?</summary>
+    <div class="faq-body">
+      <p>In Excel, Word, and PowerPoint, the initials of other active editors appear in the top&#8209;right of the window. Click on the initials to see who they are. You can also see their cursor moving inside the document in real time.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Can I still print, save as PDF, and email files the way I always have?</summary>
+    <div class="faq-body">
+      <p>Yes. The Office apps work identically. Printing, exporting to PDF, sending as an attachment from Outlook, and copy&#8209;pasting between documents all work the same way they did when files lived on the file server.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>I accidentally deleted a file. How do I get it back?</summary>
+    <div class="faq-body">
+      <p>Go to the SharePoint library in your browser, open the library, and click <strong>Recycle bin</strong> in the left menu. Find the file, click <strong>Restore</strong>. Items stay in the recycle bin for 93 days. If you need a file that was deleted longer ago, the agency administrator can recover it from the backup system.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>What about the files in my old &ldquo;My Documents&rdquo; folder?</summary>
+    <div class="faq-body">
+      <p>Personal documents that only you need belong in <strong>OneDrive</strong>, not SharePoint. OneDrive is your personal cloud space. You can drag the contents of your old Documents folder into OneDrive, or ask the agency administrator to migrate them for you. Anything that needs to be visible to colleagues should go into the appropriate SharePoint library instead.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Will my Excel files with macros still work?</summary>
+    <div class="faq-body">
+      <p>Yes &mdash; macros run normally when you open an <code>.xlsm</code> file from SharePoint in the Excel desktop app. The only limitation is that macro&#8209;enabled files cannot be co&#8209;edited by multiple people at once. They open as &ldquo;locked&rdquo; when someone else has them open, the same as on the old file server.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Do I have to log in every time?</summary>
+    <div class="faq-body">
+      <p>No. Once your Office apps and File Explorer are signed in with your work account, you stay signed in. You will be asked to confirm your identity with multi&#8209;factor authentication periodically (typically every few weeks, or when accessing from a new device or location).</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>What if I have a file open and the power goes out on my computer?</summary>
+    <div class="faq-body">
+      <p>If AutoSave was on, all your changes up to the moment of power loss were saved to the cloud. When you sign back in, the file will be in its most recent state. If AutoSave was off, Office may recover unsaved changes from a temporary file when you reopen the app &mdash; the same recovery process you may remember from older versions of Office.</p>
+    </div>
+  </details>
+
+  <details class="faq-item">
+    <summary>I&rsquo;m getting a multi&#8209;factor authentication prompt. What is that?</summary>
+    <div class="faq-body">
+      <p>Multi&#8209;Factor Authentication (MFA) adds a second check beyond your password &mdash; typically a code from your phone or an approval in the Microsoft Authenticator app. This is required for the agency&rsquo;s security and is standard across the insurance industry now. If you have not set up MFA yet, the agency administrator can walk you through it.</p>
+    </div>
+  </details>
+</section>
+
+<section id="training">
+  <h2>Official Microsoft training</h2>
+
+  <p>Microsoft maintains short, free training videos for each part of Microsoft 365. The most relevant for daily work:</p>
+
+  <div class="training-grid">
+    <a class="training-card external" href="https://support.microsoft.com/en-us/office/sharepoint-video-training-cb8ef501-84db-4427-ac77-ec2009fb8e23" target="_blank" rel="noopener">
+      <div class="card-label">SharePoint</div>
+      <div class="card-title">SharePoint Video Training</div>
+      <div class="card-meta">Short videos on libraries, sharing, search, and pages</div>
+    </a>
+    <a class="training-card external" href="https://support.microsoft.com/en-us/office/onedrive-video-training-1f608184-b7e6-43ca-8753-2ff679203132" target="_blank" rel="noopener">
+      <div class="card-label">OneDrive</div>
+      <div class="card-title">OneDrive Video Training</div>
+      <div class="card-meta">Saving, syncing, sharing, and recovering files</div>
+    </a>
+    <a class="training-card external" href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" target="_blank" rel="noopener">
+      <div class="card-label">Teams</div>
+      <div class="card-title">Microsoft Teams Video Training</div>
+      <div class="card-meta">Chats, channels, meetings, files</div>
+    </a>
+    <a class="training-card external" href="https://support.microsoft.com/en-us/office/excel-video-training-9bc05390-e94c-46af-a5b3-d7c22f6990bb" target="_blank" rel="noopener">
+      <div class="card-label">Excel</div>
+      <div class="card-title">Excel Video Training</div>
+      <div class="card-meta">Including co&#8209;authoring and AutoSave</div>
+    </a>
+    <a class="training-card external" href="https://support.microsoft.com/en-us/office/word-for-windows-training-7bcd85e6-2c3d-4c3c-a2a5-5ed8847eae73" target="_blank" rel="noopener">
+      <div class="card-label">Word</div>
+      <div class="card-title">Word Video Training</div>
+      <div class="card-meta">Editing, collaboration, formatting</div>
+    </a>
+    <a class="training-card external" href="https://support.microsoft.com/en-us/office/outlook-training-8a5b816d-9052-4190-a5eb-494512343cca" target="_blank" rel="noopener">
+      <div class="card-label">Outlook</div>
+      <div class="card-title">Outlook Video Training</div>
+      <div class="card-meta">Email, calendar, contacts</div>
+    </a>
+  </div>
+
+  <p style="margin-top: 24px;">For specific questions not covered in the training videos, <a class="external" href="https://support.microsoft.com/" target="_blank" rel="noopener">support.microsoft.com</a> is the official help site and is generally accurate. Internal questions specific to the agency (which library to use, where a specific file lives, how to request access) should go to the agency administrator.</p>
+</section>
+
+<section id="getting-help">
+  <h2>Getting help inside the agency</h2>
+
+  <p>For agency&#8209;specific questions &mdash; access to a library, where a particular file is, what to do with a file you&rsquo;re not sure about &mdash; ask the agency administrator. They have the broader view of how the system is configured and can answer questions Microsoft&rsquo;s training cannot.</p>
+
+  <p>For general &ldquo;how does this feature work&rdquo; questions, the Microsoft training above will usually be the fastest path to an answer.</p>
+
+  <a href="/gus/" class="back-link">&larr; Back to the recommendation brief</a>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>Staff Orientation Guide &middot; Prepared May 2026</div>
+    <div>Companion to the <a href="/gus/">Microsoft 365 Migration Brief</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

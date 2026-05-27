@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft 365 File Storage &mdash; Migration Brief</title>
+<meta name="description" content="A practical recommendation for replacing an on-premises file server with Microsoft 365 SharePoint, with a local backup tier for resilience.">
+<meta property="og:title" content="Microsoft 365 File Storage &mdash; Migration Brief">
+<meta property="og:description" content="A practical recommendation for replacing an on-premises file server with Microsoft 365 SharePoint, with a local backup tier for resilience.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='48' height='48' x='2' y='2' fill='%23f25022'/><rect width='48' height='48' x='52' y='2' fill='%237fba00'/><rect width='48' height='48' x='2' y='52' fill='%2300a4ef'/><rect width='48' height='48' x='52' y='52' fill='%23ffb900'/></svg>">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ms-blue: #0078d4;
+  --ms-blue-hover: #106ebe;
+  --ms-blue-active: #005a9e;
+  --ms-blue-tint: #deecf9;
+  --text-primary: #242424;
+  --text-secondary: #616161;
+  --text-muted: #8a8886;
+  --bg-canvas: #ffffff;
+  --bg-alt: #faf9f8;
+  --bg-soft: #f3f2f1;
+  --border-subtle: #edebe9;
+  --border: #e1dfdd;
+  --border-strong: #c8c6c4;
+  --warn-bg: #fff4ce;
+  --warn-border: #ffd335;
+  --warn-text: #635214;
+  --info-bg: #deecf9;
+  --info-border: #0078d4;
+  --success-bg: #dff6dd;
+  --success-border: #107c10;
+  --success-text: #0e6515;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Segoe UI Variable", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: "wght" 400;
+}
+
+.topbar {
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(20px);
+}
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.logo svg {
+  width: 20px;
+  height: 20px;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.topbar-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+
+.topbar-nav a:hover { background: var(--bg-soft); color: var(--text-primary); }
+.topbar-nav a.active { color: var(--ms-blue); font-weight: 600; }
+
+.hero {
+  background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-canvas) 100%);
+  padding: 64px 32px 48px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a { color: var(--ms-blue); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { margin: 0 8px; color: var(--text-muted); }
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 720px;
+}
+
+.meta {
+  margin-top: 24px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.meta-item { display: flex; align-items: center; gap: 6px; }
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.toc {
+  background: var(--bg-soft);
+  border-left: 3px solid var(--ms-blue);
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  border-radius: 0 4px 4px 0;
+}
+
+.toc-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.toc ol {
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 8px 24px;
+}
+
+.toc ol li {
+  counter-increment: toc;
+  font-size: 14px;
+}
+
+.toc ol li::before {
+  content: counter(toc) ".";
+  color: var(--ms-blue);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.toc a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.toc a:hover { color: var(--ms-blue); text-decoration: underline; }
+
+section { margin-bottom: 56px; scroll-margin-top: 80px; }
+
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+p { margin-bottom: 16px; color: var(--text-primary); }
+
+ul, ol { margin-bottom: 16px; padding-left: 24px; }
+
+ul li, ol li { margin-bottom: 8px; line-height: 1.55; }
+
+ul ul, ol ol, ul ol, ol ul { margin-top: 8px; margin-bottom: 8px; }
+
+strong { font-weight: 600; color: var(--text-primary); }
+
+a {
+  color: var(--ms-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.1s;
+}
+
+a:hover { border-bottom-color: var(--ms-blue); }
+
+a.external::after {
+  content: " \2197";
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+code {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 1px 6px;
+  font-family: "Cascadia Code", "Cascadia Mono", Consolas, Monaco, monospace;
+  font-size: 0.875em;
+  color: var(--text-primary);
+}
+
+.callout {
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.callout-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.callout-body { flex: 1; }
+.callout-body p:last-child { margin-bottom: 0; }
+.callout-title { font-weight: 600; margin-bottom: 4px; }
+
+.callout.info {
+  background: var(--info-bg);
+  border-left: 4px solid var(--info-border);
+}
+.callout.info .callout-icon { color: var(--ms-blue); }
+
+.callout.warn {
+  background: var(--warn-bg);
+  border-left: 4px solid var(--warn-border);
+}
+.callout.warn .callout-icon, .callout.warn .callout-title { color: var(--warn-text); }
+
+.callout.success {
+  background: var(--success-bg);
+  border-left: 4px solid var(--success-border);
+}
+.callout.success .callout-icon, .callout.success .callout-title { color: var(--success-text); }
+
+.callout.danger {
+  background: #fde7e9;
+  border-left: 4px solid #d13438;
+}
+.callout.danger .callout-icon, .callout.danger .callout-title { color: #a4262c; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  border: 1px solid var(--border);
+}
+
+th {
+  background: var(--bg-soft);
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--bg-alt); }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.card {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.card:hover {
+  box-shadow: 0 3.2px 7.2px rgba(0,0,0,0.08), 0 0.6px 1.8px rgba(0,0,0,0.04);
+  border-color: var(--border-strong);
+}
+
+.card-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.card-value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.card-meta { font-size: 13px; color: var(--text-secondary); }
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 0.1s, border-color 0.1s;
+  border-bottom: 1px solid transparent;
+}
+
+.btn.primary {
+  background: var(--ms-blue);
+  color: white;
+}
+
+.btn.primary:hover {
+  background: var(--ms-blue-hover);
+  border-bottom-color: transparent;
+}
+
+.btn.secondary {
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn.secondary:hover {
+  background: var(--bg-soft);
+  border-bottom-color: var(--border-strong);
+}
+
+.companion-cta {
+  background: linear-gradient(135deg, var(--ms-blue) 0%, var(--ms-blue-active) 100%);
+  border-radius: 6px;
+  padding: 32px;
+  margin: 32px 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.companion-cta h3 {
+  color: white;
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+}
+
+.companion-cta p {
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+  max-width: 520px;
+  font-size: 15px;
+}
+
+.companion-cta .btn.primary {
+  background: white;
+  color: var(--ms-blue);
+  flex-shrink: 0;
+}
+
+.companion-cta .btn.primary:hover { background: rgba(255,255,255,0.92); }
+
+.checklist {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 28px;
+  margin: 16px 0;
+}
+
+.checklist ol { padding-left: 28px; }
+.checklist ol li { margin-bottom: 10px; }
+.checklist ol li::marker { color: var(--ms-blue); font-weight: 600; }
+
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 32px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 80px;
+}
+
+.footer-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .topbar-inner { padding: 12px 20px; }
+  .hero { padding: 40px 20px 32px; }
+  main { padding: 32px 20px 60px; }
+  .topbar-nav a { padding: 6px 8px; font-size: 13px; }
+  table { font-size: 13px; }
+  th, td { padding: 10px 12px; }
+  .companion-cta { padding: 24px; flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="48" height="48" x="0" y="0" fill="#f25022"/>
+        <rect width="48" height="48" x="52" y="0" fill="#7fba00"/>
+        <rect width="48" height="48" x="0" y="52" fill="#00a4ef"/>
+        <rect width="48" height="48" x="52" y="52" fill="#ffb900"/>
+      </svg>
+      <span>Microsoft 365 Migration Brief</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="/gus/" class="active">Recommendation</a>
+      <a href="/gus/staff/">Staff Guide</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="/gus/">Migration Brief</a>
+      <span>/</span>
+      Recommendation
+    </div>
+    <h1>Microsoft 365 as a File Server Replacement</h1>
+    <p class="subtitle">A recommendation brief for a small insurance agency moving from an on&#8209;premises Windows file server to cloud&#8209;based shared storage, with a local backup tier for resilience and compliance.</p>
+    <div class="meta">
+      <span class="meta-item">Prepared May 27, 2026</span>
+      <span class="meta-item">Audience: Agency Principal</span>
+      <span class="meta-item">Scope: ~5&ndash;15 staff, California</span>
+    </div>
+    <div class="cta-row">
+      <a href="#summary" class="btn primary">Read recommendation</a>
+      <a href="/gus/staff/" class="btn secondary">Staff orientation guide &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<section id="summary">
+  <h2>Executive Summary</h2>
+  <p>The recommendation is to retain Microsoft 365 as the day&#8209;to&#8209;day collaboration platform and use <strong>SharePoint Online</strong> for shared business files, with three discrete changes from the current posture:</p>
+  <ol>
+    <li>Upgrade the existing Microsoft 365 subscription to <strong>Business Premium</strong> to unlock the security and compliance features required by the Gramm&#8209;Leach&#8209;Bliley Safeguards Rule and by appointing carriers.</li>
+    <li>Stand up a single SharePoint team site with document libraries organized by business function, accessed by staff through the OneDrive sync client.</li>
+    <li>Deploy a <strong>Synology NAS</strong> on the local network as a backup tier, running Active Backup for Microsoft 365 and replicating offsite to Backblaze B2.</li>
+  </ol>
+  <p>The combined architecture closes the gap exposed by the recent server failure (no resilient local backup, slow recovery path), satisfies the cybersecurity controls expected by carriers and E&amp;O underwriters, and avoids the cost and switching pain of moving off Microsoft 365.</p>
+
+  <div class="callout success">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M14 4l-7 7-4-4-1 1 5 5 8-8z"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Bottom line</div>
+      <p>Stay on Microsoft 365 for live work. Add a Synology for backup and rapid recovery. Total incremental cost: roughly <strong>$95/month</strong> in subscription delta (10 users) and <strong>$1,200&ndash;2,000 one&#8209;time</strong> in hardware. Estimated migration window: one weekend.</p>
+    </div>
+  </div>
+</section>
+
+<div class="toc">
+  <div class="toc-title">Contents</div>
+  <ol>
+    <li><a href="#summary">Executive Summary</a></li>
+    <li><a href="#architecture">Recommended Architecture</a></li>
+    <li><a href="#live-tier">Live Storage &mdash; SharePoint</a></li>
+    <li><a href="#backup-tier">Backup Tier &mdash; Synology</a></li>
+    <li><a href="#migration">Migration Plan</a></li>
+    <li><a href="#problem-files">Problem File Types</a></li>
+    <li><a href="#compliance">Compliance Considerations</a></li>
+    <li><a href="#licensing">Licensing &amp; Cost</a></li>
+    <li><a href="#alternatives">Alternatives Considered</a></li>
+    <li><a href="#action-plan">Action Plan</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</div>
+
+<section id="architecture">
+  <h2>Recommended Architecture</h2>
+  <p>The architecture has three layers, each with a distinct purpose:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">Layer 1 &mdash; Live</div>
+      <div class="card-value">SharePoint</div>
+      <div class="card-meta">Where staff open, edit, and co&#8209;author files every day. One team site, multiple document libraries by function.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Layer 2 &mdash; Local Backup</div>
+      <div class="card-value">Synology NAS</div>
+      <div class="card-meta">Nightly tenant&#8209;wide backups, weekly workstation images, immutable Btrfs snapshots. Fast restore path.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Layer 3 &mdash; Offsite</div>
+      <div class="card-value">Backblaze B2</div>
+      <div class="card-meta">Encrypted, immutable, geographically separate copy. Satisfies the 3&#8209;2&#8209;1 expectation in carrier security questionnaires.</div>
+    </div>
+  </div>
+
+  <p>Staff interact only with Layer 1. Layers 2 and 3 operate automatically and are touched only during recovery or audit.</p>
+</section>
+
+<section id="live-tier">
+  <h2>Live Storage &mdash; Microsoft 365 SharePoint</h2>
+
+  <h3>Site and library structure</h3>
+  <p>A single SharePoint <strong>team site</strong> for the agency, containing one document library per business function:</p>
+  <ul>
+    <li><strong>Producers</strong> &mdash; new&#8209;business files, applications in progress, prospect material</li>
+    <li><strong>Claims</strong> &mdash; active and closed claim files, carrier correspondence</li>
+    <li><strong>Underwriting</strong> &mdash; binders, declarations, endorsements, policy archives</li>
+    <li><strong>Accounting</strong> &mdash; commission statements, agency financials, vendor records</li>
+    <li><strong>Admin</strong> &mdash; HR, licensing, E&amp;O, vendor contracts, agency operations</li>
+  </ul>
+
+  <p>Permissions are managed at the <strong>library level</strong> using Microsoft 365 groups, not on individual folders. For an agency this size, a hub site or multi&#8209;site architecture is not warranted &mdash; one team site is the right answer. (See Microsoft&rsquo;s <a class="external" href="https://learn.microsoft.com/en-us/sharepoint/planning-hub-sites" target="_blank" rel="noopener">SharePoint hub site planning guidance</a>.)</p>
+
+  <h3>How staff reach the files</h3>
+  <p>Each staff member uses the <strong>OneDrive sync client</strong> (already installed with Microsoft 365) and the <a class="external" href="https://support.microsoft.com/en-us/office/add-shortcuts-to-shared-folders-in-onedrive-d66b1347-99b7-4470-9360-ffc048d35a33" target="_blank" rel="noopener">&ldquo;Add shortcut to OneDrive&rdquo;</a> feature on each library they need access to. The libraries then appear inside File Explorer under the user&rsquo;s OneDrive folder &mdash; the same muscle memory as a mapped H:\ or S:\ drive. Files are streamed on demand, with the option to pin specific files or folders for offline use.</p>
+
+  <h3>Co&#8209;authoring on Excel</h3>
+  <p>Standard <code>.xlsx</code> files support real&#8209;time multi&#8209;user editing in SharePoint and OneDrive, with autosave on and approximately 500 versions of history retained per file (<a class="external" href="https://support.microsoft.com/en-us/office/collaborate-on-excel-workbooks-at-the-same-time-with-co-authoring-7152aa8b-b791-414c-a3bb-3024e46fb104" target="_blank" rel="noopener">Microsoft documentation</a>). The era of &ldquo;Sheet locked by another user&rdquo; is over for plain workbooks.</p>
+
+  <div class="callout warn">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1L1 14h14L8 1zm0 4l5 8H3l5-8zm-1 3v2h2V8H7zm0 3v1h2v-1H7z"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Macro&#8209;enabled workbooks behave differently</div>
+      <p>Files with VBA macros (<code>.xlsm</code>, <code>.xlsb</code>) do <em>not</em> support co&#8209;authoring. Users will see &ldquo;Locked by another user&rdquo; prompts and macros will not run in Excel for the web. Where practical, convert macro spreadsheets to <code>.xlsx</code>. Where macros are essential, treat those workbooks as single&#8209;user&#8209;at&#8209;a&#8209;time. (<a class="external" href="https://support.microsoft.com/en-us/office/troubleshoot-co-authoring-in-office-bd481512-3f3a-4b6d-b7eb-ebf9d3626ae7" target="_blank" rel="noopener">Microsoft troubleshooting reference</a>.)</p>
+    </div>
+  </div>
+
+  <h3>Important platform limits</h3>
+  <table>
+    <thead>
+      <tr><th>Limit</th><th>Value</th><th>Practical impact</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Full path length</td><td>400 characters</td><td>Deep folder nesting from the legacy file server will need to be flattened before migration</td></tr>
+      <tr><td>Individual file size</td><td>250 GB</td><td>No effect on Office documents; relevant only for video or disk images</td></tr>
+      <tr><td>Forbidden filename characters</td><td><code>" * : &lt; &gt; ? / \ |</code></td><td>Pre&#8209;scan and rename before migration; the Migration Tool flags these automatically</td></tr>
+      <tr><td>Version history</td><td>500 versions per file</td><td>Effectively unlimited for normal use</td></tr>
+      <tr><td>Recycle bin retention</td><td>93 days</td><td>Not a substitute for backup &mdash; this is why Layer 2 exists</td></tr>
+    </tbody>
+  </table>
+  <p>The complete list of restrictions is in Microsoft&rsquo;s <a class="external" href="https://support.microsoft.com/en-us/office/restrictions-and-limitations-in-onedrive-and-sharepoint-64883a5d-228e-48f5-b3d2-eb39e07630fa" target="_blank" rel="noopener">OneDrive and SharePoint restrictions reference</a>.</p>
+</section>
+
+<section id="backup-tier">
+  <h2>Backup Tier &mdash; Synology NAS</h2>
+
+  <p>SharePoint&rsquo;s version history and 93&#8209;day recycle bin are recovery features, not a backup. They do not protect against ransomware that encrypts files (encrypted versions are saved over the originals), administrator account compromise with mass deletion, misconfigured retention policies, or the discovery&#8209;after&#8209;the&#8209;fact deletion that exceeds the 93&#8209;day window.</p>
+
+  <p>For a small office, a Synology NAS on the local network provides this protection at low cost and low complexity. The recommended configuration:</p>
+
+  <ul>
+    <li><strong>Synology DS923+</strong> (~$600) with two 8&nbsp;TB IronWolf drives in SHR (Synology Hybrid RAID, single&#8209;drive redundancy)</li>
+    <li>A small UPS (~$200) to protect against power events</li>
+    <li><strong>Active Backup for Microsoft 365</strong> (free Synology package) configured to back up the entire M365 tenant nightly</li>
+    <li><strong>Active Backup for Business</strong> (free Synology package) configured to image every staff workstation weekly</li>
+    <li><strong>Hyper Backup</strong> replicating to <strong>Backblaze B2</strong> (~$6/TB/month) for offsite, immutable copies</li>
+    <li>Btrfs snapshots configured for short&#8209;interval, immutable point&#8209;in&#8209;time recovery</li>
+  </ul>
+
+  <p>Recovery scenarios this addresses:</p>
+  <table>
+    <thead>
+      <tr><th>Scenario</th><th>Recovery path</th><th>Time to restore</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>One user&rsquo;s workstation cryptolocked</td><td>Bare&#8209;metal restore from Active Backup image</td><td>~1 hour</td></tr>
+      <tr><td>Tenant&#8209;wide ransomware via OneDrive sync</td><td>Restore SharePoint libraries from local NAS backup</td><td>Hours, not days</td></tr>
+      <tr><td>Microsoft 365 service outage</td><td>Read from local NAS copy; resume work on cached files</td><td>Immediate (read), staged (write)</td></tr>
+      <tr><td>Building&#8209;loss event</td><td>Restore from Backblaze B2 to replacement hardware or M365 tenant</td><td>1&ndash;2 days</td></tr>
+      <tr><td>Mass deletion noticed after 94+ days</td><td>Restore from NAS or B2 long&#8209;term retention</td><td>Hours</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="migration">
+  <h2>Migration Plan</h2>
+  <p>The recovered file server data should be migrated using Microsoft&rsquo;s free <strong><a class="external" href="https://learn.microsoft.com/en-us/sharepointmigration/introducing-the-sharepoint-migration-tool" target="_blank" rel="noopener">SharePoint Migration Tool (SPMT)</a></strong>. SPMT runs on Windows, accepts a local folder or UNC path as a source, preserves file Modified dates, and handles the path/character validation that hand&#8209;copying cannot.</p>
+
+  <h3>Phase 1 &mdash; Destination preparation</h3>
+  <div class="checklist">
+    <ol>
+      <li>Upgrade the existing tenant to Microsoft 365 Business Premium</li>
+      <li>Create the SharePoint team site with the library structure listed above</li>
+      <li>Configure Microsoft 365 groups for each library&rsquo;s access control</li>
+      <li>Enable Multi&#8209;Factor Authentication tenant&#8209;wide (Conditional Access)</li>
+      <li>Set external sharing default to <strong>&ldquo;Specific people&rdquo;</strong>, disabling anonymous links (see <a class="external" href="https://learn.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off" target="_blank" rel="noopener">external sharing settings</a>)</li>
+      <li>Configure Microsoft Purview retention policies for the agency&rsquo;s document retention requirements</li>
+      <li>Enable Unified Audit Log (default on new tenants; verify) and extend retention via custom policy</li>
+    </ol>
+  </div>
+
+  <h3>Phase 2 &mdash; Source preparation</h3>
+  <div class="checklist">
+    <ol>
+      <li>Run SPMT pre&#8209;scan against the recovered drive to surface every long path and invalid character</li>
+      <li>Remediate flagged paths (rename, shorten, or restructure folders)</li>
+      <li>Separate problem file types into a holding area: <code>.pst</code>, <code>.accdb</code>, <code>.mdb</code>, password&#8209;protected Excel, workbooks with linked references</li>
+      <li>Decide disposition for each problem type (see next section)</li>
+      <li>Repair or document Excel linked&#8209;workbook references before migration</li>
+    </ol>
+  </div>
+
+  <h3>Phase 3 &mdash; Migration execution</h3>
+  <div class="checklist">
+    <ol>
+      <li>Run SPMT against each top&#8209;level folder, targeting the matching SharePoint library</li>
+      <li>Schedule migration during off&#8209;hours (Microsoft throttles cloud uploads during business hours; see <a class="external" href="https://learn.microsoft.com/en-us/sharepointmigration/sharepoint-online-and-onedrive-migration-speed" target="_blank" rel="noopener">migration speed reference</a>)</li>
+      <li>Review the SPMT report after each batch; address skipped files</li>
+      <li>Validate that Modified dates were preserved (sort by Modified column, spot&#8209;check 10&ndash;20 files)</li>
+      <li>Verify total file count and aggregate size match source</li>
+    </ol>
+  </div>
+
+  <h3>Phase 4 &mdash; Workstation cutover</h3>
+  <div class="checklist">
+    <ol>
+      <li>Add OneDrive shortcuts to each library on each staff workstation</li>
+      <li>Remove or remap the old <code>H:\</code> drive references</li>
+      <li>Update any Excel workbooks with file paths to reference the new SharePoint locations</li>
+      <li>Stand up the Synology NAS and configure backup jobs</li>
+      <li>Brief staff using the <a href="/gus/staff/">orientation guide</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="problem-files">
+  <h2>Problem File Types</h2>
+
+  <div class="callout danger">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4v5M8 11v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">Never place Outlook PST files in OneDrive or SharePoint</div>
+      <p>Microsoft explicitly excludes <code>.pst</code> files from supported OneDrive content. Outlook holds these files open with continuous writes that the sync engine cannot reconcile, resulting in corruption. A January 2026 Windows update made the failure mode worse, with reports of PST corruption when stored in OneDrive. Archive historical email by importing the PST into the user&rsquo;s M365 mailbox or Online Archive, or store PSTs on an encrypted external drive outside the sync scope. (<a class="external" href="https://support.microsoft.com/en-us/office/how-to-remove-an-outlook-pst-data-file-from-onedrive-b6b9e522-59bd-40f7-949f-168d0aa9b38e" target="_blank" rel="noopener">Microsoft guidance</a>.)</p>
+    </div>
+  </div>
+
+  <h3>Microsoft Access databases (.accdb, .mdb)</h3>
+  <p>Access databases do not function correctly in SharePoint document libraries because the file&#8209;locking model required by Access is incompatible with how SharePoint handles concurrent access. Four options, ranked:</p>
+  <ol>
+    <li><strong>Migrate to Dataverse</strong> &mdash; if the database is actively used and has logic worth preserving. (<a class="external" href="https://support.microsoft.com/en-us/office/get-started-migrate-access-data-to-dataverse-013c8bab-7737-46ca-ad2e-892bbf26287d" target="_blank" rel="noopener">Microsoft migration guide</a>.)</li>
+    <li><strong>Export to SharePoint Lists</strong> &mdash; if the database is essentially tables with simple queries. (<a class="external" href="https://support.microsoft.com/en-us/office/import-link-or-move-data-to-sharepoint-65bf7b03-74bf-445c-959a-24b7a401ddee" target="_blank" rel="noopener">Microsoft reference</a>.)</li>
+    <li><strong>Migrate to SQL Server (or Azure SQL) with the Access front&#8209;end retained</strong> &mdash; if the application logic is complex and rebuilding it is impractical.</li>
+    <li><strong>Keep on a single workstation as a read&#8209;only archive</strong> &mdash; if the database is no longer actively used.</li>
+  </ol>
+
+  <h3>Password&#8209;protected Excel workbooks</h3>
+  <p>Workbooks protected with a workbook&#8209;open password open read&#8209;only in SharePoint and do not support co&#8209;authoring. Replace the password with a Microsoft Information Protection sensitivity label, which provides equivalent or stronger access control while preserving full collaboration features.</p>
+
+  <h3>Excel files with linked workbook references</h3>
+  <p>Workbooks containing formulas that reference other files by path (<code>=[Premiums.xlsx]Sheet1!A1</code> or absolute paths to <code>\\server\share\...</code>) will not resolve after migration. Two approaches:</p>
+  <ul>
+    <li><strong>Repair pre&#8209;migration:</strong> Use Data &gt; Edit Links to update each reference to the new SharePoint location. (<a class="external" href="https://support.microsoft.com/en-us/office/repairing-broken-workbook-links-in-migrated-files-52ce0b7c-8063-4c20-a7c1-cd9aa67dde1a" target="_blank" rel="noopener">Microsoft repair guide</a>.)</li>
+    <li><strong>Repair post&#8209;migration:</strong> Use the same tool against the migrated files. Lower planning cost, higher per&#8209;file effort.</li>
+  </ul>
+  <p>Both source and destination workbooks must live in the same SharePoint library for linked references to resolve in Excel for the web. Cross&#8209;library and cross&#8209;tenant links will not work.</p>
+</section>
+
+<section id="compliance">
+  <h2>Compliance Considerations</h2>
+
+  <p>The compliance posture below reflects the rules that apply to a California insurance agency in 2026. The carrier appointment agreements and the agency&rsquo;s E&amp;O policy will set the operational floor &mdash; those are typically stricter than the legal minimum and should be reviewed before final configuration.</p>
+
+  <h3>Applicable rules</h3>
+  <table>
+    <thead>
+      <tr><th>Rule</th><th>What it requires</th><th>Source</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GLBA Safeguards Rule</strong><br>(16 CFR Part 314)</td>
+        <td>Written information security program, designated Qualified Individual, risk assessment, encryption at rest and in transit, MFA for anyone accessing customer information, audit logs, vendor oversight, incident response plan, annual training</td>
+        <td><a class="external" href="https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act" target="_blank" rel="noopener">FTC reference</a></td>
+      </tr>
+      <tr>
+        <td><strong>CA Insurance Code &sect;&sect; 791&ndash;791.28</strong><br>(IIPPA)</td>
+        <td>Privacy notices, opt&#8209;out rights, &ldquo;guidelines for safeguarding the confidentiality of personally identifiable information&rdquo;</td>
+        <td><a class="external" href="https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=INS&division=1.&title=&part=2.&chapter=1.&article=6.6." target="_blank" rel="noopener">California legislative information</a></td>
+      </tr>
+      <tr>
+        <td><strong>10 CCR &sect; 2190.3</strong><br>(Records retention)</td>
+        <td>18 months on standard transaction files; 5 years on surplus lines. Practical E&amp;O defense standard is 5&ndash;7 years post&#8209;policy&#8209;end.</td>
+        <td><a class="external" href="https://www.law.cornell.edu/regulations/california/10-CCR-2190.3" target="_blank" rel="noopener">Cornell LII</a></td>
+      </tr>
+      <tr>
+        <td><strong>CCPA / CPRA</strong></td>
+        <td>Applies only above $26.625M revenue, 100K+ CA consumers/year, or 50%+ revenue from selling personal information. Most small agencies do not meet the threshold. GLBA&#8209;regulated nonpublic personal information is information&#8209;level exempt.</td>
+        <td><a class="external" href="https://www.insurance.ca.gov/0250-insurers/0500-legal-info/0500-gen-legal-info/privacy-of-nonpublic-personal-info.cfm" target="_blank" rel="noopener">CDI privacy reference</a></td>
+      </tr>
+      <tr>
+        <td><strong>NAIC Model Law #668</strong><br>(Insurance Data Security Model Law)</td>
+        <td>Not yet adopted by California as of May 2026. Monitor SB 354 (Limón) and related legislation.</td>
+        <td><a class="external" href="https://content.naic.org/sites/default/files/cmte-h-cybersecurity-wg-state-adoption-map-model-668.pdf" target="_blank" rel="noopener">NAIC adoption map</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>How the recommended architecture maps to the requirements</h3>
+  <table>
+    <thead>
+      <tr><th>Requirement</th><th>Provided by</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Encryption at rest</td><td>Microsoft 365 default (AES&#8209;256). <a class="external" href="https://learn.microsoft.com/en-us/compliance/assurance/assurance-encryption-for-microsoft-365-services" target="_blank" rel="noopener">Reference</a></td></tr>
+      <tr><td>Encryption in transit</td><td>Microsoft 365 default (TLS 1.2+)</td></tr>
+      <tr><td>Multi&#8209;Factor Authentication</td><td>Conditional Access in Business Premium</td></tr>
+      <tr><td>Endpoint protection (EDR)</td><td>Microsoft Defender for Business (included in Business Premium)</td></tr>
+      <tr><td>Audit logs</td><td>Unified Audit Log; 1&#8209;year retention in Business Premium (default 180 days). <a class="external" href="https://learn.microsoft.com/en-us/purview/audit-log-retention-policies" target="_blank" rel="noopener">Reference</a></td></tr>
+      <tr><td>Backup and recovery</td><td>Synology Active Backup tier + Backblaze B2 offsite</td></tr>
+      <tr><td>Vendor oversight</td><td>Microsoft Business Associate Agreement (available on request); Synology and Backblaze terms of service</td></tr>
+      <tr><td>Incident response plan</td><td>To be drafted; out of scope for this brief</td></tr>
+      <tr><td>Annual training</td><td>Microsoft Defender training, third&#8209;party (KnowBe4, Proofpoint), or in&#8209;house</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <svg class="callout-icon" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4M8 5v0.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div class="callout-body">
+      <div class="callout-title">If health, disability, or group benefits lines are written</div>
+      <p>HIPAA Security Rule obligations may apply. The 2026 update to the HIPAA Security Rule introduces mandatory MFA and encryption requirements that overlap heavily with the GLBA Safeguards Rule but are not identical. A separate scoping conversation is warranted before configuring Microsoft 365 if PHI is in scope.</p>
+    </div>
+  </div>
+</section>
+
+<section id="licensing">
+  <h2>Licensing &amp; Cost</h2>
+
+  <h3>Subscription recommendation: Microsoft 365 Business Premium</h3>
+  <p>Business Premium is recommended over Business Standard because the security and compliance features it adds are not optional under the GLBA Safeguards Rule and are universally required by carriers and E&amp;O underwriters.</p>
+
+  <table>
+    <thead>
+      <tr><th>Feature</th><th>Business Standard</th><th>Business Premium</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Office desktop apps</td><td>&#10003;</td><td>&#10003;</td></tr>
+      <tr><td>Exchange, SharePoint, OneDrive, Teams</td><td>&#10003;</td><td>&#10003;</td></tr>
+      <tr><td>Microsoft Defender for Business (EDR)</td><td>&mdash;</td><td>&#10003;</td></tr>
+      <tr><td>Intune device management</td><td>&mdash;</td><td>&#10003;</td></tr>
+      <tr><td>Conditional Access (Entra ID P1)</td><td>&mdash;</td><td>&#10003;</td></tr>
+      <tr><td>Sensitivity labels + basic DLP</td><td>&mdash;</td><td>&#10003;</td></tr>
+      <tr><td>Audit log retention</td><td>180 days</td><td>1 year</td></tr>
+      <tr><td>Approx. monthly price per user</td><td>$12.50</td><td>$22.00</td></tr>
+    </tbody>
+  </table>
+  <p>Microsoft&rsquo;s current pricing is published on the <a class="external" href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener">Microsoft 365 Business plans and pricing page</a>. E3 and E5 are larger&#8209;enterprise plans and are not warranted at this scale.</p>
+
+  <h3>Total cost summary (10 staff)</h3>
+  <table>
+    <thead>
+      <tr><th>Item</th><th>One&#8209;time</th><th>Monthly</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Microsoft 365 Business Premium &times; 10</td><td>&mdash;</td><td>~$220</td><td>Replaces existing M365 subscription cost</td></tr>
+      <tr><td>Subscription delta vs. Business Standard</td><td>&mdash;</td><td>~$95</td><td>Incremental cost of compliance features</td></tr>
+      <tr><td>Synology DS923+</td><td>~$600</td><td>&mdash;</td><td>4&#8209;bay NAS, currently available</td></tr>
+      <tr><td>Two 8&nbsp;TB IronWolf drives</td><td>~$400</td><td>&mdash;</td><td>SHR configuration, ~8&nbsp;TB usable</td></tr>
+      <tr><td>UPS</td><td>~$200</td><td>&mdash;</td><td>Modest unit; protects against power events</td></tr>
+      <tr><td>Backblaze B2 storage</td><td>&mdash;</td><td>~$15</td><td>Estimated 2&nbsp;TB offsite; scales with usage</td></tr>
+      <tr><td>Migration time (internal or contractor)</td><td>1&ndash;3 days</td><td>&mdash;</td><td>Single weekend if pre&#8209;scanned</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="alternatives">
+  <h2>Alternatives Considered</h2>
+
+  <h3>Dropbox Business or Dropbox Advanced</h3>
+  <p>Approximately $24&ndash;30 per user per month, layered on top of an existing Microsoft 365 subscription. Provides nothing the recommended architecture does not already provide, and Excel co&#8209;authoring is supported only when files are in SharePoint or OneDrive &mdash; not Dropbox. Not recommended.</p>
+
+  <h3>Google Workspace</h3>
+  <p>Switching from a Microsoft&#8209;native environment (Outlook, Excel with macros, PDF carrier forms) to Google Workspace incurs substantial retraining and workflow rework, with no compliance or feature advantage for an insurance agency. Not recommended.</p>
+
+  <h3>Self&#8209;hosted file server replacement</h3>
+  <p>Replacing the failed Windows file server with new on&#8209;premises server hardware reproduces the failure mode (single point of failure, no automatic offsite copy, manual recovery). The recommended Synology NAS provides the on&#8209;premises file&#8209;serving capability while adding immutable snapshots, automated workstation backups, and seamless offsite replication that a traditional file server does not.</p>
+
+  <h3>Synology as primary, Microsoft 365 for email only</h3>
+  <p>Using the Synology as the primary file&#8209;serving platform with Synology Drive sync clients is technically feasible but sacrifices Excel co&#8209;authoring, SharePoint&rsquo;s automatic version history, and the deep Office integration that Microsoft&#8209;native organizations expect. The hybrid layered architecture (Microsoft 365 for live, Synology for backup) provides the strengths of each without the trade&#8209;offs.</p>
+</section>
+
+<section id="action-plan">
+  <h2>Action Plan</h2>
+
+  <h3>Week 1</h3>
+  <div class="checklist">
+    <ol>
+      <li>Confirm the current Microsoft 365 plan and upgrade path to Business Premium</li>
+      <li>Order Synology DS923+, 2&times;8&nbsp;TB IronWolf drives, and UPS</li>
+      <li>Request data&#8209;security exhibits from each appointing carrier and from the E&amp;O carrier to confirm required controls</li>
+      <li>Inventory the recovered file server data: total size, top&#8209;level folder structure, presence of PST/Access files</li>
+      <li>Brief staff that a transition is upcoming; share the <a href="/gus/staff/">staff orientation guide</a></li>
+    </ol>
+  </div>
+
+  <h3>Week 2</h3>
+  <div class="checklist">
+    <ol>
+      <li>Complete the M365 Business Premium upgrade</li>
+      <li>Create the SharePoint team site and document libraries</li>
+      <li>Configure Microsoft 365 groups for library access control</li>
+      <li>Enable Multi&#8209;Factor Authentication tenant&#8209;wide</li>
+      <li>Configure external sharing defaults and Purview retention policies</li>
+      <li>Run SPMT pre&#8209;scan against the recovered data; surface and fix path and character issues</li>
+      <li>Separate PST and Access files for individual handling</li>
+    </ol>
+  </div>
+
+  <h3>Week 3 (cutover weekend)</h3>
+  <div class="checklist">
+    <ol>
+      <li>Execute SPMT migration over Friday evening through Monday morning</li>
+      <li>Validate file counts, sizes, and Modified dates</li>
+      <li>Configure each workstation with OneDrive shortcuts to the appropriate libraries</li>
+      <li>Stand up Synology NAS, configure Active Backup for Microsoft 365, Active Backup for Business, and Hyper Backup to Backblaze B2</li>
+      <li>Walk staff through the new workflow Monday morning using the orientation guide</li>
+    </ol>
+  </div>
+
+  <h3>Ongoing</h3>
+  <div class="checklist">
+    <ol>
+      <li>Verify backup job success weekly for the first month, monthly thereafter</li>
+      <li>Test a sample restore quarterly to confirm backups are usable</li>
+      <li>Review external sharing report monthly to catch inappropriate sharing</li>
+      <li>Document the written information security program (GLBA requirement)</li>
+      <li>Schedule annual employee security training</li>
+    </ol>
+  </div>
+</section>
+
+<div class="companion-cta">
+  <div>
+    <h3>Staff Orientation Guide</h3>
+    <p>A companion document written for the people who will use the new system day to day &mdash; what changes, where files now live, how to open and share documents, and what to avoid.</p>
+  </div>
+  <a href="/gus/staff/" class="btn primary">Open guide &rarr;</a>
+</div>
+
+<section id="references">
+  <h2>References</h2>
+
+  <h3>Microsoft documentation</h3>
+  <ul>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/microsoft-365/community/should-i-store-my-files-in-teams-or-sharepoint-an-understanding-of-behind-the-scenes" target="_blank" rel="noopener">Should I store my files in Teams or SharePoint &mdash; Microsoft Learn</a></li>
+    <li><a class="external" href="https://support.microsoft.com/en-us/office/restrictions-and-limitations-in-onedrive-and-sharepoint-64883a5d-228e-48f5-b3d2-eb39e07630fa" target="_blank" rel="noopener">Restrictions and limitations in OneDrive and SharePoint</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/sharepoint/planning-hub-sites" target="_blank" rel="noopener">Planning your SharePoint hub sites</a></li>
+    <li><a class="external" href="https://support.microsoft.com/en-us/office/collaborate-on-excel-workbooks-at-the-same-time-with-co-authoring-7152aa8b-b791-414c-a3bb-3024e46fb104" target="_blank" rel="noopener">Co&#8209;author Excel workbooks</a></li>
+    <li><a class="external" href="https://support.microsoft.com/en-us/office/troubleshoot-co-authoring-in-office-bd481512-3f3a-4b6d-b7eb-ebf9d3626ae7" target="_blank" rel="noopener">Troubleshoot co&#8209;authoring</a></li>
+    <li><a class="external" href="https://support.microsoft.com/en-us/office/add-shortcuts-to-shared-folders-in-onedrive-d66b1347-99b7-4470-9360-ffc048d35a33" target="_blank" rel="noopener">Add shortcuts to shared folders in OneDrive</a></li>
+    <li><a class="external" href="https://support.microsoft.com/en-us/office/how-to-remove-an-outlook-pst-data-file-from-onedrive-b6b9e522-59bd-40f7-949f-168d0aa9b38e" target="_blank" rel="noopener">Remove a PST file from OneDrive</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/sharepointmigration/introducing-the-sharepoint-migration-tool" target="_blank" rel="noopener">SharePoint Migration Tool overview</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/sharepointmigration/fileshare-to-odsp-migration-guide" target="_blank" rel="noopener">File share to SharePoint/OneDrive migration guide</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/sharepointmigration/sharepoint-online-and-onedrive-migration-speed" target="_blank" rel="noopener">Migration speed and throttling</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off" target="_blank" rel="noopener">External sharing settings</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/purview/retention-policies-sharepoint" target="_blank" rel="noopener">SharePoint retention policies</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/purview/audit-log-retention-policies" target="_blank" rel="noopener">Audit log retention</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/compliance/assurance/assurance-encryption-for-microsoft-365-services" target="_blank" rel="noopener">Encryption for Microsoft 365 services</a></li>
+    <li><a class="external" href="https://learn.microsoft.com/en-us/troubleshoot/sharepoint/security/handling-ransomware-in-sharepoint-online" target="_blank" rel="noopener">Handling ransomware in SharePoint Online</a></li>
+    <li><a class="external" href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener">Microsoft 365 Business plans and pricing</a></li>
+  </ul>
+
+  <h3>Regulatory and legal</h3>
+  <ul>
+    <li><a class="external" href="https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act" target="_blank" rel="noopener">FTC &mdash; Gramm&#8209;Leach&#8209;Bliley Act and Safeguards Rule</a></li>
+    <li><a class="external" href="https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=INS&division=1.&title=&part=2.&chapter=1.&article=6.6." target="_blank" rel="noopener">California Insurance Code &sect;&sect; 791&ndash;791.28 (IIPPA)</a></li>
+    <li><a class="external" href="https://www.insurance.ca.gov/0250-insurers/0500-legal-info/0500-gen-legal-info/privacy-of-nonpublic-personal-info.cfm" target="_blank" rel="noopener">California Department of Insurance &mdash; Privacy of Nonpublic Personal Information</a></li>
+    <li><a class="external" href="https://www.law.cornell.edu/regulations/california/10-CCR-2190.3" target="_blank" rel="noopener">10 CCR &sect; 2190.3 &mdash; Records Retention</a></li>
+    <li><a class="external" href="https://content.naic.org/sites/default/files/cmte-h-cybersecurity-wg-state-adoption-map-model-668.pdf" target="_blank" rel="noopener">NAIC Model Law #668 &mdash; state adoption map</a></li>
+  </ul>
+
+  <h3>Backup tier</h3>
+  <ul>
+    <li><a class="external" href="https://www.synology.com/en-us/dsm/packages/ActiveBackup" target="_blank" rel="noopener">Synology Active Backup for Business</a></li>
+    <li><a class="external" href="https://www.synology.com/en-us/dsm/packages/ActiveBackup-Office365" target="_blank" rel="noopener">Synology Active Backup for Microsoft 365</a></li>
+    <li><a class="external" href="https://www.backblaze.com/cloud-storage" target="_blank" rel="noopener">Backblaze B2 Cloud Storage</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>Microsoft 365 Migration Brief &middot; Prepared May 2026</div>
+    <div>References verified at time of writing; Microsoft documentation is updated frequently.</div>
+  </div>
+</footer>
+
+</body>
+</html>
