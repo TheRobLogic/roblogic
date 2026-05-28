@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-28T15:00:49.031Z",
+  "updated": "2026-05-28T22:43:09.562Z",
   "count": 203,
   "licenses": [
     {
@@ -21,8 +21,8 @@
       "lng": -117.018887597963,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676432",
@@ -87,8 +87,8 @@
       "lng": -117.137318064588,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676439",
@@ -219,8 +219,8 @@
       "lng": -117.002089479419,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00677168",
@@ -571,8 +571,8 @@
       "lng": -117.265102251125,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00675844",
@@ -593,8 +593,8 @@
       "lng": -117.265102251125,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676917",
@@ -659,8 +659,8 @@
       "lng": -117.254014036805,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676909",
@@ -725,8 +725,8 @@
       "lng": -117.055974251111,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00672725",
@@ -769,8 +769,8 @@
       "lng": -117.217391980441,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00674107",
@@ -879,8 +879,8 @@
       "lng": -117.242037424908,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00646899",
@@ -1143,8 +1143,8 @@
       "lng": -117.258096263343,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "DPR",
+      "isNew": false
     },
     {
       "fileNumber": "00671887",
@@ -1187,8 +1187,8 @@
       "lng": -117.258096263343,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "DPR",
+      "isNew": false
     },
     {
       "fileNumber": "00675934",
@@ -1407,8 +1407,8 @@
       "lng": -117.091953180668,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00675890",
@@ -1495,8 +1495,8 @@
       "lng": -117.349434578067,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00674640",
@@ -1561,8 +1561,8 @@
       "lng": -117.203626588828,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676232",
@@ -1583,8 +1583,8 @@
       "lng": -117.200646988281,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00676232",
@@ -1605,8 +1605,8 @@
       "lng": -117.200646988281,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "PER/PRM",
+      "isNew": false
     },
     {
       "fileNumber": "00675837",
@@ -2243,8 +2243,8 @@
       "lng": -117.25635125854,
       "phone": null,
       "website": null,
-      "actionCode": null,
-      "isNew": null
+      "actionCode": "DPR",
+      "isNew": false
     },
     {
       "fileNumber": "00675407",
