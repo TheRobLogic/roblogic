@@ -177,6 +177,67 @@
       margin-bottom: 20px;
     }
 
+    /* FLOW CALLOUT (AI assistant explainer) */
+    .flow-callout {
+      background: var(--cream-warm);
+      border: 1px solid var(--sand);
+      border-left: 4px solid var(--terracotta);
+      border-radius: var(--radius-sm);
+      padding: 24px 26px;
+      margin-bottom: 32px;
+    }
+    .flow-callout h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .flow-callout > p { font-size: 0.92rem; color: var(--text-light); margin-bottom: 14px; }
+    .flow-callout ol { margin: 0 0 16px; padding: 0; list-style: none; counter-reset: step; }
+    .flow-callout ol li {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 12px;
+      font-size: 0.92rem;
+      color: var(--text);
+      counter-increment: step;
+      line-height: 1.55;
+    }
+    .flow-callout ol li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 1px;
+      width: 26px; height: 26px;
+      background: var(--terracotta);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .flow-callout .closer { font-size: 0.92rem; color: var(--navy); font-weight: 600; margin: 0; }
+    .flow-callout .closer em { color: var(--text-light); font-weight: 400; font-style: italic; display: block; margin-top: 8px; }
+
+    /* CHECKBOX GRID */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+    }
+    .check-item {
+      display: flex; align-items: center; gap: 11px;
+      padding: 12px 16px;
+      border: 1.5px solid var(--sand);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .check-item:hover { border-color: var(--terracotta-light); background: var(--cream-warm); }
+    .check-item input { width: auto; margin: 0; flex-shrink: 0; accent-color: var(--terracotta); cursor: pointer; transform: scale(1.15); }
+
     /* SUBMIT */
     .submit-btn {
       display: inline-flex;
@@ -283,7 +344,7 @@
   <!-- HEADER -->
   <div class="header">
     <h1>Let's Get <em>PetMex</em> Rolling</h1>
-    <p>We've done our homework. Now we need the details only you can provide. Takes about 5 minutes.</p>
+    <p>We've done our homework. Now we need the details only you can provide. Takes about 10 minutes &mdash; skip anything you're not sure of.</p>
   </div>
 
   <div class="container" id="main-content">
@@ -387,6 +448,142 @@
         <div class="field-group">
           <label for="hours">Hours of operation</label>
           <input type="text" id="hours" name="hours" placeholder="e.g. Mon-Sat 7am-6pm">
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- YOUR WEBSITE -->
+        <div class="section-label">Your Website</div>
+
+        <div class="field-group">
+          <label for="website_feel">What should the new site feel like?</label>
+          <span class="hint">You've seen the <a href="/PMI/" style="color: var(--terracotta);">demo</a> &mdash; does it land, or do you want a different direction?</span>
+          <select id="website_feel" name="website_feel">
+            <option value="">Pick one...</option>
+            <option value="Keep the demo look">Love the demo &mdash; keep that look</option>
+            <option value="Warmer / more personal">Warmer &amp; more personal</option>
+            <option value="Cleaner / more clinical">Cleaner &amp; more clinical</option>
+            <option value="Show me a few directions">Not sure &mdash; show me a few directions</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Must-have features for the new site</label>
+          <span class="hint">Check anything you'd want &mdash; we'll prioritize together</span>
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox" name="website_features" value="Online booking"><span>Online booking</span></label>
+            <label class="check-item"><input type="checkbox" name="website_features" value="Pricing page"><span>Pricing page</span></label>
+            <label class="check-item"><input type="checkbox" name="website_features" value="FAQ"><span>FAQ</span></label>
+            <label class="check-item"><input type="checkbox" name="website_features" value="Reviews / testimonials"><span>Reviews / testimonials</span></label>
+            <label class="check-item"><input type="checkbox" name="website_features" value="Photo gallery"><span>Photo gallery</span></label>
+            <label class="check-item"><input type="checkbox" name="website_features" value="English / Spanish toggle"><span>English / Spanish toggle</span></label>
+            <label class="check-item"><input type="checkbox" name="website_features" value="Blog / news"><span>Blog / news</span></label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="website_references">Any websites you love?</label>
+          <span class="hint">Competitors, other pet businesses, or any site whose vibe you like &mdash; paste links</span>
+          <textarea id="website_references" name="website_references" placeholder="e.g. https://... &mdash; love how clean their booking flow is"></textarea>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- YOUR INBOX & AI ASSISTANT -->
+        <div class="section-label">Your Inbox &amp; AI Assistant</div>
+
+        <div class="flow-callout">
+          <h4>How your assistant would work</h4>
+          <p>The setup that works best for a personal, fast-moving business like yours:</p>
+          <ol>
+            <li>A new inquiry comes in &rarr; your assistant instantly sends a warm, on-brand reply answering the usual questions &mdash; how it works, your areas, what to expect &mdash; so the lead never goes cold, even at 2am.</li>
+            <li>You get pinged right away with the message and a ready-to-send reply. You add the personal touch and hit send.</li>
+            <li>Every morning, a 60-second brief of your whole inbox &mdash; new leads, who's waiting on you, what's going stale.</li>
+          </ol>
+          <p class="closer">You own every real conversation. The assistant just makes sure no one waits and nothing slips.<em>A few questions so we set it up your way:</em></p>
+        </div>
+
+        <div class="field-group">
+          <label for="business_email">Your main business email</label>
+          <span class="hint">The inbox the assistant would keep an eye on</span>
+          <input type="email" id="business_email" name="business_email" placeholder="hello@petmexinternational.com">
+        </div>
+
+        <div class="field-group">
+          <label for="email_platform">What email service do you use?</label>
+          <select id="email_platform" name="email_platform">
+            <option value="">Pick one...</option>
+            <option value="Gmail">Gmail (a @gmail.com address)</option>
+            <option value="Google Workspace">Google Workspace (Gmail on your own domain)</option>
+            <option value="Outlook / Microsoft 365">Outlook / Microsoft 365</option>
+            <option value="Other / not sure">Other / not sure</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Where do inquiries actually come from?</label>
+          <span class="hint">Be honest &mdash; most businesses get more DMs and texts than emails. We'll start with email and add the rest.</span>
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox" name="inquiry_channels" value="Email"><span>Email</span></label>
+            <label class="check-item"><input type="checkbox" name="inquiry_channels" value="Instagram DM"><span>Instagram DM</span></label>
+            <label class="check-item"><input type="checkbox" name="inquiry_channels" value="Facebook / Messenger"><span>Facebook / Messenger</span></label>
+            <label class="check-item"><input type="checkbox" name="inquiry_channels" value="WhatsApp"><span>WhatsApp</span></label>
+            <label class="check-item"><input type="checkbox" name="inquiry_channels" value="Text / SMS"><span>Text / SMS</span></label>
+            <label class="check-item"><input type="checkbox" name="inquiry_channels" value="Phone calls"><span>Phone calls</span></label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="languages">What language do your customers write in?</label>
+          <select id="languages" name="languages">
+            <option value="">Pick one...</option>
+            <option value="English">Mostly English</option>
+            <option value="Spanish">Mostly Spanish</option>
+            <option value="Both (auto-detect)">Both &mdash; reply in whichever they used</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="auto_reply_level">How much should the instant auto-reply say?</label>
+          <span class="hint">It can do as little or as much as you're comfortable with</span>
+          <select id="auto_reply_level" name="auto_reply_level">
+            <option value="">Pick one...</option>
+            <option value="Acknowledge only">Just a warm &ldquo;got it &mdash; we'll reply personally very soon&rdquo;</option>
+            <option value="Answer common questions, no pricing">Answer the common questions, but leave pricing to us</option>
+            <option value="Answer everything incl. pricing">Answer everything, including ballpark pricing</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="human_interaction">How hands-on do you want to be with new inquiries?</label>
+          <select id="human_interaction" name="human_interaction">
+            <option value="">Pick one...</option>
+            <option value="I reply to every one myself">I'll personally reply to each one (assistant just drafts &amp; reminds me)</option>
+            <option value="Assistant auto-answers routine, I close">Assistant handles routine answers, I jump in to close</option>
+            <option value="Keep me light, flag big ones only">Keep me light &mdash; assistant handles routine, flags only the important ones</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="assistant_expectations">What do you most want this assistant to do for you?</label>
+          <textarea id="assistant_expectations" name="assistant_expectations" placeholder="e.g. never miss an after-hours lead, stop us answering the same questions 20x a day, keep our inbox from piling up..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="assistant_guardrails">Anything it should never do?</label>
+          <span class="hint">Your hard lines &mdash; we'll build them in</span>
+          <textarea id="assistant_guardrails" name="assistant_guardrails" placeholder="e.g. never quote a firm price, never promise a pickup time, always sound like us, never sound like a robot..."></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="brief_delivery">Where should alerts &amp; your daily brief go?</label>
+          <select id="brief_delivery" name="brief_delivery">
+            <option value="">Pick one...</option>
+            <option value="Text / SMS">Text message</option>
+            <option value="Email">Email</option>
+            <option value="Push notification">Phone push notification (an app)</option>
+            <option value="Private web link">A private web page link</option>
+          </select>
         </div>
 
         <hr class="section-divider">
@@ -529,11 +726,16 @@
         return;
       }
 
-      // Collect form data as JSON
+      // Collect form data as JSON (checkbox groups join into a comma list)
       const data = {};
       const fields = form.querySelectorAll('input, textarea, select');
       fields.forEach(f => {
-        if (f.name && f.value.trim()) data[f.name] = f.value.trim();
+        if (!f.name) return;
+        if (f.type === 'checkbox') {
+          if (f.checked) data[f.name] = data[f.name] ? data[f.name] + ', ' + f.value : f.value;
+        } else if (f.value.trim()) {
+          data[f.name] = f.value.trim();
+        }
       });
 
       // Submit

@@ -1,105 +1,274 @@
 {
-  "id": "petmex-intake-001",
-  "name": "PetMex Intake Form",
-  "nodes": [
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "petmex-intake",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "id": "a1b2c3d4-1111-4000-a000-000000000001",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [240, 340],
-      "webhookId": "petmex-intake"
+    "updatedAt": "2026-05-30T20:02:03.356Z",
+    "createdAt": "2026-03-07T08:25:21.233Z",
+    "id": "petmex-intake-001",
+    "name": "PetMex Intake Form",
+    "description": null,
+    "active": true,
+    "isArchived": false,
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "petmex-intake",
+                "responseMode": "responseNode",
+                "options": {}
+            },
+            "id": "a1b2c3d4-1111-4000-a000-000000000001",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 2,
+            "position": [
+                240,
+                340
+            ],
+            "webhookId": "petmex-intake"
+        },
+        {
+            "parameters": {
+                "jsCode": "const fs = require('fs');\nconst body = $input.first().json.body;\nconst now = new Date().toLocaleString('en-US', {\n  timeZone: 'America/Los_Angeles',\n  weekday: 'long',\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit'\n});\n\nconst fields = [\n  ['contact_name', 'Contact'],\n  ['contact_method', 'Preferred Contact Method'],\n  ['contact_detail', 'Contact Info'],\n  ['pricing', 'Current Pricing'],\n  ['service_area', 'Service Area'],\n  ['partner_clinics', 'Partner Clinics'],\n  ['monthly_volume', 'Monthly Volume'],\n  ['hours', 'Hours'],\n  ['tier', 'Tier Interest'],\n  ['photos', 'Photos Available'],\n  ['photo_link', 'Photo Upload Link'],\n  ['demo_feedback', 'Demo Site Feedback'],\n  ['corrections', 'Corrections'],\n  ['website_feel', 'Website Feel'],\n  ['website_features', 'Must-Have Features'],\n  ['website_references', 'Sites They Like'],\n  ['business_email', 'Business Email'],\n  ['email_platform', 'Email Platform'],\n  ['inquiry_channels', 'Inquiry Channels'],\n  ['languages', 'Customer Languages'],\n  ['auto_reply_level', 'Auto-Reply Level'],\n  ['human_interaction', 'Human Interaction'],\n  ['assistant_expectations', 'Assistant Expectations'],\n  ['assistant_guardrails', 'Assistant Guardrails'],\n  ['brief_delivery', 'Brief Delivery'],\n  ['anything_else', 'Other Notes']\n];\n\nconst summary = {};\nlet md = '\\n---\\n\\n## ' + now + '\\n\\n';\nlet notify = '';\n\nfor (const [key, label] of fields) {\n  const val = body && body[key];\n  if (val && String(val).trim()) {\n    summary[label] = String(val).trim();\n    md += '**' + label + ':** ' + String(val).trim() + '\\n\\n';\n    notify += label + ': ' + String(val).trim() + '\\n';\n  }\n}\n\nconst filePath = '/peach-logs/petmex-intake.md';\nif (!fs.existsSync(filePath)) {\n  fs.writeFileSync(filePath, '# PetMex Intake Submissions\\n\\n');\n}\nfs.appendFileSync(filePath, md);\n\nconst contactName = (body && body.contact_name) || 'Unknown';\n\nreturn [{\n  json: {\n    timestamp: now,\n    submission: summary,\n    raw: body,\n    notifyTitle: 'PetMex Intake: ' + contactName,\n    notifyBody: notify\n  }\n}];"
+            },
+            "id": "a1b2c3d4-2222-4000-a000-000000000002",
+            "name": "Format Submission",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                480,
+                340
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://ntfy.sh/petmex-intake-3f7aa6bba346",
+                "sendHeaders": true,
+                "headerParameters": {
+                    "parameters": [
+                        {
+                            "name": "Title",
+                            "value": "={{ $json.notifyTitle }}"
+                        },
+                        {
+                            "name": "Tags",
+                            "value": "dog,incoming_envelope"
+                        }
+                    ]
+                },
+                "sendBody": true,
+                "contentType": "raw",
+                "body": "={{ $json.notifyBody }}",
+                "options": {}
+            },
+            "id": "a1b2c3d4-3333-4000-a000-000000000003",
+            "name": "Notify",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                720,
+                460
+            ]
+        },
+        {
+            "parameters": {
+                "respondWith": "json",
+                "responseBody": "={\"success\": true}"
+            },
+            "id": "a1b2c3d4-4444-4000-a000-000000000004",
+            "name": "Respond",
+            "type": "n8n-nodes-base.respondToWebhook",
+            "typeVersion": 1.1,
+            "position": [
+                720,
+                220
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Format Submission",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Format Submission": {
+            "main": [
+                [
+                    {
+                        "node": "Respond",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Notify",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
     },
-    {
-      "parameters": {
-        "jsCode": "const fs = require('fs');\nconst body = $input.first().json.body;\nconst now = new Date().toLocaleString('en-US', {\n  timeZone: 'America/Los_Angeles',\n  weekday: 'long',\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit'\n});\n\nconst fields = [\n  ['contact_name', 'Contact'],\n  ['contact_method', 'Preferred Contact Method'],\n  ['contact_detail', 'Contact Info'],\n  ['pricing', 'Current Pricing'],\n  ['service_area', 'Service Area'],\n  ['partner_clinics', 'Partner Clinics'],\n  ['monthly_volume', 'Monthly Volume'],\n  ['hours', 'Hours'],\n  ['tier', 'Tier Interest'],\n  ['photos', 'Photos Available'],\n  ['photo_link', 'Photo Upload Link'],\n  ['demo_feedback', 'Demo Site Feedback'],\n  ['corrections', 'Corrections'],\n  ['anything_else', 'Other Notes']\n];\n\nconst summary = {};\nlet md = '\\n---\\n\\n## ' + now + '\\n\\n';\nlet notify = '';\n\nfor (const [key, label] of fields) {\n  const val = body && body[key];\n  if (val && String(val).trim()) {\n    summary[label] = String(val).trim();\n    md += '**' + label + ':** ' + String(val).trim() + '\\n\\n';\n    notify += label + ': ' + String(val).trim() + '\\n';\n  }\n}\n\nconst filePath = '/peach-logs/petmex-intake.md';\nif (!fs.existsSync(filePath)) {\n  fs.writeFileSync(filePath, '# PetMex Intake Submissions\\n\\n');\n}\nfs.appendFileSync(filePath, md);\n\nconst contactName = (body && body.contact_name) || 'Unknown';\n\nreturn [{\n  json: {\n    timestamp: now,\n    submission: summary,\n    raw: body,\n    notifyTitle: 'PetMex Intake: ' + contactName,\n    notifyBody: notify\n  }\n}];"
-      },
-      "id": "a1b2c3d4-2222-4000-a000-000000000002",
-      "name": "Format Submission",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [480, 340]
+    "settings": {
+        "executionOrder": "v1",
+        "saveExecutionProgress": true,
+        "callerPolicy": "workflowsFromSameOwner",
+        "availableInMCP": false
     },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://ntfy.sh/petmex-intake-3f7aa6bba346",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
+    "staticData": null,
+    "meta": null,
+    "pinData": {},
+    "versionId": "fad1dd6b-ccd5-424c-935b-3baa9b1ad119",
+    "activeVersionId": "fad1dd6b-ccd5-424c-935b-3baa9b1ad119",
+    "versionCounter": 62,
+    "triggerCount": 1,
+    "shared": [
+        {
+            "updatedAt": "2026-03-07T08:25:21.235Z",
+            "createdAt": "2026-03-07T08:25:21.235Z",
+            "role": "workflow:owner",
+            "workflowId": "petmex-intake-001",
+            "projectId": "9VhZ2FFbuMtE1b3Q",
+            "project": {
+                "updatedAt": "2025-05-03T23:25:46.055Z",
+                "createdAt": "2025-05-03T23:23:28.434Z",
+                "id": "9VhZ2FFbuMtE1b3Q",
+                "name": "Rob Logic <roblogic@gmail.com>",
+                "type": "personal",
+                "icon": null,
+                "description": null,
+                "creatorId": "00588e82-0036-45d2-8e62-f1a5a2ecb810"
+            }
+        }
+    ],
+    "tags": [],
+    "activeVersion": {
+        "updatedAt": "2026-05-30T20:02:03.365Z",
+        "createdAt": "2026-05-30T20:02:03.365Z",
+        "versionId": "fad1dd6b-ccd5-424c-935b-3baa9b1ad119",
+        "workflowId": "petmex-intake-001",
+        "nodes": [
             {
-              "name": "Title",
-              "value": "={{ $json.notifyTitle }}"
+                "parameters": {
+                    "httpMethod": "POST",
+                    "path": "petmex-intake",
+                    "responseMode": "responseNode",
+                    "options": {}
+                },
+                "id": "a1b2c3d4-1111-4000-a000-000000000001",
+                "name": "Webhook",
+                "type": "n8n-nodes-base.webhook",
+                "typeVersion": 2,
+                "position": [
+                    240,
+                    340
+                ],
+                "webhookId": "petmex-intake"
             },
             {
-              "name": "Tags",
-              "value": "dog,incoming_envelope"
+                "parameters": {
+                    "jsCode": "const fs = require('fs');\nconst body = $input.first().json.body;\nconst now = new Date().toLocaleString('en-US', {\n  timeZone: 'America/Los_Angeles',\n  weekday: 'long',\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric',\n  hour: '2-digit',\n  minute: '2-digit'\n});\n\nconst fields = [\n  ['contact_name', 'Contact'],\n  ['contact_method', 'Preferred Contact Method'],\n  ['contact_detail', 'Contact Info'],\n  ['pricing', 'Current Pricing'],\n  ['service_area', 'Service Area'],\n  ['partner_clinics', 'Partner Clinics'],\n  ['monthly_volume', 'Monthly Volume'],\n  ['hours', 'Hours'],\n  ['tier', 'Tier Interest'],\n  ['photos', 'Photos Available'],\n  ['photo_link', 'Photo Upload Link'],\n  ['demo_feedback', 'Demo Site Feedback'],\n  ['corrections', 'Corrections'],\n  ['website_feel', 'Website Feel'],\n  ['website_features', 'Must-Have Features'],\n  ['website_references', 'Sites They Like'],\n  ['business_email', 'Business Email'],\n  ['email_platform', 'Email Platform'],\n  ['inquiry_channels', 'Inquiry Channels'],\n  ['languages', 'Customer Languages'],\n  ['auto_reply_level', 'Auto-Reply Level'],\n  ['human_interaction', 'Human Interaction'],\n  ['assistant_expectations', 'Assistant Expectations'],\n  ['assistant_guardrails', 'Assistant Guardrails'],\n  ['brief_delivery', 'Brief Delivery'],\n  ['anything_else', 'Other Notes']\n];\n\nconst summary = {};\nlet md = '\\n---\\n\\n## ' + now + '\\n\\n';\nlet notify = '';\n\nfor (const [key, label] of fields) {\n  const val = body && body[key];\n  if (val && String(val).trim()) {\n    summary[label] = String(val).trim();\n    md += '**' + label + ':** ' + String(val).trim() + '\\n\\n';\n    notify += label + ': ' + String(val).trim() + '\\n';\n  }\n}\n\nconst filePath = '/peach-logs/petmex-intake.md';\nif (!fs.existsSync(filePath)) {\n  fs.writeFileSync(filePath, '# PetMex Intake Submissions\\n\\n');\n}\nfs.appendFileSync(filePath, md);\n\nconst contactName = (body && body.contact_name) || 'Unknown';\n\nreturn [{\n  json: {\n    timestamp: now,\n    submission: summary,\n    raw: body,\n    notifyTitle: 'PetMex Intake: ' + contactName,\n    notifyBody: notify\n  }\n}];"
+                },
+                "id": "a1b2c3d4-2222-4000-a000-000000000002",
+                "name": "Format Submission",
+                "type": "n8n-nodes-base.code",
+                "typeVersion": 2,
+                "position": [
+                    480,
+                    340
+                ]
+            },
+            {
+                "parameters": {
+                    "method": "POST",
+                    "url": "https://ntfy.sh/petmex-intake-3f7aa6bba346",
+                    "sendHeaders": true,
+                    "headerParameters": {
+                        "parameters": [
+                            {
+                                "name": "Title",
+                                "value": "={{ $json.notifyTitle }}"
+                            },
+                            {
+                                "name": "Tags",
+                                "value": "dog,incoming_envelope"
+                            }
+                        ]
+                    },
+                    "sendBody": true,
+                    "contentType": "raw",
+                    "body": "={{ $json.notifyBody }}",
+                    "options": {}
+                },
+                "id": "a1b2c3d4-3333-4000-a000-000000000003",
+                "name": "Notify",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 4.2,
+                "position": [
+                    720,
+                    460
+                ]
+            },
+            {
+                "parameters": {
+                    "respondWith": "json",
+                    "responseBody": "={\"success\": true}"
+                },
+                "id": "a1b2c3d4-4444-4000-a000-000000000004",
+                "name": "Respond",
+                "type": "n8n-nodes-base.respondToWebhook",
+                "typeVersion": 1.1,
+                "position": [
+                    720,
+                    220
+                ]
             }
-          ]
+        ],
+        "connections": {
+            "Webhook": {
+                "main": [
+                    [
+                        {
+                            "node": "Format Submission",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "Format Submission": {
+                "main": [
+                    [
+                        {
+                            "node": "Respond",
+                            "type": "main",
+                            "index": 0
+                        },
+                        {
+                            "node": "Notify",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            }
         },
-        "sendBody": true,
-        "contentType": "raw",
-        "body": "={{ $json.notifyBody }}",
-        "options": {}
-      },
-      "id": "a1b2c3d4-3333-4000-a000-000000000003",
-      "name": "Notify",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [720, 460]
-    },
-    {
-      "parameters": {
-        "respondWith": "json",
-        "responseBody": "={\"success\": true}"
-      },
-      "id": "a1b2c3d4-4444-4000-a000-000000000004",
-      "name": "Respond",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [720, 220]
-    }
-  ],
-  "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Format Submission",
-            "type": "main",
-            "index": 0
-          }
+        "authors": "Rob Logic",
+        "name": null,
+        "description": null,
+        "autosaved": false,
+        "workflowPublishHistory": [
+            {
+                "createdAt": "2026-05-30T20:02:03.554Z",
+                "id": 321,
+                "workflowId": "petmex-intake-001",
+                "versionId": "fad1dd6b-ccd5-424c-935b-3baa9b1ad119",
+                "event": "activated",
+                "userId": "00588e82-0036-45d2-8e62-f1a5a2ecb810"
+            }
         ]
-      ]
-    },
-    "Format Submission": {
-      "main": [
-        [
-          {
-            "node": "Respond",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Notify",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
-  },
-  "active": true,
-  "settings": {
-    "executionOrder": "v1",
-    "saveExecutionProgress": true
-  },
-  "tags": [],
-  "pinData": {}
 }
