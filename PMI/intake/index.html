@@ -764,6 +764,22 @@
         errorMsg.classList.add('visible');
       }
     });
+
+    // visit beacon — every hit, skip bots, fail silent
+    try {
+      const ua = navigator.userAgent.toLowerCase();
+      if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+        fetch('/beacon', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: 'PetMex Intake',
+            ref: document.referrer || 'direct',
+            tag: 'dog'
+          })
+        }).catch(() => {});
+      }
+    } catch (e) {}
   </script>
 </body>
 </html>
