@@ -638,8 +638,18 @@ footer.ft{background:var(--paper);padding:clamp(40px,5vw,64px) 0 40px}
 }
 @media (max-width:760px){
   .nav-links{display:none}
-  .burger{display:flex}
+  .burger{display:flex;padding:14px}            /* tap target ≥44px on mobile */
   .nav-cta{display:none}
+  /* mobile legibility + tap-target pass (desktop untouched) */
+  .socials a{width:46px;height:46px}            /* was 42px → ≥44px */
+  .svc{padding:18px 4px}                          /* a touch more breathing room */
+  .svc .mt{font-size:.7rem}                       /* was ~9.9px */
+  .leg .lt span{font-size:.66rem}                 /* was ~9.6px */
+  .crew .pn span{font-size:.64rem}                /* was ~9.3px */
+  .crew .person{padding:8px 18px 8px 8px}         /* keeps pill ≥44px tall */
+  .team-photo .cap span{font-size:.66rem}         /* was ~9.6px */
+  .field label{font-size:.68rem}                  /* was ~10.2px */
+  .clinic p,.fare .desc,.step p{font-size:.96rem;line-height:1.6} /* body copy ≥~15px, comfortable */
 }
 @media (max-width:520px){
   .field.two{grid-template-columns:1fr}
@@ -970,8 +980,8 @@ footer.ft{background:var(--paper);padding:clamp(40px,5vw,64px) 0 40px}
 <section class="sec" id="team">
   <div class="wrap team-grid">
     <figure class="team-photo rev">
-      <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, bearded and in a plaid shirt, gently holding a black cat at a Tijuana clinic" loading="lazy" width="1050" height="1400">
-      <figcaption class="cap"><b>TJ</b><span>Co-owner · drives every trip</span></figcaption>
+      <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="A PetMex pet held gently during care at a partner clinic" loading="lazy" width="1050" height="1400">
+      <figcaption class="cap"><b>Hands-on care</b><span>every step of the trip</span></figcaption>
     </figure>
     <div class="team-l rev" data-d="1">
       <span class="tag tic olive">The family behind the wheel</span>
@@ -981,11 +991,11 @@ footer.ft{background:var(--paper);padding:clamp(40px,5vw,64px) 0 40px}
       <p>"We take the headache out of that trip to the vet." That's the job. <b>Welcome to the PetMex family.</b></p>
       <div class="crew">
         <div class="person">
-          <span class="av"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ" loading="lazy" width="1050" height="1400"></span>
+          <span class="av illus" aria-hidden="true">TJ</span>
           <span class="pn"><b>TJ</b><span>Co-owner · driver</span></span>
         </div>
         <div class="person">
-          <span class="av illus" aria-hidden="true">LZ</span>
+          <span class="av illus" aria-hidden="true">L</span>
           <span class="pn"><b>Lizette</b><span>Co-owner · care &amp; comms</span></span>
         </div>
       </div>

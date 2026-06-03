@@ -21,7 +21,7 @@
 <style>
 /* ============ RESET ============ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
@@ -279,6 +279,7 @@ section{position:relative}
 .team-tags .tt{display:flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.95rem;color:var(--ink)}
 .avatar{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);overflow:hidden;flex-shrink:0;display:grid;place-items:center;background:var(--olive);color:#fff;font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:1.1rem}
 .avatar img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.avatar-tj{background:var(--cyan);font-size:.95rem;letter-spacing:-.02em}
 .tt small{display:block;font-family:'Public Sans',sans-serif;font-weight:500;color:var(--char);font-size:.82rem;text-transform:none;letter-spacing:0}
 @media(max-width:820px){.family-grid{grid-template-columns:1fr}.family-photo{border-right:none;border-bottom:3px solid var(--ink);min-height:clamp(300px,70vw,420px)}}
 
@@ -366,7 +367,7 @@ summary.faq-q::marker{content:""}
 
 /* ============ CONTACT / QUOTE ============ */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:3px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
-.contact-left{background:var(--cyan);color:#fff;padding:clamp(28px,4vw,54px);border-right:3px solid var(--ink)}
+.contact-left{background:var(--cyan);color:#fff;padding:clamp(28px,4vw,54px);border-right:3px solid var(--ink);min-width:0}
 .contact-left .h-sec{color:#fff;font-size:clamp(1.9rem,4.5vw,3.2rem);margin-bottom:18px}
 .contact-left p{color:#f0fbff;font-size:1.08rem;margin-bottom:28px;max-width:42ch}
 .contact-methods{display:flex;flex-direction:column;gap:14px}
@@ -376,12 +377,13 @@ summary.faq-q::marker{content:""}
 .cm-ico{width:44px;height:44px;flex-shrink:0;border:2px solid #fff;border-radius:10px;display:grid;place-items:center;background:#fff;color:var(--cyan);transition:background .2s ease,color .2s ease,border-color .2s ease}
 .cm-ico svg{width:22px;height:22px}
 .cm .lbl{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:.78rem;opacity:.85;line-height:1.1}
-.cm .val{font-family:'Public Sans',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.2}
+.cm .val{font-family:'Public Sans',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.2;overflow-wrap:anywhere}
+.cm > span{min-width:0}
 .socials{display:flex;gap:12px;margin-top:26px}
 .socials a{width:46px;height:46px;border:2px solid #fff;border-radius:12px;display:grid;place-items:center;transition:background .2s ease,transform .15s ease}
 .socials a:hover{background:#fff;color:var(--cyan-ink);transform:translateY(-3px)}
 .socials svg{width:22px;height:22px}
-.contact-right{background:var(--paper);padding:clamp(28px,4vw,54px)}
+.contact-right{background:var(--paper);padding:clamp(28px,4vw,54px);min-width:0}
 .contact-right .eyebrow{color:var(--olive-deep)}
 .contact-right h3{font-size:clamp(1.4rem,2.6vw,2rem);color:var(--ink);margin-bottom:6px;line-height:1}
 .contact-right .fdesc{font-size:.96rem;color:var(--char);margin-bottom:24px}
@@ -675,15 +677,15 @@ footer.site{background:var(--ink);color:#fff;border-top:3px solid var(--ink);pad
     <h2 class="h-sec reveal" data-d="1" style="margin-bottom:clamp(30px,4vw,44px)">A family that treats your pet<br>like their own.</h2>
     <div class="family-grid reveal" data-d="2">
       <div class="family-photo">
-        <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, co-owner of PetMex, gently holding a black cat at a clinic" loading="lazy" width="1050" height="1400">
-        <span class="cap">TJ · Co-owner &amp; driver</span>
+        <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="A PetMex pet held gently during care at a partner clinic" loading="lazy" width="1050" height="1400">
+        <span class="cap">Hands-on care, every step</span>
       </div>
       <div class="family-copy">
         <p>PetMex is run by <strong>Lizette and TJ</strong> — a husband-and-wife team who started this because they believed pets deserve great care without the great big bill. They're the ones who show up at your door, and they're the ones who stay with your pet at the clinic.</p>
         <p>No call center. No handoffs to a stranger. The same people you talk to are the people caring for your pet — calm, hands-on, and completely bilingual.</p>
         <div class="team-tags">
           <span class="tt">
-            <span class="avatar"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ"></span>
+            <span class="avatar avatar-tj" aria-hidden="true">TJ</span>
             TJ<small>Co-owner · drives &amp; stays with your pet</small>
           </span>
           <span class="tt">
@@ -706,8 +708,8 @@ footer.site{background:var(--ink);color:#fff;border-top:3px solid var(--ink);pad
       <figure class="gtile g2"><img src="/PMI/assets/real/clinic-spaniel.jpg" alt="A cocker spaniel beside a veterinarian in blue scrubs" loading="lazy" width="1400" height="813"></figure>
       <figure class="gtile g3"><img src="/PMI/assets/real/care-vet-cat.jpeg" alt="A gloved veterinarian holding a calm, fluffy cat" loading="lazy" width="1050" height="1400"></figure>
       <figure class="gtile g4"><img src="/PMI/assets/real/portrait-cat.jpg" alt="Soft portrait of a gray cat" loading="lazy" width="1400" height="787"></figure>
-      <figure class="gtile g5"><img src="/PMI/assets/real/clients-with-dog.jpeg" alt="A happy couple holding their small dog at a clinic" loading="lazy" width="1050" height="1400"></figure>
-      <figure class="gtile g6"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ holding a black cat at the clinic" loading="lazy" width="1050" height="1400"></figure>
+      <figure class="gtile g5"><img src="/PMI/assets/real/clients-with-dog.jpeg" alt="A pet owner holding their small dog at a partner clinic" loading="lazy" width="1050" height="1400"></figure>
+      <figure class="gtile g6"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="A black cat held gently during care at a partner clinic" loading="lazy" width="1050" height="1400"></figure>
       <figure class="gtile g7"><img src="/PMI/assets/real/happy-dog.jpeg" alt="A joyful dog with its tongue out" loading="lazy" width="1050" height="1400"></figure>
     </div>
   </div>

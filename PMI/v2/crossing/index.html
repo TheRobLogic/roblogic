@@ -118,7 +118,7 @@ body::after{
    ============================================================ */
 .routebar{
   position:fixed;left:0;top:0;right:0;height:4px;z-index:8000;
-  background:rgba(75,75,76,.12);
+  background:rgba(75,75,76,.12);overflow:hidden;
 }
 .routebar__fill{
   height:100%;width:0%;
@@ -239,7 +239,7 @@ body::after{
 }
 .hero h1{
   font-family:var(--serif);font-weight:800;color:#fff;
-  font-size:clamp(2.6rem,7.4vw,6.6rem);line-height:.94;letter-spacing:-.015em;
+  font-size:clamp(2rem,6.4vw,6.6rem);line-height:1;letter-spacing:-.015em;
   text-shadow:0 2px 30px rgba(40,32,20,.4);
   max-width:16ch;
 }
@@ -637,8 +637,8 @@ body::after{
   transition:padding-left .25s ease;
 }
 .cline:hover{padding-left:6px}
-.cline .cl-l{font-family:var(--sans);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);font-weight:600;min-width:78px}
-.cline .cl-v{font-family:var(--serif);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.35rem);color:var(--ink)}
+.cline .cl-l{font-family:var(--sans);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);font-weight:600;min-width:78px;flex:none}
+.cline .cl-v{font-family:var(--serif);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.35rem);color:var(--ink);min-width:0;overflow-wrap:anywhere}
 .cline .cl-v:hover{color:var(--cyan)}
 .reserve__social{margin-top:24px;display:flex;gap:14px}
 .reserve__social a{
@@ -748,6 +748,57 @@ body::after{
 @media(max-width:560px){
   .svc__list{columns:1}
   .strip__cell{padding:22px var(--gutter)}
+}
+
+/* ============================================================
+   MOBILE BREATHE PASS  (phones — let the editorial type relax)
+   ============================================================ */
+@media(max-width:600px){
+  /* hero headline: smaller + airier so it breathes */
+  .hero h1{
+    font-size:clamp(1.9rem,8.2vw,2.7rem);
+    line-height:1.06;
+    letter-spacing:-.01em;
+    max-width:none;
+  }
+  .hero{padding-top:120px;padding-bottom:clamp(34px,6vh,60px)}
+  .hero__top{top:104px}
+  .hero__sub{margin-top:20px;font-size:1rem;line-height:1.5;max-width:none}
+  .hero__actions{gap:12px;margin-top:26px}
+  .hero__actions .btn{width:100%;justify-content:center;padding:15px 24px}
+  .hero__scroll{display:none}
+  .hero__edition{gap:10px 16px;margin-bottom:16px}
+
+  /* contents in-edition list: roomier tap targets */
+  .contents li a{padding:15px 0}
+
+  /* chapter numbers shouldn't dominate the column */
+  .chapter__no{font-size:clamp(3.4rem,18vw,5rem)}
+  .chapter__head{gap:12px}
+
+  /* folio numbers sit inside the frame so they never crowd the screen edge */
+  .spread__media .folio{font-size:clamp(2.4rem,11vw,3.4rem)}
+  .spread__media .folio.tl{top:-14px;left:4px}
+  .spread__media .folio.br{bottom:-14px;right:4px}
+
+  /* pull-quotes: keep off the edges, comfortable measure */
+  .pull blockquote,.pull--ink blockquote{max-width:none}
+  .pull .mark{font-size:4.4rem}
+
+  /* fare ticket: stack price under the line so nothing is squeezed */
+  .farerow{grid-template-columns:auto 1fr;gap:6px 14px;row-gap:8px}
+  .farerow .rprice{grid-column:1 / -1;text-align:left;padding-left:62px}
+  .farerow.is-feature .badge{position:static;display:inline-block;margin-bottom:6px}
+
+  /* gallery counter: don't let the big numerals shove the buttons */
+  .gcount{font-size:2.2rem}
+  .gbtns button{width:48px;height:48px}
+
+  /* team duo avatars keep their overlap but stay clear of the edge */
+  .team__media .nameplate{left:0}
+
+  /* footer columns breathe */
+  .footer__top{gap:24px}
 }
 </style>
 </head>
@@ -1270,9 +1321,9 @@ body::after{
     <div class="wrap team__grid">
       <div class="team__media reveal">
         <div class="ph">
-          <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, one of the PetMex owners — bearded, glasses, plaid shirt — gently holding a black cat at a clinic" loading="lazy" />
+          <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="A PetMex pet held gently during care at a partner clinic" loading="lazy" />
         </div>
-        <div class="nameplate"><b>TJ</b><span>Owner · rides with your pet</span></div>
+        <div class="nameplate"><b>Hands-on care</b><span>Every step of the trip</span></div>
       </div>
       <div class="team__body reveal" data-d="1">
         <span class="kicker">The Family</span>
