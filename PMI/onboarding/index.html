@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetMex International — Quick Setup</title>
+  <meta name="description" content="Pick your website look and send the few details I need to build your new site, email, and inbox assistant.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:title" content="PetMex International — Quick Setup">
+  <meta property="og:description" content="One short form to get your new site, email, and inbox assistant moving.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/PMI/assets/real/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cyan:#00AEEF; --cyan-deep:#0a86bd; --olive:#6F8F40; --olive-deep:#5a7634;
+      --charcoal:#4B4B4C; --ink:#4B4B4C; --muted:#76787a;
+      --board:#F4F3EF; --board-2:#ECEAE3; --card:#FFFFFF;
+      --line:rgba(75,75,76,.14); --cyan-wash:rgba(0,174,239,.07); --olive-wash:rgba(111,143,64,.10);
+      --sans:'Sora',-apple-system,BlinkMacSystemFont,sans-serif;
+      --serif:'Source Serif 4',Georgia,serif;
+      --shadow-card:0 1px 2px rgba(75,75,76,.05), 0 10px 30px rgba(10,134,189,.07);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+    body{
+      font-family:var(--sans);color:var(--ink);background:var(--board);
+      line-height:1.6;font-size:clamp(1rem,.97rem + .15vw,1.05rem);
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{color:var(--cyan-deep);text-underline-offset:2px}
+    body::before{
+      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+      background-image:linear-gradient(var(--board-2) 1px,transparent 1px);background-size:100% 2.4rem;
+      -webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+              mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+    }
+    .wrap{width:100%;max-width:46rem;margin-inline:auto;padding-inline:clamp(1.15rem,4vw,2rem);position:relative;z-index:1}
+    h1,h2,h3{font-family:var(--serif);color:var(--charcoal);line-height:1.12;letter-spacing:-.01em;font-weight:600}
+
+    /* masthead */
+    .masthead{padding-top:clamp(2rem,6vw,3.2rem);padding-bottom:.6rem}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-bottom:clamp(1.2rem,3.5vw,1.7rem);border-bottom:1px solid var(--line)}
+    .brand img{height:clamp(2.8rem,7vw,3.6rem);width:auto}
+    .stamp{font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.6}
+    .stamp b{color:var(--cyan-deep);font-weight:700}
+    .lede{padding-top:clamp(1.4rem,4vw,2.1rem);padding-bottom:.4rem}
+    .eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--olive-deep);margin-bottom:.7rem}
+    h1{font-size:clamp(1.8rem,1.4rem + 2vw,2.5rem)}
+    .lede p{margin-top:.9rem;color:#5a5b5c;max-width:50ch;font-size:clamp(1.02rem,1rem + .25vw,1.12rem)}
+
+    /* form */
+    form{padding-bottom:clamp(3rem,7vw,4.5rem)}
+    .fs{
+      background:var(--card);border:1px solid var(--line);border-radius:16px;
+      box-shadow:var(--shadow-card);padding:clamp(1.25rem,3.5vw,1.8rem);
+      margin-top:clamp(1.1rem,3vw,1.5rem);
+    }
+    .fs > legend, .fs-h{display:block;width:100%}
+    .fs-h{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.35rem}
+    .fs-h .n{font-family:var(--serif);font-style:italic;color:var(--cyan);font-weight:600;font-size:.95rem;flex:none}
+    .fs-h h2{font-size:1.18rem}
+    .fs-sub{color:var(--muted);font-size:.9rem;margin-bottom:1.1rem;max-width:54ch}
+
+    .field{margin-bottom:1.05rem}
+    .field:last-child{margin-bottom:0}
+    label.lab{display:block;font-weight:600;color:var(--charcoal);font-size:.95rem;margin-bottom:.4rem}
+    label .opt{font-weight:400;color:var(--muted);font-size:.85em}
+    .req{color:var(--cyan-deep)}
+    input[type=text], input[type=email], textarea{
+      width:100%;font-family:var(--sans);font-size:1rem;color:var(--ink);
+      background:var(--board);border:1px solid var(--line);border-radius:10px;
+      padding:.7rem .85rem;transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    input::placeholder, textarea::placeholder{color:#a7a8aa}
+    input[type=text]:focus, input[type=email]:focus, textarea:focus{
+      outline:none;border-color:var(--cyan);background:#fff;box-shadow:0 0 0 3px var(--cyan-wash);
+    }
+    textarea{resize:vertical;min-height:3.2rem;line-height:1.55}
+
+    /* radios & checkboxes */
+    .opts{display:flex;flex-direction:column;gap:.5rem}
+    .opt-row{
+      display:flex;align-items:flex-start;gap:.65rem;
+      border:1px solid var(--line);border-radius:11px;padding:.7rem .85rem;background:var(--board);
+      cursor:pointer;transition:border-color .15s ease, background .15s ease;
+    }
+    .opt-row:hover{border-color:rgba(0,174,239,.4)}
+    .opt-row:has(input:checked){border-color:var(--cyan);background:var(--cyan-wash)}
+    .opt-row input{accent-color:var(--cyan);width:1.1rem;height:1.1rem;margin-top:.18rem;flex:none}
+    .opt-row .ot{font-size:.95rem;color:var(--charcoal)}
+    .opt-row .ot small{display:block;color:var(--muted);font-size:.82rem;font-weight:400;margin-top:.1rem}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+    @media(max-width:30rem){.grid2{grid-template-columns:1fr}}
+
+    .safe{
+      display:flex;gap:.6rem;align-items:flex-start;
+      background:var(--olive-wash);border:1px solid rgba(111,143,64,.26);border-radius:11px;
+      padding:.7rem .85rem;margin-bottom:1.1rem;font-size:.88rem;color:var(--olive-deep);
+    }
+    .safe svg{flex:none;margin-top:.1rem}
+    .safe b{color:var(--olive-deep)}
+    .viewlink{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.9rem;margin-bottom:.9rem}
+
+    .submit-wrap{margin-top:clamp(1.3rem,3.5vw,1.7rem);display:flex;flex-direction:column;gap:.7rem;align-items:flex-start}
+    button.send{
+      font-family:var(--sans);font-weight:600;font-size:1.05rem;color:#fff;border:0;cursor:pointer;
+      background:var(--cyan);padding:.9rem 1.7rem;border-radius:12px;
+      box-shadow:0 10px 24px rgba(0,174,239,.28);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      display:inline-flex;align-items:center;gap:.6rem;
+    }
+    button.send:hover{transform:translateY(-2px);background:var(--cyan-deep)}
+    button.send:disabled{opacity:.6;cursor:default;transform:none}
+    button.send.loading .lbl{opacity:.5}
+    .err{display:none;color:#b4231f;background:#fdeceb;border:1px solid #f6c9c6;border-radius:10px;padding:.7rem .85rem;font-size:.9rem}
+    .err.visible{display:block}
+    .foot{margin-top:1rem;color:var(--muted);font-size:.82rem;text-align:center}
+
+    /* thank you */
+    .thanks{display:none;text-align:center;padding:clamp(2.5rem,8vw,4rem) 0}
+    .thanks.visible{display:block}
+    .thanks .ok{width:4rem;height:4rem;border-radius:50%;background:var(--olive-wash);border:1px solid rgba(111,143,64,.3);display:grid;place-items:center;margin:0 auto 1.3rem;color:var(--olive-deep)}
+    .thanks h2{font-size:1.7rem;margin-bottom:.6rem}
+    .thanks p{color:#5a5b5c;max-width:44ch;margin:0 auto}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="masthead">
+      <div class="top">
+        <div class="brand"><img src="/PMI/assets/real/logo-trim.png" alt="PetMex International"></div>
+        <div class="stamp">Quick setup<br>for <b>Lizette &amp; TJ</b></div>
+      </div>
+      <div class="lede" id="lede">
+        <span class="eyebrow">One short form</span>
+        <h1>Let&rsquo;s get PetMex moving.</h1>
+        <p>Everything from your plan, in one place. Only your name and a website pick are required &mdash; skip anything you&rsquo;d rather handle later, and we&rsquo;ll sort it together.</p>
+      </div>
+    </header>
+
+    <form id="form" novalidate>
+      <input type="hidden" name="form_stage" value="Onboarding / Next-Steps">
+
+      <!-- who -->
+      <fieldset class="fs">
+        <div class="fs-h"><h2>First &mdash; who&rsquo;s this?</h2></div>
+        <div class="field">
+          <label class="lab" for="contact_name">Your name <span class="req">*</span></label>
+          <input type="text" id="contact_name" name="contact_name" placeholder="Lizette / TJ" required>
+        </div>
+      </fieldset>
+
+      <!-- 1. website -->
+      <fieldset class="fs">
+        <div class="fs-h"><span class="n">01</span><h2>Pick your website look</h2></div>
+        <p class="fs-sub">Haven&rsquo;t seen them yet? Open the five directions, then come back and choose.</p>
+        <a class="viewlink" href="https://roblogic.org/PMI/v3/" target="_blank" rel="noopener">
+          See the five directions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="field">
+          <label class="lab">Which one feels the most like PetMex? <span class="req">*</span></label>
+          <div class="opts" id="direction-opts">
+            <label class="opt-row"><input type="radio" name="chosen_direction" value="Front Seat"><span class="ot">Front Seat <small>photo-led, warm</small></span></label>
+            <label class="opt-row"><input type="radio" name="chosen_direction" value="Plain Answers"><span class="ot">Plain Answers <small>clear, FAQ-forward</small></span></label>
+            <label class="opt-row"><input type="radio" name="chosen_direction" value="The Chart"><span class="ot">The Chart <small>transparent pricing &amp; care</small></span></label>
+            <label class="opt-row"><input type="radio" name="chosen_direction" value="The Referral"><span class="ot">The Referral <small>specialists &amp; credentials</small></span></label>
+            <label class="opt-row"><input type="radio" name="chosen_direction" value="Window Seat"><span class="ot">Window Seat <small>family-business profile</small></span></label>
+            <label class="opt-row"><input type="radio" name="chosen_direction" value="Not sure yet — let's talk"><span class="ot">Not sure yet <small>let&rsquo;s talk it through</small></span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab" for="direction_notes">Anything you&rsquo;d tweak? <span class="opt">(optional)</span></label>
+          <textarea id="direction_notes" name="direction_notes" rows="2" placeholder="Love the look but&hellip; / can we try&hellip;"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- 2. access -->
+      <fieldset class="fs">
+        <div class="fs-h"><span class="n">02</span><h2>Access to your accounts</h2></div>
+        <div class="safe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div><b>You never type a password here.</b> Just tell me what you have and how you&rsquo;d like to hand it off &mdash; we&rsquo;ll do it together, safely.</div>
+        </div>
+        <div class="field">
+          <label class="lab">Which of these can you log into? <span class="opt">(check all that apply)</span></label>
+          <div class="opts">
+            <div class="grid2">
+              <label class="opt-row"><input type="checkbox" name="accounts_have" value="Wix"><span class="ot">Wix</span></label>
+              <label class="opt-row"><input type="checkbox" name="accounts_have" value="Domain (NameCheap)"><span class="ot">Domain (NameCheap)</span></label>
+              <label class="opt-row"><input type="checkbox" name="accounts_have" value="Google Business Profile"><span class="ot">Google Business</span></label>
+              <label class="opt-row"><input type="checkbox" name="accounts_have" value="Instagram"><span class="ot">Instagram</span></label>
+              <label class="opt-row"><input type="checkbox" name="accounts_have" value="Facebook"><span class="ot">Facebook</span></label>
+              <label class="opt-row"><input type="checkbox" name="accounts_have" value="Not sure / need help finding"><span class="ot">Not sure</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab">How would you like to give me access?</label>
+          <div class="opts">
+            <label class="opt-row"><input type="radio" name="access_method" value="Add me as a user where possible"><span class="ot">Add me as a user where I can</span></label>
+            <label class="opt-row"><input type="radio" name="access_method" value="Quick screen-share together"><span class="ot">Let&rsquo;s do a quick screen-share <small>~10 minutes, we knock it out together</small></span></label>
+            <label class="opt-row"><input type="radio" name="access_method" value="Send details a safer way"><span class="ot">I&rsquo;ll send details a safer way <small>tell me your preference and I&rsquo;ll set it up</small></span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab" for="access_time">Best day/time for a quick call? <span class="opt">(optional)</span></label>
+          <input type="text" id="access_time" name="access_time" placeholder="e.g. weekday mornings, or Tue after 3">
+        </div>
+      </fieldset>
+
+      <!-- 3. content -->
+      <fieldset class="fs">
+        <div class="fs-h"><span class="n">03</span><h2>Your content</h2></div>
+        <div class="field">
+          <label class="lab" for="final_pricing">Updated / final pricing <span class="opt">(if it differs per clinic, jot what you can)</span></label>
+          <textarea id="final_pricing" name="final_pricing" rows="3" placeholder="Round trip starts at&hellip; / weekend&hellip; / packages&hellip;"></textarea>
+        </div>
+        <div class="field">
+          <label class="lab" for="onboarding_photo_link">Link to photos <span class="opt">(optional)</span></label>
+          <input type="text" id="onboarding_photo_link" name="onboarding_photo_link" placeholder="Google Photos / Drive / Dropbox link">
+          <p class="fs-sub" style="margin:.5rem 0 0">No link? Just email them, or point me at your Instagram and I&rsquo;ll pull from there.</p>
+        </div>
+      </fieldset>
+
+      <!-- 4. email -->
+      <fieldset class="fs">
+        <div class="fs-h"><span class="n">04</span><h2>Your email setup</h2></div>
+        <div class="field">
+          <label class="lab" for="email_addresses">Addresses to set up</label>
+          <input type="text" id="email_addresses" name="email_addresses" value="hello@, tj@, lizette@" placeholder="hello@, tj@, lizette@">
+          <p class="fs-sub" style="margin:.5rem 0 0">Edit or add any others you want (all on petmexinternational.com).</p>
+        </div>
+        <div class="field grid2" style="display:grid">
+          <div>
+            <label class="lab" for="tj_gmail">TJ&rsquo;s Gmail <span class="opt">(for forwarding)</span></label>
+            <input type="email" id="tj_gmail" name="tj_gmail" placeholder="tj@gmail.com">
+          </div>
+          <div>
+            <label class="lab" for="lizette_gmail">Lizette&rsquo;s Gmail <span class="opt">(for forwarding)</span></label>
+            <input type="email" id="lizette_gmail" name="lizette_gmail" placeholder="lizette@gmail.com">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 5. assistant -->
+      <fieldset class="fs">
+        <div class="fs-h"><span class="n">05</span><h2>Your inbox assistant</h2></div>
+        <p class="fs-sub">The helper that reads every email, drafts replies for the routine questions, briefs you each morning, and tracks every lead &mdash; never quoting a firm price or confirming availability.</p>
+        <div class="field">
+          <label class="lab">Want me to set it up?</label>
+          <div class="opts">
+            <label class="opt-row"><input type="radio" name="assistant_go" value="Yes, set it up"><span class="ot">Yes, set it up</span></label>
+            <label class="opt-row"><input type="radio" name="assistant_go" value="Let's talk about it first"><span class="ot">Let&rsquo;s talk about it first</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab" for="assistant_inbox">Inbox it should watch</label>
+          <input type="email" id="assistant_inbox" name="assistant_inbox" value="petmex.int@gmail.com" placeholder="petmex.int@gmail.com">
+        </div>
+        <div class="field">
+          <label class="lab">OK for me to send the read-only access request?</label>
+          <div class="opts">
+            <label class="opt-row"><input type="radio" name="assistant_access_ok" value="Yes, send it"><span class="ot">Yes, send it <small>you just click approve in Google &mdash; no password, revoke anytime</small></span></label>
+            <label class="opt-row"><input type="radio" name="assistant_access_ok" value="Not yet"><span class="ot">Not yet</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab" for="sample_inquiries">A few questions customers usually email you <span class="opt">(so it learns your voice)</span></label>
+          <textarea id="sample_inquiries" name="sample_inquiries" rows="3" placeholder="e.g. &ldquo;How does the cross-border visit work?&rdquo; &middot; &ldquo;Do you cover my area?&rdquo; &middot; &ldquo;Can my dog get a dental?&rdquo;"></textarea>
+        </div>
+        <div class="field">
+          <label class="lab" for="lead_definition">What should count as a &ldquo;lead&rdquo; worth tracking? <span class="opt">(optional)</span></label>
+          <textarea id="lead_definition" name="lead_definition" rows="2" placeholder="e.g. anyone asking about a specific procedure or a date"></textarea>
+        </div>
+        <div class="field">
+          <label class="opt-row" style="background:var(--olive-wash);border-color:rgba(111,143,64,.28)">
+            <input type="checkbox" name="assistant_guardrails_confirm" value="Confirmed" style="accent-color:var(--olive)">
+            <span class="ot" style="color:var(--olive-deep)">I confirm the limits: <b>never a firm price, never confirm availability</b> &mdash; always leave those to us.</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- anything else -->
+      <fieldset class="fs">
+        <div class="fs-h"><h2>Anything else?</h2></div>
+        <div class="field">
+          <textarea id="onboarding_notes" name="onboarding_notes" rows="3" placeholder="Questions, ideas, or anything on your mind."></textarea>
+        </div>
+      </fieldset>
+
+      <div class="submit-wrap">
+        <div class="err" id="err"></div>
+        <button type="submit" class="send" id="send"><span class="lbl">Send it to Rob</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <p class="foot">Takes about 3 minutes &middot; only your name and a pick are required</p>
+    </form>
+
+    <!-- thank you -->
+    <div class="thanks" id="thanks">
+      <div class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h2>Got it &mdash; thank you!</h2>
+      <p>That&rsquo;s everything I need to get started. I&rsquo;ll be in touch shortly to line up the next step. Talk soon. &mdash; Rob</p>
+    </div>
+
+  </div>
+
+  <script>
+    const WEBHOOK_URL = 'https://n8n.roblogic.org/webhook/petmex-intake';
+    const form = document.getElementById('form');
+    const btn = document.getElementById('send');
+    const err = document.getElementById('err');
+    const thanks = document.getElementById('thanks');
+    const lede = document.getElementById('lede');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = form.contact_name.value.trim();
+      const dir = form.querySelector('input[name="chosen_direction"]:checked');
+      if (!name) {
+        err.textContent = 'Please add your name so I know who this is from.';
+        err.classList.add('visible');
+        form.contact_name.focus();
+        return;
+      }
+      if (!dir) {
+        err.textContent = 'Please pick a website direction (or choose “Not sure yet”).';
+        err.classList.add('visible');
+        document.getElementById('direction-opts').scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+      }
+
+      // Collect: checkboxes join to a comma list, radios take the checked value, rest trimmed
+      const data = {};
+      form.querySelectorAll('input, textarea, select').forEach(f => {
+        if (!f.name) return;
+        if (f.type === 'checkbox') {
+          if (f.checked) data[f.name] = data[f.name] ? data[f.name] + ', ' + f.value : f.value;
+        } else if (f.type === 'radio') {
+          if (f.checked) data[f.name] = f.value;
+        } else if (f.value.trim()) {
+          data[f.name] = f.value.trim();
+        }
+      });
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+      err.classList.remove('visible');
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('Server error');
+        form.style.display = 'none';
+        lede.style.display = 'none';
+        thanks.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e2) {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        err.innerHTML = 'Something went wrong sending the form. Please try again, or email the info to <a href="mailto:rob@roblogic.org" style="color:#b4231f;font-weight:600">rob@roblogic.org</a>.';
+        err.classList.add('visible');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetMex International — Your Plan & Next Steps</title>
-  <meta name="description" content="What I heard from your intake, what I recommend for your website and email, and the few things I need from you to get moving.">
+  <meta name="description" content="What I heard from your intake, your new website, moving off Wix to Cloudflare, your inbox assistant, and the few things I need from you to get moving.">
   <meta name="robots" content="noindex,nofollow">
   <meta property="og:title" content="PetMex International — Your Plan & Next Steps">
-  <meta property="og:description" content="What I heard, what I recommend, and what I need from you.">
+  <meta property="og:description" content="Your new site, your email, your inbox assistant — and what I need from you.">
   <meta property="og:type" content="website">
   <link rel="icon" href="/PMI/assets/real/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,13 +50,12 @@
     img{max-width:100%;height:auto;display:block}
     a{color:var(--cyan-deep);text-underline-offset:2px}
 
-    /* faint board lines — same surface motif as the chooser */
     body::before{
       content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
       background-image:linear-gradient(var(--board-2) 1px,transparent 1px);
       background-size:100% 2.4rem;
-      -webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
-              mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+      -webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+              mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
     }
 
     .wrap{
@@ -93,19 +92,29 @@
       margin-bottom:.85rem;
     }
     h1{font-size:clamp(2rem,1.5rem + 2.4vw,3rem);max-width:16ch}
-    .lede p{margin-top:1.1rem;font-size:clamp(1.05rem,1rem + .35vw,1.18rem);color:#5a5b5c;max-width:54ch}
+    .lede p{margin-top:1.1rem;font-size:clamp(1.05rem,1rem + .35vw,1.18rem);color:#5a5b5c;max-width:56ch}
     .sig-inline{color:var(--charcoal);font-weight:600}
+
+    /* at-a-glance scope strip */
+    .glance{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;
+      margin-top:clamp(1.6rem,4vw,2.2rem);
+    }
+    @media(max-width:34rem){.glance{grid-template-columns:1fr}}
+    .glance .g{
+      background:var(--card);border:1px solid var(--line);border-radius:13px;
+      padding:.9rem 1rem;box-shadow:var(--shadow-card);
+    }
+    .glance .g .t{font-family:var(--serif);font-weight:600;color:var(--charcoal);font-size:1.02rem;margin-bottom:.15rem}
+    .glance .g .d{font-size:.83rem;color:var(--muted)}
+    .glance .g .num{font-family:var(--serif);font-style:italic;color:var(--cyan);font-weight:600;font-size:.82rem}
 
     /* ---------- generic section ---------- */
     section{padding-top:clamp(2.6rem,6vw,3.8rem)}
-    .kicker{
-      display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.3rem;
-    }
-    .kicker .n{
-      font-family:var(--serif);font-style:italic;font-weight:600;
-      font-size:1.05rem;color:var(--cyan);flex:none;
-    }
+    .kicker{display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.3rem}
+    .kicker .n{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.05rem;color:var(--cyan);flex:none}
     .kicker h2{font-size:clamp(1.45rem,1.2rem + 1.1vw,1.95rem)}
+    .lead-p{color:#5a5b5c;margin-bottom:1.2rem;max-width:58ch}
 
     .card{
       background:var(--card);border:1px solid var(--line);border-radius:16px;
@@ -119,53 +128,37 @@
     .recap h3{font-size:1.02rem;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
     .recap h3 svg{flex:none}
     .recap p, .recap li{font-size:.96rem;color:#5a5b5c}
-    .recap ul{list-style:none;display:flex;flex-direction:column;gap:.3rem}
     .recap .big{font-family:var(--serif);font-weight:600;color:var(--charcoal);font-size:1.05rem}
     .span2{grid-column:1 / -1}
 
     .pricerow{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0 .2rem}
-    .chip{
-      font-size:.82rem;font-weight:600;color:var(--charcoal);
-      background:var(--cyan-wash);border:1px solid rgba(0,174,239,.22);
-      padding:.28rem .6rem;border-radius:999px;white-space:nowrap;
-    }
+    .chip{font-size:.82rem;font-weight:600;color:var(--charcoal);background:var(--cyan-wash);border:1px solid rgba(0,174,239,.22);padding:.28rem .6rem;border-radius:999px;white-space:nowrap}
     .chip b{color:var(--cyan-deep)}
     .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}
-    .pill{
-      font-size:.8rem;font-weight:500;color:#5a5b5c;
-      background:var(--board);border:1px solid var(--line);
-      padding:.26rem .58rem;border-radius:8px;
-    }
+    .pill{font-size:.8rem;font-weight:500;color:#5a5b5c;background:var(--board);border:1px solid var(--line);padding:.26rem .58rem;border-radius:8px}
     .note-sm{font-size:.86rem;color:var(--muted);margin-top:.9rem;font-style:italic}
 
     /* ---------- CTA / chooser ---------- */
-    .cta-card{
-      background:
-        radial-gradient(120% 140% at 100% 0%, var(--cyan-wash), transparent 60%),
-        var(--card);
-      border:1px solid rgba(0,174,239,.28);
-    }
-    .cta-card p{color:#5a5b5c;max-width:50ch}
+    .cta-card{background:radial-gradient(120% 140% at 100% 0%, var(--cyan-wash), transparent 60%),var(--card);border:1px solid rgba(0,174,239,.28)}
+    .cta-card p{color:#5a5b5c;max-width:52ch}
     .btn{
-      display:inline-flex;align-items:center;gap:.6rem;
-      margin-top:1.3rem;
-      font-family:var(--sans);font-weight:600;font-size:1.02rem;
-      color:#fff;text-decoration:none;
-      background:var(--cyan);
-      padding:.85rem 1.4rem;border-radius:12px;
+      display:inline-flex;align-items:center;gap:.6rem;margin-top:1.3rem;
+      font-family:var(--sans);font-weight:600;font-size:1.02rem;color:#fff;text-decoration:none;
+      background:var(--cyan);padding:.85rem 1.4rem;border-radius:12px;
       box-shadow:0 10px 24px rgba(0,174,239,.28);
       transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
     }
     .btn:hover{transform:translateY(-2px);background:var(--cyan-deep);box-shadow:0 14px 30px rgba(0,174,239,.34)}
+    .btn.olive{background:var(--olive);box-shadow:0 10px 24px rgba(111,143,64,.26)}
+    .btn.olive:hover{background:var(--olive-deep);box-shadow:0 14px 30px rgba(111,143,64,.32)}
     .btn svg{transition:transform .15s ease}
     .btn:hover svg{transform:translateX(3px)}
     .btn-sub{margin-top:.7rem;font-size:.85rem;color:var(--muted)}
 
     /* ---------- recommendation / savings ---------- */
     .compare{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:.8rem;margin:1.3rem 0 .4rem}
-    @media(max-width:34rem){.compare{grid-template-columns:1fr;}.compare .arrow{transform:rotate(90deg);justify-self:center}}
+    @media(max-width:34rem){.compare{grid-template-columns:1fr}.compare .arrow{transform:rotate(90deg);justify-self:center}}
     .col{border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;background:var(--board)}
-    .col.now{}
     .col.next{background:var(--olive-wash);border-color:rgba(111,143,64,.3)}
     .col .label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
     .col.next .label{color:var(--olive-deep)}
@@ -174,38 +167,45 @@
     .col ul{list-style:none;margin-top:.6rem;display:flex;flex-direction:column;gap:.28rem}
     .col li{font-size:.86rem;color:#5a5b5c}
     .arrow{display:flex;align-items:center;justify-content:center;color:var(--cyan)}
-    .save-line{
-      font-family:var(--serif);font-size:1.08rem;color:var(--olive-deep);font-weight:600;
-      background:var(--olive-wash);border-left:0;border:1px solid rgba(111,143,64,.26);
-      border-radius:12px;padding:.85rem 1.1rem;margin-top:.6rem;
-    }
+    .save-line{font-family:var(--serif);font-size:1.08rem;color:var(--olive-deep);font-weight:600;background:var(--olive-wash);border:1px solid rgba(111,143,64,.26);border-radius:12px;padding:.85rem 1.1rem;margin-top:.6rem}
     .inbox-list{list-style:none;margin-top:.8rem;display:flex;flex-direction:column;gap:.45rem}
     .inbox-list li{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;color:#5a5b5c}
-    .inbox-list code{
-      font-family:ui-monospace,Menlo,monospace;font-size:.85em;
-      background:var(--board);border:1px solid var(--line);border-radius:6px;
-      padding:.05rem .35rem;color:var(--charcoal);white-space:nowrap;
-    }
+    code.em{font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem;color:var(--charcoal);white-space:nowrap}
     .tick{flex:none;margin-top:.28rem}
 
-    /* ---------- next steps checklist ---------- */
-    .steps{display:flex;flex-direction:column;gap:.9rem}
-    .step{display:flex;gap:.95rem;align-items:flex-start}
-    .step .badge{
-      flex:none;width:1.9rem;height:1.9rem;border-radius:50%;
-      display:grid;place-items:center;
-      font-family:var(--serif);font-weight:700;font-size:.95rem;color:#fff;
-      background:var(--cyan);box-shadow:0 4px 10px rgba(0,174,239,.25);
+    /* ---------- assistant feature list ---------- */
+    .feats{display:flex;flex-direction:column;gap:1.1rem;margin-top:.4rem}
+    .feat{display:flex;gap:.95rem;align-items:flex-start}
+    .feat .ic{
+      flex:none;width:2.4rem;height:2.4rem;border-radius:12px;display:grid;place-items:center;
+      background:var(--cyan-wash);border:1px solid rgba(0,174,239,.25);color:var(--cyan-deep);
     }
+    .feat .ic.olive{background:var(--olive-wash);border-color:rgba(111,143,64,.28);color:var(--olive-deep)}
+    .feat h3{font-size:1.06rem;margin-bottom:.2rem}
+    .feat p{font-size:.95rem;color:#5a5b5c}
+    .guard{font-size:.9rem;color:var(--olive-deep);background:var(--olive-wash);border:1px solid rgba(111,143,64,.24);border-radius:12px;padding:.8rem 1rem;margin-top:1.3rem}
+    .guard b{color:var(--olive-deep)}
+
+    /* ---------- next steps checklist ---------- */
+    .steps{display:flex;flex-direction:column;gap:1rem}
+    .step{display:flex;gap:.95rem;align-items:flex-start}
+    .step .badge{flex:none;width:1.9rem;height:1.9rem;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:.95rem;color:#fff;background:var(--cyan);box-shadow:0 4px 10px rgba(0,174,239,.25)}
     .step .badge.olive{background:var(--olive);box-shadow:0 4px 10px rgba(111,143,64,.25)}
     .step h3{font-size:1.04rem;margin-bottom:.18rem}
     .step p{font-size:.93rem;color:#5a5b5c}
     .step .sub{font-size:.86rem;color:var(--muted);margin-top:.25rem}
-    .reassure{
-      font-size:.88rem;color:var(--olive-deep);background:var(--olive-wash);
-      border:1px solid rgba(111,143,64,.24);border-radius:10px;
-      padding:.6rem .8rem;margin-top:.5rem;
+    .reassure{font-size:.88rem;color:var(--olive-deep);background:var(--olive-wash);border:1px solid rgba(111,143,64,.24);border-radius:10px;padding:.6rem .8rem;margin-top:.55rem}
+
+    /* form CTA banner */
+    .formcta{
+      margin-top:1.4rem;background:linear-gradient(135deg,var(--cyan),#0a86bd);
+      border-radius:16px;padding:clamp(1.3rem,3.5vw,1.8rem);color:#fff;
+      box-shadow:0 16px 38px rgba(10,134,189,.28);
     }
+    .formcta h3{color:#fff;font-size:1.2rem;margin-bottom:.3rem}
+    .formcta p{color:rgba(255,255,255,.92);font-size:.95rem;max-width:46ch}
+    .formcta .btn{background:#fff;color:var(--cyan-deep);margin-top:1.1rem;box-shadow:0 8px 20px rgba(0,0,0,.14)}
+    .formcta .btn:hover{background:#fff;transform:translateY(-2px)}
 
     /* ---------- roadmap ---------- */
     .road{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:.4rem}
@@ -217,12 +217,8 @@
     .road .r p{font-size:.82rem;color:var(--muted)}
 
     /* ---------- sign off ---------- */
-    .signoff{
-      margin-top:clamp(2.6rem,6vw,3.6rem);
-      padding:clamp(1.4rem,4vw,2rem) 0 clamp(2.6rem,6vw,3.6rem);
-      border-top:1px solid var(--line);
-    }
-    .signoff p{color:#5a5b5c;max-width:52ch}
+    .signoff{margin-top:clamp(2.6rem,6vw,3.6rem);padding:clamp(1.4rem,4vw,2rem) 0 clamp(2.6rem,6vw,3.6rem);border-top:1px solid var(--line)}
+    .signoff p{color:#5a5b5c;max-width:54ch}
     .signoff .name{font-family:var(--serif);font-size:1.4rem;color:var(--charcoal);font-weight:600;margin-top:.6rem}
     .signoff .name + p{font-size:.88rem;color:var(--muted);margin-top:.15rem}
   </style>
@@ -243,8 +239,14 @@
 
       <div class="lede">
         <span class="eyebrow">Your project, mapped out</span>
-        <h1>Here&rsquo;s the plan for PetMex.</h1>
-        <p>Thank you both for filling out the intake form &mdash; it gave me everything I needed. Below is what I took from your answers, what I recommend for your website and email, and the handful of things I need from you to get moving. <span class="sig-inline">If anything below looks off, just tell me &mdash; this is your call sheet, not mine.</span></p>
+        <h1>Here&rsquo;s the whole plan for PetMex.</h1>
+        <p>Thank you both for the intake &mdash; your answers gave me everything I needed. This lays out all of it in one place: what I heard, your <b>new website</b>, moving your <b>email and domain off Wix</b>, and the <b>inbox assistant</b> you asked about &mdash; plus the handful of things I need from you to start. <span class="sig-inline">If anything looks off, just tell me &mdash; this is your call sheet, not mine.</span></p>
+
+        <div class="glance">
+          <div class="g"><div class="num">01</div><div class="t">A new website</div><div class="d">Five looks, built on your real brand &mdash; you pick.</div></div>
+          <div class="g"><div class="num">02</div><div class="t">Email off Wix</div><div class="d">Same domain, faster site, free pro email.</div></div>
+          <div class="g"><div class="num">03</div><div class="t">Inbox assistant</div><div class="d">Drafts replies, briefs you daily, tracks every lead.</div></div>
+        </div>
       </div>
     </header>
 
@@ -305,6 +307,14 @@
 
           <div class="span2">
             <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="2.2"><path d="M4 4h16v12H5.2L4 17.5z"/></svg>
+              On your inbox &mdash; what you asked for
+            </h3>
+            <p>You want help answering the routine questions quickly and drafting replies so you&rsquo;re not starting from scratch &mdash; and above all, <b>keeping track of every lead and follow-up</b>. With one firm rule: it can answer common questions, but it should <b>never quote a firm price or confirm availability</b>. That&rsquo;s section 04 below, built exactly that way.</p>
+          </div>
+
+          <div class="span2">
+            <h3>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
               Your notes on the site &mdash; all applied
             </h3>
@@ -321,9 +331,9 @@
       </div>
     </section>
 
-    <!-- 2. PICK A LOOK -->
+    <!-- 2. WEBSITE -->
     <section id="look">
-      <div class="kicker"><span class="n">02</span><h2>Your website &mdash; pick a look</h2></div>
+      <div class="kicker"><span class="n">02</span><h2>Your new website &mdash; pick a look</h2></div>
       <div class="card cta-card">
         <p>I built you <b>five complete directions</b> &mdash; same real content, your real brand and photos on every one, five different feels. Open each, see which one feels the most like PetMex, and tell me your favorite. (They all work great on a phone.)</p>
         <a class="btn" href="https://roblogic.org/PMI/v3/" target="_blank" rel="noopener">
@@ -334,51 +344,90 @@
       </div>
     </section>
 
-    <!-- 3. RECOMMENDATION -->
-    <section id="recommend">
-      <div class="kicker"><span class="n">03</span><h2>My recommendation: leave Wix, move to Cloudflare</h2></div>
+    <!-- 3. EMAIL + DOMAIN -->
+    <section id="email">
+      <div class="kicker"><span class="n">03</span><h2>Your email &amp; domain &mdash; off Wix, onto Cloudflare</h2></div>
       <div class="card">
-        <p>Right now your site runs on Wix, which means you&rsquo;re paying a monthly fee to rent a template &mdash; and it&rsquo;s slow. I want to move you onto <b>Cloudflare</b> instead. Your domain (<b>petmexinternational.com</b>) stays exactly the same and stays yours &mdash; only what&rsquo;s behind it changes: a custom-built, fast site, and professional email, for a fraction of the cost.</p>
+        <p class="lead-p">Right now your site runs on Wix, which means a monthly fee to rent a template &mdash; and it&rsquo;s slow. I want to move you onto <b>Cloudflare</b> instead. Your domain (<b>petmexinternational.com</b>) stays exactly the same and stays yours &mdash; only what&rsquo;s behind it changes: a custom-built, fast site, and real professional email, for a fraction of the cost. This is also the foundation your inbox assistant runs on.</p>
 
         <div class="compare">
           <div class="col now">
             <div class="label">Today &mdash; Wix</div>
             <div class="cost">~$200+<span>/year</span></div>
-            <ul>
-              <li>Rented template</li>
-              <li>Slow to load</li>
-              <li>Paid email add-on</li>
-            </ul>
+            <ul><li>Rented template</li><li>Slow to load</li><li>Paid email add-on</li></ul>
           </div>
-          <div class="arrow">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </div>
+          <div class="arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
           <div class="col next">
             <div class="label">Going forward &mdash; Cloudflare</div>
             <div class="cost">~$10<span>/year</span></div>
-            <ul>
-              <li>Custom-built site</li>
-              <li>Fast everywhere</li>
-              <li>Free professional email</li>
-            </ul>
+            <ul><li>Custom-built site</li><li>Fast everywhere</li><li>Free professional email</li></ul>
           </div>
         </div>
 
         <div class="save-line">That frees up roughly <b>$200 a year</b> &mdash; money that can go toward the work that actually brings in customers instead of renting a template. (I&rsquo;ll confirm your exact Wix figure once I can see the account.)</div>
 
         <h3 style="margin-top:1.5rem;font-size:1.05rem">Your email, the simple way</h3>
-        <p style="margin-top:.5rem">Same setup I use for my own businesses. You&rsquo;d get real addresses on your domain that land right in the Gmail you already use &mdash; nothing new to learn, no extra inbox to check:</p>
+        <p style="margin-top:.5rem">You&rsquo;d get real addresses on your domain that land right in the Gmail you already use &mdash; nothing new to learn, no extra inbox to check:</p>
         <ul class="inbox-list">
-          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span><code>hello@petmexinternational.com</code> &rarr; lands in <b>both</b> your inboxes</span></li>
-          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span><code>tj@&hellip;</code> and <code>lizette@&hellip;</code> &rarr; each of you, individually</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span><code class="em">hello@petmexinternational.com</code> &rarr; lands in <b>both</b> your inboxes</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span><code class="em">tj@&hellip;</code> and <code class="em">lizette@&hellip;</code> &rarr; each of you, individually</span></li>
           <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span>You send &amp; receive from these right inside your normal Gmail &mdash; and it&rsquo;s free</span></li>
         </ul>
       </div>
     </section>
 
-    <!-- 4. WHAT I NEED -->
+    <!-- 4. INBOX ASSISTANT -->
+    <section id="assistant">
+      <div class="kicker"><span class="n">04</span><h2>Your inbox assistant</h2></div>
+      <div class="card">
+        <p class="lead-p">The other thing you asked about &mdash; help with the inbox. Here&rsquo;s what I&rsquo;ll set it up to do. Think of it as a tireless front-desk helper: it reads every email the moment it lands and gets it ready for you, so the routine stuff is handled fast and nothing ever slips through the cracks.</p>
+
+        <div class="feats">
+
+          <div class="feat">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div>
+              <h3>Reads every email &mdash; day or night</h3>
+              <p>The moment something comes in &mdash; 2pm or 2am, weekday or weekend &mdash; it&rsquo;s read and sorted. That after-hours inquiry that used to sit unanswered until morning gets caught right away.</p>
+            </div>
+          </div>
+
+          <div class="feat">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H5.2L4 17.5z"/><path d="M8 9h8M8 12h5"/></svg></div>
+            <div>
+              <h3>Writes the reply for you</h3>
+              <p>For the common questions &mdash; what you do, how the cross-border visit works, your service area, what to expect &mdash; it drafts a warm, on-brand answer and pings you. You read it and hit send. It handles the routine, you stay in every real conversation.</p>
+            </div>
+          </div>
+
+          <div class="feat">
+            <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
+            <div>
+              <h3>A short brief every morning</h3>
+              <p>One quick, plain-English rundown in your inbox: what came in, who&rsquo;s waiting on a reply, and which conversations have gone quiet and need a nudge. No digging through threads to see where things stand.</p>
+            </div>
+          </div>
+
+          <div class="feat">
+            <div class="ic olive"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div>
+              <h3>Nothing slips &mdash; every lead tracked</h3>
+              <p>The part you said matters most: every inquiry is followed from first hello to booked trip, in a running leads-and-follow-ups list &mdash; so the people who need a follow-up actually get one.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="guard">
+          <b>Built to your one rule.</b> It answers common questions, but it <b>never quotes a firm price and never confirms availability</b> &mdash; those always come from you. It drafts and organizes; you approve and send. And it plugs straight into the Gmail you already use, so there&rsquo;s nothing new to learn.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WHAT I NEED -->
     <section id="need">
-      <div class="kicker"><span class="n">04</span><h2>What I need from you</h2></div>
+      <div class="kicker"><span class="n">05</span><h2>What I need from you</h2></div>
+      <p class="lead-p">Five quick things and we&rsquo;re moving. The easiest way to send me all of it is the short form at the bottom &mdash; or just reply, whatever&rsquo;s simpler for you.</p>
       <div class="card">
         <div class="steps">
 
@@ -394,7 +443,7 @@
             <div class="badge">2</div>
             <div>
               <h3>Let me in where the work happens</h3>
-              <p>So I can move everything over and get you found online. Easiest path: add me as a user where you can, and we&rsquo;ll do the rest together on a quick 10-minute screen-share.</p>
+              <p>So I can move everything over and get you found online. Easiest path: add me as a user where you can, and we&rsquo;ll do the rest together on a quick 10-minute screen-share &mdash; <b>you never have to send me a password.</b></p>
               <div class="pills" style="margin-top:.6rem">
                 <span class="pill">Wix login</span>
                 <span class="pill">Domain (NameCheap)</span>
@@ -408,45 +457,54 @@
             <div class="badge">3</div>
             <div>
               <h3>Send me your content</h3>
-              <p>Your updated per-clinic pricing, and the rest of the photos you mentioned (phone shots and Instagram are perfect).</p>
+              <p>Your updated per-clinic pricing, and the rest of the photos you mentioned (a shared link, an email, or just point me at your Instagram &mdash; all fine).</p>
             </div>
           </div>
 
           <div class="step">
             <div class="badge">4</div>
             <div>
-              <h3>Confirm your email addresses</h3>
-              <p>I&rsquo;m planning <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">hello@</code>, <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">tj@</code>, and <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">lizette@</code> &mdash; just say the word, or add any others you want.</p>
+              <h3>Confirm your email setup</h3>
+              <p>I&rsquo;m planning <code class="em">hello@</code>, <code class="em">tj@</code>, and <code class="em">lizette@</code> &mdash; add any others you want. I&rsquo;ll also need the personal Gmail for each of you, so your mail forwards to the right place.</p>
             </div>
           </div>
 
           <div class="step">
             <div class="badge olive">5</div>
             <div>
-              <h3>Approve access for your inbox assistant</h3>
-              <p>The other thing you asked about &mdash; a smart helper for your email. To build it, I need <b>read-only</b> access to <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">petmex.int@gmail.com</code>. I&rsquo;ll send a Google approval you just click &mdash; <b>no password sharing, and you can switch it off anytime.</b></p>
-              <div class="reassure">Built exactly to your rules: it answers common questions, but <b>never quotes a firm price and never confirms availability</b>. For every real inquiry it pings you with a ready-to-send draft, and keeps a running list of leads and follow-ups &mdash; so nothing slips, especially after hours. You stay in charge of every real conversation.</div>
+              <h3>Green-light the inbox assistant</h3>
+              <p>Three small things to turn it on: (1) approve <b>read-only</b> access to <code class="em">petmex.int@gmail.com</code> &mdash; I&rsquo;ll send a Google request you just click, no password, switch it off anytime; (2) paste a few of the questions customers usually email you, so it learns your voice; (3) confirm its limits below.</p>
+              <div class="reassure">Confirmed by you: it answers common questions but <b>never quotes a firm price and never confirms availability</b>, drafts replies for your approval, and tracks every lead &mdash; you stay in charge of every real conversation.</div>
             </div>
           </div>
 
         </div>
+
+        <div class="formcta">
+          <h3>Answer it all in one place</h3>
+          <p>I turned everything above into one short form &mdash; pick your look, drop your details, and you&rsquo;re done.</p>
+          <a class="btn" href="https://roblogic.org/PMI/onboarding/" target="_blank" rel="noopener">
+            Open the quick form
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- 5. ROADMAP -->
+    <!-- 6. ROADMAP -->
     <section id="next">
-      <div class="kicker"><span class="n">05</span><h2>How it&rsquo;ll go</h2></div>
+      <div class="kicker"><span class="n">06</span><h2>How it&rsquo;ll go</h2></div>
       <div class="road">
         <div class="r"><div class="num">First</div><h3>You choose</h3><p>Pick a look, get me access.</p></div>
-        <div class="r"><div class="num">Then</div><h3>I build &amp; move</h3><p>Your new site live on Cloudflare; Wix retired.</p></div>
+        <div class="r"><div class="num">Then</div><h3>Site goes live</h3><p>New site on Cloudflare; Wix retired.</p></div>
         <div class="r"><div class="num">Next</div><h3>Email on</h3><p>Your domain addresses, free, in Gmail.</p></div>
-        <div class="r"><div class="num">After</div><h3>Inbox assistant</h3><p>The email helper, once mail&rsquo;s moved.</p></div>
+        <div class="r"><div class="num">Then</div><h3>Assistant on</h3><p>It starts reading, drafting &amp; briefing.</p></div>
       </div>
     </section>
 
     <!-- sign off -->
     <footer class="signoff">
-      <p>That&rsquo;s the whole picture. None of it is urgent &mdash; but the sooner you pick a look and I get access, the sooner the Wix bill stops and the new site goes live. Reply with your favorite direction and any questions, and I&rsquo;ll take it from there.</p>
+      <p>That&rsquo;s the whole picture &mdash; your site, your email, and your inbox assistant. None of it is urgent, but the sooner you pick a look and I get access, the sooner the Wix bill stops and the new PetMex goes live. Fill out the <a href="https://roblogic.org/PMI/onboarding/" target="_blank" rel="noopener">quick form</a> or just reply with your favorite direction and any questions, and I&rsquo;ll take it from there.</p>
       <div class="name">&mdash; Rob</div>
       <p>Building the new PetMex International</p>
     </footer>
