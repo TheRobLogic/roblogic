@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetMex International — Cross-Border Pet Transport | San Diego to Tijuana Vet Care</title>
+  <meta name="description" content="Door-to-door pet transport from San Diego to trusted Tijuana veterinarians. Save big on vet care. Family-owned, fully bilingual, 5.0 stars. Starting at $200 round-trip.">
+  <meta property="og:title" content="PetMex International — Your Pet's Passport to Affordable Care">
+  <meta property="og:description" content="Door-to-door pet transport from San Diego to Tijuana's best vets. Family-owned. Bilingual. 5.0 stars. Round-trip starting at $200.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0E6E6B">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* PALETTE — white + teal + green ONLY (logo colors) */
+      --teal: #0E6E6B;          /* deep teal */
+      --teal-deep: #0A5350;     /* darker teal */
+      --teal-bright: #16A39B;   /* brighter teal accent */
+      --green: #3F9D3A;         /* bold leaf green */
+      --green-deep: #2E7A2A;    /* darker green */
+      --green-bright: #5BBE54;  /* brighter green accent */
+      --mint: #E8F6F1;          /* pale tinted "white" */
+      --mint-2: #DDF1E9;        /* slightly deeper tint */
+      --white: #FFFFFF;
+      --ink: #0B2A28;           /* near-black with teal undertone for text */
+      --ink-soft: #3C5A56;
+      --line: rgba(11,42,40,0.10);
+      --shadow-sm: 0 2px 14px rgba(11,42,40,0.07);
+      --shadow-md: 0 14px 44px rgba(11,42,40,0.14);
+      --shadow-lg: 0 30px 80px rgba(11,42,40,0.20);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --radius-lg: 30px;
+      --maxw: 1200px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+    body {
+      font-family: 'Familjen Grotesk', system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .display {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+    }
+
+    a { color: inherit; }
+
+    /* ── UTILITY ── */
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+    .section { padding: clamp(72px, 9vw, 130px) 0; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Familjen Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 26px;
+      height: 2px;
+      background: currentColor;
+      display: inline-block;
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 30px;
+      border-radius: 60px;
+      font-family: 'Familjen Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.02rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+      line-height: 1;
+    }
+    .btn .arr { transition: transform .25s ease; }
+    .btn:hover .arr { transform: translateX(4px); }
+    .btn-green {
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(63,157,58,0.34);
+    }
+    .btn-green:hover { background: var(--green-deep); transform: translateY(-3px); box-shadow: 0 14px 34px rgba(63,157,58,0.42); }
+    .btn-teal {
+      background: var(--teal);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(14,110,107,0.34);
+    }
+    .btn-teal:hover { background: var(--teal-deep); transform: translateY(-3px); box-shadow: 0 14px 34px rgba(14,110,107,0.42); }
+    .btn-ghost-light {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn-ghost-light:hover { background: rgba(255,255,255,0.12); border-color: var(--white); transform: translateY(-3px); }
+    .btn-ghost-dark {
+      background: transparent;
+      color: var(--teal);
+      border-color: var(--teal);
+    }
+    .btn-ghost-dark:hover { background: var(--teal); color: var(--white); transform: translateY(-3px); }
+
+    /* ── PREVIEW BADGE ── */
+    .preview-badge {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 1200;
+      background: var(--ink);
+      color: var(--white);
+      padding: 9px 16px;
+      border-radius: 60px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      box-shadow: var(--shadow-md);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .25s ease;
+    }
+    .preview-badge:hover { transform: translateY(-2px); }
+    .preview-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-bright); box-shadow: 0 0 0 0 rgba(91,190,84,0.7); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(91,190,84,0.6);} 70%{box-shadow:0 0 0 8px rgba(91,190,84,0);} 100%{box-shadow:0 0 0 0 rgba(91,190,84,0);} }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: padding .35s ease, background .35s ease, box-shadow .35s ease;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      box-shadow: 0 1px 0 var(--line), 0 8px 30px rgba(11,42,40,0.06);
+      padding: 11px 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px);
+    }
+    .nav-logo {
+      display: inline-flex; align-items: center; gap: 11px;
+      text-decoration: none;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .logo-mark {
+      width: 38px; height: 38px; border-radius: 11px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--green) 100%);
+      display: grid; place-items: center;
+      box-shadow: 0 6px 16px rgba(14,110,107,0.3);
+      flex-shrink: 0;
+    }
+    .logo-mark svg { width: 22px; height: 22px; }
+    .nav-logo .name-mex { color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 34px); list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.97rem;
+      position: relative; padding: 4px 0; transition: color .2s;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: ''; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+      background: var(--green); transition: width .25s ease;
+    }
+    .nav-links a:not(.nav-cta):hover { color: var(--teal); }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--teal); color: var(--white) !important;
+      padding: 11px 24px; border-radius: 60px; font-weight: 600 !important;
+      transition: background .25s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--teal-deep); transform: translateY(-2px); }
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-toggle span { display: block; width: 26px; height: 2.5px; background: var(--ink); margin: 6px 0; transition: all .3s; border-radius: 2px; }
+    .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px,-7px); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      background: var(--teal);
+      color: var(--white);
+      overflow: hidden;
+      padding: clamp(130px, 17vw, 200px) 0 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(120% 90% at 88% -10%, rgba(91,190,84,0.42) 0%, transparent 55%),
+        radial-gradient(90% 80% at -10% 110%, rgba(22,163,155,0.5) 0%, transparent 55%),
+        linear-gradient(160deg, var(--teal-deep) 0%, var(--teal) 55%, #0C6360 100%);
+    }
+    /* faint paw texture in hero */
+    .hero-paws { position: absolute; inset: 0; pointer-events: none; opacity: 0.07; }
+    .hero-paws svg { position: absolute; fill: #fff; }
+    .hero-paws .p1 { width: 120px; top: 14%; left: 6%; transform: rotate(-18deg); }
+    .hero-paws .p2 { width: 78px; top: 30%; left: 13%; transform: rotate(12deg); }
+    .hero-paws .p3 { width: 150px; bottom: 22%; right: 7%; transform: rotate(20deg); }
+    .hero-paws .p4 { width: 90px; bottom: 40%; right: 15%; transform: rotate(-10deg); }
+    .hero-inner { position: relative; z-index: 2; }
+    .hero-top {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(30px, 5vw, 70px);
+      align-items: end; padding-bottom: clamp(48px, 6vw, 80px);
+    }
+    .hero-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px; border-radius: 60px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .pill .flag { font-size: 1rem; }
+    .pill.green { background: rgba(91,190,84,0.22); border-color: rgba(91,190,84,0.4); }
+    .hero h1 {
+      font-size: clamp(3rem, 8.2vw, 7rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.035em;
+      margin-bottom: 0;
+    }
+    .hero h1 .accent { color: var(--green-bright); }
+    .hero h1 .line { display: block; overflow: hidden; }
+    .hero h1 .line > span {
+      display: block;
+      transform: translateY(110%);
+      animation: riseIn .9s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .hero h1 .line:nth-child(1) > span { animation-delay: .15s; }
+    .hero h1 .line:nth-child(2) > span { animation-delay: .28s; }
+    .hero h1 .line:nth-child(3) > span { animation-delay: .41s; }
+    @keyframes riseIn { to { transform: translateY(0); } }
+    .hero-right { align-self: end; }
+    .hero-sub {
+      font-size: clamp(1.05rem, 1.5vw, 1.32rem);
+      color: rgba(255,255,255,0.84);
+      line-height: 1.55;
+      max-width: 440px;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp .8s ease .55s forwards;
+    }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s ease .68s forwards; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* hero photo band — oversized statement strip */
+    .hero-band {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 14px;
+      padding-bottom: 0;
+      margin-top: 10px;
+    }
+    .hero-tile {
+      position: relative; overflow: hidden;
+      border-radius: 22px 22px 0 0;
+      min-height: clamp(180px, 26vw, 320px);
+      display: grid; place-items: center;
+      opacity: 0; animation: fadeUp .8s ease forwards;
+    }
+    .hero-tile:nth-child(1) { animation-delay: .8s; }
+    .hero-tile:nth-child(2) { animation-delay: .92s; }
+    .hero-tile:nth-child(3) { animation-delay: 1.04s; }
+    .hero-tile .ph-icon { width: 64px; height: 64px; fill: rgba(255,255,255,0.9); animation: floaty 4s ease-in-out infinite; }
+    @keyframes floaty { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);} }
+    .hero-tile .ph-tag {
+      position: absolute; bottom: 14px; left: 14px;
+      background: rgba(11,42,40,0.55); color: #fff; backdrop-filter: blur(6px);
+      font-size: 0.72rem; font-weight: 600; padding: 5px 12px; border-radius: 60px;
+    }
+    .t-a { background: linear-gradient(140deg, var(--green) 0%, var(--green-deep) 100%); }
+    .t-b { background: linear-gradient(140deg, var(--teal-bright) 0%, var(--teal-deep) 100%); }
+    .t-c { background: linear-gradient(140deg, var(--green-bright) 0%, var(--green) 100%); }
+
+    /* ── MARQUEE TRUST BAR ── */
+    .marquee {
+      background: var(--green);
+      color: var(--white);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 3px solid var(--green-deep);
+    }
+    .marquee-track {
+      display: inline-flex; align-items: center; gap: 0;
+      animation: scrollX 32s linear infinite;
+      will-change: transform;
+    }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+      font-size: clamp(1rem, 1.5vw, 1.35rem); letter-spacing: -0.01em;
+      padding: 0 30px;
+    }
+    .marquee-item .star { color: #fff; opacity: 0.7; }
+    .marquee-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.55); }
+    @keyframes scrollX { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(34px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── SECTION HEADERS ── */
+    .head { max-width: 760px; margin-bottom: clamp(40px, 5vw, 64px); }
+    .head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .head h2 { font-size: clamp(2.1rem, 5vw, 3.9rem); margin: 14px 0 0; }
+    .head p { font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: var(--ink-soft); margin-top: 18px; }
+
+    /* ── PROBLEM / COST (teal block) ── */
+    .problem { background: var(--teal); color: var(--white); position: relative; overflow: hidden; }
+    .problem .bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(80% 70% at 100% 0%, rgba(91,190,84,0.28) 0%, transparent 55%);
+    }
+    .problem .container { position: relative; z-index: 1; }
+    .problem .eyebrow { color: var(--green-bright); }
+    .problem .head h2 { color: var(--white); }
+    .problem .head p { color: rgba(255,255,255,0.78); }
+    .cost-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .cost-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: transform .3s ease, background .3s ease, border-color .3s ease;
+    }
+    .cost-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.28); }
+    .cost-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.65); font-weight: 600; margin-bottom: 16px; }
+    .cost-sd { font-size: 1rem; color: rgba(255,255,255,0.55); text-decoration: line-through; }
+    .cost-tj {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 3.4vw, 2.7rem); color: var(--green-bright); line-height: 1; margin: 4px 0 2px;
+    }
+    .cost-from { font-size: 0.78rem; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+    .cost-foot { margin-top: 26px; font-size: 0.9rem; color: rgba(255,255,255,0.6); max-width: 760px; }
+
+    /* ── HOW IT WORKS (white) ── */
+    .how { background: var(--white); }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.4vw, 30px); counter-reset: step; }
+    .step {
+      position: relative; padding: 34px 26px 30px;
+      border: 2px solid var(--line); border-radius: var(--radius);
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      background: var(--white);
+    }
+    .step:hover { transform: translateY(-8px); border-color: transparent; box-shadow: var(--shadow-md); }
+    .step-num {
+      counter-increment: step;
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: 3.4rem; line-height: 1; color: var(--mint-2);
+      -webkit-text-stroke: 1.5px var(--teal); color: transparent;
+      margin-bottom: 14px;
+      transition: color .3s ease;
+    }
+    .step:nth-child(even) .step-num { -webkit-text-stroke-color: var(--green); }
+    .step:hover .step-num { color: var(--mint); }
+    .step-icn { width: 40px; height: 40px; margin-bottom: 14px; }
+    .step:nth-child(odd) .step-icn { fill: var(--teal); }
+    .step:nth-child(even) .step-icn { fill: var(--green); }
+    .step h3 { font-size: 1.28rem; margin-bottom: 9px; }
+    .step p { font-size: 0.96rem; color: var(--ink-soft); }
+
+    /* ── GALLERY (centerpiece) ── */
+    .gallery { background: var(--mint); position: relative; overflow: hidden; }
+    .gallery .head { display: flex; align-items: flex-end; justify-content: space-between; max-width: none; gap: 30px; flex-wrap: wrap; }
+    .gallery .eyebrow { color: var(--green-deep); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: clamp(150px, 17vw, 230px);
+      gap: 16px;
+    }
+    .g-tile {
+      position: relative; overflow: hidden; border-radius: var(--radius);
+      display: grid; place-items: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+    .g-tile::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(11,42,40,0.34) 0%, transparent 45%);
+      opacity: 0; transition: opacity .35s ease;
+    }
+    .g-tile:hover::after { opacity: 1; }
+    .g-tile .g-icon { width: clamp(44px, 5vw, 70px); height: clamp(44px,5vw,70px); fill: rgba(255,255,255,0.92); transition: transform .45s cubic-bezier(.16,1,.3,1); z-index: 1; }
+    .g-tile:hover .g-icon { transform: scale(1.12) rotate(-4deg); }
+    .g-tile .g-cap {
+      position: absolute; bottom: 14px; left: 16px; z-index: 2;
+      color: #fff; font-weight: 600; font-size: 0.86rem;
+      opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease;
+    }
+    .g-tile:hover .g-cap { opacity: 1; transform: translateY(0); }
+    .g-tile .g-slot {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(255,255,255,0.85); color: var(--teal); font-weight: 700;
+      padding: 4px 9px; border-radius: 60px;
+    }
+    /* spans + alternating brand fills */
+    .g-tile.wide { grid-column: span 2; }
+    .g-tile.tall { grid-row: span 2; }
+    .gf-1 { background: linear-gradient(145deg, var(--teal) 0%, var(--teal-deep) 100%); }
+    .gf-2 { background: linear-gradient(145deg, var(--green) 0%, var(--green-deep) 100%); }
+    .gf-3 { background: linear-gradient(145deg, var(--teal-bright) 0%, var(--teal) 100%); }
+    .gf-4 { background: linear-gradient(145deg, var(--green-bright) 0%, var(--green) 100%); }
+    .gf-5 { background: linear-gradient(160deg, var(--teal-deep) 0%, var(--green-deep) 100%); }
+    .gallery-note {
+      margin-top: 26px; font-size: 0.92rem; color: var(--ink-soft);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .gallery-note a { color: var(--green-deep); font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(63,157,58,0.3); }
+    .gallery-note a:hover { border-color: var(--green); }
+
+    /* ── TEAM (green block) ── */
+    .team { background: var(--green); color: var(--white); position: relative; overflow: hidden; }
+    .team .bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 80% at 0% 100%, rgba(14,110,107,0.4) 0%, transparent 55%); }
+    .team .container { position: relative; z-index: 1; }
+    .team .eyebrow { color: rgba(255,255,255,0.9); }
+    .team .head h2 { color: var(--white); }
+    .team .head p { color: rgba(255,255,255,0.82); }
+    .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.6vw, 32px); }
+    .tm {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 3vw, 42px);
+      display: flex; gap: 24px; align-items: flex-start;
+      transition: transform .3s ease, background .3s ease;
+    }
+    .tm:hover { transform: translateY(-6px); background: rgba(255,255,255,0.12); }
+    .tm-avatar {
+      width: 92px; height: 92px; border-radius: 22px; flex-shrink: 0;
+      display: grid; place-items: center;
+      background: rgba(255,255,255,0.16);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .tm-avatar svg { width: 48px; height: 48px; fill: #fff; }
+    .tm-name { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.6rem; }
+    .tm-role { font-size: 0.92rem; font-weight: 600; color: rgba(255,255,255,0.85); margin: 2px 0 12px; letter-spacing: 0.02em; }
+    .tm-desc { font-size: 0.97rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
+    .team-quote {
+      margin-top: clamp(34px, 4vw, 52px);
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+      font-size: clamp(1.5rem, 3.4vw, 2.5rem); line-height: 1.18; letter-spacing: -0.02em;
+      max-width: 900px; color: var(--white);
+    }
+    .team-quote .accent { color: var(--teal-deep); -webkit-text-stroke: 1px rgba(255,255,255,0.5); }
+
+    /* ── PRICING (white) ── */
+    .pricing { background: var(--white); }
+    .pricing .eyebrow { color: var(--teal); }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px); }
+    .price-card {
+      position: relative;
+      border: 2px solid var(--line); border-radius: var(--radius-lg);
+      padding: clamp(28px, 3vw, 38px) clamp(24px, 2.6vw, 32px);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      background: var(--white);
+      display: flex; flex-direction: column;
+    }
+    .price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .price-card.feature {
+      background: var(--teal); color: var(--white); border-color: var(--teal);
+      box-shadow: var(--shadow-md);
+    }
+    .price-card.feature:hover { box-shadow: var(--shadow-lg); }
+    .price-tier { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: var(--teal); margin-bottom: 18px; }
+    .price-card.feature .price-tier { color: var(--green-bright); }
+    .price-from { font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 2px; }
+    .price-card.feature .price-from { color: rgba(255,255,255,0.75); }
+    .price-amt { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 4.4vw, 3.6rem); line-height: 1; letter-spacing: -0.03em; }
+    .price-card:not(.feature) .price-amt { color: var(--ink); }
+    .price-desc { font-size: 0.97rem; color: var(--ink-soft); margin-top: 16px; line-height: 1.55; }
+    .price-card.feature .price-desc { color: rgba(255,255,255,0.85); }
+    .price-card .ribbon {
+      position: absolute; top: 18px; right: 18px;
+      background: var(--green); color: #fff; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 60px;
+    }
+    /* add-ons row */
+    .price-addons {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;
+    }
+    .addon {
+      border: 2px dashed var(--line); border-radius: var(--radius);
+      padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      background: var(--mint);
+    }
+    .addon-label { font-weight: 600; }
+    .addon-label small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.84rem; margin-top: 2px; }
+    .addon-amt { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--green-deep); white-space: nowrap; }
+
+    /* example package + savings */
+    .price-example {
+      margin-top: 24px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+      color: #fff; border-radius: var(--radius-lg);
+      padding: clamp(28px, 3.4vw, 40px);
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; align-items: center;
+    }
+    .price-example .eyebrow { color: rgba(255,255,255,0.85); }
+    .price-example h3 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin: 12px 0 10px; color: #fff; }
+    .price-example p { color: rgba(255,255,255,0.88); font-size: 0.97rem; max-width: 460px; }
+    .price-example .big {
+      text-align: right;
+    }
+    .price-example .big .lbl { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+    .price-example .big .num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(3rem, 6vw, 4.6rem); line-height: 1; letter-spacing: -0.03em; }
+
+    .price-disclaimer {
+      margin-top: 24px; font-size: 0.88rem; color: var(--ink-soft);
+      background: var(--mint); border-left: 4px solid var(--teal);
+      padding: 18px 22px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; line-height: 1.6;
+    }
+    .price-disclaimer strong { color: var(--ink); }
+
+    /* SD vs PetMex comparison (vet procedures, approximate) */
+    .compare { margin-top: clamp(40px, 5vw, 60px); }
+    .compare-head { text-align: center; margin-bottom: 28px; }
+    .compare-head h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+    .compare-head p { color: var(--ink-soft); margin-top: 8px; font-size: 0.98rem; }
+    .compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .cmp {
+      border: 2px solid var(--line); border-radius: var(--radius); padding: 22px 24px;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .cmp:hover { transform: translateY(-5px); box-shadow: var(--shadow-sm); }
+    .cmp .proc { font-weight: 600; font-size: 0.96rem; margin-bottom: 12px; }
+    .cmp .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .cmp .sd { color: var(--ink-soft); text-decoration: line-through; font-size: 0.95rem; }
+    .cmp .tj { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--green-deep); }
+    .cmp .save { display: inline-block; margin-top: 10px; background: var(--mint-2); color: var(--green-deep); font-weight: 700; font-size: 0.78rem; padding: 4px 12px; border-radius: 60px; }
+
+    /* ── PARTNER CLINICS (mint) ── */
+    .clinics { background: var(--mint); }
+    .clinics .eyebrow { color: var(--teal); }
+    .clinics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .clinic {
+      background: var(--white); border-radius: var(--radius); padding: 28px 30px;
+      box-shadow: var(--shadow-sm); border-left: 5px solid var(--green);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .clinic:nth-child(even) { border-left-color: var(--teal); }
+    .clinic:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .clinic h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .clinic .spec { font-size: 0.92rem; color: var(--ink-soft); }
+    .clinic .chip {
+      display: inline-block; margin-top: 12px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-deep);
+      background: var(--mint-2); padding: 4px 11px; border-radius: 60px;
+    }
+
+    /* ── REVIEWS (white) ── */
+    .reviews { background: var(--white); }
+    .reviews .eyebrow { color: var(--green-deep); }
+    .reviews-top { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: clamp(36px, 4vw, 54px); }
+    .reviews-score {
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .reviews-score .big { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(3.5rem, 7vw, 5.5rem); line-height: 1; color: var(--teal); letter-spacing: -0.03em; }
+    .reviews-score .meta .stars { color: var(--green); font-size: 1.3rem; letter-spacing: 3px; }
+    .reviews-score .meta .cnt { color: var(--ink-soft); font-size: 0.95rem; margin-top: 2px; }
+    .reviews-grid {
+      columns: 3; column-gap: 18px;
+    }
+    .review {
+      break-inside: avoid; margin-bottom: 18px;
+      background: var(--white); border: 2px solid var(--line); border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .review:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .review .stars { color: var(--green); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 12px; }
+    .review .quote { font-size: 1rem; line-height: 1.62; color: var(--ink); }
+    .review .by { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .review .ava {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+      display: grid; place-items: center; font-weight: 700; color: #fff;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.05rem;
+    }
+    .review:nth-child(3n+1) .ava { background: var(--teal); }
+    .review:nth-child(3n+2) .ava { background: var(--green); }
+    .review:nth-child(3n+3) .ava { background: var(--teal-bright); }
+    .review .who { font-weight: 700; font-size: 0.92rem; }
+    .review .pet { font-size: 0.82rem; color: var(--ink-soft); }
+    .reviews-more { text-align: center; margin-top: clamp(30px, 4vw, 44px); }
+    .reviews-more a { color: var(--green-deep); font-weight: 600; text-decoration: none; border-bottom: 2px solid rgba(63,157,58,0.3); padding-bottom: 2px; }
+    .reviews-more a:hover { border-color: var(--green); }
+
+    /* ── MEDIA (teal block) ── */
+    .media { background: var(--teal-deep); color: var(--white); text-align: center; position: relative; overflow: hidden; }
+    .media .bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 80% at 50% 0%, rgba(91,190,84,0.22) 0%, transparent 60%); }
+    .media .container { position: relative; z-index: 1; max-width: 880px; }
+    .media .eyebrow { color: var(--green-bright); justify-content: center; }
+    .media-quote { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 4.6vw, 3.4rem); line-height: 1.12; letter-spacing: -0.02em; margin: 18px 0 14px; }
+    .media-source { font-size: 0.95rem; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+    .media-stat { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(3rem, 8vw, 5.5rem); color: var(--green-bright); line-height: 1; margin-top: 34px; letter-spacing: -0.03em; }
+    .media-stat-label { font-size: 0.95rem; color: rgba(255,255,255,0.7); margin-top: 8px; }
+
+    /* ── BLOG / JOURNAL (white) ── */
+    .journal { background: var(--white); }
+    .journal .eyebrow { color: var(--green-deep); }
+    .journal .head { display: flex; align-items: flex-end; justify-content: space-between; max-width: none; gap: 30px; flex-wrap: wrap; }
+    .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 28px); }
+    .post {
+      border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      display: flex; flex-direction: column; background: var(--white);
+    }
+    .post:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: transparent; }
+    .post-img { height: 180px; display: grid; place-items: center; position: relative; overflow: hidden; }
+    .post-img svg { width: 56px; height: 56px; fill: rgba(255,255,255,0.92); transition: transform .45s cubic-bezier(.16,1,.3,1); }
+    .post:hover .post-img svg { transform: scale(1.12) rotate(-4deg); }
+    .post:nth-child(1) .post-img { background: linear-gradient(140deg, var(--teal) 0%, var(--teal-deep) 100%); }
+    .post:nth-child(2) .post-img { background: linear-gradient(140deg, var(--green) 0%, var(--green-deep) 100%); }
+    .post:nth-child(3) .post-img { background: linear-gradient(140deg, var(--teal-bright) 0%, var(--green) 100%); }
+    .post-body { padding: 26px 26px 28px; flex: 1; display: flex; flex-direction: column; }
+    .post-meta { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-deep); margin-bottom: 12px; }
+    .post h3 { font-size: 1.28rem; line-height: 1.18; margin-bottom: 10px; }
+    .post p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.55; flex: 1; }
+    .post .read { margin-top: 18px; font-weight: 600; color: var(--teal); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+    .post .read .arr { transition: transform .25s ease; }
+    .post:hover .read .arr { transform: translateX(4px); }
+
+    /* ── FAQ (mint) ── */
+    .faq { background: var(--mint); }
+    .faq .eyebrow { color: var(--teal); }
+    .faq-wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(30px, 5vw, 64px); align-items: start; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; transition: box-shadow .3s ease; }
+    .faq-item.open { box-shadow: var(--shadow-md); }
+    .faq-q {
+      width: 100%; text-align: left; padding: 22px 26px; background: none; border: none; cursor: pointer;
+      font-family: 'Familjen Grotesk', sans-serif; font-size: 1.06rem; font-weight: 600; color: var(--ink);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: color .2s;
+    }
+    .faq-q:hover { color: var(--teal); }
+    .faq-icn { flex-shrink: 0; width: 22px; height: 22px; position: relative; }
+    .faq-icn::before, .faq-icn::after { content: ''; position: absolute; background: var(--green); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+    .faq-icn::before { top: 50%; left: 0; right: 0; height: 2.5px; transform: translateY(-50%); }
+    .faq-icn::after { left: 50%; top: 0; bottom: 0; width: 2.5px; transform: translateX(-50%); }
+    .faq-item.open .faq-icn::after { transform: translateX(-50%) scaleY(0); opacity: 0; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-item.open .faq-a { max-height: 360px; }
+    .faq-a-in { padding: 0 26px 24px; font-size: 0.97rem; color: var(--ink-soft); line-height: 1.65; }
+    .faq-aside h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
+    .faq-aside p { color: var(--ink-soft); margin: 16px 0 24px; font-size: 1.05rem; }
+    .faq-aside .contact-line { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-weight: 600; }
+    .faq-aside .contact-line svg { width: 20px; height: 20px; fill: var(--green); flex-shrink: 0; }
+
+    /* ── CONTACT / CTA (green block) ── */
+    .contact { background: var(--green); color: var(--white); position: relative; overflow: hidden; }
+    .contact .bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 80% at 100% 100%, rgba(14,110,107,0.5) 0%, transparent 55%), radial-gradient(60% 70% at 0% 0%, rgba(91,190,84,0.3) 0%, transparent 55%); }
+    .contact .container { position: relative; z-index: 1; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 70px); align-items: center; }
+    .contact .eyebrow { color: rgba(255,255,255,0.9); }
+    .contact h2 { font-size: clamp(2.4rem, 5.6vw, 4.4rem); color: #fff; margin: 14px 0 18px; }
+    .contact .lede { font-size: 1.12rem; color: rgba(255,255,255,0.88); max-width: 460px; margin-bottom: 30px; }
+    .contact-phone {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: clamp(2.2rem, 5vw, 3.4rem); color: #fff; text-decoration: none; display: inline-block;
+      letter-spacing: -0.02em; margin-bottom: 24px; transition: color .2s, transform .2s;
+    }
+    .contact-phone:hover { color: var(--teal-deep); transform: translateX(4px); }
+    .contact-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
+    .contact-meta { display: flex; flex-direction: column; gap: 12px; }
+    .contact-meta .line { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.9); font-size: 0.97rem; }
+    .contact-meta .line svg { width: 20px; height: 20px; fill: #fff; opacity: 0.85; flex-shrink: 0; }
+    .contact-meta a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.35); }
+    .contact-meta a:hover { border-color: #fff; }
+    .socials { display: flex; gap: 12px; margin-top: 6px; }
+    .socials a {
+      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25);
+      transition: transform .25s ease, background .25s ease;
+    }
+    .socials a:hover { background: rgba(255,255,255,0.26); transform: translateY(-3px); }
+    .socials a svg { width: 20px; height: 20px; fill: #fff; }
+
+    /* quick-quote form card */
+    .quote-card {
+      background: var(--white); color: var(--ink);
+      border-radius: var(--radius-lg); padding: clamp(28px, 3.4vw, 42px);
+      box-shadow: var(--shadow-lg);
+    }
+    .quote-card h3 { font-size: 1.7rem; margin-bottom: 6px; }
+    .quote-card .sub { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 22px; }
+    .qrow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .quote-card label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+    .quote-card input, .quote-card textarea, .quote-card select {
+      width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
+      border: 2px solid var(--line); background: var(--mint);
+      font-family: 'Familjen Grotesk', sans-serif; font-size: 0.97rem; color: var(--ink);
+      margin-bottom: 14px; transition: border-color .2s, background .2s;
+    }
+    .quote-card input::placeholder, .quote-card textarea::placeholder { color: rgba(60,90,86,0.6); }
+    .quote-card input:focus, .quote-card textarea:focus, .quote-card select:focus { outline: none; border-color: var(--green); background: var(--white); }
+    .quote-card textarea { min-height: 96px; resize: vertical; }
+    .quote-card .btn { width: 100%; justify-content: center; }
+    .quote-card .fineprint { font-size: 0.78rem; color: var(--ink-soft); margin-top: 12px; text-align: center; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); color: #fff; padding: clamp(54px, 6vw, 80px) 0 32px; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; margin-bottom: 44px; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 11px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; margin-bottom: 14px; }
+    .footer-tag { color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 320px; line-height: 1.6; }
+    .footer-col h4 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green-bright); margin-bottom: 16px; }
+    .footer-col a, .footer-col span { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.95rem; margin-bottom: 10px; transition: color .2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12); padding-top: 26px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 0.86rem; color: rgba(255,255,255,0.45); }
+    .footer-credit { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .footer-credit a { color: rgba(255,255,255,0.6); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .footer-credit a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .reviews-grid { columns: 2; }
+      .price-grid { grid-template-columns: 1fr; }
+      .price-card.feature { order: -1; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; align-items: flex-start;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--white); padding: 24px clamp(20px,4vw,40px) 30px; gap: 20px;
+        box-shadow: var(--shadow-md);
+      }
+      .mobile-toggle { display: block; }
+      .hero-top { grid-template-columns: 1fr; align-items: start; gap: 30px; }
+      .hero-right { align-self: start; }
+      .hero-band { grid-template-columns: 1fr 1fr; }
+      .hero-band .hero-tile:nth-child(3) { display: none; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .g-tile.wide { grid-column: span 2; }
+      .g-tile.tall { grid-row: span 1; }
+      .team-grid { grid-template-columns: 1fr; }
+      .posts { grid-template-columns: 1fr; }
+      .faq-wrap { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .price-example { grid-template-columns: 1fr; }
+      .price-example .big { text-align: left; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .reviews-grid { columns: 1; }
+      .steps { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 180px; }
+      .g-tile.wide { grid-column: span 1; }
+      .tm { flex-direction: column; }
+      .price-addons { grid-template-columns: 1fr; }
+      .qrow { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .reviews-top { flex-direction: column; align-items: flex-start; }
+      .preview-badge { bottom: 12px; right: 12px; padding: 8px 13px; font-size: 0.72rem; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero h1 .line > span { transform: none !important; }
+      .hero-sub, .hero-cta, .hero-tile { opacity: 1 !important; }
+      .marquee-track { animation: none !important; }
+      .preview-badge .dot { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PREVIEW BADGE -->
+  <a href="/PMI/directions/" class="preview-badge"><span class="dot"></span>Preview · Option C</a>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path fill="#fff" d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+        </span>
+        <span>Pet<span class="name-mex">Mex</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#clinics">Clinics</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="tel:+16198673300" class="nav-cta">Call Now</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-paws" aria-hidden="true">
+      <svg class="p1" viewBox="0 0 24 24"><path d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+      <svg class="p2" viewBox="0 0 24 24"><path d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+      <svg class="p3" viewBox="0 0 24 24"><path d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+      <svg class="p4" viewBox="0 0 24 24"><path d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+    </div>
+
+    <div class="container hero-inner">
+      <div class="hero-top">
+        <div class="hero-left">
+          <div class="hero-badges">
+            <span class="pill green"><span class="flag">&#127474;&#127475;</span> Hablamos Espa&ntilde;ol</span>
+            <span class="pill">&#11088; 5.0 on Google</span>
+            <span class="pill">&#128106; Family-Owned</span>
+          </div>
+          <h1>
+            <span class="line"><span>San Diego pets.</span></span>
+            <span class="line"><span><span class="accent">Tijuana</span> vets.</span></span>
+            <span class="line"><span>Door to door.</span></span>
+          </h1>
+        </div>
+        <div class="hero-right">
+          <p class="hero-sub">Big-city vet care without the big-city bill. We pick up your pet in San Diego, take them to veterinarians we personally trust across the border, and bring them home the same day &mdash; calm, cared for, and on camera the whole way.</p>
+          <div class="hero-cta">
+            <a href="tel:+16198673300" class="btn btn-green">Call Lizette<span class="arr">&rarr;</span></a>
+            <a href="#how" class="btn btn-ghost-light">See how it works</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-band">
+        <div class="hero-tile t-a wide">
+          <svg class="ph-icon" viewBox="0 0 24 24"><path d="M4.5 9.5C4.5 7 6.5 5 9 5h6c2.5 0 4.5 2 4.5 4.5 0 1.4-.6 2.6-1.6 3.5l1 5.2c.2.9-.5 1.8-1.5 1.8H6.6c-1 0-1.7-.9-1.5-1.8l1-5.2C5.1 12.1 4.5 10.9 4.5 9.5zm4 .5a1.2 1.2 0 100 2.4A1.2 1.2 0 008.5 10zm7 0a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zM12 13c-1.1 0-2 .7-2 1.6 0 .5.4.9.9.9h2.2c.5 0 .9-.4.9-.9 0-.9-.9-1.6-2-1.6z"/></svg>
+          <span class="ph-tag">Your photos here &mdash; @petmexint</span>
+        </div>
+        <div class="hero-tile t-b">
+          <svg class="ph-icon" viewBox="0 0 24 24"><path d="M5 16l2-7c.2-.9 1-1.5 1.9-1.5h6.2c.9 0 1.7.6 1.9 1.5l2 7c.2.9-.5 1.7-1.4 1.7H6.4C5.5 17.7 4.8 16.9 5 16zm4-3.5a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z"/><circle cx="12" cy="6" r="2.2"/></svg>
+          <span class="ph-tag">Happy clients</span>
+        </div>
+        <div class="hero-tile t-c">
+          <svg class="ph-icon" viewBox="0 0 24 24"><path d="M3 13l1.5-5C4.7 7.2 5.4 6.7 6.2 6.7h11.6c.8 0 1.5.5 1.7 1.3L21 13v5.5c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V18H6v.5c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V13zm3 .5a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm12 0a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>
+          <span class="ph-tag">Door-to-door rides</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE TRUST BAR -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack">
+      <span class="marquee-item">5.0 on Google <span class="star">&#9733;</span></span><span class="marquee-dot"></span>
+      <span class="marquee-item">Family-owned &amp; operated</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Fully bilingual</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Door-to-door service</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Real-time updates</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Trusted Tijuana clinics</span><span class="marquee-dot"></span>
+      <span class="marquee-item">Never kenneled</span><span class="marquee-dot"></span>
+    </div>
+  </div>
+
+  <!-- PROBLEM / COST -->
+  <section class="problem section" id="why">
+    <div class="bg"></div>
+    <div class="container">
+      <div class="head reveal">
+        <span class="eyebrow">The border-care advantage</span>
+        <h2>Vet bills shouldn&rsquo;t make you choose between your pet and your paycheck.</h2>
+        <p>San Diego veterinary costs have climbed fast. Just across the border, qualified veterinarians deliver the same procedures for a fraction of the price &mdash; and we handle every mile of the trip.</p>
+      </div>
+      <div class="cost-grid">
+        <div class="cost-card reveal">
+          <div class="cost-label">Dental Cleaning</div>
+          <div class="cost-sd">approx. $800+ in San Diego</div>
+          <div class="cost-tj">~$150</div>
+          <div class="cost-from">starting at &middot; across the border</div>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-label">Spay / Neuter</div>
+          <div class="cost-sd">approx. $500+ in San Diego</div>
+          <div class="cost-tj">~$80</div>
+          <div class="cost-from">starting at &middot; across the border</div>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-label">Bloodwork + Labs</div>
+          <div class="cost-sd">approx. $300+ in San Diego</div>
+          <div class="cost-tj">~$60</div>
+          <div class="cost-from">starting at &middot; across the border</div>
+        </div>
+        <div class="cost-card reveal">
+          <div class="cost-label">Tumor Removal</div>
+          <div class="cost-sd">approx. $2,000+ in San Diego</div>
+          <div class="cost-tj">~$400</div>
+          <div class="cost-from">starting at &middot; across the border</div>
+        </div>
+      </div>
+      <p class="cost-foot reveal">Vet figures above are approximate, starting-at estimates and vary by clinic and case. Same care. Same love. A whole lot less money &mdash; plus door-to-door transport handled for you.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how section" id="how">
+    <div class="container">
+      <div class="head center reveal">
+        <span class="eyebrow" style="color: var(--teal); justify-content: center;">Simple, start to finish</span>
+        <h2>Four steps. Zero stress.</h2>
+        <p>From your front door to the vet and back &mdash; you never have to leave the house.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <svg class="step-icn" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1.1l-2.1 2.1z"/></svg>
+          <h3>You call, we listen</h3>
+          <p>Tell us about your pet and what they need. We match you with the right veterinarian and confirm a quote before anyone travels.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <svg class="step-icn" viewBox="0 0 24 24"><path d="M3 13l1.5-5C4.7 7.2 5.4 6.7 6.2 6.7h11.6c.8 0 1.5.5 1.7 1.3L21 13v5.5c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V18H6v.5c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V13zm3 .5a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm12 0a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>
+          <h3>We pick up</h3>
+          <p>We come to your San Diego home. Your pet rides safe and comfortable in our clean vehicle &mdash; never kenneled, never crowded.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <svg class="step-icn" viewBox="0 0 24 24"><path d="M11 2c-.6 0-1 .4-1 1v1.1A6 6 0 005 10v3l-1.6 2.4c-.5.7 0 1.6.8 1.6H9a3 3 0 006 0h4.8c.8 0 1.3-.9.8-1.6L19 13v-3a6 6 0 00-5-5.9V3c0-.6-.4-1-1-1h-2z"/></svg>
+          <h3>Your pet gets care</h3>
+          <p>Qualified, experienced veterinarians we personally trust handle everything. We stay the whole time and translate every finding to you.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <svg class="step-icn" viewBox="0 0 24 24"><path d="M12 3l9 8h-2.5v8c0 .6-.4 1-1 1H15v-5h-6v5H6.5c-.6 0-1-.4-1-1v-8H3l9-8z"/></svg>
+          <h3>We bring them home</h3>
+          <p>Same day, door to door. Your pet comes back healthy and happy &mdash; and you never missed a beat of your day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY (centerpiece) -->
+  <section class="gallery section" id="gallery">
+    <div class="container">
+      <div class="head reveal">
+        <div>
+          <span class="eyebrow">Tails from the road</span>
+          <h2>The PetMex gallery</h2>
+        </div>
+        <p style="max-width: 360px; margin: 0;">Real pets, real trips. These slots fill straight from our Instagram &mdash; come see the wagging in real time.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-tile gf-1 tall reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+          <span class="g-cap">Pickup day in San Diego</span>
+        </div>
+        <div class="g-tile gf-2 reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M5 16l2-7c.2-.9 1-1.5 1.9-1.5h6.2c.9 0 1.7.6 1.9 1.5l2 7c.2.9-.5 1.7-1.4 1.7H6.4C5.5 17.7 4.8 16.9 5 16zm4-3.5a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z"/><circle cx="12" cy="6" r="2.2"/></svg>
+          <span class="g-cap">Happy after dental work</span>
+        </div>
+        <div class="g-tile gf-3 wide reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M3 13l1.5-5C4.7 7.2 5.4 6.7 6.2 6.7h11.6c.8 0 1.5.5 1.7 1.3L21 13v5.5c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V18H6v.5c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V13zm3 .5a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm12 0a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg>
+          <span class="g-cap">Comfortable ride across the border</span>
+        </div>
+        <div class="g-tile gf-4 reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M4.5 9.5C4.5 7 6.5 5 9 5h6c2.5 0 4.5 2 4.5 4.5 0 1.4-.6 2.6-1.6 3.5l1 5.2c.2.9-.5 1.8-1.5 1.8H6.6c-1 0-1.7-.9-1.5-1.8l1-5.2C5.1 12.1 4.5 10.9 4.5 9.5zm4 .5a1.2 1.2 0 100 2.4A1.2 1.2 0 008.5 10zm7 0a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zM12 13c-1.1 0-2 .7-2 1.6 0 .5.4.9.9.9h2.2c.5 0 .9-.4.9-.9 0-.9-.9-1.6-2-1.6z"/></svg>
+          <span class="g-cap">Cat carrier, calm and cozy</span>
+        </div>
+        <div class="g-tile gf-5 reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M11 2c-.6 0-1 .4-1 1v1.1A6 6 0 005 10v3l-1.6 2.4c-.5.7 0 1.6.8 1.6H9a3 3 0 006 0h4.8c.8 0 1.3-.9.8-1.6L19 13v-3a6 6 0 00-5-5.9V3c0-.6-.4-1-1-1h-2z"/></svg>
+          <span class="g-cap">At the clinic with our team</span>
+        </div>
+        <div class="g-tile gf-2 reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M12 21s-6.7-4.3-9.2-8.4C1.3 10 2.1 6.6 5 5.6c2-.7 4 .1 5 1.8 1-1.7 3-2.5 5-1.8 2.9 1 3.7 4.4 2.2 7C18.7 16.7 12 21 12 21z"/></svg>
+          <span class="g-cap">Home safe &mdash; the best part</span>
+        </div>
+        <div class="g-tile gf-1 reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg>
+          <span class="g-cap">Another happy patient</span>
+        </div>
+        <div class="g-tile gf-3 wide reveal">
+          <span class="g-slot">Photo slot</span>
+          <svg class="g-icon" viewBox="0 0 24 24"><path d="M5 16l2-7c.2-.9 1-1.5 1.9-1.5h6.2c.9 0 1.7.6 1.9 1.5l2 7c.2.9-.5 1.7-1.4 1.7H6.4C5.5 17.7 4.8 16.9 5 16zm4-3.5a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2z"/><circle cx="12" cy="6" r="2.2"/></svg>
+          <span class="g-cap">Smiles after a checkup</span>
+        </div>
+      </div>
+      <div class="gallery-note reveal">
+        &#128247; Placeholder slots &mdash; swap in real shots from <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener">@petmexint on Instagram</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team section" id="team">
+    <div class="bg"></div>
+    <div class="container">
+      <div class="head reveal">
+        <span class="eyebrow">The family behind PetMex</span>
+        <h2>We&rsquo;re not a call center.</h2>
+        <p>When you call PetMex, you get a real person who knows your pet by name &mdash; not a queue.</p>
+      </div>
+      <div class="team-grid">
+        <div class="tm reveal">
+          <div class="tm-avatar"><svg viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/></svg></div>
+          <div>
+            <div class="tm-name">Lizette</div>
+            <div class="tm-role">Founder &amp; Client Care</div>
+            <div class="tm-desc">Your first point of contact. Lizette coordinates everything &mdash; matching your pet with the right veterinarian and translating every finding in real time. Bilingual, compassionate, and fiercely dedicated to your pet&rsquo;s wellbeing.</div>
+          </div>
+        </div>
+        <div class="tm reveal">
+          <div class="tm-avatar"><svg viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/></svg></div>
+          <div>
+            <div class="tm-name">TJ</div>
+            <div class="tm-role">Transport &amp; Pet Care</div>
+            <div class="tm-desc">The one behind the wheel. TJ personally picks up your pet, drives them across the border, and stays with them at the clinic. Your pet is never alone, never kenneled, never just a number.</div>
+          </div>
+        </div>
+      </div>
+      <p class="team-quote reveal">&ldquo;We treat your pet like our own &mdash; <span class="accent">because we&rsquo;d want someone to do the same for ours.</span>&rdquo;</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="head center reveal">
+        <span class="eyebrow" style="justify-content: center;">Transport pricing</span>
+        <h2>Honest, &ldquo;starting at&rdquo; pricing.</h2>
+        <p>Transport is a flat, transparent fee based on your appointment. Vet treatment is billed separately by the clinic &mdash; and every quote is confirmed before your pet travels.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card reveal">
+          <div class="price-tier">Quick visit</div>
+          <div class="price-from">Round-trip, starting at</div>
+          <div class="price-amt">$200</div>
+          <div class="price-desc">Consultations and follow-ups under one hour at the clinic. Door to door, same day.</div>
+        </div>
+        <div class="price-card feature reveal">
+          <span class="ribbon">Most common</span>
+          <div class="price-tier">Studies &amp; sedation</div>
+          <div class="price-from">Round-trip, starting at</div>
+          <div class="price-amt">$250</div>
+          <div class="price-desc">Visits over one hour, multiple studies (X-ray, bloodwork, ultrasound), or light sedation.</div>
+        </div>
+        <div class="price-card reveal">
+          <div class="price-tier">Surgery &amp; overnight</div>
+          <div class="price-from">Round-trip, starting at</div>
+          <div class="price-amt">$300</div>
+          <div class="price-desc">Bigger surgeries and overnight stays &mdash; a flat rate, regardless of the number of days.</div>
+        </div>
+      </div>
+
+      <div class="price-addons reveal">
+        <div class="addon">
+          <div class="addon-label">Weekend service<small>By availability</small></div>
+          <div class="addon-amt">+$150</div>
+        </div>
+        <div class="addon">
+          <div class="addon-label">Pickups outside immediate San Diego<small>May have an added charge &mdash; just ask</small></div>
+          <div class="addon-amt">+ varies</div>
+        </div>
+      </div>
+
+      <div class="price-example reveal">
+        <div>
+          <span class="eyebrow">Example package</span>
+          <h3>Dog dental, under 20&nbsp;lbs</h3>
+          <p>Includes dental cleaning, bloodwork, dental X-rays, and round-trip transport &mdash; bundled into one all-in starting price.</p>
+        </div>
+        <div class="big">
+          <div class="lbl">All-in, starting at</div>
+          <div class="num">$565</div>
+        </div>
+      </div>
+
+      <p class="price-disclaimer reveal"><strong>How quotes work:</strong> Round-trip from the immediate San Diego area; pickups outside that area may have an added charge. Vet treatment costs vary by clinic and case &mdash; every quote is confirmed before your pet travels. Prices in USD.</p>
+
+      <!-- SD vs PetMex vet comparison -->
+      <div class="compare reveal">
+        <div class="compare-head">
+          <h3>San Diego vs. across the border</h3>
+          <p>Approximate, &ldquo;starting at&rdquo; vet figures for common procedures &mdash; many clients save 50&ndash;90% on treatment.</p>
+        </div>
+        <div class="compare-grid">
+          <div class="cmp">
+            <div class="proc">Dental Cleaning</div>
+            <div class="row"><span class="sd">~$800+</span><span class="tj">~$150</span></div>
+            <span class="save">Save up to ~80%</span>
+          </div>
+          <div class="cmp">
+            <div class="proc">Spay / Neuter</div>
+            <div class="row"><span class="sd">~$500+</span><span class="tj">~$80</span></div>
+            <span class="save">Save up to ~85%</span>
+          </div>
+          <div class="cmp">
+            <div class="proc">Bloodwork &amp; Labs</div>
+            <div class="row"><span class="sd">~$300+</span><span class="tj">~$60</span></div>
+            <span class="save">Save up to ~80%</span>
+          </div>
+          <div class="cmp">
+            <div class="proc">Tumor Removal</div>
+            <div class="row"><span class="sd">~$2,000+</span><span class="tj">~$400</span></div>
+            <span class="save">Save up to ~80%</span>
+          </div>
+          <div class="cmp">
+            <div class="proc">Vaccinations (full set)</div>
+            <div class="row"><span class="sd">~$250+</span><span class="tj">~$50</span></div>
+            <span class="save">Save up to ~80%</span>
+          </div>
+          <div class="cmp">
+            <div class="proc">X-Rays + Consultation</div>
+            <div class="row"><span class="sd">~$400+</span><span class="tj">~$80</span></div>
+            <span class="save">Save up to ~80%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER CLINICS -->
+  <section class="clinics section" id="clinics">
+    <div class="container">
+      <div class="head reveal">
+        <span class="eyebrow">Trusted partners</span>
+        <h2>Clinics &amp; specialists we&rsquo;d trust with our own pets.</h2>
+        <p>We don&rsquo;t send your pet just anywhere. We work only with qualified, experienced veterinarians and specialists we personally trust &mdash; matched to exactly what your pet needs.</p>
+      </div>
+      <div class="clinics-grid">
+        <div class="clinic reveal">
+          <h3>Hospital Veterinario Petmed</h3>
+          <div class="spec">Orthopedic surgery, ophthalmology &amp; general medicine</div>
+          <span class="chip">Surgery &middot; Eyes</span>
+        </div>
+        <div class="clinic reveal">
+          <h3>Cl&iacute;nicas para Animales Dra Martha Mar&iacute;a</h3>
+          <div class="spec">Surgery &amp; general medicine</div>
+          <span class="chip">Surgery</span>
+        </div>
+        <div class="clinic reveal">
+          <h3>PuntoVet</h3>
+          <div class="spec">Neurology</div>
+          <span class="chip">Neurology</span>
+        </div>
+        <div class="clinic reveal">
+          <h3>Hospivet</h3>
+          <div class="spec">Full-service veterinary hospital</div>
+          <span class="chip">Hospital</span>
+        </div>
+        <div class="clinic reveal">
+          <h3>MediCat</h3>
+          <div class="spec">Feline-focused veterinary care</div>
+          <span class="chip">Cats</span>
+        </div>
+        <div class="clinic reveal">
+          <h3>Dr Zoo</h3>
+          <div class="spec">Physical therapy &amp; rehabilitation</div>
+          <span class="chip">Rehab</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews section" id="reviews">
+    <div class="container">
+      <div class="head reveal" style="margin-bottom: 28px;">
+        <span class="eyebrow">Don&rsquo;t take our word for it</span>
+        <h2>Loved by San Diego pet parents.</h2>
+      </div>
+      <div class="reviews-top reveal">
+        <div class="reviews-score">
+          <div class="big">5.0</div>
+          <div class="meta">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="cnt">59 Google reviews &mdash; zero exceptions</div>
+          </div>
+        </div>
+        <a href="tel:+16198673300" class="btn btn-ghost-dark">Join them &mdash; call us<span class="arr">&rarr;</span></a>
+      </div>
+      <div class="reviews-grid">
+        <div class="review reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;Lizette and TJ from PetMex were AMAZING. They were in communication the whole time. My dog came back with the most fantastic dental work. Can&rsquo;t recommend enough!&rdquo;</p>
+          <div class="by"><span class="ava">Z</span><div><div class="who">Zach B.</div><div class="pet">Dog &bull; Dental Cleaning</div></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;Super communicative every step of the way. Rossi&rsquo;s teeth look fantastic. I was nervous about sending my dog to Mexico but they made the whole process so easy and transparent.&rdquo;</p>
+          <div class="by"><span class="ava">J</span><div><div class="who">Jenn L.</div><div class="pet">Rossi &bull; Dental Procedure</div></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;I was pleasantly surprised at how quickly they responded! During my pet&rsquo;s emergency, they jumped into action immediately. Truly caring people.&rdquo;</p>
+          <div class="by"><span class="ava">S</span><div><div class="who">Suong H.</div><div class="pet">Pet Emergency Response</div></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;Incre&iacute;ble servicio para nuestra amada Kira. Su servicio es 100% confiable. Managed all the logistics from start to finish &mdash; we didn&rsquo;t have to worry about a thing.&rdquo;</p>
+          <div class="by"><span class="ava">L</span><div><div class="who">Laura J.</div><div class="pet">Kira &bull; Medical Coordination</div></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;Excellent veterinarian in Mexico, managed all the logistics. Sending your pet with people you don&rsquo;t know sounds daunting, but they are so kind and keep you updated all the way.&rdquo;</p>
+          <div class="by"><span class="ava">J</span><div><div class="who">Jordana S.</div><div class="pet">International Vet Coordination</div></div></div>
+        </div>
+        <div class="review reveal">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;An absolute amazing experience. While sending animals with people you don&rsquo;t know sounds daunting, PetMex is so kind and professional, you end up having no worries at all.&rdquo;</p>
+          <div class="by"><span class="ava">V</span><div><div class="who">Verified Client</div><div class="pet">First-Time Client</div></div></div>
+        </div>
+      </div>
+      <div class="reviews-more reveal">
+        <a href="https://www.google.com/maps/place/PetMex+International+Inc" target="_blank" rel="noopener">Read all 59 reviews on Google &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AS SEEN IN / MEDIA -->
+  <section class="media section">
+    <div class="bg"></div>
+    <div class="container">
+      <span class="eyebrow reveal">As seen in the news</span>
+      <p class="media-quote reveal">&ldquo;Americans are flocking to Mexico for pet care.&rdquo;</p>
+      <div class="media-source reveal">ABC News &bull; Good Morning America</div>
+      <div class="media-stat reveal">33,500+</div>
+      <div class="media-stat-label reveal">pets crossed the border for vet care in 2022 &mdash; a 68% increase from 2019.</div>
+    </div>
+  </section>
+
+  <!-- BLOG / JOURNAL -->
+  <section class="journal section" id="journal">
+    <div class="container">
+      <div class="head reveal">
+        <div>
+          <span class="eyebrow">The PetMex Journal</span>
+          <h2>Notes from the border.</h2>
+        </div>
+        <p style="max-width: 360px; margin: 0;">Straight talk on cross-border vet care, how we vet clinics, and how much you can really save.</p>
+      </div>
+      <div class="posts">
+        <article class="post reveal">
+          <div class="post-img"><svg viewBox="0 0 24 24"><path d="M3 13l1.5-5C4.7 7.2 5.4 6.7 6.2 6.7h11.6c.8 0 1.5.5 1.7 1.3L21 13v5.5c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V18H6v.5c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V13zm3 .5a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4zm12 0a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg></div>
+          <div class="post-body">
+            <div class="post-meta">Getting Started &bull; 5 min read</div>
+            <h3>What to expect on your pet&rsquo;s first cross-border vet trip</h3>
+            <p>From the pickup at your door to the ride home, here&rsquo;s exactly how the day goes &mdash; and how we keep your pet calm at every step.</p>
+            <a href="#" class="read">Read more <span class="arr">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="post reveal">
+          <div class="post-img"><svg viewBox="0 0 24 24"><path d="M11 2c-.6 0-1 .4-1 1v1.1A6 6 0 005 10v3l-1.6 2.4c-.5.7 0 1.6.8 1.6H9a3 3 0 006 0h4.8c.8 0 1.3-.9.8-1.6L19 13v-3a6 6 0 00-5-5.9V3c0-.6-.4-1-1-1h-2z"/></svg></div>
+          <div class="post-body">
+            <div class="post-meta">Behind the Scenes &bull; 6 min read</div>
+            <h3>How we vet every Tijuana clinic before we trust them</h3>
+            <p>Our pets ride too. Here&rsquo;s the checklist we use to decide which veterinarians and specialists make the cut &mdash; and which don&rsquo;t.</p>
+            <a href="#" class="read">Read more <span class="arr">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="post reveal">
+          <div class="post-img"><svg viewBox="0 0 24 24"><path d="M12 1l3 6 6 .9-4.5 4.3L17.5 19 12 15.9 6.5 19l1-6.8L3 7.9 9 7l3-6z"/></svg></div>
+          <div class="post-body">
+            <div class="post-meta">Cost &amp; Savings &bull; 4 min read</div>
+            <h3>5 procedures that cost up to 80% less across the border</h3>
+            <p>Dental work, spay/neuter, bloodwork and more &mdash; a clear look at the approximate, starting-at numbers and what drives the difference.</p>
+            <a href="#" class="read">Read more <span class="arr">&rarr;</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <div class="faq-wrap">
+        <div class="faq-aside reveal">
+          <span class="eyebrow">Got questions?</span>
+          <h2>We&rsquo;ve heard them all.</h2>
+          <p>Still wondering about something? Call or text Lizette &mdash; real answers, no pressure.</p>
+          <div class="contact-line"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1.1l-2.1 2.1z"/></svg> (619) 867-3300</div>
+          <div class="contact-line"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 7L4 6.5V18h16V6.5L12 11z"/></svg> hello@petmexinternational.com</div>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">Is it legal to take my pet to Mexico for vet care?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">Yes, absolutely. Thousands of San Diego pet owners take their pets to Tijuana for veterinary care every year. In 2022 alone, over 33,500 pets crossed the border from the US to Mexico. PetMex handles all documentation and border-crossing logistics for you.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">Are the Tijuana vets actually qualified?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">We work only with qualified, experienced veterinarians and specialists we personally trust. We vet every clinic ourselves &mdash; your pet only goes to clinics we&rsquo;d use for our own animals.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">What if something goes wrong during the procedure?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">Our team stays with your pet the entire time. We provide real-time updates and translate every finding from the vet directly to you. If there are any concerns, we call you immediately so you can make decisions together with the doctor.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">Can I come along for the ride?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">Our service is fully door-to-door so you don&rsquo;t have to. For safety and border-crossing reasons we aren&rsquo;t able to take owners along &mdash; but we stay with your pet the entire time, send real-time updates, and translate everything the vet says directly to you.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">How long does a typical visit take?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">It depends on the procedure. A simple consultation or vaccine visit can be done in a few hours. Dental cleanings or minor surgeries are typically same-day. Major surgeries may require an overnight stay. We give you a time estimate before every visit.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">What types of pets do you transport?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">We primarily transport dogs and cats, but we&rsquo;ve handled other companion animals too. Each pet rides individually in our clean, climate-controlled vehicle &mdash; never kenneled, never crowded. Call us to discuss your pet&rsquo;s needs.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">Do I need a passport or any special documents?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">You don&rsquo;t need anything &mdash; we handle it all. PetMex takes care of all border-crossing documentation and veterinary paperwork. We organize everything so your pet&rsquo;s trip is smooth and legal.</div></div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">&iquest;Hablan espa&ntilde;ol?<span class="faq-icn"></span></button>
+            <div class="faq-a"><div class="faq-a-in">&iexcl;S&iacute;! Somos completamente biling&uuml;es. Lizette y TJ hablan espa&ntilde;ol e ingl&eacute;s con fluidez. Nos comunicamos con usted y con los veterinarios en el idioma que prefiera. Ll&aacute;menos &mdash; estamos aqu&iacute; para ayudarle.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section class="contact section" id="contact">
+    <div class="bg"></div>
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">Let&rsquo;s get your pet booked</span>
+          <h2>Ready when you are.</h2>
+          <p class="lede">No San Diego price tag. No stress. Just compassionate care, door to door &mdash; with a real person on the other end of the line.</p>
+          <a href="tel:+16198673300" class="contact-phone">(619) 867-3300</a>
+          <div class="contact-actions">
+            <a href="tel:+16198673300" class="btn btn-teal">Call Lizette<span class="arr">&rarr;</span></a>
+            <a href="sms:+16198673300" class="btn btn-ghost-light">Text us</a>
+            <a href="mailto:hello@petmexinternational.com" class="btn btn-ghost-light">Email us</a>
+          </div>
+          <div class="contact-meta">
+            <div class="line"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg> Based in La Mesa, CA</div>
+            <div class="line"><svg viewBox="0 0 24 24"><path d="M12 7v5l4 2 .8-1.3-3.3-2V7H12zm0-5a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/></svg> Mon&ndash;Fri 8am&ndash;4pm &middot; Weekends by availability</div>
+            <div class="line">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7z" opacity="0"/><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
+              <span>Pickups in Lakeside, Santee, El Cajon &amp; everything south of the 52 to the border</span>
+            </div>
+          </div>
+          <div class="socials">
+            <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.6 9.9 2.6 10.3 2.6 12s0 2.1.1 3.3c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-3.3s0-2.1-.1-3.3c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4-1.2-.1-1.6-.1-4.7-.1zM12 7.1a4.9 4.9 0 100 9.8 4.9 4.9 0 000-9.8zm0 8.1a3.2 3.2 0 110-6.4 3.2 3.2 0 010 6.4zm5.1-8.3a1.1 1.1 0 11-2.3 0 1.1 1.1 0 012.3 0z"/></svg></a>
+            <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8.5h2.2V5.3c-.4-.1-1.7-.2-3.1-.2-3.1 0-5.2 1.9-5.2 5.3v2.8H5.1v3.5H8V24h3.6v-7.3h2.8l.5-3.5h-3.3v-2.4c0-1 .3-1.8 1.4-1.8z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="quote-card reveal">
+          <h3>Get a quick quote</h3>
+          <div class="sub">Tell us about your pet &mdash; we&rsquo;ll confirm your price before anyone travels.</div>
+          <form onsubmit="handleSubmit(event)">
+            <div class="qrow">
+              <div><label for="qn">Your name</label><input id="qn" type="text" placeholder="Jane Doe" required></div>
+              <div><label for="qp">Pet&rsquo;s name</label><input id="qp" type="text" placeholder="Biscuit" required></div>
+            </div>
+            <div class="qrow">
+              <div><label for="qph">Phone</label><input id="qph" type="tel" placeholder="(619) 555-0123" required></div>
+              <div><label for="qe">Email</label><input id="qe" type="email" placeholder="you@email.com"></div>
+            </div>
+            <label for="qm">What does your pet need?</label>
+            <textarea id="qm" placeholder="e.g. dental cleaning for my 15 lb dog, plus bloodwork..."></textarea>
+            <button type="submit" class="btn btn-green">Request my quote<span class="arr">&rarr;</span></button>
+            <div class="fineprint">Visual demo form &mdash; not yet connected. Or just call (619) 867-3300.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#fff" d="M12 8.5c1.6 0 3 1 3.9 2.4.7 1 1.6 1.6 2.6 1.9 1.1.4 1.8 1.3 1.8 2.4 0 1.5-1.3 2.6-2.9 2.6-1 0-1.9-.2-2.7-.5-1.1-.4-2.4-.4-3.5 0-.8.3-1.7.5-2.7.5C6.9 17.8 5.6 16.7 5.6 15.2c0-1.1.7-2 1.8-2.4 1-.3 1.9-.9 2.6-1.9C10.9 9.5 10.4 8.5 12 8.5zM5.6 8.3c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm5-2.6c0 1.2-.8 2.1-1.9 2.1S6.8 6.9 6.8 5.7s.8-2.1 1.9-2.1 1.9.9 1.9 2zm6.8 2.6c0 1.1-.8 2-1.8 2s-1.8-.9-1.8-2 .8-2 1.8-2 1.8.9 1.8 2zm-2.9-2.6c0 1.2-.8 2.1-1.9 2.1s-1.9-.9-1.9-2.1.8-2.1 1.9-2.1 1.9.9 1.9 2z"/></svg></span>
+            PetMex International
+          </div>
+          <p class="footer-tag">Family-owned in La Mesa, CA. Your pet&rsquo;s passport to affordable, compassionate care &mdash; door to door, across the border.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#how">How It Works</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#clinics">Partner Clinics</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#journal">The Journal</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in touch</h4>
+          <a href="tel:+16198673300">(619) 867-3300</a>
+          <a href="sms:+16198673300">Text us</a>
+          <a href="mailto:hello@petmexinternational.com">hello@petmexinternational.com</a>
+          <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener">Instagram &mdash; @petmexint</a>
+          <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener">Facebook</a>
+          <span>Mon&ndash;Fri 8am&ndash;4pm</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 PetMex International Inc.</div>
+        <div class="footer-credit">Design preview by <a href="https://roblogic.org" target="_blank" rel="noopener">Rob Logic</a>.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 36);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = toggle.classList.toggle('open');
+      links.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    // FAQ accordion (single-open)
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+    window.toggleFaq = toggleFaq;
+
+    // Duplicate marquee content for seamless loop
+    const track = document.getElementById('marqueeTrack');
+    if (track) track.innerHTML += track.innerHTML;
+
+    // Scroll reveal
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            const delay = Math.min(i, 4) * 70;
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    }
+
+    // Subtle hero parallax (rAF-throttled, motion-safe)
+    if (!reduceMotion) {
+      const paws = document.querySelector('.hero-paws');
+      const band = document.querySelector('.hero-band');
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < window.innerHeight) {
+            if (paws) paws.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+            if (band) band.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+          }
+          ticking = false;
+        });
+      }, { passive: true });
+    }
+
+    // Demo form handler
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '&#10003; Sent! We&rsquo;ll call you soon.';
+      btn.style.background = 'var(--teal)';
+      setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; e.target.reset(); }, 3200);
+    }
+  </script>
+</body>
+</html>

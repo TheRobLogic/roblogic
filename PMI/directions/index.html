@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetMex International — Pick Your Website Direction</title>
+  <meta name="description" content="Three website design directions for PetMex International — same content, your logo colors. Pick the look that feels most like you.">
+  <meta property="og:title" content="PetMex International — Three Website Directions">
+  <meta property="og:description" content="Same content, your logo colors, three different looks. Pick your favorite.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..600&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --teal:#0E7C86; --teal-deep:#0B5360; --green:#1E9E5A; --green-deep:#16713f;
+      --ink:#15302E; --muted:#5C726F; --bg:#EEF4F2; --bg2:#E2ECE9; --white:#fff;
+      --line:rgba(15,48,46,.10); --shadow:0 18px 50px rgba(11,83,96,.14);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    h1,h2,h3{font-family:'Fraunces',serif;line-height:1.1;letter-spacing:-.02em}
+
+    /* header */
+    header{padding:64px 0 8px;text-align:center;position:relative;overflow:hidden}
+    header::before{content:'';position:absolute;inset:0;background:
+      radial-gradient(ellipse at 18% 0%,rgba(30,158,90,.10),transparent 55%),
+      radial-gradient(ellipse at 85% 10%,rgba(14,124,134,.12),transparent 55%);pointer-events:none}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:var(--white);border:1px solid var(--line);padding:7px 16px;border-radius:50px;margin-bottom:22px;box-shadow:0 2px 10px rgba(11,83,96,.06)}
+    .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+    header h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:600;max-width:14ch;margin:0 auto 18px}
+    header h1 em{font-style:italic;color:var(--teal)}
+    header p.lede{font-size:clamp(1.05rem,2vw,1.2rem);color:var(--muted);max-width:60ch;margin:0 auto 14px}
+    header p.note{font-size:.95rem;color:var(--muted);max-width:54ch;margin:0 auto;font-style:italic}
+
+    /* updated-in-all strip */
+    .updated{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 14px;max-width:880px;margin:30px auto 0}
+    .chip{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--line);border-radius:50px;padding:8px 16px;font-size:.86rem;font-weight:600;color:var(--teal-deep)}
+    .chip svg{width:15px;height:15px;flex-shrink:0;color:var(--green)}
+
+    /* cards */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;padding:48px 0 16px}
+    .card{background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 4px 18px rgba(11,83,96,.07);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;display:flex;flex-direction:column;position:relative}
+    .card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+    .preview{position:relative;height:230px;overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--line)}
+    .preview iframe{position:absolute;top:0;left:0;width:320%;height:320%;border:0;transform:scale(.3125);transform-origin:top left;pointer-events:none;background:#fff}
+    .preview .tag{position:absolute;top:12px;left:12px;z-index:2;background:rgba(21,48,46,.82);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:50px;backdrop-filter:blur(4px)}
+    .card-body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+    .opt{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-deep);margin-bottom:6px}
+    .card h3{font-size:1.45rem;font-weight:600;color:var(--ink);margin-bottom:10px}
+    .card p{font-size:.95rem;color:var(--muted);flex:1;margin-bottom:20px}
+    .go{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;padding:12px 22px;border-radius:50px;transition:background .25s,gap .25s}
+    .go:hover{background:var(--teal-deep);gap:12px}
+    .card.bold .go{background:var(--green)} .card.bold .go:hover{background:var(--green-deep)}
+    .cover{position:absolute;inset:0;z-index:3}/* full-card click target over preview */
+
+    /* how-to-pick */
+    .pick{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:34px;margin:30px 0 0;text-align:center}
+    .pick h2{font-size:1.6rem;font-weight:600;margin-bottom:10px}
+    .pick p{color:var(--muted);max-width:60ch;margin:0 auto}
+    .pick .ways{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .pick .way{background:var(--bg);border-radius:12px;padding:12px 18px;font-weight:600;font-size:.95rem;color:var(--teal-deep)}
+
+    footer{text-align:center;padding:48px 24px 60px;color:var(--muted);font-size:.88rem}
+    footer .brand{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);font-size:1.05rem}
+
+    @media(max-width:880px){.grid{grid-template-columns:1fr;gap:22px}.preview{height:260px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <span class="kicker"><span class="dot"></span> PetMex International · Website Preview</span>
+      <h1>Three directions.<br>Pick the one that feels like <em>you</em>.</h1>
+      <p class="lede">Same content, your logo colors — three different looks for the new PetMex site. Click any one to explore the full site, top to bottom.</p>
+      <p class="note">Photos are placeholders for now — we'll drop in your real ones from Instagram once you send them over.</p>
+
+      <div class="updated">
+        <span class="chip"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Your logo colors (white · teal · green)</span>
+        <span class="chip"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> "Starting at" pricing</span>
+        <span class="chip"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Photo gallery + blog</span>
+        <span class="chip"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5l4 4 8-9"/></svg> Updated FAQ, service area &amp; hours</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <!-- A -->
+      <div class="card">
+        <div class="preview"><span class="tag">Option A</span><iframe src="/PMI/a/" title="Option A preview" scrolling="no" loading="lazy"></iframe></div>
+        <div class="card-body">
+          <div class="opt">Warm &amp; Personal</div>
+          <h3>The family you trust</h3>
+          <p>Soft, human, story-led. Leads with you and TJ and the promise that pets are never alone. Warm and reassuring — feels hand-made, not corporate.</p>
+          <a class="go" href="/PMI/a/">Explore Option A →</a>
+        </div>
+        <a class="cover" href="/PMI/a/" aria-label="Open Option A"></a>
+      </div>
+      <!-- B -->
+      <div class="card">
+        <div class="preview"><span class="tag">Option B</span><iframe src="/PMI/b/" title="Option B preview" scrolling="no" loading="lazy"></iframe></div>
+        <div class="card-body">
+          <div class="opt">Clean &amp; Clinical</div>
+          <h3>Calm, clear, trusted</h3>
+          <p>Crisp and professional, like a modern health brand. Clear pricing and your partner-clinic roster up front. The transparent, confidence-first look.</p>
+          <a class="go" href="/PMI/b/">Explore Option B →</a>
+        </div>
+        <a class="cover" href="/PMI/b/" aria-label="Open Option B"></a>
+      </div>
+      <!-- C -->
+      <div class="card bold">
+        <div class="preview"><span class="tag">Option C</span><iframe src="/PMI/c/" title="Option C preview" scrolling="no" loading="lazy"></iframe></div>
+        <div class="card-body">
+          <div class="opt">Bold &amp; Modern</div>
+          <h3>Stand out, be remembered</h3>
+          <p>Big type, confident color, an oversized photo gallery. The look that makes PetMex memorable and a clear step above the competition's templates.</p>
+          <a class="go" href="/PMI/c/">Explore Option C →</a>
+        </div>
+        <a class="cover" href="/PMI/c/" aria-label="Open Option C"></a>
+      </div>
+    </div>
+
+    <section class="pick">
+      <h2>How to choose</h2>
+      <p>There's no wrong answer — they all have the exact same information. Just open each one, scroll through, and tell me which <em>feeling</em> fits PetMex best. We'll polish that one, drop in your real photos, and make it yours.</p>
+      <div class="ways">
+        <span class="way">📱 Looks great on your phone too</span>
+        <span class="way">🎨 Colors &amp; details still adjustable</span>
+        <span class="way">💬 Tell me your favorite — or mix &amp; match</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand">PetMex International</div>
+    <div>Website previews put together by Rob Logic for Lizette &amp; TJ.</div>
+  </footer>
+</body>
+</html>
