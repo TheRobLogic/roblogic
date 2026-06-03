@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetMex International — Choose a Website Direction</title>
+  <meta name="description" content="Five website directions for PetMex International. Same real content and brand on every one — open each and pick the one that feels most like you.">
+  <meta name="robots" content="noindex">
+  <meta property="og:title" content="PetMex International — Five Website Directions">
+  <meta property="og:description" content="Same content, your brand, five different looks. Open each and pick a favorite.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/PMI/assets/real/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cyan:#00AEEF;
+      --cyan-deep:#0a86bd;
+      --olive:#6F8F40;
+      --olive-deep:#5a7634;
+      --charcoal:#4B4B4C;
+      --ink:#4B4B4C;
+      --muted:#76787a;
+      --board:#F4F3EF;   /* warm neutral review board */
+      --board-2:#ECEAE3;
+      --card:#FFFFFF;
+      --line:rgba(75,75,76,.13);
+      --line-soft:rgba(75,75,76,.08);
+      --sans:'Sora',-apple-system,BlinkMacSystemFont,sans-serif;
+      --serif:'Source Serif 4',Georgia,serif;
+      --shadow-card:0 1px 2px rgba(75,75,76,.05), 0 10px 30px rgba(10,134,189,.07);
+      --shadow-lift:0 2px 4px rgba(75,75,76,.06), 0 22px 48px rgba(10,134,189,.13);
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      font-family:var(--sans);
+      color:var(--ink);
+      background:var(--board);
+      line-height:1.6;
+      font-size:clamp(1rem,.97rem + .15vw,1.06rem);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit}
+
+    /* faint board lines so the page reads like a layout surface, not a blank div */
+    body::before{
+      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+      background-image:linear-gradient(var(--board-2) 1px,transparent 1px);
+      background-size:100% 2.4rem;
+      -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+              mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+    }
+
+    .wrap{
+      width:100%;
+      max-width:75rem;
+      margin-inline:auto;
+      padding-inline:clamp(1.15rem,4vw,2.5rem);
+      position:relative;z-index:1;
+    }
+
+    h1,h2,h3{font-family:var(--serif);color:var(--charcoal);line-height:1.08;letter-spacing:-.01em;font-weight:600}
+
+    /* ---- masthead ---- */
+    .masthead{padding-top:clamp(2.2rem,6vw,3.6rem);padding-bottom:clamp(1.4rem,4vw,2.2rem)}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:1rem;flex-wrap:wrap;
+      padding-bottom:clamp(1.6rem,4vw,2.4rem);
+      border-bottom:1px solid var(--line);
+    }
+    .brand{display:flex;align-items:center;gap:.75rem;min-width:0}
+    .brand img{height:clamp(2.6rem,7vw,3.4rem);width:auto}
+    .meta{
+      font-family:var(--sans);font-size:.72rem;font-weight:600;
+      letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+      text-align:right;line-height:1.5;
+    }
+    .meta b{color:var(--cyan-deep);font-weight:700}
+
+    .lede{padding-top:clamp(1.6rem,4.5vw,2.6rem);max-width:46ch}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-family:var(--sans);font-size:.72rem;font-weight:700;
+      letter-spacing:.16em;text-transform:uppercase;color:var(--olive-deep);
+      margin-bottom:1rem;
+    }
+    .eyebrow .pip{width:.45rem;height:.45rem;border-radius:50%;background:var(--cyan);display:inline-block}
+    .masthead h1{
+      font-size:clamp(2.05rem,5.6vw,3.5rem);
+      letter-spacing:-.02em;max-width:18ch;margin-bottom:1.1rem;
+    }
+    .masthead h1 em{font-style:italic;color:var(--cyan-deep);font-weight:500}
+    .masthead .sub{font-size:clamp(1rem,.95rem + .35vw,1.18rem);color:var(--muted);max-width:60ch;line-height:1.55}
+
+    /* ---- how-to strip ---- */
+    .howto{
+      display:flex;gap:clamp(1rem,3vw,2.2rem);flex-wrap:wrap;
+      margin-top:clamp(1.6rem,4vw,2.3rem);
+    }
+    .howto .step{flex:1 1 12rem;min-width:0;display:flex;gap:.7rem;align-items:flex-start}
+    .howto .n{
+      flex:none;font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--cyan-deep);
+      line-height:1.5;font-feature-settings:"tnum" 1;
+    }
+    .howto .t{font-size:.92rem;color:var(--muted);line-height:1.5}
+    .howto .t b{color:var(--charcoal);font-weight:600}
+
+    /* ---- specimen grid ---- */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(min(100%,21rem),1fr));
+      gap:clamp(1.1rem,2.8vw,1.9rem);
+      padding-top:clamp(2.2rem,6vw,3.4rem);
+      padding-bottom:clamp(1rem,3vw,1.6rem);
+    }
+    .card{
+      position:relative;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:1rem;
+      overflow:hidden;
+      display:flex;flex-direction:column;
+      box-shadow:var(--shadow-card);
+      transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s,border-color .4s;
+    }
+    .card:hover{transform:translateY(-.4rem);box-shadow:var(--shadow-lift);border-color:rgba(0,174,239,.4)}
+    .card:focus-within{border-color:var(--cyan);box-shadow:var(--shadow-lift)}
+
+    /* live scaled preview — responsive scale via custom property */
+    .frame{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/11;
+      background:var(--board-2);
+      border-bottom:1px solid var(--line-soft);
+      overflow:hidden;
+    }
+    .frame iframe{
+      position:absolute;top:0;left:0;
+      width:calc(100% / var(--s));
+      height:calc(100% / var(--s));
+      border:0;
+      transform:scale(var(--s));
+      transform-origin:top left;
+      pointer-events:none;
+      background:#fff;
+    }
+    :root{--s:.34}
+    @media(min-width:560px){:root{--s:.30}}
+    @media(min-width:900px){:root{--s:.27}}
+
+    /* numbered specimen tab */
+    .num{
+      position:absolute;top:0;left:0;z-index:3;
+      display:flex;align-items:baseline;gap:.3rem;
+      background:var(--charcoal);color:#fff;
+      font-family:var(--sans);font-weight:600;
+      padding:.42rem .8rem .46rem;
+      border-bottom-right-radius:.8rem;
+    }
+    .num .hash{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;opacity:.65;font-weight:700}
+    .num .d{font-size:.95rem;font-feature-settings:"tnum" 1;letter-spacing:.02em}
+
+    .body{padding:clamp(1.15rem,3vw,1.5rem);display:flex;flex-direction:column;flex:1}
+    .card h3{font-size:clamp(1.35rem,1.2rem + .7vw,1.6rem);margin-bottom:.6rem}
+    .card .desc{font-size:.95rem;color:var(--muted);line-height:1.55;margin-bottom:1.25rem;flex:1}
+    .go{
+      align-self:flex-start;
+      display:inline-flex;align-items:center;gap:.5rem;
+      font-family:var(--sans);font-weight:600;font-size:.92rem;
+      color:var(--charcoal);text-decoration:none;
+      min-height:44px;padding:.55rem .25rem;
+      border-bottom:2px solid transparent;
+      transition:gap .25s,color .25s,border-color .25s;
+    }
+    .go .arr{color:var(--cyan-deep);transition:transform .25s}
+    .card:hover .go{color:var(--cyan-deep);border-color:rgba(0,174,239,.4)}
+    .card:hover .go .arr{transform:translateX(.2rem)}
+    /* whole card is a click target, button stays a real focusable link */
+    .cover{position:absolute;inset:0;z-index:2;border-radius:1rem}
+    .go{position:relative;z-index:4}
+
+    /* ---- closing note ---- */
+    .closing{
+      margin-top:clamp(1.8rem,5vw,3rem);
+      padding:clamp(1.6rem,4.5vw,2.6rem);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:1rem;
+      box-shadow:var(--shadow-card);
+    }
+    .closing h2{font-size:clamp(1.35rem,1.2rem + .7vw,1.7rem);margin-bottom:.7rem;max-width:24ch}
+    .closing p{color:var(--muted);max-width:64ch;line-height:1.6;margin-bottom:.6rem}
+    .closing p:last-child{margin-bottom:0}
+    .closing em{font-style:italic;color:var(--cyan-deep)}
+    .closing .es{
+      display:inline-block;margin-top:1rem;font-family:var(--sans);
+      font-size:.74rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+      color:var(--olive-deep);
+    }
+
+    footer{
+      padding-block:clamp(2.4rem,6vw,3.6rem);
+      text-align:center;color:var(--muted);font-size:.85rem;line-height:1.6;
+    }
+    footer .fb{font-family:var(--serif);color:var(--charcoal);font-size:1.05rem;font-weight:600}
+    footer a{color:var(--cyan-deep);text-decoration:none;font-weight:600}
+    footer a:hover{text-decoration:underline}
+
+    /* staggered load */
+    @media(prefers-reduced-motion:no-preference){
+      .reveal{opacity:0;transform:translateY(.7rem);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+      @keyframes rise{to{opacity:1;transform:none}}
+      .card.reveal{animation-delay:calc(var(--i,0) * .07s)}
+    }
+    :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <div class="top reveal">
+        <div class="brand">
+          <img src="/PMI/assets/real/logo.png" alt="PetMex International">
+        </div>
+        <div class="meta">Website Preview<br><b>for Lizette &amp; TJ</b></div>
+      </div>
+
+      <div class="lede reveal" style="animation-delay:.08s">
+        <span class="eyebrow"><span class="pip"></span> Five directions, one PetMex</span>
+        <h1>Pick the one that feels like <em>you</em>.</h1>
+        <p class="sub">Every version below carries the same real information — your services, your clinics, the FAQ, the intake form. They just wear it differently. Open each one, scroll top to bottom, and tell me which <em>feeling</em> fits.</p>
+      </div>
+
+      <div class="howto">
+        <div class="step reveal" style="animation-delay:.16s">
+          <span class="n">1</span>
+          <span class="t"><b>Open each one.</b> Tap a card to explore the full live site, not just the preview.</span>
+        </div>
+        <div class="step reveal" style="animation-delay:.22s">
+          <span class="n">2</span>
+          <span class="t"><b>Notice the feeling.</b> Same words, five personalities — calm, plain, documented, vouched-for, neighborly.</span>
+        </div>
+        <div class="step reveal" style="animation-delay:.28s">
+          <span class="n">3</span>
+          <span class="t"><b>Tell me your favorite.</b> We polish that one, drop in your real photos, and make it yours. Mixing is welcome.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="grid" aria-label="Website directions">
+
+      <article class="card reveal" style="--i:1">
+        <div class="frame"><iframe src="/PMI/v3/front-seat/" title="Front Seat — live preview" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
+        <div class="num"><span class="hash">No.</span><span class="d">01</span></div>
+        <div class="body">
+          <h3>Front Seat</h3>
+          <p class="desc">The whole site feels like the calm, sunlit comfort of a pet riding shotgun with people who clearly love animals — warmth carried entirely by the real photography, not by decoration.</p>
+          <a class="go" href="/PMI/v3/front-seat/">Open the full site <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+        <a class="cover" href="/PMI/v3/front-seat/" aria-label="Open the Front Seat website"></a>
+      </article>
+
+      <article class="card reveal" style="--i:2">
+        <div class="frame"><iframe src="/PMI/v3/plain-answers/" title="Plain Answers — live preview" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
+        <div class="num"><span class="hash">No.</span><span class="d">02</span></div>
+        <div class="body">
+          <h3>Plain Answers</h3>
+          <p class="desc">A cool, crisp, text-first site built like an honest one-page answer sheet — it disarms the "is this safe / will they steal my dog" fear by simply answering everything plainly, and the clarity itself is the design.</p>
+          <a class="go" href="/PMI/v3/plain-answers/">Open the full site <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+        <a class="cover" href="/PMI/v3/plain-answers/" aria-label="Open the Plain Answers website"></a>
+      </article>
+
+      <article class="card reveal" style="--i:3">
+        <div class="frame"><iframe src="/PMI/v3/the-chart/" title="The Chart — live preview" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
+        <div class="num"><span class="hash">No.</span><span class="d">03</span></div>
+        <div class="body">
+          <h3>The Chart</h3>
+          <p class="desc">Structured like an honest, itemized care record — every service is a documented line item with transparent "starting at" pricing, the way a clinic that has nothing to hide writes up an estimate.</p>
+          <a class="go" href="/PMI/v3/the-chart/">Open the full site <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+        <a class="cover" href="/PMI/v3/the-chart/" aria-label="Open The Chart website"></a>
+      </article>
+
+      <article class="card reveal" style="--i:4">
+        <div class="frame"><iframe src="/PMI/v3/the-referral/" title="The Referral — live preview" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
+        <div class="num"><span class="hash">No.</span><span class="d">04</span></div>
+        <div class="body">
+          <h3>The Referral</h3>
+          <p class="desc">The site reads like a trusted GP's referral to a named specialist — the partner-clinic roster, with real doctors and credentials, is the whole proof of competence.</p>
+          <a class="go" href="/PMI/v3/the-referral/">Open the full site <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+        <a class="cover" href="/PMI/v3/the-referral/" aria-label="Open The Referral website"></a>
+      </article>
+
+      <article class="card reveal" style="--i:5">
+        <div class="frame"><iframe src="/PMI/v3/window-seat/" title="Window Seat — live preview" scrolling="no" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></div>
+        <div class="num"><span class="hash">No.</span><span class="d">05</span></div>
+        <div class="body">
+          <h3>Window Seat</h3>
+          <p class="desc">A local magazine profile of a family business: one strong photograph, a readable headline, and TJ &amp; Lizette's real warm voice doing the talking.</p>
+          <a class="go" href="/PMI/v3/window-seat/">Open the full site <span class="arr" aria-hidden="true">&rarr;</span></a>
+        </div>
+        <a class="cover" href="/PMI/v3/window-seat/" aria-label="Open the Window Seat website"></a>
+      </article>
+
+    </section>
+
+    <section class="closing reveal">
+      <h2>However you lean, the bones stay the same.</h2>
+      <p>They all say the same thing — San Diego's only VIP pet transportation service, your trusted clinics across the border, and <em>saving you 10%&ndash;90% off your traditional vet bill</em>. The difference is the personality. There's no wrong pick; there's only the one that sounds the most like the PetMex family.</p>
+      <p>Open a couple, sit with them, and send me the one that feels right. I'll take it the rest of the way.</p>
+      <span class="es">Hablamos Espa&ntilde;ol</span>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="fb">PetMex International</div>
+    <div>Website directions put together by Rob Logic for Lizette &amp; TJ.<br>Questions? <a href="mailto:hello@petmexinternational.com">hello@petmexinternational.com</a></div>
+  </footer>
+
+  <script>
+    // graceful: if motion is reduced, classes still resolve to visible via CSS guard
+  </script>
+</body>
+</html>
