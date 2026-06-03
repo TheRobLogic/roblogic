@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetMex International — Door-to-Door Pet Transport, San Diego to Tijuana Vets</title>
+<meta name="description" content="White-glove cross-border pet transport. We drive your pet door-to-door from San Diego to trusted Tijuana vets and back — same trip. Never alone, never kenneled. Bilingual, family-owned. Starting at $200.">
+<meta name="theme-color" content="#F5F4F0">
+<meta property="og:title" content="PetMex International — Door-to-door. Handled.">
+<meta property="og:description" content="Your pet's personal limousine to trusted Tijuana vet care. We stay with your pet the whole way — never alone, never kenneled. Save 10–90% on vet bills.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/PMI/assets/real/hero-dogs-in-car.jpg">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..700&family=Spline+Sans+Mono:ital,wght@0,400..700;1,400..600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PetMex — "Dispatch / The Route"
+   white-glove cross-border pet transport dispatch
+   palette: paper · charcoal · cyan speed-line · olive
+   ============================================================ */
+:root{
+  --paper:#F5F4F0;        /* off-white base */
+  --paper-2:#EDEBE4;      /* slightly deeper panel wash */
+  --card:#FBFAF7;         /* raised surface */
+  --charcoal:#4B4B4C;     /* logo charcoal */
+  --ink:#262627;          /* deepest text / near-black panels */
+  --ink-2:#34343A;        /* dark panel */
+  --cyan:#00AEEF;         /* logo speed-line cyan */
+  --cyan-deep:#0089BE;    /* hover / pressed cyan */
+  --cyan-ghost:rgba(0,174,239,.12);
+  --olive:#6F8F40;        /* logo olive accent */
+  --olive-deep:#5A7733;
+  --mut:#6E6E6C;          /* muted charcoal text */
+  --mut-2:#8C8C88;        /* faint label text */
+  --line:rgba(38,38,39,.13);
+  --line-2:rgba(38,38,39,.07);
+  --line-cyan:rgba(0,174,239,.34);
+  --on-dark:#EFEEE9;
+  --on-dark-mut:#A6A8A6;
+  --r:14px; --r-s:8px; --r-l:24px;
+  --shadow:0 22px 60px -28px rgba(38,38,39,.42);
+  --shadow-s:0 6px 24px -14px rgba(38,38,39,.38);
+  --pad:clamp(20px,5vw,40px);
+  --maxw:1240px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:'Schibsted Grotesk',sans-serif;
+  background:var(--paper);color:var(--ink);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;overflow-x:hidden;
+}
+.mono{font-family:'Spline Sans Mono',ui-monospace,monospace}
+h1,h2,h3,h4{line-height:1.04;letter-spacing:-.02em;font-weight:800}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- global grain overlay ---------- */
+.grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ---------- mono micro-labels ---------- */
+.tag{font-family:'Spline Sans Mono',monospace;font-size:.685rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mut-2)}
+.tag-cyan{color:var(--cyan-deep)}
+.tag-olive{color:var(--olive-deep)}
+.tic{display:inline-flex;align-items:center;gap:.55em}
+.tic::before{content:"";width:6px;height:6px;background:var(--cyan);
+  box-shadow:0 0 0 3px var(--cyan-ghost);border-radius:1px;transform:rotate(45deg);flex:none}
+.tic.olive::before{background:var(--olive);box-shadow:0 0 0 3px rgba(111,143,64,.16)}
+
+/* =========================================================
+   SPEED-LINE MOTIF (reused from the logo)
+   stacked cyan dashes that streak, plus animated variant
+   ========================================================= */
+.speed{display:flex;flex-direction:column;gap:5px;width:74px;flex:none}
+.speed span{height:4px;border-radius:3px;background:var(--cyan);transform-origin:left}
+.speed span:nth-child(1){width:100%}
+.speed span:nth-child(2){width:62%;opacity:.78}
+.speed span:nth-child(3){width:34%;opacity:.5}
+.speed.olive span{background:var(--olive)}
+@keyframes streak{
+  0%{transform:translateX(-26px) scaleX(.35);opacity:0}
+  40%{opacity:1}
+  100%{transform:translateX(0) scaleX(1);opacity:1}}
+.in .speed span{animation:streak .7s cubic-bezier(.2,.8,.2,1) backwards}
+.in .speed span:nth-child(2){animation-delay:.08s}
+.in .speed span:nth-child(3){animation-delay:.16s}
+
+/* full-width animated divider made of streaking dashes */
+.divider{position:relative;overflow:hidden;padding:0;background:var(--ink);height:74px}
+.divider .rail{position:absolute;inset:0;display:flex;align-items:center;gap:28px;padding-left:24px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.divider .dash{height:4px;border-radius:3px;flex:none;background:var(--cyan);opacity:.9}
+.divider .lab{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--on-dark);background:var(--ink);padding:0 18px;z-index:2;white-space:nowrap}
+@keyframes drift{to{transform:translateX(-220px)}}
+.divider .rail.run{animation:drift 9s linear infinite}
+@media (prefers-reduced-motion:reduce){.divider .rail.run{animation:none}}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+header.nav{position:sticky;top:0;z-index:1000;background:rgba(245,244,240,.86);
+  backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-bottom:1px solid var(--line-2);transition:box-shadow .3s,border-color .3s}
+header.nav.stuck{box-shadow:0 10px 30px -22px rgba(38,38,39,.5);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand img{height:38px;width:auto}
+.brand .bk{display:flex;flex-direction:column;line-height:1}
+.brand .bk b{font-weight:800;font-size:1.02rem;letter-spacing:-.02em}
+.brand .bk span{font-family:'Spline Sans Mono',monospace;font-size:.56rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cyan-deep);margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{font-family:'Spline Sans Mono',monospace;font-size:.74rem;letter-spacing:.05em;
+  color:var(--charcoal);padding:9px 13px;border-radius:8px;transition:background .2s,color .2s}
+.nav-links a:hover{background:var(--cyan-ghost);color:var(--ink)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--on-dark)!important;
+  padding:11px 18px!important;border-radius:9px;font-weight:600;border:1px solid var(--ink)}
+.nav-cta:hover{background:var(--cyan)!important;border-color:var(--cyan);color:#04222e!important}
+.nav-cta .ph{font-family:'Spline Sans Mono',monospace;font-size:.78rem;letter-spacing:.02em}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:1px solid var(--line);
+  padding:11px;border-radius:9px;cursor:pointer}
+.burger span{width:20px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
+.burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.x span:nth-child(2){opacity:0}
+.burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile{display:none;position:fixed;inset:72px 0 0;z-index:999;background:var(--paper);padding:24px var(--pad) 40px;
+  flex-direction:column;gap:4px;overflow-y:auto}
+.mobile.open{display:flex}
+.mobile a{font-family:'Spline Sans Mono',monospace;font-size:1.05rem;padding:16px 6px;border-bottom:1px solid var(--line-2);
+  display:flex;align-items:center;justify-content:space-between}
+.mobile a .n{font-size:.74rem;color:var(--cyan-deep)}
+.mobile .m-cta{background:var(--ink);color:var(--on-dark);border-radius:11px;justify-content:center;
+  border:none;margin-top:18px;font-weight:600}
+
+/* =========================================================
+   HERO — the route
+   ========================================================= */
+.hero{position:relative;padding:clamp(34px,6vw,72px) 0 0}
+.hero-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(24px,4vw,56px);align-items:center}
+.hero-l{position:relative;z-index:2}
+.hero .speed{margin-bottom:22px}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:20px}
+.hero h1{font-size:clamp(2.9rem,7.6vw,6.1rem);font-weight:900;letter-spacing:-.045em;line-height:.92}
+.hero h1 .em{position:relative;display:inline-block;color:var(--cyan-deep)}
+.hero h1 .em::after{content:"";position:absolute;left:0;right:-2px;bottom:.07em;height:.11em;background:var(--cyan);
+  transform:scaleX(0);transform-origin:left;transition:transform .8s .5s cubic-bezier(.2,.8,.2,1)}
+.in .hero h1 .em::after{transform:scaleX(1)}
+.hero .sub{font-family:'Spline Sans Mono',monospace;font-size:clamp(.82rem,1.5vw,.96rem);
+  letter-spacing:.01em;color:var(--charcoal);margin:22px 0 6px;max-width:42ch;line-height:1.7}
+.hero .sub b{color:var(--ink);font-weight:600;background:var(--cyan-ghost);padding:1px 5px;border-radius:4px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Spline Sans Mono',monospace;
+  font-size:.84rem;font-weight:600;letter-spacing:.01em;padding:15px 24px;border-radius:11px;
+  cursor:pointer;border:1px solid transparent;transition:transform .18s,background .22s,border-color .22s,color .22s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--cyan);color:#04222e;box-shadow:0 14px 30px -16px rgba(0,174,239,.85)}
+.btn-primary:hover{background:var(--cyan-deep);color:#fff}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--on-dark)}
+.btn .arr{transition:transform .22s}
+.btn:hover .arr{transform:translateX(4px)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+.hmeta{display:flex;flex-direction:column;gap:2px}
+.hmeta b{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.hmeta .l{font-family:'Spline Sans Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut-2)}
+.hmeta b .u{font-size:.9rem;color:var(--cyan-deep);font-weight:700}
+
+/* route card (right) */
+.route{position:relative;background:var(--ink);border-radius:var(--r-l);padding:24px;overflow:hidden;
+  box-shadow:var(--shadow);color:var(--on-dark)}
+.route::before{content:"";position:absolute;inset:0;background:
+   radial-gradient(120% 80% at 90% -10%,rgba(0,174,239,.22),transparent 55%);pointer-events:none}
+.route-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:2}
+.route-top .tag{color:var(--on-dark-mut)}
+.live{display:inline-flex;align-items:center;gap:7px;font-family:'Spline Sans Mono',monospace;
+  font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.live .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);position:relative}
+.live .pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--cyan);
+  animation:pp 1.8s ease-out infinite}
+@keyframes pp{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){.live .pulse::after{animation:none}}
+.route-photo{position:relative;margin:16px 0;border-radius:16px;overflow:hidden;aspect-ratio:16/11;z-index:2;
+  border:1px solid rgba(255,255,255,.1)}
+.route-photo img{width:100%;height:100%;object-fit:cover}
+.route-photo .ovl{position:absolute;left:12px;bottom:12px;font-family:'Spline Sans Mono',monospace;
+  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(38,38,39,.62);
+  backdrop-filter:blur(5px);padding:5px 10px;border-radius:7px}
+/* the mini route line inside the card */
+.legs{position:relative;z-index:2;margin-top:18px}
+.leg{display:flex;align-items:center;gap:14px;padding:9px 0;position:relative}
+.leg .node{width:13px;height:13px;border-radius:50%;border:2px solid var(--cyan);background:var(--ink);flex:none;position:relative;z-index:2}
+.leg.active .node{background:var(--cyan);box-shadow:0 0 0 4px var(--cyan-ghost)}
+.leg.end .node{border-color:var(--olive)}
+.leg.end.active .node{background:var(--olive);box-shadow:0 0 0 4px rgba(111,143,64,.22)}
+.legs::before{content:"";position:absolute;left:6px;top:14px;bottom:14px;width:2px;
+  background:linear-gradient(var(--cyan),var(--olive));opacity:.45}
+.leg .lt{display:flex;flex-direction:column;gap:1px}
+.leg .lt b{font-size:.92rem;font-weight:600}
+.leg .lt span{font-family:'Spline Sans Mono',monospace;font-size:.6rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--on-dark-mut)}
+.leg .far{margin-left:auto;font-family:'Spline Sans Mono',monospace;font-size:.72rem;color:var(--cyan)}
+.route-foot{position:relative;z-index:2;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:space-between;gap:10px}
+.route-foot .from{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.1em;color:var(--on-dark-mut)}
+.route-foot .from b{color:#fff}
+.route-foot .px{font-size:1.34rem;font-weight:800;letter-spacing:-.02em}
+.route-foot .px .u{font-family:'Spline Sans Mono',monospace;font-size:.62rem;color:var(--cyan);
+  letter-spacing:.1em;text-transform:uppercase;display:block;font-weight:500}
+
+/* trust strip under hero */
+.trust{margin-top:clamp(34px,5vw,58px);display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;
+  padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust .stars{display:flex;align-items:center;gap:10px}
+.trust .stars .s{color:var(--olive);font-size:1rem;letter-spacing:2px}
+.trust .stars b{font-weight:800;font-size:1.05rem}
+.trust .item{display:flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',monospace;
+  font-size:.72rem;letter-spacing:.04em;color:var(--charcoal)}
+.trust .item svg{width:17px;height:17px;color:var(--cyan-deep);flex:none}
+.trust .sp{flex:1;min-width:20px}
+
+/* =========================================================
+   SECTION SHELL
+   ========================================================= */
+section{position:relative}
+.sec{padding:clamp(56px,8vw,108px) 0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:clamp(30px,4vw,52px)}
+.sec-head .lt{max-width:62ch}
+.sec-head h2{font-size:clamp(1.9rem,4.6vw,3.3rem);font-weight:900;letter-spacing:-.035em;margin-top:14px}
+.sec-head p{color:var(--mut);font-size:clamp(1rem,1.6vw,1.12rem);margin-top:14px;max-width:54ch}
+.sec-head .idx{font-family:'Spline Sans Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--mut-2);
+  white-space:nowrap;padding-bottom:6px}
+
+/* =========================================================
+   DISPATCH TIMELINE (how it works)
+   ========================================================= */
+.flow{background:var(--ink);color:var(--on-dark)}
+.flow .sec-head h2{color:var(--on-dark)}
+.flow .sec-head p{color:var(--on-dark-mut)}
+.flow .sec-head .idx{color:var(--on-dark-mut)}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:10px}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:46px;height:2px;background:rgba(255,255,255,.14)}
+/* the drawn route line */
+.timeline .draw{position:absolute;left:0;top:46px;height:2px;width:0;
+  background:linear-gradient(90deg,var(--cyan),var(--cyan) 70%,var(--olive));z-index:1;
+  box-shadow:0 0 12px rgba(0,174,239,.6);transition:width 1.6s cubic-bezier(.3,.7,.2,1)}
+.timeline.go .draw{width:100%}
+@media (prefers-reduced-motion:reduce){.timeline .draw{transition:none;width:100%}}
+.step{position:relative;padding:0 22px 0 0;z-index:2}
+.step .dot{width:18px;height:18px;border-radius:50%;background:var(--ink-2);border:2px solid var(--cyan);
+  position:relative;margin-bottom:30px;transition:background .4s,box-shadow .4s}
+.step:last-child .dot{border-color:var(--olive)}
+.timeline.go .step .dot{background:var(--cyan);box-shadow:0 0 0 6px rgba(0,174,239,.16)}
+.timeline.go .step:last-child .dot{background:var(--olive);box-shadow:0 0 0 6px rgba(111,143,64,.2)}
+.step .no{font-family:'Spline Sans Mono',monospace;font-size:.78rem;letter-spacing:.12em;color:var(--cyan);margin-bottom:8px}
+.step:last-child .no{color:var(--olive-deep);filter:brightness(1.5)}
+.step h3{font-size:1.32rem;font-weight:800;margin-bottom:9px;letter-spacing:-.02em}
+.step p{color:var(--on-dark-mut);font-size:.95rem;line-height:1.62;padding-right:6px}
+.step .meta{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:var(--cyan);
+  margin-top:12px;display:inline-flex;align-items:center;gap:7px}
+@media (max-width:860px){
+  .timeline{grid-template-columns:1fr;gap:0}
+  .timeline::before{left:8px;right:auto;top:0;bottom:0;width:2px;height:auto}
+  .timeline .draw{left:8px;top:0;width:2px!important;height:0;background:linear-gradient(180deg,var(--cyan),var(--olive))}
+  .timeline.go .draw{height:100%}
+  .step{padding:0 0 38px 36px}
+  .step .dot{position:absolute;left:0;top:2px;margin:0}
+}
+
+/* =========================================================
+   SERVICES — tight tagged list
+   ========================================================= */
+.svc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,52px);align-items:start}
+.svc-photo{position:relative;border-radius:var(--r-l);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow);
+  position:sticky;top:96px}
+.svc-photo img{width:100%;height:100%;object-fit:cover}
+.svc-photo .badge{position:absolute;left:16px;top:16px;background:var(--paper);border-radius:11px;padding:11px 15px;
+  box-shadow:var(--shadow-s)}
+.svc-photo .badge .b1{font-weight:800;font-size:1.5rem;letter-spacing:-.02em;line-height:1}
+.svc-photo .badge .b1 .pc{color:var(--olive-deep)}
+.svc-photo .badge .b2{font-family:'Spline Sans Mono',monospace;font-size:.6rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mut);margin-top:4px}
+.svc-list{display:flex;flex-direction:column}
+.svc{display:flex;align-items:baseline;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line);
+  position:relative;transition:padding-left .25s}
+.svc:first-child{border-top:1px solid var(--line)}
+.svc .no{font-family:'Spline Sans Mono',monospace;font-size:.72rem;color:var(--mut-2);flex:none;width:2.4em;
+  transition:color .25s}
+.svc .nm{font-size:1.12rem;font-weight:700;letter-spacing:-.01em}
+.svc .mt{margin-left:auto;font-family:'Spline Sans Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mut-2);white-space:nowrap;align-self:center;
+  border:1px solid var(--line);padding:3px 9px;border-radius:50px;transition:.25s}
+.svc::before{content:"";position:absolute;left:-4px;top:50%;transform:translateY(-50%) scaleY(0);
+  width:3px;height:62%;background:var(--cyan);border-radius:3px;transition:transform .25s}
+.svc:hover{padding-left:14px}
+.svc:hover::before{transform:translateY(-50%) scaleY(1)}
+.svc:hover .no{color:var(--cyan-deep)}
+.svc:hover .mt{border-color:var(--line-cyan);color:var(--cyan-deep)}
+.svc-more{margin-top:18px;font-family:'Spline Sans Mono',monospace;font-size:.78rem;color:var(--charcoal);
+  display:inline-flex;align-items:center;gap:9px}
+.svc-more b{color:var(--olive-deep);font-weight:600}
+
+/* =========================================================
+   FARES (pricing)
+   ========================================================= */
+.fares{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fare{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:26px 24px 24px;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .28s,box-shadow .28s}
+.fare::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--line);transition:background .28s}
+.fare:hover{transform:translateY(-6px);border-color:var(--line-cyan);box-shadow:var(--shadow)}
+.fare:hover::after{background:var(--cyan)}
+.fare .ft{font-family:'Spline Sans Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut-2);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.fare .ft .code{color:var(--cyan-deep)}
+.fare h3{font-size:1.24rem;font-weight:800;margin:16px 0 4px;letter-spacing:-.02em}
+.fare .desc{color:var(--mut);font-size:.92rem;line-height:1.55;flex:1;margin-bottom:18px}
+.fare .price{display:flex;align-items:flex-end;gap:9px;margin-top:auto;padding-top:16px;border-top:1px solid var(--line-2)}
+.fare .price .sa{font-family:'Spline Sans Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mut-2);margin-bottom:7px}
+.fare .price .amt{font-family:'Spline Sans Mono',monospace;font-size:2.5rem;font-weight:700;
+  letter-spacing:-.03em;line-height:.9;color:var(--ink)}
+.fare .price .amt .d{color:var(--cyan-deep);font-size:1.4rem;vertical-align:top}
+.fare.feat{background:var(--ink);color:var(--on-dark);border-color:var(--ink)}
+.fare.feat::after{background:var(--cyan)}
+.fare.feat .ft{color:var(--on-dark-mut)}
+.fare.feat .ft .code{color:var(--cyan)}
+.fare.feat .desc{color:var(--on-dark-mut)}
+.fare.feat .price{border-color:rgba(255,255,255,.14)}
+.fare.feat .price .amt{color:#fff}
+.fare.feat .price .amt .d{color:var(--cyan)}
+.fare.feat:hover{border-color:var(--cyan)}
+/* secondary fare row */
+.fares-2{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-top:18px}
+.fare-wide{background:linear-gradient(105deg,var(--paper-2),var(--card));border:1px solid var(--line);
+  border-radius:var(--r-l);padding:26px;display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+.fare-wide .pkg{display:flex;align-items:center;gap:8px;flex:none}
+.fare-wide .pkg .em{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--olive-deep)}
+.fare-wide h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;width:100%;margin-top:-4px}
+.fare-wide .inc{display:flex;flex-wrap:wrap;gap:7px;flex:1}
+.fare-wide .inc span{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.04em;
+  color:var(--charcoal);background:var(--paper);border:1px solid var(--line);padding:5px 10px;border-radius:50px}
+.fare-wide .wp{text-align:right;flex:none}
+.fare-wide .wp .sa{font-family:'Spline Sans Mono',monospace;font-size:.58rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mut-2)}
+.fare-wide .wp .amt{font-family:'Spline Sans Mono',monospace;font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+.fare-wide .wp .amt .d{color:var(--olive-deep);font-size:1.2rem;vertical-align:top}
+.fare-add{background:var(--olive);color:#fff;border-radius:var(--r-l);padding:26px;display:flex;
+  flex-direction:column;justify-content:center;gap:6px;position:relative;overflow:hidden}
+.fare-add .tag{color:rgba(255,255,255,.7)}
+.fare-add b{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.fare-add .amt{font-family:'Spline Sans Mono',monospace;font-size:2rem;font-weight:700;letter-spacing:-.02em;margin-top:4px}
+.fare-add p{font-size:.82rem;color:rgba(255,255,255,.86);margin-top:2px}
+.fine{margin-top:22px;display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:var(--paper-2);
+  border-radius:var(--r);border:1px solid var(--line-2)}
+.fine svg{width:18px;height:18px;color:var(--cyan-deep);flex:none;margin-top:2px}
+.fine p{font-size:.82rem;color:var(--mut);line-height:1.6}
+.fine .save{color:var(--olive-deep);font-weight:700}
+
+/* =========================================================
+   NOW SERVING strip
+   ========================================================= */
+.serving{background:var(--olive);color:#fff;overflow:hidden}
+.serving-in{padding:clamp(34px,5vw,56px) 0;display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,48px);align-items:center}
+.serving .lab{max-width:24ch}
+.serving .lab .tag{color:rgba(255,255,255,.72)}
+.serving .lab h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;letter-spacing:-.03em;margin-top:12px;color:#fff}
+.serving .lab p{color:rgba(255,255,255,.85);font-size:.92rem;margin-top:10px}
+.ticker{position:relative;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.ticker .track{display:flex;align-items:center;gap:14px;width:max-content;animation:tick 26s linear infinite}
+@media (prefers-reduced-motion:reduce){.ticker .track{animation:none;flex-wrap:wrap;width:auto}}
+.ticker:hover .track{animation-play-state:paused}
+.stop{display:inline-flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',monospace;font-size:.82rem;
+  letter-spacing:.02em;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);
+  padding:10px 16px;border-radius:50px;white-space:nowrap;flex:none}
+.stop .n{width:7px;height:7px;border-radius:50%;background:#fff;flex:none}
+.stop.border{background:var(--ink);border-color:var(--ink);color:var(--cyan)}
+.stop.border .n{background:var(--cyan)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* =========================================================
+   WHY / never-alone promise band
+   ========================================================= */
+.promise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:28px;
+  display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;transition:border-color .25s}
+.pcard:hover{border-color:var(--line-cyan)}
+.pcard .ph{display:flex;align-items:center;gap:13px}
+.pcard .ico{width:42px;height:42px;border-radius:11px;background:var(--cyan-ghost);display:grid;place-items:center;flex:none}
+.pcard .ico svg{width:21px;height:21px;color:var(--cyan-deep)}
+.pcard.ov .ico{background:rgba(111,143,64,.14)}
+.pcard.ov .ico svg{color:var(--olive-deep)}
+.pcard .ph .tag{margin-left:auto}
+.pcard h3{font-size:1.18rem;font-weight:800;letter-spacing:-.01em}
+.pcard p{color:var(--mut);font-size:.94rem;line-height:1.62}
+.pcard p b{color:var(--ink);font-weight:600}
+
+/* =========================================================
+   TEAM / family
+   ========================================================= */
+.team-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.team-photo{position:relative;border-radius:var(--r-l);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow)}
+.team-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.team-photo .cap{position:absolute;left:14px;bottom:14px;background:rgba(38,38,39,.7);backdrop-filter:blur(6px);
+  border-radius:11px;padding:10px 14px;color:#fff}
+.team-photo .cap b{font-weight:700;font-size:.98rem}
+.team-photo .cap span{font-family:'Spline Sans Mono',monospace;font-size:.6rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cyan);display:block;margin-top:2px}
+.team-l h2{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:900;letter-spacing:-.035em;margin:14px 0 18px}
+.team-l .lead{font-size:clamp(1.04rem,1.8vw,1.18rem);color:var(--charcoal);line-height:1.66;margin-bottom:16px}
+.team-l p{color:var(--mut);line-height:1.66;margin-bottom:14px}
+.team-l p b{color:var(--ink);font-weight:600}
+.crew{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.crew .person{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);
+  border-radius:50px;padding:7px 16px 7px 7px}
+.crew .av{width:38px;height:38px;border-radius:50%;overflow:hidden;flex:none;background:var(--ink)}
+.crew .av img{width:100%;height:100%;object-fit:cover}
+.crew .av.illus{display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--olive));
+  font-family:'Spline Sans Mono',monospace;color:#fff;font-weight:700;font-size:.94rem}
+.crew .pn b{font-weight:700;font-size:.92rem;display:block;line-height:1.1}
+.crew .pn span{font-family:'Spline Sans Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.gal figure{position:relative;overflow:hidden;border-radius:var(--r);background:var(--paper-2)}
+.gal figure img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.gal figure:hover img{transform:scale(1.05)}
+.gal figure .cap{position:absolute;left:10px;bottom:10px;font-family:'Spline Sans Mono',monospace;
+  font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(38,38,39,.6);
+  backdrop-filter:blur(5px);padding:4px 9px;border-radius:6px;opacity:0;transform:translateY(6px);transition:.3s}
+.gal figure:hover .cap{opacity:1;transform:none}
+.gal .g-tall{grid-row:span 2}
+.gal .g-wide{grid-column:span 2}
+
+/* =========================================================
+   CLINICS
+   ========================================================= */
+.clinics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.clinic{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;
+  position:relative;transition:border-color .25s,transform .25s}
+.clinic:hover{border-color:var(--line-cyan);transform:translateY(-3px)}
+.clinic .id{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.12em;color:var(--cyan-deep);
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.clinic .id .vfy{color:var(--olive-deep);display:inline-flex;align-items:center;gap:5px}
+.clinic .id .vfy svg{width:13px;height:13px}
+.clinic h3{font-size:1.08rem;font-weight:800;letter-spacing:-.01em;line-height:1.2;margin-bottom:8px}
+.clinic p{font-family:'Spline Sans Mono',monospace;font-size:.72rem;color:var(--mut);letter-spacing:.01em;line-height:1.5}
+
+/* =========================================================
+   REVIEWS
+   ========================================================= */
+.rev-head{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-bottom:clamp(28px,4vw,46px)}
+.rev-head .score{display:flex;align-items:baseline;gap:10px}
+.rev-head .score b{font-size:clamp(2.6rem,6vw,4rem);font-weight:900;letter-spacing:-.04em;line-height:1}
+.rev-head .score .of{font-family:'Spline Sans Mono',monospace;font-size:.8rem;color:var(--mut)}
+.rev-head .stk{display:flex;flex-direction:column;gap:4px}
+.rev-head .stk .s{color:var(--olive);font-size:1.15rem;letter-spacing:3px}
+.rev-head .stk .c{font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.08em;color:var(--mut)}
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:28px;
+  display:flex;flex-direction:column;gap:16px;position:relative;transition:border-color .25s}
+.review:hover{border-color:var(--line-cyan)}
+.review .rtop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.review .s{color:var(--olive);font-size:.95rem;letter-spacing:2px}
+.review .rno{font-family:'Spline Sans Mono',monospace;font-size:.64rem;letter-spacing:.1em;color:var(--mut-2)}
+.review .q{font-size:1.04rem;line-height:1.62;color:var(--ink);font-weight:500}
+.review .q .hl{background:var(--cyan-ghost);padding:1px 4px;border-radius:4px}
+.review .who{display:flex;align-items:center;gap:11px;margin-top:auto;padding-top:6px}
+.review .who .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--olive));
+  display:grid;place-items:center;font-family:'Spline Sans Mono',monospace;font-weight:700;color:#fff;font-size:.84rem;flex:none}
+.review .who .nm b{font-weight:700;font-size:.92rem;display:block;line-height:1.1}
+.review .who .nm span{font-family:'Spline Sans Mono',monospace;font-size:.6rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--mut)}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(24px,4vw,52px);align-items:start}
+.faq-l{position:sticky;top:96px}
+.faq-l h2{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:900;letter-spacing:-.035em;margin:14px 0 16px}
+.faq-l p{color:var(--mut);line-height:1.64;margin-bottom:20px}
+.faq-l .es{display:inline-flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',monospace;font-size:.78rem;
+  background:var(--card);border:1px solid var(--line);padding:11px 16px;border-radius:11px;color:var(--charcoal)}
+.faq-l .es b{color:var(--olive-deep)}
+.acc{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;align-items:center;gap:16px;text-align:left;background:none;border:none;
+  cursor:pointer;padding:22px 4px;font-family:inherit;color:var(--ink)}
+.qa .qn{font-family:'Spline Sans Mono',monospace;font-size:.74rem;color:var(--cyan-deep);flex:none;padding-top:3px}
+.qa .qt{font-size:1.08rem;font-weight:700;letter-spacing:-.01em;flex:1;line-height:1.35}
+.qa .pm{position:relative;width:18px;height:18px;flex:none;margin-top:3px}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;background:var(--charcoal);border-radius:2px;transition:transform .3s}
+.qa .pm::before{left:0;right:0;top:8px;height:2px}
+.qa .pm::after{top:0;bottom:0;left:8px;width:2px}
+.qa[aria-expanded="true"] .pm::after{transform:scaleY(0)}
+.qa[aria-expanded="true"] .pm::before{background:var(--cyan-deep)}
+.qa .ans{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+@media (prefers-reduced-motion:reduce){.qa .ans{transition:none}}
+.qa .ans .inner{padding:0 4px 24px 52px;color:var(--mut);line-height:1.66;font-size:.98rem}
+.qa .ans .inner b{color:var(--ink);font-weight:600}
+
+/* =========================================================
+   CONTACT / BOOK
+   ========================================================= */
+.book{background:var(--ink);color:var(--on-dark);overflow:hidden}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.book-l .tag{color:var(--on-dark-mut)}
+.book-l h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:900;letter-spacing:-.04em;margin:16px 0 18px;color:#fff}
+.book-l h2 .em{color:var(--cyan)}
+.book-l>p{color:var(--on-dark-mut);font-size:clamp(1rem,1.6vw,1.12rem);line-height:1.64;margin-bottom:28px;max-width:46ch}
+.contact-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+.cbtn{display:inline-flex;align-items:center;gap:11px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  padding:14px 18px;border-radius:12px;transition:.22s;font-family:'Spline Sans Mono',monospace;font-size:.84rem}
+.cbtn:hover{background:var(--cyan);color:#04222e;border-color:var(--cyan)}
+.cbtn svg{width:18px;height:18px;flex:none}
+.cbtn.pr{background:var(--cyan);color:#04222e;border-color:var(--cyan)}
+.cbtn.pr:hover{background:#fff;border-color:#fff}
+.book-info{display:flex;flex-direction:column;gap:2px;margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
+.book-info .row{display:flex;align-items:center;gap:12px;padding:8px 0}
+.book-info .row .k{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--on-dark-mut);width:88px;flex:none}
+.book-info .row .v{font-size:.96rem;color:var(--on-dark)}
+.book-info .row .v a:hover{color:var(--cyan)}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:42px;height:42px;border-radius:11px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;
+  transition:.22s}
+.socials a:hover{background:var(--cyan);border-color:var(--cyan);color:#04222e}
+.socials a svg{width:19px;height:19px}
+/* the form */
+.qform{background:var(--card);border-radius:var(--r-l);padding:clamp(24px,3vw,34px);color:var(--ink);box-shadow:var(--shadow)}
+.qform .fh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.qform h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+.qform .fh .tag{color:var(--cyan-deep)}
+.qform>p{color:var(--mut);font-size:.86rem;margin-bottom:20px}
+.field{margin-bottom:14px}
+.field label{display:block;font-family:'Spline Sans Mono',monospace;font-size:.64rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;font-family:'Schibsted Grotesk',sans-serif;font-size:.96rem;
+  color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+  transition:border-color .2s,box-shadow .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);
+  box-shadow:0 0 0 3px var(--cyan-ghost)}
+.field textarea{resize:vertical;min-height:80px}
+.field.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qform .btn-primary{width:100%;justify-content:center;margin-top:6px}
+.qform .note{font-family:'Spline Sans Mono',monospace;font-size:.62rem;color:var(--mut-2);text-align:center;margin-top:12px;line-height:1.5}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer.ft{background:var(--paper);padding:clamp(40px,5vw,64px) 0 40px}
+.ft-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.ft-brand{max-width:32ch}
+.ft-brand img{height:46px;width:auto;margin-bottom:16px}
+.ft-brand p{color:var(--mut);font-size:.9rem;line-height:1.6}
+.ft-cols{display:flex;flex-wrap:wrap;gap:40px}
+.ft-col h4{font-family:'Spline Sans Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut-2);margin-bottom:14px}
+.ft-col a,.ft-col span{display:block;font-size:.9rem;color:var(--charcoal);padding:5px 0;transition:color .2s}
+.ft-col a:hover{color:var(--cyan-deep)}
+.ft-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;padding-top:26px}
+.ft-bot p{font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.04em;color:var(--mut)}
+.ft-bot .by{color:var(--mut-2)}
+.ft-bot .emerg{display:inline-flex;align-items:center;gap:8px;font-family:'Spline Sans Mono',monospace;font-size:.66rem;
+  letter-spacing:.06em;color:var(--mut);background:var(--paper-2);border:1px solid var(--line);padding:7px 13px;border-radius:50px}
+
+/* =========================================================
+   PREVIEW BADGE
+   ========================================================= */
+.preview-badge{position:fixed;left:16px;bottom:16px;z-index:9500;display:inline-flex;align-items:center;gap:9px;
+  background:var(--ink);color:var(--on-dark);font-family:'Spline Sans Mono',monospace;font-size:.7rem;letter-spacing:.06em;
+  padding:9px 14px;border-radius:50px;box-shadow:var(--shadow-s);border:1px solid rgba(255,255,255,.12);transition:transform .2s}
+.preview-badge:hover{transform:translateY(-2px)}
+.preview-badge .d{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 3px var(--cyan-ghost);flex:none}
+.preview-badge b{color:#fff;font-weight:600}
+
+/* =========================================================
+   SCROLL-REVEAL
+   ========================================================= */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rev.in{opacity:1;transform:none}
+.rev[data-d="1"]{transition-delay:.08s}
+.rev[data-d="2"]{transition-delay:.16s}
+.rev[data-d="3"]{transition-delay:.24s}
+.rev[data-d="4"]{transition-delay:.32s}
+.rev[data-d="5"]{transition-delay:.4s}
+/* hero orchestrated load */
+.boot .hero-l>*{opacity:0;transform:translateY(20px)}
+.boot .route{opacity:0;transform:translateY(28px) scale(.98)}
+.in .hero-l>*{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.in .hero-l>*:nth-child(1){transition-delay:.05s}
+.in .hero-l>*:nth-child(2){transition-delay:.13s}
+.in .hero-l>*:nth-child(3){transition-delay:.21s}
+.in .hero-l>*:nth-child(4){transition-delay:.29s}
+.in .hero-l>*:nth-child(5){transition-delay:.37s}
+.in .hero-l>*:nth-child(6){transition-delay:.45s}
+.in .route{opacity:1;transform:none;transition:opacity .8s .3s cubic-bezier(.2,.8,.2,1),transform .8s .3s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){
+  .rev,.boot .hero-l>*,.boot .route{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .route{max-width:480px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-photo{position:relative;top:0;aspect-ratio:16/11;max-height:420px}
+  .team-grid{grid-template-columns:1fr;gap:28px}
+  .team-photo{max-width:420px;aspect-ratio:4/5}
+  .faq-grid{grid-template-columns:1fr;gap:26px}
+  .faq-l{position:relative;top:0}
+  .book-grid{grid-template-columns:1fr}
+  .fares{grid-template-columns:1fr}
+  .fares-2{grid-template-columns:1fr}
+  .clinics{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr}
+  .promise-grid{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .gal .g-wide{grid-column:span 2}
+  .serving-in{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .nav-links{display:none}
+  .burger{display:flex}
+  .nav-cta{display:none}
+}
+@media (max-width:520px){
+  .field.two{grid-template-columns:1fr}
+  .fare-wide{flex-direction:column;align-items:flex-start}
+  .fare-wide .wp{text-align:left}
+  .hero-meta{gap:14px 22px}
+  .gal{grid-template-columns:1fr;grid-auto-rows:200px}
+  .gal .g-wide,.gal .g-tall{grid-column:auto;grid-row:auto}
+  .preview-badge{font-size:.62rem;padding:8px 12px}
+}
+</style>
+</head>
+<body class="boot">
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="PetMex International home">
+      <img src="/PMI/assets/real/logo.png" alt="PetMex International">
+      <span class="bk"><b>PetMex</b><span>Dispatch · La Mesa CA</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#route">The Route</a>
+      <a href="#services">Care</a>
+      <a href="#fares">Fares</a>
+      <a href="#team">Family</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="tel:+16198673300"><span class="ph">(619) 867-3300</span></a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile" id="mobile" aria-label="Mobile">
+  <a href="#route">The Route <span class="n">[01]</span></a>
+  <a href="#services">Care &amp; Services <span class="n">[02]</span></a>
+  <a href="#fares">Fares <span class="n">[03]</span></a>
+  <a href="#serving">Service Area <span class="n">[04]</span></a>
+  <a href="#team">The Family <span class="n">[05]</span></a>
+  <a href="#reviews">Reviews <span class="n">[06]</span></a>
+  <a href="#faq">FAQ <span class="n">[07]</span></a>
+  <a class="m-cta" href="tel:+16198673300">Call dispatch · (619) 867-3300</a>
+</nav>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="route">
+  <div class="wrap hero-grid">
+    <div class="hero-l">
+      <div class="speed" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="eyebrow">
+        <span class="tag tic tag-cyan">San Diego's only VIP pet transport</span>
+        <span class="tag tic olive tag-olive">Hablamos Español</span>
+      </div>
+      <h1>Door-to-door.<br><span class="em">Handled.</span></h1>
+      <p class="sub">We drive your pet from your door in San Diego to a trusted Tijuana vet and back — <b>same trip</b>. Never alone, never kenneled. The owners ride along the whole way.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#book">Book a pickup <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#fares">View fares</a>
+      </div>
+      <div class="hero-meta">
+        <div class="hmeta"><b>10–90<span class="u">%</span></b><span class="l">off typical vet bills</span></div>
+        <div class="hmeta"><b>5.0<span class="u">★</span></b><span class="l">59 Google reviews</span></div>
+        <div class="hmeta"><b>$200<span class="u">+</span></b><span class="l">round-trip, starting at</span></div>
+      </div>
+    </div>
+
+    <!-- route dispatch card -->
+    <aside class="route" aria-label="Trip route overview">
+      <div class="route-top">
+        <span class="tag">Trip · SD→TJ→SD</span>
+        <span class="live"><span class="pulse"></span> Dispatch ready</span>
+      </div>
+      <figure class="route-photo">
+        <img src="/PMI/assets/real/hero-dogs-in-car.jpg" alt="Two dogs riding in the PetMex car, looking out the window" width="1024" height="1024" fetchpriority="high">
+        <figcaption class="ovl">In transit · riding with us</figcaption>
+      </figure>
+      <div class="legs">
+        <div class="leg active"><span class="node"></span><span class="lt"><b>Your door</b><span>San Diego · pickup</span></span><span class="far">00:00</span></div>
+        <div class="leg active"><span class="node"></span><span class="lt"><b>The border</b><span>docs handled for you</span></span><span class="far">crossing</span></div>
+        <div class="leg active"><span class="node"></span><span class="lt"><b>Trusted clinic</b><span>Tijuana · we stay &amp; translate</span></span><span class="far">care</span></div>
+        <div class="leg end active"><span class="node"></span><span class="lt"><b>Back home</b><span>San Diego · same trip</span></span><span class="far">return</span></div>
+      </div>
+      <div class="route-foot">
+        <span class="from">round-trip <b>from $200</b></span>
+        <span class="px">$200<span class="u">starting at</span></span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- trust strip -->
+  <div class="wrap">
+    <div class="trust rev">
+      <div class="stars"><span class="s">★★★★★</span><b>5.0</b><span class="tag">59 Google reviews</span></div>
+      <div class="sp"></div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Border docs handled</div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 12l4-4M4 12l4 4"/><path d="M20 6v12"/></svg> Never alone · never kenneled</div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Real-time updates en route</div>
+    </div>
+  </div>
+</section>
+
+<!-- speed-line divider -->
+<div class="divider" aria-hidden="true">
+  <div class="rail run" id="rail1"></div>
+  <span class="lab">— SD → TJ → SD · door to door —</span>
+</div>
+
+<!-- ===================== DISPATCH TIMELINE ===================== -->
+<section class="sec flow" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt">
+        <span class="tag tic">The dispatch</span>
+        <h2>Four legs. One trip.<br>You stay home.</h2>
+      </div>
+      <span class="idx">[ HOW IT WORKS · 01–04 ]</span>
+    </div>
+    <div class="timeline" id="timeline">
+      <div class="draw" aria-hidden="true"></div>
+      <div class="step rev" data-d="1">
+        <div class="dot"></div>
+        <div class="no">[01] Pickup</div>
+        <h3>We come to you</h3>
+        <p>We arrive at your door in San Diego and your pet rides with us — comfortable, calm, in the car. No carrier in a cargo hold, no stranger.</p>
+        <span class="meta">→ Lakeside · Santee · El Cajon · south of the 52</span>
+      </div>
+      <div class="step rev" data-d="2">
+        <div class="dot"></div>
+        <div class="no">[02] Crossing</div>
+        <h3>The border, handled</h3>
+        <p>We take care of all the cross-border documentation for you. It's common, it's legal, and you don't lift a finger.</p>
+        <span class="meta">→ paperwork done for you</span>
+      </div>
+      <div class="step rev" data-d="3">
+        <div class="dot"></div>
+        <div class="no">[03] Care</div>
+        <h3>We stay &amp; translate</h3>
+        <p>At the clinic we stay with your pet, send you real-time updates, and translate everything the vet says — so you decide together.</p>
+        <span class="meta">→ live updates · we never leave</span>
+      </div>
+      <div class="step rev" data-d="4">
+        <div class="dot"></div>
+        <div class="no">[04] Home</div>
+        <h3>Back to your door</h3>
+        <p>Same trip, same care — we bring your pet home to San Diego. Many visits are same-day, and we give you a time estimate up front.</p>
+        <span class="meta">→ round-trip · same day when possible</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt">
+        <span class="tag tic">What's on the trip</span>
+        <h2>The vet care<br>waiting at the other end.</h2>
+        <p>We're the transport — not the clinic. We take your pet to qualified Tijuana vets and specialists we personally trust, for everything from a checkup to surgery.</p>
+      </div>
+      <span class="idx">[ SERVICES · MANIFEST ]</span>
+    </div>
+    <div class="svc-grid">
+      <figure class="svc-photo rev">
+        <img src="/PMI/assets/real/clinic-vet-dog.jpg" alt="A veterinarian in green scrubs caring for a small white dog on a clinic table" loading="lazy" width="1050" height="1400">
+        <div class="badge"><div class="b1">Save <span class="pc">10–90%</span></div><div class="b2">vs. your typical vet bill</div></div>
+      </figure>
+      <div class="svc-list rev" data-d="1">
+        <div class="svc"><span class="no">01</span><span class="nm">Wellness Exams</span><span class="mt">routine</span></div>
+        <div class="svc"><span class="no">02</span><span class="nm">Dental Cleaning</span><span class="mt">dental</span></div>
+        <div class="svc"><span class="no">03</span><span class="nm">X-rays</span><span class="mt">imaging</span></div>
+        <div class="svc"><span class="no">04</span><span class="nm">Ultrasounds</span><span class="mt">imaging</span></div>
+        <div class="svc"><span class="no">05</span><span class="nm">Labs &amp; Bloodwork</span><span class="mt">diagnostic</span></div>
+        <div class="svc"><span class="no">06</span><span class="nm">Tumor Removals</span><span class="mt">surgery</span></div>
+        <div class="svc"><span class="no">07</span><span class="nm">Pathology</span><span class="mt">diagnostic</span></div>
+        <div class="svc"><span class="no">08</span><span class="nm">Orthopedic Procedures</span><span class="mt">surgery</span></div>
+        <div class="svc"><span class="no">09</span><span class="nm">Eye Exams</span><span class="mt">specialist</span></div>
+        <div class="svc"><span class="no">10</span><span class="nm">Spay &amp; Neuter</span><span class="mt">surgery</span></div>
+        <div class="svc"><span class="no">11</span><span class="nm">Neurological Exams</span><span class="mt">specialist</span></div>
+        <div class="svc"><span class="no">12</span><span class="nm">MRI</span><span class="mt">imaging</span></div>
+        <div class="svc-more"><span class="tag">// </span><b>…and much more</b> — tell us what your pet needs and we'll route it to the right specialist.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROMISE BAND ===================== -->
+<section class="sec" id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt">
+        <span class="tag tic olive">Why families trust the trip</span>
+        <h2>Your pet's personal<br>limousine service.</h2>
+      </div>
+      <span class="idx">[ THE PROMISE ]</span>
+    </div>
+    <div class="promise-grid">
+      <div class="pcard rev" data-d="1">
+        <div class="ph">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></span>
+          <span class="tag">[ care ]</span>
+        </div>
+        <h3>Never alone, never kenneled</h3>
+        <p>Your pet rides with us the entire way and stays with us at the clinic. <b>The owners personally drive and stay with each pet</b> — that's the whole point.</p>
+      </div>
+      <div class="pcard ov rev" data-d="2">
+        <div class="ph">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+          <span class="tag">[ comms ]</span>
+        </div>
+        <h3>Real-time updates, fully bilingual</h3>
+        <p>We text you along the way and <b>translate everything the vet says</b>, so nothing gets lost across the border. ¡Somos completamente bilingües!</p>
+      </div>
+      <div class="pcard rev" data-d="3">
+        <div class="ph">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <span class="tag">[ legal ]</span>
+        </div>
+        <h3>We take the headache out</h3>
+        <p>All the border-crossing documentation is handled for you. It's <b>common and legal</b> — we've done the trip countless times so you don't have to think about it.</p>
+      </div>
+      <div class="pcard ov rev" data-d="4">
+        <div class="ph">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg></span>
+          <span class="tag">[ family ]</span>
+        </div>
+        <h3>Welcome to the PetMex family</h3>
+        <p>Family-owned and hands-on. Your fur babies get cared for <b>like they're our own</b> — that's how Lizette and TJ run every single trip.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- speed-line divider -->
+<div class="divider" aria-hidden="true">
+  <div class="rail run" id="rail2"></div>
+  <span class="lab">— transparent fares · always "starting at" —</span>
+</div>
+
+<!-- ===================== FARES ===================== -->
+<section class="sec" id="fares">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt">
+        <span class="tag tic">Transport fares</span>
+        <h2>Clear fares.<br>No surprises at the gate.</h2>
+        <p>These cover round-trip transport, the crossing, and us staying with your pet. Vet treatment is billed by the clinic and always confirmed before your pet travels.</p>
+      </div>
+      <span class="idx">[ PRICING · USD ]</span>
+    </div>
+
+    <div class="fares">
+      <div class="fare rev" data-d="1">
+        <div class="ft"><span>Quick visit</span><span class="code">FARE-01</span></div>
+        <h3>Consults &amp; follow-ups</h3>
+        <p class="desc">Round-trip transport for consults and follow-ups under 1 hour at the clinic.</p>
+        <div class="price"><span class="amt"><span class="d">$</span>200</span><span class="sa">starting at</span></div>
+      </div>
+      <div class="fare feat rev" data-d="2">
+        <div class="ft"><span>Studies &amp; sedation</span><span class="code">FARE-02</span></div>
+        <h3>Longer visits</h3>
+        <p class="desc">Visits over 1 hour, multiple studies (X-ray, bloodwork, ultrasound) or light sedation.</p>
+        <div class="price"><span class="amt"><span class="d">$</span>250</span><span class="sa">starting at</span></div>
+      </div>
+      <div class="fare rev" data-d="3">
+        <div class="ft"><span>Surgery &amp; overnights</span><span class="code">FARE-03</span></div>
+        <h3>Bigger procedures</h3>
+        <p class="desc">Larger surgeries &amp; overnight stays — flat rate for any number of nights.</p>
+        <div class="price"><span class="amt"><span class="d">$</span>300</span><span class="sa">starting at</span></div>
+      </div>
+    </div>
+
+    <div class="fares-2 rev" data-d="1">
+      <div class="fare-wide">
+        <div class="pkg"><span class="speed olive" style="width:48px" aria-hidden="true"><span></span><span></span><span></span></span><span class="em">Example package</span></div>
+        <h3>Dog dental · under 20 lbs</h3>
+        <div class="inc">
+          <span>dental cleaning</span><span>bloodwork</span><span>dental X-rays</span><span>round-trip transport</span>
+        </div>
+        <div class="wp"><div class="sa">starting at</div><div class="amt"><span class="d">$</span>565</div></div>
+      </div>
+      <div class="fare-add">
+        <span class="tag">[ add-on ]</span>
+        <b>Weekend service</b>
+        <div class="amt">+$150</div>
+        <p>By availability · Sat &amp; Sun trips</p>
+      </div>
+    </div>
+
+    <div class="fine rev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <p>Round-trip from the immediate San Diego area; pickups outside may have an added charge. Vet treatment costs vary by clinic and case and are <b>confirmed before your pet travels</b>. Prices in USD. <span class="save">Most families save 10–90% versus a comparable US vet bill.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NOW SERVING ===================== -->
+<section class="serving" id="serving">
+  <div class="wrap serving-in">
+    <div class="lab rev">
+      <span class="tag tic">Status · now serving</span>
+      <h2>Pickups across East County &amp; south of the 52.</h2>
+      <p>Based in La Mesa, CA · Mon–Fri 8am–4pm · weekend by availability.</p>
+    </div>
+    <div class="ticker" aria-label="Service area">
+      <div class="track">
+        <span class="stop"><span class="n"></span>Lakeside</span>
+        <span class="stop"><span class="n"></span>Santee</span>
+        <span class="stop"><span class="n"></span>El Cajon</span>
+        <span class="stop"><span class="n"></span>La Mesa</span>
+        <span class="stop"><span class="n"></span>South of the 52</span>
+        <span class="stop border"><span class="n"></span>→ the border</span>
+        <span class="stop"><span class="n"></span>Lakeside</span>
+        <span class="stop"><span class="n"></span>Santee</span>
+        <span class="stop"><span class="n"></span>El Cajon</span>
+        <span class="stop"><span class="n"></span>La Mesa</span>
+        <span class="stop"><span class="n"></span>South of the 52</span>
+        <span class="stop border"><span class="n"></span>→ the border</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEAM / FAMILY ===================== -->
+<section class="sec" id="team">
+  <div class="wrap team-grid">
+    <figure class="team-photo rev">
+      <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, bearded and in a plaid shirt, gently holding a black cat at a Tijuana clinic" loading="lazy" width="1050" height="1400">
+      <figcaption class="cap"><b>TJ</b><span>Co-owner · drives every trip</span></figcaption>
+    </figure>
+    <div class="team-l rev" data-d="1">
+      <span class="tag tic olive">The family behind the wheel</span>
+      <h2>Run by two people who actually go.</h2>
+      <p class="lead">PetMex is family-owned, and that's not a tagline — <b>the owners personally drive and stay with each pet</b>, the whole way there and back.</p>
+      <p>Lizette and TJ built this around one promise: your pet rides with someone who treats it like their own. They handle the border, the clinic, the translation, and the updates to your phone — so the only thing you have to do is hand over the leash.</p>
+      <p>"We take the headache out of that trip to the vet." That's the job. <b>Welcome to the PetMex family.</b></p>
+      <div class="crew">
+        <div class="person">
+          <span class="av"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ" loading="lazy" width="1050" height="1400"></span>
+          <span class="pn"><b>TJ</b><span>Co-owner · driver</span></span>
+        </div>
+        <div class="person">
+          <span class="av illus" aria-hidden="true">LZ</span>
+          <span class="pn"><b>Lizette</b><span>Co-owner · care &amp; comms</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="sec" id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt"><span class="tag tic">From the road &amp; the clinic</span><h2>Real pets. Real trips.</h2></div>
+      <span class="idx">[ GALLERY ]</span>
+    </div>
+    <div class="gal rev">
+      <figure class="g-tall"><img src="/PMI/assets/real/happy-dog.jpeg" alt="A joyful dog with its tongue out, being held" loading="lazy" width="1050" height="1400"><figcaption class="cap">happy_client.jpg</figcaption></figure>
+      <figure class="g-wide"><img src="/PMI/assets/real/clinic-spaniel.jpg" alt="A cocker spaniel beside a vet in blue scrubs" loading="lazy" width="1400" height="813"><figcaption class="cap">at_the_clinic.jpg</figcaption></figure>
+      <figure><img src="/PMI/assets/real/care-vet-cat.jpeg" alt="A vet gently holding a calm fluffy cat" loading="lazy" width="1050" height="1400"><figcaption class="cap">gentle_hands.jpg</figcaption></figure>
+      <figure><img src="/PMI/assets/real/portrait-cat.jpg" alt="Soft portrait of a gray cat" loading="lazy" width="1400" height="787"><figcaption class="cap">portrait.jpg</figcaption></figure>
+      <figure class="g-wide"><img src="/PMI/assets/real/clients-with-dog.jpeg" alt="A happy man and woman holding their small dog at a clinic" loading="lazy" width="1050" height="1400"><figcaption class="cap">reunited.jpg</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- speed-line divider -->
+<div class="divider" aria-hidden="true">
+  <div class="rail run" id="rail3"></div>
+  <span class="lab">— qualified vets &amp; specialists we trust —</span>
+</div>
+
+<!-- ===================== CLINICS ===================== -->
+<section class="sec" id="clinics">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt">
+        <span class="tag tic">Partner clinics</span>
+        <h2>The other end of the route.</h2>
+        <p>We work only with qualified, experienced veterinarians and specialists we personally trust in Tijuana.</p>
+      </div>
+      <span class="idx">[ NETWORK · TIJUANA ]</span>
+    </div>
+    <div class="clinics">
+      <div class="clinic rev" data-d="1">
+        <div class="id"><span>CLINIC-01</span><span class="vfy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>verified</span></div>
+        <h3>Hospital Veterinario Petmed</h3>
+        <p>Orthopedic surgery · ophthalmology · general medicine</p>
+      </div>
+      <div class="clinic rev" data-d="2">
+        <div class="id"><span>CLINIC-02</span><span class="vfy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>verified</span></div>
+        <h3>Clínicas para Animales Dra Martha María</h3>
+        <p>Surgery · general medicine</p>
+      </div>
+      <div class="clinic rev" data-d="3">
+        <div class="id"><span>CLINIC-03</span><span class="vfy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>verified</span></div>
+        <h3>PuntoVet</h3>
+        <p>Neurology</p>
+      </div>
+      <div class="clinic rev" data-d="1">
+        <div class="id"><span>CLINIC-04</span><span class="vfy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>verified</span></div>
+        <h3>Hospivet</h3>
+        <p>General &amp; hospital care</p>
+      </div>
+      <div class="clinic rev" data-d="2">
+        <div class="id"><span>CLINIC-05</span><span class="vfy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>verified</span></div>
+        <h3>MediCat</h3>
+        <p>Feline-focused care</p>
+      </div>
+      <div class="clinic rev" data-d="3">
+        <div class="id"><span>CLINIC-06</span><span class="vfy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>verified</span></div>
+        <h3>Dr Zoo</h3>
+        <p>Physical therapy &amp; rehab</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="sec" id="reviews" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="lt"><span class="tag tic olive">What families say</span><h2>5.0 stars, and they mean it.</h2></div>
+      <span class="idx">[ REVIEWS · GOOGLE ]</span>
+    </div>
+    <div class="rev-head rev">
+      <div class="score"><b>5.0</b><span class="of">/ 5.0</span></div>
+      <div class="stk"><span class="s">★★★★★</span><span class="c">based on 59 Google reviews</span></div>
+    </div>
+    <div class="reviews">
+      <div class="review rev" data-d="1">
+        <div class="rtop"><span class="s">★★★★★</span><span class="rno">REV-01</span></div>
+        <p class="q">"There isn't enough space to express how wonderful PetMex is. The <span class="hl">door-to-door service Lizette and TJ give</span>, and the care for our fur babies, is like if they were their own. Dra Martha is sooo amazing — she literally found out about our Louie's thyroid. I highly recommend this service. Grateful."</p>
+        <div class="who"><span class="av">RC</span><span class="nm"><b>Rebeca Canales</b><span>Google review</span></span></div>
+      </div>
+      <div class="review rev" data-d="2">
+        <div class="rtop"><span class="s">★★★★★</span><span class="rno">REV-02</span></div>
+        <p class="q">"PetMex <span class="hl">saved my dog's life!</span> They truly care about the animals they transport — and my dog actually loves when they pick him up. If you're looking for affordable veterinary care, or don't have time to take your animal yourself, PetMex is the way to go."</p>
+        <div class="who"><span class="av">KD</span><span class="nm"><b>Kara DeJesus</b><span>Google review</span></span></div>
+      </div>
+      <div class="review rev" data-d="3">
+        <div class="rtop"><span class="s">★★★★★</span><span class="rno">REV-03</span></div>
+        <p class="q">"Lizette and TJ were amazing — <span class="hl">in communication the whole time</span>. My dog came back with the most fantastic dental work. Can't recommend enough!"</p>
+        <div class="who"><span class="av">ZB</span><span class="nm"><b>Zach B.</b><span>Google review</span></span></div>
+      </div>
+      <div class="review rev" data-d="4">
+        <div class="rtop"><span class="s">★★★★★</span><span class="rno">REV-04 · ES</span></div>
+        <p class="q">"Increíble servicio para nuestra amada Kira. <span class="hl">Su servicio es 100% confiable.</span> Managed all the logistics from start to finish."</p>
+        <div class="who"><span class="av">LJ</span><span class="nm"><b>Laura J.</b><span>Google review</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-l rev">
+      <span class="tag tic">Before you book</span>
+      <h2>Questions, answered.</h2>
+      <p>Everything families ask before their first trip. Still unsure? Call or text dispatch — a real person picks up.</p>
+      <span class="es"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--olive-deep)"><path d="M5 8h14M5 8a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 01-2 2M5 8v9a2 2 0 002 2h10a2 2 0 002-2V8"/></svg> ¿Hablan español? <b>¡Sí — completamente bilingües!</b></span>
+    </div>
+    <div class="acc" id="acc">
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a1"><span class="qn">[Q1]</span><span class="qt">Are you a clinic?</span><span class="pm"></span></button>
+        <div class="ans" id="a1"><div class="inner">No — <b>we're the transport.</b> We take your pet to trusted vet clinics in Tijuana and back, door to door, and stay with them the whole time.</div></div>
+      </div>
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a2"><span class="qn">[Q2]</span><span class="qt">Is it legal? Do I need documents?</span><span class="pm"></span></button>
+        <div class="ans" id="a2"><div class="inner">Yes — it's <b>common and legal</b>, and we handle all the border-crossing documentation for you.</div></div>
+      </div>
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a3"><span class="qn">[Q3]</span><span class="qt">Are the Tijuana vets qualified?</span><span class="pm"></span></button>
+        <div class="ans" id="a3"><div class="inner">We work only with <b>qualified, experienced veterinarians and specialists</b> we personally trust — the same partner clinics listed above.</div></div>
+      </div>
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a4"><span class="qn">[Q4]</span><span class="qt">Can I come along for the ride?</span><span class="pm"></span></button>
+        <div class="ans" id="a4"><div class="inner">No — for safety and border-crossing reasons we aren't able to take owners along. But <b>we stay with your pet the whole time</b>, send real-time updates, and translate everything the vet says.</div></div>
+      </div>
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a5"><span class="qn">[Q5]</span><span class="qt">What if something goes wrong?</span><span class="pm"></span></button>
+        <div class="ans" id="a5"><div class="inner">We're with your pet the entire time and <b>call you immediately</b> so you decide together with the vet.</div></div>
+      </div>
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a6"><span class="qn">[Q6]</span><span class="qt">How long does it take?</span><span class="pm"></span></button>
+        <div class="ans" id="a6"><div class="inner">It depends on the visit — <b>many are same-day</b>. We give you a time estimate up front so you know what to expect.</div></div>
+      </div>
+      <div class="qa" aria-expanded="false">
+        <button aria-controls="a7"><span class="qn">[Q7]</span><span class="qt">¿Hablan español?</span><span class="pm"></span></button>
+        <div class="ans" id="a7"><div class="inner">¡Sí! <b>Somos completamente bilingües.</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOOK / CONTACT ===================== -->
+<section class="sec book" id="book">
+  <div class="wrap book-grid">
+    <div class="book-l rev">
+      <span class="tag tic">Dispatch · book a pickup</span>
+      <h2>Hand over the leash.<br><span class="em">We'll handle the rest.</span></h2>
+      <p>Tell us about your pet and what they need. We'll confirm a time, an estimate, and the clinic — then we come to your door.</p>
+      <div class="contact-row">
+        <a class="cbtn pr" href="tel:+16198673300"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg> Call (619) 867-3300</a>
+        <a class="cbtn" href="sms:+16198673300"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Text us</a>
+        <a class="cbtn" href="mailto:hello@petmexinternational.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 6l8 6 8-6"/></svg> Email</a>
+      </div>
+      <div class="book-info">
+        <div class="row"><span class="k">Hours</span><span class="v">Mon–Fri 8am–4pm · weekend by availability</span></div>
+        <div class="row"><span class="k">Based in</span><span class="v">La Mesa, CA</span></div>
+        <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:hello@petmexinternational.com">hello@petmexinternational.com</a></span></div>
+      </div>
+      <div class="socials">
+        <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+    </div>
+
+    <form class="qform rev" data-d="1" onsubmit="return false" aria-label="Request a pickup (demo only)">
+      <div class="fh"><h3>Request a pickup</h3><span class="tag">FORM · DEMO</span></div>
+      <p>Visual only — for a real quote, call or text dispatch and a person picks up.</p>
+      <div class="field two">
+        <div><label for="nm">Your name</label><input id="nm" type="text" placeholder="Jane Doe" autocomplete="name"></div>
+        <div><label for="ph">Phone</label><input id="ph" type="tel" placeholder="(619) 555-0123" autocomplete="tel"></div>
+      </div>
+      <div class="field two">
+        <div><label for="pet">Pet</label><input id="pet" type="text" placeholder="Louie · dog · 18 lbs"></div>
+        <div><label for="svc">Visit type</label>
+          <select id="svc">
+            <option>Wellness / consult</option>
+            <option>Dental</option>
+            <option>Imaging (X-ray / ultrasound)</option>
+            <option>Labs / bloodwork</option>
+            <option>Surgery</option>
+            <option>Specialist (neuro / eye / ortho)</option>
+            <option>Not sure — help me</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="zip">Pickup area / ZIP</label><input id="zip" type="text" placeholder="El Cajon · 92020"></div>
+      <div class="field"><label for="msg">Anything we should know?</label><textarea id="msg" placeholder="Meds, temperament, preferred days…"></textarea></div>
+      <button class="btn btn-primary" type="submit">Request pickup <span class="arr">→</span></button>
+      <p class="note">// no data is sent — this is a design preview. Real bookings: (619) 867-3300</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="/PMI/assets/real/logo.png" alt="PetMex International">
+        <p>San Diego's only VIP pet transportation service. Door-to-door, never alone, never kenneled. Welcome to the family.</p>
+      </div>
+      <div class="ft-cols">
+        <div class="ft-col">
+          <h4>The route</h4>
+          <a href="#route">Overview</a>
+          <a href="#how">How it works</a>
+          <a href="#services">Care &amp; services</a>
+          <a href="#fares">Fares</a>
+        </div>
+        <div class="ft-col">
+          <h4>Trust</h4>
+          <a href="#team">The family</a>
+          <a href="#clinics">Partner clinics</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="ft-col">
+          <h4>Dispatch</h4>
+          <a href="tel:+16198673300">(619) 867-3300</a>
+          <a href="sms:+16198673300">Text us</a>
+          <a href="mailto:hello@petmexinternational.com">Email</a>
+          <span>La Mesa, CA</span>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© 2026 PetMex International Inc. <span class="by">· Design preview by Rob Logic.</span></p>
+      <span class="emerg"><span style="width:6px;height:6px;border-radius:50%;background:var(--mut-2);display:inline-block"></span> For the moment, we do not offer emergency services.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="preview-badge" href="/PMI/directions/"><span class="d"></span>Preview · <b>Dispatch</b></a>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- orchestrated page-load reveal ---- */
+  window.addEventListener('load', function(){
+    requestAnimationFrame(function(){
+      document.body.classList.remove('boot');
+      document.body.classList.add('in');
+    });
+  });
+  /* safety: if load already fired */
+  if (document.readyState === 'complete'){
+    document.body.classList.remove('boot');
+    document.body.classList.add('in');
+  }
+
+  /* ---- sticky nav shadow ---- */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('stuck', window.scrollY > 8); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ---- mobile menu ---- */
+  var burger = document.getElementById('burger');
+  var mobile = document.getElementById('mobile');
+  function closeMenu(){ burger.classList.remove('x'); mobile.classList.remove('open');
+    burger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  burger.addEventListener('click', function(){
+    var open = mobile.classList.toggle('open');
+    burger.classList.toggle('x', open);
+    burger.setAttribute('aria-expanded', open ? 'true':'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobile.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  /* ---- scroll reveal (with hard safety net so content can never stay hidden) ---- */
+  var revs = [].slice.call(document.querySelectorAll('.rev'));
+  var tl = document.getElementById('timeline');
+  function revealAll(){
+    revs.forEach(function(el){ el.classList.add('in'); });
+    if (tl){ tl.classList.add('go'); }
+  }
+  if (rm || !('IntersectionObserver' in window)){
+    revealAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0});
+    revs.forEach(function(el){
+      // reveal immediately anything already in/above the viewport (restored scroll, short pages)
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92){ el.classList.add('in'); }
+      else { io.observe(el); }
+    });
+
+    /* timeline route draw on scroll (signature micro-interaction) */
+    if (tl){
+      if (tl.getBoundingClientRect().top < window.innerHeight * 0.7){ tl.classList.add('go'); }
+      else {
+        var tio = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ if (e.isIntersecting){ tl.classList.add('go'); tio.unobserve(e.target); } });
+        }, {threshold:0.25});
+        tio.observe(tl);
+      }
+    }
+
+    /* safety net: never let any reveal element stay invisible */
+    setTimeout(revealAll, 2400);
+    window.addEventListener('pagehide', revealAll);
+  }
+
+  /* ---- build animated speed-line dividers (signature motif) ---- */
+  function fillRail(rail){
+    if (!rail) return;
+    var widths = [120,46,78,32,150,60,96,40,132,54,88,36];
+    var html = '';
+    // double the set so the drift loop is seamless
+    for (var pass=0; pass<2; pass++){
+      for (var i=0;i<widths.length;i++){
+        var op = (0.35 + (i%4)*0.2).toFixed(2);
+        html += '<span class="dash" style="width:'+widths[i]+'px;opacity:'+op+'"></span>';
+      }
+    }
+    rail.innerHTML = html;
+    if (rm) rail.classList.remove('run');
+  }
+  ['rail1','rail2','rail3'].forEach(function(id){ fillRail(document.getElementById(id)); });
+
+  /* ---- FAQ accordion ---- */
+  var qas = document.querySelectorAll('.qa');
+  qas.forEach(function(qa){
+    var btn = qa.querySelector('button');
+    var ans = qa.querySelector('.ans');
+    btn.addEventListener('click', function(){
+      var open = qa.getAttribute('aria-expanded') === 'true';
+      qas.forEach(function(o){
+        if (o!==qa){ o.setAttribute('aria-expanded','false'); o.querySelector('.ans').style.maxHeight = null; }
+      });
+      if (open){ qa.setAttribute('aria-expanded','false'); ans.style.maxHeight = null; }
+      else { qa.setAttribute('aria-expanded','true'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+    });
+  });
+  window.addEventListener('resize', function(){
+    var open = document.querySelector('.qa[aria-expanded="true"] .ans');
+    if (open){ open.style.maxHeight = open.scrollHeight + 'px'; }
+  });
+})();
+</script>
+</body>
+</html>

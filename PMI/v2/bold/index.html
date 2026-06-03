@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetMex International — Same Love. Up to 90% Less. | Cross-Border Pet Transport</title>
+<meta name="description" content="San Diego's only VIP pet transportation service. We drive your pet door-to-door to trusted Tijuana vet clinics and back — never alone, never kenneled. Saving you 10–90% off your typical vet bill.">
+<meta name="theme-color" content="#00AEEF">
+<meta property="og:title" content="PetMex International — Same Love. Up to 90% Less.">
+<meta property="og:description" content="Your pet's personal limousine to trusted Tijuana vets. The owners drive and stay with your pet the whole time. Door-to-door from San Diego.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/PMI/assets/real/hero-dogs-in-car.jpg">
+<meta property="og:site_name" content="PetMex International Inc.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<link rel="icon" type="image/png" href="/PMI/assets/real/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Archivo+Expanded:wght@700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+a{color:inherit}
+:focus-visible{outline:3px solid #00AEEF;outline-offset:3px}
+
+/* ============ TOKENS ============ */
+:root{
+  /* named, confident palette */
+  --paper:#ffffff;       /* Paper White */
+  --cyan:#00AEEF;        /* Pacific Cyan */
+  --cyan-ink:#006a92;    /* deep cyan for text on white */
+  --olive:#6F8F40;       /* Field Olive */
+  --olive-deep:#566f31;  /* Olive Deep */
+  --char:#4B4B4C;        /* Charcoal */
+  --ink:#2c2c2d;         /* near-black ink */
+  --bone:#f3f1ea;        /* warm off-white accent */
+  --line:rgba(75,75,76,.16);
+  --shadow:0 24px 60px -28px rgba(75,75,76,.55);
+  --maxw:1240px;
+  --pad:clamp(20px,5vw,72px);
+}
+
+/* ============ BASE ============ */
+body{
+  font-family:'Public Sans',sans-serif;
+  color:var(--char);
+  background:var(--paper);
+  line-height:1.6;
+  font-size:clamp(1rem,.96rem + .25vw,1.12rem);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+h1,h2,h3,.display{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+.archivo{font-family:'Archivo',sans-serif}
+p{max-width:62ch}
+
+/* global grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+/* ============ PREVIEW BADGE ============ */
+.preview-badge{
+  position:fixed;top:14px;right:14px;z-index:9500;
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--char);color:#fff;text-decoration:none;
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:8px 13px;border-radius:50px;box-shadow:0 6px 22px -8px rgba(0,0,0,.6);
+  transition:transform .25s ease,background .25s ease;
+}
+.preview-badge:hover{transform:translateY(-2px);background:var(--cyan)}
+.preview-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan)}
+.preview-badge:hover .dot{background:#fff}
+@media(max-width:560px){.preview-badge{font-size:.62rem;padding:6px 10px;top:10px;right:10px}}
+
+/* ============ NAV ============ */
+header.nav{
+  position:sticky;top:0;z-index:8000;background:rgba(255,255,255,.92);
+  -webkit-backdrop-filter:saturate(140%) blur(8px);backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:2px solid var(--ink);transition:box-shadow .3s ease;
+}
+header.nav.scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.5)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:clamp(64px,8vw,82px);max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.brand img{height:clamp(34px,4.4vw,44px);width:auto}
+.brand .bt{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(1.05rem,2vw,1.35rem);color:var(--ink);line-height:1}
+.brand .bt span{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,1.8vw,30px)}
+.nav-links a{text-decoration:none;font-family:'Archivo',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.01em;color:var(--ink);text-transform:uppercase;position:relative;padding:4px 0}
+.nav-links a:not(.nav-cta)::after{content:"";position:absolute;left:0;bottom:-2px;height:3px;width:0;background:var(--cyan);transition:width .28s cubic-bezier(.2,.7,.2,1)}
+.nav-links a:not(.nav-cta):hover::after{width:100%}
+.nav-cta{background:var(--cyan);color:#fff!important;padding:11px 20px!important;border-radius:50px;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform .18s ease,box-shadow .18s ease}
+.nav-cta:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.nav-cta:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.es-pill{font-family:'Archivo',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.05em;color:var(--olive-deep);border:2px solid var(--olive);border-radius:50px;padding:4px 10px;text-transform:uppercase}
+.burger{display:none;width:46px;height:46px;border:2px solid var(--ink);border-radius:12px;position:relative;flex-shrink:0;background:#fff}
+.burger span{position:absolute;left:11px;right:11px;height:3px;background:var(--ink);border-radius:3px;transition:transform .3s ease,opacity .2s ease}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:29px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:920px){
+  .burger{display:block}
+  .nav-links{position:fixed;inset:0 0 0 auto;width:min(82vw,360px);flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;background:var(--paper);border-left:3px solid var(--ink);padding:96px 30px 40px;transform:translateX(105%);transition:transform .38s cubic-bezier(.4,0,.1,1);box-shadow:var(--shadow);overflow-y:auto}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1.5rem;font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800}
+  .nav-links a:not(.nav-cta){padding:10px 0}
+  .nav-cta{margin-top:14px;align-self:stretch;text-align:center;font-size:1.05rem!important}
+  .es-pill{font-size:.9rem;margin-top:6px}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:var(--cyan);color:#fff;overflow:hidden;border-bottom:3px solid var(--ink)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;min-height:clamp(560px,84vh,860px)}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,7vw,90px) clamp(20px,5vw,72px) clamp(50px,7vw,90px);position:relative;z-index:3}
+.hero-eyebrow{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:clamp(.72rem,1.4vw,.86rem);margin-bottom:clamp(18px,3vw,28px);display:inline-flex;align-items:center;gap:10px;color:#eafaff}
+.hero-eyebrow .ln{height:2px;width:38px;background:#fff;display:inline-block}
+.hero h1{
+  color:#fff;font-size:clamp(3.1rem,11.5vw,9.2rem);line-height:.86;letter-spacing:-.025em;
+  margin-bottom:clamp(22px,3.5vw,38px);text-shadow:0 2px 0 rgba(0,0,0,.06);
+}
+.hero h1 .pop{color:var(--ink)}
+.hero h1 .em{
+  font-family:'Archivo',sans-serif;font-style:normal;font-weight:900;
+  display:inline-block;background:var(--olive);color:#fff;padding:0 .14em;
+  transform:rotate(-1.4deg);box-shadow:6px 6px 0 var(--ink);margin:.04em 0;
+}
+.hero-sub{font-size:clamp(1.05rem,2.1vw,1.35rem);font-weight:500;max-width:46ch;color:#f3fdff;margin-bottom:clamp(26px,4vw,38px)}
+.hero-sub b{font-weight:700;color:#fff;border-bottom:3px solid var(--olive)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;padding:16px 26px;border-radius:50px;font-size:clamp(.92rem,1.6vw,1.02rem);border:3px solid var(--ink);transition:transform .18s ease,box-shadow .18s ease,background .2s ease}
+.btn .arr{transition:transform .25s ease}
+.btn:hover .arr{transform:translateX(5px)}
+.btn-dark{background:var(--ink);color:#fff;box-shadow:5px 5px 0 rgba(255,255,255,.55)}
+.btn-dark:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(255,255,255,.7)}
+.btn-dark:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(255,255,255,.5)}
+.btn-ghost{background:#fff;color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn-ghost:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+.btn-ghost:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.hero-trust{margin-top:clamp(28px,4vw,40px);display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Archivo',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.02em}
+.hero-trust .stars{color:#fff;letter-spacing:2px;font-size:1.05rem}
+.hero-trust .rule{width:1px;height:18px;background:rgba(255,255,255,.5)}
+.hero-media{position:relative;overflow:hidden;border-left:3px solid var(--ink)}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.hero-media::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--cyan) 0%,transparent 22%);z-index:2;pointer-events:none}
+/* giant rotated wordmark bleeding off the media edge */
+.hero-stamp{position:absolute;right:-2%;bottom:4%;z-index:4;font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(2.4rem,7vw,5.6rem);color:#fff;line-height:.8;letter-spacing:-.03em;text-align:right;mix-blend-mode:overlay;opacity:.92;pointer-events:none}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;min-height:0}
+  .hero-media{height:clamp(280px,52vw,440px);border-left:none;border-top:3px solid var(--ink);order:2}
+  .hero-copy{order:1;padding-bottom:clamp(40px,8vw,60px)}
+  .hero-media::before{background:linear-gradient(0deg,var(--cyan) 0%,transparent 26%)}
+  .hero-stamp{font-size:clamp(2rem,9vw,3.4rem)}
+}
+
+/* ============ MARQUEE / VALUE BAR ============ */
+.marquee{background:var(--ink);color:#fff;border-bottom:3px solid var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0}
+.marquee-track{display:inline-flex;gap:0;animation:scrollx 32s linear infinite;will-change:transform}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none;white-space:normal;flex-wrap:wrap;justify-content:center;padding:0 var(--pad)}}
+.marquee-track span{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(.85rem,1.7vw,1.05rem);padding:0 26px;display:inline-flex;align-items:center;gap:26px}
+.marquee-track span::after{content:"●";color:var(--cyan);font-size:.7em}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ SECTION SCAFFOLD ============ */
+section{position:relative}
+.sec-pad{padding-top:clamp(64px,10vw,140px);padding-bottom:clamp(64px,10vw,140px)}
+.eyebrow{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.18em;font-size:clamp(.72rem,1.3vw,.84rem);display:inline-flex;align-items:center;gap:10px;margin-bottom:clamp(18px,2.5vw,26px)}
+.eyebrow .ln{height:2px;width:34px;display:inline-block;background:currentColor}
+.h-sec{font-size:clamp(2.2rem,6.5vw,5rem);line-height:.92;letter-spacing:-.025em;color:var(--ink)}
+.on-cyan{background:var(--cyan);color:#fff;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.on-cyan .h-sec{color:#fff}.on-cyan .eyebrow{color:#eafaff}
+.on-olive{background:var(--olive);color:#fff;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.on-olive .h-sec{color:#fff}.on-olive .eyebrow{color:#eef5e3}
+.on-ink{background:var(--ink);color:#fff;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.on-ink .h-sec{color:#fff}.on-ink .eyebrow{color:#cfeefb}
+
+/* ============ INTRO / PROMISE ============ */
+.promise-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,80px);align-items:center}
+.promise-copy .h-sec{margin-bottom:clamp(22px,3vw,30px)}
+.promise-copy p{font-size:clamp(1.05rem,1.7vw,1.22rem);margin-bottom:18px;color:var(--char)}
+.promise-copy p strong{color:var(--ink)}
+.promise-media{position:relative}
+.promise-media .fr{position:relative;border:3px solid var(--ink);border-radius:6px;overflow:hidden;box-shadow:10px 10px 0 var(--cyan);aspect-ratio:1024/1024}
+.promise-media .fr img{width:100%;height:100%;object-fit:cover}
+.promise-tag{position:absolute;left:-14px;bottom:24px;z-index:3;background:var(--olive);color:#fff;border:3px solid var(--ink);font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(.78rem,1.4vw,.94rem);padding:10px 16px;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--ink)}
+@media(max-width:860px){.promise-grid{grid-template-columns:1fr;gap:40px}.promise-media{order:-1}}
+
+/* ============ BIG SAVINGS STAT ============ */
+.savings{text-align:center;overflow:hidden}
+.savings .eyebrow{justify-content:center}
+.savings .stat{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;line-height:.78;letter-spacing:-.04em;font-size:clamp(6rem,30vw,26rem);color:#fff;display:block;position:relative}
+.savings .stat .pct{color:var(--ink);display:inline-block}
+.savings .stat-line{display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,24px);flex-wrap:nowrap}
+.savings .lede{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.1rem,3vw,2rem);margin:clamp(14px,2.5vw,24px) auto 0;max-width:24ch;line-height:1.05}
+.savings .sub{font-weight:500;text-transform:none;letter-spacing:0;font-size:clamp(1rem,1.7vw,1.18rem);max-width:54ch;margin:18px auto 0;color:#eef5e3;font-family:'Public Sans',sans-serif}
+.scaler{display:inline-block;transform-origin:center;will-change:transform}
+
+/* ============ HOW IT WORKS ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:3px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+.step{padding:clamp(24px,3vw,38px);border-right:3px solid var(--ink);position:relative;min-height:clamp(220px,26vw,300px);display:flex;flex-direction:column}
+.step:last-child{border-right:none}
+.step:nth-child(odd){background:var(--bone)}
+.step .n{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:clamp(2.6rem,5vw,4.2rem);line-height:.8;color:var(--cyan);letter-spacing:-.03em;margin-bottom:auto}
+.step:nth-child(2) .n{color:var(--olive)}.step:nth-child(3) .n{color:var(--cyan)}.step:nth-child(4) .n{color:var(--olive)}
+.step h3{font-size:clamp(1.1rem,2vw,1.45rem);margin:18px 0 10px;color:var(--ink);line-height:1}
+.step p{font-size:.98rem;color:var(--char)}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:none}.step:nth-child(1),.step:nth-child(2){border-bottom:3px solid var(--ink)}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}.step{border-right:none;border-bottom:3px solid var(--ink);min-height:0}.step:last-child{border-bottom:none}}
+
+/* ============ SERVICES INDEX ============ */
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(30px,4vw,48px)}
+.svc-head p{font-size:clamp(1rem,1.5vw,1.15rem);max-width:40ch;color:#eef5e3}
+.svc-index{border-top:2px solid rgba(255,255,255,.45)}
+.svc-row{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:clamp(16px,3vw,40px);padding:clamp(16px,2.4vw,26px) 0;border-bottom:2px solid rgba(255,255,255,.28);position:relative;transition:padding-left .3s cubic-bezier(.2,.7,.2,1)}
+.svc-row .idx{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(.9rem,1.5vw,1.05rem);color:rgba(255,255,255,.66);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.svc-row .name{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(1.4rem,4.4vw,3.1rem);line-height:1;color:#fff;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.svc-row .tick{font-family:'Public Sans',sans-serif;font-weight:600;font-size:clamp(.78rem,1.2vw,.92rem);text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.7);white-space:nowrap}
+.svc-row::before{content:"";position:absolute;left:-22px;top:0;bottom:0;width:8px;background:#fff;transform:scaleY(0);transform-origin:top;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.svc-row:hover{padding-left:18px}
+.svc-row:hover::before{transform:scaleY(1)}
+.svc-row:hover .name{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){.svc-row,.svc-row .name{transition:none}}
+@media(max-width:620px){.svc-row{grid-template-columns:auto 1fr;gap:14px}.svc-row .tick{display:none}}
+
+/* ============ MANIFEST (clinics) ============ */
+.manifest{display:grid;grid-template-columns:1fr;gap:0;border:3px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper)}
+.mani-row{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(14px,3vw,34px);align-items:center;padding:clamp(18px,2.6vw,28px) clamp(20px,3vw,36px);border-bottom:2px solid var(--line);transition:background .2s ease}
+.mani-row:last-child{border-bottom:none}
+.mani-row:hover{background:var(--bone)}
+.mani-row .mk{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:clamp(1rem,2vw,1.3rem);color:var(--cyan);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.mani-row .mn{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(1rem,2.3vw,1.5rem);color:var(--ink);line-height:1.05;letter-spacing:-.01em}
+.mani-row .ms{font-family:'Public Sans',sans-serif;font-weight:500;font-size:clamp(.85rem,1.3vw,1rem);color:var(--char);text-align:right;max-width:34ch}
+@media(max-width:680px){.mani-row{grid-template-columns:auto 1fr}.mani-row .ms{grid-column:1/-1;text-align:left;padding-left:calc(clamp(1rem,2vw,1.3rem) + clamp(14px,3vw,34px));color:var(--cyan-ink);font-weight:600}}
+.mani-note{margin-top:22px;font-size:.96rem;color:var(--char);display:flex;align-items:center;gap:10px}
+.mani-note b{color:var(--ink)}
+
+/* ============ PRICING ============ */
+.price-head{margin-bottom:clamp(34px,5vw,56px)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.5vw,28px)}
+.price-card{background:var(--paper);border:3px solid var(--ink);border-radius:8px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;position:relative;box-shadow:8px 8px 0 var(--ink);transition:transform .2s ease,box-shadow .2s ease}
+.price-card:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--ink)}
+.price-card .ribbon{position:absolute;top:-3px;right:18px;background:var(--olive);color:#fff;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;font-size:.7rem;letter-spacing:.08em;padding:6px 12px;border:3px solid var(--ink);border-top:none;border-radius:0 0 8px 8px}
+.price-card .tier{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.86rem;color:var(--cyan-ink);margin-bottom:14px}
+.price-card .amt{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;color:var(--ink);line-height:.85;letter-spacing:-.03em;margin-bottom:6px;display:flex;align-items:flex-start;gap:4px}
+.price-card .amt .cur{font-size:clamp(1.3rem,3vw,2rem);margin-top:.35em}
+.price-card .amt .num{font-size:clamp(3.2rem,8vw,5rem)}
+.price-card .start{font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;color:var(--olive-deep);margin-bottom:18px}
+.price-card .desc{font-size:.98rem;color:var(--char);flex:1;margin-bottom:0}
+.price-extra{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(22px,3vw,30px)}
+.chip-strong{background:var(--ink);color:#fff;border-radius:50px;padding:12px 20px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.92rem;display:inline-flex;align-items:center;gap:10px}
+.chip-strong b{color:var(--cyan)}
+.example{margin-top:clamp(26px,3.5vw,38px);background:var(--paper);border:3px solid var(--ink);border-radius:8px;padding:clamp(22px,3vw,32px);display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,30px);align-items:center;box-shadow:8px 8px 0 var(--cyan)}
+.example .big{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;color:var(--ink);line-height:.85;letter-spacing:-.03em;font-size:clamp(2.6rem,7vw,4.4rem);white-space:nowrap}
+.example .big .cur{font-size:.45em;vertical-align:top;margin-right:2px}
+.example h3{font-size:clamp(1.05rem,2vw,1.4rem);color:var(--ink);margin-bottom:6px;line-height:1.05}
+.example p{font-size:.96rem;color:var(--char)}
+.disclaimer{margin-top:22px;font-size:.86rem;color:rgba(255,255,255,.92);max-width:78ch;line-height:1.55}
+.on-olive .disclaimer{color:#eef5e3}
+@media(max-width:860px){.price-grid{grid-template-columns:1fr}.example{grid-template-columns:1fr}.example .big{font-size:clamp(2.6rem,12vw,4rem)}}
+
+/* ============ TJ / FAMILY ============ */
+.family-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:3px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);background:var(--paper)}
+.family-photo{position:relative;min-height:clamp(340px,46vw,560px);border-right:3px solid var(--ink)}
+.family-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.family-photo .cap{position:absolute;left:0;bottom:0;background:var(--cyan);color:#fff;border-top:3px solid var(--ink);border-right:3px solid var(--ink);font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.84rem;padding:9px 16px}
+.family-copy{padding:clamp(28px,4vw,54px);display:flex;flex-direction:column;justify-content:center}
+.family-copy .h-sec{font-size:clamp(1.9rem,4.5vw,3.4rem);margin-bottom:20px}
+.family-copy p{font-size:clamp(1rem,1.6vw,1.16rem);margin-bottom:16px;color:var(--char)}
+.family-copy p strong{color:var(--ink)}
+.team-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.team-tags .tt{display:flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.95rem;color:var(--ink)}
+.avatar{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);overflow:hidden;flex-shrink:0;display:grid;place-items:center;background:var(--olive);color:#fff;font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:1.1rem}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.tt small{display:block;font-family:'Public Sans',sans-serif;font-weight:500;color:var(--char);font-size:.82rem;text-transform:none;letter-spacing:0}
+@media(max-width:820px){.family-grid{grid-template-columns:1fr}.family-photo{border-right:none;border-bottom:3px solid var(--ink);min-height:clamp(300px,70vw,420px)}}
+
+/* ============ GALLERY ============ */
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(120px,16vw,200px);gap:clamp(8px,1.4vw,16px)}
+.gtile{position:relative;overflow:hidden;border:3px solid var(--ink);border-radius:6px;background:var(--bone)}
+.gtile img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.gtile:hover img{transform:scale(1.06)}
+@media (prefers-reduced-motion:reduce){.gtile:hover img{transform:none}}
+.g1{grid-column:span 3;grid-row:span 2}
+.g2{grid-column:span 3;grid-row:span 1}
+.g3{grid-column:span 2;grid-row:span 1}
+.g4{grid-column:span 1;grid-row:span 1}
+.g5{grid-column:span 2;grid-row:span 2}
+.g6{grid-column:span 2;grid-row:span 1}
+.g7{grid-column:span 2;grid-row:span 1}
+@media(max-width:760px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(140px,40vw,200px)}.g1,.g2,.g3,.g4,.g5,.g6,.g7{grid-column:span 1;grid-row:span 1}.g1{grid-column:span 2}}
+
+/* ============ REVIEWS ============ */
+.rev-head{margin-bottom:clamp(30px,4vw,48px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.rev-score{display:flex;align-items:center;gap:16px}
+.rev-score .num{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:clamp(2.6rem,6vw,4.2rem);color:var(--ink);line-height:.8}
+.rev-score .meta .st{color:var(--cyan);letter-spacing:3px;font-size:1.2rem}
+.rev-score .meta small{font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;color:var(--char)}
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,26px)}
+.review{background:var(--paper);border:3px solid var(--ink);border-radius:8px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;position:relative;box-shadow:7px 7px 0 var(--ink);transition:transform .2s ease,box-shadow .2s ease}
+.review:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--cyan)}
+.review .qm{font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;font-size:3.4rem;line-height:.6;color:var(--cyan);margin-bottom:8px}
+.review .stars{color:var(--olive);letter-spacing:2px;font-size:1rem;margin-bottom:12px}
+.review p{font-size:clamp(1rem,1.5vw,1.1rem);color:var(--char);flex:1;margin-bottom:18px}
+.review .who{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.02em;color:var(--ink);font-size:.95rem}
+.review .who span{display:block;font-family:'Public Sans',sans-serif;font-weight:500;text-transform:none;letter-spacing:0;color:var(--olive-deep);font-size:.82rem;margin-top:3px}
+@media(max-width:760px){.reviews{grid-template-columns:1fr}}
+
+/* ============ SERVICE AREA / HOURS ============ */
+.area-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,48px);align-items:stretch}
+.area-box{background:var(--paper);border:3px solid var(--ink);border-radius:8px;padding:clamp(24px,3.5vw,40px);box-shadow:8px 8px 0 var(--olive)}
+.area-box .eyebrow{color:var(--olive-deep)}
+.area-box h3{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--ink);margin-bottom:18px;line-height:1}
+.area-list{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.area-list li{list-style:none;font-family:'Archivo',sans-serif;font-weight:700;font-size:.92rem;text-transform:uppercase;letter-spacing:.02em;background:var(--bone);border:2px solid var(--ink);border-radius:50px;padding:8px 16px;color:var(--ink)}
+.area-box p{font-size:1rem;color:var(--char)}
+.hours-box{background:var(--ink);color:#fff;border:3px solid var(--ink);border-radius:8px;padding:clamp(24px,3.5vw,40px);display:flex;flex-direction:column;box-shadow:8px 8px 0 var(--cyan)}
+.hours-box .eyebrow{color:#cfeefb}
+.hours-box h3{color:#fff;font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:20px;line-height:1}
+.hrow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:2px solid rgba(255,255,255,.18)}
+.hrow:last-of-type{border-bottom:none}
+.hrow .d{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1rem}
+.hrow .t{font-family:'Public Sans',sans-serif;font-weight:600;color:#eafaff}
+.hours-note{margin-top:auto;padding-top:20px;font-size:.9rem;color:#dfe7f0}
+.hours-note b{color:var(--cyan)}
+@media(max-width:820px){.area-grid{grid-template-columns:1fr}}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,64px);align-items:start}
+.faq-intro{position:sticky;top:110px}
+.faq-intro .h-sec{margin-bottom:18px}
+.faq-intro p{color:var(--char);font-size:1.08rem}
+.faq-intro .es-note{margin-top:22px;display:inline-flex;align-items:center;gap:10px;background:var(--olive);color:#fff;border:3px solid var(--ink);font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:.86rem;padding:10px 16px;box-shadow:4px 4px 0 var(--ink)}
+.faq-list{border-top:3px solid var(--ink)}
+.faq-item{border-bottom:3px solid var(--ink)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;text-align:left;padding:clamp(18px,2.6vw,26px) 0;font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.005em;font-size:clamp(1.02rem,2vw,1.35rem);color:var(--ink);line-height:1.1}
+.faq-q .pm{flex-shrink:0;width:34px;height:34px;border:3px solid var(--ink);border-radius:50%;display:grid;place-items:center;position:relative;transition:background .25s ease}
+.faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;background:var(--ink);transition:transform .3s cubic-bezier(.2,.7,.2,1),background .25s ease}
+.faq-q .pm::before{width:14px;height:3px}
+.faq-q .pm::after{width:3px;height:14px}
+.faq-item[open] .faq-q .pm{background:var(--cyan)}
+.faq-item[open] .faq-q .pm::before,.faq-item[open] .faq-q .pm::after{background:#fff}
+.faq-item[open] .faq-q .pm::after{transform:scaleY(0)}
+.faq-a{overflow:hidden}
+.faq-a-inner{padding:0 0 clamp(20px,2.6vw,28px);max-width:64ch}
+.faq-a-inner p{color:var(--char);font-size:1.05rem}
+.faq-a-inner p b{color:var(--ink)}
+/* accordion animation via grid-rows when scripted */
+.faq-item .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s cubic-bezier(.2,.7,.2,1)}
+.faq-item.is-open .faq-a{grid-template-rows:1fr}
+.faq-item .faq-a > div{min-height:0}
+@media (prefers-reduced-motion:reduce){.faq-item .faq-a{transition:none}}
+/* details fallback when JS off */
+.no-js .faq-item[open] .faq-a{grid-template-rows:1fr}
+.faq-q::-webkit-details-marker{display:none}
+summary.faq-q{cursor:pointer;list-style:none}
+summary.faq-q::marker{content:""}
+@media(max-width:820px){.faq-grid{grid-template-columns:1fr}.faq-intro{position:static}}
+
+/* ============ CONTACT / QUOTE ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:3px solid var(--ink);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+.contact-left{background:var(--cyan);color:#fff;padding:clamp(28px,4vw,54px);border-right:3px solid var(--ink)}
+.contact-left .h-sec{color:#fff;font-size:clamp(1.9rem,4.5vw,3.2rem);margin-bottom:18px}
+.contact-left p{color:#f0fbff;font-size:1.08rem;margin-bottom:28px;max-width:42ch}
+.contact-methods{display:flex;flex-direction:column;gap:14px}
+.cm{display:flex;align-items:center;gap:14px;text-decoration:none;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.55);border-radius:12px;padding:14px 18px;transition:background .2s ease,transform .15s ease;color:#fff}
+.cm:hover{background:#fff;color:var(--cyan-ink);transform:translateX(4px)}
+.cm:hover .cm-ico{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.cm-ico{width:44px;height:44px;flex-shrink:0;border:2px solid #fff;border-radius:10px;display:grid;place-items:center;background:#fff;color:var(--cyan);transition:background .2s ease,color .2s ease,border-color .2s ease}
+.cm-ico svg{width:22px;height:22px}
+.cm .lbl{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:.78rem;opacity:.85;line-height:1.1}
+.cm .val{font-family:'Public Sans',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.2}
+.socials{display:flex;gap:12px;margin-top:26px}
+.socials a{width:46px;height:46px;border:2px solid #fff;border-radius:12px;display:grid;place-items:center;transition:background .2s ease,transform .15s ease}
+.socials a:hover{background:#fff;color:var(--cyan-ink);transform:translateY(-3px)}
+.socials svg{width:22px;height:22px}
+.contact-right{background:var(--paper);padding:clamp(28px,4vw,54px)}
+.contact-right .eyebrow{color:var(--olive-deep)}
+.contact-right h3{font-size:clamp(1.4rem,2.6vw,2rem);color:var(--ink);margin-bottom:6px;line-height:1}
+.contact-right .fdesc{font-size:.96rem;color:var(--char);margin-bottom:24px}
+.field{margin-bottom:18px}
+.field label{display:block;font-family:'Archivo',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem;color:var(--ink);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--bone);border:2px solid var(--ink);border-radius:10px;padding:13px 15px;transition:border-color .2s ease,box-shadow .2s ease}
+.field textarea{resize:vertical;min-height:108px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 4px rgba(0,174,239,.18)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-submit{width:100%;justify-content:center;margin-top:6px;cursor:pointer}
+.form-note{margin-top:14px;font-size:.82rem;color:var(--char)}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr}.contact-left{border-right:none;border-bottom:3px solid var(--ink)}.field-row{grid-template-columns:1fr}}
+
+/* ============ STICKY CTA BAR ============ */
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:7000;background:var(--cyan);color:#fff;border-top:3px solid var(--ink);transform:translateY(110%);transition:transform .4s cubic-bezier(.4,0,.1,1);box-shadow:0 -10px 30px -16px rgba(0,0,0,.5)}
+.cta-bar.show{transform:translateY(0)}
+.cta-inner{max-width:var(--maxw);margin:0 auto;padding:12px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.cta-inner .ctxt{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(.9rem,2vw,1.15rem);line-height:1.05}
+.cta-inner .ctxt b{color:var(--ink)}
+.cta-inner .ctxt small{display:block;font-family:'Public Sans',sans-serif;font-weight:500;text-transform:none;letter-spacing:0;font-size:.82rem;color:#eafaff;margin-top:2px}
+.cta-actions{display:flex;gap:10px;flex-shrink:0}
+.cta-bar .btn{padding:12px 20px;font-size:.86rem;border-width:3px}
+.cta-bar .btn-dark{box-shadow:3px 3px 0 rgba(255,255,255,.6)}
+.cta-bar .btn-dark:hover{box-shadow:5px 5px 0 rgba(255,255,255,.75)}
+@media(max-width:680px){
+  .cta-inner .ctxt small{display:none}
+  .cta-bar .btn span.lbl-long{display:none}
+  .cta-actions .btn-ghost{display:none}
+}
+@media(max-width:420px){.cta-inner .ctxt{font-size:.82rem}}
+
+/* ============ FOOTER ============ */
+footer.site{background:var(--ink);color:#fff;border-top:3px solid var(--ink);padding:clamp(50px,7vw,90px) 0 calc(clamp(50px,7vw,90px) + 70px)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(30px,5vw,60px)}
+.foot-brand img{height:54px;width:auto;margin-bottom:18px;filter:brightness(0) invert(1)}
+.foot-brand p{color:#c7cdd1;font-size:.98rem;max-width:40ch;margin-bottom:18px}
+.foot-brand .es{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--cyan);font-size:.9rem}
+.foot-col h4{font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:var(--cyan);margin-bottom:16px}
+.foot-col a,.foot-col p{display:block;color:#d6dbdf;text-decoration:none;font-size:.98rem;margin-bottom:10px;transition:color .2s ease}
+.foot-col a:hover{color:#fff}
+.foot-bottom{max-width:var(--maxw);margin:clamp(34px,5vw,54px) auto 0;padding-top:26px;border-top:2px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.foot-bottom p{color:#9aa1a6;font-size:.86rem;margin:0}
+.foot-bottom .rl{font-family:'Archivo',sans-serif;font-weight:700;color:#c7cdd1}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+@media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+.reveal[data-d="4"]{transition-delay:.32s}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* staged hero load */
+.hero [data-load]{opacity:0;transform:translateY(22px)}
+.hero.loaded [data-load]{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.hero.loaded [data-load="1"]{transition-delay:.05s}
+.hero.loaded [data-load="2"]{transition-delay:.18s}
+.hero.loaded [data-load="3"]{transition-delay:.31s}
+.hero.loaded [data-load="4"]{transition-delay:.44s}
+.hero.loaded [data-load="5"]{transition-delay:.57s}
+.hero-media[data-load]{opacity:0;transform:scale(1.04)}
+.hero.loaded .hero-media[data-load]{opacity:1;transform:none;transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.7,.2,1);transition-delay:.2s}
+@media (prefers-reduced-motion:reduce){.hero [data-load],.hero-media[data-load]{opacity:1!important;transform:none!important;transition:none!important}}
+</style>
+</head>
+<body class="no-js">
+
+<!-- PREVIEW BADGE -->
+<a class="preview-badge" href="/PMI/directions/"><span class="dot"></span>Preview · Bold</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="PetMex International home">
+      <img src="/PMI/assets/real/logo.png" alt="PetMex International logo">
+      <span class="bt">Pet<span>Mex</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#services">Services</a>
+      <a href="#clinics">Clinics</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-cta" href="#contact">Get a quote</a>
+      <span class="es-pill">Hablamos Español</span>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow" data-load="1"><span class="ln"></span>San Diego's only VIP pet transport</span>
+      <h1>
+        <span data-load="2">Same love.</span><br>
+        <span class="em" data-load="3">Up to 90% less.</span>
+      </h1>
+      <p class="hero-sub" data-load="4">The vet that does it right is an hour away — across the border. <b>We drive.</b> Door-to-door from your place to a vet we trust in Tijuana, and back. Your pet rides with us the whole way.</p>
+      <div class="hero-actions" data-load="5">
+        <a class="btn btn-dark" href="#contact">Get my quote <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <div class="hero-trust" data-load="5">
+        <span class="stars">★★★★★</span>
+        <span>5.0 · 59 Google reviews</span>
+        <span class="rule"></span>
+        <span>Never alone · Never kenneled</span>
+      </div>
+    </div>
+    <div class="hero-media" data-load>
+      <img src="/PMI/assets/real/hero-dogs-in-car.jpg" alt="Two dogs riding in the PetMex car, looking out the window on the way to the vet" width="1024" height="1024" fetchpriority="high">
+      <span class="hero-stamp">Door<br>to<br>door</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee">
+    <span>Hablamos Español</span><span>The owners drive</span><span>Never kenneled</span><span>Real-time updates</span><span>Border docs handled</span><span>Door to door</span>
+    <span>Hablamos Español</span><span>The owners drive</span><span>Never kenneled</span><span>Real-time updates</span><span>Border docs handled</span><span>Door to door</span>
+  </div>
+</div>
+
+<!-- ============ PROMISE ============ -->
+<section class="sec-pad" id="promise">
+  <div class="wrap promise-grid">
+    <div class="promise-copy">
+      <span class="eyebrow reveal" style="color:var(--cyan-ink)"><span class="ln"></span>Welcome to the family</span>
+      <h2 class="h-sec reveal" data-d="1">Your pet's personal<br>limousine service.</h2>
+      <p class="reveal" data-d="2">PetMex is a <strong>family-owned</strong> cross-border pet transport. We take the headache out of that long trip to the vet — we pick your pet up at your door, drive them to a trusted clinic in Tijuana, and bring them home the same trip.</p>
+      <p class="reveal" data-d="3">The <strong>owners personally drive and stay with your pet</strong> the entire time. We send real-time updates and translate everything the vet says. Your pet is never alone and never kenneled.</p>
+      <p class="reveal" data-d="3">Same quality of care. A fraction of the price.</p>
+    </div>
+    <div class="promise-media reveal" data-d="2">
+      <div class="fr">
+        <img src="/PMI/assets/real/happy-dog.jpeg" alt="A joyful dog with its tongue out, happily held" loading="lazy" width="1050" height="1400">
+      </div>
+      <span class="promise-tag">Never alone. Never kenneled.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIG SAVINGS STAT (CYAN) ============ -->
+<section class="sec-pad on-cyan savings" id="savings">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="ln"></span>The real reason people call us</span>
+    <span class="stat" aria-hidden="true"><span class="scaler" id="scaler"><span class="pct">10</span>–<span class="pct">90</span>%</span></span>
+    <span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden">Saving you 10 to 90 percent off your typical vet bill.</span>
+    <p class="lede reveal" data-d="1">Off your typical vet bill.</p>
+    <p class="sub reveal" data-d="2">Same exams, same surgeries, same dental work — performed by qualified veterinarians and specialists we personally trust. The savings come from where the work is done, not from cutting corners.</p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="sec-pad" id="how">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="color:var(--cyan-ink)"><span class="ln"></span>How it works</span>
+    <h2 class="h-sec reveal" data-d="1" style="margin-bottom:clamp(34px,5vw,56px)">Four steps.<br>Zero headaches.</h2>
+    <div class="steps reveal" data-d="2">
+      <div class="step">
+        <span class="n">01</span>
+        <h3>Tell us what's up</h3>
+        <p>Call, text, or send the quote form. We talk through your pet's needs and give you a clear "starting at" estimate up front.</p>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <h3>We pick up at your door</h3>
+        <p>On your scheduled day we come to you. Your pet rides with us — never alone, never kenneled — while we handle the border crossing and paperwork.</p>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <h3>We stay through the visit</h3>
+        <p>At the clinic we stay with your pet, translate everything the vet says, and send you real-time updates so you're never out of the loop.</p>
+      </div>
+      <div class="step">
+        <span class="n">04</span>
+        <h3>Home the same trip</h3>
+        <p>When the visit's done we drive your pet straight back home — same trip, same day for most visits — and tell you exactly when to expect us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES INDEX (OLIVE) ============ -->
+<section class="sec-pad on-olive" id="services">
+  <div class="wrap">
+    <div class="svc-head">
+      <div>
+        <span class="eyebrow reveal"><span class="ln"></span>The work, done right</span>
+        <h2 class="h-sec reveal" data-d="1">What the<br>vets handle.</h2>
+      </div>
+      <p class="reveal" data-d="2">A full clinical menu through our partner clinics in Tijuana — routine to advanced. Pricing always confirmed before your pet travels.</p>
+    </div>
+    <div class="svc-index reveal" data-d="2">
+      <div class="svc-row"><span class="idx">01</span><span class="name">Wellness Exams</span><span class="tick">Routine care</span></div>
+      <div class="svc-row"><span class="idx">02</span><span class="name">Dental Cleaning</span><span class="tick">+ X-rays</span></div>
+      <div class="svc-row"><span class="idx">03</span><span class="name">X-Rays</span><span class="tick">Imaging</span></div>
+      <div class="svc-row"><span class="idx">04</span><span class="name">Ultrasounds</span><span class="tick">Imaging</span></div>
+      <div class="svc-row"><span class="idx">05</span><span class="name">Labs &amp; Bloodwork</span><span class="tick">Diagnostics</span></div>
+      <div class="svc-row"><span class="idx">06</span><span class="name">Tumor Removals</span><span class="tick">Surgery</span></div>
+      <div class="svc-row"><span class="idx">07</span><span class="name">Pathology</span><span class="tick">Diagnostics</span></div>
+      <div class="svc-row"><span class="idx">08</span><span class="name">Orthopedic Procedures</span><span class="tick">Specialist</span></div>
+      <div class="svc-row"><span class="idx">09</span><span class="name">Eye Exams</span><span class="tick">Ophthalmology</span></div>
+      <div class="svc-row"><span class="idx">10</span><span class="name">Spay &amp; Neuter</span><span class="tick">Surgery</span></div>
+      <div class="svc-row"><span class="idx">11</span><span class="name">Neurological Exams</span><span class="tick">Specialist</span></div>
+      <div class="svc-row"><span class="idx">12</span><span class="name">MRI</span><span class="tick">Advanced imaging</span></div>
+      <div class="svc-row"><span class="idx">13</span><span class="name">…and much more</span><span class="tick">Just ask</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLINIC MANIFEST ============ -->
+<section class="sec-pad" id="clinics">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="color:var(--cyan-ink)"><span class="ln"></span>The roster</span>
+    <h2 class="h-sec reveal" data-d="1" style="margin-bottom:clamp(20px,3vw,30px)">Clinics &amp; specialists<br>we personally trust.</h2>
+    <p class="reveal" data-d="2" style="margin-bottom:clamp(30px,4vw,44px);max-width:60ch;color:var(--char)">We don't gamble with your pet. Every visit goes to a qualified veterinarian or specialist we've vetted ourselves. Here's the manifest.</p>
+    <div class="manifest reveal" data-d="2">
+      <div class="mani-row"><span class="mk">01</span><span class="mn">Hospital Veterinario Petmed</span><span class="ms">Orthopedic surgery · Ophthalmology · General medicine</span></div>
+      <div class="mani-row"><span class="mk">02</span><span class="mn">Clínicas para Animales Dra Martha María</span><span class="ms">Surgery · General medicine</span></div>
+      <div class="mani-row"><span class="mk">03</span><span class="mn">PuntoVet</span><span class="ms">Neurology</span></div>
+      <div class="mani-row"><span class="mk">04</span><span class="mn">Hospivet</span><span class="ms">General &amp; hospital care</span></div>
+      <div class="mani-row"><span class="mk">05</span><span class="mn">MediCat</span><span class="ms">Feline-focused care</span></div>
+      <div class="mani-row"><span class="mk">06</span><span class="mn">Dr Zoo</span><span class="ms">Physical therapy</span></div>
+    </div>
+    <p class="mani-note reveal" data-d="3"><b>Note:</b> For the moment, we do not offer emergency services.</p>
+  </div>
+</section>
+
+<!-- ============ PRICING (OLIVE) ============ -->
+<section class="sec-pad on-olive" id="pricing">
+  <div class="wrap">
+    <div class="price-head">
+      <span class="eyebrow reveal"><span class="ln"></span>Transparent pricing</span>
+      <h2 class="h-sec reveal" data-d="1">Starting at.<br>Always honest.</h2>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal" data-d="1">
+        <span class="tier">Consults &amp; follow-ups</span>
+        <span class="amt"><span class="cur">$</span><span class="num">200</span></span>
+        <span class="start">Starting at · round trip</span>
+        <p class="desc">Round-trip transport for consults and follow-up visits under one hour at the clinic.</p>
+      </div>
+      <div class="price-card reveal" data-d="2">
+        <span class="ribbon">Most common</span>
+        <span class="tier">Studies &amp; light sedation</span>
+        <span class="amt"><span class="cur">$</span><span class="num">250</span></span>
+        <span class="start">Starting at · round trip</span>
+        <p class="desc">Visits over one hour, multiple studies (X-ray, bloodwork, ultrasound), or light sedation.</p>
+      </div>
+      <div class="price-card reveal" data-d="3">
+        <span class="tier">Surgery &amp; overnights</span>
+        <span class="amt"><span class="cur">$</span><span class="num">300</span></span>
+        <span class="start">Starting at · flat rate</span>
+        <p class="desc">Bigger surgeries and overnight stays — one flat transport rate, any number of nights.</p>
+      </div>
+    </div>
+
+    <div class="price-extra reveal" data-d="2">
+      <span class="chip-strong">Weekend service <b>+$150</b> · by availability</span>
+      <span class="chip-strong">Prices in <b>USD</b></span>
+    </div>
+
+    <div class="example reveal" data-d="2">
+      <span class="big"><span class="cur">$</span>565</span>
+      <div>
+        <h3>Example package — Dog dental (under 20 lbs)</h3>
+        <p>Starting at $565: dental cleaning + bloodwork + dental X-rays + round-trip transport. A real, all-in example of how the numbers come together.</p>
+      </div>
+    </div>
+
+    <p class="disclaimer reveal" data-d="3">Round-trip from the immediate San Diego area; pickups outside may have an added charge. Vet treatment costs vary by clinic and case and are confirmed before your pet travels. Prices in USD.</p>
+  </div>
+</section>
+
+<!-- ============ FAMILY / TJ ============ -->
+<section class="sec-pad" id="family">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="color:var(--cyan-ink)"><span class="ln"></span>The people behind the wheel</span>
+    <h2 class="h-sec reveal" data-d="1" style="margin-bottom:clamp(30px,4vw,44px)">A family that treats your pet<br>like their own.</h2>
+    <div class="family-grid reveal" data-d="2">
+      <div class="family-photo">
+        <img src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, co-owner of PetMex, gently holding a black cat at a clinic" loading="lazy" width="1050" height="1400">
+        <span class="cap">TJ · Co-owner &amp; driver</span>
+      </div>
+      <div class="family-copy">
+        <p>PetMex is run by <strong>Lizette and TJ</strong> — a husband-and-wife team who started this because they believed pets deserve great care without the great big bill. They're the ones who show up at your door, and they're the ones who stay with your pet at the clinic.</p>
+        <p>No call center. No handoffs to a stranger. The same people you talk to are the people caring for your pet — calm, hands-on, and completely bilingual.</p>
+        <div class="team-tags">
+          <span class="tt">
+            <span class="avatar"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ"></span>
+            TJ<small>Co-owner · drives &amp; stays with your pet</small>
+          </span>
+          <span class="tt">
+            <span class="avatar" aria-hidden="true">L</span>
+            Lizette<small>Co-owner · coordination &amp; updates</small>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY (INK) ============ -->
+<section class="sec-pad on-ink" id="gallery">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="ln"></span>The work, the pets, the people</span>
+    <h2 class="h-sec reveal" data-d="1" style="margin-bottom:clamp(30px,4vw,48px)">Real care.<br>Real patients.</h2>
+    <div class="gallery reveal" data-d="2">
+      <figure class="gtile g1"><img src="/PMI/assets/real/clinic-vet-dog.jpg" alt="A veterinarian in green scrubs caring for a small white dog on a clinic table" loading="lazy" width="1050" height="1400"></figure>
+      <figure class="gtile g2"><img src="/PMI/assets/real/clinic-spaniel.jpg" alt="A cocker spaniel beside a veterinarian in blue scrubs" loading="lazy" width="1400" height="813"></figure>
+      <figure class="gtile g3"><img src="/PMI/assets/real/care-vet-cat.jpeg" alt="A gloved veterinarian holding a calm, fluffy cat" loading="lazy" width="1050" height="1400"></figure>
+      <figure class="gtile g4"><img src="/PMI/assets/real/portrait-cat.jpg" alt="Soft portrait of a gray cat" loading="lazy" width="1400" height="787"></figure>
+      <figure class="gtile g5"><img src="/PMI/assets/real/clients-with-dog.jpeg" alt="A happy couple holding their small dog at a clinic" loading="lazy" width="1050" height="1400"></figure>
+      <figure class="gtile g6"><img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ holding a black cat at the clinic" loading="lazy" width="1050" height="1400"></figure>
+      <figure class="gtile g7"><img src="/PMI/assets/real/happy-dog.jpeg" alt="A joyful dog with its tongue out" loading="lazy" width="1050" height="1400"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="sec-pad" id="reviews">
+  <div class="wrap">
+    <div class="rev-head">
+      <div>
+        <span class="eyebrow reveal" style="color:var(--cyan-ink)"><span class="ln"></span>Straight from the family</span>
+        <h2 class="h-sec reveal" data-d="1">People don't<br>hold back.</h2>
+      </div>
+      <div class="rev-score reveal" data-d="2">
+        <span class="num">5.0</span>
+        <div class="meta">
+          <div class="st">★★★★★</div>
+          <small>59 Google reviews</small>
+        </div>
+      </div>
+    </div>
+    <div class="reviews">
+      <article class="review reveal" data-d="1">
+        <span class="qm" aria-hidden="true">“</span>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>There isn't enough space to express how wonderful PetMex is. The door-to-door service Lizette and TJ give, and the care for our fur babies, is like if they were their own. Dra Martha is sooo amazing — she literally found out about our Louie's thyroid. I highly recommend this service. Grateful.</p>
+        <div class="who">Rebeca Canales<span>Google review</span></div>
+      </article>
+      <article class="review reveal" data-d="2">
+        <span class="qm" aria-hidden="true">“</span>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>PetMex saved my dog's life! They truly care about the animals they transport — and my dog actually loves when they pick him up. If you're looking for affordable veterinary care, or don't have time to take your animal yourself, PetMex is the way to go.</p>
+        <div class="who">Kara DeJesus<span>Google review</span></div>
+      </article>
+      <article class="review reveal" data-d="1">
+        <span class="qm" aria-hidden="true">“</span>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>Lizette and TJ were amazing — in communication the whole time. My dog came back with the most fantastic dental work. Can't recommend enough!</p>
+        <div class="who">Zach B.<span>Google review</span></div>
+      </article>
+      <article class="review reveal" data-d="2">
+        <span class="qm" aria-hidden="true">“</span>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>Increíble servicio para nuestra amada Kira. Su servicio es 100% confiable. Managed all the logistics from start to finish.</p>
+        <div class="who">Laura J.<span>Reseña de Google · ES</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE AREA + HOURS (CYAN) ============ -->
+<section class="sec-pad on-cyan" id="area">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="ln"></span>Where &amp; when</span>
+    <h2 class="h-sec reveal" data-d="1" style="margin-bottom:clamp(30px,4vw,44px)">We come<br>to you.</h2>
+    <div class="area-grid">
+      <div class="area-box reveal" data-d="1">
+        <span class="eyebrow"><span class="ln"></span>Service area</span>
+        <h3>Door-to-door pickup</h3>
+        <ul class="area-list">
+          <li>Lakeside</li><li>Santee</li><li>El Cajon</li><li>South of the 52</li><li>…to the border</li>
+        </ul>
+        <p>Pickups are included throughout Lakeside, Santee, El Cajon, and everything south of the 52 freeway down to the border. We're based in La Mesa, CA. Outside that immediate area? Just ask — pickups farther out may have an added charge.</p>
+      </div>
+      <div class="hours-box reveal" data-d="2">
+        <span class="eyebrow"><span class="ln"></span>Hours</span>
+        <h3>When we drive</h3>
+        <div class="hrow"><span class="d">Mon – Fri</span><span class="t">8:00am – 4:00pm</span></div>
+        <div class="hrow"><span class="d">Saturday</span><span class="t">By availability</span></div>
+        <div class="hrow"><span class="d">Sunday</span><span class="t">By availability</span></div>
+        <p class="hours-note">Weekend service is available by request for an additional <b>$150</b>. For the moment, we do not offer emergency services.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec-pad" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-intro">
+      <span class="eyebrow reveal" style="color:var(--cyan-ink)"><span class="ln"></span>Good questions</span>
+      <h2 class="h-sec reveal" data-d="1">You ask.<br>We answer.</h2>
+      <p class="reveal" data-d="2">The stuff every pet owner wants to know before they hand us the leash. Don't see yours? Call or text and we'll walk you through it.</p>
+      <span class="es-note reveal" data-d="2">¿Hablan español? ¡Sí! Somos completamente bilingües.</span>
+    </div>
+    <div class="faq-list reveal" data-d="1">
+      <details class="faq-item">
+        <summary class="faq-q">Are you a clinic?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>No — we're the <b>transport</b>. We take your pet to trusted vet clinics in Tijuana and back, door to door. The veterinary work is done by the qualified clinics and specialists we partner with.</p></div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is it legal? Do I need documents?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — it's common and completely legal. <b>We handle all the border-crossing documentation for you</b>, so there's nothing for you to chase down.</p></div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Are the Tijuana vets qualified?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>Absolutely. We work <b>only with qualified, experienced veterinarians and specialists we personally trust</b> — the same clinics we'd use for our own pets.</p></div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Can I come along for the ride?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>No — for safety and border-crossing reasons we aren't able to take owners along. But <b>we stay with your pet the whole time</b>, send real-time updates, and translate everything the vet says.</p></div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What if something goes wrong?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>We're with your pet the entire time and <b>call you immediately</b> so you can decide together with the vet. You're always part of the decision.</p></div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How long does it take?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>It depends on the visit — <b>many are same-day</b>. We give you a time estimate up front so you know what to expect.</p></div></div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">¿Hablan español?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="faq-a"><div class="faq-a-inner"><p>¡Sí! <b>Somos completamente bilingües.</b> Te atendemos en español de principio a fin.</p></div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec-pad" id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+      <div class="contact-left">
+        <span class="eyebrow"><span class="ln"></span>Let's talk</span>
+        <h2 class="h-sec">Ready when<br>you are.</h2>
+        <p>Call, text, or send the form. We'll give you a clear "starting at" quote and answer every question — in English or Spanish.</p>
+        <div class="contact-methods">
+          <a class="cm" href="tel:+16198673300">
+            <span class="cm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><span class="lbl">Call us</span><span class="val">(619) 867-3300</span></span>
+          </a>
+          <a class="cm" href="sms:+16198673300">
+            <span class="cm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+            <span><span class="lbl">Text us</span><span class="val">(619) 867-3300</span></span>
+          </a>
+          <a class="cm" href="mailto:hello@petmexinternational.com">
+            <span class="cm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></span>
+            <span><span class="lbl">Email us</span><span class="val">hello@petmexinternational.com</span></span>
+          </a>
+        </div>
+        <div class="socials">
+          <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener" aria-label="PetMex on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener" aria-label="PetMex on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.66 0-3 1.34-3 3v2H9v3h2v7h3v-7h2.5l.5-3H14V9.5c0-.28.22-.5.5-.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <span class="eyebrow"><span class="ln"></span>Quote request</span>
+        <h3>Tell us about your pet</h3>
+        <p class="fdesc">A few quick details and we'll get you a "starting at" estimate. (Demo form — sending isn't wired up in this preview.)</p>
+        <form id="quoteForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="qn">Your name</label>
+              <input id="qn" name="name" type="text" placeholder="Jane Doe" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="qp">Phone</label>
+              <input id="qp" name="phone" type="tel" placeholder="(619) 555-0123" autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="qe">Email</label>
+            <input id="qe" name="email" type="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="qpet">Pet &amp; weight</label>
+              <input id="qpet" name="pet" type="text" placeholder="Dog · ~18 lbs">
+            </div>
+            <div class="field">
+              <label for="qsvc">What's it for?</label>
+              <select id="qsvc" name="service">
+                <option value="">Choose one…</option>
+                <option>Wellness / consult</option>
+                <option>Dental cleaning</option>
+                <option>X-ray / ultrasound / labs</option>
+                <option>Spay &amp; neuter</option>
+                <option>Surgery</option>
+                <option>Specialist (ortho / neuro / eye)</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="qm2">Anything else?</label>
+            <textarea id="qm2" name="message" placeholder="Pickup area, preferred days, your pet's situation…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark form-submit">Send my request <span class="arr">→</span></button>
+          <p class="form-note" id="formNote">We reply fast — usually same business day, Mon–Fri 8am–4pm.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="/PMI/assets/real/logo.png" alt="PetMex International">
+        <p>San Diego's only VIP pet transportation service — your pet's personal limousine to trusted Tijuana vets. Family-owned. Never alone, never kenneled.</p>
+        <span class="es">Hablamos Español</span>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#how">How it works</a>
+        <a href="#services">Services</a>
+        <a href="#clinics">Partner clinics</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="tel:+16198673300">(619) 867-3300</a>
+        <a href="sms:+16198673300">Text us</a>
+        <a href="mailto:hello@petmexinternational.com">hello@petmexinternational.com</a>
+        <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener">Facebook</a>
+        <p>Based in La Mesa, CA</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 PetMex International Inc.</p>
+      <p class="rl">Design preview by Rob Logic.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ STICKY CTA BAR ============ -->
+<div class="cta-bar" id="ctaBar">
+  <div class="cta-inner">
+    <div class="ctxt">
+      Same love. <b>Up to 90% less.</b>
+      <small>Door-to-door pet transport to trusted Tijuana vets.</small>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-ghost" href="tel:+16198673300"><span class="lbl-long">Call&nbsp;</span>(619) 867-3300</a>
+      <a class="btn btn-dark" href="#contact">Get a quote <span class="arr">→</span></a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var d=document, root=d.documentElement;
+  d.body.classList.remove('no-js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- staged hero load ---- */
+  var hero = d.getElementById('hero');
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ if(hero) hero.classList.add('loaded'); }); });
+
+  /* ---- sticky nav shadow ---- */
+  var nav = d.getElementById('nav');
+  var onScrollNav = function(){ if(window.scrollY>8) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); };
+  onScrollNav();
+
+  /* ---- mobile menu ---- */
+  var burger = d.getElementById('burger'), links = d.getElementById('navLinks');
+  function closeMenu(){ links.classList.remove('open'); burger.setAttribute('aria-expanded','false'); burger.setAttribute('aria-label','Open menu'); }
+  function openMenu(){ links.classList.add('open'); burger.setAttribute('aria-expanded','true'); burger.setAttribute('aria-label','Close menu'); }
+  burger.addEventListener('click', function(){ links.classList.contains('open') ? closeMenu() : openMenu(); });
+  links.addEventListener('click', function(e){ if(e.target.closest('a')) closeMenu(); });
+  d.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
+
+  /* ---- scroll reveal ---- */
+  var revs = [].slice.call(d.querySelectorAll('.reveal'));
+  if(reduce || !('IntersectionObserver' in window)){
+    revs.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {rootMargin:'0px 0px -10% 0px', threshold:0.12});
+    revs.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- FAQ accordion (animated grid-rows, single-open optional) ---- */
+  var items = [].slice.call(d.querySelectorAll('.faq-item'));
+  items.forEach(function(item){
+    var summary = item.querySelector('.faq-q');
+    summary.addEventListener('click', function(e){
+      e.preventDefault();
+      var isOpen = item.classList.contains('is-open');
+      if(isOpen){
+        item.classList.remove('is-open');
+        if(reduce){ item.open=false; }
+        else {
+          var a = item.querySelector('.faq-a');
+          var done = function(){ item.open=false; a.removeEventListener('transitionend', done); };
+          a.addEventListener('transitionend', done);
+        }
+      } else {
+        item.open = true;
+        // allow layout to register before animating open
+        requestAnimationFrame(function(){ item.classList.add('is-open'); });
+      }
+    });
+  });
+
+  /* ---- SIGNATURE: savings number scales on scroll ---- */
+  var scaler = d.getElementById('scaler');
+  var savings = d.getElementById('savings');
+  if(scaler && savings && !reduce){
+    var ticking=false;
+    var updateScale=function(){
+      ticking=false;
+      var r = savings.getBoundingClientRect();
+      var vh = window.innerHeight || root.clientHeight;
+      // progress 0..1 as the section travels through the viewport
+      var prog = (vh - r.top) / (vh + r.height);
+      prog = Math.max(0, Math.min(1, prog));
+      // scale from .82 -> 1.12 across the pass, peaking near center
+      var s = 0.82 + prog * 0.34;
+      scaler.style.transform = 'scale(' + s.toFixed(3) + ')';
+    };
+    var reqScale=function(){ if(!ticking){ ticking=true; requestAnimationFrame(updateScale); } };
+    window.addEventListener('scroll', reqScale, {passive:true});
+    window.addEventListener('resize', reqScale, {passive:true});
+    updateScale();
+  }
+
+  /* ---- sticky bottom CTA bar: show after hero, hide near footer/contact ---- */
+  var bar = d.getElementById('ctaBar');
+  var contact = d.getElementById('contact');
+  var heroEl = d.getElementById('hero');
+  function updateBar(){
+    var vh = window.innerHeight || root.clientHeight;
+    var pastHero = heroEl ? (heroEl.getBoundingClientRect().bottom < 40) : (window.scrollY>500);
+    var nearContact = contact ? (contact.getBoundingClientRect().top < vh*0.85) : false;
+    // also retract once we're within ~1.2 viewports of the page bottom (footer/contact zone)
+    var nearBottom = (window.scrollY + vh) > (root.scrollHeight - vh*0.4);
+    if(pastHero && !nearContact && !nearBottom) bar.classList.add('show'); else bar.classList.remove('show');
+  }
+
+  /* combined scroll handler */
+  var rafScroll=false;
+  function onScroll(){
+    if(rafScroll) return; rafScroll=true;
+    requestAnimationFrame(function(){ rafScroll=false; onScrollNav(); updateBar(); });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', updateBar, {passive:true});
+  updateBar();
+
+  /* ---- demo form ---- */
+  var form = d.getElementById('quoteForm'), note = d.getElementById('formNote');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      note.textContent = 'Thanks! This is a design preview, so nothing was sent — on the live site this reaches Lizette & TJ right away.';
+      note.style.color = 'var(--olive-deep)';
+      note.style.fontWeight = '700';
+      form.querySelector('.form-submit').textContent = 'Got it ✓';
+    });
+  }
+})();
+</script>
+</body>
+</html>

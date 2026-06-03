@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetMex International — Welcome to the family</title>
+<meta name="description" content="San Diego's only VIP pet transportation service. We drive your dog or cat door-to-door to trusted Tijuana vet clinics and back — never alone, never kenneled. Family-owned. Hablamos Español.">
+<meta property="og:title" content="PetMex International — Welcome to the family">
+<meta property="og:description" content="Your pet's personal limousine to trusted Tijuana vets. The owners drive and stay with your pet the whole way. Door-to-door, never alone, never kenneled.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/PMI/assets/real/hero-dogs-in-car.jpg">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400;500;600;700&family=Shantell+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* palette named after their world */
+  --cyan:#00AEEF;        /* Pacífico Cyan */
+  --cyan-deep:#0089BE;
+  --olive:#6F8F40;       /* Frijol Olive */
+  --olive-deep:#566F31;
+  --cream:#FAF3E4;       /* Coronado Cream */
+  --cream-soft:#F4EAD3;
+  --amber:#E89A2C;       /* Goldie Amber */
+  --amber-soft:#F6C66B;
+  --asphalt:#4B4B4C;     /* Asphalt */
+  --ink:#2C2A28;         /* warm near-black for hand ink */
+  --ink-soft:#5E5953;
+  --line:rgba(44,42,40,.14);
+  --paper:#FFFDF7;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Figtree',sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.62;
+  font-size:clamp(1rem,.96rem + .25vw,1.12rem);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* paper grain — subtle global noise overlay */
+body::before{
+  content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--amber-soft);color:var(--ink)}
+
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.04;letter-spacing:-.02em;font-weight:700}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+.hand{font-family:'Shantell Sans',cursive}
+
+/* ============ doodle / hand-drawn line system ============ */
+.ink-stroke{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cyan-stroke{stroke:var(--cyan)}
+.olive-stroke{stroke:var(--olive)}
+.amber-stroke{stroke:var(--amber)}
+
+/* ============ fixed preview badge ============ */
+.preview-badge{
+  position:fixed;left:14px;bottom:14px;z-index:9999;
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:var(--cream);text-decoration:none;
+  font-family:'Figtree',sans-serif;font-size:.78rem;font-weight:600;
+  padding:8px 13px;border-radius:40px;
+  box-shadow:0 6px 22px rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.14);
+  transition:transform .25s ease, background .25s ease;
+}
+.preview-badge:hover{transform:translateY(-2px);background:var(--asphalt)}
+.preview-badge .pup{width:15px;height:15px;flex:0 0 auto}
+
+/* ============ nav ============ */
+header.nav{
+  position:sticky;top:0;z-index:900;
+  background:var(--cream);
+  border-bottom:1.5px solid transparent;
+  transition:border-color .3s ease, background .3s ease, box-shadow .3s ease;
+}
+header.nav.stuck{border-color:var(--line);box-shadow:0 6px 26px rgba(44,42,40,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
+.brand img{height:46px;width:auto}
+.brand .bn{display:flex;flex-direction:column;line-height:1}
+.brand .bn b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.18rem;letter-spacing:-.02em;color:var(--asphalt)}
+.brand .bn span{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);font-weight:700;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{text-decoration:none;font-weight:600;font-size:.96rem;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--cyan);color:#fff;text-decoration:none;font-weight:700;font-size:.94rem;
+  padding:11px 20px;border-radius:40px;
+  box-shadow:0 4px 0 var(--cyan-deep);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.nav-cta:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--cyan-deep)}
+.menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px;color:var(--ink)}
+.menu-btn svg{width:28px;height:28px}
+
+/* mobile drawer */
+.drawer{position:fixed;inset:0;z-index:950;background:var(--cream);transform:translateX(100%);transition:transform .38s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding:22px;visibility:hidden}
+.drawer.open{transform:translateX(0);visibility:visible}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.drawer-close{background:none;border:0;cursor:pointer;padding:8px;color:var(--ink)}
+.drawer-close svg{width:30px;height:30px}
+.drawer nav{display:flex;flex-direction:column;gap:6px;margin-top:24px}
+.drawer nav a{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.8rem;text-decoration:none;color:var(--ink);padding:10px 0;border-bottom:1.5px dashed var(--line)}
+.drawer nav a:last-of-type{border-bottom:0}
+.drawer .drawer-cta{margin-top:auto}
+.drawer .drawer-cta a{display:flex;justify-content:center;background:var(--amber);color:var(--ink);font-weight:700;padding:16px;border-radius:14px;text-decoration:none;box-shadow:0 5px 0 var(--amber-soft)}
+
+/* ============ reveal ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
+
+/* ============ hero ============ */
+.hero{position:relative;padding:46px 0 30px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:46px;align-items:center}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Shantell Sans',cursive;font-size:1.06rem;color:var(--olive-deep);margin-bottom:14px;transform:rotate(-1.5deg)}
+.hero .eyebrow svg{width:34px;height:22px}
+.hero h1{font-size:clamp(2.9rem,8.5vw,5.7rem);font-weight:800;letter-spacing:-.035em;color:var(--ink)}
+.hero h1 .fam{position:relative;display:inline-block;color:var(--cyan-deep);white-space:nowrap}
+.hero h1 .fam svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.32em;overflow:visible}
+.hero .lede{font-size:clamp(1.08rem,1rem + .5vw,1.34rem);color:var(--ink-soft);max-width:42ch;margin:22px 0 8px}
+.hero .petsay{font-family:'Shantell Sans',cursive;font-size:1.12rem;color:var(--amber);font-style:italic;margin-bottom:26px;transform:rotate(-.6deg)}
+.hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--cyan);color:#fff;text-decoration:none;font-weight:700;font-size:1.02rem;padding:15px 26px;border-radius:46px;box-shadow:0 5px 0 var(--cyan-deep);transition:transform .15s ease, box-shadow .15s ease}
+.btn-primary:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--cyan-deep)}
+.btn-ghost{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-weight:700;font-size:1.02rem;padding:15px 8px}
+.btn-ghost u{text-decoration-color:var(--amber);text-decoration-thickness:2.5px;text-underline-offset:5px}
+.btn-ghost:hover u{text-decoration-color:var(--cyan)}
+
+/* hero photo + doodle frame */
+.hero-photo{position:relative}
+.hero-photo .frame{position:relative;border-radius:24px;overflow:hidden;background:var(--cream-soft);aspect-ratio:1/1;box-shadow:0 24px 60px rgba(44,42,40,.16)}
+.hero-photo .frame img{width:100%;height:100%;object-fit:cover}
+.hero-photo .tape{position:absolute;width:104px;height:30px;background:rgba(0,174,239,.22);border:1px dashed rgba(0,137,190,.5);top:-14px;left:24%;transform:rotate(-7deg);border-radius:3px;backdrop-filter:blur(1px)}
+.hero-photo .doodle-car{position:absolute;right:-22px;bottom:-26px;width:124px;height:auto;color:var(--olive)}
+.hero-photo .doodle-paw{position:absolute;left:-26px;top:30%;width:46px;height:auto;color:var(--amber);transform:rotate(-12deg)}
+.hero-photo .sticker{position:absolute;left:-18px;bottom:36px;background:var(--amber);color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.92rem;padding:9px 14px;border-radius:40px;box-shadow:0 6px 16px rgba(44,42,40,.18);transform:rotate(-4deg);line-height:1.1;text-align:center}
+.sticker .hand{display:block;font-size:.74rem;font-weight:500;color:var(--ink)}
+
+/* trust ticker under hero */
+.trust-strip{margin-top:34px;border-top:1.5px dashed var(--line);border-bottom:1.5px dashed var(--line);padding:16px 0}
+.trust-strip .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px 34px;justify-content:space-between}
+.trust-item{display:flex;align-items:center;gap:11px;font-weight:600;color:var(--ink-soft);font-size:.98rem}
+.trust-item svg{width:26px;height:26px;flex:0 0 auto;color:var(--cyan)}
+.trust-item .stars{color:var(--amber);letter-spacing:1px}
+.trust-item b{color:var(--ink)}
+
+/* ============ section scaffolding ============ */
+section{position:relative}
+.sec-pad{padding:clamp(56px,8vw,104px) 0}
+.kick{display:inline-flex;align-items:center;gap:10px;font-family:'Shantell Sans',cursive;font-size:1.04rem;color:var(--olive-deep);margin-bottom:14px;transform:rotate(-.8deg)}
+.kick svg{width:30px;height:auto;color:var(--olive)}
+.sec-title{font-size:clamp(2rem,1.4rem + 2.6vw,3.5rem);letter-spacing:-.03em;max-width:18ch}
+.sec-lede{font-size:clamp(1.04rem,1rem + .35vw,1.22rem);color:var(--ink-soft);max-width:56ch;margin-top:16px}
+
+/* ============ "not a call center" / family ============ */
+.family{background:var(--paper)}
+.fam-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(34px,5vw,72px);align-items:center}
+.fam-copy h2 .u{position:relative;white-space:nowrap}
+.fam-copy h2 .u svg{position:absolute;left:0;bottom:-.12em;width:100%;height:.3em;overflow:visible}
+.fam-copy p{margin-top:18px;color:var(--ink-soft);max-width:50ch}
+.fam-copy p strong{color:var(--ink)}
+.fam-people{display:flex;gap:18px;margin-top:30px;flex-wrap:wrap}
+.person{flex:1 1 200px;background:var(--cream);border:1.5px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:14px;align-items:center}
+.person .pphoto{width:74px;height:74px;border-radius:50%;object-fit:cover;flex:0 0 auto;border:3px solid var(--paper);box-shadow:0 4px 12px rgba(44,42,40,.14)}
+.person .pavatar{width:74px;height:74px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,var(--amber-soft),var(--amber));border:3px solid var(--paper);box-shadow:0 4px 12px rgba(44,42,40,.14);position:relative}
+.person .pavatar .ini{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.7rem;color:var(--ink)}
+.person .pavatar .lp{position:absolute;width:24px;height:24px;right:6px;bottom:4px;color:var(--olive-deep);opacity:.85}
+.person .pi b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.16rem;color:var(--ink)}
+.person .pi .role{font-size:.85rem;color:var(--ink-soft)}
+.person .pi .role.h{font-family:'Shantell Sans',cursive;color:var(--olive-deep)}
+
+.fam-photo{position:relative}
+.fam-photo .frame{border-radius:24px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 22px 56px rgba(44,42,40,.18);background:var(--cream-soft)}
+.fam-photo .frame img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.fam-photo .quote{position:absolute;right:-14px;bottom:-22px;max-width:230px;background:var(--cyan);color:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 12px 30px rgba(0,137,190,.32);transform:rotate(1.5deg)}
+.fam-photo .quote .hand{display:block;font-size:1.02rem;line-height:1.35}
+.fam-photo .quote cite{display:block;margin-top:8px;font-size:.78rem;font-style:normal;opacity:.92;font-weight:600}
+.fam-photo .doodle-paw2{position:absolute;left:-30px;top:-26px;width:60px;color:var(--amber);transform:rotate(18deg)}
+
+/* ============ stories (photo -> line-art hover : SIGNATURE) ============ */
+.stories{background:var(--cream)}
+.story-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-bottom:38px}
+.story-hint{font-family:'Shantell Sans',cursive;color:var(--ink-soft);font-size:1rem;display:flex;align-items:center;gap:10px;max-width:30ch}
+.story-hint svg{width:42px;height:auto;color:var(--cyan);flex:0 0 auto}
+.story-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.story{background:var(--paper);border:1.5px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(44,42,40,.06)}
+.swap{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--cream-soft);cursor:pointer}
+.swap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s ease, transform .9s ease;will-change:opacity,transform}
+.swap .line-layer{position:absolute;inset:0;display:grid;place-items:center;background:var(--cream);opacity:0;transition:opacity .5s ease}
+.swap .line-layer svg{width:74%;height:74%;color:var(--ink)}
+.swap .line-layer .lp{stroke-dasharray:1;stroke-dashoffset:1;pathLength:1}
+.story:hover .swap img,.swap:hover img{opacity:0;transform:scale(1.04)}
+.story:hover .swap .line-layer,.swap:hover .line-layer{opacity:1}
+.story:hover .swap .line-layer .lp,.swap:hover .line-layer .lp{animation:draw 1.05s cubic-bezier(.6,.05,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.swap .swatch{position:absolute;left:12px;top:12px;z-index:3;background:var(--amber);color:var(--ink);font-family:'Shantell Sans',cursive;font-size:.84rem;font-weight:600;padding:5px 12px;border-radius:30px;box-shadow:0 4px 10px rgba(44,42,40,.16);transform:rotate(-3deg)}
+.story-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.story-body h3{font-size:1.28rem;color:var(--ink)}
+.story-body .pet{font-family:'Shantell Sans',cursive;color:var(--olive-deep);font-size:.96rem;margin:2px 0 10px}
+.story-body p{color:var(--ink-soft);font-size:.98rem;flex:1}
+.story-body .who{margin-top:14px;font-size:.82rem;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px}
+.story-body .who .stars{color:var(--amber)}
+
+/* ============ how it works (route doodle) ============ */
+.how{background:var(--olive);color:var(--cream)}
+.how .kick{color:var(--amber-soft)}.how .kick svg{color:var(--amber-soft)}
+.how .sec-title{color:#fff}
+.how .sec-lede{color:rgba(255,253,247,.82)}
+.route{position:relative;margin-top:50px}
+.route .route-line{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;color:rgba(250,243,228,.5)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.step{background:var(--olive-deep);border:1.5px solid rgba(250,243,228,.18);border-radius:20px;padding:24px 22px}
+.step .num{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--cream);color:var(--olive-deep);font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:16px}
+.step .ico{width:38px;height:38px;color:var(--amber-soft);margin-bottom:10px}
+.step h4{font-size:1.18rem;color:#fff;margin-bottom:6px}
+.step p{font-size:.94rem;color:rgba(250,243,228,.82)}
+
+/* ============ services hand-annotated list ============ */
+.services{background:var(--paper)}
+.svc-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(30px,5vw,64px);align-items:start}
+.svc-aside .savings{background:var(--cyan);color:#fff;border-radius:22px;padding:28px;box-shadow:0 16px 40px rgba(0,137,190,.26);position:relative;overflow:hidden}
+.svc-aside .savings .big{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(3.4rem,3rem + 4vw,5.6rem);line-height:.9;letter-spacing:-.04em;display:block}
+.svc-aside .savings .lab{font-family:'Shantell Sans',cursive;font-size:1.16rem;display:block;margin-top:4px}
+.svc-aside .savings p{margin-top:14px;font-size:.98rem;color:rgba(255,255,255,.92)}
+.svc-aside .savings .doodle-paw3{position:absolute;right:-10px;bottom:-12px;width:90px;color:rgba(255,255,255,.18)}
+.svc-aside .note{margin-top:18px;font-family:'Shantell Sans',cursive;color:var(--ink-soft);font-size:1rem;display:flex;gap:10px;align-items:flex-start}
+.svc-aside .note svg{width:34px;flex:0 0 auto;color:var(--olive);margin-top:2px}
+.svc-list{list-style:none;column-count:2;column-gap:34px}
+.svc-list li{break-inside:avoid;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1.5px dashed var(--line);font-weight:600;color:var(--ink)}
+.svc-list li svg{width:26px;height:26px;flex:0 0 auto;color:var(--olive);margin-top:1px}
+.svc-list li.more{color:var(--cyan-deep);font-family:'Shantell Sans',cursive;font-weight:500;border-bottom:0}
+.svc-list li.more svg{color:var(--cyan)}
+
+/* ============ pricing ============ */
+.pricing{background:var(--cream)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
+.tier{background:var(--paper);border:1.5px solid var(--line);border-radius:22px;padding:26px 24px;position:relative;display:flex;flex-direction:column}
+.tier.feature{border:2px solid var(--cyan);box-shadow:0 18px 44px rgba(0,137,190,.16)}
+.tier .badge{position:absolute;top:-13px;left:24px;background:var(--amber);color:var(--ink);font-family:'Shantell Sans',cursive;font-weight:600;font-size:.82rem;padding:4px 13px;border-radius:30px;box-shadow:0 5px 12px rgba(44,42,40,.16);transform:rotate(-2deg)}
+.tier .from{font-size:.82rem;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.tier .amt{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3rem;letter-spacing:-.03em;color:var(--ink);line-height:1;margin:4px 0 10px}
+.tier .amt small{font-size:1.1rem;color:var(--ink-soft);font-weight:600}
+.tier p{color:var(--ink-soft);font-size:.96rem;flex:1}
+.tier ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.tier ul li{display:flex;gap:9px;align-items:flex-start;font-size:.92rem;color:var(--ink-soft)}
+.tier ul li svg{width:19px;height:19px;flex:0 0 auto;color:var(--olive);margin-top:3px}
+.price-extras{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:9px;background:var(--paper);border:1.5px solid var(--line);border-radius:40px;padding:11px 18px;font-weight:600;font-size:.95rem}
+.chip svg{width:22px;height:22px;color:var(--cyan)}
+.chip.amberc{background:var(--cream-soft);border-color:var(--amber-soft)}
+.chip.amberc svg{color:var(--amber)}
+.package{margin-top:24px;background:var(--olive);color:var(--cream);border-radius:20px;padding:24px 26px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;justify-content:space-between}
+.package .pk-l b{font-family:'Shantell Sans',cursive;font-weight:600;font-size:1.04rem;color:var(--amber-soft);display:block;margin-bottom:2px}
+.package .pk-l h4{font-size:1.3rem;color:#fff}
+.package .pk-l p{color:rgba(250,243,228,.86);font-size:.94rem;margin-top:4px;max-width:54ch}
+.package .pk-amt{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.4rem,2rem + 2vw,3.2rem);letter-spacing:-.03em;color:#fff;white-space:nowrap}
+.package .pk-amt small{display:block;font-size:.8rem;font-weight:600;color:var(--amber-soft);letter-spacing:.08em;text-transform:uppercase}
+.disclaimer{margin-top:20px;font-size:.86rem;color:var(--ink-soft);max-width:74ch;display:flex;gap:10px;align-items:flex-start}
+.disclaimer svg{width:20px;flex:0 0 auto;color:var(--ink-soft);margin-top:2px}
+
+/* ============ clinics ============ */
+.clinics{background:var(--paper)}
+.clinic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.clinic{background:var(--cream);border:1.5px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:6px;transition:transform .25s ease, border-color .25s ease}
+.clinic:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.clinic .ch{display:flex;align-items:center;gap:11px}
+.clinic .ch svg{width:30px;height:30px;color:var(--olive);flex:0 0 auto}
+.clinic h4{font-size:1.1rem;color:var(--ink);line-height:1.15}
+.clinic .spec{font-size:.9rem;color:var(--ink-soft)}
+
+/* ============ reviews handwritten notes ============ */
+.reviews{background:var(--cyan);color:#fff;position:relative;overflow:hidden}
+.reviews .kick{color:#fff}.reviews .kick svg{color:#fff}
+.reviews .sec-title{color:#fff}
+.reviews .gstars{font-family:'Shantell Sans',cursive;font-size:1.1rem;margin-top:12px;display:inline-flex;align-items:center;gap:10px}
+.reviews .gstars .s{color:var(--amber-soft);letter-spacing:2px;font-size:1.3rem}
+.note-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:42px}
+.notecard{background:var(--paper);color:var(--ink);border-radius:20px;padding:26px 28px;box-shadow:0 16px 40px rgba(0,0,0,.16);position:relative}
+.notecard:nth-child(odd){transform:rotate(-.7deg)}
+.notecard:nth-child(even){transform:rotate(.7deg)}
+.notecard .pin{position:absolute;top:-9px;left:50%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;background:var(--amber);box-shadow:0 3px 8px rgba(44,42,40,.3),inset 0 -3px 4px rgba(0,0,0,.18)}
+.notecard .rstars{color:var(--amber);letter-spacing:1px;font-size:1.05rem}
+.notecard q{display:block;font-family:'Shantell Sans',cursive;font-size:1.14rem;line-height:1.5;margin:10px 0 16px;quotes:none}
+.notecard .by{display:flex;align-items:center;gap:11px}
+.notecard .by .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--cream-soft);color:var(--olive-deep);font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.04rem;flex:0 0 auto}
+.notecard .by b{font-size:.98rem}
+.notecard .by span{font-size:.82rem;color:var(--ink-soft)}
+.reviews .doodle-paw4{position:absolute;right:4%;top:8%;width:90px;color:rgba(255,255,255,.16)}
+
+/* ============ area + hours ============ */
+.area{background:var(--cream)}
+.area-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,60px);align-items:center}
+.area-map{position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:24px;padding:30px;overflow:hidden}
+.area-map svg.mapdoodle{width:100%;height:auto;color:var(--olive)}
+.area-map .pin-here{position:absolute;font-family:'Shantell Sans',cursive;color:var(--cyan-deep);font-size:.96rem;font-weight:600}
+.area-copy h3{font-size:clamp(1.5rem,1.2rem + 1.4vw,2.2rem);margin-bottom:4px}
+.area-copy .lede{color:var(--ink-soft);margin-bottom:20px}
+.area-list{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.area-list li{background:var(--paper);border:1.5px solid var(--line);border-radius:40px;padding:8px 16px;font-weight:600;font-size:.94rem;display:flex;align-items:center;gap:8px}
+.area-list li svg{width:18px;height:18px;color:var(--olive)}
+.hours-box{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:20px 22px}
+.hours-box .hr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1.5px dashed var(--line);font-size:.98rem}
+.hours-box .hr:last-child{border-bottom:0}
+.hours-box .hr b{color:var(--ink)}
+.hours-box .hr span{color:var(--ink-soft)}
+.hours-box .noemerg{margin-top:12px;font-family:'Shantell Sans',cursive;color:var(--ink-soft);font-size:.92rem;display:flex;gap:8px;align-items:center}
+.hours-box .noemerg svg{width:22px;color:var(--amber);flex:0 0 auto}
+
+/* ============ faq ============ */
+.faq{background:var(--paper)}
+.faq-grid{margin-top:38px;max-width:880px}
+.qa{border-bottom:1.5px dashed var(--line)}
+.qa:first-child{border-top:1.5px dashed var(--line)}
+.qa button{width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 4px;text-align:left;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(1.08rem,1rem + .4vw,1.3rem);color:var(--ink)}
+.qa button .qm{flex:0 0 auto;width:30px;height:30px;position:relative}
+.qa button .qm svg{width:30px;height:30px;color:var(--cyan);transition:transform .35s ease}
+.qa[open] button .qm svg,.qa.open button .qm svg{transform:rotate(45deg)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qa .ans-inner{padding:0 4px 22px;color:var(--ink-soft);max-width:64ch}
+.qa .ans-inner .es{font-family:'Shantell Sans',cursive;color:var(--olive-deep)}
+
+/* ============ contact / quote ============ */
+.contact{background:var(--olive);color:var(--cream);position:relative;overflow:hidden}
+.contact .kick{color:var(--amber-soft)}.contact .kick svg{color:var(--amber-soft)}
+.contact .sec-title{color:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(34px,5vw,64px);margin-top:8px;align-items:start}
+.contact-copy .lede{color:rgba(250,243,228,.86);margin-top:16px;max-width:46ch}
+.contact-copy .petsay{font-family:'Shantell Sans',cursive;color:var(--amber-soft);font-size:1.16rem;margin-top:20px;transform:rotate(-.6deg)}
+.contact-methods{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.cm{display:flex;align-items:center;gap:14px;background:var(--olive-deep);border:1.5px solid rgba(250,243,228,.18);border-radius:16px;padding:15px 18px;text-decoration:none;color:var(--cream);transition:transform .2s ease, border-color .2s ease}
+.cm:hover{transform:translateX(4px);border-color:var(--amber-soft)}
+.cm .ci{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--olive-deep);flex:0 0 auto}
+.cm .ci svg{width:22px;height:22px}
+.cm .ct b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.08rem;color:#fff}
+.cm .ct span{font-size:.86rem;color:rgba(250,243,228,.78)}
+.socials{display:flex;gap:12px;margin-top:18px}
+.socials a{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--cream);color:var(--olive-deep);transition:transform .2s ease, background .2s ease}
+.socials a:hover{transform:translateY(-3px);background:var(--amber-soft)}
+.socials a svg{width:22px;height:22px}
+
+.quote-card{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(24px,3vw,36px);box-shadow:0 24px 60px rgba(0,0,0,.22);position:relative}
+.quote-card .qh{font-family:'Shantell Sans',cursive;color:var(--olive-deep);font-size:1.04rem;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.quote-card .qh svg{width:30px;color:var(--cyan)}
+.quote-card h3{font-size:1.6rem;margin-bottom:18px}
+.field{margin-bottom:15px}
+.field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px;color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;font-family:'Figtree',sans-serif;font-size:1rem;color:var(--ink);background:var(--cream);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .2s ease, box-shadow .2s ease}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,174,239,.16)}
+.field textarea{resize:vertical;min-height:84px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.quote-submit{width:100%;background:var(--cyan);color:#fff;border:0;cursor:pointer;font-family:'Figtree',sans-serif;font-weight:700;font-size:1.04rem;padding:16px;border-radius:14px;box-shadow:0 5px 0 var(--cyan-deep);transition:transform .15s ease, box-shadow .15s ease;display:flex;align-items:center;justify-content:center;gap:9px}
+.quote-submit:hover{transform:translateY(2px);box-shadow:0 3px 0 var(--cyan-deep)}
+.quote-note{font-size:.8rem;color:var(--ink-soft);margin-top:12px;text-align:center}
+.contact .doodle-route{position:absolute;left:-40px;bottom:-30px;width:240px;color:rgba(250,243,228,.16)}
+
+/* ============ footer ============ */
+footer.foot{background:var(--ink);color:var(--cream);padding:56px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+.foot .fbrand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.foot .fbrand img{height:54px;width:auto;background:var(--cream);border-radius:12px;padding:6px}
+.foot .fbrand .fn b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;display:block}
+.foot .fbrand .fn span{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
+.foot p.tag{color:rgba(250,243,228,.7);max-width:38ch;font-size:.96rem}
+.foot .hand{color:var(--amber-soft);font-size:1.04rem;margin-top:12px}
+.foot h5{font-family:'Bricolage Grotesque',sans-serif;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-soft);margin-bottom:14px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot ul a{color:rgba(250,243,228,.82);text-decoration:none;font-size:.96rem;transition:color .2s}
+.foot ul a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(250,243,228,.14);margin-top:36px;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;align-items:center;font-size:.84rem;color:rgba(250,243,228,.6)}
+.foot-bottom .by{color:var(--amber-soft)}
+
+/* ============ responsive ============ */
+@media(max-width:980px){
+  .nav-links{display:none}
+  .menu-btn{display:inline-flex}
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .hero-photo{max-width:520px;margin-inline:auto;width:100%}
+  .fam-grid,.svc-grid,.area-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .story-cards,.clinic-grid,.price-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .note-grid{grid-template-columns:1fr}
+  .route .route-line{display:none}
+  .fam-photo{max-width:460px;margin-inline:auto;width:100%}
+}
+@media(max-width:600px){
+  .story-cards,.clinic-grid,.price-grid,.steps{grid-template-columns:1fr}
+  .svc-list{column-count:1}
+  .field-row{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:30px}
+  .package{flex-direction:column;align-items:flex-start}
+  .hero-photo .doodle-car{width:96px;right:-8px}
+  .fam-photo .quote{position:static;margin-top:18px;max-width:none;transform:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .swap img{opacity:1!important;transform:none!important}
+  .swap .line-layer{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- fixed preview badge -->
+<a class="preview-badge" href="/PMI/directions/" aria-label="Back to all design directions">
+  <svg class="pup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.2c0 1.2-.9 2.2-2 2.2S6 6.4 6 5.2 6.9 3 8 3s2 1 2 2.2zM18 5.2c0 1.2-.9 2.2-2 2.2s-2-1-2-2.2S14.9 3 16 3s2 1 2 2.2zM5 11c0 1-.7 1.8-1.6 1.8S1.8 12 1.8 11s.7-1.8 1.6-1.8S5 10 5 11zM22.2 11c0 1-.7 1.8-1.6 1.8S19 12 19 11s.7-1.8 1.6-1.8 1.6.8 1.6 1.8zM12 11.5c2.4 0 4.4 2.4 4.4 4.6 0 1.7-1.4 2.4-4.4 2.4s-4.4-.7-4.4-2.4c0-2.2 2-4.6 4.4-4.6z"/></svg>
+  Preview · Welcome to the Family
+</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="PetMex International home">
+      <img src="/PMI/assets/real/logo.png" alt="PetMex International logo — dog and cat in a cyan and green cross">
+      <span class="bn"><b>PetMex</b><span>International Inc</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#family">The family</a>
+      <a href="#stories">Pet stories</a>
+      <a href="#how">How it works</a>
+      <a href="#services">Care &amp; pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      Get a quote
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-top">
+    <a class="brand" href="#top">
+      <img src="/PMI/assets/real/logo.png" alt="" aria-hidden="true">
+      <span class="bn"><b>PetMex</b><span>International Inc</span></span>
+    </a>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav aria-label="Mobile">
+    <a href="#family">The family</a>
+    <a href="#stories">Pet stories</a>
+    <a href="#how">How it works</a>
+    <a href="#services">Care &amp; pricing</a>
+    <a href="#clinics">Partner clinics</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <div class="drawer-cta"><a href="#contact">Get a quote →</a></div>
+</div>
+
+<span id="top"></span>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">
+        <svg viewBox="0 0 40 24" fill="none"><path class="ink-stroke olive-stroke" d="M3 14c4 4 10 5 15 2s8-9 4-11-7 3-4 7 9 5 14 1"/></svg>
+        San Diego's only VIP pet limo
+      </span>
+      <h1 class="reveal d1">Welcome<br>to the
+        <span class="fam">family.
+          <svg viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true"><path class="ink-stroke cyan-stroke" style="stroke-width:5" d="M3 11c34-7 64-8 98-6s62 5 96-1"/></svg>
+        </span>
+      </h1>
+      <p class="lede reveal d2">We drive your dog or cat door-to-door to trusted Tijuana vet clinics and back — same trip. The owners do the driving, and your pet rides <strong>never alone, never kenneled.</strong></p>
+      <p class="petsay reveal d2">"buckle up — your dog rides <em>primero.</em>" 🐾</p>
+      <div class="hero-cta-row reveal d3">
+        <a class="btn-primary" href="#contact">
+          Start your pet's trip
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn-ghost" href="#how">See <u>how it works</u></a>
+      </div>
+    </div>
+
+    <div class="hero-photo reveal d2">
+      <span class="tape" aria-hidden="true"></span>
+      <div class="frame">
+        <img src="/PMI/assets/real/hero-dogs-in-car.jpg" alt="Two happy dogs riding in the back of a car, looking out the window on their way to the vet" width="900" height="900">
+      </div>
+      <div class="sticker" aria-hidden="true">Door to door<span class="hand">we come to you</span></div>
+      <svg class="doodle-paw" viewBox="0 0 50 56" fill="currentColor" aria-hidden="true"><ellipse cx="25" cy="40" rx="15" ry="13"/><ellipse cx="9" cy="22" rx="5.5" ry="7.5"/><ellipse cx="20" cy="14" rx="5.5" ry="8"/><ellipse cx="31" cy="14" rx="5.5" ry="8"/><ellipse cx="42" cy="22" rx="5.5" ry="7.5"/></svg>
+      <svg class="doodle-car" viewBox="0 0 130 80" fill="none" aria-hidden="true">
+        <path class="ink-stroke olive-stroke" style="stroke-width:3" d="M10 56h110M18 56c0-8-2-18 6-24l10-10c3-3 7-4 11-4h26c5 0 9 3 12 7l9 13c2 3 6 4 10 5l8 2c4 1 6 4 6 8v3"/>
+        <circle class="ink-stroke olive-stroke" style="stroke-width:3" cx="36" cy="58" r="9"/>
+        <circle class="ink-stroke olive-stroke" style="stroke-width:3" cx="98" cy="58" r="9"/>
+        <path class="ink-stroke olive-stroke" style="stroke-width:3" d="M40 28h28M52 18v18"/>
+        <circle cx="60" cy="22" r="3.4" fill="#6F8F40"/>
+        <path class="ink-stroke cyan-stroke" style="stroke-width:2.6" d="M4 40h16M2 49h12"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- trust strip -->
+  <div class="trust-strip reveal d4">
+    <div class="wrap">
+      <span class="trust-item"><span class="stars">★★★★★</span> <b>5.0</b> · 59 Google reviews</span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 11 4.6-2.6 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg> We handle <b>all the border paperwork</b></span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Real-time updates &amp; <b>we translate the vet</b></span>
+      <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.5-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg> <b>Hablamos Español</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILY / NOT A CALL CENTER ============ -->
+<section class="family sec-pad" id="family">
+  <div class="wrap fam-grid">
+    <div class="fam-copy">
+      <span class="kick reveal">
+        <svg viewBox="0 0 30 30" fill="currentColor" aria-hidden="true"><ellipse cx="15" cy="21" rx="8" ry="7"/><ellipse cx="6" cy="11" rx="3" ry="4"/><ellipse cx="12" cy="7" rx="3" ry="4.3"/><ellipse cx="18" cy="7" rx="3" ry="4.3"/><ellipse cx="24" cy="11" rx="3" ry="4"/></svg>
+        The people, not a phone tree
+      </span>
+      <h2 class="sec-title reveal d1">We're not a
+        <span class="u">call center.
+          <svg viewBox="0 0 220 16" preserveAspectRatio="none" aria-hidden="true"><path class="ink-stroke amber-stroke" style="stroke-width:5" d="M4 9c40 6 90 6 130 2s50-6 82 0"/></svg>
+        </span><br>We're a family.</h2>
+      <p class="reveal d2">PetMex is owned and run by <strong>TJ and Lizette</strong> — and when you book, you get <em>them.</em> The same two people who answer your text are the ones who pull up to your door, lift your pet into the car, and stay right beside them the entire way.</p>
+      <p class="reveal d2">No kennels. No strangers. No hand-offs. We take the <strong>headache</strong> out of the trip to the vet — and treat every dog and cat like one of our own.</p>
+
+      <div class="fam-people reveal d3">
+        <div class="person">
+          <img class="pphoto" src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, co-owner of PetMex, gently holding a black cat at a partner clinic" loading="lazy">
+          <div class="pi"><b>TJ</b><span class="role">Co-owner · rides with your pet</span></div>
+        </div>
+        <div class="person">
+          <div class="pavatar" aria-hidden="true">
+            <span class="ini">L</span>
+            <svg class="lp" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="17" rx="6" ry="5"/><ellipse cx="5" cy="9" rx="2.3" ry="3"/><ellipse cx="9.5" cy="6" rx="2.3" ry="3.3"/><ellipse cx="14.5" cy="6" rx="2.3" ry="3.3"/><ellipse cx="19" cy="9" rx="2.3" ry="3"/></svg>
+          </div>
+          <div class="pi"><b>Lizette</b><span class="role h">Co-owner · keeps you updated</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fam-photo reveal d2">
+      <svg class="doodle-paw2" viewBox="0 0 50 56" fill="currentColor" aria-hidden="true"><ellipse cx="25" cy="40" rx="15" ry="13"/><ellipse cx="9" cy="22" rx="5.5" ry="7.5"/><ellipse cx="20" cy="14" rx="5.5" ry="8"/><ellipse cx="31" cy="14" rx="5.5" ry="8"/><ellipse cx="42" cy="22" rx="5.5" ry="7.5"/></svg>
+      <div class="frame">
+        <img src="/PMI/assets/real/founder-tj-cat-2.jpg" alt="TJ holding a calm black cat at a clinic, showing the hands-on care every pet gets" loading="lazy" width="800" height="1000">
+      </div>
+      <div class="quote">
+        <span class="hand">"…the care for our fur babies is like if they were their own."</span>
+        <cite>— Rebeca C., Google review</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORIES (signature hover) ============ -->
+<section class="stories sec-pad" id="stories">
+  <div class="wrap">
+    <div class="story-head">
+      <div>
+        <span class="kick reveal">
+          <svg viewBox="0 0 30 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M15 21C7 16 3 12 3 8a4.5 4.5 0 0 1 12-3 4.5 4.5 0 0 1 12 3c0 4-4 8-12 13z"/></svg>
+          Real pets, real trips
+        </span>
+        <h2 class="sec-title reveal d1">Some of the family.</h2>
+      </div>
+      <p class="story-hint reveal d2">
+        <svg viewBox="0 0 50 30" fill="none" aria-hidden="true"><path class="ink-stroke cyan-stroke" d="M4 24c10 2 22 0 30-8M28 14l6 2 2-6"/></svg>
+        psst — hover a photo to meet them as a doodle
+      </p>
+    </div>
+
+    <div class="story-cards">
+      <!-- Louie -->
+      <article class="story reveal d1">
+        <div class="swap" tabindex="0" role="img" aria-label="A small dog cared for at a partner clinic. Hover to see a hand-drawn version.">
+          <span class="swatch">meet Louie</span>
+          <img src="/PMI/assets/real/clinic-vet-dog.jpg" alt="A small white dog being gently examined by a vet in green scrubs at a Tijuana partner clinic" loading="lazy">
+          <div class="line-layer" aria-hidden="true">
+            <svg viewBox="0 0 120 100" fill="none"><path class="ink-stroke lp" d="M30 78c-6-2-12-8-12-20 0-14 12-26 30-26s30 12 30 26c0 12-6 18-12 20"/><path class="ink-stroke lp" d="M24 40c-6-8-7-18-3-22 5-4 12 2 14 10M72 38c8-8 10-18 5-22-6-4-13 4-14 11"/><path class="ink-stroke lp" d="M42 56c0 4 3 7 6 7s6-3 6-7M54 50c2 0 3 1 3 3M40 50c-2 0-3 1-3 3"/><path class="ink-stroke lp" d="M48 63v8M40 80h16"/></svg>
+          </div>
+        </div>
+        <div class="story-body">
+          <h3>The one they caught in time</h3>
+          <p class="pet">Louie · thyroid</p>
+          <p>"Dra Martha is sooo amazing — she literally found out about our Louie's thyroid." A routine cross-border check that turned into a catch that mattered.</p>
+          <span class="who"><span class="stars">★★★★★</span> Rebeca's fur baby</span>
+        </div>
+      </article>
+
+      <!-- the dental dog -->
+      <article class="story reveal d2">
+        <div class="swap" tabindex="0" role="img" aria-label="A happy dog after dental work. Hover to see a hand-drawn version.">
+          <span class="swatch">say cheese</span>
+          <img src="/PMI/assets/real/happy-dog.jpeg" alt="A joyful dog with a big smile after coming back from dental work at a partner clinic" loading="lazy">
+          <div class="line-layer" aria-hidden="true">
+            <svg viewBox="0 0 120 100" fill="none"><path class="ink-stroke lp" d="M28 70c-4-6-6-14-2-24 4-9 14-14 36-14s32 5 36 14c4 10 2 18-2 24"/><path class="ink-stroke lp" d="M30 46c-4-10-3-18 1-19 4-1 7 6 8 13M88 44c4-10 3-18-1-19-4-1-7 7-8 14"/><path class="ink-stroke lp" d="M50 50c1.5 0 2.5 1 2.5 2.5M68 50c1.5 0 2.5 1 2.5 2.5M55 60c0 3 2.5 5 5 5s5-2 5-5M48 66c4 6 20 6 24 0"/></svg>
+          </div>
+        </div>
+        <div class="story-body">
+          <h3>Came back with a brand-new smile</h3>
+          <p class="pet">Zach's dog · dental</p>
+          <p>"My dog came back with the most fantastic dental work. Lizette and TJ were amazing — in communication the whole time. Can't recommend enough!"</p>
+          <span class="who"><span class="stars">★★★★★</span> Zach B.</span>
+        </div>
+      </article>
+
+      <!-- Kira / cat -->
+      <article class="story reveal d3">
+        <div class="swap" tabindex="0" role="img" aria-label="A calm gray cat. Hover to see a hand-drawn version.">
+          <span class="swatch">hola, gato</span>
+          <img src="/PMI/assets/real/portrait-cat.jpg" alt="A soft portrait of a calm gray and white cat after a clinic visit" loading="lazy">
+          <div class="line-layer" aria-hidden="true">
+            <svg viewBox="0 0 120 100" fill="none"><path class="ink-stroke lp" d="M34 44 26 22l18 12M86 44l8-22-18 12"/><path class="ink-stroke lp" d="M30 50c0-10 12-18 30-18s30 8 30 18 -8 30-30 30S30 60 30 50z"/><path class="ink-stroke lp" d="M50 52c1.5 0 2.5 1.2 2.5 3M70 52c1.5 0 2.5 1.2 2.5 3M58 62l2 3 2-3M40 64l-14-4M40 70l-13 1M80 64l14-4M80 70l13 1"/></svg>
+          </div>
+        </div>
+        <div class="story-body">
+          <h3>100% confiable, start to finish</h3>
+          <p class="pet">Kira · full logistics</p>
+          <p>"Increíble servicio para nuestra amada Kira. Su servicio es 100% confiable — managed all the logistics from start to finish."</p>
+          <span class="who"><span class="stars">★★★★★</span> Laura J.</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how sec-pad" id="how">
+  <div class="wrap">
+    <span class="kick reveal">
+      <svg viewBox="0 0 50 24" fill="none" aria-hidden="true"><path class="ink-stroke" style="stroke:currentColor" d="M3 18c8 0 8-12 16-12s8 12 16 12 8-9 12-9" stroke-dasharray="2 5"/></svg>
+      The whole trip, no headache
+    </span>
+    <h2 class="sec-title reveal d1">How a PetMex day goes.</h2>
+    <p class="sec-lede reveal d2">You text us. We do everything else — and you get updates the entire way.</p>
+
+    <div class="route">
+      <svg class="route-line" viewBox="0 0 1100 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M40 60c180-70 320 70 500 0s320-70 520 0" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>
+      </svg>
+      <div class="steps">
+        <div class="step reveal d1">
+          <span class="num">1</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+          <h4>We come to your door</h4>
+          <p>Pickup at home anywhere in our San Diego service area. Your pet rides in the car with us — never kenneled.</p>
+        </div>
+        <div class="step reveal d2">
+          <span class="num">2</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M5 17l1.5-6c.3-1.2 1.4-2 2.6-2h5.8c1.2 0 2.3.8 2.6 2L19 17M7.5 17v2M16.5 17v2"/><circle cx="8" cy="17" r="0"/></svg>
+          <h4>Across the border, we drive</h4>
+          <p>We handle <strong>all the documentation</strong> and the crossing. It's common and completely legal — and you don't lift a finger.</p>
+        </div>
+        <div class="step reveal d3">
+          <span class="num">3</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+          <h4>Trusted vet, we translate</h4>
+          <p>We stay beside your pet at clinics we personally trust, send real-time updates, and translate every word the vet says.</p>
+        </div>
+        <div class="step reveal d4">
+          <span class="num">4</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/><path d="M3 4v16"/></svg>
+          <h4>Home, same trip</h4>
+          <p>Back to your door the same day for most visits — with a happier, healthier pet and a much smaller bill.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES + SAVINGS ============ -->
+<section class="services sec-pad" id="services">
+  <div class="wrap svc-grid">
+    <div class="svc-aside">
+      <span class="kick reveal">
+        <svg viewBox="0 0 30 30" fill="currentColor" aria-hidden="true"><ellipse cx="15" cy="21" rx="8" ry="7"/><ellipse cx="6" cy="11" rx="3" ry="4"/><ellipse cx="12" cy="7" rx="3" ry="4.3"/><ellipse cx="18" cy="7" rx="3" ry="4.3"/><ellipse cx="24" cy="11" rx="3" ry="4"/></svg>
+        Care that costs less
+      </span>
+      <h2 class="sec-title reveal d1" style="margin-bottom:22px">Real vet care.<br>A fraction of the bill.</h2>
+      <div class="savings reveal d2">
+        <svg class="doodle-paw3" viewBox="0 0 50 56" fill="currentColor" aria-hidden="true"><ellipse cx="25" cy="40" rx="15" ry="13"/><ellipse cx="9" cy="22" rx="5.5" ry="7.5"/><ellipse cx="20" cy="14" rx="5.5" ry="8"/><ellipse cx="31" cy="14" rx="5.5" ry="8"/><ellipse cx="42" cy="22" rx="5.5" ry="7.5"/></svg>
+        <span class="big">10–90%</span>
+        <span class="lab">off your typical vet bill</span>
+        <p>The exact same procedures your San Diego vet offers — done by qualified specialists we trust, for a lot less.</p>
+      </div>
+      <p class="note reveal d3">
+        <svg viewBox="0 0 34 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M3 12c6-6 14-6 20 0M23 12l-5-2M23 12l-2 5"/></svg>
+        Need something not on the list? Just ask — there's much more we can do.
+      </p>
+    </div>
+
+    <div class="svc-main reveal d2">
+      <ul class="svc-list">
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Wellness Exams</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Dental Cleaning</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> X-rays</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Ultrasounds</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Labs &amp; Bloodwork</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Tumor Removals</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Pathology</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Orthopedic Procedures</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Eye Exams</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Spay &amp; Neuter</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> Neurological Exams</li>
+        <li><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> MRI</li>
+        <li class="more"><svg viewBox="0 0 28 24" fill="none" aria-hidden="true"><path class="ink-stroke cyan-stroke" d="M4 12h18M16 6l6 6-6 6"/></svg> …and much more</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="pricing sec-pad" id="pricing">
+  <div class="wrap">
+    <span class="kick reveal">
+      <svg viewBox="0 0 30 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M6 6h14a4 4 0 0 1 0 8H6V4l-3 3 3 3"/></svg>
+      Simple, honest pricing
+    </span>
+    <h2 class="sec-title reveal d1">Transport, starting at…</h2>
+    <p class="sec-lede reveal d2">Flat, friendly transport rates. Vet treatment is quoted separately and confirmed before your pet ever travels.</p>
+
+    <div class="price-grid">
+      <div class="tier reveal d1">
+        <span class="from">Starting at</span>
+        <span class="amt">$200</span>
+        <p>Round-trip transport for consults &amp; follow-ups under an hour at the clinic.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Door-to-door, both ways</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> We stay with your pet</li>
+        </ul>
+      </div>
+      <div class="tier feature reveal d2">
+        <span class="badge">most visits</span>
+        <span class="from">Starting at</span>
+        <span class="amt">$250</span>
+        <p>Visits over an hour, multiple studies (X-ray, bloodwork, ultrasound), or light sedation.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Multiple studies in one trip</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Real-time updates</li>
+        </ul>
+      </div>
+      <div class="tier reveal d3">
+        <span class="from">Starting at</span>
+        <span class="amt">$300</span>
+        <p>Bigger surgeries &amp; overnight stays — one flat rate, any number of nights.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Flat rate, any # of nights</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> We bring them home</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="price-extras reveal d3">
+      <span class="chip amberc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg> Weekend service +$150 <span style="color:var(--ink-soft);font-weight:500">(by availability)</span></span>
+    </div>
+
+    <div class="package reveal d3">
+      <div class="pk-l">
+        <b>example package — most-asked</b>
+        <h4>Dog dental (under 20 lbs)</h4>
+        <p>Dental cleaning + bloodwork + dental X-rays + round-trip transport, all in one day.</p>
+      </div>
+      <div class="pk-amt"><small>starting at</small>$565</div>
+    </div>
+
+    <p class="disclaimer reveal d3">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Round-trip from the immediate San Diego area; pickups outside may have an added charge. Vet treatment costs vary by clinic and case and are confirmed before your pet travels. Prices in USD.
+    </p>
+  </div>
+</section>
+
+<!-- ============ PARTNER CLINICS ============ -->
+<section class="clinics sec-pad" id="clinics">
+  <div class="wrap">
+    <span class="kick reveal">
+      <svg viewBox="0 0 30 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M15 21C7 16 3 12 3 8a4.5 4.5 0 0 1 12-3 4.5 4.5 0 0 1 12 3c0 4-4 8-12 13z"/></svg>
+      Vets we'd trust with our own
+    </span>
+    <h2 class="sec-title reveal d1">The clinics behind the care.</h2>
+    <p class="sec-lede reveal d2">We work only with qualified, experienced veterinarians and specialists we personally trust — and visit again and again.</p>
+
+    <div class="clinic-grid">
+      <div class="clinic reveal d1"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 12v4M10 14h4"/><path d="M3 21h18"/></svg><h4>Hospital Veterinario Petmed</h4></div><span class="spec">Orthopedic surgery · ophthalmology · general medicine</span></div>
+      <div class="clinic reveal d1"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 12v4M10 14h4"/><path d="M3 21h18"/></svg><h4>Clínicas Dra Martha María</h4></div><span class="spec">Surgery · general medicine</span></div>
+      <div class="clinic reveal d2"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 12v4M10 14h4"/><path d="M3 21h18"/></svg><h4>PuntoVet</h4></div><span class="spec">Neurology</span></div>
+      <div class="clinic reveal d2"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 12v4M10 14h4"/><path d="M3 21h18"/></svg><h4>Hospivet</h4></div><span class="spec">General &amp; surgical care</span></div>
+      <div class="clinic reveal d3"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 12v4M10 14h4"/><path d="M3 21h18"/></svg><h4>MediCat</h4></div><span class="spec">Feline-focused care</span></div>
+      <div class="clinic reveal d3"><div class="ch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M12 12v4M10 14h4"/><path d="M3 21h18"/></svg><h4>Dr Zoo</h4></div><span class="spec">Physical therapy &amp; rehab</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews sec-pad" id="reviews">
+  <svg class="doodle-paw4" viewBox="0 0 50 56" fill="currentColor" aria-hidden="true"><ellipse cx="25" cy="40" rx="15" ry="13"/><ellipse cx="9" cy="22" rx="5.5" ry="7.5"/><ellipse cx="20" cy="14" rx="5.5" ry="8"/><ellipse cx="31" cy="14" rx="5.5" ry="8"/><ellipse cx="42" cy="22" rx="5.5" ry="7.5"/></svg>
+  <div class="wrap">
+    <span class="kick reveal">
+      <svg viewBox="0 0 30 24" fill="none" aria-hidden="true"><path class="ink-stroke" style="stroke:currentColor" d="M3 6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H10l-5 4z"/></svg>
+      Straight from the family
+    </span>
+    <h2 class="sec-title reveal d1">Notes on the fridge.</h2>
+    <span class="gstars reveal d2"><span class="s">★★★★★</span> a perfect 5.0 across 59 Google reviews</span>
+
+    <div class="note-grid">
+      <div class="notecard reveal d1">
+        <span class="pin" aria-hidden="true"></span>
+        <div class="rstars">★★★★★</div>
+        <q>There isn't enough space to express how wonderful PetMex is. The door-to-door service Lizette and TJ give, and the care for our fur babies, is like if they were their own. Dra Martha is sooo amazing — she literally found out about our Louie's thyroid. Highly recommend. Grateful.</q>
+        <div class="by"><span class="av">RC</span><div><b>Rebeca Canales</b><span>Louie's human</span></div></div>
+      </div>
+      <div class="notecard reveal d2">
+        <span class="pin" aria-hidden="true"></span>
+        <div class="rstars">★★★★★</div>
+        <q>PetMex saved my dog's life! They truly care about the animals they transport — and my dog actually loves when they pick him up. If you're looking for affordable veterinary care, or don't have time to take your animal yourself, PetMex is the way to go.</q>
+        <div class="by"><span class="av">KD</span><div><b>Kara DeJesus</b><span>Google review</span></div></div>
+      </div>
+      <div class="notecard reveal d2">
+        <span class="pin" aria-hidden="true"></span>
+        <div class="rstars">★★★★★</div>
+        <q>Lizette and TJ were amazing — in communication the whole time. My dog came back with the most fantastic dental work. Can't recommend enough!</q>
+        <div class="by"><span class="av">ZB</span><div><b>Zach B.</b><span>Google review</span></div></div>
+      </div>
+      <div class="notecard reveal d3">
+        <span class="pin" aria-hidden="true"></span>
+        <div class="rstars">★★★★★</div>
+        <q>Increíble servicio para nuestra amada Kira. Su servicio es 100% confiable. Managed all the logistics from start to finish.</q>
+        <div class="by"><span class="av">LJ</span><div><b>Laura J.</b><span>Kira's human · reseña en español</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE AREA + HOURS ============ -->
+<section class="area sec-pad" id="area">
+  <div class="wrap area-grid">
+    <div class="area-map reveal d1">
+      <svg class="mapdoodle" viewBox="0 0 400 260" fill="none" aria-hidden="true">
+        <!-- loose hand-drawn county sketch -->
+        <path class="ink-stroke olive-stroke" style="stroke-width:2.4;opacity:.55" d="M40 40c50-14 120-12 180 4 40 10 90 8 130 26"/>
+        <path class="ink-stroke olive-stroke" style="stroke-width:2.4" d="M30 70c30-6 70-4 96 8 22 10 16 26 40 30 30 5 60-8 86 6 24 13 18 30 44 34"/>
+        <!-- the 52 freeway, dashed -->
+        <path class="cyan-stroke" style="stroke:var(--cyan);stroke-width:3;fill:none;stroke-linecap:round" stroke-dasharray="3 8" d="M24 120c60-4 120 6 180-2s120 6 176-6"/>
+        <!-- border, bottom -->
+        <path class="ink-stroke" style="stroke:var(--asphalt);stroke-width:2.6" d="M20 220c80 6 150-6 200 0s120 10 164-2"/>
+        <!-- base pin La Mesa -->
+        <circle cx="150" cy="150" r="7" fill="#E89A2C"/>
+        <path class="ink-stroke amber-stroke" style="stroke-width:3" d="M150 150c0-10 9-15 9-24a9 9 0 0 0-18 0c0 9 9 14 9 24z" fill="#F6C66B"/>
+      </svg>
+      <span class="pin-here" style="left:38%;top:42%;">★ based in La&nbsp;Mesa</span>
+      <span class="pin-here" style="left:6%;top:40%;color:var(--olive-deep);">the 52 fwy ↑</span>
+    </div>
+    <div class="area-copy">
+      <span class="kick reveal">
+        <svg viewBox="0 0 30 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M15 21C7 16 3 12 3 8a4.5 4.5 0 0 1 12-3 4.5 4.5 0 0 1 12 3c0 4-4 8-12 13z"/></svg>
+        Where we pick up
+      </span>
+      <h3 class="reveal d1">Door-to-door across the East &amp; South County.</h3>
+      <p class="lede reveal d2">Pickup is included in Lakeside, Santee, El Cajon — and everything south of the 52 freeway down to the border.</p>
+      <ul class="area-list reveal d2">
+        <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Lakeside</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Santee</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> El Cajon</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> La Mesa</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path class="ink-stroke olive-stroke" d="M4 13c2 1 4 3 5 6 3-7 7-11 11-14"/></svg> Everything S of the 52</li>
+      </ul>
+      <div class="hours-box reveal d3">
+        <div class="hr"><b>Mon – Fri</b><span>8:00am – 4:00pm</span></div>
+        <div class="hr"><b>Weekend</b><span>By availability (+$150)</span></div>
+        <div class="noemerg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          For the moment, we don't offer emergency services.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq sec-pad" id="faq">
+  <div class="wrap">
+    <span class="kick reveal">
+      <svg viewBox="0 0 30 24" fill="none" aria-hidden="true"><path class="ink-stroke olive-stroke" d="M10 9a5 5 0 1 1 7 4c-2 1.5-2 2-2 4M15 21h.01"/></svg>
+      Good questions, real answers
+    </span>
+    <h2 class="sec-title reveal d1">Before you book.</h2>
+
+    <div class="faq-grid reveal d2">
+      <div class="qa">
+        <button aria-expanded="false">Are you a clinic? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner">No — we're the transport. We take your pet to trusted vet clinics in Tijuana and back, door to door, and stay with them the whole time.</div></div>
+      </div>
+      <div class="qa">
+        <button aria-expanded="false">Is it legal? Do I need documents? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner">Yes — it's common and legal. We handle all the border-crossing documentation for you, so there's nothing for you to fill out.</div></div>
+      </div>
+      <div class="qa">
+        <button aria-expanded="false">Are the Tijuana vets qualified? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner">Absolutely. We work only with qualified, experienced veterinarians and specialists we personally know and trust — the same clinics we use again and again.</div></div>
+      </div>
+      <div class="qa">
+        <button aria-expanded="false">Can I come along for the ride? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner">No — for safety and border-crossing reasons we aren't able to take owners along. But we stay with your pet the whole time, send real-time updates, and translate everything the vet says.</div></div>
+      </div>
+      <div class="qa">
+        <button aria-expanded="false">What if something goes wrong? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner">We're with your pet the entire time and call you immediately, so you decide together with the vet. You're never out of the loop.</div></div>
+      </div>
+      <div class="qa">
+        <button aria-expanded="false">How long does it take? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner">It depends on the visit — many are same-day. We give you a time estimate up front so you know what to expect.</div></div>
+      </div>
+      <div class="qa">
+        <button aria-expanded="false">¿Hablan español? <span class="qm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="ans"><div class="ans-inner"><span class="es">¡Sí! Somos completamente bilingües.</span> We'll handle everything — and translate every word from the vet — in English or Spanish.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / QUOTE ============ -->
+<section class="contact sec-pad" id="contact">
+  <svg class="doodle-route" viewBox="0 0 240 120" fill="none" aria-hidden="true"><path style="stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round" stroke-dasharray="3 9" d="M10 90c40-50 90 30 130-10s60-50 90-30"/><circle cx="10" cy="90" r="5" fill="currentColor"/><circle cx="230" cy="50" r="5" fill="currentColor"/></svg>
+  <div class="wrap contact-grid">
+    <div class="contact-copy">
+      <span class="kick reveal">
+        <svg viewBox="0 0 30 30" fill="currentColor" aria-hidden="true"><ellipse cx="15" cy="21" rx="8" ry="7"/><ellipse cx="6" cy="11" rx="3" ry="4"/><ellipse cx="12" cy="7" rx="3" ry="4.3"/><ellipse cx="18" cy="7" rx="3" ry="4.3"/><ellipse cx="24" cy="11" rx="3" ry="4"/></svg>
+        Let's get your pet booked
+      </span>
+      <h2 class="sec-title reveal d1">Welcome to the family.</h2>
+      <p class="lede reveal d2">Text us, call us, or send the quick form — whatever's easiest. You'll talk to TJ or Lizette, not a call center, and we'll give you a real "starting at" estimate for your pet's trip.</p>
+      <p class="petsay reveal d2">"tell them I said hola." 🐾</p>
+
+      <div class="contact-methods reveal d3">
+        <a class="cm" href="tel:+16198673300">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <span class="ct"><b>(619) 867-3300</b><span>Call us — Mon–Fri 8a–4p</span></span>
+        </a>
+        <a class="cm" href="sms:+16198673300">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <span class="ct"><b>Text us</b><span>Quickest way to reach us</span></span>
+        </a>
+        <a class="cm" href="mailto:hello@petmexinternational.com">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="ct"><b>hello@petmexinternational.com</b><span>Email anytime</span></span>
+        </a>
+      </div>
+
+      <div class="socials reveal d3">
+        <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener" aria-label="PetMex on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener" aria-label="PetMex on Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-1 .3-1.5 1.6-1.5H17V2.2C16.5 2.1 15.4 2 14.4 2 11.9 2 10.3 3.5 10.3 6.2V9H7.5v3.5h2.8V22H14v-9.5h2.7l.4-3.5z"/></svg></a>
+      </div>
+    </div>
+
+    <form class="quote-card reveal d2" onsubmit="return false" aria-label="Request a quote (preview only)">
+      <span class="qh"><svg viewBox="0 0 30 24" fill="none"><path class="ink-stroke cyan-stroke" d="M4 13c2 1 5 4 7 7 4-9 9-14 14-17"/></svg> tell us about your pet</span>
+      <h3>Get your "starting at" quote</h3>
+      <div class="field-row">
+        <div class="field"><label for="q-name">Your name</label><input id="q-name" type="text" placeholder="Jane Doe" autocomplete="name"></div>
+        <div class="field"><label for="q-phone">Phone or text</label><input id="q-phone" type="tel" placeholder="(619) 555-0123" autocomplete="tel"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="q-pet">Pet's name</label><input id="q-pet" type="text" placeholder="Louie"></div>
+        <div class="field"><label for="q-type">Dog or cat?</label>
+          <select id="q-type"><option>Dog</option><option>Cat</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="field"><label for="q-need">What does your pet need?</label>
+        <select id="q-need"><option>Wellness exam</option><option>Dental cleaning</option><option>Spay / neuter</option><option>X-ray / ultrasound / labs</option><option>Surgery</option><option>Not sure yet — help me figure it out</option></select>
+      </div>
+      <div class="field"><label for="q-zip">Pickup ZIP / city</label><input id="q-zip" type="text" placeholder="El Cajon, 92020"></div>
+      <div class="field"><label for="q-msg">Anything else? <span style="font-weight:400;color:var(--ink-soft)">(optional)</span></label><textarea id="q-msg" placeholder="Tell us a little about your furry family member…"></textarea></div>
+      <button class="quote-submit" type="submit">
+        Send my request
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+      <p class="quote-note">Preview form — no message is actually sent. Real site connects straight to TJ &amp; Lizette.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="fbrand">
+          <img src="/PMI/assets/real/logo.png" alt="PetMex International logo">
+          <div class="fn"><b>PetMex</b><span>International Inc</span></div>
+        </div>
+        <p class="tag">San Diego's only VIP pet transportation service — your pet's personal limousine to trusted Tijuana vets. Never alone, never kenneled.</p>
+        <p class="hand">Welcome to the family. 🐾</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#family">The family</a></li>
+          <li><a href="#stories">Pet stories</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get in touch</h5>
+        <ul>
+          <li><a href="tel:+16198673300">(619) 867-3300</a></li>
+          <li><a href="sms:+16198673300">Text us</a></li>
+          <li><a href="mailto:hello@petmexinternational.com">hello@petmexinternational.com</a></li>
+          <li><a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener">Facebook</a></li>
+          <li>Based in La Mesa, CA</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PetMex International Inc. · Hablamos Español</span>
+      <span class="by">Design preview by Rob Logic.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- sticky nav shadow ---- */
+  var nav = document.getElementById('nav');
+  var onScroll = function(){
+    if(window.scrollY > 8){ nav.classList.add('stuck'); }
+    else{ nav.classList.remove('stuck'); }
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- mobile drawer ---- */
+  var drawer = document.getElementById('drawer');
+  var menuBtn = document.getElementById('menuBtn');
+  var closeBtn = document.getElementById('drawerClose');
+  function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); menuBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  menuBtn.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeDrawer); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeDrawer(); });
+
+  /* ---- FAQ accordion (animated max-height) ---- */
+  document.querySelectorAll('.qa').forEach(function(qa){
+    var btn = qa.querySelector('button');
+    var ans = qa.querySelector('.ans');
+    btn.addEventListener('click', function(){
+      var isOpen = qa.classList.contains('open');
+      // close others
+      document.querySelectorAll('.qa.open').forEach(function(o){
+        if(o!==qa){ o.classList.remove('open'); o.querySelector('.ans').style.maxHeight=null; o.querySelector('button').setAttribute('aria-expanded','false'); }
+      });
+      if(isOpen){
+        qa.classList.remove('open'); ans.style.maxHeight=null; btn.setAttribute('aria-expanded','false');
+      } else {
+        qa.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  // keep open answers sized correctly on resize
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.qa.open .ans').forEach(function(a){ a.style.maxHeight = a.scrollHeight + 'px'; });
+  });
+
+  /* ---- scroll reveal (orchestrated) with reduced-motion fallback ---- */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revs = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    revs.forEach(function(r){ r.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    revs.forEach(function(r){ io.observe(r); });
+  }
+})();
+</script>
+</body>
+</html>

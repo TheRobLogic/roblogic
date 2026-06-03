@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetMex International — Your Pet's Personal Limousine</title>
+<meta name="description" content="San Diego's only VIP cross-border pet transport. We drive your pet door-to-door to trusted Tijuana vet clinics and back — never alone, never kenneled. Family-owned. Fully bilingual.">
+<meta property="og:title" content="PetMex International — Your Pet's Personal Limousine">
+<meta property="og:description" content="A chauffeured experience for pets. Door-to-door to trusted Tijuana vet clinics and back. Never alone, never kenneled. Saving you 10–90% off your typical vet bill.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/PMI/assets/real/hero-dogs-in-car.jpg">
+<meta name="theme-color" content="#FBF8F2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+img{display:block;max-width:100%;height:auto}
+button,input,textarea,select{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ============ TOKENS ============ */
+:root{
+  --cyan:#00AEEF;        /* Pacific Cyan — hero accent */
+  --cyan-deep:#0090c7;
+  --olive:#6F8F40;       /* Baja Olive — secondary */
+  --olive-deep:#5a7634;
+  --asphalt:#4B4B4C;     /* Asphalt — text */
+  --ink:#34343a;
+  --bone:#FBF8F2;        /* Bone — warm base */
+  --bone-2:#F4EFE6;      /* deeper bone for panels */
+  --bone-3:#ECE5D7;
+  --line:rgba(75,75,76,.16);
+  --line-soft:rgba(75,75,76,.10);
+  --shadow:0 30px 60px -28px rgba(75,75,76,.34);
+  --shadow-sm:0 14px 30px -16px rgba(75,75,76,.30);
+  --maxw:1240px;
+  --gut:clamp(20px,5vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* ============ BASE ============ */
+body{
+  font-family:"Hanken Grotesk",sans-serif;
+  background:var(--bone);
+  color:var(--asphalt);
+  font-size:clamp(16px,1.05vw,17.5px);
+  line-height:1.65;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* grain overlay — global, subtle */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;
+  opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,h2,h3,h4{
+  font-family:"Fraunces",Georgia,serif;
+  font-weight:430;
+  line-height:1.02;
+  letter-spacing:-.018em;
+  color:var(--ink);
+  font-optical-sizing:auto;
+}
+.serif-italic{font-style:italic;font-weight:380}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut)}
+
+.eyebrow{
+  font-family:"Hanken Grotesk",sans-serif;
+  font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--olive-deep);display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{content:"";width:26px;height:1.5px;background:var(--cyan);display:inline-block}
+.eyebrow.center::after{content:"";width:26px;height:1.5px;background:var(--cyan);display:inline-block}
+.eyebrow.center{justify-content:center}
+
+.section{padding-block:clamp(72px,10vw,140px);position:relative}
+
+/* ============ FIXED ROUTE LINE (signature) ============ */
+.routebar{
+  position:fixed;top:0;left:0;height:100vh;width:54px;z-index:60;
+  pointer-events:none;display:flex;flex-direction:column;align-items:center;
+}
+.routebar .track{
+  position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);
+  width:2px;background:linear-gradient(var(--line-soft),var(--line-soft));
+}
+.routebar .fill{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:2px;height:0;background:var(--cyan);
+  box-shadow:0 0 12px rgba(0,174,239,.5);
+}
+.routebar .stops{position:absolute;inset:0}
+.routebar .stop{
+  position:absolute;left:50%;transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:10px;
+}
+.routebar .dot{
+  width:9px;height:9px;border-radius:50%;background:var(--bone);
+  border:2px solid var(--line);transition:border-color .4s,background .4s,box-shadow .4s;
+  flex:none;
+}
+.routebar .stop.on .dot{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 0 5px rgba(0,174,239,.14)}
+.routebar .lbl{
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--asphalt);white-space:nowrap;opacity:.34;transition:opacity .4s,color .4s;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+}
+.routebar .stop.on .lbl{opacity:1;color:var(--cyan-deep)}
+@media(max-width:1100px){.routebar{display:none}}
+
+/* ============ NAV ============ */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .4s var(--ease);
+  padding-block:clamp(16px,2.2vw,26px);
+}
+header.nav.scrolled{
+  background:rgba(251,248,242,.86);backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  box-shadow:0 1px 0 var(--line-soft);padding-block:13px;
+}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gut);
+  display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand img{height:38px;width:auto;transition:height .4s var(--ease)}
+header.nav.scrolled .brand img{height:32px}
+.brand .bt{display:flex;flex-direction:column;line-height:1}
+.brand .bt b{font-family:"Fraunces",serif;font-weight:560;font-size:1.18rem;color:var(--ink);letter-spacing:-.02em}
+.brand .bt span{font-size:.56rem;font-weight:700;letter-spacing:.28em;color:var(--cyan-deep);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:clamp(20px,2.4vw,38px)}
+.nav-links a{font-size:.86rem;font-weight:500;letter-spacing:.01em;color:var(--asphalt);position:relative;padding-block:4px;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:var(--cyan);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-size:.82rem;font-weight:600;letter-spacing:.02em;color:var(--ink);
+  border:1.5px solid var(--asphalt);border-radius:100px;padding:.62em 1.4em;
+  transition:all .3s var(--ease);
+}
+.nav-cta:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.nav-actions{display:flex;align-items:center;gap:18px}
+.nav-phone{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:.86rem;color:var(--cyan-deep)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:42px;height:42px;position:relative}
+.burger span{position:absolute;left:9px;right:9px;height:2px;background:var(--ink);transition:.3s var(--ease)}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+body.menu-open .burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+body.menu-open .burger span:nth-child(2){opacity:0}
+body.menu-open .burger span:nth-child(3){top:21px;transform:rotate(-45deg)}
+/* collapse desktop nav into burger on smaller screens */
+@media(max-width:920px){
+  .nav-links,.nav-actions{display:none}
+  .burger{display:block}
+}
+
+/* mobile drawer */
+.drawer{
+  position:fixed;inset:0;z-index:95;background:var(--bone);
+  display:flex;flex-direction:column;justify-content:center;padding:var(--gut);
+  transform:translateY(-100%);transition:transform .55s var(--ease);visibility:hidden;
+}
+body.menu-open .drawer{transform:translateY(0);visibility:visible}
+.drawer a{font-family:"Fraunces",serif;font-size:clamp(2rem,8vw,3.2rem);font-weight:420;color:var(--ink);padding-block:.12em;border-bottom:1px solid var(--line-soft);transition:color .25s,padding-left .3s}
+.drawer a:hover{color:var(--cyan-deep);padding-left:.3em}
+.drawer .dphone{margin-top:36px;font-family:"Hanken Grotesk",sans-serif;font-size:1.1rem;font-weight:600;color:var(--cyan-deep)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  overflow:hidden;background:var(--bone)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.hero-media::after{ /* warm bone wash so type breathes; bright not dark */
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(251,248,242,.34) 0%,rgba(251,248,242,0) 26%),
+    linear-gradient(0deg,rgba(251,248,242,.96) 4%,rgba(251,248,242,.55) 30%,rgba(251,248,242,.06) 56%),
+    linear-gradient(90deg,rgba(251,248,242,.5) 0%,rgba(251,248,242,0) 48%);
+}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);
+  margin:0 auto;padding:0 var(--gut) clamp(48px,7vw,96px)}
+.hero-tag{opacity:0}
+.hero h1{
+  font-size:clamp(3.1rem,9.2vw,8.2rem);font-weight:380;letter-spacing:-.03em;
+  margin:.32em 0 .42em;max-width:15ch;color:var(--ink);
+}
+.hero h1 em{font-style:italic;font-weight:340;color:var(--cyan-deep)}
+.hero h1 .reveal-word{display:inline-block;overflow:hidden;vertical-align:bottom}
+.hero h1 .reveal-word span{display:inline-block;transform:translateY(110%);will-change:transform}
+.hero-sub{font-size:clamp(1.05rem,1.5vw,1.32rem);max-width:46ch;color:var(--asphalt);
+  font-weight:430;opacity:0;margin-bottom:clamp(34px,4vw,52px)}
+.hero-row{display:flex;align-items:center;gap:clamp(22px,3vw,44px);flex-wrap:wrap;opacity:0}
+
+/* RING CTA — signature */
+.ring{
+  --r:120px;
+  position:relative;width:var(--r);height:var(--r);flex:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  cursor:pointer;color:var(--ink);
+}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.ring circle{fill:none;stroke:var(--asphalt);stroke-width:1.4;opacity:.5;
+  transition:stroke .4s var(--ease),opacity .4s var(--ease)}
+.ring .prog{stroke:var(--cyan);stroke-width:2;opacity:1;
+  stroke-dasharray:var(--C);stroke-dashoffset:var(--C);
+  transition:stroke-dashoffset .7s var(--ease)}
+.ring:hover .prog{stroke-dashoffset:0}
+.ring .rt{position:relative;z-index:2;font-size:.74rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;line-height:1.25;transition:transform .4s var(--ease)}
+.ring .rt b{display:block;font-family:"Fraunces",serif;font-weight:500;font-size:1.04rem;
+  letter-spacing:-.01em;text-transform:none;color:var(--cyan-deep);margin-top:2px}
+.ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--cyan);
+  transform:scale(.2);opacity:0;transition:transform .5s var(--ease),opacity .4s var(--ease);z-index:0}
+.ring:hover{color:#fff}
+.ring:hover .rt b{color:#fff}
+.ring:hover circle{stroke:transparent}
+.ring:hover .rt{transform:scale(1.04)}
+.ring:hover::before{transform:scale(1.06);opacity:1}
+.ring:focus-visible{outline:none}
+.ring:focus-visible::before{transform:scale(1.06);opacity:1}
+.ring:focus-visible{color:#fff}
+.ring:focus-visible .rt b{color:#fff}
+.hero-call{display:inline-flex;flex-direction:column;gap:2px}
+.hero-call small{font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--olive-deep)}
+.hero-call a{font-family:"Fraunces",serif;font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:480;color:var(--ink);transition:color .25s}
+.hero-call a:hover{color:var(--cyan-deep)}
+
+/* hero corner meta */
+.hero-meta{position:absolute;top:clamp(96px,13vh,150px);right:var(--gut);z-index:2;
+  text-align:right;opacity:0}
+.hero-meta .stars{color:var(--cyan);font-size:1rem;letter-spacing:2px}
+.hero-meta .mt{font-size:.78rem;font-weight:500;color:var(--asphalt);margin-top:3px}
+.hero-meta .mt b{font-weight:700;color:var(--ink)}
+@media(max-width:760px){.hero-meta{display:none}}
+
+/* ============ AMENITY ROW (the ride includes) ============ */
+.ride{background:var(--ink);color:var(--bone);position:relative;overflow:hidden}
+.ride::before{content:"";position:absolute;inset:0;opacity:.06;
+  background:radial-gradient(circle at 12% 20%,var(--cyan),transparent 38%),radial-gradient(circle at 88% 90%,var(--olive),transparent 42%)}
+.ride .wrap{position:relative;z-index:1}
+.ride-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(40px,5vw,60px)}
+.ride-head .eyebrow{color:#9fe3ff}
+.ride-head .eyebrow::before{background:var(--cyan)}
+.ride-head h2{color:var(--bone);font-size:clamp(2rem,4.4vw,3.4rem);font-weight:380;max-width:18ch}
+.ride-head h2 em{font-style:italic;color:#9fe3ff}
+.ride-head p{max-width:34ch;color:rgba(251,248,242,.66);font-size:.98rem}
+.amenities{display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  border-top:1px solid rgba(251,248,242,.16)}
+.amenity{padding:clamp(26px,3vw,38px) clamp(14px,1.6vw,22px) 0;
+  border-right:1px solid rgba(251,248,242,.13);position:relative}
+.amenity:last-child{border-right:0}
+.amenity .ic{width:30px;height:30px;color:var(--cyan);margin-bottom:18px}
+.amenity h3{font-family:"Hanken Grotesk",sans-serif;font-size:.96rem;font-weight:700;
+  color:var(--bone);letter-spacing:.005em;margin-bottom:7px;line-height:1.2}
+.amenity p{font-size:.84rem;color:rgba(251,248,242,.6);line-height:1.5}
+@media(max-width:880px){.amenities{grid-template-columns:repeat(2,1fr)}
+  .amenity{border-bottom:1px solid rgba(251,248,242,.13)}
+  .amenity:nth-child(2n){border-right:0}
+  .amenity:last-child{grid-column:1/-1}}
+@media(max-width:480px){.amenities{grid-template-columns:1fr}
+  .amenity{border-right:0}.amenity:last-child{grid-column:auto}}
+
+/* ============ INTRO / HOW (editorial split) ============ */
+.intro{position:relative}
+.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
+.intro-copy h2{font-size:clamp(2.1rem,4.6vw,3.7rem);font-weight:380;margin-bottom:.5em;max-width:16ch}
+.intro-copy h2 em{font-style:italic;color:var(--cyan-deep)}
+.intro-copy p{max-width:50ch;margin-bottom:1.1em;color:var(--asphalt)}
+.intro-copy .lead{font-size:clamp(1.1rem,1.5vw,1.28rem);color:var(--ink);font-weight:430}
+.steps{margin-top:clamp(30px,4vw,48px);counter-reset:s}
+.step{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .n{font-family:"Fraunces",serif;font-style:italic;font-size:1.3rem;font-weight:420;color:var(--cyan-deep);min-width:2ch}
+.step h4{font-family:"Hanken Grotesk",sans-serif;font-size:1.02rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.step p{font-size:.92rem;color:var(--asphalt);max-width:42ch}
+.intro-media{position:relative}
+.intro-media .ph{border-radius:6px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/4;background:var(--bone-3)}
+.intro-media .ph img{width:100%;height:100%;object-fit:cover}
+.intro-media .tagline{position:absolute;left:-22px;bottom:34px;background:var(--bone);
+  border:1px solid var(--line);border-radius:4px;padding:16px 20px;box-shadow:var(--shadow-sm);max-width:230px}
+.intro-media .tagline .stars{color:var(--cyan);font-size:.85rem;letter-spacing:2px}
+.intro-media .tagline p{font-family:"Fraunces",serif;font-style:italic;font-size:.96rem;color:var(--ink);margin-top:6px;line-height:1.35}
+@media(max-width:860px){.intro-grid{grid-template-columns:1fr;gap:48px}
+  .intro-media{max-width:440px}.intro-media .tagline{left:auto;right:14px}}
+
+/* big bleeding number — type breaks grid */
+.savings{position:relative;text-align:center;padding-block:clamp(50px,7vw,90px);
+  background:var(--bone-2);overflow:hidden;border-block:1px solid var(--line-soft)}
+.savings .eyebrow{margin-bottom:10px}
+.savings .big{font-family:"Fraunces",serif;font-weight:330;letter-spacing:-.04em;
+  font-size:clamp(5rem,24vw,20rem);line-height:.8;color:var(--ink);white-space:nowrap}
+.savings .big i{font-style:normal;color:var(--cyan)}
+.savings .big .pct{font-size:.4em;vertical-align:super;color:var(--olive-deep);font-style:italic}
+.savings p{font-family:"Hanken Grotesk",sans-serif;max-width:40ch;margin:18px auto 0;color:var(--asphalt);font-size:1.05rem}
+
+/* ============ JOURNEY GALLERY ============ */
+.journey{background:var(--ink);color:var(--bone);overflow:hidden}
+.journey .wrap{position:relative;z-index:1}
+.j-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(34px,4vw,52px)}
+.j-head .eyebrow{color:#9fe3ff}.j-head .eyebrow::before{background:var(--cyan)}
+.j-head h2{color:var(--bone);font-size:clamp(2rem,4.4vw,3.4rem);font-weight:380;max-width:16ch}
+.j-head h2 em{font-style:italic;color:#9fe3ff}
+.gallery{position:relative}
+.g-stage{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:16/10;
+  background:#26262b;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.g-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);}
+.g-slide img{width:100%;height:100%;object-fit:cover}
+.g-slide.on{opacity:1}
+.g-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.5),transparent 46%)}
+.g-cap{position:absolute;left:clamp(18px,3vw,38px);bottom:clamp(18px,3vw,34px);z-index:2;color:#fff}
+.g-cap .route{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#9fe3ff;display:flex;align-items:center;gap:9px}
+.g-cap .route .ar{width:34px;height:1.5px;background:#9fe3ff;display:inline-block;position:relative}
+.g-cap .route .ar::after{content:"";position:absolute;right:0;top:-2.5px;width:6px;height:6px;border-top:1.5px solid #9fe3ff;border-right:1.5px solid #9fe3ff;transform:rotate(45deg)}
+.g-cap h3{font-family:"Fraunces",serif;font-weight:430;font-size:clamp(1.4rem,3vw,2.2rem);color:#fff;margin-top:8px;max-width:18ch}
+/* magazine counter pagination */
+.g-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:24px;flex-wrap:wrap}
+.g-count{font-family:"Fraunces",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:400;color:var(--bone);letter-spacing:.02em}
+.g-count i{font-style:normal;color:var(--cyan)}
+.g-count small{font-size:.5em;color:rgba(251,248,242,.45);font-weight:400}
+.g-ctrl{display:flex;align-items:center;gap:14px}
+.g-btn{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(251,248,242,.3);
+  background:transparent;color:var(--bone);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .3s var(--ease)}
+.g-btn:hover{background:var(--cyan);border-color:var(--cyan);color:#fff}
+.g-btn svg{width:18px;height:18px}
+.g-dots{display:flex;gap:7px}
+.g-dot{width:30px;height:3px;background:rgba(251,248,242,.22);border:0;cursor:pointer;padding:0;transition:background .3s}
+.g-dot.on{background:var(--cyan)}
+@media(max-width:600px){.g-stage{aspect-ratio:4/5}}
+
+/* ============ SERVICES ============ */
+.svc-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,86px);align-items:start}
+.svc-intro{position:sticky;top:120px}
+.svc-intro h2{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:380;margin-bottom:.55em;max-width:14ch}
+.svc-intro h2 em{font-style:italic;color:var(--cyan-deep)}
+.svc-intro p{max-width:42ch;color:var(--asphalt);margin-bottom:1.4em}
+.svc-note{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;font-weight:600;
+  color:var(--olive-deep);border:1px solid var(--line);border-radius:100px;padding:.5em 1.1em}
+.svc-note .d{width:7px;height:7px;border-radius:50%;background:var(--olive)}
+.svc-list{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,3vw,44px)}
+.svc-item{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line-soft);
+  font-size:1rem;font-weight:500;color:var(--ink)}
+.svc-item .x{font-family:"Fraunces",serif;font-style:italic;color:var(--cyan-deep);font-size:.9rem;
+  width:26px;height:26px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;transition:.3s var(--ease)}
+.svc-item:hover .x{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr;gap:40px}.svc-intro{position:static}}
+@media(max-width:460px){.svc-list{grid-template-columns:1fr}}
+
+/* ============ PRICING — boarding pass ============ */
+.pricing{background:var(--bone-2);border-block:1px solid var(--line-soft)}
+.price-head{text-align:center;max-width:60ch;margin:0 auto clamp(44px,5vw,64px)}
+.price-head h2{font-size:clamp(2.1rem,5vw,3.8rem);font-weight:380;margin:.18em 0 .35em}
+.price-head h2 em{font-style:italic;color:var(--cyan-deep)}
+.price-head p{color:var(--asphalt)}
+.passes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,26px)}
+.pass{background:var(--bone);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  position:relative;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.pass:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.pass.feat{border-color:var(--cyan)}
+.pass-top{padding:24px 26px 20px;display:flex;justify-content:space-between;align-items:flex-start;
+  border-bottom:1px dashed var(--line);position:relative}
+.pass-top .code{font-family:"Fraunces",serif;font-style:italic;font-weight:430;font-size:1.05rem;color:var(--cyan-deep)}
+.pass-top .tag{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--olive-deep);border:1px solid var(--line);border-radius:100px;padding:.35em .8em}
+.pass.feat .pass-top .tag{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+/* perforation notches */
+.pass-top::before,.pass-top::after{content:"";position:absolute;bottom:-9px;width:18px;height:18px;
+  border-radius:50%;background:var(--bone-2);border:1px solid var(--line)}
+.pass-top::before{left:-9px}.pass-top::after{right:-9px}
+.pass-body{padding:26px;flex:1;display:flex;flex-direction:column}
+.pass-body h3{font-family:"Hanken Grotesk",sans-serif;font-size:1.08rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.pass-body .desc{font-size:.88rem;color:var(--asphalt);margin-bottom:auto;max-width:34ch}
+.pass .price{margin-top:24px;display:flex;align-items:baseline;gap:7px}
+.pass .price .sa{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-deep)}
+.pass .price .amt{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(2.4rem,5vw,3.1rem);
+  color:var(--ink);letter-spacing:-.02em;line-height:1}
+.pass .price .amt sup{font-size:.4em;top:-1.1em;font-style:italic;color:var(--cyan-deep)}
+/* dotted itinerary line */
+.pass-foot{padding:16px 26px;border-top:1px dashed var(--line);display:flex;align-items:center;gap:10px;
+  font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--asphalt)}
+.pass-foot .rt{display:inline-flex;align-items:center;gap:7px;color:var(--cyan-deep)}
+.pass-foot .rt .dd{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 4px,transparent 4px 8px);min-width:24px}
+/* add-ons + featured package */
+.price-extra{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(18px,2vw,26px);margin-top:clamp(18px,2vw,26px)}
+.pkg{background:var(--ink);color:var(--bone);border-radius:10px;padding:clamp(26px,3vw,38px);
+  display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.pkg::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,174,239,.22),transparent 70%)}
+.pkg .eyebrow{color:#9fe3ff;margin-bottom:12px}.pkg .eyebrow::before{background:var(--cyan)}
+.pkg h3{color:var(--bone);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:400;max-width:18ch;margin-bottom:10px}
+.pkg h3 em{font-style:italic;color:#9fe3ff}
+.pkg .incl{font-size:.88rem;color:rgba(251,248,242,.66);max-width:42ch;margin-bottom:20px}
+.pkg .pp{display:flex;align-items:baseline;gap:8px}
+.pkg .pp .sa{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#9fe3ff}
+.pkg .pp .amt{font-family:"Fraunces",serif;font-weight:400;font-size:clamp(2.6rem,6vw,3.6rem);color:#fff;line-height:1}
+.pkg .pp .amt sup{font-size:.4em;top:-1.1em;font-style:italic;color:#9fe3ff}
+.addons{background:var(--bone);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,2.5vw,30px);display:flex;flex-direction:column;gap:2px}
+.addons h4{font-family:"Hanken Grotesk",sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--olive-deep);margin-bottom:14px}
+.addon{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line-soft);font-size:.92rem}
+.addon b{font-weight:500;color:var(--ink)}
+.addon span{font-family:"Fraunces",serif;font-style:italic;color:var(--cyan-deep);font-weight:430;white-space:nowrap}
+.price-disc{max-width:74ch;margin:clamp(28px,3.4vw,40px) auto 0;text-align:center;
+  font-size:.82rem;line-height:1.6;color:var(--asphalt);opacity:.82}
+@media(max-width:880px){.passes{grid-template-columns:1fr;max-width:440px;margin-inline:auto}
+  .price-extra{grid-template-columns:1fr;max-width:440px;margin-inline:auto}}
+
+/* ============ TEAM ============ */
+.team-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,84px);align-items:center}
+.team-photo{position:relative}
+.team-photo .ph{aspect-ratio:3/4;border-radius:6px;overflow:hidden;box-shadow:var(--shadow);background:var(--bone-3)}
+.team-photo .ph img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.team-photo .name-card{position:absolute;right:-18px;bottom:30px;background:var(--bone);
+  border:1px solid var(--line);border-radius:5px;padding:14px 22px;box-shadow:var(--shadow-sm)}
+.team-photo .name-card b{font-family:"Fraunces",serif;font-weight:500;font-size:1.2rem;color:var(--ink);display:block}
+.team-photo .name-card span{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-deep)}
+.team-copy h2{font-size:clamp(2.1rem,4.8vw,3.7rem);font-weight:380;margin-bottom:.5em;max-width:15ch}
+.team-copy h2 em{font-style:italic;color:var(--cyan-deep)}
+.team-copy p{max-width:50ch;margin-bottom:1.1em;color:var(--asphalt)}
+.team-copy .lead{font-size:clamp(1.08rem,1.5vw,1.26rem);color:var(--ink);font-weight:430}
+.family-row{display:flex;align-items:center;gap:18px;margin-top:clamp(26px,3vw,38px);
+  padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line)}
+.avatar{width:56px;height:56px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  font-family:"Fraunces",serif;font-style:italic;font-weight:500;font-size:1.3rem;color:#fff;
+  background:linear-gradient(135deg,var(--olive),var(--olive-deep));box-shadow:0 6px 16px -8px rgba(111,143,64,.7)}
+.family-row .ft b{font-family:"Fraunces",serif;font-weight:500;color:var(--ink);font-size:1.05rem}
+.family-row .ft p{font-size:.88rem;color:var(--asphalt);margin:0;max-width:40ch}
+@media(max-width:860px){.team-grid{grid-template-columns:1fr;gap:48px}.team-photo{max-width:400px}}
+
+/* ============ REVIEWS ============ */
+.reviews{background:var(--bone-2);border-block:1px solid var(--line-soft)}
+.rv-head{text-align:center;margin-bottom:clamp(40px,5vw,60px)}
+.rv-head h2{font-size:clamp(2.1rem,4.6vw,3.6rem);font-weight:380;margin:.18em 0 .3em}
+.rv-head h2 em{font-style:italic;color:var(--cyan-deep)}
+.rv-head .stat{display:inline-flex;align-items:center;gap:12px;font-size:.92rem;color:var(--asphalt)}
+.rv-head .stat .stars{color:var(--cyan);letter-spacing:2px}
+.rv-head .stat b{color:var(--ink);font-weight:700}
+.rv-grid{columns:2;column-gap:clamp(20px,3vw,30px)}
+.quote{break-inside:avoid;background:var(--bone);border:1px solid var(--line);border-radius:8px;
+  padding:clamp(24px,3vw,34px);margin-bottom:clamp(20px,3vw,30px);position:relative}
+.quote .stars{color:var(--cyan);font-size:.95rem;letter-spacing:2px;margin-bottom:14px}
+.quote blockquote{font-family:"Fraunces",serif;font-weight:360;font-size:clamp(1.05rem,1.6vw,1.32rem);
+  line-height:1.45;color:var(--ink);letter-spacing:-.01em}
+.quote .by{display:flex;align-items:center;gap:11px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line-soft)}
+.quote .by .ini{width:38px;height:38px;border-radius:50%;background:var(--bone-3);color:var(--cyan-deep);
+  display:flex;align-items:center;justify-content:center;font-family:"Fraunces",serif;font-weight:500;font-size:.95rem;flex:none}
+.quote .by b{font-weight:600;color:var(--ink);font-size:.92rem}
+.quote .by span{font-size:.78rem;color:var(--asphalt);display:block}
+@media(max-width:680px){.rv-grid{columns:1}}
+
+/* ============ CLINICS ============ */
+.clinics{}
+.cl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(34px,4vw,48px)}
+.cl-head h2{font-size:clamp(2rem,4.4vw,3.3rem);font-weight:380;max-width:16ch}
+.cl-head h2 em{font-style:italic;color:var(--cyan-deep)}
+.cl-head p{max-width:36ch;color:var(--asphalt);font-size:.95rem}
+.cl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.clinic{padding:clamp(22px,2.6vw,30px) clamp(16px,1.8vw,26px);border-bottom:1px solid var(--line);
+  border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;transition:background .3s}
+.clinic:hover{background:var(--bone-2)}
+.clinic .cn{display:flex;align-items:baseline;gap:10px}
+.clinic .cn .x{font-family:"Fraunces",serif;font-style:italic;color:var(--cyan-deep);font-size:.85rem}
+.clinic h3{font-family:"Hanken Grotesk",sans-serif;font-size:1.04rem;font-weight:700;color:var(--ink);line-height:1.2}
+.clinic p{font-size:.84rem;color:var(--asphalt);line-height:1.5}
+@media(max-width:780px){.cl-grid{grid-template-columns:1fr 1fr}.clinic:nth-child(2n){border-right:0}}
+@media(max-width:480px){.cl-grid{grid-template-columns:1fr}.clinic{border-right:0}}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,5vw,80px);align-items:start}
+.faq-intro{position:sticky;top:120px}
+.faq-intro h2{font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:380;margin-bottom:.5em;max-width:12ch}
+.faq-intro h2 em{font-style:italic;color:var(--cyan-deep)}
+.faq-intro p{max-width:36ch;color:var(--asphalt);margin-bottom:1.2em}
+.faq-intro .bilingual{display:inline-flex;align-items:center;gap:10px;font-family:"Fraunces",serif;
+  font-style:italic;font-size:1.1rem;color:var(--olive-deep)}
+.faq-intro .bilingual .fl{font-size:1.3rem}
+.acc-item{border-top:1px solid var(--line)}
+.acc-item:last-child{border-bottom:1px solid var(--line)}
+.acc-q{width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:20px;padding:clamp(20px,2.4vw,26px) 0;
+  font-family:"Fraunces",serif;font-weight:420;font-size:clamp(1.1rem,1.8vw,1.45rem);
+  color:var(--ink);letter-spacing:-.01em;line-height:1.25;transition:color .25s}
+.acc-q:hover{color:var(--cyan-deep)}
+.acc-q .pm{flex:none;width:30px;height:30px;border:1.5px solid var(--line);border-radius:50%;
+  position:relative;margin-left:auto;transition:.35s var(--ease)}
+.acc-q .pm::before,.acc-q .pm::after{content:"";position:absolute;background:var(--asphalt);
+  top:50%;left:50%;transition:.35s var(--ease)}
+.acc-q .pm::before{width:12px;height:1.6px;transform:translate(-50%,-50%)}
+.acc-q .pm::after{width:1.6px;height:12px;transform:translate(-50%,-50%)}
+.acc-item.open .acc-q{color:var(--cyan-deep)}
+.acc-item.open .acc-q .pm{background:var(--cyan);border-color:var(--cyan);transform:rotate(135deg)}
+.acc-item.open .acc-q .pm::before,.acc-item.open .acc-q .pm::after{background:#fff}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.acc-a .inner{padding-bottom:clamp(20px,2.4vw,26px);max-width:56ch;color:var(--asphalt);
+  font-size:.98rem;line-height:1.6;padding-right:50px}
+@media(max-width:820px){.faq-grid{grid-template-columns:1fr;gap:32px}.faq-intro{position:static}}
+
+/* ============ CONTACT / QUOTE ============ */
+.contact{background:var(--ink);color:var(--bone);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;opacity:.07;
+  background:radial-gradient(circle at 85% 15%,var(--cyan),transparent 40%),radial-gradient(circle at 5% 85%,var(--olive),transparent 45%)}
+.contact .wrap{position:relative;z-index:1}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start}
+.ct-left .eyebrow{color:#9fe3ff}.ct-left .eyebrow::before{background:var(--cyan)}
+.ct-left h2{color:var(--bone);font-size:clamp(2.3rem,5vw,4rem);font-weight:360;margin:.2em 0 .5em;max-width:14ch}
+.ct-left h2 em{font-style:italic;color:#9fe3ff}
+.ct-left>p{max-width:42ch;color:rgba(251,248,242,.66);margin-bottom:clamp(30px,4vw,44px)}
+.ct-lines{display:flex;flex-direction:column;gap:2px}
+.ct-line{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid rgba(251,248,242,.14);transition:padding-left .3s var(--ease)}
+.ct-line:last-child{border-bottom:1px solid rgba(251,248,242,.14)}
+.ct-line:hover{padding-left:8px}
+.ct-line .ic{width:22px;height:22px;color:var(--cyan);flex:none}
+.ct-line .ctt small{display:block;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,248,242,.5)}
+.ct-line .ctt a,.ct-line .ctt b{font-family:"Fraunces",serif;font-weight:430;font-size:1.18rem;color:var(--bone);transition:color .25s}
+.ct-line .ctt a:hover{color:#9fe3ff}
+.ct-socials{display:flex;gap:12px;margin-top:26px}
+.ct-socials a{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(251,248,242,.26);
+  display:flex;align-items:center;justify-content:center;color:var(--bone);transition:.3s var(--ease)}
+.ct-socials a:hover{background:var(--cyan);border-color:var(--cyan);color:#fff;transform:translateY(-3px)}
+.ct-socials svg{width:19px;height:19px}
+.hours-chip{margin-top:26px;display:inline-flex;align-items:center;gap:10px;font-size:.85rem;
+  color:rgba(251,248,242,.78);border:1px solid rgba(251,248,242,.2);border-radius:100px;padding:.55em 1.2em}
+.hours-chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--olive);position:relative}
+.hours-chip .pulse::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--olive);animation:pul 2.4s var(--ease) infinite}
+@keyframes pul{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+
+/* quote form card */
+.qform{background:var(--bone);border-radius:12px;padding:clamp(26px,3vw,40px);box-shadow:0 40px 80px -36px rgba(0,0,0,.5)}
+.qform .fh{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.qform h3{font-family:"Fraunces",serif;font-weight:480;font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--ink)}
+.qform .free{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-deep);border:1px solid var(--line);border-radius:100px;padding:.4em .9em}
+.qform>p{font-size:.9rem;color:var(--asphalt);margin-bottom:22px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--asphalt)}
+.field input,.field select,.field textarea{
+  background:var(--bone-2);border:1px solid var(--line);border-radius:7px;padding:.78em .9em;
+  font-size:.95rem;color:var(--ink);transition:border-color .25s,background .25s,box-shadow .25s;width:100%}
+.field input::placeholder,.field textarea::placeholder{color:rgba(75,75,76,.45)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan);
+  background:var(--bone);box-shadow:0 0 0 3px rgba(0,174,239,.13)}
+.field textarea{resize:vertical;min-height:84px}
+.qsubmit{width:100%;margin-top:6px;background:var(--cyan);color:#fff;border:0;border-radius:100px;
+  padding:1em 1.4em;font-size:.92rem;font-weight:700;letter-spacing:.04em;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;transition:.3s var(--ease)}
+.qsubmit:hover{background:var(--cyan-deep);gap:16px}
+.qsubmit svg{width:17px;height:17px;transition:transform .3s var(--ease)}
+.qnote{font-size:.74rem;color:var(--asphalt);text-align:center;margin-top:12px;opacity:.7}
+@media(max-width:880px){.ct-grid{grid-template-columns:1fr;gap:44px}}
+@media(max-width:440px){.fgrid{grid-template-columns:1fr}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--bone);padding-block:clamp(48px,6vw,76px) 30px}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;
+  padding-bottom:clamp(34px,4vw,48px);border-bottom:1px solid var(--line)}
+.foot-brand{max-width:34ch}
+.foot-brand img{height:46px;margin-bottom:18px}
+.foot-brand p{font-size:.92rem;color:var(--asphalt);line-height:1.6}
+.foot-brand .route{margin-top:18px;display:inline-flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-deep)}
+.foot-brand .route .ar{width:30px;height:1.5px;background:var(--cyan);position:relative}
+.foot-brand .route .ar::after{content:"";position:absolute;right:0;top:-2.5px;width:6px;height:6px;border-top:1.5px solid var(--cyan);border-right:1.5px solid var(--cyan);transform:rotate(45deg)}
+.foot-cols{display:flex;gap:clamp(40px,6vw,84px);flex-wrap:wrap}
+.foot-col h4{font-family:"Hanken Grotesk",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--olive-deep);margin-bottom:16px}
+.foot-col a,.foot-col p{display:block;font-size:.9rem;color:var(--asphalt);padding-block:5px;transition:color .25s}
+.foot-col a:hover{color:var(--cyan-deep)}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-top:26px}
+.foot-bot p{font-size:.8rem;color:var(--asphalt);opacity:.74}
+.foot-bot .rl{font-family:"Fraunces",serif;font-style:italic}
+.foot-disc{max-width:var(--maxw);margin:18px auto 0;padding-inline:var(--gut);
+  font-size:.74rem;color:var(--asphalt);opacity:.55;line-height:1.5}
+
+/* ============ PREVIEW BADGE ============ */
+.preview-badge{position:fixed;left:18px;bottom:18px;z-index:9500;
+  background:var(--ink);color:var(--bone);border-radius:100px;padding:.6em 1.1em;
+  font-family:"Hanken Grotesk",sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.04em;
+  display:inline-flex;align-items:center;gap:9px;box-shadow:0 14px 34px -14px rgba(0,0,0,.5);
+  transition:transform .3s var(--ease),background .3s}
+.preview-badge:hover{transform:translateY(-2px);background:var(--cyan-deep)}
+.preview-badge .pd{width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+.preview-badge:hover .pd{background:#fff}
+@media(max-width:1100px){.preview-badge{left:auto;right:14px;bottom:14px}}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+.reveal[data-d="4"]{transition-delay:.32s}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .hero h1 .reveal-word span{transform:none!important}
+  .hero-tag,.hero-sub,.hero-row,.hero-meta{opacity:1!important}
+  .routebar .fill{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== SIGNATURE ROUTE LINE ===== -->
+<div class="routebar" aria-hidden="true">
+  <div class="track"></div>
+  <div class="fill" id="routeFill"></div>
+  <div class="stops">
+    <div class="stop" style="top:14%"><span class="dot"></span><span class="lbl">San Diego</span></div>
+    <div class="stop" style="top:50%"><span class="dot"></span><span class="lbl">Tijuana</span></div>
+    <div class="stop" style="top:86%"><span class="dot"></span><span class="lbl">Home</span></div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="PetMex International home">
+      <img src="/PMI/assets/real/logo.png" alt="PetMex International">
+      <span class="bt"><b>PetMex</b><span>International Inc</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#ride">The Ride</a>
+      <a href="#services">Care</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#team">Family</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="tel:+16198673300" class="nav-phone">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (619) 867-3300
+      </a>
+      <a href="#contact" class="nav-cta">Book a ride</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="drawer" id="drawer">
+  <a href="#ride">The Ride</a>
+  <a href="#services">Care</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#team">Family</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Book a ride</a>
+  <a href="tel:+16198673300" class="dphone">(619) 867-3300 · Hablamos Español</a>
+</div>
+
+<span id="top"></span>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="/PMI/assets/real/hero-dogs-in-car.jpg" alt="Two dogs riding comfortably in the back of a car, looking out the window" fetchpriority="high">
+  </div>
+  <div class="hero-meta" id="heroMeta">
+    <div class="stars">★★★★★</div>
+    <div class="mt"><b>5.0</b> · 59 Google reviews</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-tag" id="heroTag"><span class="eyebrow">San Diego's only VIP pet transport</span></div>
+    <h1>
+      <span class="reveal-word"><span>Step</span></span>
+      <span class="reveal-word"><span>in.</span></span>
+      <em class="reveal-word"><span>We've&nbsp;got</span></em>
+      <em class="reveal-word"><span>them</span></em>
+      <span class="reveal-word"><span>from</span></span>
+      <span class="reveal-word"><span>here.</span></span>
+    </h1>
+    <p class="hero-sub" id="heroSub">Your pet's personal limousine to trusted Tijuana vet clinics — and back home the same trip. Door-to-door. Never alone, never kenneled.</p>
+    <div class="hero-row" id="heroRow">
+      <a href="#contact" class="ring" aria-label="Reserve your pet's ride">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="58"></circle><circle class="prog" cx="60" cy="60" r="58"></circle></svg>
+        <span class="rt">Reserve<b>the ride →</b></span>
+      </a>
+      <span class="hero-call">
+        <small>Or just call us</small>
+        <a href="tel:+16198673300">(619) 867-3300</a>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMENITY ROW ===== -->
+<section class="ride section" id="ride">
+  <div class="wrap">
+    <div class="ride-head">
+      <div class="reveal">
+        <span class="eyebrow">The ride includes</span>
+        <h2>Not a kennel run. A&nbsp;<em>chauffeured</em> visit.</h2>
+      </div>
+      <p class="reveal" data-d="1">Every journey is hands-on, start to finish — the owners drive, stay, and translate. Your pet is treated like one of ours.</p>
+    </div>
+    <div class="amenities">
+      <div class="amenity reveal" data-d="1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 0 3-3m-3 3L9 5"/><path d="M5 11h14a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z"/><path d="M7 18v2m10-2v2"/></svg>
+        <h3>Climate-controlled</h3>
+        <p>A cool, calm cabin the whole way down and back.</p>
+      </div>
+      <div class="amenity reveal" data-d="2">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>Harnessed &amp; safe</h3>
+        <p>Properly secured for every mile of the trip.</p>
+      </div>
+      <div class="amenity reveal" data-d="3">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h3>Never alone</h3>
+        <p>We stay beside your pet through the entire visit.</p>
+      </div>
+      <div class="amenity reveal" data-d="4">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
+        <h3>Real-time updates</h3>
+        <p>Texts and photos so you're with them in spirit.</p>
+      </div>
+      <div class="amenity reveal" data-d="4">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12M7 2h1"/><path d="m22 22-5-10-5 10M14 18h6"/></svg>
+        <h3>Fully bilingual</h3>
+        <p>We translate everything the vet tells us, word for word.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTRO / HOW ===== -->
+<section class="intro section">
+  <div class="wrap intro-grid">
+    <div class="intro-copy">
+      <span class="eyebrow reveal">The headache, handled</span>
+      <h2 class="reveal" data-d="1">We take the headache out of <em>that trip to the vet.</em></h2>
+      <p class="lead reveal" data-d="1">Welcome to the PetMex family. We're San Diego's only VIP pet transportation service — a door-to-door ride to trusted veterinarians in Tijuana, where the same care costs a fraction of the price.</p>
+      <p class="reveal" data-d="2">You hand us the leash. We handle the border paperwork, the drive, the clinic, the translation, and the trip home — all in one day for most visits. You get updates the whole way.</p>
+      <div class="steps">
+        <div class="step reveal" data-d="1"><span class="n">01</span><div><h4>We pick up at your door</h4><p>From the immediate San Diego area, on your schedule. Your pet rides in comfort, harnessed and never kenneled.</p></div></div>
+        <div class="step reveal" data-d="2"><span class="n">02</span><div><h4>We stay through the visit</h4><p>We're beside your pet at the clinic, translating every word the vet says and texting you updates and photos.</p></div></div>
+        <div class="step reveal" data-d="3"><span class="n">03</span><div><h4>We bring them home</h4><p>Same trip, door to door — with everything you need to know, and a vet bill 10–90% lighter.</p></div></div>
+      </div>
+    </div>
+    <div class="intro-media reveal" data-d="2">
+      <div class="ph"><img src="/PMI/assets/real/happy-dog.jpeg" alt="A joyful dog with its tongue out, happily held" loading="lazy" width="1050" height="1400"></div>
+      <div class="tagline">
+        <div class="stars">★★★★★</div>
+        <p>"My dog actually loves when they pick him up."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SAVINGS BIG NUMBER ===== -->
+<section class="savings">
+  <div class="wrap reveal">
+    <span class="eyebrow center">Saving you, on a typical vet bill</span>
+    <div class="big">10<i>–</i>90<span class="pct">%</span></div>
+    <p>Same procedures, qualified specialists, a fraction of the cost. The ride pays for itself — and then some.</p>
+  </div>
+</section>
+
+<!-- ===== JOURNEY GALLERY ===== -->
+<section class="journey section">
+  <div class="wrap">
+    <div class="j-head">
+      <div class="reveal">
+        <span class="eyebrow">The journey</span>
+        <h2>One trip, <em>start to finish.</em></h2>
+      </div>
+      <p class="reveal" data-d="1" style="max-width:34ch;color:rgba(251,248,242,.66);font-size:.98rem">A look at the care your pet meets on the other side of the drive — real pets, real clinics, real specialists.</p>
+    </div>
+    <div class="gallery reveal" data-d="1">
+      <div class="g-stage" id="gStage">
+        <div class="g-slide on">
+          <img src="/PMI/assets/real/hero-dogs-in-car.jpg" alt="Two dogs riding in the car" loading="lazy">
+          <div class="g-cap"><div class="route"><span class="ar"></span>SD → TJ</div><h3>The ride down — calm, cool, in good company.</h3></div>
+        </div>
+        <div class="g-slide">
+          <img src="/PMI/assets/real/clinic-vet-dog.jpg" alt="A vet in green scrubs caring for a small white dog on a clinic table" loading="lazy">
+          <div class="g-cap"><div class="route"><span class="ar"></span>At the clinic</div><h3>Trusted specialists who treat your pet like their own.</h3></div>
+        </div>
+        <div class="g-slide">
+          <img src="/PMI/assets/real/clinic-spaniel.jpg" alt="A cocker spaniel beside a vet in blue scrubs" loading="lazy">
+          <div class="g-cap"><div class="route"><span class="ar"></span>The exam</div><h3>Unhurried, gentle, and fully explained to you.</h3></div>
+        </div>
+        <div class="g-slide">
+          <img src="/PMI/assets/real/care-vet-cat.jpeg" alt="A gloved vet holding a calm fluffy cat" loading="lazy">
+          <div class="g-cap"><div class="route"><span class="ar"></span>The care</div><h3>Cats welcome too — handled with patience and calm.</h3></div>
+        </div>
+        <div class="g-slide">
+          <img src="/PMI/assets/real/clients-with-dog.jpeg" alt="A happy man and woman holding their small dog at a clinic" loading="lazy">
+          <div class="g-cap"><div class="route"><span class="ar"></span>Reunited</div><h3>Happy families, healthier pets, a lighter bill.</h3></div>
+        </div>
+        <div class="g-slide">
+          <img src="/PMI/assets/real/portrait-cat.jpg" alt="Soft portrait of a calm gray cat" loading="lazy">
+          <div class="g-cap"><div class="route"><span class="ar"></span>TJ → Home</div><h3>Back at your door the same day, safe and sound.</h3></div>
+        </div>
+      </div>
+      <div class="g-bar">
+        <div class="g-count"><i id="gCur">01</i> <small>/ 06</small></div>
+        <div class="g-ctrl">
+          <div class="g-dots" id="gDots"></div>
+          <button class="g-btn" id="gPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button class="g-btn" id="gNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+  <div class="wrap svc-grid">
+    <div class="svc-intro">
+      <span class="eyebrow reveal">Care on the other side</span>
+      <h2 class="reveal" data-d="1">Everything from a checkup to <em>orthopedic surgery.</em></h2>
+      <p class="reveal" data-d="1">The Tijuana clinics we partner with offer the full range of veterinary care — performed by qualified specialists we personally trust, at a fraction of San Diego prices.</p>
+      <span class="svc-note reveal" data-d="2"><span class="d"></span>For the moment, we do not offer emergency services.</span>
+    </div>
+    <div class="svc-list reveal" data-d="1">
+      <div class="svc-item"><span class="x">01</span>Wellness Exams</div>
+      <div class="svc-item"><span class="x">02</span>Dental Cleaning</div>
+      <div class="svc-item"><span class="x">03</span>X-rays</div>
+      <div class="svc-item"><span class="x">04</span>Ultrasounds</div>
+      <div class="svc-item"><span class="x">05</span>Labs &amp; Bloodwork</div>
+      <div class="svc-item"><span class="x">06</span>Tumor Removals</div>
+      <div class="svc-item"><span class="x">07</span>Pathology</div>
+      <div class="svc-item"><span class="x">08</span>Orthopedic Procedures</div>
+      <div class="svc-item"><span class="x">09</span>Eye Exams</div>
+      <div class="svc-item"><span class="x">10</span>Spay &amp; Neuter</div>
+      <div class="svc-item"><span class="x">11</span>Neurological Exams</div>
+      <div class="svc-item"><span class="x">12</span>MRI</div>
+      <div class="svc-item" style="grid-column:1/-1;color:var(--cyan-deep);font-family:'Fraunces',serif;font-style:italic;font-weight:430;border-bottom:0"><span class="x" style="border-color:var(--cyan);color:var(--cyan-deep)">+</span>and much more — just ask.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing section" id="pricing">
+  <div class="wrap">
+    <div class="price-head reveal">
+      <span class="eyebrow center">The itinerary</span>
+      <h2>Flat, honest <em>transport fares.</em></h2>
+      <p>Every fare is round-trip and door-to-door. Vet treatment is billed by the clinic and confirmed before your pet travels — no surprises.</p>
+    </div>
+    <div class="passes">
+      <div class="pass reveal" data-d="1">
+        <div class="pass-top"><span class="code">FARE · 01</span><span class="tag">Consult</span></div>
+        <div class="pass-body">
+          <h3>The Quick Visit</h3>
+          <p class="desc">Consults and follow-ups under one hour at the clinic.</p>
+          <div class="price"><span class="amt"><sup>$</sup>200</span></div>
+          <span class="sa" style="font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-deep);margin-top:6px">Starting at · round-trip</span>
+        </div>
+        <div class="pass-foot"><span class="rt">SD<span class="dd"></span>TJ<span class="dd"></span>Home</span></div>
+      </div>
+      <div class="pass feat reveal" data-d="2">
+        <div class="pass-top"><span class="code">FARE · 02</span><span class="tag">Most booked</span></div>
+        <div class="pass-body">
+          <h3>The Full Workup</h3>
+          <p class="desc">Visits over an hour, multiple studies — X-ray, bloodwork, ultrasound — or light sedation.</p>
+          <div class="price"><span class="amt"><sup>$</sup>250</span></div>
+          <span class="sa" style="font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-deep);margin-top:6px">Starting at · round-trip</span>
+        </div>
+        <div class="pass-foot"><span class="rt">SD<span class="dd"></span>TJ<span class="dd"></span>Home</span></div>
+      </div>
+      <div class="pass reveal" data-d="3">
+        <div class="pass-top"><span class="code">FARE · 03</span><span class="tag">Surgery</span></div>
+        <div class="pass-body">
+          <h3>The Overnight</h3>
+          <p class="desc">Bigger surgeries and overnight stays — one flat rate, any number of nights.</p>
+          <div class="price"><span class="amt"><sup>$</sup>300</span></div>
+          <span class="sa" style="font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-deep);margin-top:6px">Starting at · flat rate</span>
+        </div>
+        <div class="pass-foot"><span class="rt">SD<span class="dd"></span>TJ<span class="dd"></span>Home</span></div>
+      </div>
+    </div>
+
+    <div class="price-extra">
+      <div class="pkg reveal" data-d="1">
+        <span class="eyebrow">Example package</span>
+        <h3>Dog dental, <em>under 20 lbs</em> — everything in.</h3>
+        <p class="incl">Dental cleaning + bloodwork + dental X-rays + round-trip door-to-door transport. One price, fully handled.</p>
+        <div class="pp"><span class="sa">Starting at</span><span class="amt"><sup>$</sup>565</span></div>
+      </div>
+      <div class="addons reveal" data-d="2">
+        <h4>Add-ons &amp; notes</h4>
+        <div class="addon"><b>Weekend service</b><span>+$150 · by availability</span></div>
+        <div class="addon"><b>Pickups outside the core area</b><span>may add a charge</span></div>
+        <div class="addon"><b>Vet treatment</b><span>varies · billed by clinic</span></div>
+        <div class="addon"><b>Confirmed before travel</b><span>always</span></div>
+      </div>
+    </div>
+    <p class="price-disc reveal">Round-trip from the immediate San Diego area; pickups outside may have an added charge. Vet treatment costs vary by clinic and case and are confirmed before your pet travels. Prices in USD.</p>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section class="section" id="team">
+  <div class="wrap team-grid">
+    <div class="team-photo reveal">
+      <div class="ph"><img src="/PMI/assets/real/founder-tj-cat.jpg" alt="TJ, co-owner of PetMex, gently holding a black cat at a clinic" loading="lazy" width="1050" height="1400"></div>
+      <div class="name-card"><b>TJ</b><span>Co-owner · your driver</span></div>
+    </div>
+    <div class="team-copy">
+      <span class="eyebrow reveal">Welcome to the family</span>
+      <h2 class="reveal" data-d="1">The same hands that <em>drive</em> are the ones that <em>care.</em></h2>
+      <p class="lead reveal" data-d="1">PetMex is family-owned and personally run. When you book, you're not handing your pet to a stranger in a van — you're handing them to TJ and Lizette, who drive every trip themselves.</p>
+      <p class="reveal" data-d="2">They stay with your pet through the entire visit, translate everything the vet says, and bring them home the same day. It's the kind of care you'd give yourself — which is exactly the point.</p>
+      <div class="family-row reveal" data-d="2">
+        <span class="avatar">L</span>
+        <div class="ft"><b>Lizette</b><p>Co-owner, communicator, and the calm voice keeping you in the loop the whole way.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews section">
+  <div class="wrap">
+    <div class="rv-head reveal">
+      <span class="eyebrow center">From the family</span>
+      <h2>The reviews <em>say it better.</em></h2>
+      <span class="stat"><span class="stars">★★★★★</span> <b>5.0</b> from 59 Google reviews</span>
+    </div>
+    <div class="rv-grid">
+      <div class="quote reveal" data-d="1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"There isn't enough space to express how wonderful PetMex is. The door-to-door service Lizette and TJ give, and the care for our fur babies, is like if they were their own. Dra Martha is sooo amazing — she literally found out about our Louie's thyroid. Highly recommend. Grateful."</blockquote>
+        <div class="by"><span class="ini">R</span><div><b>Rebeca Canales</b><span>Google review</span></div></div>
+      </div>
+      <div class="quote reveal" data-d="2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"PetMex saved my dog's life! They truly care about the animals they transport — and my dog actually loves when they pick him up. If you're looking for affordable veterinary care, or don't have time to take your animal yourself, PetMex is the way to go."</blockquote>
+        <div class="by"><span class="ini">K</span><div><b>Kara DeJesus</b><span>Google review</span></div></div>
+      </div>
+      <div class="quote reveal" data-d="1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Lizette and TJ were amazing — in communication the whole time. My dog came back with the most fantastic dental work. Can't recommend enough!"</blockquote>
+        <div class="by"><span class="ini">Z</span><div><b>Zach B.</b><span>Google review</span></div></div>
+      </div>
+      <div class="quote reveal" data-d="2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Increíble servicio para nuestra amada Kira. Su servicio es 100% confiable — managed all the logistics from start to finish."</blockquote>
+        <div class="by"><span class="ini">L</span><div><b>Laura J.</b><span>Reseña de Google</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLINICS ===== -->
+<section class="clinics section">
+  <div class="wrap">
+    <div class="cl-head">
+      <div class="reveal">
+        <span class="eyebrow">Trusted partners</span>
+        <h2>The clinics on the <em>other side.</em></h2>
+      </div>
+      <p class="reveal" data-d="1">We work only with qualified, experienced veterinarians and specialists we personally trust.</p>
+    </div>
+    <div class="cl-grid">
+      <div class="clinic reveal" data-d="1"><div class="cn"><span class="x">01</span><h3>Hospital Veterinario Petmed</h3></div><p>Orthopedic surgery · ophthalmology · general medicine</p></div>
+      <div class="clinic reveal" data-d="2"><div class="cn"><span class="x">02</span><h3>Clínicas para Animales Dra Martha María</h3></div><p>Surgery · general medicine</p></div>
+      <div class="clinic reveal" data-d="3"><div class="cn"><span class="x">03</span><h3>PuntoVet</h3></div><p>Neurology</p></div>
+      <div class="clinic reveal" data-d="1"><div class="cn"><span class="x">04</span><h3>Hospivet</h3></div><p>General &amp; specialty veterinary care</p></div>
+      <div class="clinic reveal" data-d="2"><div class="cn"><span class="x">05</span><h3>MediCat</h3></div><p>Feline-focused medicine</p></div>
+      <div class="clinic reveal" data-d="3"><div class="cn"><span class="x">06</span><h3>Dr Zoo</h3></div><p>Physical therapy &amp; rehabilitation</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-intro">
+      <span class="eyebrow reveal">Good to know</span>
+      <h2 class="reveal" data-d="1">Questions, <em>answered.</em></h2>
+      <p class="reveal" data-d="1">The honest details on how a cross-border vet trip actually works — and why it's safer and simpler than it sounds.</p>
+      <span class="bilingual reveal" data-d="2"><span class="fl">🇲🇽🇺🇸</span> Hablamos Español · fully bilingual</span>
+    </div>
+    <div class="acc reveal" data-d="1">
+      <div class="acc-item open">
+        <button class="acc-q" aria-expanded="true">Are you a vet clinic?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">No — we're the transport. We take your pet to trusted vet clinics in Tijuana and back, door to door. The clinics provide the care; we provide the safe, hands-on ride and stay with your pet the whole time.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q" aria-expanded="false">Is it legal? Do I need documents?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">Yes — it's common and completely legal. We handle all of the border-crossing documentation for you, so there's nothing for you to prepare.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q" aria-expanded="false">Are the Tijuana vets qualified?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">Absolutely. We work only with qualified, experienced veterinarians and specialists we personally know and trust — the same clinics we'd use for our own pets.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q" aria-expanded="false">Can I come along for the ride?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">No — for safety and border-crossing reasons we aren't able to take owners along. But we stay with your pet the entire time, send real-time updates and photos, and translate everything the vet says.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q" aria-expanded="false">What if something goes wrong?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">We're with your pet the entire time and call you immediately, so you can decide together with the vet. You're never out of the loop.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q" aria-expanded="false">How long does it take?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">It depends on the visit — many are same-day. We give you a clear time estimate up front so you know what to expect.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q" aria-expanded="false">¿Hablan español?<span class="pm"></span></button>
+        <div class="acc-a"><div class="inner">¡Sí! Somos completamente bilingües. Translating the vet's every word — in either language — is part of the service.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / QUOTE ===== -->
+<section class="contact section" id="contact">
+  <div class="wrap ct-grid">
+    <div class="ct-left">
+      <span class="eyebrow">Book the ride</span>
+      <h2>Let's get them <em>looked after.</em></h2>
+      <p>Tell us a little about your pet and what they need. We'll confirm a time, a fare, and what to expect — usually same day.</p>
+      <div class="ct-lines">
+        <div class="ct-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="ctt"><small>Call</small><a href="tel:+16198673300">(619) 867-3300</a></div>
+        </div>
+        <div class="ct-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="ctt"><small>Text</small><a href="sms:+16198673300">(619) 867-3300</a></div>
+        </div>
+        <div class="ct-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          <div class="ctt"><small>Email</small><a href="mailto:hello@petmexinternational.com">hello@petmexinternational.com</a></div>
+        </div>
+        <div class="ct-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="ctt"><small>Based in</small><b>La Mesa, CA · serving San Diego</b></div>
+        </div>
+      </div>
+      <div class="ct-socials">
+        <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener" aria-label="PetMex on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener" aria-label="PetMex on Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      </div>
+      <div class="hours-chip"><span class="pulse"></span>Mon–Fri 8am–4pm · weekend by availability</div>
+    </div>
+
+    <form class="qform" onsubmit="return false">
+      <div class="fh"><h3>Request a quote</h3><span class="free">Free · no obligation</span></div>
+      <p>Quick details — we'll get right back to you with a fare and a time.</p>
+      <div class="fgrid">
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" placeholder="Jane Doe" autocomplete="name"></div>
+        <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" placeholder="(619) 000-0000" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="f-pet">Your pet</label><input id="f-pet" type="text" placeholder="e.g. Louie · 18 lb dog"></div>
+      <div class="field">
+        <label for="f-need">What do they need?</label>
+        <select id="f-need">
+          <option>Wellness exam / consult</option>
+          <option>Dental cleaning</option>
+          <option>X-ray / ultrasound / bloodwork</option>
+          <option>Spay &amp; neuter</option>
+          <option>Surgery / overnight</option>
+          <option>Not sure yet — need advice</option>
+        </select>
+      </div>
+      <div class="field full"><label for="f-msg">Anything else?</label><textarea id="f-msg" placeholder="Pickup area, preferred days, your pet's temperament…"></textarea></div>
+      <button class="qsubmit" type="submit">Send my request<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="qnote">Prefer to talk? Call or text (619) 867-3300 — hablamos español.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap foot-top">
+    <div class="foot-brand">
+      <img src="/PMI/assets/real/logo.png" alt="PetMex International Inc">
+      <p>San Diego's only VIP pet transportation service. Family-owned, door-to-door care to trusted Tijuana veterinarians — and back home the same trip.</p>
+      <span class="route"><span class="ar"></span>San Diego → Tijuana → Home</span>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#ride">The Ride</a>
+        <a href="#services">Care</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#team">Family</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="tel:+16198673300">(619) 867-3300</a>
+        <a href="sms:+16198673300">Text us</a>
+        <a href="mailto:hello@petmexinternational.com">Email</a>
+        <a href="https://www.instagram.com/petmexint/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/PetMexInt/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+      <div class="foot-col">
+        <h4>Service area</h4>
+        <p>Lakeside · Santee · El Cajon</p>
+        <p>South of the 52 to the border</p>
+        <p>Based in La Mesa, CA</p>
+        <p>Mon–Fri 8am–4pm</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-bot">
+    <p>© 2026 PetMex International Inc. · Hablamos Español</p>
+    <p class="rl">Design preview by Rob Logic.</p>
+  </div>
+  <p class="foot-disc">For the moment, we do not offer emergency services. Round-trip from the immediate San Diego area; pickups outside may have an added charge. Vet treatment costs vary by clinic and case and are confirmed before your pet travels. Prices in USD.</p>
+</footer>
+
+<a href="/PMI/directions/" class="preview-badge"><span class="pd"></span>Preview · The Pet Limousine</a>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- ring CTA progress dasharray ---- */
+  var C = 2 * Math.PI * 58;
+  document.querySelectorAll(".ring").forEach(function(r){
+    r.style.setProperty("--C", C);
+  });
+
+  /* ---- nav scrolled state ---- */
+  var nav = document.getElementById("nav");
+  function onScrollNav(){ nav.classList.toggle("scrolled", window.scrollY > 30); }
+  onScrollNav();
+
+  /* ---- mobile menu ---- */
+  var burger = document.getElementById("burger");
+  var drawer = document.getElementById("drawer");
+  function closeMenu(){ document.body.classList.remove("menu-open"); burger.setAttribute("aria-expanded","false"); }
+  burger.addEventListener("click", function(){
+    var open = document.body.classList.toggle("menu-open");
+    burger.setAttribute("aria-expanded", open ? "true":"false");
+  });
+  drawer.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeMenu(); });
+
+  /* ---- hero staggered reveal ---- */
+  function heroIn(){
+    document.querySelectorAll(".hero h1 .reveal-word span").forEach(function(s,i){
+      s.style.transition = "transform .9s cubic-bezier(.22,1,.36,1)";
+      s.style.transitionDelay = (0.15 + i*0.075) + "s";
+      s.style.transform = "translateY(0)";
+    });
+    var seq = [["heroTag",0.1],["heroMeta",0.2],["heroSub",0.7],["heroRow",0.85]];
+    seq.forEach(function(p){
+      var el = document.getElementById(p[0]); if(!el) return;
+      el.style.transition = "opacity 1s ease, transform 1s cubic-bezier(.22,1,.36,1)";
+      el.style.transitionDelay = p[1] + "s";
+      el.style.opacity = "1";
+    });
+  }
+  if(reduce){
+    document.querySelectorAll(".hero h1 .reveal-word span").forEach(function(s){ s.style.transform="none"; });
+    ["heroTag","heroMeta","heroSub","heroRow"].forEach(function(id){ var e=document.getElementById(id); if(e) e.style.opacity="1"; });
+  } else {
+    window.addEventListener("load", function(){ requestAnimationFrame(heroIn); });
+    setTimeout(heroIn, 350); /* fallback if load already fired */
+  }
+
+  /* ---- scroll reveal (IntersectionObserver) ---- */
+  var revs = document.querySelectorAll(".reveal");
+  if(reduce || !("IntersectionObserver" in window)){
+    revs.forEach(function(r){ r.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -8% 0px"});
+    revs.forEach(function(r){ io.observe(r); });
+  }
+
+  /* ---- signature route line fill + stop activation ---- */
+  var fill = document.getElementById("routeFill");
+  var stops = document.querySelectorAll(".routebar .stop");
+  function onScrollRoute(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? Math.min(window.scrollY / h, 1) : 0;
+    if(fill) fill.style.height = (p * 100) + "vh";
+    stops.forEach(function(s){
+      var top = parseFloat(s.style.top) / 100;
+      s.classList.toggle("on", p >= top - 0.02);
+    });
+  }
+
+  /* ---- single rAF scroll loop ---- */
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){ onScrollNav(); if(!reduce) onScrollRoute(); ticking = false; });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", function(){ if(!reduce) onScrollRoute(); });
+  onScrollRoute();
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll(".acc-item").forEach(function(item){
+    var q = item.querySelector(".acc-q");
+    var a = item.querySelector(".acc-a");
+    function setOpen(open){
+      item.classList.toggle("open", open);
+      q.setAttribute("aria-expanded", open ? "true":"false");
+      a.style.maxHeight = open ? (a.scrollHeight + "px") : "0px";
+    }
+    if(item.classList.contains("open")) a.style.maxHeight = a.scrollHeight + "px";
+    q.addEventListener("click", function(){ setOpen(!item.classList.contains("open")); });
+  });
+  window.addEventListener("resize", function(){
+    document.querySelectorAll(".acc-item.open .acc-a").forEach(function(a){ a.style.maxHeight = a.scrollHeight + "px"; });
+  });
+
+  /* ---- journey gallery ---- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".g-slide"));
+  var cur = document.getElementById("gCur");
+  var dotsWrap = document.getElementById("gDots");
+  var idx = 0, timer = null;
+  slides.forEach(function(_,i){
+    var b = document.createElement("button");
+    b.className = "g-dot" + (i===0?" on":"");
+    b.setAttribute("aria-label","Go to photo "+(i+1));
+    b.addEventListener("click", function(){ go(i, true); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+  function go(n, manual){
+    idx = (n + slides.length) % slides.length;
+    slides.forEach(function(s,i){ s.classList.toggle("on", i===idx); });
+    dots.forEach(function(d,i){ d.classList.toggle("on", i===idx); });
+    if(cur) cur.textContent = ("0"+(idx+1)).slice(-2);
+    if(manual) restart();
+  }
+  document.getElementById("gNext").addEventListener("click", function(){ go(idx+1, true); });
+  document.getElementById("gPrev").addEventListener("click", function(){ go(idx-1, true); });
+  function restart(){ if(reduce) return; clearInterval(timer); timer = setInterval(function(){ go(idx+1); }, 5200); }
+  if(!reduce){
+    restart();
+    var stage = document.getElementById("gStage");
+    stage.addEventListener("mouseenter", function(){ clearInterval(timer); });
+    stage.addEventListener("mouseleave", restart);
+  }
+})();
+</script>
+</body>
+</html>
