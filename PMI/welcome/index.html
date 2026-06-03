@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetMex International — Your Plan & Next Steps</title>
+  <meta name="description" content="What I heard from your intake, what I recommend for your website and email, and the few things I need from you to get moving.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:title" content="PetMex International — Your Plan & Next Steps">
+  <meta property="og:description" content="What I heard, what I recommend, and what I need from you.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/PMI/assets/real/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --cyan:#00AEEF;
+      --cyan-deep:#0a86bd;
+      --olive:#6F8F40;
+      --olive-deep:#5a7634;
+      --charcoal:#4B4B4C;
+      --ink:#4B4B4C;
+      --muted:#76787a;
+      --board:#F4F3EF;
+      --board-2:#ECEAE3;
+      --card:#FFFFFF;
+      --line:rgba(75,75,76,.13);
+      --line-soft:rgba(75,75,76,.08);
+      --cyan-wash:rgba(0,174,239,.07);
+      --olive-wash:rgba(111,143,64,.10);
+      --sans:'Sora',-apple-system,BlinkMacSystemFont,sans-serif;
+      --serif:'Source Serif 4',Georgia,serif;
+      --shadow-card:0 1px 2px rgba(75,75,76,.05), 0 10px 30px rgba(10,134,189,.07);
+      --shadow-lift:0 2px 4px rgba(75,75,76,.06), 0 22px 48px rgba(10,134,189,.13);
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+    body{
+      font-family:var(--sans);
+      color:var(--ink);
+      background:var(--board);
+      line-height:1.62;
+      font-size:clamp(1rem,.97rem + .15vw,1.06rem);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    img{max-width:100%;height:auto;display:block}
+    a{color:var(--cyan-deep);text-underline-offset:2px}
+
+    /* faint board lines — same surface motif as the chooser */
+    body::before{
+      content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+      background-image:linear-gradient(var(--board-2) 1px,transparent 1px);
+      background-size:100% 2.4rem;
+      -webkit-mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+              mask-image:linear-gradient(180deg,transparent,#000 18%,#000 82%,transparent);
+    }
+
+    .wrap{
+      width:100%;
+      max-width:50rem;
+      margin-inline:auto;
+      padding-inline:clamp(1.15rem,4vw,2rem);
+      position:relative;z-index:1;
+    }
+
+    h1,h2,h3{font-family:var(--serif);color:var(--charcoal);line-height:1.1;letter-spacing:-.01em;font-weight:600}
+
+    /* ---------- masthead ---------- */
+    .masthead{padding-top:clamp(2rem,6vw,3.4rem);padding-bottom:clamp(1rem,3vw,1.6rem)}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:1rem;flex-wrap:wrap;
+      padding-bottom:clamp(1.3rem,3.5vw,1.9rem);
+      border-bottom:1px solid var(--line);
+    }
+    .brand img{height:clamp(3rem,8vw,3.9rem);width:auto}
+    .stamp{
+      font-family:var(--sans);font-size:.7rem;font-weight:600;
+      letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+      text-align:right;line-height:1.6;
+    }
+    .stamp b{color:var(--cyan-deep);font-weight:700}
+
+    .lede{padding-top:clamp(1.7rem,4.5vw,2.7rem)}
+    .eyebrow{
+      display:inline-block;
+      font-family:var(--sans);font-size:.72rem;font-weight:700;
+      letter-spacing:.15em;text-transform:uppercase;color:var(--olive-deep);
+      margin-bottom:.85rem;
+    }
+    h1{font-size:clamp(2rem,1.5rem + 2.4vw,3rem);max-width:16ch}
+    .lede p{margin-top:1.1rem;font-size:clamp(1.05rem,1rem + .35vw,1.18rem);color:#5a5b5c;max-width:54ch}
+    .sig-inline{color:var(--charcoal);font-weight:600}
+
+    /* ---------- generic section ---------- */
+    section{padding-top:clamp(2.6rem,6vw,3.8rem)}
+    .kicker{
+      display:flex;align-items:baseline;gap:.7rem;margin-bottom:1.3rem;
+    }
+    .kicker .n{
+      font-family:var(--serif);font-style:italic;font-weight:600;
+      font-size:1.05rem;color:var(--cyan);flex:none;
+    }
+    .kicker h2{font-size:clamp(1.45rem,1.2rem + 1.1vw,1.95rem)}
+
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:16px;
+      box-shadow:var(--shadow-card);padding:clamp(1.3rem,3.5vw,2rem);
+    }
+    .card + .card{margin-top:1rem}
+
+    /* recap grid */
+    .recap{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:38rem){.recap{grid-template-columns:1fr}}
+    .recap h3{font-size:1.02rem;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
+    .recap h3 svg{flex:none}
+    .recap p, .recap li{font-size:.96rem;color:#5a5b5c}
+    .recap ul{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+    .recap .big{font-family:var(--serif);font-weight:600;color:var(--charcoal);font-size:1.05rem}
+    .span2{grid-column:1 / -1}
+
+    .pricerow{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0 .2rem}
+    .chip{
+      font-size:.82rem;font-weight:600;color:var(--charcoal);
+      background:var(--cyan-wash);border:1px solid rgba(0,174,239,.22);
+      padding:.28rem .6rem;border-radius:999px;white-space:nowrap;
+    }
+    .chip b{color:var(--cyan-deep)}
+    .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}
+    .pill{
+      font-size:.8rem;font-weight:500;color:#5a5b5c;
+      background:var(--board);border:1px solid var(--line);
+      padding:.26rem .58rem;border-radius:8px;
+    }
+    .note-sm{font-size:.86rem;color:var(--muted);margin-top:.9rem;font-style:italic}
+
+    /* ---------- CTA / chooser ---------- */
+    .cta-card{
+      background:
+        radial-gradient(120% 140% at 100% 0%, var(--cyan-wash), transparent 60%),
+        var(--card);
+      border:1px solid rgba(0,174,239,.28);
+    }
+    .cta-card p{color:#5a5b5c;max-width:50ch}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      margin-top:1.3rem;
+      font-family:var(--sans);font-weight:600;font-size:1.02rem;
+      color:#fff;text-decoration:none;
+      background:var(--cyan);
+      padding:.85rem 1.4rem;border-radius:12px;
+      box-shadow:0 10px 24px rgba(0,174,239,.28);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn:hover{transform:translateY(-2px);background:var(--cyan-deep);box-shadow:0 14px 30px rgba(0,174,239,.34)}
+    .btn svg{transition:transform .15s ease}
+    .btn:hover svg{transform:translateX(3px)}
+    .btn-sub{margin-top:.7rem;font-size:.85rem;color:var(--muted)}
+
+    /* ---------- recommendation / savings ---------- */
+    .compare{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:.8rem;margin:1.3rem 0 .4rem}
+    @media(max-width:34rem){.compare{grid-template-columns:1fr;}.compare .arrow{transform:rotate(90deg);justify-self:center}}
+    .col{border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;background:var(--board)}
+    .col.now{}
+    .col.next{background:var(--olive-wash);border-color:rgba(111,143,64,.3)}
+    .col .label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+    .col.next .label{color:var(--olive-deep)}
+    .col .cost{font-family:var(--serif);font-weight:700;color:var(--charcoal);font-size:1.5rem;line-height:1.1}
+    .col .cost span{font-size:.85rem;font-weight:400;color:var(--muted);font-family:var(--sans)}
+    .col ul{list-style:none;margin-top:.6rem;display:flex;flex-direction:column;gap:.28rem}
+    .col li{font-size:.86rem;color:#5a5b5c}
+    .arrow{display:flex;align-items:center;justify-content:center;color:var(--cyan)}
+    .save-line{
+      font-family:var(--serif);font-size:1.08rem;color:var(--olive-deep);font-weight:600;
+      background:var(--olive-wash);border-left:0;border:1px solid rgba(111,143,64,.26);
+      border-radius:12px;padding:.85rem 1.1rem;margin-top:.6rem;
+    }
+    .inbox-list{list-style:none;margin-top:.8rem;display:flex;flex-direction:column;gap:.45rem}
+    .inbox-list li{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;color:#5a5b5c}
+    .inbox-list code{
+      font-family:ui-monospace,Menlo,monospace;font-size:.85em;
+      background:var(--board);border:1px solid var(--line);border-radius:6px;
+      padding:.05rem .35rem;color:var(--charcoal);white-space:nowrap;
+    }
+    .tick{flex:none;margin-top:.28rem}
+
+    /* ---------- next steps checklist ---------- */
+    .steps{display:flex;flex-direction:column;gap:.9rem}
+    .step{display:flex;gap:.95rem;align-items:flex-start}
+    .step .badge{
+      flex:none;width:1.9rem;height:1.9rem;border-radius:50%;
+      display:grid;place-items:center;
+      font-family:var(--serif);font-weight:700;font-size:.95rem;color:#fff;
+      background:var(--cyan);box-shadow:0 4px 10px rgba(0,174,239,.25);
+    }
+    .step .badge.olive{background:var(--olive);box-shadow:0 4px 10px rgba(111,143,64,.25)}
+    .step h3{font-size:1.04rem;margin-bottom:.18rem}
+    .step p{font-size:.93rem;color:#5a5b5c}
+    .step .sub{font-size:.86rem;color:var(--muted);margin-top:.25rem}
+    .reassure{
+      font-size:.88rem;color:var(--olive-deep);background:var(--olive-wash);
+      border:1px solid rgba(111,143,64,.24);border-radius:10px;
+      padding:.6rem .8rem;margin-top:.5rem;
+    }
+
+    /* ---------- roadmap ---------- */
+    .road{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:.4rem}
+    @media(max-width:42rem){.road{grid-template-columns:1fr 1fr}}
+    @media(max-width:24rem){.road{grid-template-columns:1fr}}
+    .road .r{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.9rem .95rem}
+    .road .r .num{font-family:var(--serif);font-style:italic;color:var(--cyan);font-weight:600;font-size:.9rem}
+    .road .r h3{font-size:.96rem;margin:.25rem 0}
+    .road .r p{font-size:.82rem;color:var(--muted)}
+
+    /* ---------- sign off ---------- */
+    .signoff{
+      margin-top:clamp(2.6rem,6vw,3.6rem);
+      padding:clamp(1.4rem,4vw,2rem) 0 clamp(2.6rem,6vw,3.6rem);
+      border-top:1px solid var(--line);
+    }
+    .signoff p{color:#5a5b5c;max-width:52ch}
+    .signoff .name{font-family:var(--serif);font-size:1.4rem;color:var(--charcoal);font-weight:600;margin-top:.6rem}
+    .signoff .name + p{font-size:.88rem;color:var(--muted);margin-top:.15rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- masthead -->
+    <header class="masthead">
+      <div class="top">
+        <div class="brand">
+          <img src="/PMI/assets/real/logo-trim.png" alt="PetMex International">
+        </div>
+        <div class="stamp">
+          Prepared for<br><b>Lizette &amp; TJ</b><br>June 2026
+        </div>
+      </div>
+
+      <div class="lede">
+        <span class="eyebrow">Your project, mapped out</span>
+        <h1>Here&rsquo;s the plan for PetMex.</h1>
+        <p>Thank you both for filling out the intake form &mdash; it gave me everything I needed. Below is what I took from your answers, what I recommend for your website and email, and the handful of things I need from you to get moving. <span class="sig-inline">If anything below looks off, just tell me &mdash; this is your call sheet, not mine.</span></p>
+      </div>
+    </header>
+
+    <!-- 1. WHAT I HEARD -->
+    <section id="heard">
+      <div class="kicker"><span class="n">01</span><h2>What I heard from you</h2></div>
+
+      <div class="card">
+        <div class="recap">
+
+          <div class="span2">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="2.2"><path d="M12 1v22M4 6h11a3 3 0 0 1 0 6H4"/></svg>
+              Pricing &mdash; always shown as &ldquo;starting at&rdquo;
+            </h3>
+            <div class="pricerow">
+              <span class="chip">Round trip from <b>$200</b></span>
+              <span class="chip">Studies / sedation from <b>$250</b></span>
+              <span class="chip">Surgery + overnight from <b>$300</b></span>
+              <span class="chip">Weekend <b>+$150</b></span>
+            </div>
+            <p>Plus packages &mdash; e.g. a dental cleaning for a dog under 20&nbsp;lbs around <b>$565</b> (cleaning, bloodwork, dental X-rays, and transport). All pickup &amp; drop-off from the immediate San Diego area, with an upcharge past that.</p>
+            <p class="note-sm">You mentioned updated, per-clinic costs are coming &mdash; send those and I&rsquo;ll make sure every price on the site is current.</p>
+          </div>
+
+          <div>
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Service area
+            </h3>
+            <p>Lakeside, Santee, El Cajon &mdash; basically everything south of the 52 to the border.</p>
+          </div>
+
+          <div>
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              Hours &amp; volume
+            </h3>
+            <p><span class="big">Mon&ndash;Fri, 8&ndash;4.</span><br>Around 20&ndash;40 trips a month.</p>
+          </div>
+
+          <div class="span2">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="2.2"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg>
+              Your clinic network in Tijuana
+            </h3>
+            <p>Captured in full &mdash; this is a real selling point, and it&rsquo;s built into every website direction:</p>
+            <div class="pills">
+              <span class="pill">Hospital Veterinario Petmed</span>
+              <span class="pill">Cl&iacute;nicas Dra. Martha Mar&iacute;a</span>
+              <span class="pill">PuntoVet</span>
+              <span class="pill">Hospivet</span>
+              <span class="pill">MediCat</span>
+              <span class="pill">Dr Zoo</span>
+            </div>
+            <p class="note-sm">Across them: orthopedic surgery, ophthalmology, neurology, physical therapy, and general medicine &amp; surgery.</p>
+          </div>
+
+          <div class="span2">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              Your notes on the site &mdash; all applied
+            </h3>
+            <ul>
+              <li>&bull;&nbsp; Brand colors: white, cyan blue, and green (your logo) &mdash; done.</li>
+              <li>&bull;&nbsp; Prices always read &ldquo;starting at.&rdquo;</li>
+              <li>&bull;&nbsp; The owner ride-along question is fixed &mdash; the site now says owners can&rsquo;t come along.</li>
+              <li>&bull;&nbsp; Added: FAQ, photo gallery, and a blog/news section.</li>
+              <li>&bull;&nbsp; You wanted a few directions to choose from &mdash; that&rsquo;s next.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PICK A LOOK -->
+    <section id="look">
+      <div class="kicker"><span class="n">02</span><h2>Your website &mdash; pick a look</h2></div>
+      <div class="card cta-card">
+        <p>I built you <b>five complete directions</b> &mdash; same real content, your real brand and photos on every one, five different feels. Open each, see which one feels the most like PetMex, and tell me your favorite. (They all work great on a phone.)</p>
+        <a class="btn" href="https://roblogic.org/PMI/v3/" target="_blank" rel="noopener">
+          See your five website directions
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="btn-sub">No wrong answer &mdash; just pick the one you&rsquo;d be proud to send a customer to.</div>
+      </div>
+    </section>
+
+    <!-- 3. RECOMMENDATION -->
+    <section id="recommend">
+      <div class="kicker"><span class="n">03</span><h2>My recommendation: leave Wix, move to Cloudflare</h2></div>
+      <div class="card">
+        <p>Right now your site runs on Wix, which means you&rsquo;re paying a monthly fee to rent a template &mdash; and it&rsquo;s slow. I want to move you onto <b>Cloudflare</b> instead. Your domain (<b>petmexinternational.com</b>) stays exactly the same and stays yours &mdash; only what&rsquo;s behind it changes: a custom-built, fast site, and professional email, for a fraction of the cost.</p>
+
+        <div class="compare">
+          <div class="col now">
+            <div class="label">Today &mdash; Wix</div>
+            <div class="cost">~$200+<span>/year</span></div>
+            <ul>
+              <li>Rented template</li>
+              <li>Slow to load</li>
+              <li>Paid email add-on</li>
+            </ul>
+          </div>
+          <div class="arrow">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+          <div class="col next">
+            <div class="label">Going forward &mdash; Cloudflare</div>
+            <div class="cost">~$10<span>/year</span></div>
+            <ul>
+              <li>Custom-built site</li>
+              <li>Fast everywhere</li>
+              <li>Free professional email</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="save-line">That frees up roughly <b>$200 a year</b> &mdash; money that can go toward the work that actually brings in customers instead of renting a template. (I&rsquo;ll confirm your exact Wix figure once I can see the account.)</div>
+
+        <h3 style="margin-top:1.5rem;font-size:1.05rem">Your email, the simple way</h3>
+        <p style="margin-top:.5rem">Same setup I use for my own businesses. You&rsquo;d get real addresses on your domain that land right in the Gmail you already use &mdash; nothing new to learn, no extra inbox to check:</p>
+        <ul class="inbox-list">
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span><code>hello@petmexinternational.com</code> &rarr; lands in <b>both</b> your inboxes</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span><code>tj@&hellip;</code> and <code>lizette@&hellip;</code> &rarr; each of you, individually</span></li>
+          <li><svg class="tick" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6F8F40" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span>You send &amp; receive from these right inside your normal Gmail &mdash; and it&rsquo;s free</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. WHAT I NEED -->
+    <section id="need">
+      <div class="kicker"><span class="n">04</span><h2>What I need from you</h2></div>
+      <div class="card">
+        <div class="steps">
+
+          <div class="step">
+            <div class="badge">1</div>
+            <div>
+              <h3>Pick your website look</h3>
+              <p>Open the <a href="https://roblogic.org/PMI/v3/" target="_blank" rel="noopener">five directions</a> and tell me your favorite. That&rsquo;s the one I&rsquo;ll finish and launch.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="badge">2</div>
+            <div>
+              <h3>Let me in where the work happens</h3>
+              <p>So I can move everything over and get you found online. Easiest path: add me as a user where you can, and we&rsquo;ll do the rest together on a quick 10-minute screen-share.</p>
+              <div class="pills" style="margin-top:.6rem">
+                <span class="pill">Wix login</span>
+                <span class="pill">Domain (NameCheap)</span>
+                <span class="pill">Google Business Profile</span>
+                <span class="pill">Instagram &amp; Facebook</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="badge">3</div>
+            <div>
+              <h3>Send me your content</h3>
+              <p>Your updated per-clinic pricing, and the rest of the photos you mentioned (phone shots and Instagram are perfect).</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="badge">4</div>
+            <div>
+              <h3>Confirm your email addresses</h3>
+              <p>I&rsquo;m planning <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">hello@</code>, <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">tj@</code>, and <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">lizette@</code> &mdash; just say the word, or add any others you want.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="badge olive">5</div>
+            <div>
+              <h3>Approve access for your inbox assistant</h3>
+              <p>The other thing you asked about &mdash; a smart helper for your email. To build it, I need <b>read-only</b> access to <code style="font-family:ui-monospace,Menlo,monospace;font-size:.85em;background:var(--board);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem">petmex.int@gmail.com</code>. I&rsquo;ll send a Google approval you just click &mdash; <b>no password sharing, and you can switch it off anytime.</b></p>
+              <div class="reassure">Built exactly to your rules: it answers common questions, but <b>never quotes a firm price and never confirms availability</b>. For every real inquiry it pings you with a ready-to-send draft, and keeps a running list of leads and follow-ups &mdash; so nothing slips, especially after hours. You stay in charge of every real conversation.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ROADMAP -->
+    <section id="next">
+      <div class="kicker"><span class="n">05</span><h2>How it&rsquo;ll go</h2></div>
+      <div class="road">
+        <div class="r"><div class="num">First</div><h3>You choose</h3><p>Pick a look, get me access.</p></div>
+        <div class="r"><div class="num">Then</div><h3>I build &amp; move</h3><p>Your new site live on Cloudflare; Wix retired.</p></div>
+        <div class="r"><div class="num">Next</div><h3>Email on</h3><p>Your domain addresses, free, in Gmail.</p></div>
+        <div class="r"><div class="num">After</div><h3>Inbox assistant</h3><p>The email helper, once mail&rsquo;s moved.</p></div>
+      </div>
+    </section>
+
+    <!-- sign off -->
+    <footer class="signoff">
+      <p>That&rsquo;s the whole picture. None of it is urgent &mdash; but the sooner you pick a look and I get access, the sooner the Wix bill stops and the new site goes live. Reply with your favorite direction and any questions, and I&rsquo;ll take it from there.</p>
+      <div class="name">&mdash; Rob</div>
+      <p>Building the new PetMex International</p>
+    </footer>
+
+  </div>
+</body>
+</html>
