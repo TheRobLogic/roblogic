@@ -189,11 +189,11 @@ section.band{ background:var(--band); }
   text-decoration:none; color:var(--charcoal);
   flex:0 0 auto; min-height:44px;
 }
-.brand img{ height:34px; width:auto; }
+.brand img{ height:clamp(46px,10vw,60px); width:auto; }
 .brand .brand-txt{ display:none; }
 @media (min-width:560px){
   .brand .brand-txt{
-    display:inline;
+    display:none;
     font-family:var(--grotesque); font-weight:700; font-size:.95rem; letter-spacing:.01em;
   }
 }
@@ -616,7 +616,7 @@ footer .f-list a:hover{ color:#fff; text-decoration:underline; }
 <header class="topbar">
   <div class="wrap topbar-inner">
     <a class="brand" href="#top" aria-label="PetMex International home">
-      <img src="/PMI/assets/real/logo.png" alt="PetMex International logo" width="120" height="81">
+      <img src="/PMI/assets/real/logo-trim.png" alt="PetMex International logo" width="644" height="440">
       <span class="brand-txt">PetMex International</span>
     </a>
     <nav class="nav" id="nav" aria-label="Section navigation">
@@ -1107,7 +1107,7 @@ footer .f-list a:hover{ color:#fff; text-decoration:underline; }
 <footer>
   <div class="wrap">
     <div class="f-brand">
-      <img src="/PMI/assets/real/logo.png" alt="PetMex International logo" width="120" height="81">
+      <img src="/PMI/assets/real/logo-trim.png" alt="PetMex International logo" width="644" height="440">
       <p style="margin-top:1rem;">San Diego's only VIP pet transportation service —
          safe, personal transport for your pet to trusted partner clinics in Tijuana, and home again.</p>
       <span class="f-tag">Hablamos Español · Family-run by TJ &amp; Lizette</span>

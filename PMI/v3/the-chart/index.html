@@ -118,9 +118,9 @@
   }
   .brand{display:flex;align-items:center;gap:.6rem;margin-right:auto;min-width:0;text-decoration:none}
   .brand:hover{text-decoration:none}
-  .brand img{height:2.5rem;width:auto}
+  .brand img{height:clamp(2.9rem,10vw,3.9rem);width:auto}
   .brand b{font-family:var(--ff-head);font-weight:800;font-size:1.02rem;color:var(--charcoal);letter-spacing:-0.01em;white-space:nowrap}
-  .brand span{display:block;font-size:.62rem;letter-spacing:.16em;color:var(--cyan-action);font-weight:700;font-family:var(--ff-head);text-transform:uppercase}
+  .brand span{display:none}
   .navlinks{display:none}
   @media (min-width:920px){
     .navlinks{display:flex;gap:.35rem;align-items:center}
@@ -505,7 +505,7 @@
 <header class="site">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="PetMex International — home">
-      <img src="/PMI/assets/real/logo.png" alt="PetMex International logo" width="120" height="81">
+      <img src="/PMI/assets/real/logo-trim.png" alt="PetMex International logo" width="644" height="440">
       <span><b>PetMex</b>International Inc</span>
     </a>
     <nav class="navlinks" aria-label="Primary">
