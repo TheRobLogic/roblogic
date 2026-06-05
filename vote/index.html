@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CA-26 Governor Race — The Whole Deal · Rob Logic</title>
-<meta name="description" content="The 2026 California governor's race, explained: 7 days to the June 2 primary. Hilton leads, Becerra/Steyer fighting for second, Williamson plea drags in Becerra's ex-chief-of-staff, Steyer in FPPC influencer probe, 1.5M ballots already returned with an R-skew.">
+<title>California Governor 2026 — Who's Running · Rob Logic</title>
+<meta name="description" content="The 2026 California governor's race after the June 2 primary: Xavier Becerra (D) advancing; Steve Hilton (R) and Tom Steyer (D) fighting for the second spot as ballots are counted. Who's in the running, what they've done, and what the news says — every source linked. Updated for the November 3 general.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>">
-<meta property="og:title" content="CA-26 Governor Race — The Whole Deal">
-<meta property="og:description" content="Seven days to the June 2 primary. Hilton 22 / Becerra 21 / Steyer 15 / Bianco 10 / Porter 7. Williamson plea, Steyer influencer probe, R-skewed early returns. From ELI5 to data-deep.">
+<meta property="og:title" content="California Governor 2026 — Who's Running">
+<meta property="og:description" content="Post-primary: Becerra (D) advancing; Hilton (R) vs Steyer (D) for the second slot, count ongoing. Living, non-biased candidate dossiers plus the latest news. November 3 general election.">
 <meta property="og:url" content="https://roblogic.org/vote/">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,7 +102,7 @@ em{font-style:italic;color:var(--ink)}
   position:relative;
 }
 .hero::before{
-  content:"VOL. I · NO. 6 · MAY 26 2026 · ROB LOGIC PRESS";
+  content:"VOL. I · NO. 7 · JUNE 5 2026 · ROB LOGIC PRESS";
   font-family:'JetBrains Mono',monospace;
   font-size:.7rem;letter-spacing:.15em;
   color:var(--mute);
@@ -432,639 +432,196 @@ footer{
   .updates-date{margin-left:0;width:100%}
   .updates-list li{padding:9px 12px;font-size:.93rem}
 }
+
+/* ===== PIVOT: contested banner, section head, dossiers ===== */
+.contested{max-width:1180px;margin:32px auto 0;padding:0 24px}
+.contested-inner{background:var(--paper);border:1px solid var(--rule);border-top:6px solid var(--gold);padding:22px 26px;box-shadow:4px 4px 0 rgba(199,154,58,.18)}
+.contested-flag{display:inline-block;background:var(--gold);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;margin-bottom:13px}
+.contested-lead{font-size:1.04rem;line-height:1.55;max-width:84ch;margin-bottom:6px}
+.contested .table-wrap{margin:16px 0 6px}
+.contested .cite{display:block;margin-top:8px;line-height:1.55}
+.st-in{color:var(--green);font-weight:600}
+.st-fight{color:var(--gold);font-weight:600}
+.st-third{color:var(--mute);font-weight:600}
+
+/* SECTION HEAD */
+.section-head{max-width:1180px;margin:8px auto 0;padding:0 24px}
+.section-head .sh-inner{border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:16px 0 12px}
+.section-head h2{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1;letter-spacing:-.015em}
+.section-head p{font-family:'DM Serif Display',Georgia,serif;font-style:italic;color:var(--mute);font-size:1.1rem;margin-top:8px;max-width:74ch;line-height:1.35}
+
+/* DOSSIER */
+.dossier{margin:0 0 18px;padding:0 0 40px;border-bottom:1px solid var(--rule)}
+.dossier:last-of-type{border-bottom:0}
+.dossier-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.dossier-name{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(1.9rem,4.4vw,2.8rem);line-height:1;letter-spacing:-.015em}
+.party-pill{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;color:#fff;transform:translateY(-3px)}
+.party-pill.D{background:var(--blue)}
+.party-pill.R{background:var(--red)}
+.dossier-standing{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--mute);margin-bottom:24px;letter-spacing:.02em;line-height:1.5;max-width:80ch}
+.dossier-standing b{color:var(--ink)}
+.field{margin-bottom:26px}
+.field > h4{font-family:'Space Grotesk',sans-serif;font-weight:700;text-transform:uppercase;font-size:.8rem;letter-spacing:.13em;color:var(--red);margin:0 0 11px;padding-bottom:6px;border-bottom:1px dashed var(--rule)}
+.field p{margin-bottom:12px;max-width:80ch}
+.field ul{margin:0 0 12px 20px;max-width:80ch;list-style:none}
+.field ul li{margin-bottom:11px;position:relative;padding-left:18px}
+.field ul li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.field .role{font-family:'Space Grotesk';font-weight:600;color:var(--ink)}
+@media (max-width:960px){
+  .contested{padding:0 16px}
+  .contested-inner{padding:18px 18px}
+  .section-head{padding:0 16px}
+  .field p,.field ul{max-width:none}
+  .dossier-standing{max-width:none}
+}
+
 </style>
 </head>
+
 <body>
 
 <header class="masthead">
   <div class="mast-inner">
-    <div class="mast-title">vote<span class="dot">.</span>roblogic<span class="dot">.</span>org <span style="color:#bfb5a3;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;margin-left:12px">CA-26 GOV</span></div>
+    <div class="mast-title">vote<span class="dot">.</span>roblogic<span class="dot">.</span>org <span style="color:#bfb5a3;font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;margin-left:12px">CA GOVERNOR</span></div>
     <div class="mast-meta">
       <span class="live">LIVE</span>
-      <span>UPDATED 2026-05-26</span>
-      <span>D-<span class="js-days">7</span> TO PRIMARY</span>
-      <a href="/vote/candidates/" class="cross-link">Candidate Dossiers <span class="arrow">→</span></a>
+      <span>UPDATED 2026-06-05</span>
+      <span>D-<span class="js-days">151</span> TO GENERAL</span>
+      <a href="/vote/primary/" class="cross-link">Primary Archive <span class="arrow">→</span></a>
     </div>
   </div>
 </header>
 
 <section class="hero">
-  <h1>One Hilton lead, one Williamson plea, and <em><span class="js-days">7</span> days</em> to go.</h1>
-  <p class="kicker">Closing stretch. Steve Hilton has held the cross-pollster lead through every May poll (22–25%). Becerra (21%) and Steyer (15–19%) are fighting for the second slot. The May 14 final debate landed hours after Newsom's former chief-of-staff Dana Williamson pleaded guilty to siphoning $225K from Becerra's dormant campaign account — Becerra is treated as the victim, not charged, but his longtime CoS Sean McCluskie is a named co-conspirator (sentencing June 4, two days after the primary). Steyer is now under FPPC investigation over undisclosed influencer payments. 1.5M+ ballots are already returned, and PDI's early-return snapshot has Republicans +11pts vs the 2022 primary at the same point — "potentially returning at a pre-2020 rate" (Paul Mitchell). The Republican-Republican lockout scenario is still mathematical, not modal.</p>
-  <div class="countdown"><b class="js-days">7</b> days until June 2, 2026. 1.5M+ VBM ballots already returned · D 41 / R 37 / NPP 22 of returns so far (PDI · field May 15).</div>
+  <h1>The field's been narrowed. Now: the race for <em>governor</em>.</h1>
+  <p class="kicker">Gavin Newsom is termed out. On June 2, Californians began narrowing a 14-name field to two for the November 3 ballot. Xavier Becerra (D) has effectively secured a spot. The other one is still being counted — Steve Hilton (R) leads the raw tally, Becerra is projected to pass him, and Tom Steyer (D) is close enough that an all-Democrat November remains possible. Below: who's in the running, what they've done, and what the news says — sourced, no spin.</p>
+  <div class="countdown"><b class="js-days">151</b> days until the November 3, 2026 general election.</div>
 </section>
 
-<section class="updates" id="fresh-dirt">
+<section class="contested" aria-label="Primary result status">
+  <div class="contested-inner">
+    <span class="contested-flag">Result not yet called</span>
+    <p class="contested-lead">As of <b>June 5, 2026</b>, the June 2 top-two primary is <b>still being counted</b> and the Associated Press has not projected the two finalists. <b>Xavier Becerra (D)</b> has effectively secured a place in November — Decision Desk HQ projects him advancing and expects him to overtake Hilton for first as Democratic-leaning mail ballots are tallied. The <b>second spot is a genuine contest between Steve Hilton (R) and Tom Steyer (D)</b>; if the late ballots break far enough toward Steyer, the November ballot could feature <b>two Democrats and no Republican</b>.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Candidate</th><th>Party</th><th>Votes</th><th>Share</th><th>Where it stands</th></tr></thead>
+        <tbody>
+          <tr><td>Steve Hilton</td><td>Rep</td><td>1,535,917</td><td>27.2%</td><td><span class="st-fight">Leads count — but 2nd slot contested</span></td></tr>
+          <tr><td>Xavier Becerra</td><td>Dem</td><td>1,471,059</td><td>26.0%</td><td><span class="st-in">Advancing (projected)</span></td></tr>
+          <tr><td>Tom Steyer</td><td>Dem</td><td>1,140,559</td><td>20.2%</td><td><span class="st-third">3rd — could still overtake for 2nd</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="cite">Count partial (~57% of the expected vote as of June 4; more counted since). Source: <a href="https://dp.electionresults.sos.ca.gov/returns/governor" target="_blank" rel="noopener">CA Secretary of State official returns</a> (as of June 5, 11:42&nbsp;a.m.). Advancement projection: <a href="https://thehill.com/homenews/campaign/5911230-xavier-becerra-advances-california-governor/" target="_blank" rel="noopener">Decision Desk HQ via The Hill</a>. Results certify <b>July 10, 2026</b>. This page updates as the count is finalized.</span>
+  </div>
+</section>
+
+<section class="updates" id="latest">
   <div class="updates-head">
-    <span class="updates-flag">FRESH DIRT</span>
-    <h2>Closing stretch · May 13 → May 26</h2>
-    <span class="updates-date"><span class="js-days">7</span> days to primary</span>
+    <span class="updates-flag">THE LATEST</span>
+    <h2>What's new in the race</h2>
+    <span class="updates-date">as of June 5, 2026</span>
   </div>
   <ul class="updates-list">
-    <li><span class="tag breaking">May 26</span><b>Becerra walks away from single-payer.</b> Capital &amp; Main / Sacramento News &amp; Review reports the flip. Spokesperson Jonathan Underland: <em>"Single payer is the right goal, but we need to be realistic about what's possible under the Trump Administration."</em> CMA president Dr. Rene Bravo said at a candidate meeting Becerra <em>"said very clearly that, at this point, he wasn't supportive of single payer."</em> Becerra had reaffirmed Medicare-for-All support at the May 5 CNN debate. <a href="https://sacramento.newsreview.com/2026/05/26/in-california-governors-race-xavier-becerra-walks-away-from-single-payer/" target="_blank" rel="noopener">Capital &amp; Main</a></li>
-    <li><span class="tag">May 26</span><b>Becerra camp account attacks Steyer over PG&amp;E hypocrisy.</b> Cites a July 2025 Steyer Instagram post calling it <em>"a pleasure"</em> to discuss AI energy needs with PG&amp;E CEO Patti Poppe — contradicting Steyer's December 2024 ad branding PG&amp;E as one of his enemies. <a href="https://www.longisland-ny.com/2026/05/26/becerra-accuses-steyer-of-hypocrisy-in-relationship-with-utility-giant/" target="_blank" rel="noopener">OAN/Long Island NY</a></li>
-    <li><span class="tag breaking">May 23</span><b>Pro-Mahan IE infrastructure collapses.</b> "Deliver for Mahan" PAC files to shut down. "California Back to Basics" refunds $1M to Reed Hastings. Santa Clara County Dem chair Bill James: <em>"a recognition that despite significant spending… the campaign has not gained any traction."</em> FPPC coordination complaint (alleging shared pollster Impact Research with Back to Basics, $89,500 each) still pending — potential $5M penalty per complaint. Mahan fell 7%→4% in CADEM's tracker. <a href="https://sanjosespotlight.com/san-jose-mayors-bid-for-ca-governor-fizzles-out/" target="_blank" rel="noopener">San José Spotlight</a> · <a href="https://www.qwixter.com/2026/05/23/major-donor-seeks-1-million-refund-amid-closure-of-pro-matt-mahan-committee/" target="_blank" rel="noopener">Qwixter</a></li>
-    <li><span class="tag">May 23</span><b>Hilton + Bianco share Clovis GOP forum stage</b> four days after Hilton's NY Post op-ed urging Bianco to drop out. Both abstain from feuding and target Newsom. Hilton on Newsom's newborn-diaper program: <em>"the great loaded diaper of California himself."</em> Bianco argues the Trump-Hilton endorsement is a general-election liability: <em>"Steve should rightfully be proud…[but] is that a good thing in California?"</em> <a href="https://www.yahoo.com/news/politics/articles/gop-governor-hopefuls-closing-arguments-171540563.html" target="_blank" rel="noopener">Yahoo/Fresno Bee</a></li>
-    <li><span class="tag">May 22</span><b>SoS Weber: 1.5M+ VBM ballots returned</b> (≈6.5% of registered). Daily Ballot Status Reports now posted to elections.cdn.sos.ca.gov. <a href="https://www.independent.com/2026/05/22/california-secretary-of-state-shirley-n-weber-ph-d-announces-more-than-1-5-million-vote-by-mail-ballots-already-returned/" target="_blank" rel="noopener">SB Independent</a></li>
-    <li><span class="tag">May 22</span><b>SF Standard influencer investigation expands.</b> Steyer self-fund "nearly $200 million"; influencer payments range $10/video to $100K (Carlos Espina, advisory). FPPC complaints filed by creators Kaitlyn Hennessy and Beatrice Gomberg. Steyer campaign filed counter-complaints against Becerra alleging same. Steyer: <em>"Creators are a central part of how people communicate… We compensate them for their work and their time."</em> <a href="https://sfstandard.com/2026/05/22/california-influencer-investigation/" target="_blank" rel="noopener">SF Standard</a></li>
-    <li><span class="tag">May 22</span><b>Becerra unveils 7-point Hollywood film plan.</b> Pledges to expand the $750M tax-credit program; <em>"every check it writes must come back to California workers."</em> Campaign declined to provide budget numbers. Steyer campaign: <em>"not ready for prime time."</em> <a href="https://deadline.com/2026/05/becerra-governor-hollywood-plan-1236919071/" target="_blank" rel="noopener">Deadline</a></li>
-    <li><span class="tag">May 21</span><b>Meta's $950K to pro-Becerra PAC draws blowback from grieving parents.</b> Julianna Arnold (daughter Coco, 17, harmed via Instagram): <em>"Why is he going to align himself with a company proven in court to have hurt kids?"</em> Victoria Hinks calls it <em>"politics at its worst."</em> Spokesperson Underland says Becerra has "no control" over IEs, cites his AG-era antitrust action against Facebook. <a href="https://www.aol.com/articles/grieving-california-parents-blast-xavier-160000109.html" target="_blank" rel="noopener">NY Post via AOL</a></li>
-    <li><span class="tag">May 20</span><b>Hilton on Fox News: Newsom is "fearmongering" the R-vs-R lockout.</b> <em>"Newsom and the Democrats are fearmongering over a R vs R matchup in the general election precisely to encourage Republicans to split their votes, thus guaranteeing an all-Democrat top two."</em> <a href="https://www.foxnews.com/politics/newsoms-break-glass-warning-fuels-hilton-accusation-democrats-exploiting-jungle-primary-fears" target="_blank" rel="noopener">Fox News</a></li>
-    <li><span class="tag breaking">May 19</span><b>FPPC opens investigation into Steyer paid influencer Isaiah Washington</b> (@zaydante) — $10K paid, undisclosed, video deleted. CalMatters reports Steyer paid $123,400+ to 8+ influencers Jan–Apr 18, plus $870K to Group Project Digital. Spokesperson Kevin Liao: <em>"Content creators, wherever they're based, have followers in California."</em> <a href="https://calmatters.org/politics/2026/05/california-governor-race-influencers/" target="_blank" rel="noopener">CalMatters</a></li>
-    <li><span class="tag breaking">May 19</span><b>Hilton tells Bianco to drop out — Bianco refuses.</b> Hilton NY Post op-ed: <em>"Chad, let's do this for the sake of the state we both love…You can't win, but your continued presence in the race means that California could lose."</em> Bianco posts video: <em>"They know a 1 on 1 with Steve ensures a Democrat win in November."</em> First public intra-GOP consolidation conflict of the cycle. <a href="https://www.yahoo.com/news/articles/steve-hilton-chad-bianco-needs-120000360.html" target="_blank" rel="noopener">NY Post via Yahoo</a> · <a href="https://www.yahoo.com/news/articles/chad-bianco-refuses-drop-governor-194217047.html" target="_blank" rel="noopener">Bianco response</a></li>
-    <li><span class="tag breaking">May 19</span><b>CADEM "California VOTER Index" final tracker.</b> Evitarus, field May 14–16, n=1,200 LV, ±2.83%. <strong>Hilton 22 / Becerra 21 / Steyer 15 / Bianco 10 / Porter 7 / Mahan 4 / Villaraigosa &amp; Thurmond ~1; Undecided 13.</strong> Becerra 35% of Dems (+6 since May 4); Hilton 57% of Rs (+9). 37% of respondents report already voting. <a href="https://cadem.org/california-democratic-party-releases-final-california-voter-index-tracking-survey/" target="_blank" rel="noopener">CADEM</a> · <a href="https://www.kqed.org/news/12084358/hilton-becerra-lead-democrats-final-poll-for-california-governor" target="_blank" rel="noopener">KQED</a></li>
-    <li><span class="tag">May 19</span><b>Becerra refuses to apologize for May 12 KTLA exchange.</b> Daily Kos exclusive. Frames "gotcha piece" question as attempt to <em>"understand the interview's direction."</em> On the NYT 85,000-figure: <em>"They were never 'vanished,' and yet folks are not willing to walk back the lies."</em> <a href="https://www.dailykos.com/stories/2026/5/19/800041468/news/xavier-becerra-california-governor-interview-exclusive/" target="_blank" rel="noopener">Daily Kos</a></li>
-    <li><span class="tag">May 17</span><b>Santa Barbara Independent endorses Steyer.</b> <em>"No more hand-wringing. We are endorsing Tom Steyer for governor. Yes, the billionaire."</em> Cites "the clearest understanding of California's housing affordability crisis." Noted Steyer's campaign gave the paper zero ad dollars. <a href="https://www.independent.com/2026/05/17/for-governor-tom-steyer/" target="_blank" rel="noopener">SB Independent</a></li>
-    <li><span class="tag">May 13 + May 16</span><b>SF Chronicle + Bay Area Reporter endorse Porter.</b> Chronicle: <em>"Her combination of policy smarts, political courage and independence puts her in the best position to pursue the evidence-based solutions California needs to thrive."</em> Joins McClatchy CA papers (May 4). Bay Area Reporter is the nation's highest-circulation LGBTQ paper. <a href="https://katieporter.com/2026/05/san-francisco-chronicle-endorses-katie-porter-for-california-governor/" target="_blank" rel="noopener">Chronicle (via campaign)</a> · <a href="https://www.ebar.com/story/166219/News/Editorial:%20B.A.R.%20endorses%20Porter%20for%20governor" target="_blank" rel="noopener">B.A.R.</a></li>
-    <li><span class="tag">May 15</span><b>PDI early-return snapshot: 905,889 ballots returned. D 41 / R 37 / NPP 22.</b> Republican share <strong>+11 points vs the same point in 2022.</strong> R return rate 6% vs D 4%. County highlights: Orange Co. R ahead by 10K+; San Diego R 11% returned vs D 6%; LA Co. R 4% vs D 2%. Paul Mitchell: <em>"Republicans are potentially returning their ballots at a pre-2020 rate, before Trump discouraged it."</em> <a href="https://amgreatness.com/2026/05/18/california-republicans-gain-early-voting-edge-in-june-primary/" target="_blank" rel="noopener">American Greatness citing PDI</a></li>
-    <li><span class="tag breaking">May 14</span><b>Dana Williamson pleads guilty.</b> Newsom's former chief-of-staff (placed on admin leave Nov 2024) pleads guilty in Sacramento federal court to conspiracy, false return, lying to federal investigators. $225K was diverted from Becerra's dormant state campaign account in $7,500–$10,000 monthly increments 2022–2024 via Becerra's longtime CoS Sean McCluskie and lobbyist Greg Campbell. Williamson, McCluskie, and Campbell jointly owe $225K restitution to Becerra; Williamson also owes $500K to the IRS. McCluskie + Campbell sentencing set for <strong>June 4 — two days after the primary.</strong> Becerra is treated as victim, not charged. Becerra: <em>"I did nothing wrong. Case closed."</em> Newsom said the charges <em>"surprised him."</em> <a href="https://calmatters.org/politics/2026/05/california-newsom-chief-plea-deal/" target="_blank" rel="noopener">CalMatters</a> · <a href="https://www.kqed.org/news/12083667/former-newsom-chief-of-staff-pleads-guilty-to-scheme-that-bled-money-from-becerras-account" target="_blank" rel="noopener">KQED</a></li>
-    <li><span class="tag breaking">May 14</span><b>Fifth and final debate — CBS Bay Area / SF Examiner, Julia Morgan Ballroom.</b> Seven candidates on stage (Becerra, Bianco, Hilton, Mahan, Porter, Steyer, Villaraigosa); Thurmond excluded. Six rivals gang up on Becerra hours after the Williamson plea. Hilton: <em>"I like you personally, Xavier, but you shouldn't be on this stage. You shouldn't be in this race. You should be preparing your criminal defense."</em> Becerra: <em>"This is what happens when you take the lead in the polls. They all come at you."</em> Porter notes prosecutors could still issue superseding indictments. Other attack lines that landed: Chevron donation, hospice fraud during HHS tenure, dodging a housing forum, lack of funding plans. <a href="https://calmatters.org/politics/2026/05/california-governor-race-final-debate/" target="_blank" rel="noopener">CalMatters</a> · <a href="https://sfstandard.com/2026/05/14/final-debate-governor-race/" target="_blank" rel="noopener">SF Standard</a> · <a href="https://www.foxnews.com/politics/becerras-debate-stage-beating-rivals-confront-dem-california-candidate-over-campaign-scandal" target="_blank" rel="noopener">Fox News</a></li>
-    <li><span class="tag">May 14</span><b>NBC News: Biden-era colleagues are withholding endorsements from Becerra.</b> Mayorkas (Politico): <em>"agnostic with respect to the California gubernatorial race right now."</em> Harris endorsed down-ballot CA races but skipped governor. Ron Klain defends Becerra as <em>"one of the most effective members of the president's Cabinet."</em> <a href="https://www.nbcnews.com/politics/2026-election/xavier-becerra-pushback-biden-era-colleagues-california-governor-race-rcna344720" target="_blank" rel="noopener">NBC News</a></li>
-    <li><span class="tag">May 13</span><b>LA Times publishes voter guide without editorial endorsements</b> — breaking decades of practice. SD Union-Tribune also did not formally endorse but KPBS reports the U-T identified Steyer as <em>"most progressive of the current viable candidates."</em> No major Southern California daily endorsed in the gov race this cycle. <a href="https://lapublicpress.org/2026/05/voter-guide-elections-2026/" target="_blank" rel="noopener">LA Public Press</a> · <a href="https://www.kpbs.org/news/politics/2026/05/06/2026-primary-election-guide-to-endorsements-from-san-diego-democrats-republicans-green-libertarian" target="_blank" rel="noopener">KPBS guide</a></li>
-    <li><span class="tag breaking">May 13</span><b>CA Supreme Court grants review of UCLA VRP petition on Bianco's 650K-ballot seizure.</b> Briefing deadline for Bianco and Registrar Tinoco set for <strong>June 12.</strong> Court declined to halt the investigation (April pause remains). Bianco attorney Robert Tyler's office reportedly released a "public link" containing voter information from the seizure — UCLA VRP cites this in filings as <em>"irreparably harming the integrity of the electoral process."</em> <a href="https://riversiderecord.org/ca-supreme-court-review-vrp-bianco-lawsuit/" target="_blank" rel="noopener">Riverside Record</a> · <a href="https://davisvanguard.org/2026/05/ucla-voting-rights-project-lawsuit/" target="_blank" rel="noopener">Davis Vanguard</a></li>
-    <li><span class="tag">May 13</span><b>Emerson / Inside California Politics poll.</b> Field May 9–10, n=1,000 LV, ±3%. <strong>Becerra 19 / Hilton 17 / Steyer 17 / Bianco 11 / Porter 10 / Mahan 8 / Villaraigosa 4; Undecided 12.</strong> Becerra +9 since mid-April; leads Dems at 31%. Caveat: only 52% of Becerra supporters say "definitely"; 40% of decided voters overall say they could change. <a href="https://emersoncollegepolling.com/california-2026-poll-becerra-continues-to-surge-steyer-and-hilton-compete-for-second-spot/" target="_blank" rel="noopener">Emerson</a></li>
+    <li><span class="tag breaking">Jun 5</span><b>Official canvass update — still uncalled.</b> CA Secretary of State returns (10:23&nbsp;a.m. update, posted 11:42&nbsp;a.m.): Hilton 27.2% (1,535,917) · Becerra 26.0% (1,471,059) · Steyer 20.2% (1,140,559). All precincts "partially reporting"; counting continues. <a href="https://dp.electionresults.sos.ca.gov/returns/governor" target="_blank" rel="noopener">CA SoS</a></li>
+    <li><span class="tag">Jun 5</span><b>A record-money race.</b> Bloomberg frames the contest as a roughly <b>$300 million</b> governor's race and reports Becerra advancing. <a href="https://www.bloomberg.com/news/articles/2026-06-05/becerra-advances-in-california-s-300-million-race-for-governor" target="_blank" rel="noopener">Bloomberg</a></li>
+    <li><span class="tag">Jun 4</span><b>"Too close to call."</b> Hilton and Becerra hold the top two, Steyer third (~20%), with tens of thousands of ballots still to process; no candidate has declared victory. <a href="https://abc7news.com/post/2026-primary-election-steve-hilton-xavier-becerra-hold-leads-tight-close-call-california-governors-race/19229834/" target="_blank" rel="noopener">ABC7</a></li>
+    <li><span class="tag">Jun 4</span><b>Steyer won't concede.</b> Trailing in third, his campaign says it will "wait until every ballot is counted"; Steyer tells supporters "we finished really strong." <a href="https://abc7news.com/live-updates/election-2026-updates-latest-race-california-governor-nancy-pelosis-seat-how-vote-june-2-primary/19187694/entry/19224433/" target="_blank" rel="noopener">ABC7</a></li>
+    <li><span class="tag breaking">Jun 3</span><b>Decision Desk HQ: Becerra advancing.</b> The decision desk projects Becerra into the top two and reports he is "expected to pass Hilton" as Democratic-leaning mail ballots are counted; the 2nd slot (Hilton vs. Steyer) stays uncalled. <a href="https://thehill.com/homenews/campaign/5911230-xavier-becerra-advances-california-governor/" target="_blank" rel="noopener">The Hill</a></li>
+    <li><span class="tag">Jun 3</span><b>Trump congratulates Hilton — before the race is called.</b> On Truth Social: "If Californians are smart, which I know they are, they will put Steve into the Governor's Mansion." Trump endorsed Hilton in early April. <a href="https://thehill.com/homenews/campaign/5908712-trump-congratulates-hilton-california/" target="_blank" rel="noopener">The Hill</a></li>
+    <li><span class="tag">Jun 2–3</span><b>Three Democrats concede.</b> Former U.S. Rep. Katie Porter, San Jose Mayor Matt Mahan, and former L.A. Mayor Antonio Villaraigosa bow out after early returns. <a href="https://calmatters.org/politics/2026/06/primary-election-california-governor/" target="_blank" rel="noopener">CalMatters</a></li>
+    <li><span class="tag">Jun 2</span><b>Becerra, on primary night:</b> "The California Dream — it's alive tonight… it's the people, only the people, who get the last word." If elected, he would be California's first Latino governor since 1875. <a href="https://thehill.com/homenews/campaign/5911230-xavier-becerra-advances-california-governor/" target="_blank" rel="noopener">The Hill</a></li>
+    <li><span class="tag">Jun 2</span><b>Hilton, on primary night:</b> "Change is coming to California, and it's long overdue," citing "over 1 million Californians" backing him. <a href="https://calmatters.org/politics/2026/06/primary-election-california-governor/" target="_blank" rel="noopener">CalMatters</a></li>
+    <li><span class="tag">Jun 2</span><b>VP JD Vance endorses Hilton on primary day.</b> On X: "Good luck today to my friend Steve Hilton… He's a good guy." Hilton: "What an incredible thing for someone who's a new American citizen." <a href="https://abc7news.com/live-updates/election-2026-updates-latest-race-california-governor-nancy-pelosis-seat-how-vote-june-2-primary/19187694/entry/19220994/" target="_blank" rel="noopener">ABC7</a></li>
+    <li><span class="tag">Jun 2</span><b>Bianco fourth; no all-Republican lockout.</b> Riverside County Sheriff Chad Bianco (R) finishes ~11.2%; reporting credits Trump's April endorsement of Hilton with consolidating the GOP and averting a Republican-Republican runoff. <a href="https://calmatters.org/politics/2026/06/primary-election-california-governor/" target="_blank" rel="noopener">CalMatters</a></li>
   </ul>
 </section>
 
-<section class="updates" id="updates">
-  <div class="updates-head">
-    <span class="updates-flag" style="background:var(--mute);animation:none">EARLIER</span>
-    <h2>Cycle prequel · April 18 → May 12</h2>
-    <span class="updates-date">historical · scroll for context</span>
+<div class="section-head">
+  <div class="sh-inner">
+    <h2>Who's in the running</h2>
+    <p>Two living dossiers — who they are, what they've done, what the news says, and what they're doing now. Becerra is in; Hilton currently holds the second slot but is contested by Steyer. Updated as the race develops.</p>
   </div>
-  <ul class="updates-list">
-    <li><span class="tag breaking">May 12</span><b>Becerra KTLA interview backfires.</b> Opened with "is this a profile, not a gotcha?" On the missing unaccompanied-minor record under his HHS tenure said <em>"some of these kids, probably because they needed to earn some money, started working in places that were very exploitive."</em> Clip becomes national news. Becerra has issued no on-camera follow-up. <a href="https://ktla.com/news/california/xavier-becerra-interview-governor-race/" target="_blank" rel="noopener">KTLA</a> · <a href="https://thehill.com/homenews/campaign/5874280-interview-awkward-moment-becerra/" target="_blank" rel="noopener">The Hill</a></li>
-    <li><span class="tag">May 11</span><b>Federal court declines to reinstate Butch Ware on the June 2 ballot.</b> U.S. District Judge William B. Shubb (E.D. Cal., 2:26-cv-1643) ruled on timing grounds — "the primary election is already underway. Already several hundred thousand Californians have voted." Did not reach the constitutional question on the AB 880 tax-return law. Ware indicates appeal. The Green Party has no candidate on the gubernatorial ballot. <a href="https://ballot-access.org/2026/05/12/u-s-district-court-wont-put-butch-ware-on-california-primary-ballot/" target="_blank" rel="noopener">Ballot Access News</a></li>
-    <li><span class="tag">May 11</span><b>CHIRLA Action Fund holds press conference defending Becerra</b> against Steyer's "missing migrant children" attack ads. Director Angelica Salas said she <em>"worked with Xavier Becerra... to welcome thousands of unaccompanied minors in Long Beach and Pomona."</em> <a href="https://www.calonews.com/communities/los-angeles/chirla-defends-becerra-from-steyer-s-recent-attack-ad/article_bcf27638-fd06-4251-97b0-04f8f0ad7b22.html" target="_blank" rel="noopener">Cal News</a></li>
-    <li><span class="tag">May 8</span><b>Newsom reiterates: no primary endorsement.</b> <em>"It's my intention not to get involved in the primary"</em> — but framed his stake as <em>"everything that needs to be done to make sure that there's not a lockout for a Democratic choice in the general."</em> CNN separately reported Newsom's political team is consulting and fundraising for Becerra (Newsom himself has not). <a href="https://www.cnn.com/2026/05/08/politics/newsom-california-governors-race-democrats-greater-golden-state" target="_blank" rel="noopener">CNN</a> · <a href="https://www.spokesman.com/stories/2026/may/08/gov-gavin-newsom-again-declines-to-endorse-a-candi/" target="_blank" rel="noopener">Spokesman-Review</a></li>
-    <li><span class="tag">May 7</span><b>Hilton accuses CHIRLA of using undocumented canvassers for Becerra</b> and questions $72M in public funding to the group. Opens a second front on Becerra in parallel to the Steyer attack-ad cycle. <a href="https://californiaglobe.com/fr/steve-hilton-alleging-chirla-using-illegal-immigrants-to-campaign-for-xavier-becerra-for-governor/" target="_blank" rel="noopener">California Globe</a></li>
-    <li><span class="tag">May 7</span><b>CalMatters profile: Porter's worst week of the cycle.</b> Q1 fundraising under $3M over four months (below pace), two viral "yelling" videos (staffer + reporter), establishment defection to Becerra/Steyer/Villaraigosa. Porter releases a self-deprecating response ad. <a href="https://calmatters.org/politics/2026/05/california-governor-race-katie-porter/" target="_blank" rel="noopener">CalMatters</a></li>
-    <li><span class="tag breaking">May 5</span><b>CNN debate at East LA College, Monterey Park.</b> Seven on stage (Becerra, Porter, Steyer, Mahan, Villaraigosa, Hilton, Bianco); Thurmond did not qualify (sub-3% threshold). <strong>Becerra was the consensus target</strong> — opponents raised a former chief-of-staff (Sean McCluskie) guilty plea over campaign funds and a reported Medicare-for-All flip-flop; Becerra denied involvement in the McCluskie matter and reaffirmed M4A support. Hilton on Steyer: <em>"If you think it can't get worse in California, I've got two words: Tom Steyer."</em> Becerra on Hilton: <em>"Donald Trump's his daddy."</em> Bianco doubled down as a <em>"proud Oath Keeper."</em> Hilton declined to say Trump lost 2020. No declared winner. <a href="https://www.cnn.com/2026/05/05/politics/takeaways-cnn-california-governor-debate" target="_blank" rel="noopener">CNN</a> · <a href="https://sfstandard.com/2026/05/05/governor-debate-cnn-california/" target="_blank" rel="noopener">SF Standard</a> · <a href="https://calmatters.org/commentary/2026/05/governor-california-target-becerra-debate/" target="_blank" rel="noopener">CalMatters</a></li>
-    <li><span class="tag">May 5</span><b>Steyer files FPPC complaint against PG&amp;E.</b> Alleges PG&amp;E illegally funneled ~$8M through the "Resilient and Affordable Energy" shell to disguise itself as the largest funder of the anti-Steyer PAC, and that ads failed required top-funder disclosures. FPPC and AG's office decline to comment. <a href="https://sfstandard.com/2026/05/07/power-play-tom-steyer-pacific-gas-and-electric-governor/" target="_blank" rel="noopener">SF Standard</a></li>
-    <li><span class="tag">May 4</span><b>VBM mailing begins.</b> First wave of mail ballots in voters' hands. <strong>Late-vote strategy push:</strong> a vocal slice of Democrats is openly urging supporters to hold ballots until late, aiming to deny Republicans an early-return lead. AG Bonta called the social-media push <em>"potentially unlawful"</em> misinformation; SoS Weber said her office would "look into" the posts. <a href="https://calmatters.org/politics/2026/05/democrats-governor-race-voting-strategy/" target="_blank" rel="noopener">CalMatters</a></li>
-    <li><span class="tag">May 4</span><b>McClatchy California editorial board endorses Katie Porter.</b> Joint endorsement — Sacramento Bee, Fresno Bee, Modesto Bee, Merced Sun-Star, San Luis Obispo Tribune — cites "intellect, understanding of the issues, and the boldness to fight the monied interests." First major newspaper endorsement of the cycle. SF Chronicle would later endorse Porter on May 16, Bay Area Reporter on May 13; LA Times broke decades of practice and endorsed nobody; SDUT did not formally endorse. <a href="https://www.aol.com/news/endorsing-underdog-california-governor-why-113000601.html" target="_blank" rel="noopener">McClatchy editorial (AOL syndication)</a></li>
-    <li><span class="tag breaking">May 4</span><b>CADEM EVITARUS poll: Becerra 18 / Hilton 18 / Bianco 14 / Steyer 12 / Porter 8 / Mahan 7.</b> Field Apr 30–May 2, n=1,200 LV — the first Dem-party-commissioned poll with Becerra tied at the top. Undecided collapsed to 14%, down from 24% in CADEM's March tracker. Independent broadcast polls (SurveyUSA, Kreate) still have Steyer ahead of Becerra; cross-pollster picture remains contested. <a href="https://cadem.org/california-democratic-party-releases-new-california-voter-index-tracking-survey/" target="_blank" rel="noopener">CADEM</a></li>
-    <li><span class="tag">Apr 30 → May 7</span><b>Anti-Steyer ad stack ~$14M → $26M+.</b> JOBSPAC (CalChamber-sponsored) added ~$6.5M; California Real Estate IE Committee added ~$7M; PG&amp;E/IBEW feeder ("Californians for Resilient and Affordable Energy") now totals ~$11.5M into "California Is Not for Sale." Steyer's self-fund grew to ~$147M per the CalMatters May filings tracker — second-priciest CA gov race ever, behind Whitman 2010's $176M. <a href="https://www.fppc.ca.gov/search-filings/top-10-contributors-list/june-2026-primary-election/" target="_blank" rel="noopener">FPPC top-10</a></li>
-    <li><span class="tag">Apr 30 (wk)</span><b>SEIU California endorses Steyer</b> — resolves the largest outstanding labor question after CTA's April 10 flip to Steyer. <a href="https://www.tomsteyer.com/press/seiu-california-endorses-tom-steyer-for-california-governo" target="_blank" rel="noopener">Steyer campaign release</a></li>
-    <li><span class="tag">Apr 28 → May 1</span><b>SurveyUSA / KGTV (independent, n=991 LV, ±4.2): Hilton 20 / Steyer 18 / Bianco 12 / Becerra 10 / Porter 8 / Mahan 7 / Villaraigosa 5 / Thurmond 2.</b> Among independents Steyer fell from 24 to 11; Becerra more than doubled among Dems. Becerra surge visible but smaller than in Dem-party polls. <a href="https://www.10news.com/news/local-news/poll-steve-hilton-in-the-lead-for-california-governor-with-tom-steyer-in-close-second" target="_blank" rel="noopener">10News</a></li>
-    <li><span class="tag">Apr 3</span><b>CA SoS 60-day voter registration report.</b> D 44.92% / R 25.03% / NPP 22.76% / Other 7.30% — slight Dem softening (~0.1 pt) and Republican gain (~0.1 pt) vs. the Dec 30 154-day report; 23.1M registered of 27.2M eligible (84.83%). <a href="https://elections.cdn.sos.ca.gov/ror/60day-primary-2026/complete-ror.pdf" target="_blank" rel="noopener">CA SoS PDF</a></li>
-    <li><span class="tag breaking">Apr 28</span><b>Second primary debate — CBS LA / Pomona College.</b> All eight ballot-qualified candidates on stage (Becerra, Mahan, Porter, Steyer, Thurmond, Villaraigosa, Hilton, Bianco) under a looser 1%-poll threshold (vs. April 22's 5%). Becerra absorbed the heaviest cross-fire after Steyer launched a pair of attack ads on his HHS unaccompanied-minor record over the weekend; CHIRLA Action Fund held a counter-presser. No clear winner. <a href="https://www.cnn.com/2026/04/28/politics/california-governor-candidates-debate-takeaways" target="_blank" rel="noopener">CNN</a> · <a href="https://www.cbsnews.com/losangeles/news/top-takeaways-cbs-california-governors-debate/" target="_blank" rel="noopener">CBS LA</a></li>
-    <li><span class="tag">Apr 28</span><b>Newsom (WaPo): "supporting a Democrat in the runoff."</b> Still no primary endorsement. <a href="https://www.washingtonpost.com/politics/2026/04/28/california-governor-trump-newsom-becerra-steyer-porter/" target="_blank" rel="noopener">Washington Post</a></li>
-    <li><span class="tag">Apr 27</span><b>CBS News/YouGov poll · field Apr 23–27 · n=1,479 RV.</b> Hilton 16, Steyer 15, Becerra 13, Bianco 10, Porter 9; 26% undecided. Becerra third — first cross-pollster confirmation of his post-Swalwell rise. <a href="https://www.cbsnews.com/news/california-governors-race-primary-voters-opinion-poll-2026-04-27/" target="_blank" rel="noopener">CBS News</a></li>
-    <li><span class="tag">Apr 27</span><b>Steyer self-fund revised to ~$132M; anti-Steyer ad stack now ~$14M.</b> CalMatters reporting clarifies the structure: PG&amp;E routed ~$10M through "Californians for Resilient and Affordable Energy" into the public-facing PAC "California Is Not for Sale," joined by CA Realtors ($5M), CA Building Industry Association ($1M), CCPOA ($25K), and IBEW 1245. <a href="https://calmatters.org/politics/2026/04/california-governor-race-financials/" target="_blank" rel="noopener">CalMatters</a> · <a href="https://capitolweekly.net/anti-steyer-pac-mimics-name-of-a-housing-advocacy-campaign/" target="_blank" rel="noopener">Capitol Weekly</a></li>
-    <li><span class="tag breaking">Apr 23</span><b>PG&amp;E launched a ~$10M anti-Steyer PAC</b> ("California Is Not for Sale"), backed by the California Association of Realtors, the prison-guard union (CCPOA), and IBEW Local 1245. The largest opposition-spending event of the cycle. <a href="https://sfstandard.com/2026/04/23/pg-e-10-million-pac-against-gubernatorial-candidate-tom-steyer/" target="_blank" rel="noopener">SF Standard</a></li>
-    <li><span class="tag">Apr 22</span><b>First primary debate — Nexstar/KRON4, San Francisco.</b> Six qualified candidates on stage (Hilton, Bianco, Steyer, Becerra, Porter, Mahan); Villaraigosa and Thurmond did not meet the 5% threshold. <strong>No clear winner.</strong> Becerra pledged a utility-and-insurance rate freeze; Porter and Mahan attacked Steyer over Farallon's private-prison and oil investments; Bianco defended the 650K-ballot seizure; Hilton leaned into the Trump endorsement. <a href="https://www.cnn.com/2026/04/23/politics/california-governors-debate-takeaways" target="_blank" rel="noopener">CNN</a> · <a href="https://sfstandard.com/2026/04/22/california-governor-debate-san-francisco/" target="_blank" rel="noopener">SF Standard</a></li>
-    <li><span class="tag">Apr 22</span><b>Speaker Robert Rivas + 14 Assembly Democrats endorsed Xavier Becerra</b> — bringing his total to 26 state lawmakers. First major institutional-Dem consolidation move post-Swalwell. <a href="https://www.yourcentralvalley.com/news/california/california-politics/xavier-becerra-gets-endorsement-from-californias-assembly-speaker/" target="_blank" rel="noopener">Fox 40</a></li>
-    <li><span class="tag">Apr 21</span><b>Betty Yee endorsed Tom Steyer one day after withdrawing.</b> Her exit statement criticized Porter; the Steyer endorsement consolidates that lane. <a href="https://ktla.com/news/politics/inside-california-politics/yee-drops-out-of-california-governors-race-doubles-down-on-porter-criticism/" target="_blank" rel="noopener">KTLA</a></li>
-    <li><span class="tag">Apr 21</span><b>Katie Porter picked up CWA District 9 and Rep. Robert Garcia (CA-42).</b> <a href="https://www.washingtonexaminer.com/news/campaigns/state/3838684/california-governor-race-katie-porter-emilys-list-endorsement/" target="_blank" rel="noopener">Washington Examiner</a></li>
-    <li><span class="tag">Apr 21</span><b>CalMatters investigation on Bianco's 650K-ballot seizure.</b> Internal emails show the case was built on fringe-group claims; warrants were sealed by an allied judge; AG Bonta's directives were ignored. <strong>Case pending at the CA Supreme Court.</strong> <a href="https://calmatters.org/investigation/2026/04/chad-bianco-emails/" target="_blank" rel="noopener">CalMatters</a></li>
-    <li><span class="tag">Apr 20</span><b>IVN/IVC poll (field Apr 14–20, n=3,404): Becerra 23%</b> — the first Dem to lead the field outright in any 2026 poll. Cross-read with Emerson (Apr 14–15: Hilton 17, Bianco 14, Steyer 14, Becerra 10, Porter 10, Mahan 5, undecided 23). <a href="https://ivn.us/posts/breaking-xavier-becerra-bolts-into-first-place-in-ivn-california-governor-poll-2026-04-20" target="_blank" rel="noopener">IVN</a> · <a href="https://emersoncollegepolling.com/california-2026-poll-april/" target="_blank" rel="noopener">Emerson</a></li>
-    <li><span class="tag">Apr 20</span><b>Betty Yee withdrew.</b> Cited polling and fundraising; exited attacking Porter. <strong>Active Dems now 7, not 8.</strong> Swalwell remains on the ballot despite suspension. <a href="https://calmatters.org/politics/2026/04/california-governor-race-yee/" target="_blank" rel="noopener">CalMatters</a></li>
-    <li><span class="tag">Apr 20</span><b>CA Dem Party chair publicly called for more low-polling Dems to drop.</b> Party machinery is trying to force consolidation. <a href="https://www.kcra.com" target="_blank" rel="noopener">KCRA</a></li>
-    <li><span class="tag">Apr 20</span><b>House Ethics Committee issued a rare public statement</b> defending its record on sexual-misconduct investigations and inviting more victims to come forward — notable because the Swalwell probe ended when he resigned and the committee lost jurisdiction. <a href="https://www.cnbc.com/2026/04/20/congress-eric-swalwell-house-ethics-sexual-misconduct.html" target="_blank" rel="noopener">CNBC</a></li>
-    <li><span class="tag">Apr 20</span><b>Our Revolution (Sanders) endorsed Tom Steyer.</b> Immediate progressive backlash over endorsing a billionaire. <a href="https://theintercept.com" target="_blank" rel="noopener">The Intercept</a></li>
-    <li><span class="tag">Apr 17</span><b>California Court of Appeal refused to reinstate Butch Ware</b> (Green Party). SoS removed him in March over filing deficiencies (mismatched returns, redacted names); Judge James Arguelles denied his initial reinstatement lawsuit on April 1. Federal suit pending. Apr 23 <em>Current Affairs</em> published a long-form investigation alleging SoS manipulation of the disqualification. <a href="https://ballot-access.org/2026/04/17/california-state-appeals-court-refuses-to-put-butch-ware-on-california-primary-ballot/" target="_blank" rel="noopener">Ballot Access News</a></li>
-  </ul>
-</section>
-
-<nav class="tabs">
-  <div class="tabs-inner">
-    <button class="tab-btn active" data-tab="full"><span class="num">00</span>The Full Story</button>
-    <button class="tab-btn" data-tab="overview"><span class="num">01</span>Overview</button>
-    <button class="tab-btn" data-tab="ceo"><span class="num">02</span>CEO Brief</button>
-    <button class="tab-btn" data-tab="tech"><span class="num">03</span>The Data</button>
-    <button class="tab-btn" data-tab="eli13"><span class="num">04</span>ELI13</button>
-    <button class="tab-btn" data-tab="eli5"><span class="num">05</span>ELI5</button>
-  </div>
-</nav>
+</div>
 
 <main>
 
-<!-- ============================================ FULL STORY ============================================ -->
-<section class="panel active" id="full">
-<h2>The whole messy thing.</h2>
-<p class="dek">Intermediate reader, ~20-minute read. You know California politics. This catches you up on everything that happened between January and now and tells you where it lands.</p>
-
-<div class="toc">
-  <strong>Jump to</strong>
-  <a href="#swalwell">The Swalwell Collapse</a>
-  <a href="#dems">The Democratic Field</a>
-  <a href="#gop">The Republican Field</a>
-  <a href="#policy">Where They Stand</a>
-  <a href="#money">Follow the Money</a>
-  <a href="#scenarios">How It Shakes Out</a>
-  <a href="#bottom">The Bottom Line</a>
-</div>
-
-<p>Gavin Newsom can't run again. That should be the simple headline. California Democrats have a roughly 20-point registration advantage (April 3, 2026 SoS 60-day report: 44.92% D / 25.03% R / 22.76% NPP / 7.30% other — Dems down, Republicans up slightly vs. the Dec 30 154-day report), haven't seen a Republican win a statewide race since 2006, and have multiple plausible succession candidates. In any normal cycle, this is a coronation with a primary speed bump.</p>
-
-<p>But Kamala Harris announced in July 2025 that she would not run, and Sen. Alex Padilla has also declined — removing the two candidates most capable of clearing the Democratic field. As of May 26, 2026 — <span class="js-days">7</span> days from the June 2 primary — the Democratic field is splintered across <strong>six active candidates</strong>; in <em>every</em> May poll (Emerson, CADEM/Evitarus, Echelon Insights, Global Strategy Group) Hilton has finished first or tied first. Becerra has caught Hilton at the top in Dem-party-commissioned polls but trails in Republican- and campaign-commissioned ones. The candidate who had been leading in March (Swalwell) resigned from Congress on April 14 after sexual-misconduct allegations, and Hilton has held the cross-pollster lead in every public poll since. On May 14 a federal plea deal pulled Newsom's former chief-of-staff Dana Williamson into a $225K diversion from Becerra's dormant state campaign account; Becerra is treated as the victim, not charged, but his longtime chief-of-staff Sean McCluskie is a named co-conspirator with sentencing set for June 4 — two days after the primary.</p>
-
-<p>Because California uses a top-two primary — all candidates on one ballot regardless of party; the top two advance to November — there is a real, mathematical scenario in which the November 2026 ballot has <strong>no Democrat on it</strong>. Paul Mitchell's model put that probability at 27% before Swalwell exited; post-Swalwell estimates from Mitchell and other California strategists now run closer to 15–20%.</p>
-
-<div class="pullquote">With Harris and Padilla on the sidelines and Swalwell out, the Democratic field is a fractured second tier. Gavin Newsom's successor could plausibly be wearing red.</div>
-
-<h3 id="swalwell"><span class="numy">§1</span>The Swalwell Collapse</h3>
-<p><strong>TL;DR:</strong> Between Friday April 10 and Tuesday April 14, Rep. Eric Swalwell went from leading Democratic contender for California governor to a resigned ex-congressman facing a Manhattan DA investigation and a growing roster of accusers. Swalwell has denied the allegations. A fifth accuser came forward publicly on April 15.</p>
-
-<h4>Timeline</h4>
-<ul>
-  <li><strong>Friday April 10</strong> — <em>San Francisco Chronicle</em> and CNN publish near-simultaneous reports. The Chronicle reports allegations from a former Castro Valley district-office staffer (hired in 2019 at age 21) alleging two non-consensual encounters beginning that year. CNN separately reports allegations from four women, including a 2024 New York hotel rape allegation from a different former staffer, plus three women alleging unsolicited explicit messages and advances. Swalwell calls the reports "flat false."</li>
-  <li><strong>Saturday April 11</strong> — Manhattan DA confirms an investigation into the 2024 New York hotel allegation.</li>
-  <li><strong>Sunday April 12</strong> — Swalwell suspends his campaign: <em>"I am deeply sorry for mistakes in judgment I've made in my past. I will fight the serious, false allegations that have been made — but that's my fight, not a campaign's."</em> An open letter signed by 50+ former staffers calls the reporting "serious, credible" and demands he resign from Congress.</li>
-  <li><strong>Monday April 13</strong> — Swalwell announces he will resign from Congress.</li>
-  <li><strong>Tuesday April 14</strong> — Resignation effective. The House Ethics Committee had opened an inquiry that same week but <strong>closed it upon his resignation</strong> (the committee has no jurisdiction over former members).</li>
-  <li><strong>Tuesday April 15</strong> — At a Los Angeles press conference (covered by AP, the LA Times, and CNN), Lonna Drewes alleges Swalwell drugged and raped her at a West Hollywood hotel in 2018 under the pretense of retrieving "papers." Her attorney says more women have made contact. Swalwell's legal team denies the allegation. The LA County Sheriff's Department opened a rape investigation tied to the Drewes allegation on April 14 (<a href="https://www.cnbc.com/2026/04/14/eric-swalwell-accuser-rape-california.html" target="_blank" rel="noopener">CNBC</a>).</li>
-  <li><strong>Monday April 20</strong> — The House Ethics Committee issued a rare public statement defending its record on sexual-misconduct probes and inviting additional alleged victims to come forward — unusual given the committee has no further jurisdiction over Swalwell.</li>
-</ul>
-
-<h4>The Collapse</h4>
-<p>Within hours of the Friday reports, the support floor dropped out. Campaign chair <strong>Rep. Jimmy Gomez</strong> resigned his role and publicly called for Swalwell to exit. <strong>Sens. Gallego, Schiff, Padilla</strong> pulled support Friday afternoon. <strong>Reps. Ted Lieu, Doris Matsui, Mike Thompson</strong> rescinded endorsements. The <strong>California Teachers Association</strong> and <strong>SEIU California</strong> suspended their backing. Pelosi reportedly called Swalwell on Sunday urging resignation.</p>
-
-<div class="warn">
-<strong>Ballot Reality</strong>
-Swalwell suspended <em>after the statutory withdrawal deadline</em>, so his name will still appear on the June 2 ballot. Any votes he receives are effectively wasted — a real risk given the compressed timeline and vote-by-mail ballots beginning to mail May 4.
-</div>
-
-<h4>Prior Baggage, for Context</h4>
-<p><strong>Fang Fang (2020):</strong> Swalwell had a prolonged association with Christine Fang, a suspected Chinese intelligence operative who cultivated Bay Area politicians from his Dublin city council days and helped bundle for his early House campaigns. The FBI gave him a defensive briefing in 2015; a House Ethics probe closed in May 2023 with no action. In March 2026, FBI Director Kash Patel pushed to release the old investigative file; Swalwell's legal team responded publicly opposing release.</p>
-<p><strong>Trump impeachment manager (2020):</strong> Swalwell served as one of the House managers in the second Trump impeachment trial, which raised his national profile and made him a persistent Trump-administration target — context for Patel's March 2026 push on the Fang files.</p>
-<p>Rep. Sam Liccardo (D-CA) told ABC7 on April 14 that rumors of Swalwell's misconduct had <em>"swirled for years"</em> in California political circles.</p>
-
-<p class="cite">Sources: <a href="https://www.cnn.com/2026/04/12/politics/eric-swalwell-ends-campaign-california-governor">CNN</a> · <a href="https://www.npr.org/2026/04/12/nx-s1-5782055/swalwell-suspends-campaign-assault-allegations-governor-california">NPR</a> · <a href="https://www.washingtonpost.com/politics/2026/04/12/eric-swalwell-resign-expelled/">WaPo</a> · <a href="https://calmatters.org/politics/2026/04/california-governor-race-swalwell-allegations/">CalMatters</a> · <a href="https://sfstandard.com/2026/04/14/all-investigations-raining-hell-eric-swalwell/">SF Standard</a></p>
-
-<h3 id="dems"><span class="numy">§2</span>The Democratic Field</h3>
-<p>California's bench was supposed to be the deepest in the country. Harris and Padilla opted out; Swalwell collapsed; Kounalakis, Atkins, and Yee have since withdrawn. What remains is a field of six active candidates. In independent polls (SurveyUSA, Kreate) the highest-polling Democrat is Steyer in the high teens; in party- and candidate-commissioned polls (CADEM/EVITARUS, Impact, Mellman) Becerra has tied Hilton at the top.</p>
-
-<div class="cand-grid">
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Tom Steyer</span><span class="cand-tag tag-D">D · 14–18%</span></div>
-    <p><em>Hedge-fund founder, climate-first populist.</em> Third statewide campaign; his 2020 presidential run spent ~$253M (mostly self-funded) for no delegates.</p>
-    <p><strong>Record:</strong> ~$200M self-funded per American Prospect / SF Standard May 22 reporting — the <strong>second-most-expensive CA gubernatorial campaign in history</strong> (behind Whitman 2010 $176M). Per published reporting and SEC filings, Farallon Capital — which he founded and left in 2012 — held positions valued at roughly $90M in CoreCivic (private ICE detention) during his tenure; he has called that "a mistake." Farallon also financed $2B+ in Indonesian and Australian coal acquisitions through ~2014. Steyer's public climate advocacy began ~2012 after he left Farallon. <strong>Apr 23 → May 7:</strong> the anti-Steyer ad stack grew from ~$14M to ~$26M+ (PG&amp;E feeder ~$11.5M, JOBSPAC/CalChamber $6.5M, CA Real Estate IE $7M, CA BIA $1M, CCPOA, IBEW 1245); KQED 5/19 reports PG&amp;E's confirmed total is $12.6M — its largest gov-race outlay since 1999. <strong>May 5:</strong> Steyer filed an FPPC complaint alleging PG&amp;E illegally funneled ~$8M through a shell to disguise itself as the largest funder; no public ruling. <strong>May 17:</strong> Santa Barbara Independent endorsed Steyer. <strong>May 19:</strong> FPPC opened an investigation into the Steyer campaign over $10K to influencer Isaiah Washington (undisclosed, video deleted); CalMatters reports $123K+ paid to 8+ influencers + $870K to Group Project Digital. Two creators (Hennessy, Gomberg) filed FPPC complaints; Steyer countersued Becerra alleging the same. <strong>Endorsements (post-Apr 29):</strong> SEIU California (week of Apr 30) — resolving the largest outstanding labor question after CTA's Apr 10 flip; DSA-CA functionally backed Steyer mid-May. At the May 5 CNN debate, Hilton attacked: <em>"If you think it can't get worse in California, I've got two words: Tom Steyer."</em> Steyer reaffirmed Medicare-for-All as <em>"the only way."</em> At the May 14 final debate Steyer attacked Becerra over oil-company donations and a single-payer flip-flop (which Capital &amp; Main confirmed May 26).</p>
-    <p class="poll">Attack-ad raw material: coal and CoreCivic footage; Atherton hedge-fund biography cutting against populist framing.</p>
+<section class="dossier" id="becerra">
+  <div class="dossier-head">
+    <span class="dossier-name">Xavier Becerra</span>
+    <span class="party-pill D">Dem</span>
   </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Katie Porter</span><span class="cand-tag tag-D">D · 7–10%</span></div>
-    <p><em>Whiteboard progressive.</em> Finished third in the 2024 Senate top-two (behind Schiff and Garvey) — did not make the runoff.</p>
-    <p><strong>Record:</strong> Per 2013 court filings, her then-husband Matthew Hoffman alleged Porter threw a bowl of mashed potatoes at him; Porter denied that framing, alleged physical abuse, and obtained a restraining order. Both parties sought protective orders. Former staffer Sasha Georgiades (Navy veteran) has publicly alleged Porter's office dismissed a sexual-harassment complaint; Porter's campaign has disputed the account. <strong>May 7 CalMatters profile:</strong> Q1 fundraising under $3M over four months (below pace), two viral "yelling" videos surfaced in early May (a staffer and a reporter), establishment defection to Becerra/Steyer/Villaraigosa. Porter released a self-deprecating response ad. <strong>Endorsement run:</strong> May 4 McClatchy CA editorial board (Sac/Fresno/Modesto/Merced/SLO); May 13 Bay Area Reporter; <strong>May 16 SF Chronicle</strong> ("policy smarts, political courage and independence"); May 22 Consumer Federation of California. <strong>May 14 final debate:</strong> after a staff-yelling question, framed it as accountability; quipped <em>"All you have done this evening is shout past me and not given me a chance to respond."</em> <strong>May 19 CADEM tracker:</strong> dropped to 7% (from 8% on May 4). <strong>May 21:</strong> LAist "AirTalk" 1-on-1. <strong>May 22:</strong> Stanford town hall; <em>"Housing is my top priority in this race, period."</em></p>
-    <p class="poll">Attack-ad raw material: already rejected statewide once; recent viral yelling clips.</p>
+  <div class="dossier-standing"><b>Advancing to November (projected).</b> Former U.S. Secretary of Health &amp; Human Services; former California Attorney General; 12-term U.S. Representative.</div>
+
+  <div class="field">
+    <h4>Who he is</h4>
+    <p>Xavier Becerra, 68 (born Jan. 26, 1958, in Sacramento), is a Democrat and the son of working-class Mexican-American parents — the first in his family to graduate college (Stanford B.A. 1980, J.D. 1984). He was the first Latino to serve as California Attorney General and the first Latino to lead the U.S. Department of Health and Human Services. He has been out of government since leaving the Biden cabinet on Jan. 20, 2025. <span class="cite"><a href="https://en.wikipedia.org/wiki/Xavier_Becerra" target="_blank" rel="noopener">Wikipedia</a> · <a href="https://history.house.gov/People/Detail/9147" target="_blank" rel="noopener">House History</a></span></p>
   </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Xavier Becerra</span><span class="cand-tag tag-D">D · 15–22% <span style="font-weight:normal;opacity:.85">cross-poll</span></span></div>
-    <p><em>Biden's HHS Secretary; former CA AG.</em> Biggest gainer from the Swalwell exit. Polling consolidated into a 15–22% band: <strong>Emerson May 9–10 (independent): 19%, leads Dems</strong> · <strong>CADEM Evitarus May 14–16: 21%, second to Hilton</strong> · <strong>Echelon Insights May 18–21 (Hilton-touted): 15%</strong> · <strong>GSG May 18–21 (Steyer internal): 19%, tied with Steyer</strong>. Speaker Rivas + 14 Assembly Dems endorsed Apr 22 (26 state lawmakers total). <strong>May 14 — Williamson guilty plea:</strong> Newsom's former chief-of-staff Dana Williamson pleaded guilty in Sacramento federal court to a $225K diversion from Becerra's dormant state campaign account 2022–2024; Becerra's longtime CoS Sean McCluskie is named co-conspirator with sentencing <strong>June 4, two days after the primary.</strong> Becerra is treated as victim, not charged. Becerra: <em>"I did nothing wrong. Case closed."</em> Six rivals ganged up on him at the May 14 final debate; Hilton: <em>"You should be preparing your criminal defense."</em> <strong>May 19 Daily Kos exclusive:</strong> Becerra explicitly refused to apologize for the May 12 KTLA exchange — <em>"They were never 'vanished,' and yet folks are not willing to walk back the lies."</em> <strong>May 21:</strong> Meta's $950K donation to a pro-Becerra PAC drew public protest from grieving parents of kids harmed via Instagram (Julianna Arnold, mother of Coco). <strong>May 22:</strong> Becerra unveiled a 7-point Hollywood film-industry plan, declined to provide budget numbers; Steyer campaign: <em>"not ready for prime time."</em> <strong>May 26:</strong> Capital &amp; Main reports Becerra is walking away from single-payer — a flip from his May 5 debate position; CMA president confirms at a candidate meeting. <strong>Newsom signal:</strong> still no formal endorsement; CNN May 8 reported Newsom's political team consults/fundraises for Becerra. NBC May 14 reports ex-Biden colleagues (Mayorkas, Harris) are withholding endorsements.</p>
-    <p><strong>Record:</strong> Per <em>New York Times</em> 2023–24 reporting, HHS failed to re-contact ~85,000 unaccompanied migrant children placed with sponsors during his tenure, with documented child-labor outcomes at some sponsor addresses; House Homeland Security subpoenaed him in September 2024. Becerra disputes the "lost 85,000 kids" framing, noting HHS policy at the time limited post-placement contact authority. During his time as CA AG, the office filed 15 charges in 2017 against David Daleiden and Sandra Merritt (anti-abortion sting videos); a Superior Court dismissed 14 on legal-sufficiency grounds in June 2017 (not First Amendment). Prosecutors refiled; the case eventually resolved in a January 2025 no-contest plea deal.</p>
-    <p class="poll">Attack-ad raw material: HHS follow-up-contact failures; the Williamson plea + McCluskie co-conspirator status (sentencing June 4); the KTLA "needed to earn some money" framing and explicit non-apology; the single-payer flip; the Meta-PAC donation.</p>
+
+  <div class="field">
+    <h4>What he's done</h4>
+    <ul>
+      <li><span class="role">U.S. House of Representatives, Los Angeles (1993–2017).</span> Twelve terms; chaired the House Democratic Caucus (2013–2017), the No. 4 House Democratic leadership post. <span class="cite"><a href="https://history.house.gov/People/Detail/9147" target="_blank" rel="noopener">House History</a></span></li>
+      <li><span class="role">California Attorney General (2017–2021).</span> Appointed by Gov. Jerry Brown to the seat Kamala Harris vacated, then elected in 2018. His office filed <b>more than 120 lawsuits</b> against the first Trump administration — concentrated on the environment, immigration, and health care — and led a 21-state coalition defending DACA, which the Supreme Court ruled had been unlawfully rescinded. <span class="cite"><a href="https://calmatters.org/politics/2025/01/california-lawsuits-against-donald-trump/" target="_blank" rel="noopener">CalMatters</a></span></li>
+      <li><span class="role">U.S. HHS Secretary (2021–2025).</span> Confirmed March 18, 2021 by 50–49 (Sen. Susan Collins the only Republican voting yes). Oversaw the later COVID-19 response, implementation of the Affordable Care Act, and federal abortion-access policy after the 2022 <em>Dobbs</em> decision. <span class="cite"><a href="https://www.npr.org/2021/03/18/978691179/senate-confirms-xavier-becerra-to-head-health-and-human-services" target="_blank" rel="noopener">NPR</a></span></li>
+      <li><span class="role">Scrutiny (attributed).</span> Per <em>New York Times</em> reporting (2023–24), HHS failed to re-contact roughly 85,000 unaccompanied migrant children placed with sponsors during his tenure; House Homeland Security subpoenaed him in September 2024. Becerra disputes the "lost 85,000 kids" framing, saying HHS policy at the time limited post-placement contact authority. <span class="cite"><a href="https://en.wikipedia.org/wiki/Xavier_Becerra" target="_blank" rel="noopener">background</a></span></li>
+    </ul>
   </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Antonio Villaraigosa</span><span class="cand-tag tag-D">D · 2–5%</span></div>
-    <p><em>Former LA mayor.</em> Got 13% against Newsom in the 2018 primary. ~$6.96M cumulative per April state filings (~$707K raised in the four months ending mid-April) — top direct-fundraising Dem after Steyer at the February cut, slowing into spring. SurveyUSA Apr 28–May 1 had him at 5%.</p>
-    <p><strong>Record:</strong> 2007 Mirthala Salinas affair ended his marriage. Paid advisor to Herbalife — an MLM the League of United Latin American Citizens publicly condemned him over. FPPC fined him $41,849 in 2024 for 21 undisclosed gifts (Dodgers, Shakira, Aretha, Grammys, Globes) — the largest FPPC ethics fine ever levied against an individual California elected official at the time. In 2018, charter-school independent-expenditure money (Reed Hastings $7M, Eli Broad $2.5M, Bloomberg $2M) dumped ~$22M into his losing bid. Same donor cluster is active this cycle. Qualified for the May 5 CNN debate (3% threshold); confronted Bianco directly on the 2014 Oath Keepers membership and pivoted to attack Becerra's HHS record.</p>
-    <p class="poll">Attack-ad raw material: Herbalife advisory role; FPPC fine; 2018 loss.</p>
+
+  <div class="field">
+    <h4>What the news says</h4>
+    <p><b>Campaign-finance matter (he is the victim, not charged).</b> Per the U.S. Department of Justice (Eastern District of California) and CalMatters, about <b>$225,000</b> was diverted between 2022 and 2024 from Becerra's <em>dormant state campaign account</em> to his longtime chief of staff, Sean McCluskie. Dana Williamson — Gov. Newsom's former chief of staff — pleaded guilty to conspiracy, filing a false tax return, and making false statements; McCluskie and lobbyist Greg Campbell also pleaded guilty. Prosecutors treat Becerra as the victim; he is not charged. Becerra: "As I said from Day One, I was not involved, I did nothing wrong. And now the record confirms it." Sentencing was postponed from June 4 to Aug. 6, 2026. <span class="cite"><a href="https://calmatters.org/politics/2026/05/california-newsom-chief-plea-deal/" target="_blank" rel="noopener">CalMatters</a> · <a href="https://www.yahoo.com/news/politics/articles/sentencing-postponed-federal-corruption-cases-224946880.html" target="_blank" rel="noopener">SLO Tribune</a></span></p>
+    <p><b>Endorsements &amp; framing.</b> The California Medical Association endorsed him (April 28, 2026), while the nurses' union and other single-payer advocates backed Steyer. <em>TIME</em> called Becerra an "unexpected frontrunner"; CalMatters called the contest the "most uncertain California governor's race in years." <span class="cite"><a href="https://www.kqed.org/news/12082059/xavier-becerra-backpedals-on-single-payer-as-he-woos-powerful-doctors-lobby" target="_blank" rel="noopener">KQED</a> · <a href="https://time.com/article/2026/06/02/xavier-becerra-california-gubernatorial-race-governor-primary/" target="_blank" rel="noopener">TIME</a> · <a href="https://calmatters.org/politics/2026/06/primary-election-california-governor/" target="_blank" rel="noopener">CalMatters</a></span></p>
   </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Matt Mahan</span><span class="cand-tag tag-D">D · 7–10%</span></div>
-    <p><em>Mayor of San Jose.</em> Year three of his term, attempting to skip straight to governor.</p>
-    <p><strong>Record:</strong> "Responsibility to Shelter" plan authorizes arresting homeless residents after three shelter refusals — implemented in a city with ~5,477 homeless residents and ~2,968 beds; ACLU alleged federal ADA violations. Publicly endorsed Prop 36, breaking with state Dem leadership. Campaign ecosystem ~$40M per May 7 CNN/AP/Fortune cross-reads: ~$12M directly raised plus ~$25M+ across two tech-sector IE PACs; lead vehicle "California Back to Basics" once exceeded $15M (Moritz $3M, Seibel $1M, plus max-checks from Brin, Hastings, Lonsdale, Parker, Caruso, Tan, Baszucki, Huffman, Oberndorf, Sethi, Merrill). <strong>May 23 collapse:</strong> "Deliver for Mahan" PAC filed to shut down; "California Back to Basics" refunded $1M to Reed Hastings. Santa Clara County Dem chair Bill James: <em>"a recognition that despite significant spending… the campaign has not gained any traction."</em> The April 18 FPPC complaint by Raul Claros (founder of California Rising) alleging illegal coordination between the campaign and Back to Basics — citing an April 6 Zoom call with Moritz, Caruso, and Mahan where campaign strategy slides were screen-shared — remains pending, with potential $5M penalty per complaint. At the April 22 debate, delivered the cycle's sharpest attack on Steyer: <em>"The only housing Tom Steyer has built has been private prisons and ICE detention centers."</em> At the May 5 CNN debate, told Hilton on $3 gas: <em>"You're lying to people."</em> Mahan was an early employee at Causes (founded 2007 by Sean Parker and Joe Green) and later co-founded Brigade with Parker in 2014.</p>
-    <p class="poll">Attack-ad raw material: low statewide name ID; tech-oligarch IE money; left-flank critiques of "Responsibility to Shelter."</p>
+
+  <div class="field">
+    <h4>What he's doing now</h4>
+    <ul>
+      <li><span class="role">Message.</span> Running on "Build, Protect, and Lead California," he leans on his record over promises: "I am not running on inflated promises… I am running on my record." His central contrast is anti-Trump competence, pointing to the more than 120 lawsuits he filed as AG. <span class="cite"><a href="https://www.xavierbecerra2026.com/" target="_blank" rel="noopener">campaign</a></span></li>
+      <li><span class="role">Stated priorities.</span> Health care and Medi-Cal; housing as "essential infrastructure"; affordability (anti-price-gouging, child care, prescription drugs); a pledge to freeze utility and home-insurance rates while pursuing longer-term fixes; first-time-homebuyer assistance; and defense of abortion, voting, and LGBTQ+ rights. <span class="cite"><a href="https://www.xavierbecerra2026.com/priorities/" target="_blank" rel="noopener">priorities</a></span></li>
+      <li><span class="role">Single-payer shift (chronology).</span> He testified for single-payer in 1994 and posted on March 23, 2026 that he was "ready to go further as Governor and deliver single-payer." Before the CMA's April 28 endorsement, the CMA's president said Becerra stated he "wasn't supportive of single payer" "at this point." His campaign (spokesperson Jonathan Underland): "A single payer system is the right goal — but it's not possible under this administration," citing reliance on federal waivers. <span class="cite"><a href="https://www.kqed.org/news/12082059/xavier-becerra-backpedals-on-single-payer-as-he-woos-powerful-doctors-lobby" target="_blank" rel="noopener">KQED</a></span></li>
+    </ul>
   </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Betty Yee</span><span class="cand-tag tag-OUT">OUT · WITHDREW APR 20</span></div>
-    <p><em>Former State Controller.</em> Withdrew April 20, 2026, citing polling and fundraising; endorsed Tom Steyer on April 21. Still on the June 2 ballot (post-deadline withdrawal) — any votes are wasted.</p>
-    <p>Scandal-free record. Raised $342K in H2 2025 (versus Steyer's self-funded ~$132M). Won 17% of delegates at the CA Dem convention — the convention's clean-record signal — but never converted to voter-level support. The only active Dem at the time who voted NO on Prop 36.</p>
-  </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Tony Thurmond</span><span class="cand-tag tag-D">D · 1–2%</span></div>
-    <p><em>State Superintendent.</em> Newsom has publicly pushed to restructure Thurmond's office.</p>
-    <p><strong>Record:</strong> Politico (December 2021) reported that Thurmond hired Philadelphia-based associate Daniel Lee as "Superintendent of Equity" at a salary up to $179,832 — funded initially via a $700K Hewlett Foundation grant before being taken over by public funds; Lee reportedly continued to reside on the East Coast, apparent tension with residency rules. Lee resigned December 14, 2021. Multiple outlets have reported toxic-workplace turnover at CDE. CTA endorsed Swalwell in March 2026, then flipped to Steyer on April 10. <strong>Failed to qualify for the May 5 CNN debate</strong> (sub-3% threshold) — only the four-debate candidate to be excluded from the third event.</p>
-    <p class="poll">Attack-ad raw material: the Daniel Lee hire; CDE-culture reporting; fundraising gap.</p>
-  </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Eric Swalwell</span><span class="cand-tag tag-OUT">OUT · SUSPENDED APR 12</span></div>
-    <p><em>Was leading pre-allegations.</em></p>
-    <p>See §1 above. Still on the June 2 ballot due to late-withdrawal statute. Any votes will not count toward top-two qualification since he has suspended his campaign.</p>
-  </div>
-</div>
-
-<div class="pullquote">With Harris and Padilla opting out, and Kounalakis, Atkins, Yee, and Swalwell withdrawing or suspending, California Democrats face a second-tier primary — six active candidates, with the Democratic frontrunner contested across pollsters.</div>
-
-<h3 id="gop"><span class="numy">§3</span>The Republican Field</h3>
-<p>California has not elected a Republican to a statewide office since 2006, but the top-two primary makes intra-GOP math the story of the moment. The two GOP candidates are former Fox News host Steve Hilton and Riverside Sheriff Chad Bianco. Neither cleared the 60% threshold at the April 12 CAGOP convention (Bianco 49, Hilton 44). At current polling, they are the best-polling candidates in the field.</p>
-
-<div class="cand-grid">
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Steve Hilton</span><span class="cand-tag tag-R">R · 20% (lead)</span></div>
-    <p><em>Former Fox News host and British political consultant.</em> Spent 11 years at Fox ("The Next Revolution," 2017–2023) after emigrating from the UK. Lives in Atherton, CA.</p>
-    <p><strong>Record:</strong> David Cameron's Director of Strategy 2010–2012 (the "Big Society" / Brexit-era Downing Street). Became a US citizen in May 2021; held dual UK/US citizenship 2021–2024; renounced UK citizenship in 2024 (£492 fee). Wife Rachel Whetstone is CCO at Netflix (ex-Google, ex-Uber). Book: <em>Positive Populism</em>. UK political memoirs describe him as Cameron's "pint-sized Rasputin."</p>
-    <p><strong>Fundraising:</strong> Top Republican fundraiser at ~$7.1M total raised through ~18,000 individual contributions (per April 2026 CalMatters/KRON4 campaign reports; the frequently-cited "30,000 donors" figure reflects the February snapshot). Per CalMatters, Hilton has also self-loaned approximately $200K to his campaign. Sergey Brin contributed the $39,200 individual maximum.</p>
-    <p><strong>The Trump wrinkle:</strong> Trump endorsed him April 6. Six days later, the CAGOP convention declined to endorse — 44% Hilton, 49% Bianco, neither hitting the 60% threshold. Hilton embraced the endorsement at the April 22 debate ("a deep honor") and pitched a "constructive relationship" with the Trump administration on forestry, energy, and fraud. <strong>Polling consolidation:</strong> from CBS/YouGov Apr 23–27 16% to SurveyUSA Apr 28–May 1 20% to Kreate May 5–9 22% — Hilton holds first across every public poll since April.</p>
-    <p><strong>May 5 CNN debate:</strong> on Steyer, <em>"If you think it can't get worse in California, I've got two words: Tom Steyer."</em> On Becerra, <em>"mired, personally, in a corruption scandal."</em> Declined to say Trump lost 2020 when pressed by moderators. <strong>May 7:</strong> opened a new front, publicly accusing CHIRLA (a Becerra endorser) of using undocumented canvassers for the Becerra campaign and questioning $72M in public funding to the group.</p>
-    <p class="poll">General-election headwinds: Republicans haven't won statewide since 2006; a ~20-point Dem registration advantage; national-origin rhetoric used against him at CAGOP convention by Bianco allies.</p>
-  </div>
-  <div class="cand">
-    <div class="cand-head"><span class="cand-name">Chad Bianco</span><span class="cand-tag tag-R">R · 12–14%</span></div>
-    <p><em>Riverside County Sheriff.</em> Campaigning on a "law and order" platform. CJCJ reports his department recorded the lowest Part 1 crime-clearance rate of any California sheriff's department from 2019–2024 (9.2% — less than half the state average).</p>
-    <p><strong>Record:</strong> Riverside County jails recorded 18 inmate deaths in 2022, the highest number in 15 years per LAist reporting. The department is under a California DOJ pattern-and-practice investigation opened in February 2023 over jail deaths and use-of-force; no new public milestone Apr 29–May 12. A 2014 Oath Keepers membership ($40, one-year) was confirmed by Bianco after a 2021 data leak; he has said he quickly let the membership lapse. In April 2026, Bianco's department seized approximately 650,000 ballots tied to California's redistricting referendum on election-fraud grounds; the California Supreme Court halted the action and unsealed warrants that did not cite direct evidence of fraud. On April 14, the Riverside County Board of Supervisors voted 4–1 to decline paying the department's legal defense. In late April, the CA Supreme Court granted AG Bonta's request for an expedited briefing schedule. <strong>On May 13 the CA Supreme Court granted review of the UCLA Voting Rights Project petition; briefing deadline for Bianco and Registrar Tinoco is June 12 — ten days after the primary. The April pause on the underlying investigation remains. No oral argument date is posted; no federal indictment has been filed.</strong> Bianco endorsed Trump in 2024 in uniform on Instagram (<em>"It's time we put a felon in the White House"</em>) — video still circulating.</p>
-    <p><strong>May 5 CNN debate:</strong> when Villaraigosa pressed him on Oath Keepers, Bianco doubled down — <em>"proud Oath Keeper."</em> Becerra accused him of unlawfully seizing 650,000+ ballots during the 2025 referendum.</p>
-    <p><strong>Fundraising:</strong> ~$4.4M cumulative per CA SoS filings, with donor appeals for legal defense. Cumulative raise now trails Hilton's by roughly 2:1.</p>
-    <p class="poll">General-election headwinds: the 650K-ballot seizure footage; DOJ pattern-and-practice investigation; general-election math against a statewide Democratic registration advantage.</p>
-  </div>
-</div>
-
-<h3 id="policy"><span class="numy">§4</span>Where They Stand</h3>
-<p class="dek">The policy splits that actually matter.</p>
-
-<div class="table-wrap">
-<table>
-<thead><tr><th>Issue</th><th>Left edge</th><th>Right edge of Dems</th><th>GOP</th></tr></thead>
-<tbody>
-<tr><td>Prop 36 (tougher drug/theft)</td><td>Yee (No)</td><td>Mahan, Porter (Yes)</td><td>Both Yes</td></tr>
-<tr><td>CEQA reform</td><td>Thurmond, Yee (soft)</td><td>Villaraigosa, Mahan, Steyer (hard)</td><td>Both repeal-minded</td></tr>
-<tr><td>High-speed rail</td><td>Most Dems defend</td><td><strong>Porter opposes</strong></td><td>Both kill it</td></tr>
-<tr><td>Wealth tax</td><td>Steyer (yes); Thurmond (billionaire tax for schools)</td><td>Others silent/no</td><td>No</td></tr>
-<tr><td>Prop 13 reform</td><td>Steyer (split roll)</td><td>Others silent</td><td>Hilton opposes any change</td></tr>
-<tr><td>Sanctuary/ICE</td><td>Thurmond (abolish ICE); Steyer (prosecute agents)</td><td>Villaraigosa (reform/accountability)</td><td>Full cooperation, repeal SB 54</td></tr>
-<tr><td>Reparations</td><td>Becerra (soft yes, fund TBD)</td><td>Villaraigosa (no)</td><td>Both no</td></tr>
-<tr><td>Homelessness</td><td>Porter (prevention/housing-first)</td><td>Mahan (arrest refusers)</td><td>Treatment-mandate + enforcement</td></tr>
-<tr><td>Oil drilling</td><td>Steyer, Thurmond (tax polluters)</td><td>Villaraigosa (all-of-above incl. gas)</td><td>Expand drilling</td></tr>
-<tr><td>Newsom legacy</td><td>Becerra (closest defender)</td><td>Mahan, Villaraigosa (course-correct)</td><td>Full repudiation</td></tr>
-</tbody>
-</table>
-</div>
-
-<h4>Key candidate positions at a glance</h4>
-<ul>
-  <li><strong>Porter</strong> — only major Dem to explicitly oppose high-speed rail; voted YES on Prop 36 despite progressive lane.</li>
-  <li><strong>Steyer</strong> — only candidate backing billionaire wealth tax ballot measure; would call special election on Prop 13 split roll.</li>
-  <li><strong>Becerra</strong> — closest to a Newsom successor-lane candidate; soft yes on reparations but "how do you fund it?"</li>
-  <li><strong>Villaraigosa</strong> — furthest right Dem: pro-nuclear, pro-gas-car, anti-reparations, aggressive CEQA reform.</li>
-  <li><strong>Mahan</strong> — most Newsom-critical Dem; endorsed Prop 36; pushing gas-tax holiday to sub-$5 pump prices.</li>
-  <li><strong>Thurmond</strong> — most aggressive on immigration: tax ICE-contracting companies, "work with Congress until we abolish ICE."</li>
-  <li><strong>Hilton</strong> — no income tax under $100K; kill low-carbon fuel standard; target $3 gas; 100% ICE cooperation.</li>
-  <li><strong>Bianco</strong> — suing state to end sanctuary status; every arrested undocumented person "should be deported"; 100% oil independence.</li>
-</ul>
-
-<h3 id="money"><span class="numy">§5</span>Follow the Money</h3>
-<p class="dek">The $200M Steyer self-fund, the $26M+ anti-Steyer ad stack (PG&amp;E confirmed $12.6M alone), the collapsing tech IE for Mahan, and the labor split.</p>
-
-<div class="stat-grid">
-  <div class="stat"><div class="num">$147M+</div><div class="lbl">Steyer self-funding, per CalMatters tracker (May filings)</div></div>
-  <div class="stat"><div class="num">$40M</div><div class="lbl">Mahan ecosystem (~$12M direct + ~$25M+ tech IE across two PACs, per CNN/AP/Fortune May 7)</div></div>
-  <div class="stat"><div class="num">$26M+</div><div class="lbl">Anti-Steyer ad stack (PG&amp;E feeder + JOBSPAC + CA Real Estate IE + Realtors + BIA + CCPOA + IBEW 1245)</div></div>
-  <div class="stat"><div class="num">$7.1M</div><div class="lbl">Hilton raised — top GOP</div></div>
-  <div class="stat"><div class="num">$6.96M</div><div class="lbl">Villaraigosa raised (top direct-Dem behind Steyer)</div></div>
-  <div class="stat"><div class="num">$4.4M</div><div class="lbl">Bianco raised (donor appeals for legal bills)</div></div>
-  <div class="stat"><div class="num">$3.2M</div><div class="lbl">Porter cash on hand (small-dollar)</div></div>
-  <div class="stat"><div class="num">0</div><div class="lbl">Newsom / Harris / Pelosi / Obama endorsements</div></div>
-</div>
-
-<h4>The four money stories that matter</h4>
-<p><strong>1. Steyer is outspending the field.</strong> ~$147M self-funded per CalMatters' May filings tracker — now the second-most-expensive CA gubernatorial campaign in history behind Whitman 2010 ($176M). Effectively uncapped — his 2020 presidential campaign spent ~$253M (mostly personal funds). Won CTA on April 10 after CTA dropped Swalwell; SEIU California endorsed him in the week of April 30 (resolving the post-Swalwell vacuum). If TV saturation drives decision-making, Steyer is positioned to take a top-two slot on money alone.</p>
-<p><strong>2. The anti-Steyer ad stack has scaled to $26M+ — and now Steyer is being investigated himself.</strong> Per the <a href="https://www.fppc.ca.gov/search-filings/top-10-contributors-list/june-2026-primary-election/" target="_blank" rel="noopener">FPPC top-10 contributors list</a> as of early May: the PG&amp;E/IBEW feeder ("Californians for Resilient and Affordable Energy") now totals ~$11.5M into the public-facing PAC "California Is Not for Sale"; JOBSPAC (CalChamber-sponsored) added ~$6.5M; the California Real Estate IE Committee added ~$7M; plus prior CA BIA ($1M), CCPOA, and IBEW Local 1245. Total tracked receipts to "California Is Not for Sale" reached ~$26,025,000; <a href="https://www.kqed.org/news/12083747/pge-spends-millions-against-tom-steyer-whats-behind-clash" target="_blank" rel="noopener">KQED May 19</a> reports PG&amp;E's confirmed total is now $12.6M — "the utility's largest such outlay in a governor's race since 1999." <strong>Steyer's campaign filed an FPPC complaint the week of May 5</strong> alleging PG&amp;E funneled ~$8M through the shell to disguise itself as the largest funder (<a href="https://sfstandard.com/2026/05/07/power-play-tom-steyer-pacific-gas-and-electric-governor/" target="_blank" rel="noopener">SF Standard</a>); no public ruling. <strong>On May 19 the FPPC opened a separate investigation into the Steyer campaign</strong> over undisclosed payments to influencer Isaiah Washington ($10K, video deleted) — CalMatters reports Steyer paid $123,400+ to 8+ influencers Jan–Apr 18 plus $870K to Group Project Digital (<a href="https://calmatters.org/politics/2026/05/california-governor-race-influencers/" target="_blank" rel="noopener">CalMatters</a>). Two creators (Hennessy, Gomberg) filed FPPC complaints against the campaign; Steyer filed counter-complaints against Becerra alleging the same.</p>
-<p><strong>3. Mahan is the "does tech money move California?" test case — and the answer is no.</strong> CNN/AP/Fortune May 7 reporting documented Silicon Valley IE at $25M+ across the two pro-Mahan PACs — lead vehicle "California Back to Basics" once exceeded $15M (Moritz $3M, Seibel $1M, plus max-checks from Brin, Hastings, Lonsdale, Parker, Caruso, Tan, Baszucki, Huffman, Oberndorf, Sethi, Merrill). Mahan fell from 7% to 4% in the CADEM tracker between May 4 and May 19. On <strong>May 23</strong>, "Deliver for Mahan" filed to shut down and "California Back to Basics" refunded $1M to Reed Hastings — Santa Clara County Dem chair Bill James calling it <em>"a recognition that despite significant spending… the campaign has not gained any traction."</em> The April 18 FPPC complaint by Raul Claros alleging illegal coordination remains pending, with potential $5M penalty per complaint. The cycle's proof-of-concept is now empirical: tech-oligarch IE money did not translate at the voter level.</p>
-<p><strong>4. The Newsom ghost.</strong> Newsom, Pelosi, Harris, Padilla, Biden, Obama, and Hillary Clinton — still publicly silent on a primary endorsement as of May 12. On <strong>May 8</strong> Newsom reiterated "It's my intention not to get involved in the primary" while reframing his stake as "everything that needs to be done to make sure that there's not a lockout for a Democratic choice in the general" (<a href="https://www.spokesman.com/stories/2026/may/08/gov-gavin-newsom-again-declines-to-endorse-a-candi/" target="_blank" rel="noopener">Spokesman-Review</a>). <a href="https://www.cnn.com/2026/05/08/politics/newsom-california-governors-race-democrats-greater-golden-state" target="_blank" rel="noopener">CNN May 8 reported</a> members of Newsom's political team are consulting and fundraising for Becerra — a soft signal that falls short of a formal endorsement. SEIU California resolved its post-Swalwell vacuum by endorsing Steyer (week of April 30). Harris declined to run in July 2025; Padilla opted out as well.</p>
-
-<h4>Labor split summary</h4>
-<ul>
-  <li><strong>CTA</strong> → Steyer (flipped from Swalwell April 10)</li>
-  <li><strong>CA Fed of Labor</strong> → multi-endorsed Steyer, Porter, Villaraigosa (and Swalwell before he exited)</li>
-  <li><strong>State Building &amp; Construction Trades</strong> → Villaraigosa</li>
-  <li><strong>Teamsters, UAW, NUHW, SMART</strong> → Porter</li>
-  <li><strong>CWA District 9</strong> → Porter (Apr 21)</li>
-  <li><strong>PORAC (police)</strong> → Villaraigosa</li>
-  <li><strong>CHIRLA Action Fund</strong> (immigrant rights) → Becerra</li>
-  <li><strong>SEIU California</strong> → unresolved post-Swalwell; the state council has continued to focus resources on the wealth-tax ballot initiative rather than re-endorsing in the gov race</li>
-  <li><strong>IBEW Local 1245 + CCPOA + CA Realtors</strong> → <em>against</em> Steyer (via the April 23 PG&amp;E PAC)</li>
-</ul>
-
-<h3 id="scenarios"><span class="numy">§6</span>How It Shakes Out</h3>
-<p class="dek">Three scenarios for the June 2 top-two primary. Probabilities as of May 26, <span class="js-days">7</span> days out, with 1.5M+ ballots already returned and PDI's early-return snapshot showing Republicans +11pts vs the 2022 primary at the same point. Numbers are ranges from public polling (SurveyUSA, Kreate, CBS/YouGov, Emerson, EVITARUS, Impact, Mellman) and Paul Mitchell's model, not a single forecaster.</p>
-
-<div class="scenario">
-<div class="sc-head"><h4>Scenario 1 · R-vs-R November ballot</h4><span class="prob">~12–18% probability</span></div>
-<p>Both Hilton and Bianco finish top-two. The Dem field stays fractured. Combined GOP share rises from current ~32–34% to 35–37% via late undecided consolidation in the Central Valley and Inland Empire. Probability has tightened since Apr 29 — Becerra's surge in Dem-aligned polling and the McClatchy endorsement of Porter both narrow the path, but Hilton's cross-pollster consolidation at ~20% keeps it live.</p>
-<p><strong>What pushes toward this:</strong> The May 14 Williamson plea (Newsom's ex-CoS, $225K diverted from Becerra's account via Becerra's ex-CoS McCluskie) damaging Becerra at the May 14 final debate without lifting Steyer; Steyer's FPPC influencer probe (Isaiah Washington $10K undisclosed, video deleted) capping his ceiling; Porter's collapse to 7% in the CADEM tracker; low-polling-Dem holdouts (Villaraigosa, Mahan, Thurmond) staying in; the CA Supreme Court briefing on Bianco's 650K-ballot case falling June 12, ten days past the primary.</p>
-<p><strong>November dynamics:</strong> California has not elected a Republican to a statewide office since 2006. In this scenario the November race becomes a GOP ideology contest (Hilton-Trump-aligned vs. Bianco-Oath-Keeper). Dem turnout would likely decline, which would pressure down-ballot House districts (CA-22, CA-27, CA-41, CA-45). Head-to-head, public polling averages suggest Hilton would beat Bianco comfortably.</p>
-</div>
-
-<div class="scenario scenario-D">
-<div class="sc-head"><h4>Scenario 2 · R-vs-D November ballot (most likely)</h4><span class="prob">~72–78% probability</span></div>
-<p>Hilton consolidates the GOP to 20–23% and finishes first. One Democrat breaks from the pack to 16–20% and takes second. Bianco lands third at 12–14%. <strong>As of May 26, the Dem second-place lane is a Steyer-vs-Becerra contest</strong> — Becerra leads or ties in the Evitarus/CADEM tracker (5/14–16) and Emerson (5/9–10); Steyer leads in his own Global Strategy Group internal (5/18–21). Porter has been demoted from the contest by the May 7 CalMatters profile, the May 14 final debate, and the May 19 CADEM tracker that put her at 7%. SF Chronicle endorsed her May 16, joining the McClatchy CA papers and Bay Area Reporter; LA Times broke decades of practice and endorsed nobody.</p>
-<p><strong>Which Democrat?</strong> <strong>Steyer</strong> retains the money advantage (~$200M self-fund per American Prospect / SF Standard May 22; CTA + SEIU CA endorsements; decisive broadcast capacity against a $26M+ anti-Steyer stack now anchored by PG&amp;E alone at $12.6M); <strong>Becerra</strong> has the institutional and party-poll momentum (26 state-lawmaker endorsements, Newsom-team operatives consulting/fundraising, 35% of Democrats in CADEM 5/14–16). The May 14 Williamson plea is the live damage variable for Becerra; the May 19 FPPC influencer probe (Isaiah Washington $10K, video deleted) is the live ceiling for Steyer. The May 14 final debate ganged on Becerra hours after the plea; Becerra's May 19 Daily Kos non-apology for KTLA kept the story alive. Independent confirmation arrived May 13 — Emerson had Becerra surging to 19% (+9 since April) but with 40% of decided voters saying they could still change.</p>
-<p><strong>Catalysts already resolved:</strong> Five debates (April 22, April 28, May 5, May 14 — final). Editorial boards: McClatchy → Porter (May 4); SF Chronicle → Porter (May 16); Bay Area Reporter → Porter (May 13); Santa Barbara Independent → Steyer (May 17); LA Times → nobody (broke practice); SDUT → no formal endorsement. Labor: SEIU CA + CTA → Steyer. CA Supreme Court granted UCLA VRP review on the Bianco 650K-ballot case (May 13; briefing June 12 — post-primary). Dana Williamson guilty plea (May 14). FPPC opened Steyer influencer probe (May 19). Hilton publicly told Bianco to drop out; Bianco refused (May 19). Pro-Mahan IE infrastructure collapsed (May 23).</p>
-<p><strong>Catalysts still open in the final week:</strong> Whether the McCluskie sentencing news cycle (sentencing June 4 — two days post-primary) breaks late and shifts Becerra's ceiling. Whether the FPPC takes any visible action on the Steyer influencer probe before June 2. Whether the R-skewed early returns (PDI May 15: D 41 / R 37 / NPP 22 — R +11 pts vs 2022) translate to Election Day turnout or revert toward 2022 patterns. Whether a late Newsom or Obama endorsement materializes (Newsom held through May 23). Any final Bianco federal action or 9th Circuit Ware ruling.</p>
-<p><strong>November dynamics:</strong> Democrat wins by high-single to low-double digits. Head-to-head: Steyer wins on climate + affordability, Becerra wins on healthcare + institutional experience.</p>
-</div>
-
-<div class="scenario scenario-X">
-<div class="sc-head"><h4>Scenario 3 · D-vs-D November ballot</h4><span class="prob">~4–10% probability</span></div>
-<p>Simultaneous decline by both Republicans. Combined GOP share falls from ~32–34% to 22–24%. Two Democrats consolidate into the high teens — likeliest pairing Steyer (~18%) + Becerra (~17%).</p>
-<p><strong>What pushes toward this:</strong> A federal indictment or civil finding against Bianco; a CA Supreme Court order before VBM returns are tabulated (briefing now scheduled for June 12, ten days post-primary — so the window is closed); the Hilton-Bianco intra-GOP drop-out fight escalating into actual defection from one side; a late Newsom or Obama endorsement (Newsom held through May 23).</p>
-<p><strong>November dynamics:</strong> A policy contest between Steyer's wealth-tax populism and Becerra's institutional experience. Republican turnout would likely crater. Head-to-head, Becerra probably holds a slight edge (Steyer's self-funder profile cuts against populist framing in a one-on-one).</p>
-</div>
-
-<h4>The cross-cutting factors</h4>
-<p><strong>Trump's Hilton endorsement splits, doesn't consolidate.</strong> The convention vote (Bianco 49, Hilton 44) is the tell: Bianco's base sees Hilton as a carpetbagging Fox personality, and Trump's thumb on the scale activated anti-establishment GOP grievance. Net effect: +3–5 pts for Hilton with MAGA-aligned indies, −2–3 pts with Bianco-loyal grassroots. Helps Hilton finish first, <em>hurts</em> combined GOP total. The May 5 debate moment where Hilton declined to say Trump lost 2020 reinforces this dynamic.</p>
-<p><strong>Unifying Dem endorsement is not coming.</strong> Newsom's April 15 statement, April 28 WaPo signal ("supporting a Democrat in the runoff"), and May 8 reiteration ("it's my intention not to get involved in the primary") all explicitly declined to endorse before June 2. CNN May 8 reported Newsom's political team is consulting and fundraising for Becerra — a soft signal that falls short of a formal endorsement. Historical precedent: Brown stayed out of 2018 Newsom-Villaraigosa. Absence is priced in. A late Obama nod would lock Scenario 2 and decide which Democrat advances. Don't bet on it.</p>
-<p><strong>Turnout.</strong> Non-presidential June primaries run 35–40%, skewing older, whiter, higher-propensity — which helps Republicans and hurts fragmented Democrats. Undecideds compressed from ~26% in late April to 14–17% by mid-May; late breakers will skew toward name-ID + TV saturation. Steyer's self-funding is the clearest late-break advantage; Hilton's Fox tenure is second. The "hold your VBM ballot" social-media push from some Democratic operators is the cycle's new turnout wrinkle — AG Bonta called it "potentially unlawful" misinformation on May 8.</p>
-
-<h3 id="bottom"><span class="numy">§7</span>The Bottom Line</h3>
-<p>The most likely outcome, consensus view as of May 26:</p>
-<ol>
-  <li><strong>June 2 primary:</strong> Hilton finishes first (~20–22%). Steyer or Becerra finishes second (~16–20%). Bianco third (~12–14%).</li>
-  <li><strong>November general:</strong> A Democrat wins by roughly 10–20 points. California has not elected a Republican to a statewide office since 2006.</li>
-  <li><strong>The ~12–18% risk:</strong> the Dem field stays fractured through VBM tabulation and both Republicans advance. In that scenario, Hilton is the likely November winner.</li>
-</ol>
-
-<p>The Democratic field has <span class="js-days">7</span> days to consolidate, and most of the consolidation mechanisms have already played out: SEIU and CTA are with Steyer; Speaker Rivas + 26 state lawmakers and Newsom's political team's quiet support are with Becerra; McClatchy + SF Chronicle + Bay Area Reporter are with Porter; LA Times broke practice and endorsed nobody; SDUT informally favored Steyer without formal endorsement; Newsom himself has explicitly stayed out. The remaining variables are whether the Williamson plea + KTLA non-apology break Becerra's cross-pollster ceiling, whether Steyer's FPPC influencer probe gets a ruling before June 2, whether the Hilton–Bianco intra-GOP drop-out fight produces consolidation, and whether the R-skewed early returns (PDI: R +11pts vs 2022) translate to Election Day turnout.</p>
-
-<div class="pullquote">If the November ballot ends up with two Republicans, it will be because six active Democrats collectively polled under a combined Republican vote share — a math outcome, not a voter preference.</div>
-
 </section>
 
-<!-- ============================================ OVERVIEW ============================================ -->
-<section class="panel" id="overview">
-<h2>Overview.</h2>
-<p class="dek">The five-minute version. Bullets, no fluff.</p>
+<section class="dossier" id="hilton">
+  <div class="dossier-head">
+    <span class="dossier-name">Steve Hilton</span>
+    <span class="party-pill R">Rep</span>
+  </div>
+  <div class="dossier-standing"><b>Currently 2nd in the count — the second slot is contested by Tom Steyer (D).</b> Former Fox News host; former senior adviser to UK Prime Minister David Cameron.</div>
 
-<h4>The setup</h4>
-<ul>
-  <li>Newsom termed out. First open-seat CA governor race since 2010.</li>
-  <li>California uses a <strong>top-two primary</strong>: all 61 candidates on one ballot June 2, top two advance to November regardless of party.</li>
-  <li><strong>Ballot logistics:</strong> VBM ballots mailed starting May 4; drop-off opens May 5; vote centers open May 23 (VCA counties) or May 30 (non-VCA); registration deadline May 18 (conditional registration May 19–June 2); polls June 2, 7am–8pm. VBM returns must be postmarked by June 2 and received by June 9.</li>
-  <li>General: November 3, 2026. Inauguration: January 4, 2027.</li>
-</ul>
+  <div class="field">
+    <h4>Who he is</h4>
+    <p>Steve Hilton, 56 (born Aug. 25, 1969, in London), is a Republican and a British-American — the son of Hungarian immigrants who fled the 1956 revolution (the family anglicized its surname from Hircsák). He became a U.S. citizen in May 2021 and renounced his British citizenship in 2025. He holds a B.A. from New College, Oxford, and moved to California in 2012. <span class="cite"><a href="https://en.wikipedia.org/wiki/Steve_Hilton" target="_blank" rel="noopener">Wikipedia</a></span></p>
+  </div>
 
-<h4>The Democratic field (fragmented)</h4>
-<ul>
-  <li><strong>6 active candidates</strong> splitting the Dem vote (plus Swalwell suspended and Yee withdrawn, both still on the ballot).</li>
-  <li>Rankings, SurveyUSA Apr 28–May 1 (independent, n=991 LV): Hilton 20 / Steyer 18 / Bianco 12 / Becerra 10 / Porter 8 / Mahan 7 / Villaraigosa 5 / Thurmond 2 / undec 17.</li>
-  <li>Rankings, CADEM/EVITARUS Apr 30–May 2 (Dem-party-commissioned): Becerra 18 / Hilton 18 / Bianco 14 / Steyer 12 / Porter 8 / Mahan 7 / undec 14.</li>
-  <li>Cross-pollster average (ca-gov-polls, as of May 9): Hilton 20.5 / Becerra 18.0 / Steyer 14.1.</li>
-  <li>Eric Swalwell — was leading pre-April — <strong>suspended his campaign April 12</strong> after allegations from five women of sexual misconduct. Resigned from Congress effective April 14. A Manhattan DA investigation is open; the House Ethics probe closed upon his resignation. His name remains on the ballot.</li>
-</ul>
+  <div class="field">
+    <h4>What he's done</h4>
+    <ul>
+      <li><span class="role">Director of Strategy to UK PM David Cameron (2010–2012).</span> A senior No. 10 adviser credited with shaping Cameron's "Big Society" agenda. <span class="cite"><a href="https://en.wikipedia.org/wiki/Steve_Hilton" target="_blank" rel="noopener">Wikipedia</a></span></li>
+      <li><span class="role">Fox News host (2017–2023).</span> Hosted the weekly program "The Next Revolution," then remained a Fox News contributor. <span class="cite"><a href="https://en.wikipedia.org/wiki/Steve_Hilton" target="_blank" rel="noopener">Wikipedia</a></span></li>
+      <li><span class="role">Tech &amp; policy.</span> Co-founded the political crowdfunding platform Crowdpac (resigned as CEO in May 2018); founded the California policy group <em>Golden Together</em> in 2023 with Lanhee Chen and Gloria Romero. <span class="cite"><a href="https://www.semafor.com/article/06/08/2023/former-cameron-aide-fox-host-steve-hilton-launches-california-group" target="_blank" rel="noopener">Semafor</a></span></li>
+      <li><span class="role">Author.</span> Books include <em>More Human</em> (2015) and <em>Positive Populism</em> (2018). He casts himself as a populist conservative running against one-party rule, under the banner "Make California Golden Again." <span class="cite"><a href="https://stevehiltonforgovernor.com/" target="_blank" rel="noopener">campaign</a></span></li>
+    </ul>
+  </div>
 
-<h4>The Republican field (two candidates)</h4>
-<ul>
-  <li><strong>Steve Hilton (~20%, lead)</strong> — former Fox News host, Trump-endorsed April 6; CAGOP convention declined to endorse (Hilton 44% / Bianco 49%; neither hit 60%). Holds the cross-pollster lead in every public poll since April.</li>
-  <li><strong>Chad Bianco (~10–12%)</strong> — Riverside County Sheriff, former Oath Keeper (2014 membership), department under DOJ pattern-and-practice investigation over jail deaths and use-of-force, ordered the seizure of approximately 650,000 ballots tied to the 2026 redistricting referendum (CA Supreme Court granted UCLA VRP review May 13; briefing deadline June 12, ten days post-primary). Doubled down as "proud Oath Keeper" at the May 5 CNN debate. On May 19, refused Hilton's NY Post op-ed urging him to drop out.</li>
-</ul>
+  <div class="field">
+    <h4>What the news says</h4>
+    <p><b>How he led the primary.</b> Hilton led early returns at about 27% and consolidated the Republican vote (PPIC found roughly 53% of Republicans backed him, vs. ~33% for Chad Bianco). Decision Desk HQ nonetheless projects Becerra advancing and expects him to pass Hilton as mail ballots are counted; the second slot, between Hilton and Steyer, was uncalled as of June 4. <span class="cite"><a href="https://www.ppic.org/publication/ppic-statewide-survey-californians-and-their-government-may-2026/" target="_blank" rel="noopener">PPIC</a> · <a href="https://thehill.com/homenews/campaign/5911230-xavier-becerra-advances-california-governor/" target="_blank" rel="noopener">The Hill</a></span></p>
+    <p><b>Endorsements &amp; the deep-blue math (attributed).</b> Trump endorsed Hilton on April 6, 2026 ("COMPLETE &amp; TOTAL ENDORSEMENT"), credited with sidelining rival Republican Chad Bianco; VP JD Vance endorsed on primary day. Democrats make up about 45% of registered California voters to Republicans' ~25%, and no Republican has won the governorship since Schwarzenegger's 2006 re-election; analysts quoted by ABC7 called the Trump tie an "albatross" statewide, and prediction markets around the endorsement put Hilton's odds of winning the governorship near 6%. <span class="cite"><a href="https://www.cnn.com/2026/04/06/politics/steve-hilton-trump-endorsement-california-hnk" target="_blank" rel="noopener">CNN</a> · <a href="https://sfstandard.com/2026/06/03/california-governor-primary-election-results/" target="_blank" rel="noopener">SF Standard</a> · <a href="https://www.newsweek.com/steve-hilton-chances-california-primary-trump-endorsement-12020220" target="_blank" rel="noopener">Newsweek</a></span></p>
+    <p><b>Post-primary friction.</b> On June 4 Hilton criticized California's slow count, calling the election system "another monument to their uselessness," and cited a whistleblower claim about ballot handling (an unverified allegation). <span class="cite"><a href="https://townhall.com/tipsheet/dmitri-bolt/2026/06/04/steve-hilton-slams-cas-elections-as-counting-votes-set-to-take-weeks-n2677228" target="_blank" rel="noopener">Townhall</a></span></p>
+  </div>
 
-<h4>The real question</h4>
-<ul>
-  <li>Can <em>two Republicans</em> advance to November past a fractured Dem field? <strong>~12–18% probability.</strong></li>
-  <li>Most likely: one R + one D. <strong>~72–78%.</strong></li>
-  <li>Two Democrats advance: <strong>~4–10%.</strong></li>
-</ul>
-
-<h4>The November math</h4>
-<ul>
-  <li>California has not elected a Republican to a statewide office since 2006.</li>
-  <li>Registration (CA SoS, April 3, 2026 60-day report): 44.92% D, 25.03% R, 22.76% No Party Preference, 7.30% other. Roughly a 20-point Dem advantage over Republicans (slight Dem softening vs. Dec 30 154-day report).</li>
-  <li>A Republican-vs-Republican runoff would guarantee a GOP governor; a Republican-vs-Democrat runoff has historically favored the Democrat by roughly 10–20 points.</li>
-</ul>
-
-<h4>The money</h4>
-<ul>
-  <li>Steyer self-funding ~<strong>$147M</strong> per CalMatters' May filings tracker (second-most-expensive CA gov race in history behind Whitman 2010 $176M).</li>
-  <li>Mahan ecosystem ~$37M (~$12M direct + ~$25M tech-sector IE across two PACs: Moritz, Caruso, Lonsdale, Brin, Tan, Baszucki, Huffman, Oberndorf, Sethi, Seibel, Merrill).</li>
-  <li><strong>Anti-Steyer ad stack ~$26M+:</strong> PG&amp;E (~$11.5M via "Californians for Resilient and Affordable Energy" feeder into "California Is Not for Sale"), JOBSPAC ($6.5M), CA Real Estate IE ($7M), CA BIA ($1M), CCPOA, IBEW 1245. Steyer filed an FPPC complaint May 5 alleging PG&amp;E disclosure violations.</li>
-  <li>Hilton ~$7.1M (top GOP fundraiser; ~18,000 individual donors; ~$200K self-loan).</li>
-  <li>Villaraigosa ~$6.96M direct (top direct-Dem behind Steyer; ~$707K raised in last four months).</li>
-  <li>Bianco ~$4.4M with donor appeals for legal bills; Riverside BoS voted 4–1 on April 14 to decline covering defense in the ballot-seizure matter.</li>
-  <li>Porter ~$3.2M cash on hand (small-dollar).</li>
-</ul>
-
-<h4>The endorsements</h4>
-<ul>
-  <li><strong>Harris</strong> declined July 2025; <strong>Padilla</strong> also declined; <strong>Newsom, Pelosi, Obama, Biden</strong> — silent. Newsom reiterated "no primary endorsement" on May 8 while his political team consults/fundraises for Becerra (CNN May 8).</li>
-  <li><strong>CTA</strong> flipped to Steyer April 10 after dropping Swalwell. <strong>SEIU California</strong> endorsed Steyer the week of April 30 (resolving the post-Swalwell vacuum). State Building Trades → Villaraigosa. Teamsters, UAW, NUHW, CWA District 9 → Porter.</li>
-  <li><strong>Becerra</strong>: Speaker Rivas + 14 Assembly Dems on April 22 (26 state lawmakers total); CHIRLA Action Fund (defended Becerra at May 11 presser); Yee endorsed Steyer on April 21.</li>
-  <li><strong>Porter</strong>: <em>McClatchy CA editorial board</em> (Sac Bee, Fresno Bee, Modesto Bee, Merced Sun-Star, SLO Tribune) on May 4 — first major newspaper endorsement of the cycle; Sen. Elizabeth Warren TV ad on air in May.</li>
-  <li><strong>Steyer</strong>: <em>EnviroVoters</em> (dual with Porter).</li>
-  <li>CAGOP declined to endorse at convention (neither Hilton nor Bianco reached 60%). Trump endorsed Hilton; the state party did not follow.</li>
-</ul>
-
-<h4>The bottom line</h4>
-<p>A Democrat is still the most likely November winner, but the Democratic field has <span class="js-days">21</span> days to consolidate or leave both top-two slots accessible to Republicans. Most VBM ballots are already in voters' hands. The remaining variables are independent-poll confirmation (or non-confirmation) of Becerra's party-poll surge, the last newspaper editorials (LA Times, SF Chronicle, SDUT), and Steyer's broadcast saturation meeting the $26M+ anti-Steyer stack.</p>
-</section>
-
-<!-- ============================================ CEO BRIEF ============================================ -->
-<section class="panel" id="ceo">
-<h2>CEO Briefing.</h2>
-<p class="dek">Two-minute read. What matters, what to watch, where the risk is.</p>
-
-<div class="warn">
-<strong>Bottom line up front</strong>
-A Democrat is most likely to win the CA governorship in November 2026, but with a meaningful (~12–18%) tail risk of losing the seat because the Democratic field is fragmented enough that top-two-primary math could advance both Republicans. Election June 2, 2026; <span class="js-days">21</span> days remaining, most VBM ballots already in voters' hands.
-</div>
-
-<h4>The asset at stake</h4>
-<p>The California governor presides over the fourth-largest economy in the world (per the Newsom administration's April 2026 release citing ~$4.25T GDP; Japan slipped to fifth), a $321.9B enacted state budget (2025–26), judicial appointments, and a major voice on federal immigration, environmental, and labor policy. A Republican governor would be the first to hold a statewide office in California since 2006.</p>
-
-<h4>The structural issue</h4>
-<p>California uses a top-two, non-partisan primary. Six active Democrats are splitting a Democratic-leaning electorate (~45% registered); two Republicans are consolidating a ~25% GOP electorate. In independent polling no Democrat has cleared the high teens; in Dem-aligned polling Becerra has tied Hilton at the top. If both pictures resolve to the cross-pollster average (Hilton 20.5 / Becerra 18 / Steyer 14) and Bianco holds 12–14%, both top-two slots could still go to the GOP if the Dem vote stays split four ways.</p>
-
-<h4>What's already happened (what's watchable is narrower)</h4>
-<ul>
-  <li><strong>April 22 + April 28 debates (resolved):</strong> Two prior forums; no clear winner in either.</li>
-  <li><strong>April 23 → May 7 anti-Steyer PAC (resolved, scaled to $26M+):</strong> PG&amp;E feeder + JOBSPAC ($6.5M) + CA Real Estate IE ($7M) + CA BIA + CCPOA + IBEW 1245. Steyer filed an FPPC complaint May 5.</li>
-  <li><strong>April 30 (wk) SEIU California endorsed Steyer (resolved):</strong> Closed the largest post-Swalwell labor question.</li>
-  <li><strong>May 4 VBM mailing began (resolved):</strong> First wave of mail ballots delivered. A "hold your ballot" social-media push from some Democratic operators drew an AG/SoS pushback as potential misinformation.</li>
-  <li><strong>May 4 McClatchy editorial board endorsed Porter (resolved):</strong> First major newspaper endorsement of the cycle.</li>
-  <li><strong>May 4 → May 9 polling (resolved):</strong> SurveyUSA, CADEM/EVITARUS, Impact, Mellman, Kreate all fielded post-Apr-29. Cross-pollster picture: Hilton ~20.5 / Becerra ~18 / Steyer ~14. Cross-pollster spread on Becerra (10 to 23) is the unresolved question.</li>
-  <li><strong>May 5 CNN debate (resolved):</strong> Seven on stage; Becerra consensus target on the McCluskie ex-chief-of-staff guilty plea and a reported M4A flip-flop; Bianco "proud Oath Keeper"; Hilton declined to say Trump lost 2020; no clear winner.</li>
-  <li><strong>May 7 → May 12 Becerra defensive stretch (resolved):</strong> Hilton CHIRLA accusation; CHIRLA presser; KTLA "needed to earn some money" clip. No on-camera Becerra rebuttal.</li>
-  <li><strong>May 11 Ware federal suit (resolved):</strong> Judge Shubb (E.D. Cal.) declined reinstatement on timing grounds.</li>
-</ul>
-
-<h4>Three watchable catalysts before June 2</h4>
-<ul>
-  <li><strong>Independent-poll confirmation of Becerra's surge:</strong> Will the next SurveyUSA / Berkeley IGS / PPIC field show Becerra over 12%, or stay around the independent-poll baseline of 10–14%?</li>
-  <li><strong>Newspaper editorial boards (resolved May 13–17):</strong> SF Chronicle endorsed Porter May 16; Bay Area Reporter endorsed Porter May 13; Santa Barbara Independent endorsed Steyer May 17; <strong>LA Times broke decades of practice and endorsed nobody</strong>; San Diego Union-Tribune declined to formally endorse (KPBS notes the paper identified Steyer as "most progressive of the current viable candidates"). McClatchy CA papers endorsed Porter May 4. Net editorial scoreboard: Porter +3, Steyer +2.</li>
-  <li><strong>Any Bianco legal event:</strong> A CA Supreme Court ruling on the 650K-ballot seizure or any new federal action before VBM tabulation completes.</li>
-</ul>
-
-<h4>Three catalysts that change the base case</h4>
-<ul>
-  <li><strong>Late Obama or Newsom endorsement.</strong> Unlikely but decisive. Newsom reiterated "no primary endorsement" on May 8; his political team is reportedly consulting and fundraising for Becerra anyway. An on-camera flip would lock a Democrat into the runoff.</li>
-  <li><strong>A second post-Swalwell-scale collapse.</strong> Becerra has taken a week of damage (McCluskie, CHIRLA, KTLA) without an on-camera rebuttal — whether that compounds or fades is the live question.</li>
-  <li><strong>Bianco legal event.</strong> A federal indictment, DOJ finding, or CA Supreme Court ruling against him on the ballot seizure would drop the GOP share and push toward Scenario 3 (D-vs-D).</li>
-</ul>
-
-<h4>The two-line takeaway</h4>
-<p>A Democrat is still the most likely winner, but the Dem second-place lane is a Steyer-vs-Becerra contest depending on which pollster you trust, and the May 14 Williamson plea + McCluskie co-conspirator naming is the live damage variable for Becerra; the FPPC influencer probe is the live ceiling for Steyer. The Republican field's ceiling is low in November, but the top-two math still makes the June primary the riskier inflection point, and PDI's R-skewed early-return snapshot (R +11pts vs 2022) is what makes the lockout scenario nonzero.</p>
-</section>
-
-<!-- ============================================ TECH / DATA ============================================ -->
-<section class="panel" id="tech">
-<h2>The Data.</h2>
-<p class="dek">Polling averages, money, demographic splits, and the actual math behind the scenarios.</p>
-
-<h4>Current (independent) · SurveyUSA / KGTV · field Apr 28–May 1 · n=991 LV · ±4.2%</h4>
-<div class="pollbar">
-  <div class="pollbar-row"><span class="name">Hilton (R)</span><div class="bar bar-R" style="width:100%"><span style="width:80%"></span></div><span class="pct">20%</span></div>
-  <div class="pollbar-row"><span class="name">Steyer (D)</span><div class="bar bar-D" style="width:100%"><span style="width:72%"></span></div><span class="pct">18%</span></div>
-  <div class="pollbar-row"><span class="name">Bianco (R)</span><div class="bar bar-R" style="width:100%"><span style="width:48%"></span></div><span class="pct">12%</span></div>
-  <div class="pollbar-row"><span class="name">Becerra (D)</span><div class="bar bar-D" style="width:100%"><span style="width:40%"></span></div><span class="pct">10%</span></div>
-  <div class="pollbar-row"><span class="name">Porter (D)</span><div class="bar bar-D" style="width:100%"><span style="width:32%"></span></div><span class="pct">8%</span></div>
-  <div class="pollbar-row"><span class="name">Mahan (D)</span><div class="bar bar-D" style="width:100%"><span style="width:28%"></span></div><span class="pct">7%</span></div>
-  <div class="pollbar-row"><span class="name">Villaraigosa</span><div class="bar bar-D" style="width:100%"><span style="width:20%"></span></div><span class="pct">5%</span></div>
-  <div class="pollbar-row"><span class="name">Thurmond</span><div class="bar bar-D" style="width:100%"><span style="width:8%"></span></div><span class="pct">2%</span></div>
-  <div class="pollbar-row"><span class="name">Undecided</span><div class="bar bar-UND" style="width:100%"><span style="width:68%"></span></div><span class="pct">17%</span></div>
-</div>
-
-<h4>Recent (independent) · Kreate Strategies · field May 5–9 · n=900 LV</h4>
-<div class="pollbar">
-  <div class="pollbar-row"><span class="name">Hilton (R)</span><div class="bar bar-R" style="width:100%"><span style="width:88%"></span></div><span class="pct">22%</span></div>
-  <div class="pollbar-row"><span class="name">Becerra (D)</span><div class="bar bar-D" style="width:100%"><span style="width:80%"></span></div><span class="pct">20%</span></div>
-  <div class="pollbar-row"><span class="name">Steyer (D)</span><div class="bar bar-D" style="width:100%"><span style="width:56%"></span></div><span class="pct">14%</span></div>
-  <div class="pollbar-row"><span class="name">Bianco (R)</span><div class="bar bar-R" style="width:100%"><span style="width:52%"></span></div><span class="pct">13%</span></div>
-</div>
-
-<h4>Party / candidate-commissioned polls (May)</h4>
-<p class="cite">These polls were commissioned by a party committee or a candidate-aligned PAC. Read with that lens.</p>
-<ul>
-  <li><strong>CADEM EVITARUS · Apr 30–May 2 · n=1,200 LV</strong> (released May 4): Becerra 18 / Hilton 18 / Bianco 14 / Steyer 12 / Porter 8 / Mahan 7 — undecided <strong>14%</strong> (down from 24 in March). Source: <a href="https://cadem.org/california-democratic-party-releases-new-california-voter-index-tracking-survey/" target="_blank" rel="noopener">CADEM release</a>.</li>
-  <li><strong>Impact Research · Apr 28–May 3 · n=900 LV</strong> (Becerra-aligned, released May 7): Becerra 23 / Hilton 23 / Steyer 14 / Bianco 11 / Mahan 10 / Porter 9. Source: <a href="https://ktla.com/news/california/governor-race-frontrunners/" target="_blank" rel="noopener">KTLA</a>.</li>
-  <li><strong>Mellman Group · May 3–6 · n=600 LV · ±4%</strong> (commissioned by California Back to Basics / Mahan-aligned IE): Becerra 20 / Hilton 20 / Bianco 14 / Steyer 12 / Mahan 10. Source: <a href="https://data.ddhq.io/polls/2026/05/08/The-Mellman-Group/California-Back-to-Basics-California-2026-05-03-2026-05-06" target="_blank" rel="noopener">DDHQ filing</a>.</li>
-</ul>
-
-<h4>Earlier baseline</h4>
-<p><strong>CBS News/YouGov · Apr 23–27 · n=1,479 RV:</strong> Hilton 16 / Steyer 15 / Becerra 13 / Bianco 10 / Porter 9 — undecided 26%.<br>
-<strong>Emerson College · Apr 14–15 · n=1,000 LV · ±3%:</strong> Hilton 17 / Steyer 14 / Bianco 14 / Becerra 10 / Porter 10 / Mahan 5 / Villaraigosa ~5 — undecided 23%.</p>
-
-<h4>Polling average (CA gov aggregator, as of May 9)</h4>
-<ul>
-  <li>Hilton (R): <strong>20.5%</strong></li>
-  <li>Becerra (D): <strong>18.0%</strong></li>
-  <li>Steyer (D): <strong>14.1%</strong></li>
-</ul>
-<p class="cite">Source: <a href="https://ca-gov-polls.vercel.app/" target="_blank" rel="noopener">ca-gov-polls</a> aggregator. <a href="https://www.realclearpolling.com/polls/governor/general/2026/california/open_primary" target="_blank" rel="noopener">RealClearPolling</a> shows a similar but lagging Hilton 18.5 / Steyer 16.0 picture (the Becerra surge is not fully priced in).</p>
-
-<p><strong>The read.</strong> Hilton leads consistently across pollsters. The Dem second-place lane is genuinely contested: <em>independent</em> polls (SurveyUSA, Kreate) still have Steyer ahead of Becerra; <em>party- and candidate-commissioned</em> polls (CADEM/EVITARUS, Impact, Mellman) have Becerra tied or near-tied for first. The magnitude of Becerra's surge depends on which pollster you trust. Undecided has compressed from ~26% in late April to 14–17% by mid-May — most of the late deciders have decided, but the cross-pollster spread on Becerra (10 to 23) means the polling consensus is not yet settled.</p>
-
-<h4>Money · latest disclosures, through April 2026 filings</h4>
-<div class="table-wrap">
-<table>
-<thead><tr><th>Candidate</th><th>Raised / Self-funded</th><th>Cash on hand</th><th>Notable</th></tr></thead>
-<tbody>
-<tr><td>Steyer (D)</td><td>~$147M self</td><td>~$0.2M (heavy late burn)</td><td>2nd-priciest CA gov race ever, behind Whitman 2010 $176M. 2020 presidential run: ~$253M total.</td></tr>
-<tr><td>Mahan (D)</td><td>~$12M direct + ~$25M IE (2 PACs)</td><td>~$37M ecosystem</td><td>Tech IE: Moritz, Caruso, Lonsdale, Brin, Tan, Baszucki, Huffman, Oberndorf, Sethi, Seibel, Merrill</td></tr>
-<tr><td>Hilton (R)</td><td>~$7.1M</td><td>~$2M</td><td>Top GOP fundraiser; ~18,000 individual donors; ~$200K self-loan</td></tr>
-<tr><td>Villaraigosa (D)</td><td>~$6.96M</td><td>~$3.4M</td><td>Top direct-Dem behind Steyer; ~$707K raised in last four months</td></tr>
-<tr><td>Bianco (R)</td><td>~$4.4M</td><td>n/a</td><td>Donor appeals for legal bills; BoS declined defense</td></tr>
-<tr><td>Becerra (D)</td><td>~$4M</td><td>~$3.8M</td><td>Biden-HHS donor base; institutional endorsement momentum</td></tr>
-<tr><td>Porter (D)</td><td>~$6.1M</td><td>~$3.2M</td><td>Small-dollar champion; ~$68 avg gift; ~$2.8M raised in last four months (below pace)</td></tr>
-<tr><td>Yee (D)</td><td>$344K H2 2025</td><td>negative</td><td>Withdrew April 20; endorsed Steyer April 21</td></tr>
-<tr><td>Thurmond (D)</td><td>$181K H2 2025</td><td>negative</td><td>Lowest active-Dem fundraising</td></tr>
-<tr><td colspan="4"><strong>Oppo IE stack (~$26M+):</strong> "California Is Not for Sale" + "Californians for Resilient and Affordable Energy" feeder, PG&amp;E ($11.5M via feeder) + JOBSPAC/CalChamber ($6.5M) + CA Real Estate IE ($7M) + CA BIA ($1M) + CCPOA + IBEW 1245 — explicit anti-Steyer. Steyer FPPC complaint filed May 5 alleging PG&amp;E disclosure violations (FPPC top-10 contributors list, June 2026 primary).</td></tr>
-</tbody>
-</table>
-</div>
-
-<h4>Registration · CA Secretary of State · April 3, 2026 (60-day report)</h4>
-<ul>
-  <li>Democratic: <strong>44.92%</strong> <span class="cite">(was 45.0% in Dec 30 154-day report)</span></li>
-  <li>Republican: <strong>25.03%</strong> <span class="cite">(was 25.1%)</span></li>
-  <li>No Party Preference: <strong>22.76%</strong> <span class="cite">(was 22.7%)</span></li>
-  <li>Other minor parties: <strong>7.30%</strong></li>
-  <li>Total registered: <strong>23,112,854</strong> of 27,244,706 eligible (84.83%)</li>
-</ul>
-<p class="cite">Source: <a href="https://elections.cdn.sos.ca.gov/ror/60day-primary-2026/complete-ror.pdf">CA SoS 60-day Report of Registration · Primary 2026</a>. A roughly 20-point Democratic advantage over Republicans; slight Dem softening (~0.1 pt) and Republican gain (~0.1 pt) vs. the Dec 30 report.</p>
-
-<h4>Historical baseline</h4>
-<ul>
-  <li>Last statewide GOP win: <strong>2006 (Schwarzenegger re-election)</strong>.</li>
-  <li>Last GOP statewide office-holder: <strong>2011 (Steve Poizner, Insurance Commissioner).</strong></li>
-  <li>Newsom 2022 general: <strong>D+18</strong>.</li>
-  <li>Newsom 2018 general: <strong>D+24</strong>.</li>
-</ul>
-
-<h4>Top-two primary math (current polling projection)</h4>
-<p><strong>P(R-vs-R November):</strong> combined GOP share would need to reach ~34%; current combined share ~32–34% (Hilton 20.5 + Bianco ~13 per the cross-pollster average). Requires late GOP consolidation AND the Dem field holding six active candidates under 16% each. Paul Mitchell's model ran ~27% pre-Swalwell; post-Swalwell estimates from Mitchell and other California strategists now run ~12–18% as of mid-May.</p>
-<p><strong>P(R-vs-D November):</strong> one Republican (Hilton) takes ~20–22%; one Democrat (Steyer in independent polls, Becerra in Dem-aligned polls) breaks above Bianco's ~12–14%. Highest-probability outcome. ~72–78%.</p>
-<p><strong>P(D-vs-D November):</strong> requires both Republicans to fall below ~14%. Would need a Bianco legal event or a Hilton implosion combined with a Newsom/Obama endorsement of a Democrat. ~4–10%.</p>
-
-<h4>Turnout assumptions</h4>
-<ul>
-  <li>Non-presidential June primary historical turnout: <strong>roughly 30–40%</strong> (2014 ~25%, 2018 ~37%, 2022 ~33%).</li>
-  <li>Primary turnout skews older (median age ~55), whiter, higher-income, higher-propensity — a mix that historically favors name-ID candidates and Republican base voters.</li>
-  <li>Undecided compressed from ~26% in late April (CBS/YouGov) to 14–17% by mid-May (SurveyUSA 17, EVITARUS 14). Late breakers will skew toward name-ID + TV saturation. The "hold your ballot" social-media push from some Democratic operators (called "potentially unlawful" by AG Bonta on May 8) is the cycle's new turnout wrinkle.</li>
-  <li>VBM mailing began May 4. Under universal VBM (2020–present), roughly <strong>80%+ of California votes are cast by mail</strong> — the bulk of the decision window has already closed.</li>
-</ul>
-
-<h4>Endorsement-weighted scenarios (illustrative — not a single published model)</h4>
-<p>With current endorsement state (Newsom / Obama / Pelosi staying out, CTA + SEIU CA → Steyer, Rivas + 14 Assembly Dems + Newsom-team-operatives → Becerra, McClatchy → Porter), current internal estimates cluster around: P(R-vs-R) ~12–18%, P(Hilton + Steyer) ~32–38%, P(Hilton + Becerra) ~32–38%, P(Hilton + Porter) ~4–8%, P(D-vs-D) ~4–10%. The Hilton+Steyer vs. Hilton+Becerra split now depends on which pollster you weight — independent polls favor Steyer second-place, Dem-aligned polls favor Becerra.</p>
-<p>With a hypothetical Obama on-camera endorsement of Becerra, California strategists uniformly expect the P(R-vs-R) tail to collapse below ~5% and P(Hilton + Becerra) to become the dominant modal outcome.</p>
-<p class="cite">These are rough scenario weightings assembled from Paul Mitchell's model, the May polling cluster, and public statements by California political strategists — they are not a single point estimate.</p>
-</section>
-
-<!-- ============================================ ELI13 ============================================ -->
-<section class="panel" id="eli13">
-<h2>ELI13.</h2>
-<p class="dek">You're in 8th grade. You know how elections work. Here's what's weird about this one.</p>
-
-<p>California picks a new governor every four years. Gavin Newsom has been governor for 8 years, which is the maximum — he has to leave in January 2027. So this June, Californians vote in a primary to start picking his replacement.</p>
-
-<p>Here's the twist that makes California different: <strong>everyone runs on the same ballot.</strong> In most states, Democrats have their own primary and Republicans have their own primary. In California, all 61 candidates — Democrats, Republicans, Greens, everyone — are on one ballot, and whichever two get the most votes advance to the November election. Doesn't matter what party they're from.</p>
-
-<p>Usually this doesn't cause problems because usually one Democrat and one Republican finish top-two, and then in November the Democrat wins because California has almost twice as many registered Democrats as registered Republicans.</p>
-
-<p><strong>But this year is different.</strong></p>
-
-<p>There are <em>six active Democrats</em> running — a billionaire, an ex-Cabinet secretary, ex-members of Congress, mayors, a schools superintendent — and they're splitting the Democratic vote. The Democratic frontrunner depends on which poll you trust: independent broadcast polls have Tom Steyer in the high teens with Xavier Becerra in single digits; Dem-party and candidate-aligned polls have Becerra tied for first with the top Republican.</p>
-
-<p>Meanwhile there are only <em>two</em> Republicans running. Steve Hilton (former Fox News host) leads the cross-pollster average at ~20%; Chad Bianco (Riverside sheriff) is at ~12–14%. Hilton's number is higher than any Democrat's in independent polls.</p>
-
-<p>So mathematically, it is still possible that in June, both Republicans get more votes than any single Democrat, and they both advance to November. That would mean the November ballot has <strong>no Democrat on it at all</strong>. And then no matter who Californians pick, the next governor is a Republican. In a state that has not elected a statewide Republican in 20 years.</p>
-
-<p>This is sometimes called "spoiling your own primary." It's happening because the Democrats did not coalesce around one candidate early.</p>
-
-<p><strong>Things shifted in April.</strong> The Democrat who had been leading — Eric Swalwell, a congressman from the Bay Area — had five women come forward with allegations of sexual misconduct. He suspended his campaign on April 12 and resigned from Congress, effective April 14. Swalwell has denied the allegations. His supporters are now spread across the other six Democrats, which deepens the splitting problem.</p>
-
-<p>Also in April, Betty Yee (a former state official) dropped out and endorsed Tom Steyer. And three other Democrats had already dropped out of the race last fall (Kounalakis, Atkins, plus others).</p>
-
-<p><strong>What changed since April 29:</strong> Mail ballots went out May 4 and 1.5M+ are already back — Republicans are returning at a pre-2020 rate (Paul Mitchell). Two more debates happened (May 5 CNN; May 14 CBS Bay Area — the final one). On May 14, Newsom's former chief-of-staff Dana Williamson pleaded guilty to taking $225K from Becerra's dormant campaign account; Becerra's own longtime chief-of-staff Sean McCluskie is a named co-conspirator with sentencing on June 4 — two days after the primary. Six rivals ganged up on Becerra at the May 14 debate. Steyer is now under FPPC investigation over $123K+ paid to influencers without proper disclosure. SF Chronicle and Bay Area Reporter endorsed Porter; Santa Barbara Independent endorsed Steyer; LA Times broke decades of practice and endorsed nobody. Steve Hilton publicly told Chad Bianco to drop out; Bianco refused. The Mahan campaign's tech-money infrastructure collapsed — Reed Hastings demanded a $1M refund and the lead pro-Mahan IE folded. Gavin Newsom still hasn't endorsed.</p>
-
-<p><strong>The two Republicans are controversial too.</strong></p>
-
-<p>Steve Hilton is a former Fox News host who worked for the British Prime Minister in the early 2010s. He became an American citizen in 2021. Donald Trump endorsed him on April 6.</p>
-
-<p>Chad Bianco is the sheriff of Riverside County. He confirmed in 2021 that he was a paid member of the Oath Keepers militia in 2014 (some Oath Keepers members were convicted over January 6). His county's jails recorded 18 inmate deaths in 2022 — the most in 15 years — and the California DOJ is investigating his department over jail deaths and use of force. In April 2026, his department seized about 650,000 ballots from a different election on fraud claims; the California Supreme Court halted the seizure and the warrants were unsealed.</p>
-
-<p>These are the two Republicans who could reach the November ballot.</p>
-
-<p><strong>What will probably happen?</strong> Most likely — roughly 70–75% chance — one Democrat breaks out of the pack, makes it to November, and beats a Republican in the general. California usually elects Democrats statewide.</p>
-
-<p>But there is a ~15–20% chance the Democrats stay fragmented, both Republicans advance, and the next California governor is a Republican for the first time in 20 years.</p>
-
-<p>That's the story. <span class="js-days">21</span> days until the primary, and most ballots are already in voters' hands.</p>
-</section>
-
-<!-- ============================================ ELI5 ============================================ -->
-<section class="panel" id="eli5">
-<h2>ELI5.</h2>
-<p class="dek">You're five. Here's the story with no big words.</p>
-
-<div class="eli5-style">
-<p>California is a big place with a boss called the governor. The boss has to leave soon because he's been boss a long time.</p>
-
-<p>Now people want to be the new boss. One team — the Blue team — has six people still trying. The other team — the Red team — has only two.</p>
-
-<p>The rule is: everyone counts up their votes, and the top two get to be in the big final. It doesn't matter what team they're on.</p>
-
-<p>California is mostly a Blue state. Usually Blue wins. But this time Blue has too many people wanting the same job, and they're sharing their votes with each other. Nobody has very many.</p>
-
-<p>The two Red team people don't have to share their votes with as many people, so each of them has more.</p>
-
-<p>If the Blue team doesn't pick just one or two people really soon, BOTH Red people might win the top two, and then the new boss HAS to be Red. Even though most Californians are Blue!</p>
-
-<p>Also, the Blue team's best person got in big trouble and had to quit. So now it's even harder for them.</p>
-
-<p>Most grown-ups think Blue will still win. But nobody is sure. The vote is in <span class="js-days">21</span> days. People can already mail in their answers — most have their ballot already.</p>
-
-<p>That's the story.</p>
-</div>
+  <div class="field">
+    <h4>What he's doing now</h4>
+    <ul>
+      <li><span class="role">Message.</span> Post-primary: "Nothing is final yet, but it does look as if change is coming to California." His theory of the race is affordability and competence versus one-party rule — winning over disaffected Democrats and independents on cost of living. <span class="cite"><a href="https://abc7news.com/post/2026-primary-election-steve-hilton-xavier-becerra-hold-leads-tight-close-call-california-governors-race/19229834/" target="_blank" rel="noopener">ABC7</a></span></li>
+      <li><span class="role">Taxes.</span> No state income tax on earnings under $100,000 and a 7.5% flat tax above that (his campaign says this removes roughly 7.1 million households from the income-tax rolls); protect Prop 13. <span class="cite"><a href="https://stevehiltonforgovernor.com/" target="_blank" rel="noopener">campaign</a></span></li>
+      <li><span class="role">Cost of living &amp; housing.</span> Lower gas and electricity prices ("Cali-ffordability"); cut housing impact fees and regulations, defend single-family zoning. <span class="cite"><a href="https://keyt.com/news/top-stories/2026/05/22/steve-hilton-pitches-cali-ffordability-campaign-in-california-governors-race/" target="_blank" rel="noopener">KEYT</a></span></li>
+      <li><span class="role">Homelessness, crime, energy.</span> Move people off the streets (state intervention where localities fail) paired with treatment, citing roughly $24B spent "without any idea where it went"; expand jail capacity and back law enforcement; "abundant, affordable energy," including more drilling. <span class="cite"><a href="https://timesofsandiego.com/politics/2026/05/29/republican-steve-hilton-california-governor/" target="_blank" rel="noopener">Times of San Diego</a> · <a href="https://calmatters.org/politics/2026/06/primary-election-california-governor/" target="_blank" rel="noopener">CalMatters</a></span></li>
+    </ul>
+  </div>
 </section>
 
 </main>
@@ -1073,61 +630,43 @@ A Democrat is most likely to win the CA governorship in November 2026, but with 
 <div class="foot-inner">
   <div>
     <h5>The Dates</h5>
-    <p>VBM ballots mailed starting <strong>May 4, 2026</strong></p>
-    <p>Drop-off opens <strong>May 5</strong>; vote centers <strong>May 23</strong> (VCA) / <strong>May 30</strong> (non-VCA)</p>
-    <p>Registration deadline: <strong>May 18</strong> (conditional May 19–June 2)</p>
-    <p>Primary: <strong>June 2, 2026</strong> · polls 7am–8pm</p>
-    <p>VBM return: postmark by June 2, received by June 9</p>
-    <p>General: <strong>November 3, 2026</strong></p>
-    <p>Next inauguration: <strong>January 4, 2027</strong></p>
+    <p>Primary results certify: <strong>July 10, 2026</strong></p>
+    <p>VBM ballots mailed: by <strong>Oct 5, 2026</strong></p>
+    <p>Registration deadline: <strong>Oct 19, 2026</strong> (conditional registration after)</p>
+    <p>Early in-person / vote centers: <strong>Oct 24</strong> (VCA) / <strong>Oct 31</strong></p>
+    <p>General Election: <strong>November 3, 2026</strong> · polls 7am–8pm</p>
+    <p>Next inauguration: <strong>January 2027</strong></p>
   </div>
   <div>
     <h5>Key Sources</h5>
     <ul>
-      <li><a href="https://www.sos.ca.gov/elections/upcoming-elections/primary-election-june-2-2026">CA Secretary of State</a> — official ballot / dates</li>
-      <li><a href="https://calmatters.org/">CalMatters</a> — CA political reporting</li>
-      <li><a href="https://emersoncollegepolling.com/">Emerson Polling</a> · <a href="https://www.ppic.org/">PPIC</a> — polling</li>
-      <li><a href="https://en.wikipedia.org/wiki/2026_California_gubernatorial_election">Wikipedia — 2026 race tracker</a></li>
-      <li><a href="https://ballotpedia.org/California_gubernatorial_election,_2026">Ballotpedia — candidate profiles</a></li>
-      <li><a href="https://www.racetothewh.com/governor/california26">Race to the WH — polling average</a></li>
+      <li><a href="https://dp.electionresults.sos.ca.gov/returns/governor" target="_blank" rel="noopener">CA SoS — official primary returns</a></li>
+      <li><a href="https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026" target="_blank" rel="noopener">CA SoS — November 3 general</a></li>
+      <li><a href="https://calmatters.org/" target="_blank" rel="noopener">CalMatters</a> — CA political reporting</li>
+      <li><a href="https://ballotpedia.org/California_gubernatorial_election,_2026" target="_blank" rel="noopener">Ballotpedia</a> · <a href="https://en.wikipedia.org/wiki/2026_California_gubernatorial_election" target="_blank" rel="noopener">Wikipedia race tracker</a></li>
+      <li><a href="/vote/primary/" target="_blank" rel="noopener">Primary archive</a> — the pre-June-2 explainer &amp; full 14-candidate field</li>
     </ul>
   </div>
   <div>
     <h5>About This Page</h5>
-    <p>Synthesized April 18, 2026 from ~20 public sources, with factual-accuracy updates on April 21, 24, 29, and May 12. As of last refresh: <span class="js-days">21</span> days to the California gubernatorial primary. Personal explainer by Rob Logic — not journalism, not advocacy, just a briefing with every source linked.</p>
-    <p>If a fact is wrong, it will stay wrong until corrected — check source links and send corrections.</p>
+    <p>A living, non-biased briefing on the 2026 California governor's race, pivoted to the November 3 general after the June 2 primary. Allegations are attributed to named sources with dates; every nontrivial claim links to its source. Personal explainer by Rob Logic — not journalism, not advocacy, just a briefing with the receipts.</p>
+    <p>If a fact is wrong, it will stay wrong until corrected — check the source links and send corrections. Counts and projections update as the canvass is finalized.</p>
   </div>
 </div>
 <div class="foot-bottom">
-  <span>roblogic.org/vote · last revised 2026-05-12</span>
+  <span>roblogic.org/vote · last revised 2026-06-05</span>
   <span>research &amp; analysis · no campaign affiliations</span>
 </div>
 </footer>
 
 <script>
 (function(){
-  const btns = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.panel');
-  btns.forEach(b => b.addEventListener('click', () => {
-    btns.forEach(x => x.classList.remove('active'));
-    panels.forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    const p = document.getElementById(b.dataset.tab);
-    if (p) p.classList.add('active');
-    window.scrollTo({top: document.querySelector('.tabs').offsetTop - 60, behavior:'smooth'});
-  }));
-
-  // hash nav support
-  if (location.hash) {
-    const h = location.hash.slice(1);
-    const btn = document.querySelector(`.tab-btn[data-tab="${h}"]`);
-    if (btn) btn.click();
-  }
-
-  // live countdown to CA-26 primary
-  const PRIMARY = new Date('2026-06-02T00:00:00-07:00');
-  const today = new Date(); today.setHours(0,0,0,0);
-  const days = Math.max(0, Math.ceil((PRIMARY - today) / 86400000));
+  // live countdown to the November 3, 2026 general election
+  // Date-only UTC math so the day count is immune to viewer timezone + DST.
+  const GENERAL = Date.UTC(2026, 10, 3); // month is 0-indexed: 10 = November
+  const now = new Date();
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.max(0, Math.round((GENERAL - today) / 86400000));
   document.querySelectorAll('.js-days').forEach(el => el.textContent = days);
 
   // visit beacon — every hit, skip bots, fail silent
