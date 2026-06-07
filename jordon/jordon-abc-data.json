@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-06T15:00:06.832Z",
-  "count": 199,
+  "updated": "2026-06-07T15:00:08.317Z",
+  "count": 198,
   "licenses": [
     {
       "fileNumber": "00677647",
@@ -4357,28 +4357,6 @@
       "website": "https://casadereyesrestaurant.com/",
       "actionCode": "PER",
       "isNew": false
-    },
-    {
-      "fileNumber": "00657193",
-      "licenseType": 41,
-      "typeLabel": "On-Sale Beer & Wine — Eating Place",
-      "category": "on-premise",
-      "status": "ACTIVE",
-      "issueDate": "2026-03-09",
-      "expirationDate": "2027-02-28",
-      "businessName": "SAINT PARK INC",
-      "dbaName": "PANINI KABOB GRILL",
-      "displayName": "PANINI KABOB GRILL",
-      "address": "201 PARK BLVD",
-      "address2": "STE 121 & 123",
-      "city": "SAN DIEGO",
-      "zip": "92101-8060",
-      "lat": 32.809316,
-      "lng": -116.865414,
-      "phone": null,
-      "website": null,
-      "actionCode": "ORI",
-      "isNew": true
     }
   ]
 }
