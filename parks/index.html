@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California State Historic Parks — 175th Free Pass Guide</title>
+<meta name="description" content="A field guide to the 33 California State Historic Parks honored by the special 175th-anniversary free pass (valid through Dec 31, 2026). Search, filter by region or theme, map them, and track which you've visited.">
+<meta property="og:title" content="California State Historic Parks — 175th Free Pass Guide">
+<meta property="og:description" content="All 33 parks on the special free pass honoring 175 years of California. Summaries, photos, a map, and a visited tracker.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://roblogic.org/parks/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%235A3D23'/><circle cx='50' cy='50' r='40' fill='none' stroke='%231F4A2C' stroke-width='5'/><g fill='%23FCC200'><ellipse cx='50' cy='32' rx='13' ry='19'/><ellipse cx='68' cy='50' rx='19' ry='13'/><ellipse cx='50' cy='68' rx='13' ry='19'/><ellipse cx='32' cy='50' rx='19' ry='13'/></g><circle cx='50' cy='50' r='9' fill='%23E07B00'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700;900&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --green:#1F4A2C; --green2:#3C6B3E; --gold:#FCC200; --gold-deep:#E07B00;
+  --parchment:#F3E9D2; --brown:#5A3D23; --brown2:#693F23; --cream:#F7EFD9; --ink:#211A12;
+  --shadow:0 2px 6px rgba(33,26,18,.18);
+}
+html{ scroll-behavior:smooth; }
+body{
+  font-family:'Source Sans 3',system-ui,sans-serif; color:var(--ink);
+  background-color:var(--parchment);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(90,61,35,.05) 0, transparent 40%),
+    radial-gradient(circle at 88% 8%, rgba(60,107,62,.06) 0, transparent 45%);
+  line-height:1.55;
+}
+a{ color:var(--green); }
+.wrap{ max-width:1240px; margin:0 auto; padding:0 clamp(14px,3vw,32px); }
+
+/* ---- Routed brown-sign header ---- */
+.signpost{ background:var(--green); padding:clamp(20px,4vw,44px) 0; border-bottom:6px solid var(--gold); }
+.sign{
+  background:
+    repeating-linear-gradient(180deg, rgba(255,255,255,.025) 0 3px, rgba(0,0,0,.04) 3px 6px),
+    linear-gradient(160deg,var(--brown2),var(--brown));
+  border:3px solid #3a2716; border-radius:14px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.12), inset 0 -6px 14px rgba(0,0,0,.45), 0 10px 24px rgba(0,0,0,.35);
+  padding:clamp(20px,3.5vw,38px) clamp(20px,4vw,46px);
+  display:flex; align-items:center; gap:clamp(16px,3vw,34px); position:relative;
+}
+.sign::after{ content:""; position:absolute; inset:9px; border:2px solid var(--gold); border-radius:8px; opacity:.55; pointer-events:none; }
+.roundel{ flex:0 0 auto; width:clamp(72px,12vw,104px); height:clamp(72px,12vw,104px); filter:drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+.sign-text h1{
+  font-family:'Roboto Slab',serif; font-weight:900; color:var(--cream);
+  font-size:clamp(1.5rem,4.4vw,3rem); line-height:1.02; letter-spacing:.04em; text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(255,255,255,.18), 0 -2px 3px rgba(0,0,0,.55);
+}
+.sign-text .kicker{ font-family:'Roboto Slab',serif; font-weight:700; color:var(--gold); letter-spacing:.22em; text-transform:uppercase; font-size:clamp(.62rem,1.5vw,.8rem); margin-bottom:.5em; }
+.sign-text .sub{ color:var(--cream); opacity:.92; margin-top:.55em; font-size:clamp(.92rem,1.7vw,1.06rem); max-width:62ch; }
+.getpass{ display:inline-block; margin-top:15px; background:var(--gold); color:var(--ink); font-family:'Roboto Slab',serif; font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:clamp(.76rem,1.6vw,.95rem); padding:10px 20px; border-radius:8px; text-decoration:none; border:2px solid var(--gold-deep); box-shadow:0 3px 0 var(--gold-deep); transition:transform .1s, box-shadow .1s; }
+.getpass:hover{ transform:translateY(-2px); box-shadow:0 5px 0 var(--gold-deep); }
+.getpass:active{ transform:translateY(1px); box-shadow:0 1px 0 var(--gold-deep); }
+
+/* ---- Pass facts ---- */
+.passbar{ background:var(--brown); color:var(--cream); border-bottom:3px solid var(--gold); }
+.passbar .wrap{ display:flex; flex-wrap:wrap; gap:10px 28px; align-items:center; padding-top:12px; padding-bottom:12px; font-size:.95rem; }
+.passbar b{ color:var(--gold); }
+.passbar .live{ background:var(--gold); color:var(--ink); font-weight:700; padding:2px 10px; border-radius:999px; font-size:.82rem; letter-spacing:.03em; }
+.passbar a{ color:var(--cream); text-decoration:underline; text-underline-offset:2px; }
+
+/* ---- Controls ---- */
+.controls{ position:sticky; top:0; z-index:600; background:rgba(243,233,210,.96); backdrop-filter:blur(6px); border-bottom:2px solid rgba(90,61,35,.25); box-shadow:0 3px 10px rgba(33,26,18,.07); }
+.controls .wrap{ padding-top:14px; padding-bottom:14px; }
+.ctl-row{ display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+.search{ flex:1 1 240px; min-width:200px; position:relative; }
+.search input{
+  width:100%; font:inherit; padding:10px 14px 10px 38px; border:2px solid var(--brown); border-radius:8px;
+  background:var(--cream); color:var(--ink);
+}
+.search input:focus{ outline:3px solid var(--gold); outline-offset:1px; }
+.search svg{ position:absolute; left:11px; top:50%; transform:translateY(-50%); width:18px; height:18px; opacity:.6; }
+.seg{ display:inline-flex; border:2px solid var(--brown); border-radius:8px; overflow:hidden; }
+.seg button{ font:inherit; font-weight:600; padding:9px 16px; background:var(--cream); color:var(--brown); border:none; cursor:pointer; }
+.seg button[aria-pressed="true"]{ background:var(--brown); color:var(--cream); }
+.grp{ font:inherit; font-weight:600; padding:9px 12px; border:2px solid var(--brown); border-radius:8px; background:var(--cream); color:var(--ink); cursor:pointer; }
+.filters{ margin-top:12px; display:flex; flex-direction:column; gap:9px; }
+.filter-line{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.filter-line .lbl{ font-family:'Roboto Slab',serif; font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:.68rem; color:var(--green); margin-right:4px; min-width:60px; }
+.chip{
+  font:inherit; font-size:.82rem; padding:4px 11px; border-radius:999px; cursor:pointer;
+  border:1.5px solid var(--brown); background:transparent; color:var(--brown); transition:all .12s; white-space:nowrap;
+}
+.chip:hover{ background:rgba(90,61,35,.1); }
+.chip[aria-pressed="true"]{ background:var(--green); border-color:var(--green); color:var(--cream); }
+.chip .n{ opacity:.6; font-size:.74em; margin-left:3px; }
+.chip[aria-pressed="true"] .n{ opacity:.85; }
+.chip.theme[aria-pressed="true"]{ background:var(--gold); border-color:var(--gold-deep); color:var(--ink); }
+
+/* ---- Progress / status ---- */
+.statusrow{ display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center; margin-top:13px; }
+.count{ font-weight:600; color:var(--brown); }
+.progress{ flex:1 1 220px; min-width:180px; display:flex; align-items:center; gap:10px; }
+.bar{ flex:1; height:13px; background:var(--cream); border:1.5px solid var(--brown); border-radius:999px; overflow:hidden; }
+.bar > i{ display:block; height:100%; width:0; background:linear-gradient(90deg,var(--green2),var(--green)); transition:width .3s; }
+.progress .pct{ font-weight:700; color:var(--green); font-size:.9rem; white-space:nowrap; }
+.linkbtn{ background:none; border:none; color:var(--brown); text-decoration:underline; cursor:pointer; font:inherit; font-size:.85rem; }
+
+/* ---- Grid ---- */
+main{ padding:26px 0 60px; }
+.group-head{ grid-column:1/-1; display:flex; align-items:baseline; gap:12px; margin:26px 0 4px; padding-bottom:7px; border-bottom:2px solid var(--green2); }
+.group-head:first-child{ margin-top:0; }
+.group-head h2{ font-family:'Roboto Slab',serif; font-weight:900; text-transform:uppercase; letter-spacing:.05em; color:var(--green); font-size:clamp(1.05rem,2.4vw,1.45rem); }
+.group-head .gc{ color:var(--brown); font-weight:600; }
+#grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:22px; }
+.card{
+  background:var(--cream); border:1px solid rgba(90,61,35,.32); border-radius:12px; overflow:hidden;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; position:relative; transition:transform .12s, box-shadow .12s;
+}
+.card:hover{ transform:translateY(-3px); box-shadow:0 8px 20px rgba(33,26,18,.2); }
+.card.visited{ outline:3px solid var(--gold); outline-offset:-3px; }
+.card-img{ position:relative; aspect-ratio:3/2; background:var(--brown); overflow:hidden; }
+.card-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+.photo-credit{ position:absolute; left:0; bottom:0; right:0; font-size:.64rem; color:#fff; background:linear-gradient(transparent,rgba(0,0,0,.6)); padding:14px 8px 4px; line-height:1.2; }
+.region-flag{ position:absolute; top:9px; left:9px; background:var(--brown); color:var(--cream); font-family:'Roboto Slab',serif; font-weight:700; font-size:.66rem; text-transform:uppercase; letter-spacing:.06em; padding:3px 9px; border-radius:5px; border-left:4px solid var(--rc,var(--gold)); box-shadow:var(--shadow); }
+.visit-toggle{
+  position:absolute; top:8px; right:8px; width:38px; height:38px; border-radius:50%; cursor:pointer;
+  border:2px solid var(--cream); background:rgba(33,26,18,.55); color:var(--cream); display:grid; place-items:center; transition:all .15s;
+}
+.visit-toggle svg{ width:20px; height:20px; }
+.visit-toggle:hover{ background:var(--green); }
+.card.visited .visit-toggle{ background:var(--gold); border-color:var(--gold-deep); color:var(--ink); }
+.stamp{ position:absolute; top:46px; right:6px; transform:rotate(9deg); font-family:'Roboto Slab',serif; font-weight:900; font-size:.72rem; letter-spacing:.12em; color:var(--gold); border:2.5px solid var(--gold); border-radius:6px; padding:2px 7px; background:rgba(33,26,18,.45); text-transform:uppercase; display:none; }
+.card.visited .stamp{ display:block; }
+.card-body{ padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.card-body h3{ font-family:'Roboto Slab',serif; font-weight:700; font-size:1.18rem; line-height:1.15; color:var(--ink); }
+.era{ font-style:italic; color:var(--brown2); font-size:.86rem; margin-top:-3px; }
+.summary{ font-size:.92rem; }
+.highlight{ font-size:.85rem; background:rgba(252,194,0,.16); border-left:3px solid var(--gold); padding:6px 9px; border-radius:0 6px 6px 0; }
+.highlight b{ color:var(--brown2); }
+.themes{ display:flex; flex-wrap:wrap; gap:5px; }
+.ttag{ font-size:.72rem; padding:2px 8px; border-radius:999px; border:1px solid var(--green2); color:var(--green); background:rgba(60,107,62,.07); cursor:pointer; }
+.ttag:hover{ background:var(--green); color:var(--cream); }
+.locmeta{ font-size:.8rem; color:var(--brown2); margin-top:auto; padding-top:4px; }
+.card-links{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+.card-links a{ font-size:.85rem; font-weight:600; text-decoration:none; padding:7px 12px; border-radius:7px; }
+.lk-official{ background:var(--green); color:var(--cream); flex:1; text-align:center; }
+.lk-official:hover{ background:var(--green2); }
+.lk-dir{ border:1.5px solid var(--brown); color:var(--brown); }
+.lk-dir:hover{ background:var(--brown); color:var(--cream); }
+
+/* ---- Map ---- */
+#map{ height:min(72vh,640px); border-radius:12px; border:3px solid var(--brown); box-shadow:var(--shadow); }
+.leaflet-popup-content{ font-family:'Source Sans 3',sans-serif; margin:10px 12px; }
+.pin{ width:20px; height:20px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); border:2px solid #2c1f12; box-shadow:0 2px 4px rgba(0,0,0,.4); }
+.pop img{ width:100%; height:96px; object-fit:cover; border-radius:6px; margin-bottom:6px; }
+.pop h4{ font-family:'Roboto Slab',serif; font-size:1rem; margin-bottom:2px; }
+.pop .pr{ font-size:.78rem; color:var(--brown2); margin-bottom:5px; }
+.pop a{ font-weight:600; font-size:.85rem; }
+.hidden{ display:none !important; }
+.empty{ grid-column:1/-1; text-align:center; padding:50px 20px; color:var(--brown2); font-size:1.05rem; }
+
+/* ---- Footer ---- */
+footer{ background:var(--green); color:var(--cream); padding:30px 0; border-top:6px solid var(--gold); font-size:.88rem; }
+footer .wrap{ display:flex; flex-wrap:wrap; gap:18px 40px; }
+footer a{ color:var(--gold); }
+footer p{ max-width:60ch; }
+footer h4{ font-family:'Roboto Slab',serif; text-transform:uppercase; letter-spacing:.08em; font-size:.8rem; margin-bottom:6px; color:var(--gold); }
+@media(max-width:560px){
+  .sign{ flex-direction:column; text-align:center; }
+  .lk-official{ flex:1 1 100%; }
+}
+</style>
+</head>
+<body>
+
+<header class="signpost">
+  <div class="wrap">
+    <div class="sign">
+      <svg class="roundel" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="#5A3D23"/>
+        <circle cx="50" cy="50" r="41" fill="#1F4A2C"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#FCC200" stroke-width="2.5" opacity=".7"/>
+        <g fill="#FCC200" stroke="#E07B00" stroke-width="1">
+          <ellipse cx="50" cy="33" rx="12" ry="18"/>
+          <ellipse cx="67" cy="50" rx="18" ry="12"/>
+          <ellipse cx="50" cy="67" rx="12" ry="18"/>
+          <ellipse cx="33" cy="50" rx="18" ry="12"/>
+        </g>
+        <circle cx="50" cy="50" r="8.5" fill="#E07B00"/>
+      </svg>
+      <div class="sign-text">
+        <div class="kicker">Golden State &middot; Est. 1850</div>
+        <h1>California State Historic Parks</h1>
+        <p class="sub">A field guide to the <b>33 parks</b> honored by the special free pass marking <b>175 years of California</b> &amp; 250 years of U.S. history.</p>
+        <a class="getpass" href="https://www.parks.ca.gov/?page_id=30966" target="_blank" rel="noopener">Get the free pass →</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="passbar">
+  <div class="wrap">
+    <span class="live">PASS ACTIVE</span>
+    <span>Free entry <b>now through Dec 31, 2026</b></span>
+    <span>Admits up to <b>4 people</b> (or free vehicle day-use)</span>
+    <span>Present pass on entry or dashboard</span>
+    <span>Full terms: <a href="https://www.parks.ca.gov/HP" target="_blank" rel="noopener">parks.ca.gov/HP</a></span>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="ctl-row">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Search parks, towns, history…" autocomplete="off">
+      </label>
+      <div class="seg" role="group" aria-label="View">
+        <button id="viewGrid" aria-pressed="true">Grid</button>
+        <button id="viewMap" aria-pressed="false">Map</button>
+      </div>
+      <select class="grp" id="groupBy" aria-label="Organize by">
+        <option value="name">Sort: A–Z</option>
+        <option value="region">Group: Region</option>
+        <option value="theme">Group: Theme</option>
+        <option value="year">Sort: Timeline</option>
+      </select>
+    </div>
+    <div class="filters">
+      <div class="filter-line" id="regionFilters"><span class="lbl">Region</span></div>
+      <div class="filter-line" id="themeFilters"><span class="lbl">Theme</span></div>
+    </div>
+    <div class="statusrow">
+      <span class="count" id="count"></span>
+      <span class="progress">
+        <span class="bar"><i id="barFill"></i></span>
+        <span class="pct" id="pct">0 / 33 visited</span>
+      </span>
+      <button class="linkbtn" id="clearFilters">Clear filters</button>
+      <button class="linkbtn" id="resetVisited">Reset visited</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div id="grid"></div>
+  <div id="map" class="hidden"></div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>About this guide</h4>
+      <p>A personal trip-planning reference for California's 175th-anniversary State Historic Parks pass. Not affiliated with or endorsed by California State Parks. Verify hours, closures, and current terms at the official links before you go.</p>
+    </div>
+    <div>
+      <h4>Credits</h4>
+      <p>Park photos via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a> (public domain / Creative Commons; photographer credited on each card). Park summaries compiled from parks.ca.gov and public sources. Map &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.</p>
+      <p style="margin-top:8px;opacity:.85">Built by Rob Logic.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const PARKS = [{"name": "Anderson Marsh", "fullName": "Anderson Marsh State Historic Park", "slug": "anderson-marsh", "img": "img/anderson-marsh.jpg", "summary": "Anderson Marsh protects a tule marsh, ranch buildings, and Pomo archaeological sites on the southeast corner of Clear Lake. It preserves both the 1884 Anderson family cattle and dairy ranch and Native American village sites, some over 10,000 years old and among the oldest known in California. Visitors come for the restored 19th-century ranch complex, the wildlife-rich marsh, and trails that pass through more than 14,000 years of human history.", "era": "Native American (10,000+ years) and Pioneer ranching, 1850s-1960s", "themes": ["Native American", "Ranching & Adobe", "Pioneer/Settlement"], "region": "Far North", "county": "Lake County", "town": "Clearlake", "lat": 38.92361, "lng": -122.625, "experience": "Historic ranch, marsh grounds & trails", "highlight": "The 1884 Anderson Ranch House and its cluster of period barns and outbuildings, occupied by the Anderson family into the 1960s", "url": "https://www.parks.ca.gov/?page_id=483", "credit": "Anderson Marsh State Historic Park staff, Public Domain", "founded": "1982"}, {"name": "Antelope Valley Indian Museum", "fullName": "Antelope Valley Indian Museum State Historic Park", "slug": "antelope-valley-indian-museum", "img": "img/antelope-valley-indian-museum.jpg", "summary": "This is California's State Regional Indian Museum, housed in a chalet-style building that homesteader-artist Howard Arden Edwards began constructing in 1928 directly atop the rock formation of Piute Butte in the Mojave Desert. It preserves thousands of objects representing Native American cultures of the Great Basin, Southwest, and California regions, reflecting the Antelope Valley's role as a prehistoric trade corridor linking those areas. It is worth visiting for the unusual architecture built into living bedrock and for collections assembled by Edwards and later owner Grace Wilcox Oliver.", "era": "Early 20th-century homestead/collector era, 1928-1940s; interprets Native American cultures spanning prehistory to the present", "themes": ["Native American"], "region": "Southern California", "county": "Los Angeles County", "town": "Lancaster", "lat": 34.65028, "lng": -117.84889, "experience": "Indoor museum", "highlight": "The chalet-style museum building constructed directly over the natural rock formation of Piute Butte, with the bedrock incorporated into the interior and exterior.", "url": "https://www.parks.ca.gov/?page_id=632", "credit": "Junkyardsparkle, CC0 1.0", "founded": "1979"}, {"name": "Bale Grist Mill", "fullName": "Bale Grist Mill State Historic Park", "slug": "bale-grist-mill", "img": "img/bale-grist-mill.jpg", "summary": "A restored 1846 water-powered grist mill in the Napa Valley, built by pioneer settler Edward Turner Bale on his Rancho Carne Humana land grant. The mill, driven by a 36-foot water wheel, was once the social and economic hub where valley settlers brought corn and wheat to be ground into meal and flour. It is worth visiting for weekend milling demonstrations that run the original French buhr millstones, showing pre-industrial grain milling in action.", "era": "Mexican & early American California, 1840s", "themes": ["Industrial Heritage", "Pioneer/Settlement"], "region": "Bay Area", "county": "Napa", "town": "St. Helena", "lat": 38.54139, "lng": -122.50833, "experience": "Historic mill", "highlight": "The towering 36-foot water wheel running the original French buhr millstones during weekend milling demonstrations.", "url": "https://www.parks.ca.gov/?page_id=482", "credit": "Sanfranman59, CC BY-SA 3.0", "founded": ""}, {"name": "Benicia Capitol", "fullName": "Benicia Capitol State Historic Park", "slug": "benicia-capitol", "img": "img/benicia-capitol.jpg", "summary": "This park preserves the brick Greek Revival building that served as California's third state capitol from February 1853 to February 1854, the only pre-Sacramento capitol still standing. The restored Senate and Assembly chambers are furnished with period desks, spittoons, candlesticks, and top hats to recreate the early statehood legislature in session. Next door, the 1850s Fischer-Hanlon House and its gardens interpret upper-middle-class Gold Rush-era family life in the young city of Benicia.", "era": "Early California statehood, 1853-1854", "themes": ["Pioneer/Settlement", "Gold Rush"], "region": "Bay Area", "county": "Solano County", "town": "Benicia", "lat": 38.0503, "lng": -122.1578, "experience": "House museum (restored capitol)", "highlight": "The restored Senate chamber on the first floor, set with original 1850s desks complete with period spittoons, candlesticks, and top hats as if the legislature just stepped out.", "url": "https://www.parks.ca.gov/?page_id=475", "credit": "Epolk, Public domain", "founded": ""}, {"name": "Bidwell Mansion", "fullName": "Bidwell Mansion State Historic Park", "slug": "bidwell-mansion", "img": "img/bidwell-mansion.jpg", "summary": "A three-story, 26-room Italianate Victorian mansion in central Chico, built between 1865 and 1868 as the home of pioneer, soldier, and statesman John Bidwell and his wife Annie, a noted suffrage and prohibition advocate. The house preserved the story of one of Northern California's most influential 19th-century families and hosted guests such as Presidents Grant and Hayes, Susan B. Anthony, and John Muir. An arson fire on December 11, 2024 destroyed the mansion; the park is currently closed while California State Parks leads a \"Reimagine Bidwell Mansion\" planning effort, though the surviving visitor center and carriage house still anchor the site.", "era": "Victorian / Pioneer California, 1860s-1900", "themes": ["Victorian Mansion", "Pioneer/Settlement"], "region": "Sacramento Valley", "county": "Butte", "town": "Chico", "lat": 39.7323528, "lng": -121.8434806, "experience": "House museum (currently closed; visitor center on site)", "highlight": "The Italianate brick mansion, equipped with then-cutting-edge indoor plumbing, gas lighting, and running water, where John and Annie Bidwell entertained figures like John Muir and Susan B. Anthony; the masonry shell survives the 2024 fire.", "url": "https://www.parks.ca.gov/?page_id=460", "credit": "Frank Schulenburg, CC BY-SA 4.0", "founded": "1964"}, {"name": "Bodie", "fullName": "Bodie State Historic Park", "slug": "bodie", "img": "img/bodie.jpg", "summary": "Bodie is a genuine gold-mining ghost town preserved in a state of \"arrested decay,\" with about 110 weathered wood buildings left standing exactly as residents abandoned them. It tells the story of an 1870s-80s Eastern Sierra boomtown that swelled to roughly 8,000 people and 2,000 structures after the Standard Company struck a rich gold vein in 1876, then emptied out as the ore ran out. It is worth visiting as one of the best-preserved authentic ghost towns in the American West, with no commercial development to break the historic atmosphere.", "era": "Hard-rock gold mining boomtown, 1876-1880s", "themes": ["Ghost Town", "Hard-Rock Mining", "Gold Rush", "Industrial Heritage"], "region": "Eastern Sierra", "county": "Mono County", "town": "Bridgeport", "lat": 38.21222, "lng": -119.01222, "experience": "Ghost town", "highlight": "The Standard Consolidated Mining Company stamp mill, where ranger-led tours explain how the gold ore was processed; the 1882 Methodist Church and the Miners Union Hall museum also survive.", "url": "https://www.parks.ca.gov/?page_id=509", "credit": "Jon Sullivan, Public Domain", "founded": "1962"}, {"name": "California Citrus", "fullName": "California Citrus State Historic Park", "slug": "california-citrus", "img": "img/california-citrus.jpg", "summary": "A 248-acre living museum in Riverside that preserves the cultural landscape of Southern California's citrus industry, with working demonstration groves of navel and Valencia oranges, lemons, and grapefruit alongside a visitor center and interpretive exhibits. It tells the story of the era when \"Citrus was King\" — sparked by Eliza Tibbets's 1873 planting of two navel orange trees in Riverside — and the diverse migrant and immigrant labor that built the industry. Worth visiting to walk the historic-style groves, see antique grove equipment, and sample unusual citrus varieties.", "era": "Citrus boom era, 1870s-1940s (when \"Citrus was King\")", "themes": ["Citrus & Agriculture", "Industrial Heritage", "Pioneer/Settlement"], "region": "Southern California", "county": "Riverside County", "town": "Riverside", "lat": 33.897222, "lng": -117.421667, "experience": "Living museum with groves & trails", "highlight": "Walk the period-style demonstration citrus groves and the visitor center exhibits, then sample unusual citrus varieties grown on-site.", "url": "https://www.parks.ca.gov/?page_id=649", "credit": "MissionInn.Jim, Public Domain", "founded": "1993"}, {"name": "California State Mining and Mineral Museum", "fullName": "California State Mining and Mineral Museum", "slug": "california-state-mining-and-mineral-museum", "img": "img/california-state-mining-and-mineral-museum.jpg", "summary": "An indoor museum at the Mariposa County Fairgrounds that houses the official California State Mineral Collection of more than 13,000 minerals, rocks, gems, fossils, and mining artifacts. Begun in 1880 under the California State Mining Bureau, it preserves the geology and hard-rock mining heritage that drove the Gold Rush and the decades of industrial mining that followed. It is worth visiting for the Fricot Nugget, a reconstructed underground mine tunnel, and a working scale model of a stamp mill.", "era": "Gold Rush and hard-rock mining era, 1848-1900s", "themes": ["Gold Rush", "Hard-Rock Mining", "Industrial Heritage"], "region": "Gold Country", "county": "Mariposa County", "town": "Mariposa", "lat": 37.46417, "lng": -119.9475, "experience": "Indoor museum", "highlight": "The Fricot Nugget, a 13.8-pound mass of crystallized gold found in the American River in 1864 and the largest intact crystalline-gold specimen surviving from 19th-century California.", "url": "https://www.parks.ca.gov/miningandmineralmuseum", "credit": "California Department of Parks and Recreation, Public domain", "founded": "1999"}, {"name": "Colonel Allensworth", "fullName": "Colonel Allensworth State Historic Park", "slug": "colonel-allensworth", "img": "img/colonel-allensworth.jpg", "summary": "This park preserves Allensworth, the only town in California to be founded, financed, and governed entirely by African Americans. It was established in 1908 by Lt. Colonel Allen Allensworth, a man who escaped slavery and rose to become the highest-ranking Black officer in the U.S. Army of his day, as a self-determined farming community before a falling water table forced its decline. Visitors can walk the restored townsite, tour reconstructed buildings, and learn the story of an ambitious experiment in Black self-governance during the Jim Crow era.", "era": "Early 20th-century African American settlement, 1908-1920s", "themes": ["Pioneer/Settlement", "Citrus & Agriculture", "Railroad"], "region": "Central Valley", "county": "Tulare County", "town": "Earlimart", "lat": 35.8636, "lng": -119.3889, "experience": "Living-history townsite", "highlight": "The restored Allensworth Elementary School and the First Baptist Church, centerpieces of the reconstructed town, with interpretive panels and an annual Rededication event each October.", "url": "https://www.parks.ca.gov/?page_id=583", "credit": "Bobak Ha'Eri, CC BY 3.0", "founded": "1974"}, {"name": "El Presidio de Santa Barbara", "fullName": "El Presidio de Santa Barbara State Historic Park", "slug": "el-presidio-de-santa-barbara", "img": "img/el-presidio-de-santa-barbara.jpg", "summary": "This downtown Santa Barbara park preserves and reconstructs the Presidio of Santa Barbara, the last of four Spanish royal military fortresses built in Alta California, founded in 1782. It interprets Spanish colonial military and civic life while also telling the story of the region's Chumash people and the diverse cultures that followed. It is worth visiting for El Cuartel, the second-oldest building in California, and the faithfully reconstructed Presidio Chapel and parade ground, alongside an active archaeological site.", "era": "Spanish Colonial Alta California, founded 1782", "themes": ["Military Fort", "Spanish/Mexican Era", "Ranching & Adobe", "Native American"], "region": "Central Coast", "county": "Santa Barbara County", "town": "Santa Barbara", "lat": 34.4226, "lng": -119.6971, "experience": "Reconstructed presidio fort and adobes", "highlight": "The reconstructed Presidio Chapel with its bell tower at the center of the original Plaza de Armas (parade ground), and El Cuartel, the second-oldest surviving building in California.", "url": "https://www.parks.ca.gov/?page_id=608", "credit": "Ymblanter, CC BY-SA 3.0", "founded": "1966"}, {"name": "Empire Mine", "fullName": "Empire Mine State Historic Park", "slug": "empire-mine", "img": "img/empire-mine.jpg", "summary": "Empire Mine State Historic Park preserves one of the oldest, deepest, and richest hard-rock gold mines in California, which produced 5.8 million ounces of gold across 367 miles of underground passages before closing in 1956. The site tells the story of the shift from Gold Rush placer mining to industrial-scale lode mining, including the Cornish miners who supplied the labor and the wealth it created. Visitors can tour the original mine yard and headframe, the owner's stone Bourn Cottage, and its restored Arts and Crafts gardens.", "era": "Gold Rush to industrial mining, 1850-1956", "themes": ["Hard-Rock Mining", "Gold Rush", "Industrial Heritage"], "region": "Gold Country", "county": "Nevada", "town": "Grass Valley", "lat": 39.20361, "lng": -121.04278, "experience": "Historic mine yard with house museum and grounds", "highlight": "The \"Secret Room\" scale model of the mine's 367 miles of underground workings, plus the stone Bourn Cottage and its restored gardens.", "url": "https://www.parks.ca.gov/EmpireMine/", "credit": "KRoark, CC BY-SA 2.0", "founded": "1975"}, {"name": "Folsom Powerhouse", "fullName": "Folsom Powerhouse State Historic Park", "slug": "folsom-powerhouse", "img": "img/folsom-powerhouse.jpg", "summary": "Folsom Powerhouse State Historic Park preserves an 1895 hydroelectric plant on the American River, one of the oldest in the world and a pioneer of long-distance alternating-current power transmission. On July 13, 1895, its General Electric generators began sending electricity 22 miles to Sacramento at 11,000 volts, powering the city's streetcars, businesses, and state capitol. Visitors can see the original turbines, generators, and Tennessee-marble switchboard standing largely as they did over a century ago.", "era": "Industrial era / early electrification, 1895-1952", "themes": ["Industrial Heritage"], "region": "Gold Country", "county": "Sacramento County", "town": "Folsom", "lat": 38.68056, "lng": -121.17556, "experience": "Historic powerhouse museum", "highlight": "The original 1895 generator room with four S. Morgan Smith water turbines, four 750-kW General Electric AC generators, and the Tennessee marble-faced control switchboard, still in place.", "url": "https://www.parks.ca.gov/?page_id=501", "credit": "Shortride, CC BY-SA 3.0", "founded": "1956"}, {"name": "Fort Ross", "fullName": "Fort Ross State Historic Park", "slug": "fort-ross", "img": "img/fort-ross.jpg", "summary": "Fort Ross preserves the southernmost Russian settlement in North America, a Russian-American Company fur-trading and farming colony built in 1812 on the Sonoma coast with the labor of Russian, Native Alaskan, and local Kashia Pomo people. The park centers on a reconstructed redwood stockade with two blockhouses and an Orthodox chapel, alongside the Rotchev House, the only structure surviving from the Russian period. It is worth visiting for its rare Russian-colonial story, the National Historic Landmark fort compound, and dramatic Pacific bluff scenery.", "era": "Russian-American Company colony, 1812-1841", "themes": ["Russian-American", "Military Fort", "Native American", "Ranching & Adobe"], "region": "North Coast", "county": "Sonoma County", "town": "Jenner", "lat": 38.5144, "lng": -123.2436, "experience": "Living-history fort", "highlight": "The reconstructed Russian Orthodox chapel and the original 1830s Rotchev House inside the redwood stockade", "url": "https://www.parks.ca.gov/fortross/", "credit": "Frank Schulenburg, CC BY-SA 4.0", "founded": "1909"}, {"name": "Fort Tejon", "fullName": "Fort Tejon State Historic Park", "slug": "fort-tejon", "img": "img/fort-tejon.jpg", "summary": "Fort Tejon is a restored U.S. Army frontier post that the Army garrisoned from 1854 to 1864 to police the Sebastian Indian Reservation and shield both Native people and settlers from raids in the southern San Joaquin Valley. From 1858 it served as the western terminus of the experimental U.S. Camel Corps, and today its restored adobe barracks and commanding officer's quarters, set among 300-year-old valley oaks, interpret dragoon life on the California frontier. Monthly living-history demonstrations and Civil War-era reenactments make it a working window into 1850s military life.", "era": "Early American military California, 1854-1864", "themes": ["Military Fort", "Native American", "Ranching & Adobe"], "region": "Southern California", "county": "Kern", "town": "Lebec", "lat": 34.874, "lng": -118.8943, "experience": "Living-history fort", "highlight": "The restored adobe barracks with display cases of dragoon uniforms and recreated troopers' quarters, plus the furnished commanding officer's quarters; the fort was the western base of the 1850s U.S. Camel Corps.", "url": "https://www.parks.ca.gov/?page_id=585", "credit": "Yellowute, Public Domain", "founded": "1940"}, {"name": "Indian Grinding Rock", "fullName": "Indian Grinding Rock State Historic Park", "slug": "indian-grinding-rock", "img": "img/indian-grinding-rock.jpg", "summary": "A 135-acre park in the Sierra Nevada foothills built around a great outcrop of marbleized limestone bearing 1,185 bedrock mortar holes, the largest such collection in North America, where Northern Sierra Miwok people ground acorns into meal over many centuries. The grinding rock is also incised with petroglyphs up to two or three thousand years old, and the valley holds a reconstructed Miwok village with a ceremonial roundhouse that is among the largest in California and still used by Native Americans. It is worth visiting to see this living Native Californian cultural site alongside the Chaw'se Regional Indian Museum's collection of Sierra Nevada artifacts.", "era": "Native American (pre-contact through present); grinding rock and petroglyphs up to 2,000-3,000 years old", "themes": ["Native American"], "region": "Gold Country", "county": "Amador County", "town": "Pine Grove", "lat": 38.42417, "lng": -120.64333, "experience": "Native American cultural site and grounds with museum", "highlight": "The main grinding rock (chaw'se) with 1,185 mortar holes and ancient petroglyphs, the largest collection of bedrock mortars in North America.", "url": "https://www.parks.ca.gov/?page_id=553", "credit": "artq55, CC BY-SA 2.0", "founded": "1962"}, {"name": "Jack London", "fullName": "Jack London State Historic Park", "slug": "jack-london", "img": "img/jack-london.jpg", "summary": "A 1,400-acre park on the slopes of Sonoma Mountain that preserves Beauty Ranch, the home and working ranch of novelist and adventurer Jack London from 1905 until his death in 1916. Visitors can see the stone ruins of Wolf House (London's 15,000-square-foot dream mansion, which burned just before completion in 1913), the cottage where he wrote much of his later work, his grave, and the House of Happy Walls museum built by his widow Charmian. It is worth visiting both as a literary landmark and for the experimental farm buildings and 20-plus miles of trails through vineyards and oak woodland.", "era": "Early 20th century, 1905-1916 (Jack London's Beauty Ranch)", "themes": ["Literary", "Ranching & Adobe"], "region": "Bay Area", "county": "Sonoma County", "town": "Glen Ellen", "lat": 38.35056, "lng": -122.54306, "experience": "House museum & grounds", "highlight": "The stone ruins of Wolf House, London's grand stone-and-redwood mansion that burned to the ground in August 1913 weeks before he was to move in.", "url": "https://www.parks.ca.gov/?page_id=478", "credit": "Sarah Stierch, CC BY 4.0", "founded": "1960"}, {"name": "La Purisima Mission", "fullName": "La Purisima Mission State Historic Park", "slug": "la-purisima-mission", "img": "img/la-purisima-mission.jpg", "summary": "La Purisima Mission is the 11th of California's 21 Franciscan missions, founded in 1787 and rebuilt at its present Lompoc site after the 1812 earthquake. It is the most completely restored mission complex in the state, with ten original adobe buildings reconstructed and fully furnished by the Civilian Conservation Corps in the 1930s. The grounds re-create mission life around its 1820s heyday, complete with period gardens and heritage livestock, making it the only place in California to see a Spanish mission as a complete working settlement.", "era": "Spanish & Mexican California, 1787-1820s", "themes": ["Mission", "Spanish/Mexican Era", "Ranching & Adobe", "Native American"], "region": "Central Coast", "county": "Santa Barbara County", "town": "Lompoc", "lat": 34.67047, "lng": -120.420617, "experience": "Living-history mission complex", "highlight": "Walk through the fully furnished mission church and ten restored adobe buildings, then visit the gardens and heritage livestock (churro sheep, longhorn cattle, burros) that re-create the mission's 1820s working life.", "url": "https://www.parks.ca.gov/lapurisimamission", "credit": "Jsweida, CC BY-SA 3.0", "founded": "1935"}, {"name": "Los Encinos", "fullName": "Los Encinos State Historic Park", "slug": "los-encinos", "img": "img/los-encinos.jpg", "summary": "A 4.7-acre historic park in Encino preserving the core buildings of Rancho Los Encinos, including the 1849 adobe built by Vicente de la Osa and the two-story limestone Garnier building added in 1872. The site sits on a natural artesian spring that sustained the Tongva village of Siutcanga for thousands of years before the Spanish and Mexican rancho era. It is worth visiting to see early Californian rancho architecture and one of the oldest surviving structures in the San Fernando Valley on its original ground.", "era": "Spanish & Mexican California through early rancho period, 1840s-1870s (Native Tongva settlement predating it)", "themes": ["Ranching & Adobe", "Spanish/Mexican Era", "Native American"], "region": "Southern California", "county": "Los Angeles", "town": "Encino", "lat": 34.16028, "lng": -118.49917, "experience": "House museum & grounds", "highlight": "The 1849 de la Osa Adobe, the oldest building on site, alongside the spring-fed pond and the 1872 two-story limestone Garnier building.", "url": "https://www.parks.ca.gov/?page_id=619", "credit": "Cbl62, CC BY-SA 3.0", "founded": "1949"}, {"name": "Malakoff Diggins", "fullName": "Malakoff Diggins State Historic Park", "slug": "malakoff-diggins", "img": "img/malakoff-diggins.jpg", "summary": "Malakoff Diggins State Historic Park preserves the largest hydraulic gold-mining site in California, where high-pressure water cannons blasted away entire hillsides to wash out gold, leaving a multicolored canyon up to 600 feet deep. The runoff buried farms and clogged rivers downstream, triggering the 1884 Sawyer Decision that effectively ended large-scale hydraulic mining and is regarded as one of the nation's first environmental-protection rulings. Visitors can walk the restored Gold Rush town of North Bloomfield and view the dramatic mine pit and water-carved cliffs.", "era": "Gold Rush / hydraulic mining, 1850s-1880s", "themes": ["Hydraulic Mining", "Gold Rush", "Industrial Heritage", "Pioneer/Settlement"], "region": "Gold Country", "county": "Nevada County", "town": "Nevada City", "lat": 39.36278, "lng": -120.92444, "experience": "Ghost town and mining-pit park with trails", "highlight": "The mile-plus-long hydraulic mine pit with its banded, water-blasted cliffs, plus the restored town of North Bloomfield, including its general store, drugstore, and St. Columncille's Catholic Church.", "url": "https://www.parks.ca.gov/?page_id=494", "credit": "Justin Smith (User:J.smith), CC BY-SA 3.0", "founded": "1965"}, {"name": "Marshall Gold Discovery", "fullName": "Marshall Gold Discovery State Historic Park", "slug": "marshall-gold-discovery", "img": "img/marshall-gold-discovery.jpg", "summary": "This park preserves Coloma, the spot on the South Fork of the American River where James W. Marshall found gold at Sutter's sawmill in January 1848, igniting the California Gold Rush. The 576-acre site includes a full-size working replica of Sutter's Mill, a Gold Discovery Museum, and more than 20 historic buildings from the Gold Rush town. Visitors can tour the mill, see the Marshall Monument above the discovery site, and pan for gold in the river.", "era": "Gold Rush, 1848-1855", "themes": ["Gold Rush", "Pioneer/Settlement", "Chinese-American Heritage"], "region": "Gold Country", "county": "El Dorado County", "town": "Coloma", "lat": 38.8, "lng": -120.894, "experience": "Historic town site with mill and museum", "highlight": "The full-scale working replica of Sutter's Mill, built from Marshall's own drawings and an 1850 photograph, standing near the exact gold discovery site marked by the Marshall Monument (California Historical Landmark No. 143, the state's first historic monument).", "url": "https://www.parks.ca.gov/marshallgold", "credit": "Bobak Ha'Eri, CC BY 3.0", "founded": "1942"}, {"name": "Monterey", "fullName": "Monterey State Historic Park", "slug": "monterey", "img": "img/monterey.jpg", "summary": "Monterey State Historic Park is a collection of historic adobe houses and public buildings scattered through Old Town Monterey, the city that served as California's capital under Spanish, Mexican, and U.S. military rule. The preserved structures trace California's transition from a remote Spanish outpost to a Mexican territory to American statehood, and include the site of the state's first constitutional convention. A self-guided two-mile \"Path of History\" links the buildings, making it an easy walk through the layered origins of California government.", "era": "Spanish, Mexican & early American California, 1770s-1850s", "themes": ["Spanish/Mexican Era", "Ranching & Adobe", "Literary", "Pioneer/Settlement"], "region": "Central Coast", "county": "Monterey", "town": "Monterey", "lat": 36.59972, "lng": -121.89361, "experience": "Historic district of adobes (walking tour)", "highlight": "The Custom House on Custom House Plaza — California State Historical Landmark No. 1 and the oldest government building in the state, where the U.S. flag was first officially raised over California on July 7, 1846.", "url": "https://www.parks.ca.gov/?page_id=575", "credit": "Missvain (Sarah Stierch), CC BY 4.0", "founded": "1970"}, {"name": "Olompali", "fullName": "Olompali State Historic Park", "slug": "olompali", "img": "img/olompali.jpg", "summary": "A 700-acre park on the slopes of Burdell Mountain that layers thousands of years of Marin County history onto one site. It preserves one of the largest Coast Miwok villages in the region, the adobe of Camillo Ynitia (the only Native Californian in Northern California to secure and keep a large Mexican-era land grant), the Burdell family's Victorian ranch estate, and the grounds where the Grateful Dead lived in 1966 and the \"Chosen Family\" ran a hippie commune. Visitors come for the historic ranch buildings, Mary Burdell's restored formal garden, a reconstructed Coast Miwok village, and hiking trails with views across the Petaluma River basin to San Francisco Bay.", "era": "Coast Miwok through 1960s counterculture, c. 6000 BC-1969 (peak: Mexican land grant 1843 to Burdell ranching era)", "themes": ["Native American", "Ranching & Adobe", "Spanish/Mexican Era", "Literary"], "region": "Bay Area", "county": "Marin County", "town": "Novato", "lat": 38.1525, "lng": -122.56972, "experience": "Grounds & trails with adobe ruins", "highlight": "The Camillo Ynitia adobe, embedded in the ruins of the Burdell Mansion, marking the only large Mexican-era land grant in Northern California confirmed and kept by a Native Californian.", "url": "https://www.parks.ca.gov/olompali", "credit": "Sarah Stierch, CC BY 2.0", "founded": "1977"}, {"name": "Petaluma Adobe", "fullName": "Petaluma Adobe State Historic Park", "slug": "petaluma-adobe", "img": "img/petaluma-adobe.jpg", "summary": "This park preserves the surviving adobe ranch house at the heart of Rancho Petaluma, the roughly 66,000-acre estate that General Mariano Guadalupe Vallejo built starting in 1836 during Mexican rule of Alta California. The two-story adobe was the headquarters of a self-sufficient hide-and-tallow operation worked largely by Native American laborers, and it is the largest privately built adobe in California. Visitors can tour restored living quarters and work rooms furnished to the rancho era and see how a Mexican-period agricultural empire actually ran.", "era": "Mexican Alta California, 1834-1846", "themes": ["Spanish/Mexican Era", "Ranching & Adobe", "Native American"], "region": "Bay Area", "county": "Sonoma", "town": "Petaluma", "lat": 38.25547, "lng": -122.58451, "experience": "Historic adobe house museum", "highlight": "The restored two-story adobe quadrangle itself, the largest privately built adobe in California, with furnished family living quarters and the working rooms of Vallejo's hide-and-tallow rancho.", "url": "https://www.parks.ca.gov/?page_id=474", "credit": "Sarah Stierch, CC BY 4.0", "founded": "1951"}, {"name": "Railtown 1897", "fullName": "Railtown 1897 State Historic Park", "slug": "railtown-1897", "img": "img/railtown-1897.jpg", "summary": "Railtown 1897 is a still-working steam-era railroad complex preserving the roundhouse, turntable, blacksmith shop, and belt-driven machine shop the Sierra Railway built in Jamestown starting in 1897. It is the only continuously operating steam-locomotive roundhouse in the country and is nicknamed \"The Movie Railroad\" for the 200-plus films and TV shows shot here, including High Noon and Back to the Future Part III. Visitors can tour the working shops and ride seasonal excursion trains behind historic steam and diesel locomotives.", "era": "Steam-railroad industrial era, 1897-1950s", "themes": ["Railroad", "Industrial Heritage"], "region": "Gold Country", "county": "Tuolumne County", "town": "Jamestown", "lat": 37.951156, "lng": -120.418112, "experience": "Working railroad roundhouse and shops", "highlight": "The 1897 Sierra Railway roundhouse with its operating turntable, plus \"Movie Star\" locomotive Sierra No. 3, the 1891 steam engine seen in High Noon and Back to the Future Part III.", "url": "https://www.parks.ca.gov/?page_id=491", "credit": "DTParker1000, CC BY-SA 3.0", "founded": "1971"}, {"name": "Robert Louis Stevenson", "fullName": "Robert Louis Stevenson State Park", "slug": "robert-louis-stevenson", "img": "img/robert-louis-stevenson.jpg", "summary": "A 5,272-acre undeveloped state park on the slopes of Mount St. Helena, 7 miles north of Calistoga. It preserves the site where Scottish author Robert Louis Stevenson and his wife Fanny honeymooned in 1880, squatting in an abandoned bunkhouse at the played-out Silverado silver mine, an episode he recorded in The Silverado Squatters. Hikers come for the roughly 5-mile climb to the 4,343-foot summit, where on clear days views stretch from San Francisco Bay to Mount Shasta.", "era": "Late Victorian / Silver-mining California, 1870s-1880s", "themes": ["Literary", "Hard-Rock Mining"], "region": "Bay Area", "county": "Napa", "town": "Calistoga", "lat": 38.653416, "lng": -122.603406, "experience": "Grounds & trails", "highlight": "The marble memorial marker on the summit trail, on the site of the Silverado Mine bunkhouse where Stevenson spent his 1880 honeymoon (California Historical Landmark #710).", "url": "https://www.parks.ca.gov/?page_id=472", "credit": "Oleg Alexandrov, CC BY-SA 4.0", "founded": ""}, {"name": "San Juan Bautista", "fullName": "San Juan Bautista State Historic Park", "slug": "san-juan-bautista", "img": "img/san-juan-bautista.jpg", "summary": "This park preserves the historic plaza and a cluster of restored Spanish, Mexican, and early-American buildings that formed the town square of what was once the largest town in Central California and a key crossroads between the north and south. Its four main structures, the Plaza Hotel, Zanetta House/Plaza Hall, Plaza Stables, and Castro-Breen Adobe, sit around the only original Spanish plaza still surviving in the state. It is worth visiting to walk a genuinely intact 19th-century town square next to Mission San Juan Bautista and to see daily life across three eras of California history.", "era": "Spanish & Mexican California into the early American period, 1810s-1860s", "themes": ["Spanish/Mexican Era", "Mission", "Ranching & Adobe", "Pioneer/Settlement"], "region": "Central Coast", "county": "San Benito County", "town": "San Juan Bautista", "lat": 36.8456, "lng": -121.5346, "experience": "Historic plaza & adobe museums", "highlight": "The Plaza Hotel, built atop an 1814 Spanish soldiers' barracks with a Monterey Colonial second story added in 1858, which now houses the park entrance and a furnished period museum facing the original plaza.", "url": "https://www.parks.ca.gov/?page_id=563", "credit": "Pma03, CC BY-SA 3.0", "founded": "1933"}, {"name": "Shasta", "fullName": "Shasta State Historic Park", "slug": "shasta", "img": "img/shasta.jpg", "summary": "Shasta State Historic Park preserves the ruins and surviving buildings of Shasta, the \"Queen City\" of California's northern mining district that boomed from the 1850s through the 1880s. A row of half-ruined brick storefronts along the old Main Street marks what was once a thriving Gold Rush commercial district of hotels, stores, and stables, abandoned after the Central Pacific Railroad bypassed the town in favor of Redding. The restored 1861 County Courthouse now houses historical exhibits and a notable collection of historic California artwork, making this one of the best preserved Gold Rush ghost towns in the state.", "era": "Gold Rush, 1850s-1880s", "themes": ["Gold Rush", "Ghost Town", "Pioneer/Settlement"], "region": "Far North", "county": "Shasta County", "town": "Redding", "lat": 40.59222, "lng": -122.47778, "experience": "Gold Rush ghost town with house/courthouse museum", "highlight": "The restored 1861 Shasta County Courthouse Museum, with its 1860s courtroom, jail, and gallows, plus an unparalleled collection of historic California artwork.", "url": "https://www.parks.ca.gov/?page_id=456", "credit": "Ian Poellet (Ipoellet), CC BY-SA 4.0", "founded": "1937"}, {"name": "Sonoma", "fullName": "Sonoma State Historic Park", "slug": "sonoma", "img": "img/sonoma.jpg", "summary": "Sonoma State Historic Park is a cluster of six historic sites around the Sonoma Plaza that preserve the Mission, Mexican-pueblo, and early-American chapters of Northern California. It centers on Mission San Francisco Solano (1823) — the 21st and last California mission and the only one founded after Mexican independence — plus the Sonoma Barracks, where the 1846 Bear Flag Revolt declared California a republic, and General Mariano Vallejo's home, Lachryma Montis. It is worth visiting to walk the actual buildings where Spanish, Mexican, and U.S. rule changed hands in a few square blocks.", "era": "Mission & Mexican California through the Bear Flag Revolt, 1823-1850s", "themes": ["Mission", "Spanish/Mexican Era", "Military Fort", "Ranching & Adobe"], "region": "Bay Area", "county": "Sonoma County", "town": "Sonoma", "lat": 38.29667, "lng": -122.46306, "experience": "Cluster of historic buildings around a town plaza", "highlight": "The Sonoma Barracks on the plaza, headquarters of the 1846 Bear Flag Revolt that briefly made California an independent republic.", "url": "https://www.parks.ca.gov/?page_id=479", "credit": "FiendYT, CC BY-SA 3.0", "founded": "1909"}, {"name": "State Indian Museum", "fullName": "State Indian Museum State Historic Park", "slug": "state-indian-museum", "img": "img/state-indian-museum.jpg", "summary": "An indoor museum in midtown Sacramento, adjacent to Sutter's Fort, dedicated to the cultures of California's Indigenous peoples. Opened in 1940, it organizes its collections around three themes—Nature, Spirit, and Family—displaying baskets (including some of the smallest in the world), a Yurok redwood dugout canoe, ceremonial regalia, beadwork, and tools dating back over 2,400 years. It is worth visiting for its deep, respectfully presented Native California collection and its exhibit on Ishi, reputedly the last survivor of the Yahi tribe.", "era": "Native California, pre-contact through present (museum opened 1940)", "themes": ["Native American"], "region": "Sacramento Valley", "county": "Sacramento", "town": "Sacramento", "lat": 38.57278, "lng": -121.47139, "experience": "Indoor museum", "highlight": "The exhibit on Ishi, reputedly the last survivor of the Yahi tribe; also an 18-foot Yurok redwood dugout canoe and a hands-on area with traditional tools like the pump drill and mortar & pestle.", "url": "https://www.parks.ca.gov/?page_id=486", "credit": "Epp, CC BY-SA 3.0", "founded": "1940"}, {"name": "Sutter's Fort", "fullName": "Sutter's Fort State Historic Park", "slug": "sutter-s-fort", "img": "img/sutter-s-fort.jpg", "summary": "Sutter's Fort is the restored adobe trading post and agricultural colony that John Sutter built in the 1840s as the economic center of \"New Helvetia,\" the first permanent non-Native settlement in California's Central Valley. The fort interprets Mexican-era Alta California and the chain of events around the 1848 gold discovery at Sutter's Mill, including the colony's reliance on and exploitation of Native Nisenan and Miwok people and Hawaiian laborers. It is worth visiting for its original two-story adobe building and living-history exhibits that recreate frontier trades like blacksmithing and bakery work in the heart of Midtown Sacramento.", "era": "Mexican Alta California / pre-Gold Rush, 1839-1849", "themes": ["Pioneer/Settlement", "Spanish/Mexican Era", "Ranching & Adobe", "Native American"], "region": "Sacramento Valley", "county": "Sacramento", "town": "Sacramento", "lat": 38.572472, "lng": -121.471222, "experience": "Living-history fort", "highlight": "The original two-story adobe central building, the only structure surviving from Sutter's 1840s fort, with walls roughly 2.5 feet thick.", "url": "https://www.parks.ca.gov/?page_id=485", "credit": "Holly Cheng (Howcheng), CC BY-SA 4.0", "founded": "1947"}, {"name": "Weaverville Joss House", "fullName": "Weaverville Joss House State Historic Park", "slug": "weaverville-joss-house", "img": "img/weaverville-joss-house.jpg", "summary": "This park preserves the Temple of the Forest Beneath the Clouds, a working Taoist temple in downtown Weaverville and the oldest continuously used Chinese temple in California. First built in 1853 by Chinese miners during the Gold Rush and rebuilt in 1874 after fire, it tells the story of the Chinese immigrant community that helped build early California. Guided tours show the original altar, art objects, mining tools, and weapons from the 1854 Tong War, making it a rare survival of 19th-century Chinese-American religious life.", "era": "Gold Rush, 1853-1874", "themes": ["Chinese-American Heritage", "Gold Rush"], "region": "Far North", "county": "Trinity", "town": "Weaverville", "lat": 40.7311, "lng": -122.9408, "experience": "House of worship / guided temple tour", "highlight": "The original hand-carved altar inside the 1874 temple, alongside wrought-iron weapons used in the 1854 Tong War.", "url": "https://www.parks.ca.gov/?page_id=457", "credit": "Frank Schulenburg, CC BY-SA 4.0", "founded": "1956"}, {"name": "Will Rogers", "fullName": "Will Rogers State Historic Park", "slug": "will-rogers", "img": "img/will-rogers.jpg", "summary": "This 186-acre park preserves the former ranch and estate of Will Rogers, the cowboy-philosopher, newspaper columnist, radio personality, and movie star who was one of America's most popular public figures until his death in a 1935 plane crash. Donated to the state by his widow Betty in 1944, the grounds retain the equestrian character of his working ranch, including the last regulation outdoor polo field in Los Angeles County, stables, riding rings, and trails into the Santa Monica Mountains. The historic 31-room ranch house and main stable were destroyed in the January 2025 Palisades Fire, but the grounds, trails, polo matches, and Inspiration Point views remain the draw while restoration is undertaken.", "era": "Will Rogers ranch era, late 1920s-1935", "themes": ["Literary", "Ranching & Adobe"], "region": "Southern California", "county": "Los Angeles", "town": "Pacific Palisades", "lat": 34.05611, "lng": -118.51222, "experience": "Grounds & trails", "highlight": "Free weekend polo matches on Los Angeles County's last regulation outdoor grass polo field, and the 2-mile loop hike to Inspiration Point overlooking the ocean and mountains.", "url": "https://www.parks.ca.gov/?page_id=626", "credit": "Los Angeles (Wikimedia user), CC BY-SA 3.0", "founded": "1944"}, {"name": "William B. Ide Adobe", "fullName": "William B. Ide Adobe State Historic Park", "slug": "william-b-ide-adobe", "img": "img/william-b-ide-adobe.jpg", "summary": "A small day-use historic park on the west bank of the Sacramento River just north of Red Bluff, built around a restored 1850s adobe house that now serves as a museum. It preserves California's early American pioneer era and honors William B. Ide, leader of the 1846 Bear Flag Revolt and the only president of the short-lived California Republic. It is worth visiting for the recreated 1850s homestead, riverside picnic grounds, and living-history events that bring frontier daily life to life.", "era": "Early American California pioneer period, 1850s (Ide's legacy from the 1846 Bear Flag Revolt)", "themes": ["Pioneer/Settlement", "Ranching & Adobe"], "region": "Sacramento Valley", "county": "Tehama County", "town": "Red Bluff", "lat": 40.1968, "lng": -122.2252, "experience": "House museum and 1850s homestead", "highlight": "The restored 1852 adobe (built by settler A. M. Dibble) housing the museum, surrounded by recreated period outbuildings, with the annual Adobe Day living-history event each September.", "url": "https://www.parks.ca.gov/?page_id=458", "credit": "ChesPal (Debra Heaphy), CC BY-SA 3.0", "founded": "1960"}];
+
+const REGION_COLORS = {
+  "Bay Area":"#3C6B3E", "Gold Country":"#C9991A", "Southern California":"#C2562A",
+  "Sacramento Valley":"#7A8C3A", "Central Coast":"#2E6E8E", "Far North":"#2F5D50",
+  "Eastern Sierra":"#5A6B7A", "Central Valley":"#B08D3A", "North Coast":"#8E4A4A"
+};
+const VKEY = "caparks_visited_v1";
+const esc = s => (s||"").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const yearOf = p => { const m=(p.era||"").match(/\b(1[5-9]\d{2}|20\d{2})\b/); return m?+m[1]:9999; };
+const mapsUrl = p => `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;
+
+let visited = new Set(JSON.parse(localStorage.getItem(VKEY) || "[]"));
+const state = { q:"", regions:new Set(), themes:new Set(), groupBy:"name", view:"grid" };
+
+// ---- build filter chips ----
+const regionCounts = {}, themeCounts = {};
+PARKS.forEach(p => {
+  regionCounts[p.region] = (regionCounts[p.region]||0)+1;
+  p.themes.forEach(t => themeCounts[t] = (themeCounts[t]||0)+1);
+});
+function buildChips(containerId, counts, set, cls){
+  const c = document.getElementById(containerId);
+  Object.keys(counts).sort((a,b)=> counts[b]-counts[a] || a.localeCompare(b)).forEach(key => {
+    const b = document.createElement("button");
+    b.className = "chip "+cls; b.setAttribute("aria-pressed","false");
+    b.innerHTML = `${esc(key)}<span class="n">${counts[key]}</span>`;
+    b.onclick = () => { set.has(key) ? set.delete(key) : set.add(key); b.setAttribute("aria-pressed", set.has(key)); render(); };
+    c.appendChild(b);
+  });
+}
+buildChips("regionFilters", regionCounts, state.regions, "region");
+buildChips("themeFilters", themeCounts, state.themes, "theme");
+
+// ---- filtering ----
+function matches(p){
+  if(state.regions.size && !state.regions.has(p.region)) return false;
+  if(state.themes.size && !p.themes.some(t=>state.themes.has(t))) return false;
+  if(state.q){
+    const hay = (p.name+" "+p.fullName+" "+p.summary+" "+p.highlight+" "+p.town+" "+p.county+" "+p.region+" "+p.era+" "+p.themes.join(" ")+" "+p.experience).toLowerCase();
+    if(!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+// ---- card html ----
+function cardHTML(p){
+  const rc = REGION_COLORS[p.region] || "#FCC200";
+  const vis = visited.has(p.slug);
+  const themeTags = p.themes.map(t=>`<button class="ttag" data-theme="${esc(t)}">${esc(t)}</button>`).join("");
+  return `<article class="card${vis?' visited':''}" data-slug="${p.slug}">
+    <div class="card-img" style="--rc:${rc}">
+      <img loading="lazy" src="${esc(p.img)}" alt="${esc(p.fullName)}">
+      <span class="region-flag">${esc(p.region)}</span>
+      <button class="visit-toggle" data-slug="${p.slug}" aria-pressed="${vis}" title="Mark visited">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+      </button>
+      <span class="stamp">Visited</span>
+      ${p.credit?`<span class="photo-credit">Photo: ${esc(p.credit)}</span>`:""}
+    </div>
+    <div class="card-body">
+      <h3>${esc(p.name)}</h3>
+      <p class="era">${esc(p.era)}</p>
+      <p class="summary">${esc(p.summary)}</p>
+      ${p.highlight?`<p class="highlight"><b>Don't miss:</b> ${esc(p.highlight)}</p>`:""}
+      <div class="themes">${themeTags}</div>
+      <p class="locmeta">${esc(p.town)}, ${esc(p.county)} &middot; ${esc(p.experience)}</p>
+      <div class="card-links">
+        <a class="lk-official" href="${esc(p.url)}" target="_blank" rel="noopener">Official park page →</a>
+        <a class="lk-dir" href="${mapsUrl(p)}" target="_blank" rel="noopener">Directions</a>
+      </div>
+    </div>
+  </article>`;
+}
+
+// ---- render grid (with optional grouping) ----
+const grid = document.getElementById("grid");
+function render(){
+  const list = PARKS.filter(matches);
+  document.getElementById("count").textContent = `Showing ${list.length} of ${PARKS.length} parks`;
+
+  if(state.view === "map"){ renderMap(list); }
+
+  let html = "";
+  if(state.groupBy === "region" || state.groupBy === "theme"){
+    const groups = {};
+    if(state.groupBy === "region"){
+      list.forEach(p => (groups[p.region] = groups[p.region]||[]).push(p));
+    } else {
+      list.forEach(p => p.themes.forEach(t => (groups[t]=groups[t]||[]).push(p)));
+    }
+    Object.keys(groups).sort((a,b)=> groups[b].length-groups[a].length || a.localeCompare(b)).forEach(g => {
+      const items = groups[g].sort((a,b)=>a.name.localeCompare(b.name));
+      html += `<div class="group-head"><h2>${esc(g)}</h2><span class="gc">${items.length} park${items.length>1?"s":""}</span></div>`;
+      html += items.map(cardHTML).join("");
+    });
+    if(state.groupBy==="theme" && list.length) html = `<p class="locmeta" style="grid-column:1/-1;margin:0 0 4px">Parks may appear under more than one theme.</p>` + html;
+  } else {
+    const sorted = [...list].sort(state.groupBy==="year"
+      ? (a,b)=> yearOf(a)-yearOf(b) || a.name.localeCompare(b.name)
+      : (a,b)=> a.name.localeCompare(b.name));
+    html = sorted.map(cardHTML).join("");
+  }
+  grid.innerHTML = html || `<p class="empty">No parks match these filters. <button class="linkbtn" onclick="document.getElementById('clearFilters').click()">Clear filters</button></p>`;
+}
+
+// ---- map ----
+let map, markerLayer;
+function renderMap(list){
+  if(!map){
+    map = L.map("map", {scrollWheelZoom:false}).setView([37.3, -119.4], 6);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom:18, attribution:'&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    markerLayer = L.layerGroup().addTo(map);
+  }
+  markerLayer.clearLayers();
+  const bounds = [];
+  list.forEach(p => {
+    if(p.lat==null||p.lng==null) return;
+    const rc = REGION_COLORS[p.region] || "#FCC200";
+    const icon = L.divIcon({className:"", html:`<div class="pin" style="background:${rc}"></div>`, iconSize:[20,20], iconAnchor:[10,18], popupAnchor:[0,-16]});
+    const m = L.marker([p.lat,p.lng], {icon}).bindPopup(
+      `<div class="pop"><img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"><h4>${esc(p.name)}</h4><div class="pr">${esc(p.region)} &middot; ${esc(p.era)}</div><a href="${esc(p.url)}" target="_blank" rel="noopener">Official page →</a> &nbsp; <a href="${mapsUrl(p)}" target="_blank" rel="noopener">Directions</a></div>`
+    );
+    markerLayer.addLayer(m); bounds.push([p.lat,p.lng]);
+  });
+  if(bounds.length) map.fitBounds(bounds, {padding:[40,40], maxZoom:9});
+  setTimeout(()=>map.invalidateSize(), 50);
+}
+
+// ---- visited progress ----
+function updateProgress(){
+  const n = visited.size, total = PARKS.length;
+  document.getElementById("pct").textContent = `${n} / ${total} visited`;
+  document.getElementById("barFill").style.width = (n/total*100)+"%";
+}
+
+// ---- events (delegated) ----
+grid.addEventListener("click", e=>{
+  const vt = e.target.closest(".visit-toggle");
+  if(vt){
+    const slug = vt.dataset.slug;
+    visited.has(slug) ? visited.delete(slug) : visited.add(slug);
+    localStorage.setItem(VKEY, JSON.stringify([...visited]));
+    vt.closest(".card").classList.toggle("visited");
+    vt.setAttribute("aria-pressed", visited.has(slug));
+    updateProgress();
+    return;
+  }
+  const tt = e.target.closest(".ttag");
+  if(tt){
+    const t = tt.dataset.theme;
+    state.themes.add(t);
+    const chip = [...document.querySelectorAll("#themeFilters .chip")].find(c=>c.textContent.replace(/\d+$/,"").trim()===t);
+    if(chip) chip.setAttribute("aria-pressed","true");
+    window.scrollTo({top:0, behavior:"smooth"});
+    render();
+  }
+});
+
+document.getElementById("q").addEventListener("input", e=>{ state.q = e.target.value.trim().toLowerCase(); render(); });
+document.getElementById("groupBy").addEventListener("change", e=>{ state.groupBy = e.target.value; render(); });
+document.getElementById("viewGrid").onclick = ()=>setView("grid");
+document.getElementById("viewMap").onclick = ()=>setView("map");
+function setView(v){
+  state.view = v;
+  document.getElementById("viewGrid").setAttribute("aria-pressed", v==="grid");
+  document.getElementById("viewMap").setAttribute("aria-pressed", v==="map");
+  document.getElementById("grid").classList.toggle("hidden", v==="map");
+  document.getElementById("map").classList.toggle("hidden", v!=="map");
+  render();
+}
+document.getElementById("clearFilters").onclick = ()=>{
+  state.regions.clear(); state.themes.clear(); state.q=""; document.getElementById("q").value="";
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));
+  render();
+};
+document.getElementById("resetVisited").onclick = ()=>{
+  if(!confirm("Clear all visited marks?")) return;
+  visited.clear(); localStorage.setItem(VKEY,"[]");
+  document.querySelectorAll(".card.visited").forEach(c=>c.classList.remove("visited"));
+  document.querySelectorAll(".visit-toggle").forEach(b=>b.setAttribute("aria-pressed","false"));
+  updateProgress();
+};
+
+render();
+updateProgress();
+</script>
+</body>
+</html>
