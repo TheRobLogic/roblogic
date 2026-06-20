@@ -447,6 +447,18 @@ document.getElementById("resetVisited").onclick = ()=>{
 
 render();
 updateProgress();
+
+// visit beacon — every hit, skip bots, fail silent
+try {
+  const ua = navigator.userAgent.toLowerCase();
+  if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+    fetch('/beacon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: 'parks', ref: document.referrer || 'direct', tag: 'national_park' })
+    }).catch(() => {});
+  }
+} catch (e) {}
 </script>
 </body>
 </html>
