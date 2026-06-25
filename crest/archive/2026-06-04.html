@@ -327,12 +327,44 @@
   <header class="order-header">
     <div class="container">
       <h1><span>Crest</span> Order</h1>
-      <div class="date">Week of June 26 &ndash; July 2, 2026</div>
-      <div class="delivery">Delivery: Friday, June 26</div>
-      <div class="budget-badge">Wells + cooler restock</div>
+      <div class="date">Week of June 4 &ndash; 10, 2026</div>
+      <div class="delivery">Delivery: Friday, June 5</div>
+      <div class="budget-badge">Wells + show beer</div>
       <button class="copy-btn" onclick="copyOrder()">Copy Order Text</button>
     </div>
   </header>
+
+  <hr class="glow-divider">
+
+  <section class="order-section">
+    <div class="container">
+      <h2><span>Kegs</span></h2>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th style="text-align:center">Qty</th>
+            <th class="right">Est. Cost</th>
+            <th class="reason">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="item-name">Coors Light</span><span class="item-format">1/2 BBL</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$190</td>
+            <td class="reason">Just kicked.</td>
+          </tr>
+          <tr class="subtotal-row">
+            <td>Kegs Subtotal</td>
+            <td></td>
+            <td class="cost">$190</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <hr class="glow-divider">
 
@@ -350,27 +382,33 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="item-name">Platinum 7X</span><span class="item-format">1L &mdash; well vodka</span></td>
-            <td class="qty">/6</td>
-            <td class="cost">~$44</td>
-            <td class="reason">Out &mdash; no backup.</td>
+            <td><span class="item-name">Ancient Age</span><span class="item-format">1L &mdash; well whiskey</span></td>
+            <td class="qty">/12</td>
+            <td class="cost">~$97</td>
+            <td class="reason">Out &mdash; top seller.</td>
           </tr>
           <tr>
             <td><span class="item-name">Pueblo Viejo</span><span class="item-format">1L &mdash; well tequila</span></td>
             <td class="qty">/6</td>
             <td class="cost">~$93</td>
-            <td class="reason">Running low.</td>
+            <td class="reason">Out both wells.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Platinum 7X</span><span class="item-format">1L &mdash; well vodka</span></td>
+            <td class="qty">/6</td>
+            <td class="cost">~$44</td>
+            <td class="reason">No backup.</td>
           </tr>
           <tr>
             <td><span class="item-name">Llords Triple Sec</span><span class="item-format">1L</span></td>
-            <td class="qty">/3</td>
-            <td class="cost">$21</td>
+            <td class="qty">/2</td>
+            <td class="cost">$14</td>
             <td class="reason">Running low.</td>
           </tr>
           <tr class="subtotal-row">
-            <td>Discount group (15 btls)</td>
+            <td>Discount group (26 btls)</td>
             <td></td>
-            <td class="cost">~$158</td>
+            <td class="cost">~$248</td>
             <td></td>
           </tr>
         </tbody>
@@ -394,15 +432,27 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="item-name">Tullamore Dew</span><span class="item-format">1L</span></td>
+            <td><span class="item-name">Tito&rsquo;s Vodka</span><span class="item-format">1L</span></td>
             <td class="qty">/1</td>
-            <td class="cost">~$28</td>
+            <td class="cost">$27</td>
             <td class="reason">Out.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Jack Daniels</span><span class="item-format">1L</span></td>
+            <td class="qty">/1</td>
+            <td class="cost">$30</td>
+            <td class="reason">Out.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Fireball</span><span class="item-format">1L</span></td>
+            <td class="qty">/2</td>
+            <td class="cost">$36</td>
+            <td class="reason">Out &mdash; shot night.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Singles Subtotal</td>
             <td></td>
-            <td class="cost">~$28</td>
+            <td class="cost">~$93</td>
             <td></td>
           </tr>
         </tbody>
@@ -427,9 +477,15 @@
         <tbody>
           <tr>
             <td><span class="item-name">Coors Light</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">3</td>
-            <td class="cost">$69</td>
-            <td class="reason">Out &mdash; high volume.</td>
+            <td class="qty">2</td>
+            <td class="cost">$46</td>
+            <td class="reason">Out, high volume.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">White Claw Variety</span><span class="item-format">C24 12oz small</span></td>
+            <td class="qty">2</td>
+            <td class="cost">$60</td>
+            <td class="reason">Out &mdash; big show Sat.</td>
           </tr>
           <tr>
             <td><span class="item-name">White Claw Tall</span><span class="item-format">C12 19.2oz</span></td>
@@ -444,27 +500,45 @@
             <td class="reason">Out.</td>
           </tr>
           <tr>
-            <td><span class="item-name">Pacifico</span><span class="item-format">B24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$27</td>
-            <td class="reason">Out.</td>
-          </tr>
-          <tr>
-            <td><span class="item-name">White Claw Small</span><span class="item-format">C24 12oz</span></td>
-            <td class="qty">1</td>
-            <td class="cost">$30</td>
-            <td class="reason">Running low.</td>
-          </tr>
-          <tr>
             <td><span class="item-name">Heineken</span><span class="item-format">B24 12oz</span></td>
             <td class="qty">1</td>
             <td class="cost">$28</td>
+            <td class="reason">Out.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Mickey&rsquo;s Grenade</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$24</td>
+            <td class="reason">Out, high volume.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Miller Lite</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$20</td>
+            <td class="reason">Out.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Miller High Life</span><span class="item-format">B24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$24</td>
             <td class="reason">Running low.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">Hamm&rsquo;s</span><span class="item-format">C24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$23</td>
+            <td class="reason">Running low.</td>
+          </tr>
+          <tr>
+            <td><span class="item-name">PBR</span><span class="item-format">C24 12oz</span></td>
+            <td class="qty">1</td>
+            <td class="cost">$23</td>
+            <td class="reason">Out.</td>
           </tr>
           <tr class="subtotal-row">
             <td>Beer Subtotal</td>
             <td></td>
-            <td class="cost">~$216</td>
+            <td class="cost">~$310</td>
             <td></td>
           </tr>
         </tbody>
@@ -477,8 +551,8 @@
   <section class="grand-total">
     <div class="grand-total-box">
       <div class="label">Estimated Total</div>
-      <div class="amount">~$402</div>
-      <div class="note">Apply case / volume discount on the group</div>
+      <div class="amount">~$841</div>
+      <div class="note">Empties staged for credit at delivery &rarr; net lower</div>
     </div>
   </section>
 
@@ -489,46 +563,64 @@
       <h2><span>Notes</span> for Rep</h2>
 
       <div class="note-card">
+        <div class="flag">Keg Pickup</div>
+        Several taps just kicked &mdash; we&rsquo;ll have <strong>empty kegs disconnected and staged</strong> for pickup/credit at delivery (Coors Light + others).
+      </div>
+
+      <div class="note-card">
         <div class="flag">Discount group</div>
-        Liquor discount group totals <strong>15 bottles</strong>: Platinum 7X /6, Pueblo Viejo /6, Llords Triple Sec /3. Apply case rate / volume discount please.
+        Liquor discount group totals <strong>26 bottles</strong>: Ancient Age /12, Pueblo Viejo /6, Platinum 7X /6, Llords Triple Sec /2. Apply case rate / volume discount please.
       </div>
 
       <div class="note-card">
         <div class="flag">This Week</div>
-        Fri 6/26 3-band show &bull; Sun 6/28 Dart Tournament &bull; Mon 6/29 Pong &bull; Tue 6/30 Karaoke
+        Fri 6/5 4-band show &bull; <strong>Sat 6/6 Club Lemon 10th Anniversary &mdash; 10-band festival, 4pm start</strong> &bull; Sun 6/7 Dart Tournament &bull; Tue 6/9 Karaoke &bull; Wed 6/10 3-band show
       </div>
     </div>
   </section>
 
   <footer class="order-footer">
-    <strong>Barkeep</strong> by Rob Logic &middot; Generated June 25, 2026 &middot; The Bancroft Bar
+    <strong>Barkeep</strong> by Rob Logic &middot; Generated June 4, 2026 &middot; The Bancroft Bar
   </footer>
 
   <textarea id="order-text" style="position:absolute;left:-9999px" aria-hidden="true">CREST ORDER — Bancroft Bar
-Delivery: Fri June 26, 2026
-Week of June 26 - July 2
+Delivery: Fri June 5, 2026
+Week of June 4 - 10
 
-LIQUOR — DISCOUNT GROUP (15 bottles):
-/6  Platinum 7X 1L (well vodka)
+KEG PICKUP (empties disconnected and staged at delivery):
+- Coors Light 1/2 BBL + others just kicked
+
+KEGS:
+1  Coors Light 1/2 BBL
+
+LIQUOR — DISCOUNT GROUP (26 bottles):
+/12 Ancient Age 1L (well whiskey)
 /6  Pueblo Viejo 1L (well tequila)
-/3  Llords Triple Sec 1L
+/6  Platinum 7X 1L (well vodka)
+/2  Llords Triple Sec 1L
 
 LIQUOR — SINGLES:
-/1  Tullamore Dew 1L
+/1  Tito's Vodka 1L
+/1  Jack Daniels 1L
+/2  Fireball 1L
 
 BEER:
-3  Coors Light B24 12oz
+2  Coors Light B24 12oz
+2  White Claw Variety C24 12oz small
 1  White Claw Tall C12 19.2oz
 1  Modelo Especial B24 12oz
-1  Pacifico B24 12oz
-1  White Claw Small C24 12oz
 1  Heineken B24 12oz
+1  Mickey's Grenade B24 12oz
+1  Miller Lite B24 12oz
+1  Miller High Life B24 12oz
+1  Hamm's C24 12oz
+1  PBR C24 12oz
 
-EST. TOTAL: ~$402
+EST. TOTAL: ~$841 before keg credit
 
 NOTES:
-- 15-bottle discount group — apply case/volume discount please.
-- This week: Fri 6/26 3-band show, Sun Darts, Mon Pong, Tue Karaoke.
+- 26-bottle discount group — apply case/volume discount please.
+- This week: Fri 4-band, Sat Club Lemon 10th Anniv 10-band festival (4pm), Sun Darts, Tue Karaoke, Wed 3-band.
   </textarea>
 
   <script>
