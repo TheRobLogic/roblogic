@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portable 5-Zone Valve Box — Build Spec</title>
+<meta name="description" content="Pick list and build spec for a movable above-ground 5-zone garden irrigation manifold: one hose in, five valves, five hose outputs. Two configs priced live, plus an optional wheeled cart.">
+<meta property="og:title" content="Portable 5-Zone Valve Box — Build Spec">
+<meta property="og:description" content="One hose in, five valves, five hose outputs. Two build configs priced live at Home Depot, plus an optional wheeled cart.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://roblogic.org/garden/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3 C10 12 7 16 7 21 a9 9 0 0 0 18 0 C25 16 22 12 16 3 Z' fill='%232e6f4e'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --paper: #f4f1ea;
+    --paper-2: #ece7db;
+    --ink: #1b2a23;
+    --ink-soft: #3c4a40;
+    --muted: #6b7269;
+    --green: #2e6f4e;
+    --green-deep: #1f5138;
+    --rust: #b5532a;
+    --rust-deep: #8f3f1f;
+    --line: #cfc8b6;
+    --line-strong: #b7ae97;
+    --grid: rgba(46,111,78,.055);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: clamp(1rem, 4vw, 3rem); }
+
+  /* ---- masthead ---- */
+  .masthead {
+    border: 2.5px solid var(--ink);
+    background: var(--paper);
+    box-shadow: 7px 7px 0 rgba(27,42,35,.12);
+    position: relative;
+  }
+  .mast-top {
+    display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+    gap: 1rem; padding: clamp(1rem,3vw,1.8rem) clamp(1rem,3vw,2rem) .6rem;
+  }
+  .mast-eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--green-deep); font-weight: 600;
+  }
+  h1 {
+    font-family: 'Saira Condensed', sans-serif; font-weight: 700;
+    font-size: clamp(2.3rem, 7vw, 4.4rem); line-height: .92; letter-spacing: -.01em;
+    text-transform: uppercase; margin-top: .15rem;
+  }
+  h1 .z { color: var(--rust); }
+  .mast-id {
+    font-family: 'IBM Plex Mono', monospace; font-size: .7rem; color: var(--muted);
+    text-align: right; line-height: 1.7; white-space: nowrap;
+  }
+  .mast-id b { color: var(--ink); font-weight: 600; }
+  .mast-strip {
+    border-top: 1.5px solid var(--ink);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    font-family: 'IBM Plex Mono', monospace; font-size: .72rem;
+  }
+  .mast-strip div { padding: .55rem .8rem; border-right: 1px solid var(--line-strong); }
+  .mast-strip div:last-child { border-right: 0; }
+  .mast-strip span { display: block; color: var(--muted); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+  .mast-strip b { color: var(--green-deep); font-weight: 600; }
+  @media (max-width: 620px){ .mast-strip { grid-template-columns: repeat(2,1fr); } .mast-strip div:nth-child(2){border-right:0;} }
+
+  .lede {
+    font-size: clamp(1rem, 2.4vw, 1.18rem); color: var(--ink-soft);
+    margin: 1.6rem 0 .4rem; max-width: 64ch;
+  }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  /* ---- section headers ---- */
+  .sec { margin-top: clamp(2.4rem, 6vw, 3.6rem); }
+  .sec-h {
+    display: flex; align-items: baseline; gap: .8rem; margin-bottom: 1.1rem;
+    border-bottom: 2px solid var(--ink); padding-bottom: .4rem;
+  }
+  .sec-h .no {
+    font-family: 'IBM Plex Mono', monospace; font-size: .78rem; font-weight: 600;
+    color: var(--paper); background: var(--green-deep); padding: .15rem .5rem; letter-spacing: .05em;
+  }
+  .sec-h h2 {
+    font-family: 'Saira Condensed', sans-serif; font-weight: 600; text-transform: uppercase;
+    font-size: clamp(1.4rem, 3.6vw, 2rem); letter-spacing: .01em; line-height: 1;
+  }
+  .sec-h .tag { margin-left: auto; font-family:'IBM Plex Mono',monospace; font-size:.68rem; color:var(--muted); }
+
+  /* ---- schematic ---- */
+  .schematic {
+    border: 1.5px solid var(--line-strong); background: var(--paper);
+    padding: clamp(.6rem,2vw,1.2rem); overflow-x: auto;
+  }
+  .schematic svg { display: block; width: 100%; min-width: 560px; height: auto; }
+  .sch-cap { font-family:'IBM Plex Mono',monospace; font-size:.68rem; color:var(--muted); margin-top:.5rem; text-align:center; }
+
+  /* ---- option cards ---- */
+  .configs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+  @media (max-width: 760px){ .configs { grid-template-columns: 1fr; } }
+  .config {
+    border: 2px solid var(--ink); background: var(--paper); padding: 1.2rem 1.3rem 1.4rem;
+    position: relative; display: flex; flex-direction: column;
+  }
+  .config.pick { border-color: var(--green-deep); box-shadow: 6px 6px 0 rgba(46,111,78,.16); }
+  .config .badge {
+    position: absolute; top: -13px; left: 16px; font-family:'IBM Plex Mono',monospace;
+    font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    padding: .25rem .6rem; color: var(--paper);
+  }
+  .config.pick .badge { background: var(--green-deep); }
+  .config.alt .badge { background: var(--ink-soft); }
+  .config h3 {
+    font-family:'Saira Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    font-size: 1.5rem; line-height:1; margin-bottom:.2rem;
+  }
+  .config .sub { font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--muted); margin-bottom:.8rem; }
+  .config ul { list-style: none; font-size: .9rem; }
+  .config ul li { padding: .28rem 0 .28rem 1.3rem; position: relative; border-bottom: 1px dotted var(--line); }
+  .config ul li::before { content:'+'; position:absolute; left:0; color: var(--green); font-weight:700; font-family:'IBM Plex Mono',monospace;}
+  .config ul li.con::before { content:'–'; color: var(--rust); }
+  .config .price-tag {
+    margin-top: auto; padding-top: 1rem; font-family:'IBM Plex Mono',monospace;
+  }
+  .config .price-tag .big { font-size: 1.8rem; font-weight:600; color: var(--ink); }
+  .config .price-tag .lbl { font-size:.66rem; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); display:block; }
+
+  /* ---- BOM tables ---- */
+  .bom {
+    width: 100%; border-collapse: collapse; font-size: .9rem;
+    border: 1.5px solid var(--ink); background: var(--paper);
+  }
+  .bom caption {
+    text-align: left; font-family:'Saira Condensed',sans-serif; text-transform:uppercase;
+    font-weight:600; font-size:1.15rem; padding:.5rem .2rem; letter-spacing:.02em;
+  }
+  .bom th {
+    background: var(--ink); color: var(--paper); font-family:'IBM Plex Mono',monospace;
+    font-weight:500; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase;
+    padding:.5rem .7rem; text-align:left;
+  }
+  .bom th.num, .bom td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bom td { padding:.5rem .7rem; border-bottom:1px solid var(--line); vertical-align: top; }
+  .bom tbody tr:hover { background: var(--paper-2); }
+  .bom .part { font-weight: 500; }
+  .bom .mod { font-family:'IBM Plex Mono',monospace; font-size:.74rem; color: var(--green-deep); }
+  .bom td.num { font-family:'IBM Plex Mono',monospace; }
+  .bom tr.sub td { border-top: 2px solid var(--ink); border-bottom:0; font-weight:600; background: var(--paper-2); }
+  .bom tr.sub .num { color: var(--green-deep); }
+  /* check-off */
+  .bom td.chk { width: 30px; text-align:center; cursor:pointer; user-select:none; color: var(--line-strong); }
+  .bom tbody tr.got { opacity:.5; }
+  .bom tbody tr.got .part, .bom tbody tr.got .desc { text-decoration: line-through; }
+  .bom td.chk::before { content:'☐'; font-size:1rem; }
+  .bom tbody tr.got td.chk { color: var(--green); }
+  .bom tbody tr.got td.chk::before { content:'☑'; }
+  .bom-note { font-size:.8rem; color:var(--muted); margin:.55rem 0 0; font-family:'IBM Plex Mono',monospace; }
+
+  .alt-pick { display:flex; flex-wrap:wrap; gap:.5rem; margin:.7rem 0 0; }
+  .alt-pick .opt {
+    font-family:'IBM Plex Mono',monospace; font-size:.74rem; border:1px solid var(--line-strong);
+    padding:.3rem .55rem; background:var(--paper);
+  }
+  .alt-pick .opt b { color: var(--green-deep); }
+  .alt-pick .opt.best { border-color: var(--green-deep); border-width:1.5px; }
+
+  /* ---- notes ---- */
+  .notes { display:grid; grid-template-columns: repeat(2,1fr); gap:1rem; }
+  @media (max-width:620px){ .notes{ grid-template-columns:1fr; } }
+  .note {
+    border-left: 3px solid var(--green); padding:.2rem 0 .2rem .9rem;
+  }
+  .note.warn { border-left-color: var(--rust); }
+  .note h4 { font-family:'Saira Condensed',sans-serif; text-transform:uppercase; font-size:1.05rem; font-weight:600; letter-spacing:.02em; }
+  .note p { font-size:.88rem; color: var(--ink-soft); }
+
+  footer {
+    margin-top: 3.5rem; border-top: 2px solid var(--ink); padding-top: 1rem;
+    font-family:'IBM Plex Mono',monospace; font-size:.7rem; color: var(--muted);
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem;
+  }
+  footer b { color: var(--green-deep); }
+  a.home { color: var(--green-deep); text-decoration: none; border-bottom:1px solid var(--line-strong); }
+  a.home:hover { color: var(--rust); }
+  .reset { cursor:pointer; color:var(--muted); text-decoration:underline; background:none; border:0; font:inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead">
+    <div class="mast-top">
+      <div>
+        <div class="mast-eyebrow">Garden Ops · Build Spec</div>
+        <h1>Portable<br>5-<span class="z">Zone</span> Valve Box</h1>
+      </div>
+      <div class="mast-id">
+        <div>DWG <b>IRR-985</b></div>
+        <div>REV <b>A</b></div>
+        <div>SCALE <b>NTS</b></div>
+      </div>
+    </div>
+    <div class="mast-strip">
+      <div><span>Input</span><b>1× garden hose</b></div>
+      <div><span>Outputs</span><b>5× hose thread</b></div>
+      <div><span>Mounting</span><b>above-ground / movable</b></div>
+      <div><span>In-ground</span><b>by owner</b></div>
+    </div>
+  </header>
+
+  <p class="lede">A wheel-it-anywhere manifold: <b>one garden hose in</b>, split to <b>five independently-controlled valves</b>, each ending in a <b>garden-hose output</b>. You handle whatever drip or sprinkler lives past each output. Below: the schematic, the one real decision (how the valves are controlled), and a priced, tap-to-check-off pick list — both build configs.</p>
+
+  <!-- ============ SCHEMATIC ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">01</span><h2>How it flows</h2><span class="tag">water path</span></div>
+    <div class="schematic">
+      <svg viewBox="0 0 920 300" role="img" aria-label="Schematic: one hose inlet through a vacuum breaker into a header pipe with five valve branches, each with a hose output.">
+        <defs>
+          <marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#1b2a23"/></marker>
+        </defs>
+        <!-- inlet -->
+        <text x="20" y="92" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#6b7269">HOSE IN</text>
+        <line x1="20" y1="105" x2="92" y2="105" stroke="#2e6f4e" stroke-width="7" stroke-linecap="round"/>
+        <path d="M20 105 q-6 -8 0 -16 q6 8 0 16" fill="none" stroke="#2e6f4e" stroke-width="2"/>
+        <!-- vacuum breaker -->
+        <rect x="92" y="86" width="64" height="38" rx="3" fill="#ece7db" stroke="#1b2a23" stroke-width="2"/>
+        <text x="124" y="101" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#1b2a23">VACUUM</text>
+        <text x="124" y="114" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#1b2a23">BREAKER</text>
+        <!-- header pipe -->
+        <line x1="156" y1="105" x2="892" y2="105" stroke="#2e6f4e" stroke-width="9" stroke-linecap="round"/>
+        <line x1="884" y1="92" x2="884" y2="118" stroke="#1f5138" stroke-width="9" stroke-linecap="round"/>
+        <text x="892" y="92" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#6b7269">CAP</text>
+        <!-- five branches -->
+        <g font-family="'IBM Plex Mono',monospace">
+          <!-- branch template positions -->
+          <!-- x centers: 230,370,510,650,790 -->
+          <g>
+            <line x1="230" y1="105" x2="230" y2="150" stroke="#2e6f4e" stroke-width="6"/>
+            <rect x="200" y="150" width="60" height="46" rx="3" fill="#1b2a23"/>
+            <text x="230" y="170" text-anchor="middle" font-size="10" fill="#f4f1ea">VALVE</text>
+            <text x="230" y="184" text-anchor="middle" font-size="11" fill="#b5cdb9">Z1</text>
+            <line x1="230" y1="196" x2="230" y2="232" stroke="#2e6f4e" stroke-width="6" marker-end="url(#arr)"/>
+            <text x="230" y="252" text-anchor="middle" font-size="10" fill="#6b7269">→ hose</text>
+          </g>
+          <g>
+            <line x1="370" y1="105" x2="370" y2="150" stroke="#2e6f4e" stroke-width="6"/>
+            <rect x="340" y="150" width="60" height="46" rx="3" fill="#1b2a23"/>
+            <text x="370" y="170" text-anchor="middle" font-size="10" fill="#f4f1ea">VALVE</text>
+            <text x="370" y="184" text-anchor="middle" font-size="11" fill="#b5cdb9">Z2</text>
+            <line x1="370" y1="196" x2="370" y2="232" stroke="#2e6f4e" stroke-width="6" marker-end="url(#arr)"/>
+            <text x="370" y="252" text-anchor="middle" font-size="10" fill="#6b7269">→ hose</text>
+          </g>
+          <g>
+            <line x1="510" y1="105" x2="510" y2="150" stroke="#2e6f4e" stroke-width="6"/>
+            <rect x="480" y="150" width="60" height="46" rx="3" fill="#1b2a23"/>
+            <text x="510" y="170" text-anchor="middle" font-size="10" fill="#f4f1ea">VALVE</text>
+            <text x="510" y="184" text-anchor="middle" font-size="11" fill="#b5cdb9">Z3</text>
+            <line x1="510" y1="196" x2="510" y2="232" stroke="#2e6f4e" stroke-width="6" marker-end="url(#arr)"/>
+            <text x="510" y="252" text-anchor="middle" font-size="10" fill="#6b7269">→ hose</text>
+          </g>
+          <g>
+            <line x1="650" y1="105" x2="650" y2="150" stroke="#2e6f4e" stroke-width="6"/>
+            <rect x="620" y="150" width="60" height="46" rx="3" fill="#1b2a23"/>
+            <text x="650" y="170" text-anchor="middle" font-size="10" fill="#f4f1ea">VALVE</text>
+            <text x="650" y="184" text-anchor="middle" font-size="11" fill="#b5cdb9">Z4</text>
+            <line x1="650" y1="196" x2="650" y2="232" stroke="#2e6f4e" stroke-width="6" marker-end="url(#arr)"/>
+            <text x="650" y="252" text-anchor="middle" font-size="10" fill="#6b7269">→ hose</text>
+          </g>
+          <g>
+            <line x1="790" y1="105" x2="790" y2="150" stroke="#2e6f4e" stroke-width="6"/>
+            <rect x="760" y="150" width="60" height="46" rx="3" fill="#1b2a23"/>
+            <text x="790" y="170" text-anchor="middle" font-size="10" fill="#f4f1ea">VALVE</text>
+            <text x="790" y="184" text-anchor="middle" font-size="11" fill="#b5cdb9">Z5</text>
+            <line x1="790" y1="196" x2="790" y2="232" stroke="#2e6f4e" stroke-width="6" marker-end="url(#arr)"/>
+            <text x="790" y="252" text-anchor="middle" font-size="10" fill="#6b7269">→ hose</text>
+          </g>
+        </g>
+      </svg>
+      <p class="sch-cap">¾″ Sch-40 PVC header · 5 tees · vacuum breaker on the inlet · run zones one at a time</p>
+    </div>
+  </section>
+
+  <!-- ============ THE DECISION ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">02</span><h2>The one decision</h2><span class="tag">how the valves are controlled</span></div>
+    <div class="configs">
+      <div class="config pick alt">
+        <span class="badge">◆ Recommended · portable</span>
+        <h3>A · Hose-End Timers</h3>
+        <div class="sub">5× battery timers screw onto the manifold</div>
+        <ul>
+          <li>Zero electrical — no controller, transformer, or wiring</li>
+          <li>Truly movable: no power cord to chase an outlet</li>
+          <li>Most modular — unscrew one timer to swap it</li>
+          <li>Each timer's outlet is already a hose thread</li>
+          <li class="con">Five separate schedules to set</li>
+          <li class="con">Five sets of batteries to mind</li>
+        </ul>
+        <div class="price-tag">
+          <span class="lbl">Built cost, value timers</span>
+          <span class="big">≈ $206</span>
+        </div>
+      </div>
+      <div class="config alt">
+        <span class="badge">○ For a powered spot</span>
+        <h3>B · 24V + Controller</h3>
+        <div class="sub">5× solenoids, one brain sequences them</div>
+        <ul>
+          <li>One controller, one schedule for all five zones</li>
+          <li>Smart option (B-hyve) → Home Assistant</li>
+          <li>Matches the solenoid manifold in your photo</li>
+          <li>Auto-sequences — never two zones at once</li>
+          <li class="con">Needs an outlet wherever it parks</li>
+          <li class="con">24V wiring to run to each valve</li>
+        </ul>
+        <div class="price-tag">
+          <span class="lbl">Built cost, value controller</span>
+          <span class="big">≈ $230</span>
+        </div>
+      </div>
+    </div>
+    <p class="bom-note">San Diego = no freeze, so everything's plastic — no brass needed. Both configs share the same ¾″ PVC "box" below; they differ only in what sits on each branch.</p>
+  </section>
+
+  <!-- ============ SHARED BOM ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">03</span><h2>The box — shared plumbing</h2><span class="tag">both configs</span></div>
+    <table class="bom" data-bom="shared">
+      <caption>Manifold · 1 in → 5 out</caption>
+      <thead><tr><th class="chk"></th><th>Part</th><th>Model / spec</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Line</th></tr></thead>
+      <tbody>
+        <tr><td class="chk"></td><td class="part">Brass hose-thread inlet adapter</td><td class="mod">¾″ FHT swivel × MIP</td><td class="num">1</td><td class="num">$6.00</td><td class="num">$6.00</td></tr>
+        <tr><td class="chk"></td><td class="part">Hose-bib vacuum breaker <span class="desc">(backflow)</span></td><td class="mod">Everbilt VACBFPZ4EB</td><td class="num">1</td><td class="num">$8.22</td><td class="num">$8.22</td></tr>
+        <tr><td class="chk"></td><td class="part">PVC pipe</td><td class="mod">¾″ Sch-40 × 10 ft</td><td class="num">1</td><td class="num">$5.50</td><td class="num">$5.50</td></tr>
+        <tr><td class="chk"></td><td class="part">Slip tee</td><td class="mod">¾″ Sch-40</td><td class="num">5</td><td class="num">$0.70</td><td class="num">$3.50</td></tr>
+        <tr><td class="chk"></td><td class="part">90° elbow</td><td class="mod">¾″ Sch-40</td><td class="num">4</td><td class="num">$0.60</td><td class="num">$2.40</td></tr>
+        <tr><td class="chk"></td><td class="part">Slip × male-hose-thread adapter <span class="desc">(outputs / timer mounts)</span></td><td class="mod">¾″ MHT</td><td class="num">5</td><td class="num">$1.30</td><td class="num">$6.50</td></tr>
+        <tr><td class="chk"></td><td class="part">Slip end cap</td><td class="mod">¾″ Sch-40</td><td class="num">1</td><td class="num">$0.60</td><td class="num">$0.60</td></tr>
+        <tr><td class="chk"></td><td class="part">PVC primer + cement</td><td class="mod">combo can</td><td class="num">1</td><td class="num">$10.00</td><td class="num">$10.00</td></tr>
+        <tr><td class="chk"></td><td class="part">PTFE thread-seal tape</td><td class="mod">½″ roll</td><td class="num">1</td><td class="num">$1.00</td><td class="num">$1.00</td></tr>
+        <tr class="sub"><td></td><td colspan="4">Shared subtotal</td><td class="num">≈ $43.72</td></tr>
+      </tbody>
+    </table>
+    <p class="bom-note">Tap the ☐ on any row to check it off your shopping run — saved on this device.</p>
+  </section>
+
+  <!-- ============ OPTION A BOM ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">04</span><h2>Config A — hose-end timers</h2><span class="tag">recommended</span></div>
+    <p class="bom-note" style="margin-bottom:.7rem">Pick one timer × 5. Each screws onto a branch's male hose thread; its own outlet feeds your zone hose.</p>
+    <div class="alt-pick">
+      <span class="opt best">BEST · Rain Bird <b>1ZEHTMR</b> · $43.97 ea · 4.2★/1025 → <b>×5 = $219.85</b></span>
+      <span class="opt">VALUE · Orbit <b>62056</b> single-dial · $29.84 ea · 4.2★/1315 → <b>×5 = $149.20</b></span>
+      <span class="opt">BUDGET · Orbit <b>56908</b> mechanical · $12.98 ea · 4.1★/1379 → <b>×5 = $64.90</b></span>
+    </div>
+    <table class="bom" data-bom="optA" style="margin-top:1rem">
+      <caption>A · timers + shared box</caption>
+      <thead><tr><th class="chk"></th><th>Line</th><th>Detail</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="chk"></td><td class="part">Shared plumbing box</td><td class="desc">section 03</td><td class="num">$43.72</td></tr>
+        <tr><td class="chk"></td><td class="part">5× hose-end timer <span class="desc">(value — Orbit 62056)</span></td><td class="desc">5 × $29.84</td><td class="num">$149.20</td></tr>
+        <tr><td class="chk"></td><td class="part">Quick-connect outputs <span class="desc">(optional)</span></td><td class="desc">OGETFUUR 6-pk or GARDENA 5-pc</td><td class="num">$13.00</td></tr>
+        <tr class="sub"><td></td><td colspan="2">Config A total — value timers</td><td class="num">≈ $206</td></tr>
+        <tr class="sub"><td></td><td colspan="2">Config A total — best (Rain Bird) timers</td><td class="num">≈ $277</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ OPTION B BOM ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">05</span><h2>Config B — 24V + controller</h2><span class="tag">needs power</span></div>
+    <div class="alt-pick">
+      <span class="opt">VALVE · Orbit <b>57923</b> 24V · $21.97 ea → <b>×5 = $109.85</b> <span style="color:var(--muted)">(inline ≈$16 if not anti-siphon)</span></span>
+      <span class="opt best">CONTROLLER · Orbit <b>57896</b> 6-station · $51.87 · 4.5★/1462 · built-in transformer</span>
+      <span class="opt">SMART · Orbit <b>B-hyve 57946</b> 6-zone WiFi · ≈$80 · Home-Assistant-able</span>
+    </div>
+    <table class="bom" data-bom="optB" style="margin-top:1rem">
+      <caption>B · solenoids + brain + shared box</caption>
+      <thead><tr><th class="chk"></th><th>Line</th><th>Detail</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td class="chk"></td><td class="part">Shared plumbing box</td><td class="desc">section 03</td><td class="num">$43.72</td></tr>
+        <tr><td class="chk"></td><td class="part">5× 24V valve <span class="desc">(Orbit 57923)</span></td><td class="desc">5 × $21.97</td><td class="num">$109.85</td></tr>
+        <tr><td class="chk"></td><td class="part">¾″ MPT × slip nipples <span class="desc">(FPT valve ports)</span></td><td class="desc">~10 × $1.00</td><td class="num">$10.00</td></tr>
+        <tr><td class="chk"></td><td class="part">6-station controller <span class="desc">(Orbit 57896)</span></td><td class="desc">transformer built in</td><td class="num">$51.87</td></tr>
+        <tr><td class="chk"></td><td class="part">18-ga sprinkler wire</td><td class="desc">spool</td><td class="num">$15.00</td></tr>
+        <tr class="sub"><td></td><td colspan="2">Config B total — value controller</td><td class="num">≈ $230</td></tr>
+        <tr class="sub"><td></td><td colspan="2">Config B total — smart B-hyve</td><td class="num">≈ $248</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ OPTIONAL CART ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">06</span><h2>Optional — the wheeled cart</h2><span class="tag">your concept drawing</span></div>
+    <table class="bom" data-bom="cart">
+      <caption>2″ PVC rolling frame · ≈ 36″ × 20″</caption>
+      <thead><tr><th class="chk"></th><th>Part</th><th>Model / spec</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Line</th></tr></thead>
+      <tbody>
+        <tr><td class="chk"></td><td class="part">PVC pipe</td><td class="mod">2″ Sch-40 × 10 ft</td><td class="num">3</td><td class="num">$11.00</td><td class="num">$33.00</td></tr>
+        <tr><td class="chk"></td><td class="part">2″ fittings <span class="desc">(tees / elbows / caps)</span></td><td class="mod">Sch-40</td><td class="num">~12</td><td class="num">$2.50</td><td class="num">$30.00</td></tr>
+        <tr><td class="chk"></td><td class="part">Pneumatic wheels</td><td class="mod">10″ pair</td><td class="num">1</td><td class="num">$30.00</td><td class="num">$30.00</td></tr>
+        <tr><td class="chk"></td><td class="part">Axle rod + hardware</td><td class="mod">½″</td><td class="num">1</td><td class="num">$12.00</td><td class="num">$12.00</td></tr>
+        <tr class="sub"><td></td><td colspan="4">Cart subtotal</td><td class="num">≈ $105</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ NOTES ============ -->
+  <section class="sec">
+    <div class="sec-h"><span class="no">07</span><h2>Build notes</h2><span class="tag">read before you glue</span></div>
+    <div class="notes">
+      <div class="note"><h4>One zone at a time</h4><p>A single garden hose can't feed five zones at once without pressure crashing. Sequence them — the controller in B does it automatically; with A, stagger the timer start times.</p></div>
+      <div class="note warn"><h4>Backflow first</h4><p>The vacuum breaker on the inlet keeps fertilizer/soil from siphoning back into the house supply. Don't skip it — it's the cheapest line on the list.</p></div>
+      <div class="note"><h4>Plastic, not brass</h4><p>No freeze in San Diego, so ¾″ Sch-40 PVC everywhere. Brass valves are durability you'll never cash in here.</p></div>
+      <div class="note"><h4>Unions = modular</h4><p>Want it to break down like the photo? Drop a PVC union (≈$3) into each branch so a valve pops off without cutting pipe.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Prices: <b>Home Depot — Lemon Grove (91945)</b>, live-checked 2026-06-27. PVC fittings are standard-shelf estimates. Built totals exclude tax.</div>
+    <div><a class="home" href="https://roblogic.org/">roblogic.org</a> · DWG IRR-985 · <button class="reset" id="resetBtn">reset checklist</button></div>
+  </footer>
+
+</div>
+<script>
+  // tap-to-check-off shopping list — localStorage only
+  (function(){
+    const KEY = 'garden-bom-v1';
+    let state = {};
+    try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ state = {}; }
+    document.querySelectorAll('table.bom').forEach(tbl => {
+      const bom = tbl.dataset.bom;
+      tbl.querySelectorAll('tbody tr').forEach((tr, i) => {
+        if (tr.classList.contains('sub')) return;
+        const id = bom + ':' + i;
+        const cell = tr.querySelector('td.chk');
+        if (!cell) return;
+        if (state[id]) tr.classList.add('got');
+        cell.addEventListener('click', () => {
+          tr.classList.toggle('got');
+          state[id] = tr.classList.contains('got');
+          try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+        });
+      });
+    });
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      state = {}; try { localStorage.removeItem(KEY); } catch(e){}
+      document.querySelectorAll('tr.got').forEach(t => t.classList.remove('got'));
+    });
+  })();
+</script>
+</body>
+</html>
