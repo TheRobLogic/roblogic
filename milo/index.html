@@ -234,6 +234,7 @@ main { position: relative; z-index: 3; }
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.28s ease, visibility 0.28s;
+  overscroll-behavior: contain;
 }
 .lightbox.open { opacity: 1; visibility: visible; }
 .lightbox img {
@@ -427,6 +428,29 @@ footer {
   var lbImg = document.getElementById('lbImg');
   var lbCap = document.getElementById('lbCap');
   var lastLink = null;
+  var scrollY = 0;
+
+  /* iOS Safari ignores body overflow:hidden — pin the body instead */
+  function lockScroll() {
+    scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = -scrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  }
+  function unlockScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, scrollY);
+    document.documentElement.style.scrollBehavior = '';
+  }
 
   function openBox(a) {
     var img = a.querySelector('img');
@@ -435,13 +459,13 @@ footer {
     lbImg.alt = img ? img.alt : '';
     lbCap.textContent = cap ? cap.textContent : '';
     box.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    lockScroll();
     lastLink = a;
     box.focus();
   }
   function closeBox() {
     box.classList.remove('open');
-    document.body.style.overflow = '';
+    unlockScroll();
     if (lastLink) { lastLink.focus(); lastLink = null; }
   }
 
