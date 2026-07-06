@@ -217,6 +217,42 @@ main { position: relative; z-index: 3; }
   margin-top: 0.4rem;
 }
 .grid:empty { display: none; }
+.grid a { cursor: zoom-in; }
+
+/* ————— lightbox — tap a photo to enlarge, tap again to come back ————— */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3vmin;
+  background: rgba(13, 7, 25, 0.93);
+  cursor: zoom-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox img {
+  display: block;
+  max-width: min(94vw, 1000px);
+  max-height: 84vh;
+  max-height: 84svh;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(207, 195, 232, 0.28);
+  box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.8), 0 0 110px rgba(120, 86, 190, 0.18);
+}
+.lightbox figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(207, 195, 232, 0.7);
+}
 
 /* ————— leave a paw ————— */
 .pawbox {
@@ -376,6 +412,51 @@ footer {
   </footer>
 
 </main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo of Milo" tabindex="-1">
+  <figure>
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>
+
+<script>
+(function () {
+  var grid = document.querySelector('.grid');
+  var box = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var lastLink = null;
+
+  function openBox(a) {
+    var img = a.querySelector('img');
+    var cap = a.parentElement.querySelector('figcaption');
+    lbImg.src = a.href;
+    lbImg.alt = img ? img.alt : '';
+    lbCap.textContent = cap ? cap.textContent : '';
+    box.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lastLink = a;
+    box.focus();
+  }
+  function closeBox() {
+    box.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastLink) { lastLink.focus(); lastLink = null; }
+  }
+
+  grid.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    e.preventDefault();
+    openBox(a);
+  });
+  box.addEventListener('click', closeBox);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && box.classList.contains('open')) closeBox();
+  });
+})();
+</script>
 
 <script>
 (function () {
