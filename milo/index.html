@@ -466,7 +466,7 @@ footer {
   function closeBox() {
     box.classList.remove('open');
     unlockScroll();
-    if (lastLink) { lastLink.focus(); lastLink = null; }
+    if (lastLink) { try { lastLink.focus({preventScroll: true}); } catch (e) { lastLink.focus(); } lastLink = null; }
   }
 
   grid.addEventListener('click', function (e) {
