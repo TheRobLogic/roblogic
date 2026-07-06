@@ -273,7 +273,12 @@ footer {
 }
 
 @media (max-width: 560px) {
-  .hero { min-height: 82vh; }
+  /* fit the whole composition inside the visual viewport with Safari's bars up */
+  .hero { min-height: 82vh; min-height: 100svh; padding: 2.2rem 1rem 2.5rem; }
+  .hero-portrait { margin-bottom: 1.5rem; }
+  .hero-portrait img { width: min(62vw, 250px); padding: 7px; }
+  .name { font-size: clamp(4rem, 18vw, 10rem); }
+  .dates { font-size: 0.9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
