@@ -219,6 +219,40 @@ main { position: relative; z-index: 3; }
 .grid:empty { display: none; }
 .grid a { cursor: zoom-in; }
 
+/* video tiles — poster + play badge */
+.vidtile a { position: relative; }
+.play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.play::before {
+  content: '';
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(21, 12, 38, 0.62);
+  border: 1.5px solid rgba(207, 195, 232, 0.65);
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.45);
+}
+.play::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent var(--moon);
+  margin-left: 5px;
+}
+.grid a:hover .play::before, .grid a:focus-visible .play::before {
+  border-color: var(--rust);
+  background: rgba(21, 12, 38, 0.78);
+}
+
 /* ————— lightbox — tap a photo to enlarge, tap again to come back ————— */
 .lightbox {
   position: fixed;
@@ -254,6 +288,20 @@ main { position: relative; z-index: 3; }
   font-style: italic;
   color: rgba(207, 195, 232, 0.7);
 }
+.lightbox video {
+  display: block;
+  max-width: min(94vw, 1000px);
+  max-height: 84vh;
+  max-height: 84svh;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(207, 195, 232, 0.28);
+  background: #000;
+  box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.8), 0 0 110px rgba(120, 86, 190, 0.18);
+  cursor: default;
+}
+.lightbox [hidden] { display: none !important; }
 
 /* ————— leave a paw ————— */
 .pawbox {
@@ -376,19 +424,33 @@ footer {
       <figure><a href="photos/milo-03.jpg"><img src="photos/milo-03.jpg" alt="Puppy Milo with his paws up on a planter box" loading="lazy"></a><figcaption>2015</figcaption></figure>
       <figure><a href="photos/milo-04.jpg"><img src="photos/milo-04.jpg" alt="Milo asleep in his doghouse with one paw out the door" loading="lazy"></a><figcaption>2016</figcaption></figure>
       <figure><a href="photos/milo-05.jpg"><img src="photos/milo-05.jpg" alt="Milo on the patio with his pink toy between his paws" loading="lazy"></a><figcaption>2017</figcaption></figure>
+      <figure class="vidtile"><a href="photos/milo-vid-01.mp4" data-video><img src="photos/milo-vid-01-poster.jpg" alt="Video: Milo and his Doberman buddy playing in the surf" loading="lazy"><span class="play" aria-hidden="true"></span></a><figcaption>2017 · video</figcaption></figure>
       <figure><a href="photos/milo-06.jpg"><img src="photos/milo-06.jpg" alt="Milo at the beach with sand all over his face" loading="lazy"></a><figcaption>2017</figcaption></figure>
       <figure><a href="photos/milo-07.jpg"><img src="photos/milo-07.jpg" alt="Milo sitting on the wet pavement, looking up" loading="lazy"></a><figcaption>2017</figcaption></figure>
+      <figure class="vidtile"><a href="photos/milo-vid-02.mp4" data-video><img src="photos/milo-vid-02-poster.jpg" alt="Video: Milo on the beach at golden hour" loading="lazy"><span class="play" aria-hidden="true"></span></a><figcaption>2017 · video</figcaption></figure>
       <figure><a href="photos/milo-08.jpg"><img src="photos/milo-08.jpg" alt="Milo peeking out of his doghouse, paws first" loading="lazy"></a><figcaption>2018</figcaption></figure>
+      <figure><a href="photos/milo-26.jpg"><img src="photos/milo-26.jpg" alt="Milo and his Doberman buddy posing with the sports car" loading="lazy"></a><figcaption>2019</figcaption></figure>
+      <figure class="vidtile"><a href="photos/milo-vid-03.mp4" data-video><img src="photos/milo-vid-03-poster.jpg" alt="Video: Milo trotting the wet sand at the dog beach" loading="lazy"><span class="play" aria-hidden="true"></span></a><figcaption>2019 · video</figcaption></figure>
       <figure><a href="photos/milo-09.jpg"><img src="photos/milo-09.jpg" alt="Milo at the dog beach, sandy chin, blue sky" loading="lazy"></a><figcaption>2019</figcaption></figure>
       <figure><a href="photos/milo-10.jpg"><img src="photos/milo-10.jpg" alt="Milo and a Doberman friend lounging on the rug" loading="lazy"></a><figcaption>2019</figcaption></figure>
+      <figure><a href="photos/milo-27.jpg"><img src="photos/milo-27.jpg" alt="Milo on the porch with the black cat" loading="lazy"></a><figcaption>2020</figcaption></figure>
       <figure><a href="photos/milo-11.jpg"><img src="photos/milo-11.jpg" alt="Milo asleep in the dog bed with his name on it" loading="lazy"></a><figcaption>2020</figcaption></figure>
+      <figure><a href="photos/milo-28.jpg"><img src="photos/milo-28.jpg" alt="Milo lounging on the striped blanket, giving the look" loading="lazy"></a><figcaption>2021</figcaption></figure>
+      <figure><a href="photos/milo-29.jpg"><img src="photos/milo-29.jpg" alt="Milo overflowing his bed, face first" loading="lazy"></a><figcaption>2021</figcaption></figure>
       <figure><a href="photos/milo-12.jpg"><img src="photos/milo-12.jpg" alt="Milo resting his head on the edge of his bed" loading="lazy"></a><figcaption>2021</figcaption></figure>
       <figure><a href="photos/milo-13.jpg"><img src="photos/milo-13.jpg" alt="Milo carrying a pinecone home" loading="lazy"></a><figcaption>2022</figcaption></figure>
+      <figure><a href="photos/milo-30.jpg"><img src="photos/milo-30.jpg" alt="Milo in the backyard grass with his ball" loading="lazy"></a><figcaption>2022</figcaption></figure>
+      <figure><a href="photos/milo-31.jpg"><img src="photos/milo-31.jpg" alt="Milo on the front steps, looking straight up" loading="lazy"></a><figcaption>2022</figcaption></figure>
       <figure><a href="photos/milo-14.jpg"><img src="photos/milo-14.jpg" alt="Milo sitting in the park on a gray morning" loading="lazy"></a><figcaption>2022</figcaption></figure>
       <figure><a href="photos/milo-15.jpg"><img src="photos/milo-15.jpg" alt="Milo lying on a stack of dog beds" loading="lazy"></a><figcaption>2022</figcaption></figure>
       <figure><a href="photos/milo-16.jpg"><img src="photos/milo-16.jpg" alt="Milo in the grass, working on a stick" loading="lazy"></a><figcaption>2022</figcaption></figure>
+      <figure><a href="photos/milo-32.jpg"><img src="photos/milo-32.jpg" alt="Milo and his buddy on the living room rug" loading="lazy"></a><figcaption>2022</figcaption></figure>
       <figure><a href="photos/milo-17.jpg"><img src="photos/milo-17.jpg" alt="Milo carrying two sticks at once on his walk" loading="lazy"></a><figcaption>2022</figcaption></figure>
+      <figure><a href="photos/milo-33.jpg"><img src="photos/milo-33.jpg" alt="Milo settled into the meadow grass" loading="lazy"></a><figcaption>2023</figcaption></figure>
       <figure><a href="photos/milo-18.jpg"><img src="photos/milo-18.jpg" alt="Milo out front with his toy in his mouth" loading="lazy"></a><figcaption>2023</figcaption></figure>
+      <figure><a href="photos/milo-34.jpg"><img src="photos/milo-34.jpg" alt="Milo on the couch with his little buddy under the red blanket" loading="lazy"></a><figcaption>2023</figcaption></figure>
+      <figure><a href="photos/milo-35.jpg"><img src="photos/milo-35.jpg" alt="Milo and his little buddy holding down the couch" loading="lazy"></a><figcaption>2024</figcaption></figure>
+      <figure><a href="photos/milo-36.jpg"><img src="photos/milo-36.jpg" alt="Milo riding with his head out the car window" loading="lazy"></a><figcaption>2024</figcaption></figure>
       <figure><a href="photos/milo-19.jpg"><img src="photos/milo-19.jpg" alt="Milo at full speed in the field" loading="lazy"></a><figcaption>2024</figcaption></figure>
       <figure><a href="photos/milo-20.jpg"><img src="photos/milo-20.jpg" alt="Milo hauling a very big branch down the sidewalk" loading="lazy"></a><figcaption>2024</figcaption></figure>
       <figure><a href="photos/milo-21.jpg"><img src="photos/milo-21.jpg" alt="Milo sitting tall in the park grass under palm trees" loading="lazy"></a><figcaption>2024</figcaption></figure>
@@ -417,6 +479,7 @@ footer {
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo of Milo" tabindex="-1">
   <figure>
     <img id="lbImg" src="" alt="">
+    <video id="lbVid" controls playsinline preload="none" hidden></video>
     <figcaption id="lbCap"></figcaption>
   </figure>
 </div>
@@ -426,6 +489,7 @@ footer {
   var grid = document.querySelector('.grid');
   var box = document.getElementById('lightbox');
   var lbImg = document.getElementById('lbImg');
+  var lbVid = document.getElementById('lbVid');
   var lbCap = document.getElementById('lbCap');
   var lastLink = null;
   var scrollY = 0;
@@ -455,16 +519,36 @@ footer {
   function openBox(a) {
     var img = a.querySelector('img');
     var cap = a.parentElement.querySelector('figcaption');
-    lbImg.src = a.href;
-    lbImg.alt = img ? img.alt : '';
+    var isVideo = a.hasAttribute('data-video');
     lbCap.textContent = cap ? cap.textContent : '';
+    if (isVideo) {
+      lbImg.hidden = true;
+      lbImg.src = '';
+      lbVid.hidden = false;
+      lbVid.src = a.href;
+      lbVid.play();
+    } else {
+      stopVideo();
+      lbVid.hidden = true;
+      lbImg.hidden = false;
+      lbImg.src = a.href;
+      lbImg.alt = img ? img.alt : '';
+    }
     box.classList.add('open');
     lockScroll();
     lastLink = a;
     box.focus();
   }
+  function stopVideo() {
+    if (!lbVid.hidden) {
+      lbVid.pause();
+      lbVid.removeAttribute('src');
+      lbVid.load();
+    }
+  }
   function closeBox() {
     box.classList.remove('open');
+    stopVideo();
     unlockScroll();
     if (lastLink) { try { lastLink.focus({preventScroll: true}); } catch (e) { lastLink.focus(); } lastLink = null; }
   }
@@ -475,7 +559,10 @@ footer {
     e.preventDefault();
     openBox(a);
   });
-  box.addEventListener('click', closeBox);
+  box.addEventListener('click', function (e) {
+    if (e.target === lbVid) return; /* taps on the video are for its controls */
+    closeBox();
+  });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && box.classList.contains('open')) closeBox();
   });
