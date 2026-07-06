@@ -126,20 +126,14 @@ main { position: relative; z-index: 3; }
   to   { opacity: var(--op); transform: var(--tr); }
 }
 
-/* ————— portrait ————— */
-.portrait {
-  padding: 2.5rem 1.5rem 4.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.2rem;
+/* ————— his portrait, above the name in the hero —————
+   the text arrives first; he appears above it, last */
+.hero-portrait {
+  margin-bottom: 2.4rem;
+  animation: rise 1.4s cubic-bezier(0.22, 0.8, 0.32, 1) both 1.8s;
 }
 
-.portrait figure {
-  animation: rise 1.2s cubic-bezier(0.22, 0.8, 0.32, 1) both 1.5s;
-}
-
-.portrait img {
+.hero-portrait img {
   display: block;
   width: min(84vw, 340px);
   height: auto;
@@ -152,11 +146,12 @@ main { position: relative; z-index: 3; }
     0 0 90px rgba(120, 86, 190, 0.16);
 }
 
-.portrait figcaption {
-  margin-top: 0.9rem;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: rgba(207, 195, 232, 0.62);
+/* ————— tribute ————— */
+.portrait {
+  padding: 2.5rem 1.5rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tribute {
@@ -166,7 +161,7 @@ main { position: relative; z-index: 3; }
   line-height: 1.55;
   max-width: 30ch;
   color: var(--moon);
-  animation: rise 1.2s cubic-bezier(0.22, 0.8, 0.32, 1) both 1.8s;
+  animation: rise 1.2s cubic-bezier(0.22, 0.8, 0.32, 1) both 2.3s;
 }
 .tribute span { display: block; }
 
@@ -319,16 +314,15 @@ footer {
     <svg class="print print-r" style="--x:7%;  --y:24%; --s:.76;  --tr:scaleX(-1) rotate(-17deg); --op:.18; --d:2.2s"  aria-hidden="true"><use href="#paw"/></svg>
     <svg class="print print-r" style="--x:12%; --y:9%;  --s:.68;  --tr:scaleX(-1) rotate(-9deg);  --op:.11; --d:2.5s"  aria-hidden="true"><use href="#paw"/></svg>
 
+    <figure class="hero-portrait">
+      <img src="photos/milo-01.jpg" alt="Milo, a Doberman, sitting tall in the morning grass under palm trees at sunrise" width="336" height="447">
+    </figure>
     <p class="eyebrow">In loving memory of</p>
     <h1 class="name">Milo</h1>
     <p class="dates">2014&hairsp;–&hairsp;2026</p>
   </section>
 
   <section class="portrait">
-    <figure>
-      <img src="photos/milo-01.jpg" alt="Milo, a Doberman, sitting tall in the morning grass under palm trees at sunrise" width="336" height="447">
-      <figcaption>Morning patrol.</figcaption>
-    </figure>
     <p class="tribute"><span>A great dog. The fastest in the park.</span> <span>Missed more than words can say.</span></p>
   </section>
 
