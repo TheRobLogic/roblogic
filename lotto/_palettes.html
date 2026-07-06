@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Logic's Lucky Lottos — 6 Palette Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Bebas+Neue&family=Montserrat:wght@400;700;800;900&family=Roboto+Slab:wght@400;700&family=Barlow:wght@400;700;900&family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    background:#0F1115;color:#E8ECF3;padding:32px;
+  }
+  .intro{max-width:1240px;margin:0 auto 32px}
+  .intro h1{font-size:24px;margin:0 0 8px;letter-spacing:.01em}
+  .intro p{margin:0;color:#9AA3B2;font-size:13px;line-height:1.55;max-width:760px}
+  .grid{
+    max-width:1240px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+  }
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+  .panel{
+    background:#fff;border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 24px rgba(0,0,0,0.4);
+    display:flex;flex-direction:column;
+  }
+  .panel-header{
+    padding:14px 18px;background:#11141A;color:#fff;
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    border-bottom:1px solid #1F2530;
+  }
+  .panel-header h2{margin:0;font-size:15px;font-weight:700;letter-spacing:.04em}
+  .panel-header .credit{margin:0;font-size:11px;color:#7B8497;letter-spacing:.06em;text-transform:uppercase}
+  .mock{padding:0;display:flex;flex-direction:column}
+  .mock-topbar{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .mock-wordmark{margin:0;line-height:1}
+  .mock-meta{font-size:9px;letter-spacing:.18em;text-transform:uppercase;line-height:1.4;text-align:right}
+  .mock-meta b{display:block;font-size:11px}
+  .mock-buttons{padding:0 16px 16px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .mock-btn{
+    padding:7px 4px;text-align:center;font-size:11px;line-height:1.1;
+    text-decoration:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    min-height:46px;
+  }
+  .mock-btn .px{font-size:16px;font-weight:700;line-height:1}
+  .mock-btn .lb{font-size:8px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+  .mock-card-wrap{padding:0 16px 16px}
+  .mock-card{display:flex;flex-direction:column;overflow:hidden;position:relative}
+  .mock-card .art{
+    aspect-ratio:16/9;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  }
+  .mock-card .badge{
+    position:absolute;top:8px;left:8px;z-index:2;
+    font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    padding:3px 7px;line-height:1;
+  }
+  .mock-card .title{font-size:13px;font-weight:700;margin:10px 12px 2px;line-height:1.2;text-align:center;text-transform:uppercase;letter-spacing:.02em}
+  .mock-card .price{font-size:22px;font-weight:700;margin:2px 12px 6px;text-align:center;line-height:1}
+  .mock-card .reason{font-size:11px;line-height:1.45;margin:0 12px 12px;text-align:center}
+  .swatches{display:flex;gap:0;border-top:1px solid #E4E9F1}
+  .swatches .sw{flex:1;height:30px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px}
+  .swatches .sw span{font-size:8px;font-family:monospace;background:rgba(255,255,255,0.9);color:#000;padding:1px 4px;border-radius:2px;line-height:1}
+
+  /* ============================================================
+     1. FL — BOUTIQUE TROPICAL
+     ============================================================ */
+  .p1 .mock{background:#FAF9F5;color:#0E1B19}
+  .p1 .mock-topbar{border-bottom:1px solid #DAD2C6}
+  .p1 .mock-wordmark{font-family:"Bebas Neue","Oswald",sans-serif;font-weight:400;font-size:24px;letter-spacing:.04em;color:#CB3A60;text-transform:uppercase}
+  .p1 .mock-meta{color:#006C67}
+  .p1 .mock-meta b{color:#CB3A60}
+  .p1 .mock-btn{background:#fff;border:1px solid #DAD2C6;border-radius:8px;color:#0E1B19}
+  .p1 .mock-btn .px{color:#006C67;font-family:"Bebas Neue",sans-serif;letter-spacing:.04em;font-size:18px}
+  .p1 .mock-btn .lb{color:#0E1B19;opacity:.6}
+  .p1 .mock-btn.cta{background:#CB3A60;border-color:#CB3A60;color:#fff}
+  .p1 .mock-btn.cta .px,.p1 .mock-btn.cta .lb{color:#fff}
+  .p1 .mock-card{background:#fff;border:1px solid #DAD2C6;border-radius:10px}
+  .p1 .mock-card .art{background:#FEA062;color:#fff}
+  .p1 .mock-card .badge{background:#FEA062;color:#0E1B19;border-radius:999px}
+  .p1 .mock-card .title{font-family:"Bebas Neue",sans-serif;color:#0E1B19;letter-spacing:.04em}
+  .p1 .mock-card .price{color:#CB3A60;font-family:"Bebas Neue",sans-serif;letter-spacing:.04em}
+  .p1 .mock-card .reason{color:#0E1B19;opacity:.7}
+
+  /* ============================================================
+     2. NY — COBALT AUTHORITY
+     ============================================================ */
+  .p2 .mock{background:#F8F8F8;color:#010732}
+  .p2 .mock-topbar{background:#052AC4;color:#fff;border-bottom:3px solid #FFCD16}
+  .p2 .mock-wordmark{font-family:"Montserrat",sans-serif;font-weight:900;font-size:18px;color:#fff;letter-spacing:.01em;text-transform:uppercase}
+  .p2 .mock-meta{color:#FFCD16}
+  .p2 .mock-meta b{color:#fff}
+  .p2 .mock-btn{background:#fff;border:1px solid #DDE1EC;border-radius:6px;color:#010732}
+  .p2 .mock-btn .px{color:#052AC4;font-family:"Montserrat",sans-serif;font-weight:800}
+  .p2 .mock-btn .lb{color:#010732;opacity:.55}
+  .p2 .mock-btn.cta{background:#FFCD16;border-color:#FFCD16;color:#020C5A}
+  .p2 .mock-btn.cta .px,.p2 .mock-btn.cta .lb{color:#020C5A}
+  .p2 .mock-card{background:#fff;border:1px solid #DDE1EC;border-radius:6px}
+  .p2 .mock-card .art{background:#020C5A;color:#FFCD16}
+  .p2 .mock-card .badge{background:#FFCD16;color:#020C5A}
+  .p2 .mock-card .title{font-family:"Montserrat",sans-serif;color:#010732;font-weight:800}
+  .p2 .mock-card .price{color:#052AC4;font-family:"Montserrat",sans-serif;font-weight:900}
+  .p2 .mock-card .reason{color:#010732;opacity:.7}
+
+  /* ============================================================
+     3. PA — GAMESHOW PRIZEWHEEL
+     ============================================================ */
+  .p3 .mock{background:#FFF;color:#1A1F2C}
+  .p3 .mock-topbar{background:#008051;color:#FFE53A;border-bottom:4px solid #50348E}
+  .p3 .mock-wordmark{font-family:"Bebas Neue","Oswald",sans-serif;font-weight:400;font-size:22px;color:#FFE53A;letter-spacing:.04em;text-transform:uppercase;text-shadow:2px 2px 0 #50348E}
+  .p3 .mock-meta{color:#fff}
+  .p3 .mock-meta b{color:#FFE53A}
+  .p3 .mock-btn{background:#FFE53A;border:2px solid #50348E;border-radius:8px;color:#50348E}
+  .p3 .mock-btn .px{color:#50348E;font-family:"Bebas Neue",sans-serif;font-weight:700;letter-spacing:.04em;font-size:18px}
+  .p3 .mock-btn .lb{color:#50348E;opacity:.8}
+  .p3 .mock-btn.cta{background:linear-gradient(180deg,#E11F26 0,#D21F25 100%);border-color:#FFE53A;color:#fff}
+  .p3 .mock-btn.cta .px,.p3 .mock-btn.cta .lb{color:#fff}
+  .p3 .mock-card{background:#fff;border:3px solid #50348E;border-radius:10px;box-shadow:4px 4px 0 #FFE53A}
+  .p3 .mock-card .art{background:#50348E;color:#FFE53A}
+  .p3 .mock-card .badge{background:#FFE53A;color:#50348E;border:2px solid #50348E}
+  .p3 .mock-card .title{font-family:"Bebas Neue",sans-serif;color:#008051;letter-spacing:.04em}
+  .p3 .mock-card .price{color:#E11F26;font-family:"Bebas Neue",sans-serif;letter-spacing:.04em}
+  .p3 .mock-card .reason{color:#1A1F2C}
+
+  /* ============================================================
+     4. OH — HERALDIC CIVIC
+     ============================================================ */
+  .p4 .mock{background:#F1EFEE;color:#20262B}
+  .p4 .mock-topbar{background:#2E3192;color:#FFD200;border-bottom:4px solid #FFD200}
+  .p4 .mock-wordmark{font-family:"Open Sans",sans-serif;font-weight:800;font-size:18px;color:#FFD200;letter-spacing:.04em;text-transform:uppercase}
+  .p4 .mock-meta{color:#fff}
+  .p4 .mock-meta b{color:#FFD200}
+  .p4 .mock-btn{background:#fff;border:1px solid #D6D0CC;color:#2E3192}
+  .p4 .mock-btn .px{color:#2E3192;font-family:"Open Sans",sans-serif;font-weight:800}
+  .p4 .mock-btn .lb{color:#20262B;opacity:.6}
+  .p4 .mock-btn.cta{background:#BE0F34;border-color:#BE0F34;color:#FFD200}
+  .p4 .mock-btn.cta .px,.p4 .mock-btn.cta .lb{color:#FFD200}
+  .p4 .mock-card{background:#fff;border-top:4px solid #FFD200;border-left:1px solid #D6D0CC;border-right:1px solid #D6D0CC;border-bottom:1px solid #D6D0CC}
+  .p4 .mock-card .art{background:#BE0F34;color:#FFD200}
+  .p4 .mock-card .badge{background:#FFD200;color:#2E3192}
+  .p4 .mock-card .title{font-family:"Open Sans",sans-serif;color:#2E3192;font-weight:800}
+  .p4 .mock-card .price{color:#BE0F34;font-family:"Open Sans",sans-serif;font-weight:800}
+  .p4 .mock-card .reason{color:#20262B;opacity:.75}
+
+  /* ============================================================
+     5. MA — COASTAL SOBER
+     ============================================================ */
+  .p5 .mock{background:#F0F3F6;color:#0F1821}
+  .p5 .mock-topbar{background:#fff;border-bottom:1px solid #D8DEE6}
+  .p5 .mock-wordmark{font-family:"Roboto Slab",Georgia,serif;font-weight:700;font-size:18px;color:#173E67;letter-spacing:.01em}
+  .p5 .mock-meta{color:#1E7E74}
+  .p5 .mock-meta b{color:#173E67}
+  .p5 .mock-btn{background:#fff;border:1px solid #D8DEE6;border-radius:6px;color:#0F1821}
+  .p5 .mock-btn .px{color:#173E67;font-family:"Barlow","Helvetica Neue",sans-serif;font-weight:900}
+  .p5 .mock-btn .lb{color:#0F1821;opacity:.55}
+  .p5 .mock-btn.cta{background:#1E7E74;border-color:#1E7E74;color:#FFCB56}
+  .p5 .mock-btn.cta .px,.p5 .mock-btn.cta .lb{color:#FFCB56}
+  .p5 .mock-card{background:#fff;border:1px solid #D8DEE6;border-radius:8px;box-shadow:0 1px 3px rgba(15,24,33,0.04),0 6px 16px rgba(23,62,103,0.06)}
+  .p5 .mock-card .art{background:#173E67;color:#FFCB56}
+  .p5 .mock-card .badge{background:#FFCB56;color:#173E67}
+  .p5 .mock-card .title{font-family:"Roboto Slab",serif;color:#173E67;text-transform:none;letter-spacing:0}
+  .p5 .mock-card .price{color:#1E7E74;font-family:"Barlow",sans-serif;font-weight:900;letter-spacing:0}
+  .p5 .mock-card .reason{color:#0F1821;opacity:.7}
+
+  /* ============================================================
+     6. MEGA MILLIONS — PRIMETIME TV
+     ============================================================ */
+  .p6 .mock{background:#FFFFFF;color:#000}
+  .p6 .mock-topbar{background:linear-gradient(180deg,#1664BF 0,#0F4380 100%);color:#fff;border-bottom:3px solid #FFD100}
+  .p6 .mock-wordmark{font-family:"Montserrat",sans-serif;font-weight:900;font-size:18px;color:#FFD100;letter-spacing:.04em;text-transform:uppercase;text-shadow:1px 1px 0 rgba(0,0,0,0.3)}
+  .p6 .mock-meta{color:#FFD100}
+  .p6 .mock-meta b{color:#fff}
+  .p6 .mock-btn{background:#F4F7FB;border:1px solid #D9E1EE;border-radius:6px;color:#0F4380}
+  .p6 .mock-btn .px{color:#1664BF;font-family:"Montserrat",sans-serif;font-weight:800}
+  .p6 .mock-btn .lb{color:#000;opacity:.55}
+  .p6 .mock-btn.cta{background:linear-gradient(180deg,#FFD100 0,#FFC107 100%);border-color:#FFD100;color:#0F4380}
+  .p6 .mock-btn.cta .px,.p6 .mock-btn.cta .lb{color:#0F4380}
+  .p6 .mock-card{background:#fff;border:1px solid #D9E1EE;border-radius:8px;box-shadow:0 4px 16px rgba(15,67,128,0.10)}
+  .p6 .mock-card .art{background:linear-gradient(180deg,#1664BF 0,#0F4380 100%);color:#FFD100}
+  .p6 .mock-card .badge{background:#FFD100;color:#0F4380}
+  .p6 .mock-card .title{font-family:"Montserrat",sans-serif;color:#0F4380;font-weight:800}
+  .p6 .mock-card .price{color:#1664BF;font-family:"Montserrat",sans-serif;font-weight:900;font-size:26px}
+  .p6 .mock-card .reason{color:#000;opacity:.7}
+</style>
+</head>
+<body>
+  <div class="intro">
+    <h1>Logic's Lucky Lottos — six palette directions</h1>
+    <p>Each direction is anchored in a real state lottery brand (palette + type personality lifted from their actual CSS). Pick one, or tell me which two to blend.</p>
+  </div>
+  <div class="grid">
+
+    <!-- 1. FL Boutique Tropical -->
+    <div class="panel p1">
+      <div class="panel-header"><h2>1. Boutique Tropical</h2><p class="credit">inspired by Florida Lottery</p></div>
+      <div class="mock">
+        <div class="mock-topbar">
+          <h3 class="mock-wordmark">Logic's Lucky Lottos</h3>
+          <div class="mock-meta"><b>TODAY'S PICKS</b>TUE · MAY 19 · 8:01 AM PT</div>
+        </div>
+        <div class="mock-buttons">
+          <a class="mock-btn"><span class="px">$1</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$2</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$5</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$10</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn cta"><span class="px">$30</span><span class="lb">Best</span></a>
+        </div>
+        <div class="mock-card-wrap"><div class="mock-card">
+          <span class="badge">Steady pick</span>
+          <div class="art">Royal Jackpot</div>
+          <div class="title">Royal Jackpot</div>
+          <div class="price">$40</div>
+          <div class="reason">Best shot at getting $40 back on one ticket today — about 40% of tickets still pay at least $40.</div>
+        </div></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#CB3A60"><span>CB3A60</span></div>
+        <div class="sw" style="background:#006C67"><span>006C67</span></div>
+        <div class="sw" style="background:#FEA062"><span>FEA062</span></div>
+        <div class="sw" style="background:#FAF9F5"><span>FAF9F5</span></div>
+        <div class="sw" style="background:#0E1B19"><span style="background:rgba(255,255,255,0.9);color:#000">0E1B19</span></div>
+      </div>
+    </div>
+
+    <!-- 2. NY Cobalt Authority -->
+    <div class="panel p2">
+      <div class="panel-header"><h2>2. Cobalt Authority</h2><p class="credit">inspired by New York Lottery</p></div>
+      <div class="mock">
+        <div class="mock-topbar">
+          <h3 class="mock-wordmark">Logic's Lucky Lottos</h3>
+          <div class="mock-meta"><b>TODAY'S PICKS</b>TUE · MAY 19 · 8:01 AM PT</div>
+        </div>
+        <div class="mock-buttons">
+          <a class="mock-btn"><span class="px">$1</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$2</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$5</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$10</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn cta"><span class="px">$30</span><span class="lb">Best</span></a>
+        </div>
+        <div class="mock-card-wrap"><div class="mock-card">
+          <span class="badge">Steady pick</span>
+          <div class="art">Royal Jackpot</div>
+          <div class="title">Royal Jackpot</div>
+          <div class="price">$40</div>
+          <div class="reason">Best shot at getting $40 back on one ticket today — about 40% of tickets still pay at least $40.</div>
+        </div></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#052AC4"><span>052AC4</span></div>
+        <div class="sw" style="background:#020C5A"><span>020C5A</span></div>
+        <div class="sw" style="background:#FFCD16"><span>FFCD16</span></div>
+        <div class="sw" style="background:#F8F8F8"><span style="background:rgba(0,0,0,0.6);color:#fff">F8F8F8</span></div>
+        <div class="sw" style="background:#010732"><span style="background:rgba(255,255,255,0.9);color:#000">010732</span></div>
+      </div>
+    </div>
+
+    <!-- 3. PA Gameshow Prizewheel -->
+    <div class="panel p3">
+      <div class="panel-header"><h2>3. Gameshow Prizewheel</h2><p class="credit">inspired by Pennsylvania Lottery</p></div>
+      <div class="mock">
+        <div class="mock-topbar">
+          <h3 class="mock-wordmark">Logic's Lucky Lottos</h3>
+          <div class="mock-meta"><b>TODAY'S PICKS</b>TUE · MAY 19 · 8:01 AM PT</div>
+        </div>
+        <div class="mock-buttons">
+          <a class="mock-btn"><span class="px">$1</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$2</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$5</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$10</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn cta"><span class="px">$30</span><span class="lb">Best</span></a>
+        </div>
+        <div class="mock-card-wrap"><div class="mock-card">
+          <span class="badge">Steady pick</span>
+          <div class="art">Royal Jackpot</div>
+          <div class="title">Royal Jackpot</div>
+          <div class="price">$40</div>
+          <div class="reason">Best shot at getting $40 back on one ticket today — about 40% of tickets still pay at least $40.</div>
+        </div></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#008051"><span>008051</span></div>
+        <div class="sw" style="background:#50348E"><span>50348E</span></div>
+        <div class="sw" style="background:#FFE53A"><span>FFE53A</span></div>
+        <div class="sw" style="background:#E11F26"><span>E11F26</span></div>
+        <div class="sw" style="background:#FFFFFF"><span style="background:rgba(0,0,0,0.6);color:#fff">FFFFFF</span></div>
+      </div>
+    </div>
+
+    <!-- 4. OH Heraldic Civic -->
+    <div class="panel p4">
+      <div class="panel-header"><h2>4. Heraldic Civic</h2><p class="credit">inspired by Ohio Lottery</p></div>
+      <div class="mock">
+        <div class="mock-topbar">
+          <h3 class="mock-wordmark">Logic's Lucky Lottos</h3>
+          <div class="mock-meta"><b>TODAY'S PICKS</b>TUE · MAY 19 · 8:01 AM PT</div>
+        </div>
+        <div class="mock-buttons">
+          <a class="mock-btn"><span class="px">$1</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$2</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$5</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$10</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn cta"><span class="px">$30</span><span class="lb">Best</span></a>
+        </div>
+        <div class="mock-card-wrap"><div class="mock-card">
+          <span class="badge">Steady pick</span>
+          <div class="art">Royal Jackpot</div>
+          <div class="title">Royal Jackpot</div>
+          <div class="price">$40</div>
+          <div class="reason">Best shot at getting $40 back on one ticket today — about 40% of tickets still pay at least $40.</div>
+        </div></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#BE0F34"><span>BE0F34</span></div>
+        <div class="sw" style="background:#2E3192"><span>2E3192</span></div>
+        <div class="sw" style="background:#FFD200"><span>FFD200</span></div>
+        <div class="sw" style="background:#F1EFEE"><span style="background:rgba(0,0,0,0.6);color:#fff">F1EFEE</span></div>
+        <div class="sw" style="background:#20262B"><span style="background:rgba(255,255,255,0.9);color:#000">20262B</span></div>
+      </div>
+    </div>
+
+    <!-- 5. MA Coastal Sober -->
+    <div class="panel p5">
+      <div class="panel-header"><h2>5. Coastal Sober</h2><p class="credit">inspired by Massachusetts Lottery</p></div>
+      <div class="mock">
+        <div class="mock-topbar">
+          <h3 class="mock-wordmark">Logic's Lucky Lottos</h3>
+          <div class="mock-meta"><b>TODAY'S PICKS</b>TUE · MAY 19 · 8:01 AM PT</div>
+        </div>
+        <div class="mock-buttons">
+          <a class="mock-btn"><span class="px">$1</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$2</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$5</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$10</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn cta"><span class="px">$30</span><span class="lb">Best</span></a>
+        </div>
+        <div class="mock-card-wrap"><div class="mock-card">
+          <span class="badge">Steady pick</span>
+          <div class="art">Royal Jackpot</div>
+          <div class="title">Royal Jackpot</div>
+          <div class="price">$40</div>
+          <div class="reason">Best shot at getting $40 back on one ticket today — about 40% of tickets still pay at least $40.</div>
+        </div></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#173E67"><span>173E67</span></div>
+        <div class="sw" style="background:#1E7E74"><span>1E7E74</span></div>
+        <div class="sw" style="background:#FFCB56"><span>FFCB56</span></div>
+        <div class="sw" style="background:#F0F3F6"><span style="background:rgba(0,0,0,0.6);color:#fff">F0F3F6</span></div>
+        <div class="sw" style="background:#0F1821"><span style="background:rgba(255,255,255,0.9);color:#000">0F1821</span></div>
+      </div>
+    </div>
+
+    <!-- 6. Mega Millions Primetime TV -->
+    <div class="panel p6">
+      <div class="panel-header"><h2>6. Primetime TV</h2><p class="credit">inspired by Mega Millions</p></div>
+      <div class="mock">
+        <div class="mock-topbar">
+          <h3 class="mock-wordmark">Logic's Lucky Lottos</h3>
+          <div class="mock-meta"><b>TODAY'S PICKS</b>TUE · MAY 19 · 8:01 AM PT</div>
+        </div>
+        <div class="mock-buttons">
+          <a class="mock-btn"><span class="px">$1</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$2</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$5</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn"><span class="px">$10</span><span class="lb">Scratchers</span></a>
+          <a class="mock-btn cta"><span class="px">$30</span><span class="lb">Best</span></a>
+        </div>
+        <div class="mock-card-wrap"><div class="mock-card">
+          <span class="badge">Steady pick</span>
+          <div class="art">Royal Jackpot</div>
+          <div class="title">Royal Jackpot</div>
+          <div class="price">$40</div>
+          <div class="reason">Best shot at getting $40 back on one ticket today — about 40% of tickets still pay at least $40.</div>
+        </div></div>
+      </div>
+      <div class="swatches">
+        <div class="sw" style="background:#1664BF"><span>1664BF</span></div>
+        <div class="sw" style="background:#0F4380"><span>0F4380</span></div>
+        <div class="sw" style="background:#FFD100"><span>FFD100</span></div>
+        <div class="sw" style="background:#FFFFFF"><span style="background:rgba(0,0,0,0.6);color:#fff">FFFFFF</span></div>
+        <div class="sw" style="background:#000000"><span style="background:rgba(255,255,255,0.9);color:#000">000000</span></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "_comment": "Manual phone/website enrichments keyed by ABC fileNumber. Survives the 90-day display window. Seeded 2026-05-28 from public JSON. Consumed by n8n Geocode and Save (merge regardless of window).",
+  "updated": "2026-05-28",
+  "enrichments": {
+    "00675495": {
+      "fileNumber": "00675495",
+      "displayName": "BARRA BARRA SALOON",
+      "phone": "(619) 246-8010",
+      "website": "https://barrabarrasaloon.com/"
+    },
+    "00675474": {
+      "fileNumber": "00675474",
+      "displayName": "CASA DE REYES",
+      "phone": "(619) 246-8010",
+      "website": "https://casadereyesrestaurant.com/"
+    },
+    "00671347": {
+      "fileNumber": "00671347",
+      "displayName": "TOM BOY MARKET",
+      "phone": "(619) 264-1515",
+      "website": null
+    },
+    "00676072": {
+      "fileNumber": "00676072",
+      "displayName": "AHI SUSHI & GRILL",
+      "phone": "(619) 337-1388",
+      "website": "https://ahisushielcajon.com/"
+    },
+    "00670518": {
+      "fileNumber": "00670518",
+      "displayName": "TIGER LITTLE ITALY HOSPITALITY LLC",
+      "phone": "(442) 264-5830",
+      "website": "https://tigerhospitalitygroup.com/"
+    }
+  }
+}
