@@ -516,6 +516,21 @@ footer {
     document.documentElement.style.scrollBehavior = '';
   }
 
+  /* native controls take ~4s to auto-hide on mobile — hide them ourselves,
+     sooner; any tap on the video brings them back */
+  var ctrlTimer = null;
+  function hideCtrlsSoon(delay) {
+    clearTimeout(ctrlTimer);
+    ctrlTimer = setTimeout(function () {
+      if (!lbVid.paused && !lbVid.hidden) lbVid.removeAttribute('controls');
+    }, delay);
+  }
+  lbVid.addEventListener('playing', function () { hideCtrlsSoon(1200); });
+  lbVid.addEventListener('pause', function () {
+    clearTimeout(ctrlTimer);
+    lbVid.setAttribute('controls', '');
+  });
+
   function openBox(a) {
     var img = a.querySelector('img');
     var cap = a.parentElement.querySelector('figcaption');
@@ -525,6 +540,7 @@ footer {
       lbImg.hidden = true;
       lbImg.src = '';
       lbVid.hidden = false;
+      lbVid.setAttribute('controls', '');
       lbVid.src = a.href;
       lbVid.play();
     } else {
@@ -540,10 +556,12 @@ footer {
     box.focus();
   }
   function stopVideo() {
+    clearTimeout(ctrlTimer);
     if (!lbVid.hidden) {
       lbVid.pause();
       lbVid.removeAttribute('src');
       lbVid.load();
+      lbVid.setAttribute('controls', '');
     }
   }
   function closeBox() {
@@ -560,7 +578,14 @@ footer {
     openBox(a);
   });
   box.addEventListener('click', function (e) {
-    if (e.target === lbVid) return; /* taps on the video are for its controls */
+    if (e.target === lbVid) {
+      /* tap on the video: bring controls back, never close */
+      if (!lbVid.hasAttribute('controls')) {
+        lbVid.setAttribute('controls', '');
+        if (!lbVid.paused) hideCtrlsSoon(2500);
+      }
+      return;
+    }
     closeBox();
   });
   document.addEventListener('keydown', function (e) {
