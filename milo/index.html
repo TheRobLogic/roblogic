@@ -223,6 +223,41 @@ main { position: relative; z-index: 3; }
 }
 .grid:empty { display: none; }
 
+/* ————— leave a paw ————— */
+.pawbox {
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.pawbtn {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(207, 195, 232, 0.35);
+  background: rgba(244, 240, 252, 0.05);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.pawbtn svg { width: 34px; fill: rgba(207, 195, 232, 0.75); transition: fill 0.25s; }
+.pawbtn:hover:not(.pressed) { transform: translateY(-2px); border-color: rgba(217, 160, 91, 0.6); box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35); }
+.pawbtn:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
+.pawbtn.pressed { background: rgba(217, 160, 91, 0.16); border-color: var(--rust); cursor: default; }
+.pawbtn.pressed svg { fill: var(--rust); }
+.pawbtn.pop { animation: pawpop 0.45s cubic-bezier(0.22, 0.8, 0.32, 1); }
+@keyframes pawpop { 0% { transform: scale(1); } 35% { transform: scale(1.18); } 100% { transform: scale(1); } }
+
+.paw-label { margin-top: 0.9rem; font-size: 0.95rem; color: rgba(207, 195, 232, 0.85); }
+.paw-count {
+  margin-top: 0.35rem;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--rust);
+  min-height: 1.4em;
+}
+
 /* ————— footer ————— */
 footer {
   padding: 2rem 1.5rem 3.5rem;
@@ -319,12 +354,55 @@ footer {
     </div>
   </section>
 
+  <section class="pawbox" aria-label="Leave a paw for Milo">
+    <button class="pawbtn" id="pawBtn" type="button" aria-pressed="false" aria-label="Leave a paw for Milo">
+      <svg viewBox="0 0 100 105" aria-hidden="true"><use href="#paw"/></svg>
+    </button>
+    <p class="paw-label" id="pawLabel">Tap to leave a paw for Milo</p>
+    <p class="paw-count" id="pawCount"></p>
+  </section>
+
   <footer>
     <svg class="footpaw" viewBox="0 0 100 105" aria-hidden="true"><use href="#paw"/></svg>
     <p class="site">roblogic.org</p>
   </footer>
 
 </main>
+
+<script>
+(function () {
+  var API = '/milo/api/paw';
+  var btn = document.getElementById('pawBtn');
+  var label = document.getElementById('pawLabel');
+  var countEl = document.getElementById('pawCount');
+
+  function showCount(n) {
+    if (typeof n === 'number' && n > 0) {
+      countEl.textContent = n === 1 ? 'one paw left for Milo' : n + ' paws left for Milo';
+    }
+  }
+  function setPressed() {
+    btn.classList.add('pressed');
+    btn.setAttribute('aria-pressed', 'true');
+    label.textContent = 'You left a paw for Milo.';
+  }
+
+  if (localStorage.getItem('milo-pawed') === '1') setPressed();
+
+  fetch(API).then(function (r) { return r.json(); }).then(function (d) { showCount(d.count); }).catch(function () {});
+
+  btn.addEventListener('click', function () {
+    if (btn.classList.contains('pressed')) return;
+    setPressed();
+    btn.classList.add('pop');
+    try { localStorage.setItem('milo-pawed', '1'); } catch (e) {}
+    fetch(API, { method: 'POST' })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { showCount(d.count); })
+      .catch(function () {});
+  });
+})();
+</script>
 
 </body>
 </html>
