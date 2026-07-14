@@ -728,7 +728,7 @@
     // ── Init ──
     async function init() {
       try {
-        const resp = await fetch('jordon-abc-data.json');
+        const resp = await fetch('abc-data.json');
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
 
@@ -1089,7 +1089,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            page: 'jordon',
+            page: 'abc',
             ref: document.referrer || 'direct',
             tag: 'cocktail'
           })

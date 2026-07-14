@@ -1,3 +1,7 @@
 /cuchuma  /kumeyaay/cuchuma/  301
 /cuchuma/  /kumeyaay/cuchuma/  301
 /cuchuma/*  /kumeyaay/cuchuma/:splat  301
+/jordon/jordon-abc-data.json  /abc/abc-data.json  301
+/jordon  /abc/  301
+/jordon/  /abc/  301
+/jordon/*  /abc/:splat  301
