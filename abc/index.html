@@ -580,9 +580,12 @@
 
       /* Legend — 2x2 grid on mobile */
       .legend { grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
-      .legend-item { font-size: 0.85rem; padding: 0.55rem 0.4rem; gap: 0.3rem; }
+      .legend-item { font-size: 0.85rem; padding: 0.65rem 0.4rem; gap: 0.3rem; }
       .legend-dot { width: 8px; height: 8px; }
       .legend-count { font-size: 0.7rem; }
+
+      /* Action pills — 44px-class tap targets on touch screens */
+      .action-filter-btn { padding: 0.7rem 1.1rem; font-size: 0.8rem; }
 
       /* Filters — prevent iOS auto-zoom, bigger touch targets */
       .filters { flex-direction: column; }
@@ -723,7 +726,7 @@
     </div>
 
     <div class="stats-bar">
-      <div class="stats-count">Showing <strong><span id="visible-count">0</span></strong> of <strong><span id="total-count">0</span></strong> licenses</div>
+      <div class="stats-count">Showing <strong><span id="visible-count">0</span></strong> of <strong><span id="total-count">0</span></strong> licenses<span id="preview-note"></span></div>
       <div class="category-counts" id="category-counts"></div>
     </div>
 
@@ -765,6 +768,22 @@
       'wholesale': 'Wholesale',
       'other': 'Other',
     };
+
+    // Raw ABC status codes → readable labels (abc.ca.gov license-lookup glossary).
+    // Unknown codes fall through raw.
+    const STATUS_LABELS = {
+      'ACTIVE': 'Active',
+      'SUREND': 'Surrendered',
+      'R64B': 'Issue & Hold',
+      'R65': 'Surrendered — Not in Use',
+      'PEND': 'Pending',
+      'CAN': 'Canceled',
+      'REV': 'Revoked',
+      'SUSPEND': 'Suspended',
+      'INACT': 'Inactive',
+      'WDRL': 'Withdrawn',
+    };
+    const statusLabel = s => STATUS_LABELS[s] || s;
 
     // ── State ──
     let allLicenses = [];
@@ -817,11 +836,9 @@
         // Init map
         initMap();
 
-        // Set default action filter button state
-        document.getElementById('filter-new').classList.add('active');
-
-        // Initial render
-        applyFilters();
+        // Default action filter — via the setter so aria-pressed lands on first paint
+        // (also runs the initial applyFilters/render)
+        setActionFilter('new');
 
       } catch (err) {
         console.error('Failed to load data:', err);
@@ -1022,6 +1039,11 @@
         showAllWrap.innerHTML = '';
       }
 
+      // Stats-bar hint so "Showing 43" isn't a lie while only 10 preview cards render
+      const previewNote = document.getElementById('preview-note');
+      previewNote.textContent = (visibleRows.length < filteredLicenses.length)
+        ? ` · latest ${visibleRows.length} shown` : '';
+
       const html = visibleRows.map(lic => {
         const color = CATEGORY_COLORS[lic.category] || CATEGORY_COLORS.other;
         const statusClass = lic.status === 'ACTIVE' ? 'active' : 'other-status';
@@ -1041,7 +1063,7 @@
           <td class="td-address">${escapeHtml(fullAddress)}</td>
           <td class="td-city">${escapeHtml(lic.city)}</td>
           <td class="td-contact">${lic.phone ? `<a href="tel:${escapeHtml(lic.phone)}" onclick="event.stopPropagation()">&#x260E; ${escapeHtml(lic.phone)}</a>` : ''}${lic.website ? `<a href="${escapeHtml(lic.website)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">&#x1F310; Website</a>` : ''}</td>
-          <td class="td-status-cell"><span class="td-status ${statusClass}">${escapeHtml(lic.status)}</span></td>
+          <td class="td-status-cell"><span class="td-status ${statusClass}">${escapeHtml(statusLabel(lic.status))}</span></td>
         </tr>`;
       }).join('');
 
