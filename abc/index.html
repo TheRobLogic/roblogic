@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SD County New Licenses — ABC Tracker</title>
+  <meta name="description" content="Every new California ABC liquor license in San Diego County from the last 90 days — mapped, filterable, updated daily at 8 AM PT.">
+  <meta name="theme-color" content="#0c1220">
+  <link rel="canonical" href="https://roblogic.org/abc/">
+  <meta property="og:title" content="SD County New ABC Licenses">
+  <meta property="og:description" content="Every new California ABC liquor license in San Diego County from the last 90 days — mapped, filterable, updated daily.">
+  <meta property="og:url" content="https://roblogic.org/abc/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍸</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
@@ -150,6 +158,10 @@
     .legend-item:hover {
       background: rgba(255,255,255,0.12);
       border-color: rgba(148, 163, 184, 0.4);
+    }
+    .legend-item:focus-visible, .action-filter-btn:focus-visible {
+      outline: 2px solid var(--blue-bright);
+      outline-offset: 2px;
     }
     .legend-item.active-filter {
       background: rgba(59,130,246,0.2);
@@ -331,6 +343,20 @@
       transition: color 0.2s;
       position: relative;
     }
+    /* Sticky column headers while scrolling the long table (desktop). Must come
+       after the base rule (its position:relative would win otherwise), and the
+       wrapper must NOT be a scroll container, so overflow-x stays below 900px. */
+    @media (min-width: 900px) {
+      .table-wrapper { overflow-x: visible; }
+      /* overflow:hidden + border-collapse:collapse both defeat sticky in Chromium */
+      table { overflow: visible; border-collapse: separate; border-spacing: 0; }
+      tbody td { border-bottom: 1px solid var(--border-light); }
+      thead th { position: sticky; top: 0; background: var(--bg-header); z-index: 5; }
+      thead th:first-child { border-top-left-radius: var(--radius); }
+      thead th:last-child { border-top-right-radius: var(--radius); }
+      tbody tr:last-child td:first-child { border-bottom-left-radius: var(--radius); }
+      tbody tr:last-child td:last-child { border-bottom-right-radius: var(--radius); }
+    }
     thead th:hover { color: var(--text-white); }
     thead th.sorted { color: var(--blue-bright); }
     thead th .sort-arrow {
@@ -363,7 +389,7 @@
 
     .td-category {
       display: inline-flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.35rem;
     }
     .td-category .indicator {
@@ -371,6 +397,7 @@
       height: 8px;
       border-radius: 50%;
       flex-shrink: 0;
+      margin-top: 0.5em; /* center on the first text line, not the wrapped block */
     }
 
     .td-status {
@@ -440,6 +467,29 @@
       padding: 3rem 1rem;
       color: var(--text-muted);
       font-size: 1rem;
+    }
+
+    /* ── Mobile show-all toggle (hidden on desktop; JS only renders it ≤768px) ── */
+    .show-all-wrap { display: none; }
+    @media (max-width: 768px) {
+      .show-all-wrap { display: block; padding: 0.25rem 0 0.5rem; }
+      .show-all-btn {
+        display: block;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1.5px solid var(--border-light);
+        border-radius: var(--radius);
+        background: white;
+        color: var(--blue);
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: background 0.15s;
+      }
+      .show-all-btn:hover { background: var(--bg-row-alt); }
+      .show-all-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
     }
 
     /* ── Footer ── */
@@ -525,7 +575,7 @@
     @media (max-width: 768px) {
       header { padding: 1.5rem 1rem 1.25rem; }
       .header-top { flex-direction: column; }
-      .header-meta { text-align: left; }
+      .header-meta { text-align: center; }
       header h1 { font-size: 1.35rem; }
 
       /* Legend — 2x2 grid on mobile */
@@ -692,10 +742,11 @@
         <tbody id="table-body"></tbody>
       </table>
       <div id="no-results" class="no-results" style="display:none;">No licenses match your filters.</div>
+      <div id="show-all-wrap" class="show-all-wrap"></div>
     </div>
 
     <footer class="site-footer">
-      Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/">California ABC</a> &middot; Updated daily
+      Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/">California ABC</a> &middot; Updated daily &middot; <a href="/abcofabc/">How the tracker works</a>
     </footer>
   </div>
 
@@ -725,6 +776,11 @@
     let categoryFilter = 'on-premise';
     let actionFilter = 'new'; // 'all', 'new', 'transfer'
 
+    // Mobile: collapse the card list to the latest few, expandable.
+    const MOBILE_PREVIEW = 10;
+    const mobileMQ = window.matchMedia('(max-width: 768px)');
+    let mobileShowAll = false;
+
     // ── Init ──
     async function init() {
       try {
@@ -740,7 +796,9 @@
         if (hoursOld > 36) {
           const banner = document.getElementById('stale-banner');
           banner.style.display = 'block';
-          document.getElementById('stale-date').textContent = formatDateTime(data.updated);
+          const daysOld = Math.floor(hoursOld / 24);
+          const ago = daysOld >= 2 ? ` (${daysOld} days ago)` : '';
+          document.getElementById('stale-date').textContent = formatDateTime(data.updated) + ago;
         }
 
         // Populate header
@@ -851,6 +909,7 @@
     }
 
     function applyFilters() {
+      mobileShowAll = false; // a changed filter starts from the collapsed preview again
       const searchTerm = document.getElementById('search-input').value.toLowerCase().trim();
       const typeFilter = document.getElementById('type-filter').value;
 
@@ -938,16 +997,32 @@
     function renderTable() {
       const tbody = document.getElementById('table-body');
       const noResults = document.getElementById('no-results');
+      const showAllWrap = document.getElementById('show-all-wrap');
 
       if (filteredLicenses.length === 0) {
         tbody.innerHTML = '';
+        showAllWrap.innerHTML = '';
         noResults.style.display = 'block';
         return;
       }
 
       noResults.style.display = 'none';
 
-      const html = filteredLicenses.map(lic => {
+      // On mobile, preview the latest few cards; a toggle reveals the rest.
+      let visibleRows = filteredLicenses;
+      if (mobileMQ.matches && !mobileShowAll && filteredLicenses.length > MOBILE_PREVIEW) {
+        visibleRows = filteredLicenses.slice(0, MOBILE_PREVIEW);
+      }
+
+      if (mobileMQ.matches && filteredLicenses.length > MOBILE_PREVIEW) {
+        showAllWrap.innerHTML = mobileShowAll
+          ? `<button type="button" class="show-all-btn" onclick="toggleMobileShowAll()">Show latest ${MOBILE_PREVIEW} only</button>`
+          : `<button type="button" class="show-all-btn" onclick="toggleMobileShowAll()">Show all ${filteredLicenses.length} licenses &#9660;</button>`;
+      } else {
+        showAllWrap.innerHTML = '';
+      }
+
+      const html = visibleRows.map(lic => {
         const color = CATEGORY_COLORS[lic.category] || CATEGORY_COLORS.other;
         const statusClass = lic.status === 'ACTIVE' ? 'active' : 'other-status';
         const fullAddress = lic.address2
@@ -988,7 +1063,10 @@
         const countEl = document.getElementById('count-' + cat);
         if (countEl) countEl.textContent = allCats[cat] ? `(${allCats[cat]})` : '';
         const item = document.querySelector(`.legend-item[data-category="${cat}"]`);
-        if (item) item.classList.toggle('active-filter', categoryFilter === cat);
+        if (item) {
+          item.classList.toggle('active-filter', categoryFilter === cat);
+          item.setAttribute('aria-pressed', String(categoryFilter === cat));
+        }
       });
 
       // Count NEW vs Transfer for filter button labels
@@ -999,12 +1077,24 @@
       document.getElementById('filter-transfer').textContent = `Transfers (${transferCount})`;
     }
 
+    function toggleMobileShowAll() {
+      mobileShowAll = !mobileShowAll;
+      renderTable();
+      if (!mobileShowAll) {
+        // Collapsing from the bottom of a long list would strand the viewport — jump back up.
+        document.querySelector('.stats-bar').scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+    }
+
+    // Re-render when crossing the mobile breakpoint so the preview logic applies/clears.
+    mobileMQ.addEventListener('change', () => renderTable());
+
     // ── Helpers ──
     function escapeHtml(str) {
       if (!str) return '';
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
+      return String(str).replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+      ));
     }
 
     function googleMapsUrl(name, address, city) {
@@ -1036,6 +1126,15 @@
     document.getElementById('search-input').addEventListener('input', applyFilters);
     document.getElementById('type-filter').addEventListener('change', applyFilters);
 
+    // Keyboard access for the filter toggles (they're styled divs, not <button>s).
+    document.querySelectorAll('.legend-item, .action-filter-btn').forEach(el => {
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+
     document.querySelectorAll('thead th').forEach(th => {
       th.addEventListener('click', () => handleSort(th.dataset.col));
     });
@@ -1050,8 +1149,13 @@
     // ── Action filter (new vs transfer) ──
     function setActionFilter(filter) {
       actionFilter = filter;
-      document.querySelectorAll('.action-filter-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('filter-' + filter).classList.add('active');
+      document.querySelectorAll('.action-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      const activeBtn = document.getElementById('filter-' + filter);
+      activeBtn.classList.add('active');
+      activeBtn.setAttribute('aria-pressed', 'true');
       applyFilters();
     }
 
