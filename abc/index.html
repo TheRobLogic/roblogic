@@ -1031,7 +1031,7 @@
 
         const hasCoords = lic.lat !== null && lic.lat !== undefined;
         const rowStyle = hasCoords ? 'cursor:pointer' : '';
-        const rowClick = hasCoords ? `onclick="zoomToLicense(${lic.lat},${lic.lng},'${escapeHtml(lic.displayName).replace(/'/g, "\\'")}')"` : '';
+        const rowClick = hasCoords ? `onclick="zoomToLicense(${lic.lat},${lic.lng})"` : '';
         const gmapsUrl = googleMapsUrl(lic.displayName, lic.address, lic.city);
 
         return `<tr style="${rowStyle}" ${rowClick}>
@@ -1167,7 +1167,7 @@
     });
 
     // ── Zoom to license on table row click ──
-    function zoomToLicense(lat, lng, name) {
+    function zoomToLicense(lat, lng) { // markers are matched by coords; a name arg would need JS-in-attr quoting
       // Scroll map into view first, then zoom and open popup after animation settles
       document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => {
