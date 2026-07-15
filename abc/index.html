@@ -125,6 +125,17 @@
       font-weight: 600;
     }
     .header-meta a:hover { text-decoration: underline; }
+    .header-meta .tip-link {
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px dotted rgba(148,163,184,0.5);
+      transition: color .15s ease, border-color .15s ease;
+    }
+    .header-meta .tip-link:hover {
+      color: var(--blue-bright);
+      border-bottom-color: var(--blue-bright);
+      text-decoration: none;
+    }
     .header-meta .year {
       color: var(--blue-bright);
       font-weight: 700;
@@ -695,6 +706,7 @@
           <div class="header-meta">
             <div><span class="year">Last 90 Days</span> &nbsp;·&nbsp; Updated <span id="last-updated"></span></div>
             <div>Built by <a href="https://roblogic.org">Rob Logic</a></div>
+            <div style="margin-top:0.4rem;"><a class="tip-link" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener">🍸 Buy Rob a drink</a></div>
           </div>
         </div>
 
