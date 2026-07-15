@@ -773,7 +773,7 @@
     </div>
 
     <footer class="site-footer">
-      Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/">California ABC</a> &middot; Updated daily &middot; <a href="/abcofabc/">How the tracker works</a>
+      Data from <a href="https://www.abc.ca.gov/licensing/licensing-reports/" target="_blank" rel="noopener">California ABC</a>
     </footer>
   </div>
 
@@ -808,6 +808,16 @@
       'WDRL': 'Withdrawn',
     };
     const statusLabel = s => STATUS_LABELS[s] || s;
+
+    // NEW badge shows only for licenses issued within the last 30 days;
+    // records still list + count as "New" for the full 90-day window.
+    const NEW_BADGE_DAYS = 30;
+    function isBadgeNew(lic) {
+      if (lic.isNew !== true || !lic.issueDate) return false;
+      const d = new Date(lic.issueDate);
+      if (isNaN(d.getTime())) return false;
+      return (Date.now() - d.getTime()) / 86400000 <= NEW_BADGE_DAYS;
+    }
 
     // ── State ──
     let allLicenses = [];
@@ -923,7 +933,7 @@
         if (lic.phone && lic.website) popupContact += ' &middot; ';
         if (lic.website) popupContact += `<a href="${escapeHtml(lic.website)}" target="_blank" rel="noopener">Website</a>`;
 
-        const actionBadge = lic.isNew === true ? '<span style="display:inline-block;font-size:0.6rem;font-weight:700;background:rgba(234,179,8,0.2);color:#a16207;padding:0.05rem 0.35rem;border-radius:100px;margin-left:0.3rem;vertical-align:middle">NEW</span>' : '';
+        const actionBadge = isBadgeNew(lic) ? '<span style="display:inline-block;font-size:0.6rem;font-weight:700;background:rgba(234,179,8,0.2);color:#a16207;padding:0.05rem 0.35rem;border-radius:100px;margin-left:0.3rem;vertical-align:middle">NEW</span>' : '';
         marker.bindPopup(`<div style="min-width:160px">
           <div class="popup-name">${escapeHtml(lic.displayName)}${actionBadge}</div>
           <div class="popup-type" style="color:${typeColor}">${escapeHtml(lic.typeLabel)}</div>
@@ -1082,7 +1092,7 @@
 
         return `<tr style="${rowStyle}" ${rowClick}>
           <td class="td-date">${formatDate(lic.issueDate)}<a href="${gmapsUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="gmaps-link">Google Maps ↗</a></td>
-          <td class="td-name">${escapeHtml(lic.displayName)}${lic.isNew === true ? '<span class="td-action-badge new-badge">NEW</span>' : ''}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
+          <td class="td-name">${escapeHtml(lic.displayName)}${isBadgeNew(lic) ? '<span class="td-action-badge new-badge">NEW</span>' : ''}${hasCoords ? ' <span style="font-size:0.7rem;color:var(--blue);vertical-align:middle">&#x1F4CD;</span>' : ''}</td>
           <td class="td-type-cell"><span class="td-category"><span class="indicator" style="background:${color}"></span>${escapeHtml(lic.typeLabel)}</span></td>
           <td class="td-address">${escapeHtml(fullAddress)}</td>
           <td class="td-city">${escapeHtml(lic.city)}</td>
