@@ -175,6 +175,7 @@
         <div>
           <h1>Rally Bar<br>×2 Screens</h1>
           <p class="mast-sub">Mirror the meeting on both walls — checklist · FAQ · failure modes · parts</p>
+          <p class="mast-sub" style="margin-top:0.45rem;"><a href="/logi/schematic/" style="color:var(--ink); border-bottom:2px solid var(--ink); padding-bottom:1px;">→ Wiring schematic — how it's all connected</a></p>
         </div>
         <div class="counter" aria-live="polite">
           <div class="big"><span id="done">0</span>/<span id="total">9</span></div>
@@ -228,7 +229,7 @@
         <li><span class="sym">Meeting audio echoes or doubles</span><span class="fix">The green Phoenix plug is still on the Kramer feeding the old speaker DSP. Pull it — the bar's own speakers carry the meeting.</span></li>
         <li><span class="sym">Screens black or scrambled after the room sleeps</span><span class="fix">Classic EDID renegotiation. Flip Kramer DIP-3 (Lock EDID) ON. If a picture comes back at low res, power-cycle the TVs once after locking.</span></li>
         <li><span class="sym">Bar says "no device connected" after waking</span><span class="fix">Known CollabOS wake bug — restart the bar. If it recurs, adjust the room's power-saving policy in Teams admin rather than fighting it locally.</span></li>
-        <li><span class="sym">Everything works but the far TV looks softer</span><span class="fix">The old wall extender is likely 1080p-class gear — which matches the bar's 1080p output. That's the expected ceiling, not a fault.</span></li>
+        <li><span class="sym">Far TV sparkles, drops out, or won't sync</span><span class="fix">The far wall is a long <em>regular HDMI</em> run (no Cat extender in this room). Reseat both ends; if it persists, swap in a high-speed / active HDMI cable rated for the length — or drop in an HDBaseT extender pair (see parts). At 1080p60 a good passive cable handles the distance.</span></li>
       </ul>
     </section>
 
@@ -240,7 +241,7 @@
           <tbody>
             <tr><td>WyreStorm 1×2 splitter<span class="part">EXP-SP-0102-H2 · 4K60 · HDCP 2.2 · per-output scaler</span></td><td class="amt">$118</td><td class="maybe">the workhorse pick</td></tr>
             <tr><td>Kramer 1:2 DA, pro grade<span class="part">VM-2H2 · 10-804080190 · EDID lock</span></td><td class="amt">$415</td><td class="maybe">if it has to match the rack</td></tr>
-            <tr><td>Kramer HDBaseT extender pair<span class="part">EXT3-TR ×2 · 4K60 over Cat to 130 ft</span></td><td class="amt">~$1,160</td><td class="maybe">only if the far-wall run itself is dead</td></tr>
+            <tr><td>Kramer HDBaseT extender pair<span class="part">EXT3-TR ×2 · 4K60 over Cat to 130 ft</span></td><td class="amt">~$1,160</td><td class="maybe">if the long HDMI run to the far TV won't hold</td></tr>
             <tr><td>HDMI cables, 6 / 25 / 50 ft</td><td class="amt">~$60</td><td class="maybe">bring all three regardless</td></tr>
           </tbody>
         </table>

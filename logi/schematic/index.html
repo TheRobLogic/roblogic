@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boardroom Dual-Display — Signal Schematic</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --paper:#ffffff; --ink:#111111; --body:#222222; --dim:#666666; --hair:#cccccc;
+    --well:#f3f3f3; --soft:#888888;
+    --hdmi:#1f5fd0;   /* HDMI video */
+    --new:#d6266f;    /* the one new cable */
+    --audio:#1f9d55;  /* analog audio (green Phoenix) */
+    --ctrl:#777777;   /* control / camera / data */
+    --pwr:#b6b6b6;    /* power */
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  body{ background:var(--paper); color:var(--body); font-family:var(--sans); line-height:1.45; font-size:15px; -webkit-font-smoothing:antialiased; }
+  .sheet{ max-width:1120px; margin:0 auto; padding:1.2rem 1.4rem 3rem; }
+
+  header{ border-bottom:2px solid var(--ink); padding-bottom:0.55rem; }
+  header h1{ font-size:1.35rem; font-weight:700; color:var(--ink); }
+  header .meta{ font-family:var(--mono); font-size:0.72rem; color:var(--dim); margin-top:0.3rem; }
+
+  section.blk{ margin-top:1.6rem; }
+  .blk-head{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+    border-bottom:1px solid var(--hair); padding-bottom:0.3rem; margin-bottom:0.5rem; }
+  .blk-head h2{ font-size:0.92rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink); }
+  .blk-head .n{ font-family:var(--mono); font-size:0.72rem; color:var(--dim); }
+  .intro{ max-width:80ch; font-size:0.9rem; margin-bottom:0.6rem; }
+  .intro strong{ color:var(--ink); }
+
+  .frame{ border:1px solid var(--hair); background:var(--paper); overflow-x:auto; }
+  svg{ display:block; width:100%; height:auto; min-width:720px; }
+
+  text{ font-family:var(--sans); fill:var(--ink); }
+  .t-title{ font-weight:700; font-size:13.5px; }
+  .t-sub{ font-family:var(--mono); font-size:10.5px; fill:var(--dim); }
+  .t-port{ font-family:var(--mono); font-size:10px; fill:var(--body); }
+  .t-lab{ font-family:var(--mono); font-size:10.5px; fill:var(--body); }
+  .t-tag{ font-family:var(--mono); font-weight:700; font-size:10px; letter-spacing:0.04em; }
+  .box{ fill:var(--paper); stroke:var(--ink); stroke-width:1.5; }
+  .box-soft{ fill:var(--well); stroke:var(--soft); stroke-width:1.3; }
+  .box-dash{ fill:var(--paper); stroke:var(--dim); stroke-width:1.3; stroke-dasharray:5 4; }
+  .wire{ fill:none; stroke-width:2.4; }
+  .wire-thin{ fill:none; stroke-width:1.6; }
+  .dot{ stroke-dasharray:1.5 3.5; }
+
+  .legend{ display:flex; flex-wrap:wrap; gap:0.4rem 1.4rem; margin-top:0.6rem;
+    font-family:var(--mono); font-size:0.74rem; color:var(--body); }
+  .lg{ display:flex; align-items:center; gap:0.5rem; }
+  .lg svg{ min-width:0; width:40px; height:12px; flex:0 0 40px; }
+
+  ol.fix{ margin:0.2rem 0 0 1.3rem; }
+  ol.fix li{ margin-bottom:0.5rem; font-size:0.92rem; }
+  ol.fix b{ color:var(--ink); }
+
+  .conf{ margin-top:0.7rem; font-family:var(--mono); font-size:0.76rem; color:var(--body); }
+  .conf div{ margin-bottom:0.2rem; }
+  .conf b{ color:var(--ink); }
+
+  footer{ margin-top:2rem; border-top:1px solid var(--hair); padding-top:0.5rem;
+    font-family:var(--mono); font-size:0.68rem; color:var(--dim); }
+
+  @media print{ body{ font-size:11px; } section.blk{ break-inside:avoid; } .frame{ border-color:#000; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <h1>Boardroom Dual-Display — Signal Schematic</h1>
+    <p class="meta">Logitech Rally Bar (Teams appliance mode) mirrored to both wall displays · switch + DSP in a table leg</p>
+    <p class="meta"><a href="/logi/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↑ Field card — checklist, FAQ &amp; parts</a> &nbsp;·&nbsp; drawn 2026-07-21</p>
+  </header>
+
+  <!-- ============ DIAGRAM 1 — ROOM ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>Diagram 1 — Room</h2><span class="n">physical routing</span></div>
+    <p class="intro">Two 86″ Philips displays face each other across the board table. The <strong>Kramer switch + ClearOne DSP live inside a table leg</strong>; cabling drops into the floor box, runs the <strong>aluminum raceway</strong>, then climbs each wall into the ceiling and back down to each TV. The Rally Bar hangs under the near-wall TV; the far TV is bare, fed by a <strong>regular HDMI run</strong> up the wall and across the ceiling — no Cat extender in this room.</p>
+    <div class="frame">
+      <svg viewBox="0 0 1120 600" role="img" aria-label="Room section showing both walls, TVs, Rally Bar, the equipment table leg, Sight and Tap, and cable routing up the walls and across the ceiling.">
+        <!-- plenum / ceiling -->
+        <line x1="40" y1="70" x2="1080" y2="70" stroke="#111111" stroke-width="1.4"/>
+        <line x1="40" y1="60" x2="1080" y2="60" stroke="#cccccc" stroke-width="1"/>
+        <text class="t-sub" x="52" y="53">CEILING PLENUM — cabling crosses here</text>
+        <!-- floor -->
+        <line x1="40" y1="545" x2="1080" y2="545" stroke="#111111" stroke-width="1.4"/>
+        <rect x="40" y="545" width="1040" height="14" fill="#f3f3f3" stroke="none"/>
+        <!-- walls -->
+        <line x1="52" y1="70" x2="52" y2="545" stroke="#111111" stroke-width="1.4"/>
+        <line x1="1068" y1="70" x2="1068" y2="545" stroke="#111111" stroke-width="1.4"/>
+        <text class="t-sub" x="60" y="92">NEAR WALL</text>
+        <text class="t-sub" x="1060" y="92" text-anchor="end">FAR WALL</text>
+
+        <!-- NEAR TV + Rally Bar -->
+        <rect class="box" x="66" y="120" width="168" height="100" rx="3"/>
+        <text class="t-title" x="150" y="150" text-anchor="middle">NEAR TV</text>
+        <text class="t-sub" x="150" y="168" text-anchor="middle">Philips 86BDL3550Q</text>
+        <text class="t-sub" x="150" y="182" text-anchor="middle">86″ · Rally Bar wall</text>
+        <!-- rally bar -->
+        <rect class="box" x="86" y="228" width="128" height="20" rx="4"/>
+        <circle cx="150" cy="238" r="4" fill="#111111"/>
+        <circle cx="120" cy="238" r="2.4" fill="#1f5fd0"/>
+        <text class="t-port" x="150" y="266" text-anchor="middle">LOGITECH RALLY BAR</text>
+
+        <!-- FAR TV -->
+        <rect class="box" x="886" y="120" width="168" height="100" rx="3"/>
+        <text class="t-title" x="970" y="150" text-anchor="middle">FAR TV</text>
+        <text class="t-sub" x="970" y="168" text-anchor="middle">Philips 86BDL3550Q</text>
+        <text class="t-sub" x="970" y="182" text-anchor="middle">86″ · bare wall</text>
+        <text class="t-sub" x="970" y="240" text-anchor="middle">← regular HDMI in</text>
+
+        <!-- TABLE -->
+        <rect x="360" y="392" width="400" height="18" rx="3" fill="#f3f3f3" stroke="#111111" stroke-width="1.4"/>
+        <text class="t-sub" x="560" y="405" text-anchor="middle">BOARD TABLE</text>
+        <!-- right/plain leg -->
+        <rect x="712" y="410" width="26" height="135" fill="#f3f3f3" stroke="#111111" stroke-width="1.2"/>
+        <!-- equipment leg (cutaway) -->
+        <rect x="372" y="410" width="104" height="135" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+        <text class="t-tag" x="424" y="426" text-anchor="middle" fill="#666666">TABLE LEG</text>
+        <rect class="box" x="382" y="432" width="84" height="34" rx="2"/>
+        <text class="t-port" x="424" y="453" text-anchor="middle">KRAMER 2×1</text>
+        <rect class="box-soft" x="382" y="472" width="84" height="34" rx="2"/>
+        <text class="t-port" x="424" y="493" text-anchor="middle">CLEARONE</text>
+        <!-- floor box under leg -->
+        <rect x="380" y="545" width="88" height="16" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+        <text class="t-sub" x="424" y="574" text-anchor="middle">FLOOR BOX + RACEWAY</text>
+
+        <!-- Sight on table -->
+        <rect class="box" x="548" y="336" width="26" height="56" rx="8"/>
+        <circle cx="561" cy="350" r="3.4" fill="#111111"/>
+        <text class="t-port" x="561" y="330" text-anchor="middle">SIGHT</text>
+        <!-- Tap on table -->
+        <rect class="box" x="628" y="378" width="44" height="14" rx="2"/>
+        <text class="t-port" x="650" y="372" text-anchor="middle">TAP</text>
+
+        <!-- ===== CABLE ROUTING ===== -->
+        <!-- NEW: Rally Bar HDMI-TV1 -> down near wall -> floor -> equipment leg -->
+        <path class="wire" style="stroke:var(--new)" d="M150 248 L150 300 L64 300 L64 534 L340 534 L340 449 L382 449"/>
+        <text class="t-tag" x="196" y="292" fill="#d6266f">NEW CABLE</text>
+        <text class="t-lab" x="150" y="326" fill="#d6266f">HDMI-TV1 → Kramer IN2</text>
+
+        <!-- Kramer OUT bundle -> floor -> LEFT wall -> up -> near TV back -->
+        <path class="wire" style="stroke:var(--hdmi)" d="M466 456 L490 456 L490 522 L74 522 L74 200 L234 200 L234 176"/>
+        <text class="t-lab" x="98" y="494" fill="#1f5fd0">↑ near-TV feed</text>
+
+        <!-- Kramer OUT bundle -> floor -> RIGHT wall -> ceiling -> down to far TV (regular HDMI) -->
+        <path class="wire" style="stroke:var(--hdmi)" d="M466 462 L1046 462 L1046 84 L970 84 L970 220"/>
+        <text class="t-lab" x="700" y="456" fill="#1f5fd0">→ far TV · HDMI · up wall · ceiling · down</text>
+
+        <!-- Sight + Tap control drop into the raceway (bundle) -->
+        <path class="wire-thin dot" style="stroke:var(--ctrl)" d="M561 392 L561 530 L500 530"/>
+        <path class="wire-thin dot" style="stroke:var(--ctrl)" d="M650 392 L650 530 L500 530"/>
+        <text class="t-sub" x="516" y="512" fill="#777777">Sight + Tap control → bar</text>
+        <text class="t-sub" x="516" y="524" fill="#777777">(rides the raceway · no video)</text>
+
+        <!-- arrowheads -->
+        <g fill="none">
+          <path d="M234 182 l-5 8 l10 0 z" fill="#1f5fd0"/>
+          <path d="M970 220 l-5 -9 l10 0 z" fill="#1f5fd0"/>
+        </g>
+      </svg>
+    </div>
+    <p class="conf">Routing simplified to bundles — exact per-wire logic is Diagram 2.</p>
+  </section>
+
+  <!-- ============ DIAGRAM 2 — SIGNAL PATH ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>Diagram 2 — Signal Path</h2><span class="n">wiring · the fix</span></div>
+    <p class="intro">Teams appliance mode can't mirror the Rally Bar's two HDMI outputs (extend-only). So the meeting rides <strong>one</strong> output — <strong>HDMI-TV1 → Kramer IN2</strong> — and the room's existing <strong>one-source-to-two-TV distribution</strong> paints both walls. A laptop on <strong>IN1</strong> wins by priority and takes both screens; unplug it and the meeting returns.</p>
+    <div class="frame">
+      <svg viewBox="0 0 1120 560" role="img" aria-label="Signal-flow block diagram from sources through the Kramer switch and distribution to both displays, plus the Sight and Tap control plane.">
+        <!-- column captions -->
+        <text class="t-tag" x="130" y="30" text-anchor="middle" fill="#666666">SOURCES</text>
+        <text class="t-tag" x="430" y="30" text-anchor="middle" fill="#666666">SWITCH (TABLE LEG)</text>
+        <text class="t-tag" x="670" y="30" text-anchor="middle" fill="#666666">DISTRIBUTION</text>
+        <text class="t-tag" x="960" y="30" text-anchor="middle" fill="#666666">DISPLAYS</text>
+
+        <!-- SOURCES: laptop plate -->
+        <rect class="box-dash" x="40" y="52" width="180" height="58" rx="4"/>
+        <text class="t-title" x="130" y="76" text-anchor="middle">LAPTOP PLATE</text>
+        <text class="t-sub" x="130" y="93" text-anchor="middle">desk/table keystone</text>
+        <text class="t-sub" x="130" y="105" text-anchor="middle">port = verify onsite</text>
+
+        <!-- SOURCES: rally bar -->
+        <rect class="box" x="40" y="140" width="180" height="150" rx="4"/>
+        <text class="t-title" x="130" y="163" text-anchor="middle">RALLY BAR</text>
+        <text class="t-sub" x="130" y="179" text-anchor="middle">VR0019 · Teams mode</text>
+        <line x1="52" y1="188" x2="208" y2="188" stroke="#cccccc"/>
+        <text class="t-port" x="52" y="206">HDMI-TV1</text><circle cx="196" cy="202" r="4" fill="#d6266f"/>
+        <text class="t-port" x="52" y="224">HDMI-TV2</text><circle cx="196" cy="220" r="4" fill="none" stroke="#666666"/>
+        <text class="t-port" x="52" y="242">HDMI-IN</text><circle cx="196" cy="238" r="4" fill="none" stroke="#666666"/>
+        <text class="t-port" x="52" y="260">ETHERNET</text><circle cx="196" cy="256" r="4" fill="#777777"/>
+        <text class="t-port" x="52" y="278">MIC-POD · USB-C</text>
+        <text class="t-lab" x="228" y="222">← leave empty</text>
+
+        <!-- SWITCH: kramer -->
+        <rect class="box" x="342" y="118" width="176" height="126" rx="4"/>
+        <text class="t-title" x="430" y="142" text-anchor="middle">KRAMER</text>
+        <text class="t-sub" x="430" y="158" text-anchor="middle">VS-211UHD · 2×1 auto</text>
+        <text class="t-port" x="354" y="184">IN 1</text><circle cx="348" cy="180" r="4" fill="#1f5fd0"/>
+        <text class="t-port" x="354" y="208">IN 2</text><circle cx="348" cy="204" r="4" fill="#d6266f"/>
+        <text class="t-port" x="506" y="196" text-anchor="end">OUT</text><circle cx="512" cy="192" r="4" fill="#1f5fd0"/>
+        <text class="t-port" x="430" y="234" text-anchor="middle">audio ▽ Phoenix</text>
+
+        <!-- SWITCH: clearone -->
+        <rect class="box-soft" x="342" y="272" width="176" height="60" rx="4"/>
+        <text class="t-title" x="430" y="296" text-anchor="middle" fill="#666666">CLEARONE CP2 48VT</text>
+        <text class="t-sub" x="430" y="313" text-anchor="middle">legacy audio DSP</text>
+        <text class="t-sub" x="430" y="325" text-anchor="middle">out of scope</text>
+
+        <!-- DISTRIBUTION: 1->2 split -->
+        <rect class="box-dash" x="590" y="120" width="160" height="80" rx="4"/>
+        <text class="t-title" x="670" y="150" text-anchor="middle">1 → 2 SPLIT</text>
+        <text class="t-sub" x="670" y="168" text-anchor="middle">existing distribution</text>
+        <text class="t-sub" x="670" y="182" text-anchor="middle">verify device onsite</text>
+        <text class="t-sub" x="670" y="250" text-anchor="middle" fill="#666666">far leg = long HDMI run</text>
+        <text class="t-sub" x="670" y="264" text-anchor="middle" fill="#666666">no Cat extender here</text>
+
+        <!-- DISPLAYS -->
+        <rect class="box" x="840" y="70" width="240" height="70" rx="4"/>
+        <text class="t-title" x="960" y="100" text-anchor="middle">NEAR TV</text>
+        <text class="t-sub" x="960" y="118" text-anchor="middle">Philips 86BDL3550Q 86″</text>
+        <rect class="box" x="840" y="212" width="240" height="70" rx="4"/>
+        <text class="t-title" x="960" y="242" text-anchor="middle">FAR TV</text>
+        <text class="t-sub" x="960" y="260" text-anchor="middle">Philips 86BDL3550Q 86″</text>
+
+        <!-- WIRES -->
+        <!-- laptop -> IN1 -->
+        <path class="wire" style="stroke:var(--hdmi)" d="M220 81 L300 81 L300 180 L344 180"/>
+        <text class="t-lab" x="250" y="74" fill="#1f5fd0">priority</text>
+        <!-- rally HDMI-TV1 -> IN2 (NEW) -->
+        <path class="wire" style="stroke:var(--new); stroke-width:3.6" d="M200 202 L344 202"/>
+        <text class="t-tag" x="262" y="196" fill="#d6266f">NEW</text>
+        <!-- Kramer OUT -> split -->
+        <path class="wire" style="stroke:var(--hdmi)" d="M516 192 L554 192 L554 160 L588 160"/>
+        <!-- split -> near TV -->
+        <path class="wire" style="stroke:var(--hdmi)" d="M750 145 L800 145 L800 105 L838 105"/>
+        <text class="t-lab" x="762" y="98" fill="#1f5fd0">direct</text>
+        <!-- split -> far TV (regular HDMI, long run) -->
+        <path class="wire" style="stroke:var(--hdmi)" d="M750 172 L800 172 L800 247 L838 247"/>
+        <text class="t-lab" x="760" y="165" fill="#1f5fd0">HDMI · long run</text>
+        <!-- Kramer audio -> ClearOne (PULL) -->
+        <path class="wire" style="stroke:var(--audio)" d="M430 244 L430 272"/>
+        <text class="t-lab" x="440" y="264" fill="#1f9d55">PULL (echo)</text>
+
+        <!-- CONTROL PLANE -->
+        <line x1="40" y1="372" x2="1080" y2="372" stroke="#cccccc"/>
+        <text class="t-tag" x="40" y="392" fill="#666666">CONTROL / CAMERA PLANE — no meeting video on these</text>
+        <!-- Sight -->
+        <rect class="box" x="40" y="404" width="210" height="126" rx="4"/>
+        <text class="t-title" x="145" y="428" text-anchor="middle">LOGITECH SIGHT</text>
+        <text class="t-sub" x="145" y="444" text-anchor="middle">tabletop camera · 315° 4K</text>
+        <text class="t-sub" x="145" y="456" text-anchor="middle">7 beamforming mics (no pod)</text>
+        <text class="t-port" x="52" y="480">A · PoE+ 30W</text><circle cx="238" cy="476" r="4" fill="#b6b6b6"/>
+        <text class="t-port" x="52" y="498">B · mic-pod (unused)</text><circle cx="238" cy="494" r="4" fill="none" stroke="#666666"/>
+        <text class="t-port" x="52" y="516">C · host dongle → bar</text><circle cx="238" cy="512" r="4" fill="#777777"/>
+
+        <!-- PoE injector -->
+        <rect class="box-soft" x="340" y="410" width="180" height="58" rx="4"/>
+        <text class="t-title" x="430" y="433" text-anchor="middle" fill="#666666">PoE+ INJECTOR</text>
+        <text class="t-sub" x="430" y="450" text-anchor="middle">Phihong POE90U-1BT</text>
+        <text class="t-sub" x="430" y="462" text-anchor="middle">likely · verify</text>
+        <!-- Tap -->
+        <rect class="box" x="340" y="486" width="180" height="44" rx="4"/>
+        <text class="t-title" x="430" y="513" text-anchor="middle">LOGITECH TAP</text>
+
+        <!-- control wires: Sight + Tap up to Rally Bar (kept on the left) -->
+        <path class="wire-thin dot" style="stroke:var(--ctrl)" d="M238 512 L266 512 L266 302 L150 302 L150 292"/>
+        <path class="wire-thin dot" style="stroke:var(--ctrl)" d="M340 508 L300 508 L300 314 L162 314 L162 292"/>
+        <text class="t-sub" x="196" y="338" fill="#777777">host dongle → bar</text>
+        <text class="t-sub" x="196" y="350" fill="#777777">(mic-pod + USB-A)</text>
+        <!-- PoE+ power into Sight port A -->
+        <path class="wire-thin dot" style="stroke:var(--pwr)" d="M340 448 L280 448 L280 476 L242 476"/>
+      </svg>
+    </div>
+
+    <!-- legend -->
+    <div class="legend">
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#1f5fd0" stroke-width="2.6"/></svg>HDMI video (both TV legs)</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#d6266f" stroke-width="3.4"/></svg>The one NEW cable</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#1f9d55" stroke-width="2.6"/></svg>Analog audio — pull it</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#777777" stroke-width="1.8" stroke-dasharray="1.5 3.5"/></svg>Control / camera / data</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><rect x="2" y="2" width="40" height="10" fill="none" stroke="#666666" stroke-width="1.4" stroke-dasharray="5 4"/></svg>Dashed = verify onsite</div>
+    </div>
+  </section>
+
+  <!-- ============ THE FIX ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>The Fix</h2><span class="n">no new parts while the old distribution works</span></div>
+    <ol class="fix">
+      <li><b>Rally Bar HDMI-TV1 → Kramer IN 2.</b> The only new cable. Leave the bar's HDMI-TV2 empty so it outputs a single mirrored picture. Bring 6 / 25 / 50 ft.</li>
+      <li><b>Laptop plate stays on Kramer IN 1.</b> Priority is fixed IN1 &gt; IN2 — plug a laptop in and it takes both screens; unplug and the meeting returns automatically.</li>
+      <li><b>Pull the green Phoenix plug off the Kramer.</b> Otherwise meeting audio doubles through the ClearOne ceiling speakers against the bar = echo.</li>
+    </ol>
+    <div class="conf">
+      <div><b>Confirmed by photo:</b> every device (models/serials).</div>
+      <div><b>Confirmed by field test:</b> laptop → both TVs (old distribution works).</div>
+      <div><b>Verify onsite:</b> the 1→2 split device, the laptop-plate port, the near-TV re-point.</div>
+    </div>
+  </section>
+
+  <footer>Grounded in 24 site photos · Rob's field test · Kramer / Philips / Logitech / Microsoft primary docs · drawn 2026-07-21</footer>
+
+</div>
+</body>
+</html>
