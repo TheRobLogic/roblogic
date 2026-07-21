@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Peach Ave Recipe Box — Rob Logic</title>
-<meta name="description" content="Rob Logic's recipe box — dairy-free suppers, sauces, and sides, each typed up with the cook's notes on why it works. BBQ soy curls, Carolina Gold mustard sauce, garden kale slaw.">
+<title>Recipes — Rob Logic</title>
+<meta name="description" content="Dairy-free recipes — mains, sauces, and sides, each with notes on how they work. BBQ soy curls, Carolina Gold mustard sauce, garden kale slaw.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Peach Ave Recipe Box — Rob Logic">
-<meta property="og:description" content="Dairy-free recipes typed when they work twice, penciled when they get better.">
+<meta property="og:title" content="Recipes — Rob Logic">
+<meta property="og:description" content="Dairy-free mains, sauces, and sides, with notes on how they work.">
 <meta property="og:url" content="https://roblogic.org/recipes/">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Special+Elite&family=Shadows+Into+Light+Two&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Special+Elite&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23fbf5e9'/><rect x='12' y='34' width='76' height='54' rx='6' fill='%23cc4b3d'/><rect x='20' y='22' width='24' height='16' rx='3' fill='%238fb8a2'/><rect x='50' y='22' width='24' height='16' rx='3' fill='%23e9c46a'/><rect x='20' y='42' width='60' height='38' fill='%23fffdf6'/><line x1='26' y1='54' x2='74' y2='54' stroke='%23a9c4d9' stroke-width='3'/><line x1='26' y1='64' x2='74' y2='64' stroke='%23a9c4d9' stroke-width='3'/></svg>">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   :root {
     --cream:#fbf5e9; --card:#fffdf6; --rule:#a9c4d9; --marginline:#e08b7e;
-    --ink:#33302a; --ink-soft:#6a635a; --pencil:#4a5568; --red:#b8432f; --gingham:#cc4b3d;
+    --ink:#33302a; --ink-soft:#6a635a; --red:#b8432f; --gingham:#cc4b3d;
     --mint:#8fb8a2; --butter:#e9c46a; --tin:#d9d2c2;
   }
   html { scroll-behavior:smooth; }
@@ -33,19 +33,18 @@
       repeating-linear-gradient(90deg, rgba(204,75,61,.55) 0 14px, #fdf8ee 14px 28px);
     border-bottom:4px solid var(--gingham); }
   .cloth .wrap { display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; padding:.9rem 1.2rem; }
-  .cloth .tag { background:var(--card); border:2px solid var(--ink); border-radius:3px; padding:.3rem .9rem;
-    font-family:'Special Elite',monospace; font-size:.8rem; letter-spacing:.04em; box-shadow:2px 2px 0 rgba(51,48,42,.25); transform:rotate(-1deg); }
+  .cloth .brand { font-family:'Young Serif',serif; font-size:1rem; letter-spacing:.02em; color:var(--ink); text-decoration:none; }
+  .cloth .brand:hover { text-decoration:underline; text-decoration-color:var(--gingham); text-decoration-thickness:2px; text-underline-offset:4px; }
   .cloth nav a { margin-left:1.1rem; font-weight:600; font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink); text-decoration-color:var(--gingham); text-decoration-thickness:2px; text-underline-offset:4px; }
 
   header.hero { text-align:center; padding:2.8rem 1rem 1.4rem; }
   header.hero h1 { font-family:'Young Serif',serif; font-size:clamp(2rem,5.4vw,3.4rem); line-height:1.1; }
-  header.hero h1 em { font-style:normal; color:var(--gingham); }
-  header.hero .sub { font-family:'Shadows Into Light Two',cursive; color:var(--pencil); font-size:clamp(1.05rem,2.6vw,1.3rem); margin-top:.5rem; transform:rotate(-1deg); display:inline-block; }
+  header.hero .sub { color:var(--ink-soft); font-size:clamp(1rem,2.4vw,1.15rem); margin-top:.6rem; }
 
   .box { max-width:980px; margin:1.6rem auto 0; padding:0 1.2rem; }
   .tin { background:linear-gradient(180deg,#e4ddcd, var(--tin)); border:2px solid #9d947e; border-radius:10px 10px 6px 6px;
     box-shadow:inset 0 2px 0 #f4efe2, 0 14px 30px rgba(90,78,54,.25); padding:1rem clamp(.8rem,2.6vw,1.6rem) 1.6rem; position:relative; }
-  .tin::before { content:"RECIPES"; position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(-.5deg);
+  .tin::before { content:"RECIPES"; position:absolute; top:-14px; left:50%; transform:translateX(-50%);
     font-family:'Young Serif',serif; font-size:.78rem; letter-spacing:.3em; background:var(--gingham); color:var(--card);
     padding:.24rem .9rem; border-radius:999px; box-shadow:0 2px 0 rgba(51,48,42,.3); }
 
@@ -70,21 +69,11 @@
     border:1.5px solid #d8cdb4; border-radius:4px; box-shadow:0 2px 0 rgba(90,78,54,.12), 0 10px 20px rgba(90,78,54,.14);
     padding:1.1rem 1.4rem 1.3rem 3rem; font-family:'Special Elite',monospace; font-size:.92rem; line-height:1.9em; }
   a.rcard { display:block; text-decoration:none; color:var(--ink); }
-  @media (prefers-reduced-motion: no-preference) { .rcard { transition:transform .25s, box-shadow .25s; } a.rcard:hover { transform:rotate(-.5deg) translateY(-3px); box-shadow:0 4px 0 rgba(90,78,54,.14), 0 16px 28px rgba(90,78,54,.2); } }
-  .rcard .fromline { font-size:.78rem; color:var(--ink-soft); letter-spacing:.05em; }
-  .rcard .fromline b { font-family:'Shadows Into Light Two',cursive; font-size:1.05rem; color:var(--pencil); font-weight:400; }
-  .rcard h3 { font-family:'Young Serif',serif; font-size:1.3rem; line-height:1.25; margin:.2rem 0 .1rem; }
+  @media (prefers-reduced-motion: no-preference) { .rcard { transition:transform .25s, box-shadow .25s; } a.rcard:hover { transform:translateY(-3px); box-shadow:0 4px 0 rgba(90,78,54,.14), 0 16px 28px rgba(90,78,54,.2); } }
+  .rcard h3 { font-family:'Young Serif',serif; font-size:1.3rem; line-height:1.25; margin:0 0 .1rem; }
   .rcard .meta { font-size:.76rem; letter-spacing:.08em; text-transform:uppercase; color:var(--red); }
   .rcard .teaser { font-family:'Lora',serif; font-size:.96rem; line-height:1.55; color:var(--ink-soft); margin:.7rem 0 .5rem; }
   .rcard .turn { font-family:'Special Elite',monospace; font-size:.82rem; color:var(--red); letter-spacing:.04em; }
-  .rcard .note { position:absolute; font-family:'Shadows Into Light Two',cursive; color:var(--pencil); font-size:1.02rem; line-height:1.35; max-width:170px; }
-  .rcard .note.red { color:var(--red); }
-  .rcard .n-tr { top:1rem; right:1.1rem; transform:rotate(2.5deg); text-align:right; }
-  @media (max-width:640px) { .rcard .note { position:static; display:block; max-width:none; transform:rotate(-1deg); margin-top:.7rem; } }
-  .rcard.stained::after { content:""; position:absolute; width:110px; height:110px; right:8%; top:34%; border-radius:50%;
-    border:14px solid rgba(196,148,58,.16); filter:blur(1px); pointer-events:none; }
-  .tape { position:absolute; top:-12px; left:50%; width:110px; height:26px; transform:translateX(-50%) rotate(-2deg);
-    background:rgba(233,226,196,.85); box-shadow:0 1px 2px rgba(90,78,54,.25); pointer-events:none; }
 
   section.swaps { padding:3rem 0 1rem; }
   h2.kh { font-family:'Young Serif',serif; font-size:clamp(1.5rem,3.6vw,2.1rem); margin-bottom:.3rem; }
@@ -92,13 +81,11 @@
   .swapcard { position:relative; max-width:720px; background:
       repeating-linear-gradient(180deg, rgba(0,0,0,0) 0 calc(1.9em - 1px), var(--rule) calc(1.9em - 1px) 1.9em), var(--card);
     border:1.5px solid #d8cdb4; border-radius:4px; padding:1.4rem 1.6rem; font-family:'Special Elite',monospace;
-    box-shadow:0 2px 0 rgba(90,78,54,.12), 0 10px 20px rgba(90,78,54,.14); transform:rotate(.6deg); }
+    box-shadow:0 2px 0 rgba(90,78,54,.12), 0 10px 20px rgba(90,78,54,.14); }
   .swapcard h3 { font-family:'Young Serif',serif; font-size:1.2rem; margin-bottom:.5rem; }
   .swapcard table { width:100%; border-collapse:collapse; font-size:.9rem; line-height:1.9em; }
   .swapcard td { padding:.05rem .4rem .05rem 0; vertical-align:top; }
   .swapcard td.arr { color:var(--red); width:2rem; text-align:center; }
-  .swapcard .hand { font-family:'Shadows Into Light Two',cursive; color:var(--pencil); font-size:1.05rem; }
-  .clip { position:absolute; top:-16px; left:26px; width:22px; height:52px; pointer-events:none; }
 
   footer { margin-top:3rem; background:
       repeating-linear-gradient(0deg, rgba(204,75,61,.55) 0 14px, rgba(0,0,0,0) 14px 28px),
@@ -113,17 +100,17 @@
 
 <div class="cloth">
   <div class="wrap">
-    <span class="tag">FILE UNDER: SUPPER, MOSTLY</span>
+    <a class="brand" href="/">Rob Logic</a>
     <nav aria-label="Site">
-      <a href="#box">The box</a>
-      <a href="#swaps">Swap card</a>
+      <a href="#box">Recipes</a>
+      <a href="#swaps">Dairy swaps</a>
     </nav>
   </div>
 </div>
 
 <header class="hero">
-  <h1>The <em>Peach Ave</em> Recipe Box</h1>
-  <p class="sub">typed when they work twice, penciled when they get better</p>
+  <h1>Recipes</h1>
+  <p class="sub">Dairy-free cooking — mains, sauces, and sides.</p>
 </header>
 
 <div class="box" id="box">
@@ -133,41 +120,36 @@
       <input type="radio" name="cat" id="tab-sal">
       <input type="radio" name="cat" id="tab-gr">
       <div class="tabrow" role="presentation">
-        <label class="t-sup" for="tab-sup"><span class="chip" aria-hidden="true"></span><b>Suppers</b></label>
+        <label class="t-sup" for="tab-sup"><span class="chip" aria-hidden="true"></span><b>Mains</b></label>
         <label class="t-sal" for="tab-sal"><span class="chip" aria-hidden="true"></span><b>Sauces</b></label>
         <label class="t-gr" for="tab-gr"><span class="chip" aria-hidden="true"></span><b>Sides</b></label>
       </div>
 
       <div class="panels">
         <div class="panel p-sup">
-          <a class="rcard stained" href="/recipes/bbq-soy-curls/">
-            <span class="tape" aria-hidden="true"></span>
-            <p class="fromline">From the kitchen of <b>Rob Logic</b> · card 45</p>
+          <a class="rcard" href="/recipes/bbq-soy-curls/">
             <h3>BBQ Soy Curls</h3>
-            <p class="meta">Serves 4 · slow-cooker · no dairy anywhere near it</p>
-            <p class="teaser">Butler soy curls rehydrated in seasoned broth, squeezed dry, browned hard, then an hour in homemade sauce. The secret isn't more time — it's the sear.</p>
-            <span class="turn">read the card →</span>
-            <p class="note red n-tr">brown them.<br>don't skip it —R</p>
+            <p class="meta">Serves 4 · slow-cooker · dairy-free</p>
+            <p class="teaser">Rehydrated in seasoned broth, squeezed dry, browned, then slow-cooked in homemade BBQ sauce.</p>
+            <span class="turn">Recipe →</span>
           </a>
         </div>
 
         <div class="panel p-sal">
           <a class="rcard" href="/recipes/carolina-gold-sauce/">
-            <p class="fromline">From the kitchen of <b>Rob Logic</b> · card 46</p>
             <h3>Carolina Gold Mustard Sauce</h3>
-            <p class="meta">Makes ~1½ cups · 10 min · sweet-tang, mustard-forward</p>
-            <p class="teaser">South Carolina's yellow-mustard BBQ sauce — vinegar for the tang, maple for the sweet, a little smoke to bridge it. No jar required.</p>
-            <span class="turn">read the card →</span>
+            <p class="meta">Makes ~1½ cups · 10 min · dairy-free</p>
+            <p class="teaser">A South Carolina–style yellow mustard BBQ sauce. Vinegar, maple, and a little smoke.</p>
+            <span class="turn">Recipe →</span>
           </a>
         </div>
 
         <div class="panel p-gr">
           <a class="rcard" href="/recipes/garden-slaw/">
-            <p class="fromline">From the kitchen of <b>Rob Logic</b> · card 47</p>
             <h3>Garden Kale Slaw</h3>
-            <p class="meta">Serves 4–6 · no cabbage · make-ahead friendly</p>
-            <p class="teaser">Massaged kale stands in for cabbage, carrot and chard stems for crunch, arugula for pepper. A mustard-vinegar dress that echoes the Carolina Gold.</p>
-            <span class="turn">read the card →</span>
+            <p class="meta">Serves 4–6 · no cabbage · dairy-free</p>
+            <p class="teaser">Massaged kale in place of cabbage, with carrot, chard stems, and a mustard-vinegar dressing.</p>
+            <span class="turn">Recipe →</span>
           </a>
         </div>
       </div>
@@ -177,33 +159,28 @@
 
 <main class="wrap">
   <section class="swaps" id="swaps">
-    <h2 class="kh">The swap card</h2>
-    <p class="lede">Paperclipped to the lid — every dairy swap that survived testing. The rule of
-       the box: if a card needs cream, it earns a rewrite.</p>
+    <h2 class="kh">Dairy-free swaps</h2>
+    <p class="lede">Substitutions I use to keep things dairy-free.</p>
     <div class="swapcard">
-      <svg class="clip" viewBox="0 0 22 52" aria-hidden="true">
-        <path d="M6 14 v26 a5 5 0 0 0 10 0 V10 a8 8 0 0 0 -16 0 v32" fill="none" stroke="#8b8574" stroke-width="2.6" stroke-linecap="round"/>
-      </svg>
-      <h3>Dairy out, flavor in</h3>
+      <h3>Substitutions</h3>
       <table>
         <tbody>
-          <tr><td>Butter, for cooking</td><td class="arr">→</td><td>olive oil, or schmaltz for the brave</td></tr>
+          <tr><td>Butter, for cooking</td><td class="arr">→</td><td>olive oil (or schmaltz)</td></tr>
           <tr><td>Butter, in baking</td><td class="arr">→</td><td>coconut oil, chilled solid, 1-for-1</td></tr>
           <tr><td>Cream, in soups</td><td class="arr">→</td><td>blended white beans + a little broth</td></tr>
-          <tr><td>Milk, in pancakes</td><td class="arr">→</td><td>oat milk + 1 tsp vinegar, rest 5 min</td></tr>
-          <tr><td>Crema, on tacos</td><td class="arr">→</td><td>avocado whipped with lime + salt</td></tr>
-          <tr><td>Buttermilk, for slaw</td><td class="arr">→</td><td>tahini + lemon, or the mustard-vinegar dress</td></tr>
+          <tr><td>Milk, in pancakes</td><td class="arr">→</td><td>oat milk + 1 tsp vinegar, rested 5 min</td></tr>
+          <tr><td>Crema, on tacos</td><td class="arr">→</td><td>avocado blended with lime + salt</td></tr>
+          <tr><td>Buttermilk, for slaw</td><td class="arr">→</td><td>tahini + lemon, or a mustard-vinegar dressing</td></tr>
         </tbody>
       </table>
-      <p class="hand" style="margin-top:.7rem">tested twice before it gets typed. house rule. —R</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>THE PEACH AVE RECIPE BOX · EST. 1951</span>
-    <span>SOME STAINED, ALL TRUE</span>
+    <span>MAINS · SAUCES · SIDES</span>
+    <span>DAIRY-FREE</span>
   </div>
 </footer>
 
