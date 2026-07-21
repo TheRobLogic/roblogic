@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rally Bar ×2 — Field Register</title>
+  <meta name="description" content="Field card for mirroring a Logitech Rally Bar (Teams appliance mode) onto two boardroom displays — checklist, FAQ, failure modes, parts.">
+  <meta property="og:title" content="Rally Bar ×2 — Field Register">
+  <meta property="og:description" content="One meeting, both walls. Checklist, FAQ, failure modes, and the only parts you might need.">
+  <meta property="og:url" content="https://roblogic.org/logi/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/favicon-180x180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Fragment+Mono:ital@0;1&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       FIELD REGISTER — t1 Register system carrying the page;
+       t6 Sketchbook appears only as the tech's pencil: Caveat
+       margin notes, rubber stamps, hand-drawn checkmarks.
+       Achromatic. Hierarchy = width, weight, rule thickness.
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --paper: #ffffff;
+      --ink: #000000;
+      --body: #2e2e2e;
+      --dim: #6b6b6b;
+      --hairline: #d6d6d6;
+      --well: #f1f1f1;
+      --pencil: #3d3d3d;
+      --soft: #7a7a7a;
+      --rule-heavy: 3px solid var(--ink);
+      --rule-hair: 1px solid var(--hairline);
+      --disp: 'Archivo', sans-serif;
+      --mono: 'Fragment Mono', monospace;
+      --hand: 'Caveat', cursive;
+      --pad: clamp(1rem, 4vw, 2.5rem);
+    }
+
+    body { background: var(--paper); color: var(--body); font-family: var(--disp); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    .sheet { max-width: 880px; margin: 0 auto; padding: 0 var(--pad) 4rem; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+    .strip {
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.04em;
+      color: var(--dim); text-transform: uppercase;
+      padding: 0.6rem 0; border-bottom: var(--rule-hair);
+    }
+
+    header.mast { padding: 2.2rem 0 1.4rem; border-bottom: var(--rule-heavy); position: relative; }
+    .mast-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    h1 {
+      font-stretch: 125%; font-weight: 900; text-transform: uppercase;
+      font-size: clamp(2.4rem, 7vw, 4.2rem); line-height: 0.92;
+      letter-spacing: -0.01em; color: var(--ink);
+    }
+    .mast-sub { font-stretch: 75%; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.14em; font-size: 0.8rem; color: var(--dim); margin-top: 0.7rem; }
+
+    .counter { font-family: var(--mono); text-align: right; line-height: 1.1; white-space: nowrap; }
+    .counter .big { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--ink); }
+    .counter .label { font-size: 0.65rem; letter-spacing: 0.12em; color: var(--dim); text-transform: uppercase; }
+
+    /* t6 pencil layer -------------------------------------------- */
+    .scribble { font-family: var(--hand); font-size: 1.25rem; line-height: 1.15; color: var(--soft); transform: rotate(-2deg); }
+    .mast .scribble { position: absolute; right: 0; top: -0.4rem; max-width: 24ch; }
+    @media (max-width: 720px) { .mast .scribble { position: static; transform: rotate(-1deg); margin-top: 0.8rem; } }
+
+    .stamp { display: inline-block; font-family: var(--disp); font-stretch: 80%; font-weight: 700; font-size: 0.62rem;
+      text-transform: uppercase; letter-spacing: 0.14em; border: 2px solid currentColor; border-radius: 4px;
+      padding: 0.12em 0.5em; transform: rotate(-2deg); opacity: 0.85; color: var(--pencil); white-space: nowrap; }
+    .stamp.dim { color: var(--soft); transform: rotate(1.5deg); }
+
+    /* buckets ---------------------------------------------------- */
+    section.bucket { margin-top: 2.6rem; position: relative; }
+    .bucket-head {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      border-top: var(--rule-heavy); border-bottom: var(--rule-hair); padding: 0.45rem 0;
+    }
+    .bucket-head h2 {
+      font-stretch: 110%; font-weight: 800; text-transform: uppercase;
+      font-size: 1.05rem; letter-spacing: 0.03em; color: var(--ink);
+    }
+    .bucket-head .n { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); }
+
+    .brief { padding: 1rem 0 0.4rem; max-width: 62ch; }
+    .brief p { margin-bottom: 0.7rem; font-size: 0.95rem; }
+    .brief strong { color: var(--ink); }
+    .brief .verdict { font-family: var(--mono); font-size: 0.8rem; background: var(--well); padding: 0.7rem 0.9rem; margin-top: 0.4rem; }
+
+    /* checklist -------------------------------------------------- */
+    ul.checks { list-style: none; }
+    .checks li { border-bottom: var(--rule-hair); position: relative; }
+    .checks label {
+      display: grid; grid-template-columns: 3.2rem 1.5rem 1fr; column-gap: 0.6rem; align-items: start;
+      padding: 0.7rem 0.2rem; cursor: pointer;
+    }
+    .checks label:hover { background: var(--well); }
+    .checks .idx { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); padding-top: 0.25rem; }
+    .checks input { position: absolute; opacity: 0; }
+    .checks .box { width: 1.15em; height: 1.15em; border: 2px solid var(--pencil); border-radius: 3px 5px 4px 6px; position: relative; top: 0.12em; }
+    .checks input:checked ~ .box::after { content: ''; position: absolute; inset: -8px -6px auto -3px; height: 16px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='18'%3E%3Cpath d='M2 10 L 9 15 L 22 2' stroke='%232a2a2a' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat; }
+    .checks input:focus-visible ~ .box { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .checks .t { font-weight: 600; font-size: 0.98rem; color: var(--ink); }
+    .checks input:checked ~ .t { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--soft); }
+    .checks .d { grid-column: 3; font-stretch: 95%; font-size: 0.85rem; color: var(--dim); margin-top: 0.15rem; }
+    .checks .note { grid-column: 3; font-family: var(--hand); font-size: 1.15rem; color: var(--soft); margin-top: 0.1rem; transform: rotate(-0.6deg); }
+
+    /* faq rows --------------------------------------------------- */
+    ul.rows { list-style: none; }
+    .rows li { border-bottom: var(--rule-hair); padding: 0.65rem 0.2rem; }
+    .rows .q { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.2rem; }
+    .rows .a { font-stretch: 95%; font-size: 0.88rem; color: var(--body); max-width: 68ch; }
+    .rows .a .m { font-family: var(--mono); font-size: 0.8rem; }
+
+    /* issues ----------------------------------------------------- */
+    .rows .sym { font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+    .rows .fix { display: block; font-size: 0.88rem; color: var(--body); max-width: 68ch; margin-top: 0.2rem; }
+    .rows .fix::before { content: '→ '; font-family: var(--mono); color: var(--dim); }
+
+    /* parts ledger — the one big t6 object ----------------------- */
+    .ledger { max-width: 680px; border: 2px solid var(--pencil); border-radius: 8px 12px 9px 14px / 12px 8px 14px 9px;
+      padding: 0.4rem 1rem 0.7rem; background: var(--paper); margin-top: 1rem;
+      box-shadow: 3px 4px 0 rgba(0,0,0,0.07); transform: rotate(-0.35deg); }
+    .ledger table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .ledger th { font-family: var(--hand); font-weight: 700; font-size: 1.35rem; text-align: left; padding: 0.4rem 0.5rem 0.2rem; border-bottom: 2px solid var(--pencil); color: var(--ink); }
+    .ledger td { padding: 0.45rem 0.5rem; border-bottom: 1px dashed #cfcfcf; vertical-align: top; }
+    .ledger tr:last-child td { border-bottom: 0; }
+    .ledger .amt { text-align: right; font-family: var(--mono); font-size: 0.85rem; white-space: nowrap; }
+    .ledger .maybe { font-family: var(--hand); color: var(--soft); font-size: 1.05rem; }
+    .ledger .part { font-family: var(--mono); font-size: 0.78rem; color: var(--dim); display: block; }
+    .distro-note { font-family: var(--hand); font-size: 1.3rem; color: var(--soft); margin-top: 0.9rem; transform: rotate(-1deg); max-width: 40ch; }
+
+    footer { margin-top: 3.5rem; border-top: var(--rule-heavy); padding-top: 0.6rem;
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      font-family: var(--mono); font-size: 0.7rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.04em; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .checks label { transition: background 0.08s linear; }
+      @keyframes rowIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+      section.bucket { animation: rowIn 0.4s ease-out backwards; }
+      section.bucket:nth-of-type(1) { animation-delay: 0.05s; }
+      section.bucket:nth-of-type(2) { animation-delay: 0.12s; }
+      section.bucket:nth-of-type(3) { animation-delay: 0.19s; }
+      section.bucket:nth-of-type(4) { animation-delay: 0.26s; }
+      section.bucket:nth-of-type(5) { animation-delay: 0.33s; }
+      header.mast { animation: rowIn 0.35s ease-out backwards; }
+      @keyframes tick { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+      .counter .big.tick { animation: tick 0.18s ease-out; display: inline-block; }
+    }
+    @media print {
+      .strip, footer { border-color: #000; }
+      section.bucket { break-inside: avoid; }
+      body { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="strip">
+      <span>Register №&nbsp;51</span>
+      <span>AV Field Card</span>
+      <span>Updated 2026-07-21</span>
+    </div>
+
+    <header class="mast">
+      <p class="scribble" aria-hidden="true">one new cable.<br>that's the whole job.</p>
+      <div class="mast-row">
+        <div>
+          <h1>Rally Bar<br>×2 Screens</h1>
+          <p class="mast-sub">Mirror the meeting on both walls — checklist · FAQ · failure modes · parts</p>
+        </div>
+        <div class="counter" aria-live="polite">
+          <div class="big"><span id="done">0</span>/<span id="total">9</span></div>
+          <div class="label">steps done</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bucket">
+      <div class="bucket-head"><h2>The Job</h2><span class="n">read once</span></div>
+      <div class="brief">
+        <p>A Logitech Rally Bar in <strong>Teams appliance mode</strong> shows the meeting on the one TV it's plugged into. The room has <strong>two TVs on opposite walls</strong>, and everyone should see the same picture on both.</p>
+        <p>Teams mode <strong>cannot mirror two screens in software</strong> — verified in Microsoft's and Logitech's own docs. Its dual-display feature is extend-only (gallery on one, content on the other) and needs a Pro license. The fix is plumbing, not settings: feed the bar's single output through the room's <strong>existing one-source-to-two-TV distribution</strong> — the same path the old laptop input used. The bar outputs 1080p max, which the old path already handles.</p>
+        <p class="verdict">VERDICT: re-point one HDMI cable, pull one audio plug, set two TV menus, test. $0 in parts while the old plumbing works.</p>
+      </div>
+    </section>
+
+    <section class="bucket">
+      <div class="bucket-head"><h2>Checklist</h2><span class="n">in order · taps save</span></div>
+      <ul class="checks" id="checks">
+        <li><label><span class="idx">001</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Prove the old plumbing</span><span class="d">Laptop into the desk HDMI plate. BOTH TVs must mirror it. This is the 5-minute go/no-go for everything below.</span><span class="note">if only the FAR TV lights, the near TV's old feed was borrowed for the bar — restore that run first</span></label></li>
+        <li><label><span class="idx">002</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Check the switcher inputs</span><span class="d">At the Kramer 2×1 box: the desk plate must land on INPUT 1. The box always prefers Input 1 — that's what lets a laptop take over.</span></label></li>
+        <li><label><span class="idx">003</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Run the one new cable</span><span class="d">Rally Bar HDMI-TV1 → Kramer INPUT 2. The bar's second HDMI port stays EMPTY — that's what forces one clean mirrored output.</span><span class="note">bring 6 / 25 / 50 ft options — cabinet distance unknown</span></label></li>
+        <li><label><span class="idx">004</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Re-point the near TV</span><span class="d">Retire the bar's old direct-to-TV cable. Set the near TV to the HDMI input where the old plumbing arrives (the one that lit in step 001).</span></label></li>
+        <li><label><span class="idx">005</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Pull the green audio plug</span><span class="d">The green Phoenix connector on the Kramer feeds the old ceiling-speaker DSP. Leave it connected and meeting audio plays twice — echo ticket.</span></label></li>
+        <li><label><span class="idx">006</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Set both TVs</span><span class="d">Menu → Advanced option → Power save → MODE 2 (wakes on signal) · Auto signal detection → OFF (don't fight the switcher) · HDMI One Wire (CEC) → OFF.</span></label></li>
+        <li><label><span class="idx">007</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Confirm switcher mode</span><span class="d">Kramer front panel: AUTO lit, LAST unlit. That's Priority mode — the factory default. Nothing to program.</span></label></li>
+        <li><label><span class="idx">008</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Beat on it</span><span class="d">Laptop plug/unplug ×5 — takes both screens, falls back to Teams every time. Join a test meeting — both walls. Let the room sit 15 min — both TVs sleep, then wake on the next meeting.</span></label></li>
+        <li><label><span class="idx">009</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Lock it in</span><span class="d">Only after everything passes: flip the Kramer's DIP-3 (Lock EDID) ON so TV sleep cycles can never confuse the switching.</span></label></li>
+      </ul>
+    </section>
+
+    <section class="bucket">
+      <div class="bucket-head"><h2>FAQ</h2><span class="n">6 entries</span></div>
+      <ul class="rows">
+        <li><div class="q">Why won't the Rally Bar just do this itself?</div><div class="a">Teams appliance mode has no mirror/duplicate option — confirmed in Microsoft's release notes and Logitech's CollabOS docs through mid-2026. Ironically, BYOD mode (bar as a USB webcam for a laptop) mirrors both ports natively. Teams mode is the one that can't.</div></li>
+        <li><div class="q">So was the hardware broken this whole time?</div><div class="a">No. Nothing was missing or defective. The one-display behavior is a Teams software limitation. The "dual display" the product sheet mentions is real, but it means extend (gallery + content split) — and it needs a Teams Rooms Pro license to even turn on.</div></li>
+        <li><div class="q">Will plugging a laptop in at the desk still work?</div><div class="a">Better than before — plug in and the laptop takes <span class="m">both</span> screens; unplug and the meeting view comes back. That's the Kramer's Priority auto-switch doing its factory-default job.</div></li>
+        <li><div class="q">What about the touchscreen and the table camera cables?</div><div class="a">The Cat5 lines from the table are the Tap controller and the Sight camera talking to the bar. Controller and camera traffic — no video ever rides them. Don't touch.</div></li>
+        <li><div class="q">Is 1080p on an 86" TV going to look bad?</div><div class="a">It's what the room has always shown — the bar outputs 1080p60 max (Logitech's own spec) in every mode, even plugged straight into the TV. The fix changes where the picture goes, not what it looks like.</div></li>
+        <li><div class="q">Do the TVs turn themselves on and off?</div><div class="a">Yes — Power save Mode 2 makes each TV sleep when the signal drops and wake the moment it returns. No remote hunting, no CEC dependence.</div></li>
+      </ul>
+    </section>
+
+    <section class="bucket">
+      <div class="bucket-head"><h2>If It Fights You</h2><span class="n">symptom → move</span></div>
+      <ul class="rows">
+        <li><span class="sym">Laptop test lights only the far TV</span><span class="fix">The near TV's old feed cable was borrowed to connect the bar. Restore that run (it exists — trace it), then continue. Still $0 parts.</span></li>
+        <li><span class="sym">Laptop doesn't take over / doesn't release</span><span class="fix">Desk plate and bar are swapped at the Kramer. Desk = Input 1, bar = Input 2. Priority order is fixed in hardware — the fix is physical, not a setting.</span></li>
+        <li><span class="sym">TVs keep changing inputs on their own</span><span class="fix">Auto signal detection is still ON in the TV menu. Turn it off on both — the Kramer decides the source, not the TVs.</span></li>
+        <li><span class="sym">Meeting audio echoes or doubles</span><span class="fix">The green Phoenix plug is still on the Kramer feeding the old speaker DSP. Pull it — the bar's own speakers carry the meeting.</span></li>
+        <li><span class="sym">Screens black or scrambled after the room sleeps</span><span class="fix">Classic EDID renegotiation. Flip Kramer DIP-3 (Lock EDID) ON. If a picture comes back at low res, power-cycle the TVs once after locking.</span></li>
+        <li><span class="sym">Bar says "no device connected" after waking</span><span class="fix">Known CollabOS wake bug — restart the bar. If it recurs, adjust the room's power-saving policy in Teams admin rather than fighting it locally.</span></li>
+        <li><span class="sym">Everything works but the far TV looks softer</span><span class="fix">The old wall extender is likely 1080p-class gear — which matches the bar's 1080p output. That's the expected ceiling, not a fault.</span></li>
+      </ul>
+    </section>
+
+    <section class="bucket">
+      <div class="bucket-head"><h2>Parts — Only If The Old Plumbing Fails</h2><span class="n">contingency</span></div>
+      <div class="ledger">
+        <table>
+          <thead><tr><th>Thing</th><th style="text-align:right">Damage</th><th>&nbsp;</th></tr></thead>
+          <tbody>
+            <tr><td>WyreStorm 1×2 splitter<span class="part">EXP-SP-0102-H2 · 4K60 · HDCP 2.2 · per-output scaler</span></td><td class="amt">$118</td><td class="maybe">the workhorse pick</td></tr>
+            <tr><td>Kramer 1:2 DA, pro grade<span class="part">VM-2H2 · 10-804080190 · EDID lock</span></td><td class="amt">$415</td><td class="maybe">if it has to match the rack</td></tr>
+            <tr><td>Kramer HDBaseT extender pair<span class="part">EXT3-TR ×2 · 4K60 over Cat to 130 ft</span></td><td class="amt">~$1,160</td><td class="maybe">only if the far-wall run itself is dead</td></tr>
+            <tr><td>HDMI cables, 6 / 25 / 50 ft</td><td class="amt">~$60</td><td class="maybe">bring all three regardless</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="distro-note">order from Almo Pro AV, ScanSource, or D&amp;H — the big broadline distributor doesn't carry these lines. don't burn a day on the RFQ.</p>
+    </section>
+
+    <footer>
+      <span>Field register · /logi</span>
+      <span>Facts verified against Kramer, Philips, Logitech &amp; Microsoft primary docs</span>
+      <span>Rob Logic</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const KEY = 'logi-checks-v1';
+      const boxes = [...document.querySelectorAll('#checks input')];
+      const done = document.getElementById('done');
+      const total = document.getElementById('total');
+      total.textContent = boxes.length;
+      let state = [];
+      try { state = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+      boxes.forEach((b, i) => { b.checked = !!state[i]; });
+
+      function update() {
+        const n = boxes.filter(b => b.checked).length;
+        if (done.textContent !== String(n)) {
+          const big = done.parentElement;
+          big.classList.remove('tick'); void big.offsetWidth; big.classList.add('tick');
+        }
+        done.textContent = n;
+        try { localStorage.setItem(KEY, JSON.stringify(boxes.map(b => b.checked))); } catch (e) {}
+      }
+      boxes.forEach(b => b.addEventListener('change', update));
+      update();
+    })();
+  </script>
+</body>
+</html>
