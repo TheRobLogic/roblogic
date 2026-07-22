@@ -207,7 +207,7 @@
         <rect class="box-dash" x="330" y="300" width="260" height="94" rx="4"/>
         <text class="t-title" x="460" y="326" text-anchor="middle" fill="#666666">LOGITECH TAP</text>
         <text class="t-sub" x="460" y="344" text-anchor="middle">separate device · not in the Sight path</text>
-        <text class="t-sub" x="460" y="360" text-anchor="middle">power: its own DC brick, or any 802.3af source</text>
+        <text class="t-sub" x="460" y="360" text-anchor="middle">power: own DC brick or any 802.3af source</text>
         <text class="t-sub" x="460" y="376" text-anchor="middle">bar USB-C won't power it · no splitters</text>
 
         <!-- DATA run -->
@@ -261,7 +261,7 @@
       <li><b>Power first.</b> Wall outlet → Phihong injector → Sight <b>POWER</b> jack (short jumper at the table). Injector LED: <b>solid green = powering</b> · slow amber blink = not seeing the Sight (check the far end) · fast amber blink = short, unplug. If the Phihong is feeding the Tap today, the Tap needs its own power — its OEM DC brick (check the boxes) or any 802.3af injector; the bar's USB-C will <b>not</b> power a Tap. One injector never feeds two.</li>
       <li><b>The run.</b> Sight <b>DATA</b> jack → shielded Cat6A → host dongle at the bar. <b>No Cat6A ships in the Sight kit</b> — the run is your own cable, and the kit's Tap Cat5e cable is the wrong spec (don't substitute it). Shielded by eye: <b>"S/FTP" printed on the jacket + metal RJ45 shell</b> (plastic plug = UTP = won't work). Passive path only — using the A07 plate? <b>Test it with a laptop first:</b> link light / DHCP = live switch port, don't use it; dead = good.</li>
       <li><b>The dongle.</b> Plug its two short leads straight into the bar: <b>USB-A</b> + <b>MIC POD</b> ports. No USB hubs.</li>
-      <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = data-path fault (dongle, ports, or cable).</li>
+      <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = see the rescue list at the bottom — on 2.0.x firmware that's a known bug, not your wiring.</li>
       <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. Auto hand-off needs CollabOS <b>1.13+</b> — on by default since 2.0.A; current is 2.1.0, which also fixes Sight-detection bugs. Behind on firmware? Update <b>on-device</b>: Settings › Updates › Update (~20 min, no Teams admin needed).</li>
       <li><b>Admin PIN reality.</b> Teams mode has <b>no factory default PIN</b> — if none was ever set, it prompts you to create one on the spot. If a PIN bounces you, one was set by the installer or pushed from Teams admin (1234 is only the non-Teams default).</li>
       <li><b>Prove it.</b> Live test call — talk from different seats, watch the camera hand off between bar and Sight. Then log the serial off the base label.</li>
@@ -280,14 +280,29 @@
       <tr><td><span class="sw" style="background:#ffffff"></span>none</td><td>no power — PoE or cable fault on the POWER leg</td></tr>
       <tr><td><span class="sw" style="background:linear-gradient(90deg,#2b6cf0,#b57edc,#eeeeee,#19c2c2)"></span>looping</td><td>booting (blue → lilac → white → cyan) — let it finish</td></tr>
       <tr><td><span class="sw" style="background:#19c2c2"></span>solid cyan</td><td>powered &amp; ready — now confirm it's in Settings › Peripherals</td></tr>
+      <tr><td><span class="sw" style="background:#fdfdfd"></span>solid white</td><td>in a call (normal)</td></tr>
       <tr><td><span class="sw" style="background:#f08a24"></span>solid orange</td><td>inactive — one person in room / video off (not a fault)</td></tr>
       <tr><td><span class="sw" style="background:#d0342c"></span>solid red</td><td>muted</td></tr>
       <tr><td><span class="sw" style="background:#b57edc"></span>lilac pulse</td><td>firmware updating — don't unplug</td></tr>
+      <tr><td><span class="sw" style="background:#19c2c2; box-shadow:0 0 0 2px #c9f2f2"></span>cyan slow pulse</td><td>asleep — wakes on activity</td></tr>
       <tr><td><span class="sw" style="background:#d0342c; box-shadow:0 0 0 2px #f7c5c2"></span>fast red pulse</td><td>error — reseat dongle + both cables</td></tr>
     </table></div>
   </section>
 
-  <footer>Grounded in the unit's base label + Logitech primary docs — Sight FAQ, wiring diagrams, LED guide (July 2026) · drawn 2026-07-22</footer>
+  <!-- ============ IF IT WON'T SHOW UP ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>If It Won't Show Up</h2><span class="n">rescue list · most likely first</span></div>
+    <ol class="fix">
+      <li><b>Cyan but not in Peripherals?</b> Firmware first, cables second — every 2.0.x build has a documented bug matching this exact symptom, fixed in <b>2.1.0</b> (Settings › Updates). Already on 2.1+? Reseat the DATA cable at both ends and the dongle's two leads → power-cycle the Sight (pull the injector-side plug 30 s — it has no power button) → reboot the bar → try one of the other USB-A ports (any of the 3 is valid).</li>
+      <li><b>LED loops forever, never settles cyan?</b> Confirm the injector shows solid green, power-cycle once, then factory reset (below). Still looping = dead unit — 2-year warranty, stop burning time on it.</li>
+      <li><b>No LED, injector green?</b> The run is the suspect: not truly S/FTP end-to-end, over 20 m, or a bad jack. Swap in a known-good shielded cable before blaming the Sight.</li>
+      <li><b>Lilac pulse?</b> It's updating — hands off. No documented duration; only if it's clearly stuck well past ~15 min, power-cycle and let it retry.</li>
+      <li><b>Sight factory reset:</b> hold <b>Reset + one mic-mute button for 10 s</b> (no pinhole, no beep). It then sits dark for up to <b>5 minutes</b> before rebooting — that's normal, don't panic-unplug.</li>
+    </ol>
+    <p class="conf"><b>Hard datasheet limit:</b> 20 m dongle-to-Sight, no exceptions — if you see a 40 m figure anywhere, it's wrong.</p>
+  </section>
+
+  <footer>Grounded in the unit's base label + Logitech primary docs — Sight FAQ, wiring diagrams, LED guide, datasheet PDF, CollabOS changelogs (July 2026) · drawn 2026-07-22</footer>
 
 </div>
 </body>
