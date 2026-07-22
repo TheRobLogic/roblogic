@@ -114,7 +114,7 @@
         <text class="t-tag" x="290" y="222" text-anchor="middle" fill="#d6266f">HOST DONGLE</text>
         <path class="wire-thin" style="stroke:var(--data)" d="M252 234 L214 234"/>
         <path class="wire-thin" style="stroke:var(--data)" d="M252 242 L214 242"/>
-        <text class="t-sub" x="252" y="282">two short leads → USB-A + MIC POD ports · no hubs</text>
+        <text class="t-sub" x="302" y="282">two short leads → USB-A + MIC POD ports · no hubs</text>
 
         <!-- FAR TV greyed -->
         <rect class="box-soft" x="886" y="120" width="168" height="100" rx="3"/>
@@ -143,7 +143,7 @@
         <!-- Tap on table (not in path) -->
         <rect class="box-dash" x="628" y="378" width="44" height="14" rx="2"/>
         <text class="t-port" x="650" y="372" text-anchor="middle">TAP</text>
-        <text class="t-sub" x="650" y="436" text-anchor="middle">Tap = separate · needs its own power</text>
+        <text class="t-sub" x="890" y="436" text-anchor="middle">Tap = separate · needs its own power</text>
 
         <!-- PoE injector under table -->
         <rect class="box-soft" x="600" y="466" width="110" height="32" rx="3"/>
@@ -153,14 +153,14 @@
         <rect class="box-dash" x="636" y="545" width="40" height="12"/>
         <text class="t-sub" x="656" y="588" text-anchor="middle">outlet — verify</text>
         <path class="wire-thin" style="stroke:var(--pwr)" d="M656 545 L656 498"/>
-        <!-- power jumper injector -> Sight -->
-        <path class="wire" style="stroke:var(--pwr)" d="M655 466 L655 382 L576 382"/>
-        <text class="t-lab" x="664" y="452" fill="#8a8a8a">PoE power · short jumper</text>
+        <!-- power jumper injector -> Sight (through table grommet) -->
+        <path class="wire" style="stroke:var(--pwr)" d="M655 466 L655 420 L580 420 L580 386 L576 386"/>
+        <text class="t-lab" x="600" y="440" fill="#8a8a8a">PoE power jumper</text>
 
         <!-- DATA run: Sight -> floor -> near wall -> up -> dongle -->
         <path class="wire" style="stroke:var(--data); stroke-width:3.2" d="M556 392 L556 534 L64 534 L64 312 L290 312 L290 250"/>
         <text class="t-tag" x="330" y="304" fill="#d6266f">THE ONE RUN</text>
-        <text class="t-lab" x="200" y="526" fill="#d6266f">DATA — shielded Cat6A · passive · ≤ 20 m</text>
+        <text class="t-lab" x="148" y="526" fill="#d6266f">DATA — shielded Cat6A · passive · ≤ 20 m</text>
         <path d="M290 250 l-5 9 l10 0 z" fill="#d6266f"/>
 
         <!-- A07 plate note -->
@@ -190,13 +190,13 @@
         <text class="t-port" x="64" y="134">DATA · to the bar</text><circle cx="256" cy="130" r="4" fill="#d6266f"/>
         <text class="t-port" x="64" y="162">MIC POD · optional ×3</text><circle cx="256" cy="158" r="4" fill="none" stroke="#666666"/>
         <text class="t-port" x="64" y="190">POWER · PoE+ in</text><circle cx="110" cy="214" r="4" fill="#8a8a8a"/>
-        <text class="t-sub" x="160" y="207" text-anchor="end">3 RJ45 jacks — none are Ethernet</text>
+        <text class="t-sub" x="160" y="207" text-anchor="middle">3 RJ45 jacks — none are Ethernet</text>
 
         <!-- injector + outlet -->
         <rect class="box-soft" x="50" y="262" width="220" height="66" rx="4"/>
         <text class="t-title" x="160" y="286" text-anchor="middle" fill="#444444">PHIHONG POE90U-1BT</text>
         <text class="t-sub" x="160" y="303" text-anchor="middle">PoE+ injector · 802.3bt 90W ✓</text>
-        <text class="t-sub" x="160" y="316" text-anchor="middle">Sight needs PoE+ (at/30W) — af won't power it</text>
+        <text class="t-sub" x="160" y="316" text-anchor="middle">needs PoE+ 30W (at) — af won't work</text>
         <rect class="box-dash" x="50" y="368" width="120" height="26"/>
         <text class="t-sub" x="110" y="385" text-anchor="middle">WALL OUTLET</text>
         <path class="wire-thin" style="stroke:var(--pwr)" d="M110 368 L110 328"/>
@@ -226,7 +226,7 @@
         <!-- HOST DONGLE -->
         <rect class="box" x="720" y="96" width="150" height="68" rx="4"/>
         <text class="t-title" x="795" y="122" text-anchor="middle">HOST DONGLE</text>
-        <text class="t-sub" x="795" y="139" text-anchor="middle">RJ45 in · two short leads out</text>
+        <text class="t-sub" x="795" y="139" text-anchor="middle">RJ45 in · two leads out</text>
 
         <!-- RALLY BAR -->
         <rect class="box" x="920" y="54" width="160" height="220" rx="4"/>
@@ -237,7 +237,7 @@
         <text class="t-port" x="938" y="168">MIC POD</text><circle cx="926" cy="164" r="4" fill="#d6266f"/>
         <text class="t-port" x="938" y="196">HDMI-TV1/2 · done ✓</text><circle cx="926" cy="192" r="4" fill="none" stroke="#999999"/>
         <text class="t-port" x="938" y="224">ETHERNET · existing</text><circle cx="926" cy="220" r="4" fill="none" stroke="#999999"/>
-        <text class="t-sub" x="1000" y="256" text-anchor="middle">Sight appears: Settings › Peripherals</text>
+        <text class="t-sub" x="1000" y="292" text-anchor="middle">Sight appears: Settings › Peripherals</text>
 
         <!-- dongle leads -->
         <path class="wire-thin" style="stroke:var(--data)" d="M870 122 L898 122 L898 136 L922 136"/>
