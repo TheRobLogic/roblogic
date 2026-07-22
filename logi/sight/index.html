@@ -174,7 +174,7 @@
   <!-- ============ DIAGRAM 2 — CONNECTIONS ============ -->
   <section class="blk">
     <div class="blk-head"><h2>Diagram 2 — Connections</h2><span class="n">every jack · every rule</span></div>
-    <p class="intro">The Sight base has <strong>three RJ45 jacks</strong> but they are not Ethernet: <strong>POWER</strong> takes PoE+ from the injector, <strong>DATA</strong> is a Logitech USB-over-Cat link to the host dongle at the bar, and <strong>MIC POD</strong> is only for optional mic pods. Power and data <strong>never share a cable</strong>.</p>
+    <p class="intro">The Sight base has <strong>three network-style jacks, but none of them are real network ports</strong>: <strong>POWER</strong> just takes power from the injector, <strong>DATA</strong> is USB dressed up in a network cable (runs to the little adapter at the bar), and <strong>MIC POD</strong> is only for optional extra mics. Power and data <strong>never share a cable</strong>.</p>
     <div class="frame">
       <svg viewBox="0 0 1120 470" role="img" aria-label="Block diagram: wall outlet to Phihong injector to Sight POWER jack; Sight DATA jack over shielded Cat6A to the host dongle, whose two leads plug into the Rally Bar USB-A and Mic Pod ports. Tap is separate.">
         <!-- column captions -->
@@ -196,7 +196,7 @@
         <rect class="box-soft" x="50" y="262" width="220" height="66" rx="4"/>
         <text class="t-title" x="160" y="286" text-anchor="middle" fill="#444444">PHIHONG POE90U-1BT</text>
         <text class="t-sub" x="160" y="303" text-anchor="middle">PoE+ injector · 802.3bt 90W ✓</text>
-        <text class="t-sub" x="160" y="316" text-anchor="middle">needs PoE+ 30W (at) — af won't work</text>
+        <text class="t-sub" x="160" y="316" text-anchor="middle">Sight needs the 30W kind — 15W kind won't</text>
         <rect class="box-dash" x="50" y="368" width="120" height="26"/>
         <text class="t-sub" x="110" y="385" text-anchor="middle">WALL OUTLET</text>
         <path class="wire-thin" style="stroke:var(--pwr)" d="M110 368 L110 328"/>
@@ -207,13 +207,13 @@
         <rect class="box-dash" x="330" y="300" width="260" height="94" rx="4"/>
         <text class="t-title" x="460" y="326" text-anchor="middle" fill="#666666">LOGITECH TAP</text>
         <text class="t-sub" x="460" y="344" text-anchor="middle">separate device · not in the Sight path</text>
-        <text class="t-sub" x="460" y="360" text-anchor="middle">power: own DC brick or any 802.3af source</text>
+        <text class="t-sub" x="460" y="360" text-anchor="middle">power: its own wall adapter, or basic PoE</text>
         <text class="t-sub" x="460" y="376" text-anchor="middle">bar USB-C won't power it · no splitters</text>
 
         <!-- DATA run -->
         <path class="wire" style="stroke:var(--data); stroke-width:3.6" d="M260 130 L718 130"/>
         <text class="t-tag" x="490" y="118" text-anchor="middle" fill="#d6266f">SHIELDED CAT6A (S/FTP) · ≤ 20 m · PASSIVE</text>
-        <text class="t-sub" x="490" y="152" text-anchor="middle">USB-over-Cat, not Ethernet — plain Cat5/5e/6 UTP won't work</text>
+        <text class="t-sub" x="490" y="152" text-anchor="middle">USB in a network-cable costume — ordinary (unshielded) cable won't carry it</text>
 
         <!-- no-switch -->
         <rect class="box-dash" x="410" y="186" width="160" height="46" rx="3"/>
@@ -258,17 +258,17 @@
   <section class="blk">
     <div class="blk-head"><h2>The Hookup</h2><span class="n">in order · no pairing step exists</span></div>
     <ol class="fix">
-      <li><b>Power first.</b> Wall outlet → Phihong injector → Sight <b>POWER</b> jack (short jumper at the table). Injector LED: <b>solid green = powering</b> · slow amber blink = not seeing the Sight (check the far end) · fast amber blink = short, unplug. If the Phihong is feeding the Tap today, the Tap needs its own power — its OEM DC brick (check the boxes) or any 802.3af injector; the bar's USB-C will <b>not</b> power a Tap. One injector never feeds two.</li>
-      <li><b>The run.</b> Sight <b>DATA</b> jack → shielded Cat6A → host dongle at the bar. <b>No Cat6A ships in the Sight kit</b> — the run is your own cable, and the kit's Tap Cat5e cable is the wrong spec (don't substitute it). Shielded by eye: <b>"S/FTP" printed on the jacket + metal RJ45 shell</b> (plastic plug = UTP = won't work). Passive path only — using the A07 plate? <b>Test it with a laptop first:</b> link light / DHCP = live switch port, don't use it; dead = good.</li>
-      <li><b>The dongle.</b> Plug its two short leads straight into the bar: <b>USB-A</b> + <b>MIC POD</b> ports. No USB hubs.</li>
+      <li><b>Power first.</b> Wall outlet → the black Phihong power injector → Sight <b>POWER</b> jack (short cable at the table). The injector's own light tells you how it went: <b>steady green = it's powering the Sight</b> · slow amber blink = powered up but doesn't feel the Sight on the line (problem's at the far end) · fast amber blink = something's shorted, unplug. If that injector is what's running the Tap today, the Tap needs its own juice — its own wall adapter (dig through the boxes) or any cheap basic PoE injector (the 15W kind, label says "802.3af"). The bar's USB-C port will <b>not</b> power a Tap, and one injector can never feed two things.</li>
+      <li><b>The run.</b> Sight <b>DATA</b> jack → shielded cable → the little adapter at the bar. <b>The kit does NOT include this cable</b> — you bring it, and it has to be the heavy shielded kind: look for <b>"S/FTP" and "Cat6A" printed on the jacket, and a shiny metal tip on the plug</b>. All-plastic plug = ordinary network cable = will not work (the Cat5e cable from the Tap's box is exactly that — don't use it). The path must be one straight line to the bar, never through a network switch. Want to use the A07 wall plate? <b>Plug a laptop into it first:</b> if the laptop gets internet or a link light, that jack is live network — don't use it. Totally dead = perfect.</li>
+      <li><b>The adapter ("host dongle").</b> Small box from the kit: network jack on one side, two short tails on the other. The run plugs into its jack; its two tails plug straight into the back of the bar — one into any <b>USB-A</b> port (all 3 are fine), one into the <b>MIC POD</b> port. Straight in, never through a USB hub.</li>
       <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = see the rescue list at the bottom — on 2.0.x firmware that's a known bug, not your wiring.</li>
-      <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. Auto hand-off needs CollabOS <b>1.13+</b> — on by default since 2.0.A; current is 2.1.0, which also fixes Sight-detection bugs. Behind on firmware? Update <b>on-device</b>: Settings › Updates › Update (~20 min, no Teams admin needed).</li>
+      <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. The automatic camera hand-off needs the bar's software (CollabOS) at <b>1.13 or newer</b> — it's on by itself from there, nothing extra to flip. Newest is <b>2.1.0</b> and it fixes exactly the "Sight doesn't show up" bugs, so updating is worth it. Updating happens right on the bar: Settings › Updates › Update, about 20 minutes, <b>no Teams admin needed</b>.</li>
       <li><b>Admin PIN reality.</b> Teams mode has <b>no factory default PIN</b> — if none was ever set, it prompts you to create one on the spot. If a PIN bounces you, one was set by the installer or pushed from Teams admin (1234 is only the non-Teams default).</li>
       <li><b>Prove it.</b> Live test call — talk from different seats, watch the camera hand off between bar and Sight. Then log the serial off the base label.</li>
     </ol>
     <div class="conf">
-      <div><b>From the base label:</b> Sight model VU0067 · PoE, ~14W draw, needs PoE+ (at) class supply.</div>
-      <div><b>Verify onsite:</b> A07 run shielded + passive (laptop test) · what the Phihong feeds today · CollabOS ≥ 1.13 · a real Cat6A S/FTP cable on the truck — the kit doesn't include one.</div>
+      <div><b>From the base label:</b> Sight model VU0067 · powered over the cable, needs the 30W class (label says "802.3at" or "PoE+") — the common 15W "af" kind won't wake it.</div>
+      <div><b>Verify onsite:</b> A07 run shielded + not live network (laptop test) · what the Phihong feeds today · bar software 1.13+ · a real shielded Cat6A cable on the truck — the kit doesn't include one.</div>
       <div><b>Not involved:</b> the Tap · the LAN · yesterday's TV/HDMI chain.</div>
     </div>
   </section>
@@ -295,7 +295,7 @@
     <ol class="fix">
       <li><b>Cyan but not in Peripherals?</b> Firmware first, cables second — every 2.0.x build has a documented bug matching this exact symptom, fixed in <b>2.1.0</b> (Settings › Updates). Already on 2.1+? Reseat the DATA cable at both ends and the dongle's two leads → power-cycle the Sight (pull the injector-side plug 30 s — it has no power button) → reboot the bar → try one of the other USB-A ports (any of the 3 is valid).</li>
       <li><b>LED loops forever, never settles cyan?</b> Confirm the injector shows solid green, power-cycle once, then factory reset (below). Still looping = dead unit — 2-year warranty, stop burning time on it.</li>
-      <li><b>No LED, injector green?</b> The run is the suspect: not truly S/FTP end-to-end, over 20 m, or a bad jack. Swap in a known-good shielded cable before blaming the Sight.</li>
+      <li><b>No light at all, but the injector shows green?</b> The cable path is the suspect: not truly shielded the whole way, longer than 20 m, or a bad jack. Swap in a known-good shielded cable before blaming the Sight.</li>
       <li><b>Lilac pulse?</b> It's updating — hands off. No documented duration; only if it's clearly stuck well past ~15 min, power-cycle and let it retry.</li>
       <li><b>Sight factory reset:</b> hold <b>Reset + one mic-mute button for 10 s</b> (no pinhole, no beep). It then sits dark for up to <b>5 minutes</b> before rebooting — that's normal, don't panic-unplug.</li>
     </ol>
