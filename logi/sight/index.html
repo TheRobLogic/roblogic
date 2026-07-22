@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boardroom Sight — Hookup Schematic</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --paper:#ffffff; --ink:#111111; --body:#222222; --dim:#666666; --hair:#cccccc;
+    --well:#f3f3f3; --soft:#888888;
+    --data:#d6266f;   /* the one run — Sight data */
+    --pwr:#8a8a8a;    /* PoE power */
+    --ok:#0d8a8a;     /* cyan-ish = good/ready */
+    --ctrl:#777777;   /* optional / control */
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  body{ background:var(--paper); color:var(--body); font-family:var(--sans); line-height:1.45; font-size:15px; -webkit-font-smoothing:antialiased; }
+  .sheet{ max-width:1120px; margin:0 auto; padding:1.2rem 1.4rem 3rem; }
+
+  header{ border-bottom:2px solid var(--ink); padding-bottom:0.55rem; }
+  header h1{ font-size:1.35rem; font-weight:700; color:var(--ink); }
+  header .meta{ font-family:var(--mono); font-size:0.72rem; color:var(--dim); margin-top:0.3rem; }
+
+  section.blk{ margin-top:1.6rem; }
+  .blk-head{ display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+    border-bottom:1px solid var(--hair); padding-bottom:0.3rem; margin-bottom:0.5rem; }
+  .blk-head h2{ font-size:0.92rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; color:var(--ink); }
+  .blk-head .n{ font-family:var(--mono); font-size:0.72rem; color:var(--dim); }
+  .intro{ max-width:80ch; font-size:0.9rem; margin-bottom:0.6rem; }
+  .intro strong{ color:var(--ink); }
+
+  .frame{ border:1px solid var(--hair); background:var(--paper); overflow-x:auto; }
+  svg{ display:block; width:100%; height:auto; min-width:720px; }
+
+  text{ font-family:var(--sans); fill:var(--ink); }
+  .t-title{ font-weight:700; font-size:13.5px; }
+  .t-sub{ font-family:var(--mono); font-size:10.5px; fill:var(--dim); }
+  .t-port{ font-family:var(--mono); font-size:10px; fill:var(--body); }
+  .t-lab{ font-family:var(--mono); font-size:10.5px; fill:var(--body); }
+  .t-tag{ font-family:var(--mono); font-weight:700; font-size:10px; letter-spacing:0.04em; }
+  .box{ fill:var(--paper); stroke:var(--ink); stroke-width:1.5; }
+  .box-soft{ fill:var(--well); stroke:var(--soft); stroke-width:1.3; }
+  .box-dash{ fill:var(--paper); stroke:var(--dim); stroke-width:1.3; stroke-dasharray:5 4; }
+  .wire{ fill:none; stroke-width:2.4; }
+  .wire-thin{ fill:none; stroke-width:1.6; }
+  .dot{ stroke-dasharray:1.5 3.5; }
+
+  .legend{ display:flex; flex-wrap:wrap; gap:0.4rem 1.4rem; margin-top:0.6rem;
+    font-family:var(--mono); font-size:0.74rem; color:var(--body); }
+  .lg{ display:flex; align-items:center; gap:0.5rem; }
+  .lg svg{ min-width:0; width:40px; height:12px; flex:0 0 40px; }
+
+  ol.fix{ margin:0.2rem 0 0 1.3rem; }
+  ol.fix li{ margin-bottom:0.5rem; font-size:0.92rem; }
+  ol.fix b{ color:var(--ink); }
+
+  .led{ margin-top:0.4rem; font-family:var(--mono); font-size:0.78rem; }
+  .led table{ border-collapse:collapse; width:100%; }
+  .led td{ border:1px solid var(--hair); padding:0.35rem 0.55rem; vertical-align:top; }
+  .led td:first-child{ white-space:nowrap; font-weight:700; }
+  .sw{ display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:0.4rem; vertical-align:-1px; border:1px solid #999; }
+
+  .conf{ margin-top:0.7rem; font-family:var(--mono); font-size:0.76rem; color:var(--body); }
+  .conf div{ margin-bottom:0.2rem; }
+  .conf b{ color:var(--ink); }
+
+  footer{ margin-top:2rem; border-top:1px solid var(--hair); padding-top:0.5rem;
+    font-family:var(--mono); font-size:0.68rem; color:var(--dim); }
+
+  @media print{ body{ font-size:11px; } section.blk{ break-inside:avoid; } .frame{ border-color:#000; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <h1>Boardroom Sight — Hookup Schematic</h1>
+    <p class="meta">Logitech Sight table camera → Rally Bar · first-time activation · two cables, no pairing</p>
+    <p class="meta"><a href="/logi/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↑ Field card — checklist, FAQ &amp; parts</a> &nbsp;·&nbsp; <a href="/logi/schematic/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↔ TV / display schematic</a> &nbsp;·&nbsp; drawn 2026-07-22</p>
+  </header>
+
+  <!-- ============ DIAGRAM 1 — ROOM ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>Diagram 1 — Room</h2><span class="n">where the two cables go</span></div>
+    <p class="intro">The Sight sits mid-table and needs exactly <strong>two cables</strong>: a short <strong>power jumper</strong> to the PoE+ injector at the table, and <strong>one data run</strong> across the room to a small <strong>host dongle</strong> that plugs straight into the Rally Bar. The Sight never touches the Tap, the network, or yesterday's TV chain.</p>
+    <div class="frame">
+      <svg viewBox="0 0 1120 610" role="img" aria-label="Room section: Sight on the board table with a short power jumper to the PoE injector and one data run through the floor and raceway up to the host dongle at the Rally Bar.">
+        <!-- plenum / ceiling -->
+        <line x1="40" y1="70" x2="1080" y2="70" stroke="#111111" stroke-width="1.4"/>
+        <line x1="40" y1="60" x2="1080" y2="60" stroke="#cccccc" stroke-width="1"/>
+        <text class="t-sub" x="52" y="53">CEILING PLENUM</text>
+        <!-- floor -->
+        <line x1="40" y1="545" x2="1080" y2="545" stroke="#111111" stroke-width="1.4"/>
+        <rect x="40" y="545" width="1040" height="14" fill="#f3f3f3" stroke="none"/>
+        <!-- walls -->
+        <line x1="52" y1="70" x2="52" y2="545" stroke="#111111" stroke-width="1.4"/>
+        <line x1="1068" y1="70" x2="1068" y2="545" stroke="#111111" stroke-width="1.4"/>
+        <text class="t-sub" x="60" y="92">NEAR WALL</text>
+        <text class="t-sub" x="1060" y="92" text-anchor="end">FAR WALL</text>
+
+        <!-- NEAR TV + Rally Bar -->
+        <rect class="box-soft" x="66" y="120" width="168" height="100" rx="3"/>
+        <text class="t-title" x="150" y="150" text-anchor="middle" fill="#666666">NEAR TV</text>
+        <text class="t-sub" x="150" y="168" text-anchor="middle">mirror fix done ✓</text>
+        <!-- rally bar -->
+        <rect class="box" x="86" y="228" width="128" height="20" rx="4"/>
+        <circle cx="150" cy="238" r="4" fill="#111111"/>
+        <text class="t-port" x="150" y="266" text-anchor="middle">LOGITECH RALLY BAR</text>
+
+        <!-- host dongle at the bar -->
+        <rect class="box" x="252" y="228" width="76" height="20" rx="3"/>
+        <text class="t-tag" x="290" y="222" text-anchor="middle" fill="#d6266f">HOST DONGLE</text>
+        <path class="wire-thin" style="stroke:var(--data)" d="M252 234 L214 234"/>
+        <path class="wire-thin" style="stroke:var(--data)" d="M252 242 L214 242"/>
+        <text class="t-sub" x="252" y="282">two short leads → USB-A + MIC POD ports · no hubs</text>
+
+        <!-- FAR TV greyed -->
+        <rect class="box-soft" x="886" y="120" width="168" height="100" rx="3"/>
+        <text class="t-title" x="970" y="150" text-anchor="middle" fill="#666666">FAR TV</text>
+        <text class="t-sub" x="970" y="168" text-anchor="middle">mirror fix done ✓</text>
+
+        <!-- TABLE -->
+        <rect x="360" y="392" width="400" height="18" rx="3" fill="#f3f3f3" stroke="#111111" stroke-width="1.4"/>
+        <text class="t-sub" x="430" y="405" text-anchor="middle">BOARD TABLE</text>
+        <!-- right/plain leg -->
+        <rect x="712" y="410" width="26" height="135" fill="#f3f3f3" stroke="#111111" stroke-width="1.2"/>
+        <!-- equipment leg (display gear, done) -->
+        <rect x="372" y="410" width="104" height="135" fill="#f3f3f3" stroke="#888888" stroke-width="1.3"/>
+        <text class="t-tag" x="424" y="426" text-anchor="middle" fill="#888888">TABLE LEG</text>
+        <text class="t-sub" x="424" y="444" text-anchor="middle">display gear</text>
+        <text class="t-sub" x="424" y="456" text-anchor="middle">done ✓ hands off</text>
+        <!-- floor box under leg -->
+        <rect x="380" y="545" width="88" height="16" fill="#ffffff" stroke="#111111" stroke-width="1.4"/>
+        <text class="t-sub" x="424" y="574" text-anchor="middle">FLOOR BOX + RACEWAY</text>
+
+        <!-- Sight on table -->
+        <rect class="box" x="548" y="336" width="26" height="56" rx="8"/>
+        <circle cx="561" cy="350" r="3.4" fill="#111111"/>
+        <text class="t-port" x="561" y="330" text-anchor="middle">SIGHT</text>
+
+        <!-- Tap on table (not in path) -->
+        <rect class="box-dash" x="628" y="378" width="44" height="14" rx="2"/>
+        <text class="t-port" x="650" y="372" text-anchor="middle">TAP</text>
+        <text class="t-sub" x="650" y="436" text-anchor="middle">Tap = separate · needs its own power</text>
+
+        <!-- PoE injector under table -->
+        <rect class="box-soft" x="600" y="466" width="110" height="32" rx="3"/>
+        <text class="t-port" x="655" y="480" text-anchor="middle">PHIHONG PoE+</text>
+        <text class="t-sub" x="655" y="492" text-anchor="middle">injector · 90W bt</text>
+        <!-- outlet -->
+        <rect class="box-dash" x="636" y="545" width="40" height="12"/>
+        <text class="t-sub" x="656" y="588" text-anchor="middle">outlet — verify</text>
+        <path class="wire-thin" style="stroke:var(--pwr)" d="M656 545 L656 498"/>
+        <!-- power jumper injector -> Sight -->
+        <path class="wire" style="stroke:var(--pwr)" d="M655 466 L655 382 L576 382"/>
+        <text class="t-lab" x="664" y="452" fill="#8a8a8a">PoE power · short jumper</text>
+
+        <!-- DATA run: Sight -> floor -> near wall -> up -> dongle -->
+        <path class="wire" style="stroke:var(--data); stroke-width:3.2" d="M556 392 L556 534 L64 534 L64 312 L290 312 L290 250"/>
+        <text class="t-tag" x="330" y="304" fill="#d6266f">THE ONE RUN</text>
+        <text class="t-lab" x="200" y="526" fill="#d6266f">DATA — shielded Cat6A · passive · ≤ 20 m</text>
+        <path d="M290 250 l-5 9 l10 0 z" fill="#d6266f"/>
+
+        <!-- A07 plate note -->
+        <rect class="box-dash" x="486" y="545" width="36" height="12"/>
+        <text class="t-sub" x="504" y="600" text-anchor="middle">A07 plate? verify shielded + passive</text>
+      </svg>
+    </div>
+    <p class="conf">If the run uses the <b>A07 wall plate</b>, the whole path plate-to-bar must still be shielded Cat6A with <b>no switch in between</b> — it carries USB, not Ethernet.</p>
+  </section>
+
+  <!-- ============ DIAGRAM 2 — CONNECTIONS ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>Diagram 2 — Connections</h2><span class="n">every jack · every rule</span></div>
+    <p class="intro">The Sight base has <strong>three RJ45 jacks</strong> but they are not Ethernet: <strong>POWER</strong> takes PoE+ from the injector, <strong>DATA</strong> is a Logitech USB-over-Cat link to the host dongle at the bar, and <strong>MIC POD</strong> is only for optional mic pods. Power and data <strong>never share a cable</strong>.</p>
+    <div class="frame">
+      <svg viewBox="0 0 1120 470" role="img" aria-label="Block diagram: wall outlet to Phihong injector to Sight POWER jack; Sight DATA jack over shielded Cat6A to the host dongle, whose two leads plug into the Rally Bar USB-A and Mic Pod ports. Tap is separate.">
+        <!-- column captions -->
+        <text class="t-tag" x="160" y="30" text-anchor="middle" fill="#666666">AT THE TABLE</text>
+        <text class="t-tag" x="520" y="30" text-anchor="middle" fill="#666666">THE RUN</text>
+        <text class="t-tag" x="930" y="30" text-anchor="middle" fill="#666666">AT THE BAR</text>
+
+        <!-- SIGHT -->
+        <rect class="box" x="50" y="54" width="220" height="160" rx="4"/>
+        <text class="t-title" x="160" y="80" text-anchor="middle">LOGITECH SIGHT</text>
+        <text class="t-sub" x="160" y="97" text-anchor="middle">table camera · VU0067</text>
+        <line x1="62" y1="108" x2="258" y2="108" stroke="#cccccc"/>
+        <text class="t-port" x="64" y="134">DATA · to the bar</text><circle cx="256" cy="130" r="4" fill="#d6266f"/>
+        <text class="t-port" x="64" y="162">MIC POD · optional ×3</text><circle cx="256" cy="158" r="4" fill="none" stroke="#666666"/>
+        <text class="t-port" x="64" y="190">POWER · PoE+ in</text><circle cx="110" cy="214" r="4" fill="#8a8a8a"/>
+        <text class="t-sub" x="160" y="207" text-anchor="end">3 RJ45 jacks — none are Ethernet</text>
+
+        <!-- injector + outlet -->
+        <rect class="box-soft" x="50" y="262" width="220" height="66" rx="4"/>
+        <text class="t-title" x="160" y="286" text-anchor="middle" fill="#444444">PHIHONG POE90U-1BT</text>
+        <text class="t-sub" x="160" y="303" text-anchor="middle">PoE+ injector · 802.3bt 90W ✓</text>
+        <text class="t-sub" x="160" y="316" text-anchor="middle">Sight needs PoE+ (at/30W) — af won't power it</text>
+        <rect class="box-dash" x="50" y="368" width="120" height="26"/>
+        <text class="t-sub" x="110" y="385" text-anchor="middle">WALL OUTLET</text>
+        <path class="wire-thin" style="stroke:var(--pwr)" d="M110 368 L110 328"/>
+        <path class="wire" style="stroke:var(--pwr)" d="M110 262 L110 218"/>
+        <text class="t-lab" x="120" y="246" fill="#8a8a8a">short jumper</text>
+
+        <!-- TAP aside -->
+        <rect class="box-dash" x="340" y="300" width="230" height="94" rx="4"/>
+        <text class="t-title" x="455" y="326" text-anchor="middle" fill="#666666">LOGITECH TAP</text>
+        <text class="t-sub" x="455" y="344" text-anchor="middle">separate device · not in the Sight path</text>
+        <text class="t-sub" x="455" y="360" text-anchor="middle">powers itself — 802.3af or USB-C from bar</text>
+        <text class="t-sub" x="455" y="376" text-anchor="middle">one injector NEVER feeds two devices</text>
+
+        <!-- DATA run -->
+        <path class="wire" style="stroke:var(--data); stroke-width:3.6" d="M260 130 L718 130"/>
+        <text class="t-tag" x="490" y="118" text-anchor="middle" fill="#d6266f">SHIELDED CAT6A (S/FTP) · ≤ 20 m · PASSIVE</text>
+        <text class="t-sub" x="490" y="152" text-anchor="middle">USB-over-Cat, not Ethernet — plain Cat5/5e/6 UTP won't work</text>
+
+        <!-- no-switch -->
+        <rect class="box-dash" x="410" y="186" width="160" height="46" rx="3"/>
+        <text class="t-port" x="490" y="206" text-anchor="middle">NETWORK SWITCH</text>
+        <text class="t-sub" x="490" y="222" text-anchor="middle">kills the link</text>
+        <line x1="418" y1="192" x2="562" y2="226" stroke="#d6266f" stroke-width="2.4"/>
+        <line x1="562" y1="192" x2="418" y2="226" stroke="#d6266f" stroke-width="2.4"/>
+        <text class="t-sub" x="490" y="252" text-anchor="middle" fill="#d6266f">never through a switch — straight to the dongle</text>
+
+        <!-- HOST DONGLE -->
+        <rect class="box" x="720" y="96" width="150" height="68" rx="4"/>
+        <text class="t-title" x="795" y="122" text-anchor="middle">HOST DONGLE</text>
+        <text class="t-sub" x="795" y="139" text-anchor="middle">RJ45 in · two short leads out</text>
+
+        <!-- RALLY BAR -->
+        <rect class="box" x="920" y="54" width="160" height="220" rx="4"/>
+        <text class="t-title" x="1000" y="82" text-anchor="middle">RALLY BAR</text>
+        <text class="t-sub" x="1000" y="99" text-anchor="middle">under the near TV</text>
+        <line x1="930" y1="110" x2="1070" y2="110" stroke="#cccccc"/>
+        <text class="t-port" x="938" y="140">USB-A</text><circle cx="926" cy="136" r="4" fill="#d6266f"/>
+        <text class="t-port" x="938" y="168">MIC POD</text><circle cx="926" cy="164" r="4" fill="#d6266f"/>
+        <text class="t-port" x="938" y="196">HDMI-TV1/2 · done ✓</text><circle cx="926" cy="192" r="4" fill="none" stroke="#999999"/>
+        <text class="t-port" x="938" y="224">ETHERNET · existing</text><circle cx="926" cy="220" r="4" fill="none" stroke="#999999"/>
+        <text class="t-sub" x="1000" y="256" text-anchor="middle">Sight appears: Settings › Peripherals</text>
+
+        <!-- dongle leads -->
+        <path class="wire-thin" style="stroke:var(--data)" d="M870 122 L898 122 L898 136 L922 136"/>
+        <path class="wire-thin" style="stroke:var(--data)" d="M870 144 L890 144 L890 164 L922 164"/>
+        <text class="t-sub" x="795" y="186" text-anchor="middle">leads plug straight in — no USB hubs</text>
+      </svg>
+    </div>
+
+    <!-- legend -->
+    <div class="legend">
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#d6266f" stroke-width="3.4"/></svg>The data run (the star)</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#8a8a8a" stroke-width="2.6"/></svg>PoE power</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><rect x="2" y="2" width="40" height="10" fill="none" stroke="#666666" stroke-width="1.4" stroke-dasharray="5 4"/></svg>Dashed = verify onsite / not in path</div>
+    </div>
+  </section>
+
+  <!-- ============ THE HOOKUP ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>The Hookup</h2><span class="n">in order · no pairing step exists</span></div>
+    <ol class="fix">
+      <li><b>Power first.</b> Wall outlet → Phihong injector → Sight <b>POWER</b> jack (short jumper at the table). If the Phihong is feeding the Tap today, the Tap needs its own power — small 802.3af injector or USB-C from the bar. One injector never feeds two.</li>
+      <li><b>The run.</b> Sight <b>DATA</b> jack → shielded Cat6A → host dongle at the bar. Passive path only — if it patches through any network switch it will not work. Using the A07 plate? Verify shielded + passive end-to-end.</li>
+      <li><b>The dongle.</b> Plug its two short leads straight into the bar: <b>USB-A</b> + <b>MIC POD</b> ports. No USB hubs.</li>
+      <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = data-path fault (dongle, ports, or cable).</li>
+      <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. Auto hand-off between bar and Sight needs CollabOS <b>1.13+</b> (updates via Teams admin, not locally). Admin PIN = room resource account, or try 1234.</li>
+      <li><b>Prove it.</b> Live test call — talk from different seats, watch the camera hand off between bar and Sight. Then log the serial off the base label.</li>
+    </ol>
+    <div class="conf">
+      <div><b>From the base label:</b> Sight model VU0067 · PoE, ~14W draw, needs PoE+ (at) class supply.</div>
+      <div><b>Verify onsite:</b> A07 run shielded + passive · what the Phihong feeds today · CollabOS ≥ 1.13.</div>
+      <div><b>Not involved:</b> the Tap · the LAN · yesterday's TV/HDMI chain.</div>
+    </div>
+  </section>
+
+  <!-- ============ LED DECODE ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>LED Quick Read</h2><span class="n">base ring on the Sight</span></div>
+    <div class="led"><table>
+      <tr><td><span class="sw" style="background:#ffffff"></span>none</td><td>no power — PoE or cable fault on the POWER leg</td></tr>
+      <tr><td><span class="sw" style="background:linear-gradient(90deg,#2b6cf0,#b57edc,#eeeeee,#19c2c2)"></span>looping</td><td>booting (blue → lilac → white → cyan) — let it finish</td></tr>
+      <tr><td><span class="sw" style="background:#19c2c2"></span>solid cyan</td><td>powered &amp; ready — now confirm it's in Settings › Peripherals</td></tr>
+      <tr><td><span class="sw" style="background:#f08a24"></span>solid orange</td><td>inactive — one person in room / video off (not a fault)</td></tr>
+      <tr><td><span class="sw" style="background:#d0342c"></span>solid red</td><td>muted</td></tr>
+      <tr><td><span class="sw" style="background:#b57edc"></span>lilac pulse</td><td>firmware updating — don't unplug</td></tr>
+      <tr><td><span class="sw" style="background:#d0342c; box-shadow:0 0 0 2px #f7c5c2"></span>fast red pulse</td><td>error — reseat dongle + both cables</td></tr>
+    </table></div>
+  </section>
+
+  <footer>Grounded in the unit's base label + Logitech primary docs — Sight FAQ, wiring diagrams, LED guide (July 2026) · drawn 2026-07-22</footer>
+
+</div>
+</body>
+</html>
