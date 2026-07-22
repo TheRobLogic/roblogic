@@ -56,6 +56,11 @@
   ol.fix li{ margin-bottom:0.5rem; font-size:0.92rem; }
   ol.fix b{ color:var(--ink); }
 
+  .shots{ display:flex; flex-wrap:wrap; gap:0.5rem; margin:0.45rem 0 0.15rem; }
+  .shots a{ display:block; line-height:0; }
+  .shots img{ height:92px; width:auto; border:1px solid var(--hair); border-radius:3px; }
+  .shots img:hover{ border-color:var(--ink); }
+
   .led{ margin-top:0.4rem; font-family:var(--mono); font-size:0.78rem; }
   .led table{ border-collapse:collapse; width:100%; }
   .led td{ border:1px solid var(--hair); padding:0.35rem 0.55rem; vertical-align:top; }
@@ -277,14 +282,21 @@
   <section class="blk">
     <div class="blk-head"><h2>Your Parts, By Sight</h2><span class="n">ID'd from the 2026-07-22 photos</span></div>
     <ol class="fix">
-      <li><b>Black tower, "logi" on the front</b> = the Sight. The lens still has its clear shipping film — <b>peel it before the test call</b> or the picture will be soft.</li>
-      <li><b>Black stick that says "SIGHT Dongle"</b> on the back (Model VU0068) = the adapter for the bar. Its cable splits into two tails: a normal USB-A plug and a smaller one — USB-A tail into any USB-A port on the bar, small tail into the MIC POD port.</li>
-      <li><b>WHITE stick that says "Dongle Transceiver"</b> = the <b>Tap's</b>, not yours today. Easy rule: <b>black stick = Sight, white stick = Tap.</b></li>
-      <li><b>White wall plug, label "Single Port Power over Ethernet · IEEE802.3at"</b> = the Tap's power. It stays with the Tap.</li>
+      <li><b>Black tower, "logi" on the front</b> = the Sight. The lens still has its clear shipping film — <b>peel it before the test call</b> or the picture will be soft.
+        <div class="shots"><a href="pics/img-6964.jpg" target="_blank" rel="noopener"><img src="pics/img-6964.jpg" alt="The Sight tower on the table, cables coiled at its base, shipping film on the lens" loading="lazy"></a></div></li>
+      <li><b>Black stick that says "SIGHT Dongle"</b> on the back (Model VU0068) = the adapter for the bar. Its cable splits into two tails: a normal USB-A plug and a smaller one — USB-A tail into any USB-A port on the bar, small tail into the MIC POD port.
+        <div class="shots"><a href="pics/img-6965.jpg" target="_blank" rel="noopener"><img src="pics/img-6965.jpg" alt="The black Sight host dongle in hand with its two-tail cable" loading="lazy"></a><a href="pics/img-6972.jpg" target="_blank" rel="noopener"><img src="pics/img-6972.jpg" alt="Back of the black dongle: SIGHT Dongle, Model VU0068" loading="lazy"></a></div></li>
+      <li><b>WHITE stick that says "Dongle Transceiver"</b> = the <b>Tap's</b>, not yours today. Easy rule: <b>black stick = Sight, white stick = Tap.</b>
+        <div class="shots"><a href="pics/img-6973.jpg" target="_blank" rel="noopener"><img src="pics/img-6973.jpg" alt="The white Tap dongle transceiver — not part of the Sight hookup" loading="lazy"></a></div></li>
+      <li><b>White wall plug, label "Single Port Power over Ethernet · IEEE802.3at"</b> = the Tap's power. It stays with the Tap.
+        <div class="shots"><a href="pics/img-6976.jpg" target="_blank" rel="noopener"><img src="pics/img-6976.jpg" alt="White logi power unit with shielded cable at the outlet" loading="lazy"></a><a href="pics/img-6977.jpg" target="_blank" rel="noopener"><img src="pics/img-6977.jpg" alt="Label on the white wall plug: Single Port Power over Ethernet, IEEE802.3at" loading="lazy"></a></div></li>
       <li><b>Black Phihong brick</b> = the Sight's power. Its cable goes to the Sight's <b>POWER</b> jack (the one ringed in yellow on the base, labeled POWER).</li>
-      <li><b>On the Sight's base:</b> POWER = yellow-ringed jack · DATA = the jack with the little two-tailed-adapter drawing etched next to it · the third jack (in the black rubber cutout) = mic pods / second Sight, unused today.</li>
-      <li><b>Long grey cable coiled around the Sight's base, shiny metal plug tips</b> = your data-run candidate. <b>One check left: read the printing on the jacket.</b> Says <b>CAT6A</b> (with S/FTP or SSTP) → that's the run, use it. Says <b>CAT5E</b> → it's a Tap-kit spare, don't use it.</li>
-      <li><b>Back of the bar, from the photos:</b> HDMI-TV1 and Ethernet are plugged (correct, yesterday's fix), HDMI-TV2 empty (correct — leave it), USB-A ports and MIC POD port free and waiting for the dongle.</li>
+      <li><b>On the Sight's base:</b> POWER = yellow-ringed jack · DATA = the jack with the little two-tailed-adapter drawing etched next to it · the third jack (in the black rubber cutout) = mic pods / second Sight, unused today.
+        <div class="shots"><a href="pics/img-6967.jpg" target="_blank" rel="noopener"><img src="pics/img-6967.jpg" alt="Underside of the Sight: POWER jack ringed in yellow, DATA jack with the dongle icon, mic pod jack in the rubber cutout" loading="lazy"></a></div></li>
+      <li><b>Long grey cable coiled around the Sight's base, shiny metal plug tips</b> = your data-run candidate. <b>One check left: read the printing on the jacket.</b> Says <b>CAT6A</b> (with S/FTP or SSTP) → that's the run, use it. Says <b>CAT5E</b> → it's a Tap-kit spare, don't use it.
+        <div class="shots"><a href="pics/img-6966.jpg" target="_blank" rel="noopener"><img src="pics/img-6966.jpg" alt="The long grey coiled cable with metal-shell plugs — read the jacket printing" loading="lazy"></a></div></li>
+      <li><b>Back of the bar, from the photos:</b> HDMI-TV1 and Ethernet are plugged (correct, yesterday's fix), HDMI-TV2 empty (correct — leave it), USB-A ports and MIC POD port free and waiting for the dongle.
+        <div class="shots"><a href="pics/img-6975.jpg" target="_blank" rel="noopener"><img src="pics/img-6975.jpg" alt="Back of the Rally Bar: HDMI-TV1 and Ethernet occupied, HDMI-TV2 empty" loading="lazy"></a><a href="pics/img-6974.jpg" target="_blank" rel="noopener"><img src="pics/img-6974.jpg" alt="Rally Bar port labels: POWER, MIC POD, USB-A x3" loading="lazy"></a></div></li>
     </ol>
   </section>
 
