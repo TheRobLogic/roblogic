@@ -166,7 +166,7 @@
     <div class="strip">
       <span>Register №&nbsp;51</span>
       <span>AV Field Card</span>
-      <span>Updated 2026-07-21</span>
+      <span>Updated 2026-07-22</span>
     </div>
 
     <header class="mast">
@@ -201,15 +201,15 @@
         <li><label><span class="idx">003</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Run the one new cable</span><span class="d">Rally Bar HDMI-TV1 → Kramer INPUT 2. The bar's second HDMI port stays EMPTY — that's what forces one clean mirrored output.</span><span class="note">bring 6 / 25 / 50 ft options — cabinet distance unknown</span></label></li>
         <li><label><span class="idx">004</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Re-point the near TV</span><span class="d">Retire the bar's old direct-to-TV cable. Set the near TV to the HDMI input where the old plumbing arrives (the one that lit in step 001).</span></label></li>
         <li><label><span class="idx">005</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Pull the green audio plug</span><span class="d">The green Phoenix connector on the Kramer feeds the old ceiling-speaker DSP. Leave it connected and meeting audio plays twice — echo ticket.</span></label></li>
-        <li><label><span class="idx">006</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Set both TVs</span><span class="d">Menu → Advanced option → Power save → MODE 2 (wakes on signal) · Auto signal detection → OFF (don't fight the switcher) · HDMI One Wire (CEC) → OFF.</span></label></li>
-        <li><label><span class="idx">007</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Confirm switcher mode</span><span class="d">Kramer front panel: AUTO lit, LAST unlit. That's Priority mode — the factory default. Nothing to program.</span></label></li>
+        <li><label><span class="idx">006</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Set both TVs</span><span class="d">Menu → Advanced option → Power save → MODE 2 (wakes on signal) · Auto signal detection → OFF (don't fight the switcher) · HDMI One Wire (CEC) → OFF.</span><span class="note">menu = the HOME button, not the Android gear app · MODE 2, not Mode 1 — Mode 1 looks identical but never wakes on its own</span></label></li>
+        <li><label><span class="idx">007</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Confirm switcher mode</span><span class="d">Kramer front panel: AUTO lit, LAST unlit. That's Priority mode — the factory default. Nothing to program.</span><span class="note">stuck on the bar with a laptop plugged in? someone tapped INPUT 2 by hand — press AUTO to release it</span></label></li>
         <li><label><span class="idx">008</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Beat on it</span><span class="d">Laptop plug/unplug ×5 — takes both screens, falls back to Teams every time. Join a test meeting — both walls. Let the room sit 15 min — both TVs sleep, then wake on the next meeting.</span></label></li>
-        <li><label><span class="idx">009</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Lock it in</span><span class="d">Only after everything passes: flip the Kramer's DIP-3 (Lock EDID) ON so TV sleep cycles can never confuse the switching.</span></label></li>
+        <li><label><span class="idx">009</span><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="t">Lock it in</span><span class="d">Only after everything passes: flip the Kramer's DIP-3 (Lock EDID) ON so TV sleep cycles can never confuse the switching.</span><span class="note">DIP-4 is reversed — down = HDCP OFF. leave every DIP but 3 alone.</span></label></li>
       </ul>
     </section>
 
     <section class="bucket">
-      <div class="bucket-head"><h2>FAQ</h2><span class="n">6 entries</span></div>
+      <div class="bucket-head"><h2>FAQ</h2><span class="n">7 entries</span></div>
       <ul class="rows">
         <li><div class="q">Why won't the Rally Bar just do this itself?</div><div class="a">Teams appliance mode has no mirror/duplicate option — confirmed in Microsoft's release notes and Logitech's CollabOS docs through mid-2026. Ironically, BYOD mode (bar as a USB webcam for a laptop) mirrors both ports natively. Teams mode is the one that can't.</div></li>
         <li><div class="q">So was the hardware broken this whole time?</div><div class="a">No. Nothing was missing or defective. The one-display behavior is a Teams software limitation. The "dual display" the product sheet mentions is real, but it means extend (gallery + content split) — and it needs a Teams Rooms Pro license to even turn on.</div></li>
@@ -217,6 +217,7 @@
         <li><div class="q">What about the touchscreen and the table camera cables?</div><div class="a">The Cat5 lines from the table are the Tap controller and the Sight camera talking to the bar. Controller and camera traffic — no video ever rides them. Don't touch.</div></li>
         <li><div class="q">Is 1080p on an 86" TV going to look bad?</div><div class="a">It's what the room has always shown — the bar outputs 1080p60 max (Logitech's own spec) in every mode, even plugged straight into the TV. The fix changes where the picture goes, not what it looks like.</div></li>
         <li><div class="q">Do the TVs turn themselves on and off?</div><div class="a">Yes — Power save Mode 2 makes each TV sleep when the signal drops and wake the moment it returns. No remote hunting, no CEC dependence.</div></li>
+        <li><div class="q">Anything to set on the Teams / admin side?</div><div class="a">One thing worth a look: the bar should be on <span class="m">Single</span> display, not Dual. If it was ever set to Dual and you switch it back, the bar keeps behaving like it drives two separate screens until it's <strong>restarted</strong> — so reboot it after the change. And there's genuinely no mirror toggle to hunt for; the plumbing does the mirroring, and that's expected.</div></li>
       </ul>
     </section>
 
@@ -224,10 +225,11 @@
       <div class="bucket-head"><h2>If It Fights You</h2><span class="n">symptom → move</span></div>
       <ul class="rows">
         <li><span class="sym">Laptop test lights only the far TV</span><span class="fix">The near TV's old feed cable was borrowed to connect the bar. Restore that run (it exists — trace it), then continue. Still $0 parts.</span></li>
-        <li><span class="sym">Laptop doesn't take over / doesn't release</span><span class="fix">Desk plate and bar are swapped at the Kramer. Desk = Input 1, bar = Input 2. Priority order is fixed in hardware — the fix is physical, not a setting.</span></li>
+        <li><span class="sym">Laptop doesn't take over / doesn't release</span><span class="fix">First check the wiring: desk plate = Input 1, bar = Input 2 (priority is fixed in hardware). If the wiring's right but it's frozen on the bar, someone tapped INPUT 2 by hand — press AUTO to release it. It won't fall back on its own, because the bar is always live.</span></li>
         <li><span class="sym">TVs keep changing inputs on their own</span><span class="fix">Auto signal detection is still ON in the TV menu. Turn it off on both — the Kramer decides the source, not the TVs.</span></li>
-        <li><span class="sym">Meeting audio echoes or doubles</span><span class="fix">The green Phoenix plug is still on the Kramer feeding the old speaker DSP. Pull it — the bar's own speakers carry the meeting.</span></li>
+        <li><span class="sym">Meeting audio echoes or doubles</span><span class="fix">The green Phoenix plug is still on the Kramer feeding the old speaker DSP. Pull it — the bar's own speakers carry the meeting. If it still doubles, the old ClearOne is live on another path — power it down and mute its ceiling speakers.</span></li>
         <li><span class="sym">Screens black or scrambled after the room sleeps</span><span class="fix">Classic EDID renegotiation. Flip Kramer DIP-3 (Lock EDID) ON. If a picture comes back at low res, power-cycle the TVs once after locking.</span></li>
+        <li><span class="sym">Both walls garbled or stuck low-res on power-up</span><span class="fix">The switcher latched a bad EDID — it grabs the first one it sees at power-on. Bring the room up in order: both TVs on and settled → the switcher next → the bar and laptop last. To recover now, power-cycle just the Kramer once the TVs are lit.</span></li>
         <li><span class="sym">Bar says "no device connected" after waking</span><span class="fix">Known CollabOS wake bug — restart the bar. If it recurs, adjust the room's power-saving policy in Teams admin rather than fighting it locally.</span></li>
         <li><span class="sym">Far TV sparkles, drops out, or won't sync</span><span class="fix">The far wall is a long <em>regular HDMI</em> run (no Cat extender in this room). Reseat both ends; if it persists, swap in a high-speed / active HDMI cable rated for the length — or drop in an HDBaseT extender pair (see parts). At 1080p60 a good passive cable handles the distance.</span></li>
       </ul>
