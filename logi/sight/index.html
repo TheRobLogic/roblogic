@@ -204,11 +204,11 @@
         <text class="t-lab" x="120" y="246" fill="#8a8a8a">short jumper</text>
 
         <!-- TAP aside -->
-        <rect class="box-dash" x="340" y="300" width="230" height="94" rx="4"/>
-        <text class="t-title" x="455" y="326" text-anchor="middle" fill="#666666">LOGITECH TAP</text>
-        <text class="t-sub" x="455" y="344" text-anchor="middle">separate device · not in the Sight path</text>
-        <text class="t-sub" x="455" y="360" text-anchor="middle">powers itself — 802.3af or USB-C from bar</text>
-        <text class="t-sub" x="455" y="376" text-anchor="middle">one injector NEVER feeds two devices</text>
+        <rect class="box-dash" x="330" y="300" width="260" height="94" rx="4"/>
+        <text class="t-title" x="460" y="326" text-anchor="middle" fill="#666666">LOGITECH TAP</text>
+        <text class="t-sub" x="460" y="344" text-anchor="middle">separate device · not in the Sight path</text>
+        <text class="t-sub" x="460" y="360" text-anchor="middle">power: its own DC brick, or any 802.3af source</text>
+        <text class="t-sub" x="460" y="376" text-anchor="middle">bar USB-C won't power it · no splitters</text>
 
         <!-- DATA run -->
         <path class="wire" style="stroke:var(--data); stroke-width:3.6" d="M260 130 L718 130"/>
@@ -258,8 +258,8 @@
   <section class="blk">
     <div class="blk-head"><h2>The Hookup</h2><span class="n">in order · no pairing step exists</span></div>
     <ol class="fix">
-      <li><b>Power first.</b> Wall outlet → Phihong injector → Sight <b>POWER</b> jack (short jumper at the table). If the Phihong is feeding the Tap today, the Tap needs its own power — small 802.3af injector or USB-C from the bar. One injector never feeds two.</li>
-      <li><b>The run.</b> Sight <b>DATA</b> jack → shielded Cat6A → host dongle at the bar. Passive path only — if it patches through any network switch it will not work. Using the A07 plate? Verify shielded + passive end-to-end.</li>
+      <li><b>Power first.</b> Wall outlet → Phihong injector → Sight <b>POWER</b> jack (short jumper at the table). Injector LED: <b>solid green = powering</b> · slow amber blink = not seeing the Sight (check the far end) · fast amber blink = short, unplug. If the Phihong is feeding the Tap today, the Tap needs its own power — its OEM DC brick (check the boxes) or any 802.3af injector; the bar's USB-C will <b>not</b> power a Tap. One injector never feeds two.</li>
+      <li><b>The run.</b> Sight <b>DATA</b> jack → shielded Cat6A → host dongle at the bar. <b>No Cat6A ships in the Sight kit</b> — the run is your own cable, and the kit's Tap Cat5e cable is the wrong spec (don't substitute it). Shielded by eye: <b>"S/FTP" printed on the jacket + metal RJ45 shell</b> (plastic plug = UTP = won't work). Passive path only — using the A07 plate? <b>Test it with a laptop first:</b> link light / DHCP = live switch port, don't use it; dead = good.</li>
       <li><b>The dongle.</b> Plug its two short leads straight into the bar: <b>USB-A</b> + <b>MIC POD</b> ports. No USB hubs.</li>
       <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = data-path fault (dongle, ports, or cable).</li>
       <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. Auto hand-off needs CollabOS <b>1.13+</b> — on by default since 2.0.A; current is 2.1.0, which also fixes Sight-detection bugs. Behind on firmware? Update <b>on-device</b>: Settings › Updates › Update (~20 min, no Teams admin needed).</li>
@@ -268,7 +268,7 @@
     </ol>
     <div class="conf">
       <div><b>From the base label:</b> Sight model VU0067 · PoE, ~14W draw, needs PoE+ (at) class supply.</div>
-      <div><b>Verify onsite:</b> A07 run shielded + passive · what the Phihong feeds today · CollabOS ≥ 1.13.</div>
+      <div><b>Verify onsite:</b> A07 run shielded + passive (laptop test) · what the Phihong feeds today · CollabOS ≥ 1.13 · a real Cat6A S/FTP cable on the truck — the kit doesn't include one.</div>
       <div><b>Not involved:</b> the Tap · the LAN · yesterday's TV/HDMI chain.</div>
     </div>
   </section>
