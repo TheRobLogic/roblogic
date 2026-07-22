@@ -262,7 +262,8 @@
       <li><b>The run.</b> Sight <b>DATA</b> jack → shielded Cat6A → host dongle at the bar. Passive path only — if it patches through any network switch it will not work. Using the A07 plate? Verify shielded + passive end-to-end.</li>
       <li><b>The dongle.</b> Plug its two short leads straight into the bar: <b>USB-A</b> + <b>MIC POD</b> ports. No USB hubs.</li>
       <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = data-path fault (dongle, ports, or cable).</li>
-      <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. Auto hand-off between bar and Sight needs CollabOS <b>1.13+</b> (updates via Teams admin, not locally). Admin PIN = room resource account, or try 1234.</li>
+      <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. Auto hand-off needs CollabOS <b>1.13+</b> — on by default since 2.0.A; current is 2.1.0, which also fixes Sight-detection bugs. Behind on firmware? Update <b>on-device</b>: Settings › Updates › Update (~20 min, no Teams admin needed).</li>
+      <li><b>Admin PIN reality.</b> Teams mode has <b>no factory default PIN</b> — if none was ever set, it prompts you to create one on the spot. If a PIN bounces you, one was set by the installer or pushed from Teams admin (1234 is only the non-Teams default).</li>
       <li><b>Prove it.</b> Live test call — talk from different seats, watch the camera hand off between bar and Sight. Then log the serial off the base label.</li>
     </ol>
     <div class="conf">
