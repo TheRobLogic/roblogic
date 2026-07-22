@@ -258,7 +258,7 @@
   <section class="blk">
     <div class="blk-head"><h2>The Hookup</h2><span class="n">in order · no pairing step exists</span></div>
     <ol class="fix">
-      <li><b>Power first.</b> Wall outlet → the black Phihong power injector → Sight <b>POWER</b> jack (short cable at the table). The injector's own light tells you how it went: <b>steady green = it's powering the Sight</b> · slow amber blink = powered up but doesn't feel the Sight on the line (problem's at the far end) · fast amber blink = something's shorted, unplug. If that injector is what's running the Tap today, the Tap needs its own juice — its own wall adapter (dig through the boxes) or any cheap basic PoE injector (the 15W kind, label says "802.3af"). The bar's USB-C port will <b>not</b> power a Tap, and one injector can never feed two things.</li>
+      <li><b>Power first.</b> Wall outlet → the black Phihong power injector → Sight <b>POWER</b> jack (short cable at the table). The injector's own light tells you how it went: <b>steady green = it's powering the Sight</b> · slow amber blink = powered up but doesn't feel the Sight on the line (problem's at the far end) · fast amber blink = something's shorted, unplug. Good news from the parts pile: there are <b>two injectors on site</b> — the white wall-plug one (label: "IEEE802.3at compliant PSE") is the Tap kit's and stays with the Tap; the black Phihong is free, and it's the Sight's. One injector can never feed two things, but you don't need it to.</li>
       <li><b>The run.</b> Sight <b>DATA</b> jack → shielded cable → the little adapter at the bar. <b>The kit does NOT include this cable</b> — you bring it, and it has to be the heavy shielded kind: look for <b>"S/FTP" and "Cat6A" printed on the jacket, and a shiny metal tip on the plug</b>. All-plastic plug = ordinary network cable = will not work (the Cat5e cable from the Tap's box is exactly that — don't use it). The path must be one straight line to the bar, never through a network switch. Want to use the A07 wall plate? <b>Plug a laptop into it first:</b> if the laptop gets internet or a link light, that jack is live network — don't use it. Totally dead = perfect.</li>
       <li><b>The adapter ("host dongle").</b> Small box from the kit: network jack on one side, two short tails on the other. The run plugs into its jack; its two tails plug straight into the back of the bar — one into any <b>USB-A</b> port (all 3 are fine), one into the <b>MIC POD</b> port. Straight in, never through a USB hub.</li>
       <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = see the rescue list at the bottom — on 2.0.x firmware that's a known bug, not your wiring.</li>
@@ -271,6 +271,21 @@
       <div><b>Verify onsite:</b> A07 run shielded + not live network (laptop test) · what the Phihong feeds today · bar software 1.13+ · a real shielded Cat6A cable on the truck — the kit doesn't include one.</div>
       <div><b>Not involved:</b> the Tap · the LAN · yesterday's TV/HDMI chain.</div>
     </div>
+  </section>
+
+  <!-- ============ YOUR PARTS ============ -->
+  <section class="blk">
+    <div class="blk-head"><h2>Your Parts, By Sight</h2><span class="n">ID'd from the 2026-07-22 photos</span></div>
+    <ol class="fix">
+      <li><b>Black tower, "logi" on the front</b> = the Sight. The lens still has its clear shipping film — <b>peel it before the test call</b> or the picture will be soft.</li>
+      <li><b>Black stick that says "SIGHT Dongle"</b> on the back (Model VU0068) = the adapter for the bar. Its cable splits into two tails: a normal USB-A plug and a smaller one — USB-A tail into any USB-A port on the bar, small tail into the MIC POD port.</li>
+      <li><b>WHITE stick that says "Dongle Transceiver"</b> = the <b>Tap's</b>, not yours today. Easy rule: <b>black stick = Sight, white stick = Tap.</b></li>
+      <li><b>White wall plug, label "Single Port Power over Ethernet · IEEE802.3at"</b> = the Tap's power. It stays with the Tap.</li>
+      <li><b>Black Phihong brick</b> = the Sight's power. Its cable goes to the Sight's <b>POWER</b> jack (the one ringed in yellow on the base, labeled POWER).</li>
+      <li><b>On the Sight's base:</b> POWER = yellow-ringed jack · DATA = the jack with the little two-tailed-adapter drawing etched next to it · the third jack (in the black rubber cutout) = mic pods / second Sight, unused today.</li>
+      <li><b>Long grey cable coiled around the Sight's base, shiny metal plug tips</b> = your data-run candidate. <b>One check left: read the printing on the jacket.</b> Says <b>CAT6A</b> (with S/FTP or SSTP) → that's the run, use it. Says <b>CAT5E</b> → it's a Tap-kit spare, don't use it.</li>
+      <li><b>Back of the bar, from the photos:</b> HDMI-TV1 and Ethernet are plugged (correct, yesterday's fix), HDMI-TV2 empty (correct — leave it), USB-A ports and MIC POD port free and waiting for the dongle.</li>
+    </ol>
   </section>
 
   <!-- ============ LED DECODE ============ -->
