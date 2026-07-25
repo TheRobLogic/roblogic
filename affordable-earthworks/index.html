@@ -4,211 +4,186 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Affordable Earthworks — the plan</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚜</text></svg>">
+<title>Affordable Earthworks</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2316150f'/><rect x='14' y='40' width='72' height='20' fill='%23ffc400'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  :root { --ink:#1a1a1a; --meta:#686868; --blue:#0073aa; --blue-dark:#00527a; --rule:#d1d1d1; }
-  body { background:var(--ink); color:var(--ink); font-family:'Merriweather',Georgia,serif; font-size:1rem; line-height:1.75; }
-  .frame { background:#fff; margin:21px; padding:0 4%; min-height:calc(100vh - 42px); }
-  @media (max-width:640px) { .frame { margin:10px; } }
-  .wrap { max-width:1040px; margin:0 auto; }
-  a { color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
-  a:hover { color:var(--blue-dark); }
-  a:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+  :root { --ink:#16150f; --bone:#f0ece4; --yellow:#ffc400; --dim:#6a675d; }
+  body { background:var(--bone); color:var(--ink); font-family:'IBM Plex Sans',system-ui,sans-serif;
+         font-size:1.06rem; line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .display { font-family:'Archivo Black',sans-serif; font-weight:400; letter-spacing:-.02em; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
+  a { color:inherit; }
+  a:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
 
-  header.site { padding:3.2rem 0 2.4rem; border-bottom:1px solid var(--rule); }
-  .site-title { font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(1.9rem, 4vw, 2.6rem); line-height:1.15; letter-spacing:-.01em; }
-  .site-desc { font-family:'Montserrat',sans-serif; color:var(--meta); font-size:.95rem; margin-top:.5rem; }
-  nav.primary { margin-top:1.5rem; }
-  nav.primary ul { list-style:none; display:flex; gap:1.6rem; flex-wrap:wrap; }
-  nav.primary a { font-family:'Montserrat',sans-serif; font-weight:600; font-size:.85rem; color:var(--ink); text-decoration:none; }
-  nav.primary a:hover { color:var(--blue); text-decoration:underline; }
+  .topbar { background:var(--ink); color:var(--bone); }
+  .topbar .wrap { display:flex; align-items:center; gap:1rem; height:52px; }
+  .topbar span { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+  .topbar i { display:block; flex:1; height:4px; background:var(--yellow); }
 
-  .intro { padding:3.6rem 0 3.2rem; border-bottom:1px solid var(--rule); }
-  .intro h1 { font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(2rem, 4.6vw, 3.3rem); line-height:1.1; letter-spacing:-.02em; max-width:18ch; }
-  .intro p { margin-top:1.4rem; max-width:62ch; font-weight:300; font-size:1.06rem; }
+  .hero { padding:clamp(3.4rem,8vw,6rem) 0 clamp(2.6rem,6vw,4rem); }
+  .hero h1 { font-size:clamp(2.7rem,8.5vw,6rem); line-height:.94; max-width:14ch; }
+  .hero p { margin-top:1.6rem; font-size:clamp(1.05rem,2.2vw,1.35rem); max-width:34ch; color:#33312a; }
 
-  article.post { display:grid; grid-template-columns:160px minmax(0,1fr); gap:2rem; padding:2.8rem 0; border-bottom:1px solid var(--rule); }
-  @media (max-width:700px) { article.post { grid-template-columns:1fr; gap:.9rem; padding:2.2rem 0; } }
-  .postmeta { font-family:'Montserrat',sans-serif; font-size:.8rem; color:var(--meta); line-height:1.6; }
-  .postmeta .lbl { display:block; font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:.7rem; color:var(--ink); }
-  .entry h2 { font-weight:700; font-size:clamp(1.4rem, 2.8vw, 1.85rem); line-height:1.25; margin-bottom:.9rem; }
-  .entry h2 a { color:var(--ink); text-decoration:none; }
-  .entry h2 a:hover { color:var(--blue); text-decoration:underline; }
-  .entry p { margin-bottom:1.1rem; font-weight:300; max-width:62ch; }
-  .entry p:last-child { margin-bottom:0; }
-  .entry blockquote { border-left:4px solid var(--ink); padding:.2rem 0 .2rem 1.4rem; margin:1.4rem 0 0; font-style:italic; color:#3d3d3d; max-width:56ch; }
-  .entry blockquote .who { display:block; font-family:'Montserrat',sans-serif; font-style:normal; font-size:.78rem; color:var(--meta); margin-top:.6rem; }
-  .entry ul.plain { list-style:none; max-width:62ch; }
-  .entry ul.plain li { padding:.6rem 0; border-top:1px solid #ececec; font-weight:300; }
-  .entry ul.plain li:first-child { border-top:0; padding-top:0; }
-  .entry ul.plain b { font-weight:700; }
-  .entry .more { font-family:'Montserrat',sans-serif; font-size:.85rem; font-weight:600; }
+  .moves { border-top:5px solid var(--ink); }
+  .move { display:grid; grid-template-columns:auto 1fr; gap:clamp(1.2rem,4vw,2.6rem);
+          padding:clamp(1.8rem,4vw,2.6rem) 0; border-bottom:1px solid #d5d0c4; align-items:start; }
+  .num { font-family:'Archivo Black',sans-serif; font-size:clamp(2.6rem,7vw,4.6rem); line-height:.8;
+         color:var(--yellow); -webkit-text-stroke:2px var(--ink); }
+  .move h2 { font-family:'Archivo Black',sans-serif; font-weight:400; letter-spacing:-.01em;
+             font-size:clamp(1.35rem,3.4vw,2.1rem); line-height:1.1; text-transform:uppercase; }
+  .move p { margin-top:.6rem; max-width:44ch; color:#33312a; }
 
-  .section-lead { padding:2.6rem 0 0; }
-  .section-lead p { font-weight:300; max-width:62ch; }
+  .strip { background:var(--yellow); margin-top:2.2rem; }
+  .strip .wrap { padding-top:1.3rem; padding-bottom:1.3rem; }
+  .strip p { font-weight:600; font-size:clamp(1rem,2vw,1.15rem); max-width:52ch; }
 
-  footer.site { border-top:1px solid var(--rule); margin-top:0; padding:2rem 0 2.6rem; font-family:'Montserrat',sans-serif; font-size:.8rem; color:var(--meta); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .need { background:var(--ink); color:var(--bone); padding:clamp(2.6rem,6vw,4rem) 0; }
+  .need h2 { font-family:'Archivo Black',sans-serif; font-weight:400; text-transform:uppercase;
+             font-size:clamp(1.4rem,3.6vw,2.2rem); letter-spacing:-.01em; margin-bottom:1.6rem; }
+  .need ul { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:0 3rem; }
+  .need li { padding:.85rem 0; border-top:1px solid #38352b; font-size:1.02rem; }
+  .need li b { color:var(--yellow); font-weight:600; }
+
+  .looks { padding:clamp(2.8rem,6vw,4.5rem) 0 0; }
+  .looks h2 { font-family:'Archivo Black',sans-serif; font-weight:400; text-transform:uppercase;
+              font-size:clamp(1.4rem,3.6vw,2.2rem); letter-spacing:-.01em; }
+  .looks .lede { margin-top:.5rem; color:#33312a; max-width:40ch; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin-top:2rem; }
+  @media (max-width:860px) { .grid { grid-template-columns:1fr; gap:2rem; } }
+  .tile { display:flex; flex-direction:column; text-decoration:none; background:#fff;
+          border:3px solid var(--ink); }
+  .tile img { width:100%; aspect-ratio:16/11; object-fit:cover; object-position:top center;
+              border-bottom:3px solid var(--ink); display:block; }
+  .tile .body { padding:1.1rem 1.1rem 1.3rem; flex:1; }
+  .tile h3 { font-family:'Archivo Black',sans-serif; font-weight:400; font-size:1.25rem; line-height:1.15; }
+  .tile p { margin-top:.35rem; font-size:.95rem; color:var(--dim); }
+  .open { display:flex; align-items:center; justify-content:space-between; gap:1rem;
+          background:var(--ink); color:var(--bone); padding:1.15rem 1.1rem;
+          font-family:'Archivo Black',sans-serif; font-size:1.15rem; text-transform:uppercase;
+          letter-spacing:.02em; }
+  .open .arw { font-size:1.3rem; line-height:1; }
+  .tile:hover .open, .tile:focus-visible .open { background:var(--yellow); color:var(--ink); }
+  .tile:hover img, .tile:focus-visible img { filter:saturate(1.08); }
+
+  .later { padding:clamp(2.8rem,6vw,4rem) 0 clamp(2rem,4vw,3rem); }
+  .later h2 { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); }
+  .later p { margin-top:.5rem; max-width:44ch; color:#33312a; }
+  .later ul { list-style:none; margin-top:1rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 2.5rem; }
+  .later li { padding:.6rem 0; border-top:1px solid #d5d0c4; font-size:.98rem; color:#33312a; }
+
+  footer { background:var(--ink); color:var(--bone); }
+  footer .wrap { display:flex; align-items:center; gap:1rem; height:64px; }
+  footer span { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+  footer i { display:block; flex:1; height:4px; background:var(--yellow); }
 
   @media print {
-    body { background:#fff; }
-    .frame { margin:0; }
-    nav.primary { display:none; }
-    article.post { break-inside:avoid; }
+    .tile { break-inside:avoid; }
+    .grid { grid-template-columns:repeat(3,1fr); }
   }
 </style>
 </head>
 <body>
-<div class="frame">
+
+<div class="topbar"><div class="wrap"><span>Affordable Earthworks</span><i></i></div></div>
+
+<section class="hero">
   <div class="wrap">
-
-    <header class="site">
-      <p class="site-title">Affordable Earthworks</p>
-      <p class="site-desc">A plan, from Rob &middot; July 2026</p>
-      <nav class="primary" aria-label="Page">
-        <ul>
-          <li><a href="#plan">The plan</a></li>
-          <li><a href="#looks">The looks</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <div class="intro" id="plan">
-      <h1>I can help you do this.</h1>
-      <p>When somebody googles excavation, grading, or demo in San Diego, Affordable Earthworks doesn&rsquo;t come up &mdash; not on Maps, not anywhere. Three moves fix it, and I&rsquo;ll do almost all of the work. Here&rsquo;s the plan.</p>
-    </div>
-
-    <main>
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Move 1</span>
-          Week one
-        </div>
-        <div class="entry">
-          <h2>Get on Google.</h2>
-          <p>Google doesn&rsquo;t have a listing for you &mdash; that&rsquo;s the whole reason you&rsquo;re not on Maps. I&rsquo;ll set one up, claim your Yelp page (eight five-star reviews sitting on it already), and fix the wrong phone number a couple directories have. You don&rsquo;t have to do anything for this one.</p>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Move 2</span>
-          Week two
-        </div>
-        <div class="entry">
-          <h2>Turn the website on.</h2>
-          <p>One page at affordableearthworks.com, replacing the old site. Pick one of the three looks below and I&rsquo;ll build it out. It&rsquo;ll work on a phone, the number is tap-to-call, and quote requests go straight to you.</p>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Move 3</span>
-          Ongoing
-        </div>
-        <div class="entry">
-          <h2>Ask for reviews.</h2>
-          <p>After a job, text the customer one link asking for a Google review. I&rsquo;ll set up the link and write the text &mdash; you just copy it and send it. Reviews are what move you up the map, and this is the only part that&rsquo;s yours to do.</p>
-          <blockquote>
-            &ldquo;An artist with a backhoe.&rdquo;
-            <span class="who">one of the Yelp reviews &mdash; people already say this stuff about you</span>
-          </blockquote>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Your part</span>
-          Five things
-        </div>
-        <div class="entry">
-          <h2>What I need from you.</h2>
-          <ul class="plain">
-            <li><b>Pick a look</b> from the three below.</li>
-            <li><b>The full-color logo,</b> if you can find it.</li>
-            <li><b>A street address</b> for Google&rsquo;s verification postcard. It never gets published &mdash; the listing shows your service area, not your address.</li>
-            <li><b>Ten or so job photos</b> off your phone. Before-and-afters are the good ones.</li>
-            <li><b>The GoDaddy login,</b> so I can point the domain at the new page.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Proof</span>
-          Monthly
-        </div>
-        <div class="entry">
-          <h2>How you&rsquo;ll know it&rsquo;s working.</h2>
-          <p>Google counts every call and every direction request your listing gets. Once a month I&rsquo;ll send you the screenshot, and you can see for yourself.</p>
-        </div>
-      </article>
-
-      <div class="section-lead" id="looks">
-        <p>Three looks, same facts. Pick whichever one feels like the business &mdash; it becomes the real site at affordableearthworks.com.</p>
-      </div>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Look one</span>
-        </div>
-        <div class="entry">
-          <h2><a href="t4/">Clean and modern</a></h2>
-          <p>White and light grey, plain type, big photo tiles. Quiet and current.</p>
-          <p class="more"><a href="t4/">Open it &rarr;</a></p>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Look two</span>
-        </div>
-        <div class="entry">
-          <h2><a href="t7/">Bold and graphic</a></h2>
-          <p>Cobalt blue on off-white, one huge headline, a running list of services.</p>
-          <p class="more"><a href="t7/">Open it &rarr;</a></p>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Look three</span>
-        </div>
-        <div class="entry">
-          <h2><a href="t33/">Warm and editorial</a></h2>
-          <p>Ivory, olive and rust with a serif face. Reads like a printed portfolio.</p>
-          <p class="more"><a href="t33/">Open it &rarr;</a></p>
-        </div>
-      </article>
-
-      <article class="post">
-        <div class="postmeta">
-          <span class="lbl">Down the road</span>
-          Optional
-        </div>
-        <div class="entry">
-          <h2>If the phone gets busy.</h2>
-          <p>Not part of the plan &mdash; just things I already run for other businesses. Any of them can be bolted on later.</p>
-          <ul class="plain">
-            <li>Quote requests from the site text your phone the moment they come in.</li>
-            <li>Missed calls get an automatic text back asking for the job and the address.</li>
-            <li>Review requests send themselves after each job.</li>
-            <li>Quote emails show up with a reply already drafted.</li>
-          </ul>
-        </div>
-      </article>
-    </main>
-
-    <footer class="site">
-      <span>Prepared for Affordable Earthworks Inc.</span>
-      <span>Rob Logic &middot; July 2026</span>
-    </footer>
-
+    <h1 class="display">I can help you do this.</h1>
+    <p>Nobody googling excavation in San Diego finds you. Three moves fix that.</p>
   </div>
-</div>
+</section>
+
+<section class="moves">
+  <div class="wrap">
+    <div class="move">
+      <div class="num">1</div>
+      <div>
+        <h2>Get on Google</h2>
+        <p>You have no listing &mdash; that&rsquo;s why you&rsquo;re not on Maps. I&rsquo;ll create it, claim your Yelp page, and kill the wrong phone number that&rsquo;s out there.</p>
+      </div>
+    </div>
+    <div class="move">
+      <div class="num">2</div>
+      <div>
+        <h2>Turn the site on</h2>
+        <p>One page at affordableearthworks.com, built to get calls. Pick a look below and I&rsquo;ll build it.</p>
+      </div>
+    </div>
+    <div class="move">
+      <div class="num">3</div>
+      <div>
+        <h2>Ask for reviews</h2>
+        <p>Text every customer a review link after the job. I&rsquo;ll set it up and write it. Reviews are what move you up the map.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"><div class="wrap"><p>Google counts every call your listing brings in. I&rsquo;ll send you the numbers.</p></div></div>
+
+<section class="need">
+  <div class="wrap">
+    <h2>What I need from you</h2>
+    <ul>
+      <li><b>A look</b> &mdash; picked from the three below</li>
+      <li><b>The color logo</b> &mdash; if you&rsquo;ve got it</li>
+      <li><b>A street address</b> &mdash; for Google&rsquo;s postcard, never published</li>
+      <li><b>Ten job photos</b> &mdash; off your phone</li>
+      <li><b>The GoDaddy login</b> &mdash; to point the domain</li>
+    </ul>
+  </div>
+</section>
+
+<section class="looks">
+  <div class="wrap">
+    <h2>Pick a look</h2>
+    <p class="lede">Same business, three directions. Whichever you pick becomes the real site.</p>
+    <div class="grid">
+      <a class="tile" href="t4/">
+        <img src="img/look-t4.jpg" alt="Clean and modern version of the site">
+        <div class="body">
+          <h3>Clean and modern</h3>
+          <p>White, plain type, big photos.</p>
+        </div>
+        <div class="open">Open <span class="arw">&rarr;</span></div>
+      </a>
+      <a class="tile" href="t7/">
+        <img src="img/look-t7.jpg" alt="Bold and graphic version of the site">
+        <div class="body">
+          <h3>Bold and graphic</h3>
+          <p>Cobalt blue, one huge headline.</p>
+        </div>
+        <div class="open">Open <span class="arw">&rarr;</span></div>
+      </a>
+      <a class="tile" href="t33/">
+        <img src="img/look-t33.jpg" alt="Warm and editorial version of the site">
+        <div class="body">
+          <h3>Warm and editorial</h3>
+          <p>Ivory, olive and rust. Reads like print.</p>
+        </div>
+        <div class="open">Open <span class="arw">&rarr;</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="later">
+  <div class="wrap">
+    <h2>Down the road</h2>
+    <p>Stuff I already run for other businesses. Bolt any of it on whenever.</p>
+    <ul>
+      <li>Quote requests text your phone</li>
+      <li>Missed calls get a text back</li>
+      <li>Review requests send themselves</li>
+    </ul>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Affordable Earthworks</span><i></i></div></footer>
+
 </body>
 </html>
