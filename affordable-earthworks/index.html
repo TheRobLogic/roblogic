@@ -13,172 +13,120 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   :root { --ink:#16150f; --bone:#f0ece4; --yellow:#ffc400; --dim:#6a675d; }
   body { background:var(--bone); color:var(--ink); font-family:'IBM Plex Sans',system-ui,sans-serif;
-         font-size:1.06rem; line-height:1.55; -webkit-font-smoothing:antialiased; }
-  .display { font-family:'Archivo Black',sans-serif; font-weight:400; letter-spacing:-.02em; }
-  .wrap { max-width:1120px; margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
+         font-size:1.06rem; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
   a { color:inherit; }
-  a:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
+  a:focus-visible { outline:3px solid var(--yellow); outline-offset:3px; }
+  h2 { font-family:'Archivo Black',sans-serif; font-weight:400; text-transform:uppercase;
+       letter-spacing:-.01em; font-size:clamp(1.5rem,4vw,2.4rem); line-height:1; }
 
-  .topbar { background:var(--ink); color:var(--bone); }
-  .topbar .wrap { display:flex; align-items:center; gap:1rem; height:52px; }
-  .topbar span { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
-  .topbar i { display:block; flex:1; height:4px; background:var(--yellow); }
+  .bar { background:var(--ink); color:var(--bone); }
+  .bar .wrap { display:flex; align-items:center; gap:1rem; height:56px; }
+  .bar span { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
+  .bar i { display:block; flex:1; height:4px; background:var(--yellow); }
 
-  .hero { padding:clamp(3.4rem,8vw,6rem) 0 clamp(2.6rem,6vw,4rem); }
-  .hero h1 { font-size:clamp(2.7rem,8.5vw,6rem); line-height:.94; max-width:14ch; }
-  .hero p { margin-top:1.6rem; font-size:clamp(1.05rem,2.2vw,1.35rem); max-width:34ch; color:#33312a; }
-
-  .moves { border-top:5px solid var(--ink); }
-  .move { display:grid; grid-template-columns:auto minmax(0,1fr) minmax(0,1.5fr); gap:clamp(1.2rem,4vw,2.6rem);
-          padding:clamp(1.8rem,4vw,2.6rem) 0; border-bottom:1px solid #d5d0c4; align-items:start; }
-  @media (max-width:820px) { .move { grid-template-columns:auto minmax(0,1fr); } .move p { grid-column:1 / -1; } }
-  .num { font-family:'Archivo Black',sans-serif; font-size:clamp(2.6rem,7vw,4.6rem); line-height:.8;
-         color:var(--yellow); -webkit-text-stroke:2px var(--ink); }
-  .move h2 { font-family:'Archivo Black',sans-serif; font-weight:400; letter-spacing:-.01em;
-             font-size:clamp(1.35rem,3.4vw,2.1rem); line-height:1.1; text-transform:uppercase; }
-  .move p { margin-top:.6rem; max-width:44ch; color:#33312a; }
-
-  .strip { background:var(--yellow); margin-top:2.2rem; }
-  .strip .wrap { padding-top:1.3rem; padding-bottom:1.3rem; }
-  .strip p { font-weight:600; font-size:clamp(1rem,2vw,1.15rem); max-width:52ch; }
-
-  .need { background:var(--ink); color:var(--bone); padding:clamp(2.6rem,6vw,4rem) 0; }
-  .need h2 { font-family:'Archivo Black',sans-serif; font-weight:400; text-transform:uppercase;
-             font-size:clamp(1.4rem,3.6vw,2.2rem); letter-spacing:-.01em; margin-bottom:1.6rem; }
-  .need ul { list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:0 3rem; }
-  .need li { padding:.85rem 0; border-top:1px solid #38352b; font-size:1.02rem; }
-  .need li b { color:var(--yellow); font-weight:600; }
-
-  .looks { padding:clamp(2.8rem,6vw,4.5rem) 0 0; }
-  .looks h2 { font-family:'Archivo Black',sans-serif; font-weight:400; text-transform:uppercase;
-              font-size:clamp(1.4rem,3.6vw,2.2rem); letter-spacing:-.01em; }
-  .looks .lede { margin-top:.5rem; color:#33312a; max-width:40ch; }
-  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin-top:2rem; }
-  @media (max-width:860px) { .grid { grid-template-columns:1fr; gap:2rem; } }
-  .tile { display:flex; flex-direction:column; text-decoration:none; background:#fff;
-          border:3px solid var(--ink); }
-  .tile img { width:100%; aspect-ratio:16/11; object-fit:cover; object-position:top center;
+  .looks { padding:clamp(2.4rem,5vw,3.6rem) 0 clamp(2.4rem,5vw,4rem); }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:1.6rem; }
+  @media (max-width:880px) { .grid { grid-template-columns:1fr; gap:1.8rem; } }
+  .tile { display:flex; flex-direction:column; text-decoration:none; background:#fff; border:3px solid var(--ink); }
+  .tile img { width:100%; aspect-ratio:16/12; object-fit:cover; object-position:top center;
               border-bottom:3px solid var(--ink); display:block; }
-  .tile .body { padding:1.1rem 1.1rem 1.3rem; flex:1; }
-  .tile h3 { font-family:'Archivo Black',sans-serif; font-weight:400; font-size:1.25rem; line-height:1.15; }
-  .tile p { margin-top:.35rem; font-size:.95rem; color:var(--dim); }
+  .tile h3 { font-family:'Archivo Black',sans-serif; font-weight:400; font-size:1.2rem;
+             padding:1rem 1.1rem; flex:1; }
   .open { display:flex; align-items:center; justify-content:space-between; gap:1rem;
           background:var(--ink); color:var(--bone); padding:1.15rem 1.1rem;
-          font-family:'Archivo Black',sans-serif; font-size:1.15rem; text-transform:uppercase;
-          letter-spacing:.02em; }
-  .open .arw { font-size:1.3rem; line-height:1; }
+          font-family:'Archivo Black',sans-serif; font-size:1.2rem; text-transform:uppercase; }
   .tile:hover .open, .tile:focus-visible .open { background:var(--yellow); color:var(--ink); }
-  .tile:hover img, .tile:focus-visible img { filter:saturate(1.08); }
 
-  .later { padding:clamp(2.8rem,6vw,4rem) 0 clamp(2rem,4vw,3rem); }
-  .later h2 { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); }
-  .later p { margin-top:.5rem; max-width:44ch; color:#33312a; }
-  .later ul { list-style:none; margin-top:1rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 2.5rem; }
-  .later li { padding:.6rem 0; border-top:1px solid #d5d0c4; font-size:.98rem; color:#33312a; }
+  .proof { background:var(--ink); color:var(--bone); padding:clamp(2.4rem,5vw,3.6rem) 0; }
+  .proof h2 { color:var(--bone); }
+  .proof p { margin-top:.7rem; color:var(--yellow); font-weight:600; }
+  .proof figure { margin-top:1.6rem; border:3px solid var(--yellow); }
+  .proof img { width:100%; display:block; }
+  @media (max-width:880px) { .proof figure { max-width:420px; } }
 
-  footer { background:var(--ink); color:var(--bone); }
-  footer .wrap { display:flex; align-items:center; gap:1rem; height:64px; }
-  footer span { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
-  footer i { display:block; flex:1; height:4px; background:var(--yellow); }
+  .todo { padding:clamp(2.4rem,5vw,3.6rem) 0; }
+  .todo ol { list-style:none; counter-reset:s; margin-top:1.4rem;
+             display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:0 3rem; }
+  .todo ol > li { counter-increment:s; display:grid; grid-template-columns:2.4rem minmax(0,1fr); gap:.6rem;
+             align-items:baseline; padding:.9rem 0; border-top:2px solid var(--ink); font-size:1.06rem; }
+  .todo ol > li::before { content:counter(s); font-family:'Archivo Black',sans-serif; color:var(--yellow);
+                     -webkit-text-stroke:1.5px var(--ink); font-size:1.5rem; }
+  .todo ol b { font-weight:600; }
+  .todo ol em { font-style:normal; color:var(--dim); }
 
-  @media print {
-    .tile { break-inside:avoid; }
-    .grid { grid-template-columns:repeat(3,1fr); }
-  }
+  .later { border-top:2px solid var(--ink); padding:1.6rem 0 2.6rem; }
+  .later h3 { font-size:.74rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); }
+  .later ul { list-style:none; margin-top:.7rem; display:grid;
+              grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.3rem 2.5rem; }
+  .later li { font-size:.95rem; color:var(--dim); }
+
+  @media print { .tile, .proof figure { break-inside:avoid; } }
 </style>
 </head>
 <body>
 
-<div class="topbar"><div class="wrap"><span>Affordable Earthworks</span><i></i></div></div>
-
-<section class="hero">
-  <div class="wrap">
-    <h1 class="display">You&rsquo;re not on the map.</h1>
-    <p>Search excavation in San Diego and Affordable Earthworks doesn&rsquo;t come up. Three moves fix that.</p>
-  </div>
-</section>
-
-<section class="moves">
-  <div class="wrap">
-    <div class="move">
-      <div class="num">1</div>
-      <h2>Get on Google</h2>
-      <p>You have no listing &mdash; that&rsquo;s why you&rsquo;re not on Maps. I&rsquo;ll create it, claim your Yelp page, and kill the wrong phone number that&rsquo;s out there.</p>
-    </div>
-    <div class="move">
-      <div class="num">2</div>
-      <h2>Turn the site on</h2>
-      <p>One page at affordableearthworks.com, built to get calls. Pick a look below and I&rsquo;ll build it.</p>
-    </div>
-    <div class="move">
-      <div class="num">3</div>
-      <h2>Ask for reviews</h2>
-      <p>Text every customer a review link after the job. I&rsquo;ll set it up and write it. Reviews are what move you up the map.</p>
-    </div>
-  </div>
-</section>
-
-<div class="strip"><div class="wrap"><p>Google counts every call your listing brings in. I&rsquo;ll send you the numbers.</p></div></div>
-
-<section class="need">
-  <div class="wrap">
-    <h2>What I need from you</h2>
-    <ul>
-      <li><b>A look</b> &mdash; picked from the three below</li>
-      <li><b>The color logo</b> &mdash; if you&rsquo;ve got it</li>
-      <li><b>A street address</b> &mdash; for Google&rsquo;s postcard, never published</li>
-      <li><b>Ten job photos</b> &mdash; off your phone</li>
-      <li><b>The GoDaddy login</b> &mdash; to point the domain</li>
-    </ul>
-  </div>
-</section>
+<div class="bar"><div class="wrap"><span>Affordable Earthworks</span><i></i></div></div>
 
 <section class="looks">
   <div class="wrap">
     <h2>Pick a look</h2>
-    <p class="lede">Same business, three directions. Whichever you pick becomes the real site.</p>
     <div class="grid">
       <a class="tile" href="t4/">
-        <img src="img/look-t4.jpg" alt="Clean and modern version of the site">
-        <div class="body">
-          <h3>Clean and modern</h3>
-          <p>White, plain type, big photos.</p>
-        </div>
-        <div class="open">Open <span class="arw">&rarr;</span></div>
+        <img src="img/look-t4.jpg" alt="Clean and modern version">
+        <h3>Clean and modern</h3>
+        <div class="open">Open <span>&rarr;</span></div>
       </a>
       <a class="tile" href="t7/">
-        <img src="img/look-t7.jpg" alt="Bold and graphic version of the site">
-        <div class="body">
-          <h3>Bold and graphic</h3>
-          <p>Cobalt blue, one huge headline.</p>
-        </div>
-        <div class="open">Open <span class="arw">&rarr;</span></div>
+        <img src="img/look-t7.jpg" alt="Bold and graphic version">
+        <h3>Bold and graphic</h3>
+        <div class="open">Open <span>&rarr;</span></div>
       </a>
       <a class="tile" href="t33/">
-        <img src="img/look-t33.jpg" alt="Warm and editorial version of the site">
-        <div class="body">
-          <h3>Warm and editorial</h3>
-          <p>Ivory, olive and rust. Reads like print.</p>
-        </div>
-        <div class="open">Open <span class="arw">&rarr;</span></div>
+        <img src="img/look-t33.jpg" alt="Warm and editorial version">
+        <h3>Warm and editorial</h3>
+        <div class="open">Open <span>&rarr;</span></div>
       </a>
     </div>
   </div>
 </section>
 
-<section class="later">
+<section class="proof">
   <div class="wrap">
-    <h2>Down the road</h2>
-    <p>Stuff I already run for other businesses. Bolt any of it on whenever.</p>
-    <ul>
-      <li>Quote requests text your phone</li>
-      <li>Missed calls get a text back</li>
-      <li>Review requests send themselves</li>
-    </ul>
+    <h2>Google, right now</h2>
+    <p>Four competitors. You&rsquo;re not on it.</p>
+    <figure>
+      <picture>
+        <source media="(max-width:880px)" srcset="img/google-m.jpg">
+        <img src="img/google.jpg" alt="Google results for &ldquo;excavation san diego&rdquo; showing competitors and no listing for Affordable Earthworks">
+      </picture>
+    </figure>
   </div>
 </section>
 
-<footer><div class="wrap"><span>Affordable Earthworks</span><i></i></div></footer>
+<section class="todo">
+  <div class="wrap">
+    <h2>What you need to do</h2>
+    <ol>
+      <li><span><b>Pick a look</b> <em>&mdash; up top</em></span></li>
+      <li><span><b>Send the color logo</b></span></li>
+      <li><span><b>Send a street address</b> <em>&mdash; Google mails a code, never published</em></span></li>
+      <li><span><b>Send ten job photos</b></span></li>
+      <li><span><b>Send the GoDaddy login</b></span></li>
+      <li><span><b>Text customers a review link</b> <em>&mdash; after every job</em></span></li>
+    </ol>
+    <div class="later">
+      <h3>Later</h3>
+      <ul>
+        <li>Quote requests text your phone</li>
+        <li>Missed calls get a text back</li>
+        <li>Review requests send themselves</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="bar"><div class="wrap"><span>Affordable Earthworks</span><i></i></div></div>
 
 </body>
 </html>
