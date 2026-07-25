@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Affordable Earthworks — Excavation, Grading &amp; Demolition · East County SD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><rect x='14' y='38' width='10' height='24' fill='%230b2fbe'/><rect x='32' y='26' width='10' height='48' fill='%230b2fbe'/><rect x='50' y='14' width='10' height='72' fill='%230b2fbe'/><rect x='68' y='30' width='10' height='40' fill='%230b2fbe'/></svg>">
+  <style>
+    /* ============================================================
+       KINETIC — motion IS the identity.
+       One variable font (Anybody, wdth 50–150 / wght 100–900)
+       does everything; the letters breathe, stretch on hover,
+       and the ticker never sleeps. Ink on white, inversion bands.
+       Under prefers-reduced-motion the page stands still, fully.
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --paper: #fbfaf7;   /* a hair off pure white — cobalt halates on #fff at display sizes */
+      --ink: #0b2fbe;
+      --dim: #4c5a9e;
+      --font: 'Anybody', sans-serif;
+    }
+    body { background: var(--paper); color: var(--ink); font-family: var(--font); line-height: 1.5; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+    ::selection { background: var(--ink); color: var(--paper); }
+
+    .room { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); }
+
+    /* ---- top strip ---- */
+    .strip { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.9rem 0; border-bottom: 2px solid var(--ink); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; }
+    .strip .mark { font-weight: 900; font-stretch: 150%; font-size: 0.95rem; }
+    .strip .tel { white-space: nowrap; font-size: 0.95rem; padding: 0.55rem 0; display: inline-block; }
+    @media (max-width: 460px) { .strip .mark { font-size: 0.8rem; } }
+
+    /* ---- hero: the word ---- */
+    /* padding-block, NOT the padding shorthand — the shorthand would zero out .room's gutter */
+    .hero { padding-block: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem); }
+    .kicker { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em; color: var(--dim); }
+    /* --h1 is solved at runtime by fit(): binary-searched so the line exactly fills its box */
+    h1 { font-size: var(--h1, clamp(2.8rem, 13vw, 8rem)); line-height: 0.88; text-transform: uppercase; font-weight: 900; letter-spacing: -0.015em; margin: 0.5rem 0 1.1rem; }
+    h1[data-split]:not([data-fit]) { visibility: hidden; } /* no JS = no data-split = never hidden */
+    h1 .ln { display: block; white-space: nowrap; }
+    h1 .L { display: inline-block; font-variation-settings: 'wdth' 100, 'wght' 900; }
+    .sub { font-size: clamp(1rem, 2.4vw, 1.4rem); max-width: 42ch; font-weight: 500; }
+    .sub b { font-weight: 800; }
+
+    /* ---- ticker ---- */
+    .ticker { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); overflow: hidden; white-space: nowrap; padding: 0.55rem 0; margin: clamp(1.5rem, 4vw, 2.5rem) 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 5rem, #000 calc(100% - 5rem), transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 5rem, #000 calc(100% - 5rem), transparent); }
+    .ticker .lane { display: inline-block; }
+    .ticker span { font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.9rem; padding-right: 2.2rem; }
+    .ticker .o { color: var(--dim); font-weight: 400; }
+
+    /* ---- inverted poster band ---- */
+    .band { background: var(--ink); color: var(--paper); padding: clamp(2.4rem, 6vw, 4.5rem) 0; }
+    .band h2 { font-size: clamp(1.9rem, 6vw, 3.6rem); font-weight: 900; text-transform: uppercase; line-height: 1.0; letter-spacing: -0.005em; max-width: 18ch; text-indent: -0.42em; }
+    .band p { color: #c9d5ff; max-width: 52ch; margin-top: 1rem; font-size: 1rem; }
+
+    /* ---- numbers that count ---- */
+    .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding-block: clamp(2rem, 5vw, 3.4rem); }
+    @media (max-width: 680px) { .figures { grid-template-columns: 1fr; } }
+    .fig { border: 2px solid var(--ink); padding: 1.2rem 1.3rem 1.4rem; }
+    .fig b { display: block; font-size: clamp(1.9rem, 4.4vw, 3rem); font-weight: 900; font-stretch: 125%; line-height: 1; font-variant-numeric: tabular-nums; }
+    .fig span { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); }
+
+    /* ---- proof: from this → to this ---- */
+    .proof { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+    .proof h2 { font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .proof .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 680px) { .proof .pair { grid-template-columns: 1fr; } }
+    .proof figure { border: 2px solid var(--ink); margin: 0; }
+    .proof img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    .proof figcaption { border-top: 2px solid var(--ink); padding: 0.55rem 0.8rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
+
+    /* ---- free estimate ---- */
+    .claim { border: 3px solid var(--ink); padding: clamp(1.8rem, 5vw, 3.2rem); margin-bottom: clamp(2rem, 5vw, 3rem); text-align: center; }
+    .claim h2 { font-size: clamp(1.8rem, 5.5vw, 3.2rem); font-weight: 900; text-transform: uppercase; line-height: 1.04; }
+    .claim p { color: var(--dim); margin-top: 0.7rem; font-size: 0.95rem; }
+    .claim h2 a { text-decoration: none; box-shadow: 0 -0.09em 0 inset var(--ink); }
+
+    footer { border-top: 2px solid var(--ink); padding: 0.8rem 0 2.4rem; display: grid; gap: 0.35rem; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--dim); }
+
+    /* ---- motion (all of it lives here) ---- */
+    @media (prefers-reduced-motion: no-preference) {
+      /* letters arrive on transform/opacity only — never on a layout property, or the
+         headline reflows every frame and drags the whole page down with it */
+      @keyframes arriveY { from { opacity: 0; transform: translate3d(0, 0.12em, 0); } to { opacity: 1; transform: none; } }
+      h1[data-fit] .L { animation: arriveY 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+      /* ticker crawl */
+      @keyframes crawl { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+      .ticker .lane { animation: crawl 22s linear infinite; }
+      .ticker:hover .lane, .ticker:focus-within .lane { animation-play-state: paused; }
+      /* reveals */
+      /* hidden state exists only after JS stamps .pre — no-JS stays fully visible */
+      .reveal.pre { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease-out, transform 0.55s ease-out; }
+      .reveal.in { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker .lane + .lane { display: none; } /* single static copy */
+    }
+
+    /* the reveal script hides content until scrolled to; print/PDF never scrolls */
+    @media print {
+      .reveal, .reveal.pre { opacity: 1 !important; transform: none !important; }
+      .ticker { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="strip">
+    <div class="room" style="display:flex;justify-content:space-between;align-items:center;width:100%">
+      <span class="mark">AFFORDABLE EARTHWORKS</span>
+      <span><a class="tel" href="tel:+16198166183">(619) 816-6183</a></span>
+    </div>
+  </div>
+
+  <header class="hero room">
+    <p class="kicker">Excavation · Grading · Demolition — East County SD</p>
+    <h1 id="title">We can dig it.</h1>
+    <p class="sub"><b>Working East County since 2003.</b> The bobcat fits a 64-inch gate and the excavator is five feet wide, so we get into side yards a full-size machine can&rsquo;t.</p>
+  </header>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="lane"><span>Excavation</span><span class="o">·</span><span>Grading</span><span class="o">·</span><span>Demolition</span><span class="o">·</span><span>Bobcat work (fits a 64-inch gate)</span><span class="o">·</span><span>Hauling</span><span class="o">·</span><span>Trenching (sewer, water, electric, gas)</span><span class="o">·</span><span>Pool &amp; trampoline removal</span><span class="o">·</span><span>Tree &amp; stump removal</span><span class="o">·</span></div><div class="lane"><span>Excavation</span><span class="o">·</span><span>Grading</span><span class="o">·</span><span>Demolition</span><span class="o">·</span><span>Bobcat work (fits a 64-inch gate)</span><span class="o">·</span><span>Hauling</span><span class="o">·</span><span>Trenching (sewer, water, electric, gas)</span><span class="o">·</span><span>Pool &amp; trampoline removal</span><span class="o">·</span><span>Tree &amp; stump removal</span><span class="o">·</span></div>
+  </div>
+
+  <section class="band">
+    <div class="room">
+      <h2 class="reveal">&ldquo;An artist with a backhoe.&rdquo;</h2>
+      <p class="reveal">Five stars across all eight Yelp reviews. Veriforce-certified for SDG&amp;E gas work.</p>
+    </div>
+  </section>
+
+  <section class="room figures">
+    <div class="fig reveal"><b>5.0&#9733;</b><span>Yelp average, all eight reviews</span></div>
+    <div class="fig reveal"><b>64&Prime;</b><span>gate clearance — fits a standard side yard</span></div>
+    <div class="fig reveal"><b>#927597</b><span>CSLB, Class A + C27, active</span></div>
+  </section>
+
+  <section class="room proof">
+    <h2 class="reveal">Santee &mdash; hillside into backyard</h2>
+    <div class="pair">
+      <figure class="reveal">
+        <img src="../img/hero-before.jpg" alt="Raw hillside slope being cut back by a mini excavator, Santee CA" loading="lazy" width="700" height="424">
+        <figcaption>Before &mdash; raw slope</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="../img/hero-after.jpg" alt="Finished graded backyard with terraced retaining walls and patio, Santee CA" loading="lazy" width="700" height="443">
+        <figcaption>After &mdash; shored and graded level</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="room">
+    <div class="claim reveal">
+      <h2>Free estimate.<br><a href="tel:+16198166183">(619) 816-6183</a></h2>
+      <p>Mon&ndash;Sat, 7a&ndash;5p. No job is too small.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="room" style="display:grid;gap:0.35rem;width:100%">
+      <span>Affordable Earthworks Inc. · CSLB #927597 (A + C27) · Bonded &amp; insured · Veriforce-certified for SDG&amp;E gas work</span>
+      <span>La Mesa · El Cajon · Santee · Lakeside · Spring Valley · Lemon Grove · Mount Helix · Casa de Oro · Rancho San Diego</span>
+      <span>Mon–Sat 7a–5p · P.O. Box 113, Lakeside, CA 92040</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---- hero headline: fit the line to its box ----------------------------
+         clamp() can't do this — vw knows the viewport, not the rendered width of
+         this string in this font. So: split to letters, then binary-search the
+         font-size until the measured line exactly fills the container. Measured
+         with a Range over the live line (a detached clone loses kerning and
+         overshoots ~3%). Re-runs when the webfont swaps in and on any resize. */
+      const TEXT = 'We can dig it.';
+      const PLAN = [TEXT];              // one line; ['We can','dig it.'] for a 2-line lockup
+      const MAX = 176, MIN = 26;
+      const h1 = document.getElementById('title');
+      h1.setAttribute('aria-label', TEXT);
+      h1.dataset.split = '1';
+      h1.textContent = '';
+      let li = 0;
+      const lines = PLAN.map(txt => {
+        const ln = document.createElement('span');
+        ln.className = 'ln';
+        for (const ch of txt) {
+          if (ch === ' ') { ln.appendChild(document.createTextNode(' ')); continue; }
+          const s = document.createElement('span');
+          s.className = 'L'; s.textContent = ch;
+          s.style.animationDelay = (0.04 * li++) + 's';
+          ln.appendChild(s);
+        }
+        h1.appendChild(ln);
+        return ln;
+      });
+      const ink = ln => { const r = document.createRange(); r.selectNodeContents(ln); return r.getBoundingClientRect().width; };
+      function fit() {
+        const avail = h1.getBoundingClientRect().width;
+        if (!avail) return;
+        let lo = MIN, hi = MAX;
+        try {
+          for (let n = 0; n < 12; n++) {          // 12 halvings => sub-0.04px
+            const mid = (lo + hi) / 2;
+            h1.style.setProperty('--h1', mid + 'px');
+            if (Math.max(...lines.map(ink)) > avail) hi = mid; else lo = mid;
+          }
+          h1.style.setProperty('--h1', lo.toFixed(2) + 'px');
+        } finally { h1.dataset.fit = '1'; }       // always unhide, even if fit throws
+      }
+      fit();
+      if (document.fonts) {                        // re-fit once Anybody actually lands
+        document.fonts.ready.then(fit);
+        document.fonts.addEventListener('loadingdone', fit);
+      }
+      new ResizeObserver(fit).observe(h1.parentElement);
+      addEventListener('orientationchange', fit);
+
+      if (reduced) return;                         // nothing is hidden without JS
+
+      // reveals — hidden state stamped here so no-JS users see everything
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }), { rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(el => { el.classList.add('pre'); io.observe(el); });
+      // failsafe: nothing stays invisible forever if the observer never fires
+      setTimeout(() => document.querySelectorAll('.reveal.pre:not(.in)').forEach(el => el.classList.add('in')), 4000);
+    })();
+  </script>
+</body>
+</html>

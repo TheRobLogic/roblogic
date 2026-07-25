@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Affordable Earthworks — Excavation, Grading &amp; Demolition · La Mesa, CA</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='30' width='60' height='40' rx='10' fill='%231d1d1f'/></svg>">
+  <style>
+    /* ============================================================
+       ORCHARD — modern Apple product-page grammar.
+       System font stack (SF on Apple hardware), white + #f5f5f7,
+       huge tight headlines, rounded feature tiles, scroll reveals.
+       Apple's blue accent is deliberately swapped for black pills
+       (blue family is saturated elsewhere in the estate).
+       Adapted for Affordable Earthworks Inc. — content + two
+       photo-bearing slots only; palette/type/spacing untouched.
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --white: #ffffff;
+      --cloud: #f5f5f7;      /* Apple's section grey */
+      --ink: #1d1d1f;        /* text only */
+      --dim: #6e6e73;
+      --hairline: #d2d2d7;
+      --radius: 28px;
+      --stack: system-ui, -apple-system, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', sans-serif;
+    }
+    html { scroll-padding-top: 68px; }
+    body { background: var(--white); color: var(--ink); font-family: var(--stack); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+
+    .measure { max-width: 1040px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
+
+    /* ---- sticky product nav ---- */
+    .pnav {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: saturate(1.8) blur(20px);
+      -webkit-backdrop-filter: saturate(1.8) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .pnav-in { display: flex; align-items: center; gap: 1.4rem; height: 52px; }
+    .pname { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; text-decoration: none; }
+    .pnav .links { margin-left: auto; display: flex; gap: 1.3rem; align-items: center; }
+    .pnav .links a { font-size: 0.78rem; color: var(--dim); text-decoration: none; white-space: nowrap; padding: 0.5rem 0; }
+    .pnav .links a:hover { color: var(--ink); }
+    @media (max-width: 640px) {
+      .pnav-in { gap: 0.8rem; }
+      .pnav .links { gap: 0.8rem; }
+      .pnav .links a:not(.pill) { display: none; }
+    }
+    .pill {
+      background: var(--ink); color: var(--white); text-decoration: none;
+      font-size: 0.78rem; font-weight: 500; padding: 0.35rem 0.95rem; border-radius: 999px;
+      display: inline-block;
+    }
+    .pill:hover { background: #000; }
+    .pill.big { font-size: 1.02rem; padding: 0.75rem 1.6rem; }
+    .pill.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+    .pill.ghost:hover { background: rgba(29, 29, 31, 0.06); color: var(--ink); }
+
+    /* ---- hero ---- */
+    .hero { text-align: center; padding: clamp(3.5rem, 9vw, 6.5rem) 0 0; overflow: hidden; }
+    .eyebrow { font-size: 1rem; font-weight: 600; color: var(--dim); letter-spacing: 0.01em; }
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 5.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02;
+      margin: 0.4rem 0 0.8rem;
+    }
+    .hero .tag { font-size: clamp(1.2rem, 2.6vw, 1.7rem); font-weight: 500; color: var(--dim); letter-spacing: -0.01em; max-width: 46ch; margin: 0 auto; text-wrap: balance; }
+    .hero .actions { display: flex; gap: 0.8rem; justify-content: center; margin: 1.6rem 0 0; flex-wrap: wrap; }
+    .price { font-size: 0.9rem; color: var(--dim); margin-top: 0.9rem; }
+
+    /* ---- hero visual: before/after pair (replaces the source template's abstract product render) ---- */
+    .stage { margin: clamp(2.5rem, 6vw, 4rem) auto 0; width: min(720px, 92vw); position: relative; }
+    .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .ba-pair figure { position: relative; }
+    .ba-pair img {
+      width: 100%; height: clamp(140px, 22vw, 230px); object-fit: cover;
+      border-radius: 18px; display: block;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
+    }
+    .ba-pair figcaption {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(29, 29, 31, 0.72); color: var(--white);
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.25rem 0.6rem; border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+    .ba-caption { font-size: 0.85rem; color: var(--dim); margin-top: 0.9rem; }
+    @media (max-width: 560px) { .ba-pair { grid-template-columns: 1fr; } }
+
+    /* ---- big claim band ---- */
+    .band { padding: clamp(3.5rem, 8vw, 6rem) 0; text-align: center; }
+    .band h2 { font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; max-width: 21ch; margin: 0 auto; text-wrap: balance; }
+    .band h2 .quiet { color: var(--dim); }
+    .band p { max-width: 56ch; margin: 1.1rem auto 0; color: var(--dim); font-size: 1.05rem; }
+
+    /* ---- feature tiles (the modern Apple grid) ---- */
+    .tiles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.9rem; padding-bottom: clamp(3rem, 7vw, 5rem); }
+    .tile {
+      background: var(--cloud); border-radius: var(--radius);
+      padding: clamp(1.4rem, 3vw, 2.2rem);
+      display: flex; flex-direction: column; justify-content: flex-start; min-height: 200px;
+    }
+    .tile.w4 { grid-column: span 4; } .tile.w2 { grid-column: span 2; } .tile.w3 { grid-column: span 3; }
+    @media (max-width: 780px) { .tile.w4, .tile.w2, .tile.w3 { grid-column: span 6; } .tile { min-height: 0; } }
+    .tile h3 { font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.4rem; }
+    .tile p { color: var(--dim); font-size: 0.95rem; max-width: 46ch; text-wrap: pretty; }
+    .tile.dark { background: var(--ink); }
+    .tile.dark h3 { color: var(--white); }
+    .tile.dark p { color: #a1a1a6; }
+    /* photo tiles carry real jobsite work; text tiles are simply heading + one fact */
+    .tile .art.photo { display: block; padding: 0; border-radius: 18px; overflow: hidden; margin-bottom: 1.1rem; aspect-ratio: 16 / 10; }
+    .tile .art.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ---- specs ---- */
+    .specs { padding-bottom: clamp(3rem, 7vw, 5rem); }
+    .specs h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; text-align: center; margin-bottom: 1.8rem; }
+    .spec-rows { max-width: 680px; margin: 0 auto; }
+    .spec { display: grid; grid-template-columns: 1fr 1.6fr; gap: 1rem; padding: 0.9rem 0.2rem; border-top: 1px solid var(--hairline); font-size: 0.95rem; }
+    .spec:last-child { border-bottom: 1px solid var(--hairline); }
+    .spec dt { color: var(--dim); }
+    .spec dd { font-weight: 500; }
+
+    /* ---- closing CTA ---- */
+    .closer { text-align: center; background: var(--cloud); border-radius: var(--radius); padding: clamp(2.5rem, 6vw, 4rem); margin-bottom: clamp(2rem, 5vw, 3rem); }
+    .closer h2 { font-size: clamp(1.7rem, 4.4vw, 2.6rem); font-weight: 700; letter-spacing: -0.025em; }
+    .closer h2 a { text-decoration: none; }
+    .closer h2 a:hover { text-decoration: underline; }
+    .closer p { color: var(--dim); margin: 0.6rem 0 1.4rem; }
+
+    footer.fine { padding: 1.4rem 0 2.6rem; color: var(--dim); font-size: 0.75rem; }
+    footer.fine p { max-width: 90ch; margin-bottom: 0.4rem; }
+    footer.fine .legal { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-top: 1px solid var(--hairline); padding-top: 0.9rem; margin-top: 0.9rem; }
+
+    /* ---- motion ---- */
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+      /* hidden state exists only after JS stamps .pre — no-JS stays fully visible */
+      .reveal.pre { opacity: 0; transform: translateY(22px) scale(0.985); transition: opacity 0.65s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.65s cubic-bezier(0.2, 0.6, 0.2, 1); }
+      .reveal.in { opacity: 1; transform: none; }
+      .pill { transition: background 0.15s ease, color 0.15s ease; }
+    }
+
+    /* the reveal script hides content until scrolled to; print/PDF never scrolls */
+    @media print {
+      .reveal, .reveal.pre { opacity: 1 !important; transform: none !important; }
+      .pnav { position: static; backdrop-filter: none; -webkit-backdrop-filter: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="pnav">
+    <div class="measure pnav-in">
+      <a class="pname" href="#">Affordable&nbsp;Earthworks</a>
+      <div class="links">
+        <a href="#features">Services</a>
+        <a href="#details">License</a>
+        <a class="pill" href="tel:+16198166183">Call (619) 816-6183</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="measure">
+      <p class="eyebrow reveal">Excavation, grading &amp; demolition &middot; East County San Diego</p>
+      <h1 class="reveal">We can dig it.</h1>
+      <p class="tag reveal">In business since 2003. Licensed, bonded, insured &mdash; and small enough to fit through a 64-inch gate.</p>
+      <div class="actions reveal">
+        <a class="pill big" href="tel:+16198166183">Call (619) 816-6183</a>
+        <a class="pill big ghost" href="#estimate">Get a free estimate</a>
+      </div>
+      <p class="price reveal">CSLB #927597 (Class A + C27) &middot; Veriforce-certified for SDG&amp;E gas lines</p>
+      <div class="stage reveal">
+        <div class="ba-pair">
+          <figure>
+            <img src="../img/hero-before.jpg" alt="Raw hillside slope before excavation, Santee CA" loading="lazy" width="700" height="424">
+            <figcaption>Before</figcaption>
+          </figure>
+          <figure>
+            <img src="../img/hero-after.jpg" alt="Finished graded backyard with retaining walls and patio, Santee CA" loading="lazy" width="700" height="443">
+            <figcaption>After</figcaption>
+          </figure>
+        </div>
+        <p class="ba-caption">Santee, CA (hillside cut, shored, graded)</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="band">
+    <div class="measure">
+      <h2 class="reveal">&ldquo;An artist with a backhoe.&rdquo; <span class="quiet">From a&nbsp;Yelp review.</span></h2>
+      <p class="reveal">Five stars across all eight reviews.</p>
+    </div>
+  </section>
+
+  <section id="features" class="measure">
+    <div class="tiles">
+      <!-- rows pair like with like: tall photo tiles never sit beside a short text tile,
+           which is what left the black tile with a 450px void above its heading -->
+      <div class="tile w3 reveal">
+        <div class="art photo"><img src="../img/excavation.jpg" alt="Mini excavator digging a large foundation excavation" loading="lazy" width="700" height="525"></div>
+        <h3>Excavation</h3>
+        <p>Footings, foundations, and building pads for new construction and room additions.</p>
+      </div>
+      <div class="tile w3 reveal">
+        <div class="art photo"><img src="../img/demo.jpg" alt="Excavator demolishing a house, tearing through the roof and framing" loading="lazy" width="700" height="525"></div>
+        <h3>Demolition</h3>
+        <p>Houses, driveways, patios, and slab concrete out, with the debris hauled off as it comes.</p>
+      </div>
+      <div class="tile w2 dark reveal">
+        <h3>Grading</h3>
+        <p>Hillsides cut back into usable yard, pads leveled, and the surface graded so water runs away from the house.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <h3>Hauling</h3>
+        <p>We run our own dump truck, so the dirt and debris leave with us. Nothing sits in the driveway waiting on a bin.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <h3>Trenching</h3>
+        <p>Sewer, water, and electric &mdash; and gas, which we&rsquo;re Veriforce-certified to dig for SDG&amp;E.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <div class="art photo"><img src="../img/machines.jpg" alt="Bobcat skid steer and mini excavator working at a framed house" loading="lazy" width="600" height="359"></div>
+        <h3>Bobcat work</h3>
+        <p>The S205 fits a 64-inch gate, so most backyard jobs don&rsquo;t start with pulling out a fence panel.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <div class="art photo"><img src="../img/pool.jpg" alt="Excavator breaking out a swimming pool shell" loading="lazy" width="600" height="359"></div>
+        <h3>Pool &amp; trampoline removal</h3>
+        <p>Shell broken out and hauled off, the hole backfilled and compacted, the yard back to flat.</p>
+      </div>
+      <div class="tile w2 reveal">
+        <div class="art photo"><img src="../img/stump.jpg" alt="Uprooted tree stump and root ball beside a dump truck, taller than the man standing next to it" loading="lazy" width="600" height="359"></div>
+        <h3>Tree &amp; stump removal</h3>
+        <p>Trees down, stumps and root balls dug out whole, and all of it leaves with us.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="details" class="specs measure">
+    <h2 class="reveal">License &amp; coverage</h2>
+    <dl class="spec-rows reveal">
+      <div class="spec"><dt>License</dt><dd>CSLB #927597 (A + C27)</dd></div>
+      <div class="spec"><dt>Insurance</dt><dd>Bonded and insured</dd></div>
+      <div class="spec"><dt>Certification</dt><dd>Veriforce-certified for SDG&amp;E gas-line work</dd></div>
+      <div class="spec"><dt>In business since</dt><dd>2003</dd></div>
+      <div class="spec"><dt>Hours</dt><dd>Mon&ndash;Sat, 7am&ndash;5pm</dd></div>
+      <div class="spec"><dt>Service area</dt><dd>La Mesa, El Cajon, Santee, Lakeside, Spring Valley, Lemon Grove, Mount Helix, Casa de Oro, Rancho San Diego</dd></div>
+    </dl>
+  </section>
+
+  <section id="estimate" class="measure">
+    <div class="closer reveal">
+      <h2>Get a free estimate.</h2>
+      <p>Mon&ndash;Sat, 7am&ndash;5pm. No job is too small.</p>
+      <a class="pill big" href="tel:+16198166183">Call (619) 816-6183</a>
+    </div>
+  </section>
+
+  <footer class="fine">
+    <div class="measure">
+      <p>Affordable Earthworks Inc., P.O. Box 113, Lakeside, CA 92040.</p>
+      <div class="legal">
+        <span>CSLB #927597 &middot; Class A + C27 &middot; bonded and insured</span>
+        <span>Veriforce-certified for SDG&amp;E gas lines</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // nothing is hidden without JS
+      const io = new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }), { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(el => { el.classList.add('pre'); io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
