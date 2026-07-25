@@ -1,37 +1,180 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Affordable Earthworks — three design directions</title>
+<title>Affordable Earthworks — the plan</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚜</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#16150f; color:#efe9dc; font-family:Georgia,'Times New Roman',serif; min-height:100vh;
-         display:grid; place-content:center; padding:2rem; }
-  .k { font-family:ui-monospace,Menlo,monospace; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:#9a917d; }
-  h1 { font-size:clamp(1.6rem,4vw,2.4rem); font-weight:400; margin:.4rem 0 .6rem; }
-  p.intro { color:#9a917d; font-size:.95rem; max-width:56ch; margin-bottom:1.6rem; }
-  ul { list-style:none; display:grid; gap:.9rem; max-width:560px; }
-  a.card { display:block; border:1px solid #3a372c; padding:1rem 1.2rem; text-decoration:none; color:inherit; }
-  a.card:hover, a.card:focus-visible { border-color:#efe9dc; outline:none; }
-  a.card b { font-family:ui-monospace,Menlo,monospace; font-size:.75rem; letter-spacing:.12em; color:#d8a03d; margin-right:.7rem; }
-  a.card span { color:#9a917d; font-size:.85rem; display:block; margin-top:.25rem; }
-  p.note { margin-top:1.6rem; font-size:.8rem; color:#9a917d; max-width:56ch; }
+  :root { --ink:#111; --gray:#6f6f6f; --rule:#e4e4e4; }
+  body {
+    background:#fff; color:var(--ink);
+    font-family:'Manrope',sans-serif; font-size:1.02rem; line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page { max-width:1200px; margin:0 auto; padding:0 clamp(1.4rem, 6vw, 5rem); }
+  .col { max-width:660px; }
+  a { color:var(--ink); text-decoration:none; }
+  a:hover { text-decoration:underline; text-underline-offset:3px; }
+  a:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+  .mono { font-family:'Fira Code',monospace; }
+
+  header.site { display:flex; justify-content:space-between; align-items:baseline; gap:1.5rem; flex-wrap:wrap; padding:2.6rem 0 0; }
+  .wordmark { font-weight:800; font-size:1.15rem; letter-spacing:-.01em; }
+  nav.min { display:flex; gap:1.6rem; }
+  nav.min a { font-weight:500; font-size:.92rem; color:var(--gray); }
+  nav.min a:hover { color:var(--ink); }
+
+  .intro { padding:6rem 0 4.5rem; }
+  .intro h1 { font-weight:800; font-size:clamp(2.6rem, 6vw, 4.4rem); line-height:1.05; letter-spacing:-.03em; max-width:16ch; }
+  .intro p { color:var(--gray); margin-top:1.6rem; max-width:52ch; font-size:1.05rem; }
+
+  .posts { border-top:1px solid var(--rule); }
+  article.entry { padding:3.2rem 0; border-bottom:1px solid var(--rule); }
+  .entry .tag { display:block; font-family:'Fira Code',monospace; font-size:.78rem; color:var(--gray); margin-bottom:.9rem; letter-spacing:.04em; }
+  .entry h2 { font-weight:800; font-size:clamp(1.6rem, 3.4vw, 2.3rem); line-height:1.15; letter-spacing:-.02em; max-width:22ch; }
+  .entry h2 a:hover { text-decoration:underline; text-underline-offset:4px; }
+  .entry p.body { color:var(--gray); margin-top:1rem; max-width:56ch; }
+  .entry ul.plain { list-style:none; margin-top:1.2rem; max-width:56ch; }
+  .entry ul.plain li { padding:.55rem 0; color:var(--gray); border-top:1px solid var(--rule); }
+  .entry ul.plain li:first-child { border-top:0; }
+  .entry ul.plain b { color:var(--ink); font-weight:700; }
+
+  .pattern-quote { padding:5.5rem 0; border-bottom:1px solid var(--rule); }
+  .pattern-quote blockquote { font-weight:700; font-size:clamp(1.7rem, 4vw, 2.7rem); line-height:1.25; letter-spacing:-.02em; max-width:26ch; }
+  .pattern-quote cite { display:block; font-style:normal; font-family:'Fira Code',monospace; font-size:.78rem; color:var(--gray); margin-top:1.6rem; }
+
+  .section-lead { padding:3.2rem 0 0; }
+  .section-lead .tag { display:block; font-family:'Fira Code',monospace; font-size:.78rem; color:var(--gray); letter-spacing:.04em; }
+  .section-lead p { color:var(--gray); margin-top:.9rem; max-width:56ch; }
+
+  article.entry.look { padding:2.4rem 0; }
+  .entry .readon { display:inline-block; margin-top:1.2rem; font-weight:700; font-size:.9rem; }
+
+  article.entry.later { border-bottom:0; }
+  .entry.later ul.plain { font-size:.95rem; }
+
+  footer.site { margin-top:5rem; border-top:1px solid var(--ink); padding:3rem 0 4rem; }
+  .credit { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.82rem; color:var(--gray); }
+
+  @media print {
+    nav.min { display:none; }
+    article.entry, .pattern-quote { break-inside:avoid; }
+    .intro { padding:3rem 0 2rem; }
+  }
 </style>
 </head>
 <body>
-<div>
-  <p class="k">Affordable Earthworks Inc. &middot; San Diego County</p>
-  <h1>Three design directions</h1>
-  <p class="intro">Same business, same facts, three different looks. Each is a complete single-page site &mdash; open them full screen and see which one feels right.</p>
-  <ul>
-    <li><a class="card" href="t4/"><b>ONE</b>Clean and modern<span>White and light grey, plain type, big photo tiles. Quiet and current.</span></a></li>
-    <li><a class="card" href="t7/"><b>TWO</b>Bold and graphic<span>Cobalt blue on off-white, one huge headline, a running list of services.</span></a></li>
-    <li><a class="card" href="t33/"><b>THREE</b>Warm and editorial<span>Ivory, olive and rust with a serif face. Reads like a printed portfolio.</span></a></li>
-  </ul>
-  <p class="note">Working drafts &mdash; not the live Affordable Earthworks website. Job photos are existing records and would be re-shot at full resolution for a final build.</p>
+<div class="page">
+
+  <header class="site">
+    <span class="wordmark">Affordable Earthworks</span>
+    <nav class="min" aria-label="Page">
+      <a href="#plan">the plan</a>
+      <a href="#looks">the looks</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="intro col">
+      <h1>The plan.</h1>
+      <p>Google grading, excavation, or demolition in San Diego and Affordable Earthworks doesn&rsquo;t come up. Three moves fix that in about thirty days. The website is the smallest of them, and nothing here costs anything to run.</p>
+    </div>
+
+    <div class="posts" id="plan">
+      <article class="entry col">
+        <span class="tag">MOVE 1 &middot; WEEK ONE</span>
+        <h2>Get on Google.</h2>
+        <p class="body">There is no Google listing for the business &mdash; that&rsquo;s why it doesn&rsquo;t show up on Maps. I create the listing, claim the Yelp page that already holds eight five-star reviews, and correct the wrong phone number a few directories carry. Nothing for you to do here.</p>
+      </article>
+
+      <article class="entry col">
+        <span class="tag">MOVE 2 &middot; WEEK TWO</span>
+        <h2>Turn the website on.</h2>
+        <p class="body">One page at affordableearthworks.com, replacing the 2015 site. You pick one of the three looks below. It works on a phone, calls and quote requests come straight to you, and it&rsquo;s free to host.</p>
+      </article>
+
+      <article class="entry col">
+        <span class="tag">MOVE 3 &middot; ONGOING</span>
+        <h2>Ask for reviews.</h2>
+        <p class="body">After each job, text the customer one link asking for a Google review. I set up the link and write the message; you copy, paste, send. Reviews are what move a business up the map. This is the only recurring work, and it&rsquo;s yours.</p>
+      </article>
+
+      <div class="pattern-quote col">
+        <blockquote>&ldquo;An artist with a backhoe.&rdquo;</blockquote>
+        <cite class="mono">from one of eight five-star Yelp reviews &mdash; on a page nobody has claimed yet</cite>
+      </div>
+
+      <article class="entry col">
+        <span class="tag">FROM YOU</span>
+        <h2>What I need.</h2>
+        <ul class="plain">
+          <li><b>A pick</b> from the three looks below.</li>
+          <li><b>The full-color logo,</b> if it turns up.</li>
+          <li><b>A street address</b> for Google&rsquo;s mailed verification code. Never published &mdash; the listing shows a service area, not an address.</li>
+          <li><b>Ten job photos</b> from your phone. Before-and-after pairs are best.</li>
+          <li><b>The GoDaddy login,</b> so the domain can point at the new page.</li>
+        </ul>
+      </article>
+
+      <article class="entry col">
+        <span class="tag">PROOF</span>
+        <h2>How you&rsquo;ll know it&rsquo;s working.</h2>
+        <p class="body">Google counts every call and direction request the listing gets; once a month you get the screenshot. If the numbers aren&rsquo;t there, we stop. Nothing above has a monthly cost.</p>
+      </article>
+
+      <div class="section-lead col" id="looks">
+        <span class="tag">THE THREE LOOKS</span>
+        <p>Working drafts. Pick one and it becomes the real site at affordableearthworks.com.</p>
+      </div>
+
+      <article class="entry look col">
+        <span class="tag">ONE</span>
+        <h2><a href="t4/">Clean and modern</a></h2>
+        <p class="body">White and light grey, plain type, big photo tiles. Quiet and current.</p>
+        <a class="readon" href="t4/">Open it &rarr;</a>
+      </article>
+
+      <article class="entry look col">
+        <span class="tag">TWO</span>
+        <h2><a href="t7/">Bold and graphic</a></h2>
+        <p class="body">Cobalt blue on off-white, one huge headline, a running list of services.</p>
+        <a class="readon" href="t7/">Open it &rarr;</a>
+      </article>
+
+      <article class="entry look col">
+        <span class="tag">THREE</span>
+        <h2><a href="t33/">Warm and editorial</a></h2>
+        <p class="body">Ivory, olive and rust with a serif face. Reads like a printed portfolio.</p>
+        <a class="readon" href="t33/">Open it &rarr;</a>
+      </article>
+
+      <article class="entry later col">
+        <span class="tag">LATER &middot; OPTIONAL</span>
+        <h2>If the phone gets busy.</h2>
+        <p class="body">Separate from the plan above. I run automations like these for other businesses; any of them can be added later.</p>
+        <ul class="plain">
+          <li>Quote requests from the site text your phone the moment they arrive.</li>
+          <li>A missed call gets an automatic text back asking for the job and address.</li>
+          <li>Review requests send themselves after each job.</li>
+          <li>Quote emails arrive with a drafted reply waiting.</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="credit">
+      <span>Prepared for Affordable Earthworks Inc.</span>
+      <span>Rob Logic &middot; July 2026</span>
+    </div>
+  </footer>
+
 </div>
 </body>
 </html>
