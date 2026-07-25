@@ -8,173 +8,207 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚜</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  :root { --ink:#111; --gray:#6f6f6f; --rule:#e4e4e4; }
-  body {
-    background:#fff; color:var(--ink);
-    font-family:'Manrope',sans-serif; font-size:1.02rem; line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-  }
-  .page { max-width:1200px; margin:0 auto; padding:0 clamp(1.4rem, 6vw, 5rem); }
-  .col { max-width:660px; }
-  a { color:var(--ink); text-decoration:none; }
-  a:hover { text-decoration:underline; text-underline-offset:3px; }
-  a:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
-  .mono { font-family:'Fira Code',monospace; }
+  :root { --ink:#1a1a1a; --meta:#686868; --blue:#0073aa; --blue-dark:#00527a; --rule:#d1d1d1; }
+  body { background:var(--ink); color:var(--ink); font-family:'Merriweather',Georgia,serif; font-size:1rem; line-height:1.75; }
+  .frame { background:#fff; margin:21px; padding:0 4%; min-height:calc(100vh - 42px); }
+  @media (max-width:640px) { .frame { margin:10px; } }
+  .wrap { max-width:1040px; margin:0 auto; }
+  a { color:var(--blue); text-decoration:underline; text-underline-offset:2px; }
+  a:hover { color:var(--blue-dark); }
+  a:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
 
-  header.site { display:flex; justify-content:space-between; align-items:baseline; gap:1.5rem; flex-wrap:wrap; padding:2.6rem 0 0; }
-  .wordmark { font-weight:800; font-size:1.15rem; letter-spacing:-.01em; }
-  nav.min { display:flex; gap:1.6rem; }
-  nav.min a { font-weight:500; font-size:.92rem; color:var(--gray); }
-  nav.min a:hover { color:var(--ink); }
+  header.site { padding:3.2rem 0 2.4rem; border-bottom:1px solid var(--rule); }
+  .site-title { font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(1.9rem, 4vw, 2.6rem); line-height:1.15; letter-spacing:-.01em; }
+  .site-desc { font-family:'Montserrat',sans-serif; color:var(--meta); font-size:.95rem; margin-top:.5rem; }
+  nav.primary { margin-top:1.5rem; }
+  nav.primary ul { list-style:none; display:flex; gap:1.6rem; flex-wrap:wrap; }
+  nav.primary a { font-family:'Montserrat',sans-serif; font-weight:600; font-size:.85rem; color:var(--ink); text-decoration:none; }
+  nav.primary a:hover { color:var(--blue); text-decoration:underline; }
 
-  .intro { padding:6rem 0 4.5rem; }
-  .intro h1 { font-weight:800; font-size:clamp(2.6rem, 6vw, 4.4rem); line-height:1.05; letter-spacing:-.03em; max-width:16ch; }
-  .intro p { color:var(--gray); margin-top:1.6rem; max-width:52ch; font-size:1.05rem; }
+  .intro { padding:3.6rem 0 3.2rem; border-bottom:1px solid var(--rule); }
+  .intro h1 { font-family:'Montserrat',sans-serif; font-weight:800; font-size:clamp(2rem, 4.6vw, 3.3rem); line-height:1.1; letter-spacing:-.02em; max-width:18ch; }
+  .intro p { margin-top:1.4rem; max-width:62ch; font-weight:300; font-size:1.06rem; }
 
-  .posts { border-top:1px solid var(--rule); }
-  article.entry { padding:3.2rem 0; border-bottom:1px solid var(--rule); }
-  .entry .tag { display:block; font-family:'Fira Code',monospace; font-size:.78rem; color:var(--gray); margin-bottom:.9rem; letter-spacing:.04em; }
-  .entry h2 { font-weight:800; font-size:clamp(1.6rem, 3.4vw, 2.3rem); line-height:1.15; letter-spacing:-.02em; max-width:22ch; }
-  .entry h2 a:hover { text-decoration:underline; text-underline-offset:4px; }
-  .entry p.body { color:var(--gray); margin-top:1rem; max-width:56ch; }
-  .entry ul.plain { list-style:none; margin-top:1.2rem; max-width:56ch; }
-  .entry ul.plain li { padding:.55rem 0; color:var(--gray); border-top:1px solid var(--rule); }
-  .entry ul.plain li:first-child { border-top:0; }
-  .entry ul.plain b { color:var(--ink); font-weight:700; }
+  article.post { display:grid; grid-template-columns:160px minmax(0,1fr); gap:2rem; padding:2.8rem 0; border-bottom:1px solid var(--rule); }
+  @media (max-width:700px) { article.post { grid-template-columns:1fr; gap:.9rem; padding:2.2rem 0; } }
+  .postmeta { font-family:'Montserrat',sans-serif; font-size:.8rem; color:var(--meta); line-height:1.6; }
+  .postmeta .lbl { display:block; font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:.7rem; color:var(--ink); }
+  .entry h2 { font-weight:700; font-size:clamp(1.4rem, 2.8vw, 1.85rem); line-height:1.25; margin-bottom:.9rem; }
+  .entry h2 a { color:var(--ink); text-decoration:none; }
+  .entry h2 a:hover { color:var(--blue); text-decoration:underline; }
+  .entry p { margin-bottom:1.1rem; font-weight:300; max-width:62ch; }
+  .entry p:last-child { margin-bottom:0; }
+  .entry blockquote { border-left:4px solid var(--ink); padding:.2rem 0 .2rem 1.4rem; margin:1.4rem 0 0; font-style:italic; color:#3d3d3d; max-width:56ch; }
+  .entry blockquote .who { display:block; font-family:'Montserrat',sans-serif; font-style:normal; font-size:.78rem; color:var(--meta); margin-top:.6rem; }
+  .entry ul.plain { list-style:none; max-width:62ch; }
+  .entry ul.plain li { padding:.6rem 0; border-top:1px solid #ececec; font-weight:300; }
+  .entry ul.plain li:first-child { border-top:0; padding-top:0; }
+  .entry ul.plain b { font-weight:700; }
+  .entry .more { font-family:'Montserrat',sans-serif; font-size:.85rem; font-weight:600; }
 
-  .pattern-quote { padding:5.5rem 0; border-bottom:1px solid var(--rule); }
-  .pattern-quote blockquote { font-weight:700; font-size:clamp(1.7rem, 4vw, 2.7rem); line-height:1.25; letter-spacing:-.02em; max-width:26ch; }
-  .pattern-quote cite { display:block; font-style:normal; font-family:'Fira Code',monospace; font-size:.78rem; color:var(--gray); margin-top:1.6rem; }
+  .section-lead { padding:2.6rem 0 0; }
+  .section-lead p { font-weight:300; max-width:62ch; }
 
-  .section-lead { padding:3.2rem 0 0; }
-  .section-lead .tag { display:block; font-family:'Fira Code',monospace; font-size:.78rem; color:var(--gray); letter-spacing:.04em; }
-  .section-lead p { color:var(--gray); margin-top:.9rem; max-width:56ch; }
-
-  article.entry.look { padding:2.4rem 0; }
-  .entry .readon { display:inline-block; margin-top:1.2rem; font-weight:700; font-size:.9rem; }
-
-  article.entry.later { border-bottom:0; }
-  .entry.later ul.plain { font-size:.95rem; }
-
-  footer.site { margin-top:5rem; border-top:1px solid var(--ink); padding:3rem 0 4rem; }
-  .credit { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.82rem; color:var(--gray); }
+  footer.site { border-top:1px solid var(--rule); margin-top:0; padding:2rem 0 2.6rem; font-family:'Montserrat',sans-serif; font-size:.8rem; color:var(--meta); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
 
   @media print {
-    nav.min { display:none; }
-    article.entry, .pattern-quote { break-inside:avoid; }
-    .intro { padding:3rem 0 2rem; }
+    body { background:#fff; }
+    .frame { margin:0; }
+    nav.primary { display:none; }
+    article.post { break-inside:avoid; }
   }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="frame">
+  <div class="wrap">
 
-  <header class="site">
-    <span class="wordmark">Affordable Earthworks</span>
-    <nav class="min" aria-label="Page">
-      <a href="#plan">the plan</a>
-      <a href="#looks">the looks</a>
-    </nav>
-  </header>
+    <header class="site">
+      <p class="site-title">Affordable Earthworks</p>
+      <p class="site-desc">A plan, from Rob &middot; July 2026</p>
+      <nav class="primary" aria-label="Page">
+        <ul>
+          <li><a href="#plan">The plan</a></li>
+          <li><a href="#looks">The looks</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <main>
-    <div class="intro col">
-      <h1>The plan.</h1>
-      <p>Google grading, excavation, or demolition in San Diego and Affordable Earthworks doesn&rsquo;t come up. Three moves fix that in about thirty days. The website is the smallest of them, and nothing here costs anything to run.</p>
+    <div class="intro" id="plan">
+      <h1>I can help you do this.</h1>
+      <p>When somebody googles excavation, grading, or demo in San Diego, Affordable Earthworks doesn&rsquo;t come up &mdash; not on Maps, not anywhere. Three moves fix it, and I&rsquo;ll do almost all of the work. Here&rsquo;s the plan.</p>
     </div>
 
-    <div class="posts" id="plan">
-      <article class="entry col">
-        <span class="tag">MOVE 1 &middot; WEEK ONE</span>
-        <h2>Get on Google.</h2>
-        <p class="body">There is no Google listing for the business &mdash; that&rsquo;s why it doesn&rsquo;t show up on Maps. I create the listing, claim the Yelp page that already holds eight five-star reviews, and correct the wrong phone number a few directories carry. Nothing for you to do here.</p>
+    <main>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Move 1</span>
+          Week one
+        </div>
+        <div class="entry">
+          <h2>Get on Google.</h2>
+          <p>Google doesn&rsquo;t have a listing for you &mdash; that&rsquo;s the whole reason you&rsquo;re not on Maps. I&rsquo;ll set one up, claim your Yelp page (eight five-star reviews sitting on it already), and fix the wrong phone number a couple directories have. You don&rsquo;t have to do anything for this one.</p>
+        </div>
       </article>
 
-      <article class="entry col">
-        <span class="tag">MOVE 2 &middot; WEEK TWO</span>
-        <h2>Turn the website on.</h2>
-        <p class="body">One page at affordableearthworks.com, replacing the 2015 site. You pick one of the three looks below. It works on a phone, calls and quote requests come straight to you, and it&rsquo;s free to host.</p>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Move 2</span>
+          Week two
+        </div>
+        <div class="entry">
+          <h2>Turn the website on.</h2>
+          <p>One page at affordableearthworks.com, replacing the old site. Pick one of the three looks below and I&rsquo;ll build it out. It&rsquo;ll work on a phone, the number is tap-to-call, and quote requests go straight to you.</p>
+        </div>
       </article>
 
-      <article class="entry col">
-        <span class="tag">MOVE 3 &middot; ONGOING</span>
-        <h2>Ask for reviews.</h2>
-        <p class="body">After each job, text the customer one link asking for a Google review. I set up the link and write the message; you copy, paste, send. Reviews are what move a business up the map. This is the only recurring work, and it&rsquo;s yours.</p>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Move 3</span>
+          Ongoing
+        </div>
+        <div class="entry">
+          <h2>Ask for reviews.</h2>
+          <p>After a job, text the customer one link asking for a Google review. I&rsquo;ll set up the link and write the text &mdash; you just copy it and send it. Reviews are what move you up the map, and this is the only part that&rsquo;s yours to do.</p>
+          <blockquote>
+            &ldquo;An artist with a backhoe.&rdquo;
+            <span class="who">one of the Yelp reviews &mdash; people already say this stuff about you</span>
+          </blockquote>
+        </div>
       </article>
 
-      <div class="pattern-quote col">
-        <blockquote>&ldquo;An artist with a backhoe.&rdquo;</blockquote>
-        <cite class="mono">from one of eight five-star Yelp reviews &mdash; on a page nobody has claimed yet</cite>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Your part</span>
+          Five things
+        </div>
+        <div class="entry">
+          <h2>What I need from you.</h2>
+          <ul class="plain">
+            <li><b>Pick a look</b> from the three below.</li>
+            <li><b>The full-color logo,</b> if you can find it.</li>
+            <li><b>A street address</b> for Google&rsquo;s verification postcard. It never gets published &mdash; the listing shows your service area, not your address.</li>
+            <li><b>Ten or so job photos</b> off your phone. Before-and-afters are the good ones.</li>
+            <li><b>The GoDaddy login,</b> so I can point the domain at the new page.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Proof</span>
+          Monthly
+        </div>
+        <div class="entry">
+          <h2>How you&rsquo;ll know it&rsquo;s working.</h2>
+          <p>Google counts every call and every direction request your listing gets. Once a month I&rsquo;ll send you the screenshot, and you can see for yourself.</p>
+        </div>
+      </article>
+
+      <div class="section-lead" id="looks">
+        <p>Three looks, same facts. Pick whichever one feels like the business &mdash; it becomes the real site at affordableearthworks.com.</p>
       </div>
 
-      <article class="entry col">
-        <span class="tag">FROM YOU</span>
-        <h2>What I need.</h2>
-        <ul class="plain">
-          <li><b>A pick</b> from the three looks below.</li>
-          <li><b>The full-color logo,</b> if it turns up.</li>
-          <li><b>A street address</b> for Google&rsquo;s mailed verification code. Never published &mdash; the listing shows a service area, not an address.</li>
-          <li><b>Ten job photos</b> from your phone. Before-and-after pairs are best.</li>
-          <li><b>The GoDaddy login,</b> so the domain can point at the new page.</li>
-        </ul>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Look one</span>
+        </div>
+        <div class="entry">
+          <h2><a href="t4/">Clean and modern</a></h2>
+          <p>White and light grey, plain type, big photo tiles. Quiet and current.</p>
+          <p class="more"><a href="t4/">Open it &rarr;</a></p>
+        </div>
       </article>
 
-      <article class="entry col">
-        <span class="tag">PROOF</span>
-        <h2>How you&rsquo;ll know it&rsquo;s working.</h2>
-        <p class="body">Google counts every call and direction request the listing gets; once a month you get the screenshot. If the numbers aren&rsquo;t there, we stop. Nothing above has a monthly cost.</p>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Look two</span>
+        </div>
+        <div class="entry">
+          <h2><a href="t7/">Bold and graphic</a></h2>
+          <p>Cobalt blue on off-white, one huge headline, a running list of services.</p>
+          <p class="more"><a href="t7/">Open it &rarr;</a></p>
+        </div>
       </article>
 
-      <div class="section-lead col" id="looks">
-        <span class="tag">THE THREE LOOKS</span>
-        <p>Working drafts. Pick one and it becomes the real site at affordableearthworks.com.</p>
-      </div>
-
-      <article class="entry look col">
-        <span class="tag">ONE</span>
-        <h2><a href="t4/">Clean and modern</a></h2>
-        <p class="body">White and light grey, plain type, big photo tiles. Quiet and current.</p>
-        <a class="readon" href="t4/">Open it &rarr;</a>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Look three</span>
+        </div>
+        <div class="entry">
+          <h2><a href="t33/">Warm and editorial</a></h2>
+          <p>Ivory, olive and rust with a serif face. Reads like a printed portfolio.</p>
+          <p class="more"><a href="t33/">Open it &rarr;</a></p>
+        </div>
       </article>
 
-      <article class="entry look col">
-        <span class="tag">TWO</span>
-        <h2><a href="t7/">Bold and graphic</a></h2>
-        <p class="body">Cobalt blue on off-white, one huge headline, a running list of services.</p>
-        <a class="readon" href="t7/">Open it &rarr;</a>
+      <article class="post">
+        <div class="postmeta">
+          <span class="lbl">Down the road</span>
+          Optional
+        </div>
+        <div class="entry">
+          <h2>If the phone gets busy.</h2>
+          <p>Not part of the plan &mdash; just things I already run for other businesses. Any of them can be bolted on later.</p>
+          <ul class="plain">
+            <li>Quote requests from the site text your phone the moment they come in.</li>
+            <li>Missed calls get an automatic text back asking for the job and the address.</li>
+            <li>Review requests send themselves after each job.</li>
+            <li>Quote emails show up with a reply already drafted.</li>
+          </ul>
+        </div>
       </article>
+    </main>
 
-      <article class="entry look col">
-        <span class="tag">THREE</span>
-        <h2><a href="t33/">Warm and editorial</a></h2>
-        <p class="body">Ivory, olive and rust with a serif face. Reads like a printed portfolio.</p>
-        <a class="readon" href="t33/">Open it &rarr;</a>
-      </article>
-
-      <article class="entry later col">
-        <span class="tag">LATER &middot; OPTIONAL</span>
-        <h2>If the phone gets busy.</h2>
-        <p class="body">Separate from the plan above. I run automations like these for other businesses; any of them can be added later.</p>
-        <ul class="plain">
-          <li>Quote requests from the site text your phone the moment they arrive.</li>
-          <li>A missed call gets an automatic text back asking for the job and address.</li>
-          <li>Review requests send themselves after each job.</li>
-          <li>Quote emails arrive with a drafted reply waiting.</li>
-        </ul>
-      </article>
-    </div>
-  </main>
-
-  <footer class="site">
-    <div class="credit">
+    <footer class="site">
       <span>Prepared for Affordable Earthworks Inc.</span>
       <span>Rob Logic &middot; July 2026</span>
-    </div>
-  </footer>
+    </footer>
 
+  </div>
 </div>
 </body>
 </html>
