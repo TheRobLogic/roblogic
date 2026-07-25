@@ -4,25 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Affordable Earthworks — Excavation, Grading &amp; Demolition · La Mesa, CA</title>
+<title>Affordable Earthworks — Excavation, Grading &amp; Demolition · San Diego County</title>
 <!--
   t33 FOLIO — the website-builder editorial portfolio · studio/portfolio page
   Territory: WIX-INSPIRED, not cloned — the 2025-26 template-gallery "warm editorial
              portfolio" genre: split hero with a cream text panel beside a full-bleed
              image, overlap-cards floating over photo edges, a numbered work list with
              hairline rules, a serif pull-quote block, and the genre's shared footer
-             (newsletter → caps-label link columns → giant clipped wordmark → credit line).
+             (contact block → caps-label link columns → giant wordmark → credit line).
   Palette:   ivory #f2ede3 · olive #62623e · pine #37402f · rust #b4552d · fog #b9c6c2 · ink #26241f
-  Type:      Fraunces (warm serif display, mixed case) + Albert Sans (small utilitarian body)
+  Type:      Newsreader (editorial text serif, mixed case) + Albert Sans (small utilitarian body)
   Signature: the overlap grammar — a contact card breaking the hero photo's bottom
-             corner — and the giant wordmark bleeding past the footer's edges. Flat
-             everything: zero drop shadows, elevation by overlap and hairline only.
+             corner — and the giant wordmark closing the footer. Flat everything:
+             zero drop shadows, elevation by overlap and hairline only.
   A11y:      AA ink/olive on ivory; underlined text CTAs, not color-only; :focus-visible
              rust ring; honors reduced-motion; no JS.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Albert+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f2ede3'/><path d='M0 72 Q30 52 60 66 T100 60 L100 100 L0 100 Z' fill='%2362623e'/><path d='M0 84 Q40 70 100 80 L100 100 L0 100 Z' fill='%2337402f'/><rect x='58' y='14' width='30' height='16' fill='%23b4552d'/></svg>">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -40,20 +40,20 @@
   .wrap { max-width:1160px; margin:0 auto; padding:0 clamp(1.2rem, 4vw, 2.6rem); }
   a { color:var(--ink); }
   a:focus-visible, input:focus-visible, button:focus-visible { outline:2px solid var(--rust); outline-offset:3px; }
-  .serif { font-family:'Fraunces',serif; }
+  .serif { font-family:'Newsreader',Georgia,serif; }
   .textlink { font-weight:600; font-size:.9rem; text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px; }
   .textlink:hover { color:var(--rust); }
 
   /* ── split hero ── */
-  .hero { display:grid; grid-template-columns:minmax(340px, 5fr) 7fr; min-height:min(92vh, 780px); }
+  .hero { display:grid; grid-template-columns:minmax(340px, 5fr) 7fr; min-height:min(76vh, 620px); }
   @media (max-width:880px) { .hero { grid-template-columns:1fr; min-height:0; } }
   .hero-panel { padding:clamp(1.6rem, 4vw, 3.2rem); display:flex; flex-direction:column; }
-  .logotype { font-family:'Fraunces',serif; font-weight:600; font-size:1.25rem; letter-spacing:.01em; }
-  .logotype .amp { color:var(--rust); font-style:italic; }
+  .logotype { font-family:'Newsreader',Georgia,serif; font-weight:600; font-size:1.25rem; letter-spacing:.01em; }
+  .logotype .amp { color:var(--rust); }
   nav.quiet { display:flex; gap:1.5rem; margin-top:.4rem; padding:1.1rem 0 0; }
   nav.quiet a { text-decoration:none; font-size:.85rem; font-weight:500; color:var(--ink-soft); }
   nav.quiet a:hover, nav.quiet a[aria-current="page"] { color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
-  .hero-panel h1 { font-family:'Fraunces',serif; font-weight:500; font-size:clamp(2.4rem, 4.6vw, 3.7rem); line-height:1.08; letter-spacing:-.01em; margin-top:auto; padding-top:clamp(2rem, 6vh, 4rem); max-width:15ch; color:var(--pine); text-wrap:balance; }
+  .hero-panel h1 { font-family:'Newsreader',Georgia,serif; font-weight:500; font-size:clamp(2.4rem, 4.6vw, 3.7rem); line-height:1.08; letter-spacing:-.01em; margin-top:auto; padding-top:clamp(2rem, 6vh, 4rem); max-width:15ch; color:var(--pine); text-wrap:balance; }
   .hero-panel h1 em { font-style:italic; color:var(--olive); }
   .hero-panel .lede { color:var(--ink-soft); max-width:34ch; margin-top:1.2rem; }
   .hero-panel .go { margin-top:2rem; padding-bottom:.4rem; }
@@ -65,13 +65,13 @@
     background:var(--ivory); border:1px solid var(--hair); padding:1.1rem 1.3rem; max-width:280px;
   }
   .book-card .k { display:block; font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--olive); margin-bottom:.35rem; }
-  .book-card .bignum { display:block; font-family:'Fraunces',serif; font-size:1.5rem; line-height:1.15; text-decoration:none; white-space:nowrap; }
+  .book-card .bignum { display:block; font-family:'Newsreader',Georgia,serif; font-size:1.5rem; line-height:1.15; text-decoration:none; white-space:nowrap; }
   .book-card .bignum:hover { color:var(--rust); }
   .book-card .hrs { display:block; margin-top:.4rem; font-size:.8rem; color:var(--ink-soft); }
   @media (max-width:880px) { .book-card { bottom:-1.4rem; } }
 
   /* ── numbered work list ── */
-  section.work { padding:6rem 0 3.5rem; }
+  section.work { padding:4.5rem 0 3rem; }
   .sec-eyebrow { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.18em; color:var(--olive); margin-bottom:2rem; }
   .project { display:grid; grid-template-columns:190px minmax(0,1fr); gap:1.6rem; align-items:center; padding:1.6rem 0; border-top:1px solid var(--hair); }
   .project:last-child { border-bottom:1px solid var(--hair); }
@@ -79,35 +79,35 @@
   @media (max-width:760px) { .project { grid-template-columns:96px minmax(0,1fr); gap:1rem; } }
   .pthumb { aspect-ratio:16/10; position:relative; overflow:hidden; background:var(--fog); }
   .pthumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-  .project h3 { font-family:'Fraunces',serif; font-weight:500; font-size:1.5rem; }
+  .project h3 { font-family:'Newsreader',Georgia,serif; font-weight:500; font-size:1.5rem; }
   .project .about { color:var(--ink-soft); font-size:.88rem; max-width:52ch; margin-top:.2rem; }
 
   /* ── pull-quote editorial block ── */
   section.quote { padding:4.5rem 0; }
-  section.quote blockquote { font-family:'Fraunces',serif; font-weight:400; font-size:clamp(2rem, 5vw, 3.4rem); line-height:1.22; color:var(--pine); max-width:18ch; text-indent:-.32em; }
+  section.quote blockquote { font-family:'Newsreader',Georgia,serif; font-weight:400; font-size:clamp(2rem, 5vw, 3.4rem); line-height:1.22; color:var(--pine); max-width:18ch; text-indent:-.32em; }
   section.quote cite { display:block; font-style:normal; font-size:.8rem; color:var(--ink-soft); margin-top:1.4rem; }
 
   /* ── credentials ── */
   section.approach { padding:2rem 0 5.5rem; }
   .approach-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:2.4rem; border-top:1px solid var(--hair); padding-top:2.4rem; }
-  .approach-grid h3 { font-family:'Fraunces',serif; font-weight:500; font-size:1.2rem; margin-bottom:.5rem; }
+  .approach-grid h3 { font-family:'Newsreader',Georgia,serif; font-weight:500; font-size:1.2rem; margin-bottom:.5rem; }
   .approach-grid p { color:var(--ink-soft); font-size:.9rem; max-width:34ch; }
 
   /* ── the genre's shared footer ── */
   footer { background:var(--pine); color:#e8e5d8; overflow:hidden; }
-  .foot-top { display:grid; grid-template-columns:minmax(260px, 5fr) 7fr; gap:3rem; padding:3.2rem 0 2.6rem; }
+  .foot-top { display:grid; grid-template-columns:minmax(260px, 1fr) 1fr; gap:3rem; padding:3.2rem 0 2.6rem; }
   @media (max-width:820px) { .foot-top { grid-template-columns:1fr; } }
-  .newsletter p { font-family:'Fraunces',serif; font-size:1.3rem; max-width:24ch; }
+  .newsletter p { font-family:'Newsreader',Georgia,serif; font-size:1.3rem; max-width:24ch; }
   .callbtn { display:inline-block; margin-top:1.1rem; font:inherit; font-size:.85rem; font-weight:600; background:var(--ivory); color:var(--pine); border:1px solid var(--ivory); padding:.65rem 1rem; text-decoration:none; }
   .callbtn:hover { background:#fff; }
   .foot-cols { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:1.6rem; align-content:start; }
   .foot-cols h3 { font-size:.68rem; font-weight:600; text-transform:uppercase; letter-spacing:.16em; color:#a9b19c; margin-bottom:.7rem; }
-  .foot-cols ul { list-style:none; }
+  .foot-cols ul { list-style:none; columns:2; column-gap:1.6rem; }
   .foot-cols li { padding:.18rem 0; font-size:.88rem; }
   .foot-cols a { color:#e8e5d8; text-decoration:none; }
   .foot-cols a:hover { text-decoration:underline; text-underline-offset:3px; }
-  /* lives OUTSIDE .wrap so it can actually bleed past both edges at every width */
-  .giant-mark { font-family:'Fraunces',serif; font-weight:600; font-size:clamp(5rem, 18vw, 15rem); line-height:.8; letter-spacing:-.03em; color:#4f5f44; white-space:nowrap; margin:2rem -8vw 0; text-align:center; user-select:none; }
+  /* sits fully inside the gutter — the word reads whole, never clipped */
+  .giant-mark { font-family:'Newsreader',Georgia,serif; font-weight:600; font-size:min(10.6vw, 6.4rem); line-height:1.1; letter-spacing:.01em; color:#4f5f44; white-space:nowrap; margin:2.4rem 0 0; text-align:center; user-select:none; }
   .foot-legal { position:relative; margin-top:1.2rem; border-top:1px solid #4a5542; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; padding:1.1rem 0 1.4rem; font-size:.76rem; color:#a9b19c; }
   .foot-legal a { color:#a9b19c; }
 </style>
@@ -123,12 +123,12 @@
         <a href="#approach">Credentials</a>
         <a href="#contact">Contact</a>
       </nav>
-      <h1>Excavation, <em>grading</em>, and demolition for East County San Diego.</h1>
-      <p class="lede">Dirt work across La Mesa, El Cajon, Santee and Lakeside since 2003 &mdash; licensed Class A, and small enough to fit through a 64-inch gate.</p>
-      <a class="textlink go" href="#work">See all eight services</a>
+      <h1>Excavation, grading, and demolition across San Diego County.</h1>
+      <p class="lede">Digging since 2003. Licensed Class&nbsp;A, and small enough to fit through a 64-inch gate.</p>
+      <a class="textlink go" href="#work">See what we do</a>
     </div>
     <div class="hero-scene">
-      <img class="scene" src="../img/hero-after.jpg" alt="A Santee backyard after grading — hillside terraced with block retaining walls, level patio and lawn below.">
+      <img class="scene" src="../img/hero-after.jpg" alt="A backyard after grading — hillside terraced with block retaining walls, level patio and lawn below.">
       <div class="book-card">
         <span class="k">Free estimates</span>
         <a class="bignum" href="tel:+16198166183">(619) 816-6183</a>
@@ -144,49 +144,49 @@
         <div class="pthumb" aria-hidden="true"><img src="../img/excavation.jpg" alt=""></div>
         <div>
           <h3>Excavation</h3>
-          <p class="about">Footings, foundations, and building pads for additions and new construction.</p>
+          <p class="about">Footings, foundations, and building pads.</p>
         </div>
       </div>
       <div class="project">
         <div class="pthumb" aria-hidden="true"><img src="../img/hero-before.jpg" alt=""></div>
         <div>
           <h3>Grading</h3>
-          <p class="about">Hillsides cut back into usable yard, and the surface graded so water runs away from the house.</p>
+          <p class="about">Hillsides cut back into usable yard, graded so water runs away from the house.</p>
         </div>
       </div>
       <div class="project">
         <div class="pthumb" aria-hidden="true"><img src="../img/demo.jpg" alt=""></div>
         <div>
           <h3>Demolition</h3>
-          <p class="about">Houses, driveways, patios, and slab concrete out, with the debris hauled off as it comes.</p>
+          <p class="about">Houses, driveways, patios and slab concrete out, debris hauled off as it comes.</p>
         </div>
       </div>
       <div class="project">
         <div class="pthumb" aria-hidden="true"><img src="../img/machines.jpg" alt=""></div>
         <div>
           <h3>Bobcat Work</h3>
-          <p class="about">The S205 fits a 64-inch gate, so most backyard jobs don&rsquo;t start with pulling out a fence panel.</p>
+          <p class="about">Fits a 64-inch gate, so most backyard jobs don&rsquo;t start with pulling out a fence panel.</p>
         </div>
       </div>
       <div class="project">
         <div class="pthumb" aria-hidden="true"><img src="../img/dig.jpg" alt=""></div>
         <div>
           <h3>Hauling</h3>
-          <p class="about">We run our own dump truck, so the dirt leaves with us instead of sitting in the driveway.</p>
+          <p class="about">Our own dump truck, so the dirt leaves with us.</p>
         </div>
       </div>
       <div class="project">
         <div class="pthumb" aria-hidden="true"><img src="../img/pool.jpg" alt=""></div>
         <div>
           <h3>Pool &amp; Trampoline Removal</h3>
-          <p class="about">Shell broken out, the hole backfilled and compacted, the yard back to flat.</p>
+          <p class="about">Shell broken out, hole backfilled, yard back to flat.</p>
         </div>
       </div>
       <div class="project">
         <div class="pthumb" aria-hidden="true"><img src="../img/stump.jpg" alt=""></div>
         <div>
           <h3>Tree &amp; Stump Removal</h3>
-          <p class="about">Trees down, stumps and root balls dug out whole, and all of it leaves with us.</p>
+          <p class="about">Trees down, stumps and root balls dug out whole.</p>
         </div>
       </div>
       <div class="project">
@@ -200,7 +200,7 @@
 
     <section class="quote">
       <blockquote>&ldquo;An artist with a backhoe.&rdquo;</blockquote>
-      <cite>&mdash; One of eight Yelp reviews, all of them five stars</cite>
+      <cite>&mdash; one of eight five-star Yelp reviews</cite>
     </section>
 
     <section class="approach" id="approach">
@@ -208,11 +208,11 @@
       <div class="approach-grid">
         <div>
           <h3 class="serif">Licensed</h3>
-          <p>CSLB #927597, Class A and C27. Active, and licensed since 2009.</p>
+          <p>CSLB #927597, Class A and C27, active.</p>
         </div>
         <div>
           <h3 class="serif">Bonded &amp; insured</h3>
-          <p>Bond on file with the CSLB, and insurance carried on every job.</p>
+          <p>Bond on file with the CSLB.</p>
         </div>
         <div>
           <h3 class="serif">Veriforce-certified</h3>
@@ -220,7 +220,7 @@
         </div>
         <div>
           <h3 class="serif">Since 2003</h3>
-          <p>Working East County San Diego, from La Mesa out to Lakeside.</p>
+          <p>Working across San Diego County.</p>
         </div>
       </div>
     </section>
@@ -248,25 +248,11 @@
             <li>Tree &amp; stump removal</li>
           </ul>
         </div>
-        <div>
-          <h3>Service area</h3>
-          <ul>
-            <li>La Mesa</li>
-            <li>El Cajon</li>
-            <li>Santee</li>
-            <li>Lakeside</li>
-            <li>Spring Valley</li>
-            <li>Lemon Grove</li>
-            <li>Mount Helix</li>
-            <li>Casa de Oro</li>
-            <li>Rancho San Diego</li>
-          </ul>
         </div>
-      </div>
     </div>
   </div>
-  <div class="giant-mark" aria-hidden="true">EARTHWORKS</div>
   <div class="wrap">
+    <div class="giant-mark" aria-hidden="true">EARTHWORKS</div>
     <div class="foot-legal">
       <span>Affordable Earthworks Inc. · P.O. Box 113, Lakeside, CA 92040 · CSLB #927597</span>
       <span>Mon&ndash;Sat, 7a&ndash;5p · Licensed, bonded &amp; insured.</span>
