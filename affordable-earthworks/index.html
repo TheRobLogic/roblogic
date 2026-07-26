@@ -1,132 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Affordable Earthworks</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2316150f'/><rect x='14' y='40' width='72' height='20' fill='%23ffc400'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Affordable Earthworks — three design directions</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚜</text></svg>">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  :root { --ink:#16150f; --bone:#f0ece4; --yellow:#ffc400; --dim:#6a675d; }
-  body { background:var(--bone); color:var(--ink); font-family:'IBM Plex Sans',system-ui,sans-serif;
-         font-size:1.06rem; line-height:1.5; -webkit-font-smoothing:antialiased; }
-  .wrap { max-width:1180px; margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem); }
-  a { color:inherit; }
-  a:focus-visible { outline:3px solid var(--yellow); outline-offset:3px; }
-  h2 { font-family:'Archivo Black',sans-serif; font-weight:400; text-transform:uppercase;
-       letter-spacing:-.01em; font-size:clamp(1.5rem,4vw,2.4rem); line-height:1; }
-
-  .bar { background:var(--ink); color:var(--bone); }
-  .bar .wrap { display:flex; align-items:center; gap:1rem; height:56px; }
-  .bar span { font-size:.78rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; }
-  .bar i { display:block; flex:1; height:4px; background:var(--yellow); }
-
-  .looks { padding:clamp(2.4rem,5vw,3.6rem) 0 clamp(2.4rem,5vw,4rem); }
-  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:1.6rem; }
-  @media (max-width:880px) { .grid { grid-template-columns:1fr; gap:1.8rem; } }
-  .tile { display:flex; flex-direction:column; text-decoration:none; background:#fff; border:3px solid var(--ink); }
-  .tile img { width:100%; aspect-ratio:16/12; object-fit:cover; object-position:top center;
-              border-bottom:3px solid var(--ink); display:block; }
-  .tile h3 { font-family:'Archivo Black',sans-serif; font-weight:400; font-size:1.2rem;
-             padding:1rem 1.1rem; flex:1; }
-  .open { display:flex; align-items:center; justify-content:space-between; gap:1rem;
-          background:var(--ink); color:var(--bone); padding:1.15rem 1.1rem;
-          font-family:'Archivo Black',sans-serif; font-size:1.2rem; text-transform:uppercase; }
-  .tile:hover .open, .tile:focus-visible .open { background:var(--yellow); color:var(--ink); }
-
-  .proof { background:var(--ink); color:var(--bone); padding:clamp(2.4rem,5vw,3.6rem) 0; }
-  .proof h2 { color:var(--bone); }
-  .proof p { margin-top:.7rem; color:var(--yellow); font-weight:600; }
-  .proof figure { margin-top:1.6rem; border:3px solid var(--yellow); }
-  .proof img { width:100%; display:block; }
-  @media (max-width:880px) { .proof figure { max-width:420px; } }
-
-  .todo { padding:clamp(2.4rem,5vw,3.6rem) 0; }
-  .todo ol { list-style:none; counter-reset:s; margin-top:1.4rem;
-             display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:0 3rem; }
-  .todo ol > li { counter-increment:s; display:grid; grid-template-columns:2.4rem minmax(0,1fr); gap:.6rem;
-             align-items:baseline; padding:.9rem 0; border-top:2px solid var(--ink); font-size:1.06rem; }
-  .todo ol > li::before { content:counter(s); font-family:'Archivo Black',sans-serif; color:var(--yellow);
-                     -webkit-text-stroke:1.5px var(--ink); font-size:1.5rem; }
-  .todo ol b { font-weight:600; }
-  .todo ol em { font-style:normal; color:var(--dim); }
-
-  .later { border-top:2px solid var(--ink); padding:1.6rem 0 2.6rem; }
-  .later h3 { font-size:.74rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--dim); }
-  .later ul { list-style:none; margin-top:.7rem; display:grid;
-              grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.3rem 2.5rem; }
-  .later li { font-size:.95rem; color:var(--dim); }
-
-  @media print { .tile, .proof figure { break-inside:avoid; } }
+  body { background:#16150f; color:#efe9dc; font-family:Georgia,'Times New Roman',serif; min-height:100vh;
+         display:grid; place-content:center; padding:2rem; }
+  .k { font-family:ui-monospace,Menlo,monospace; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:#9a917d; }
+  h1 { font-size:clamp(1.6rem,4vw,2.4rem); font-weight:400; margin:.4rem 0 .6rem; }
+  p.intro { color:#9a917d; font-size:.95rem; max-width:56ch; margin-bottom:1.6rem; }
+  ul { list-style:none; display:grid; gap:.9rem; max-width:560px; }
+  a.card { display:block; border:1px solid #3a372c; padding:1rem 1.2rem; text-decoration:none; color:inherit; }
+  a.card:hover, a.card:focus-visible { border-color:#efe9dc; outline:none; }
+  a.card b { font-family:ui-monospace,Menlo,monospace; font-size:.75rem; letter-spacing:.12em; color:#d8a03d; margin-right:.7rem; }
+  a.card span { color:#9a917d; font-size:.85rem; display:block; margin-top:.25rem; }
+  p.note { margin-top:1.6rem; font-size:.8rem; color:#9a917d; max-width:56ch; }
 </style>
 </head>
 <body>
-
-<div class="bar"><div class="wrap"><span>Affordable Earthworks</span><i></i></div></div>
-
-<section class="looks">
-  <div class="wrap">
-    <h2>Pick a look</h2>
-    <div class="grid">
-      <a class="tile" href="t4/">
-        <img src="img/look-t4.jpg" alt="Clean and modern version">
-        <h3>Clean and modern</h3>
-        <div class="open">Open <span>&rarr;</span></div>
-      </a>
-      <a class="tile" href="t7/">
-        <img src="img/look-t7.jpg" alt="Bold and graphic version">
-        <h3>Bold and graphic</h3>
-        <div class="open">Open <span>&rarr;</span></div>
-      </a>
-      <a class="tile" href="t33/">
-        <img src="img/look-t33.jpg" alt="Warm and editorial version">
-        <h3>Warm and editorial</h3>
-        <div class="open">Open <span>&rarr;</span></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="proof">
-  <div class="wrap">
-    <h2>Google, right now</h2>
-    <p>Four competitors. You&rsquo;re not on it.</p>
-    <figure>
-      <picture>
-        <source media="(max-width:880px)" srcset="img/google-m.jpg">
-        <img src="img/google.jpg" alt="Google results for &ldquo;excavation san diego&rdquo; showing competitors and no listing for Affordable Earthworks">
-      </picture>
-    </figure>
-  </div>
-</section>
-
-<section class="todo">
-  <div class="wrap">
-    <h2>What you need to do</h2>
-    <ol>
-      <li><span><b>Pick a look</b> <em>&mdash; up top</em></span></li>
-      <li><span><b>Send the color logo</b></span></li>
-      <li><span><b>Send a street address</b> <em>&mdash; Google mails a code, never published</em></span></li>
-      <li><span><b>Send ten job photos</b></span></li>
-      <li><span><b>Send the GoDaddy login</b></span></li>
-      <li><span><b>Text customers a review link</b> <em>&mdash; after every job</em></span></li>
-    </ol>
-    <div class="later">
-      <h3>Later</h3>
-      <ul>
-        <li>Quote requests text your phone</li>
-        <li>Missed calls get a text back</li>
-        <li>Review requests send themselves</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="bar"><div class="wrap"><span>Affordable Earthworks</span><i></i></div></div>
-
+<div>
+  <p class="k">Affordable Earthworks Inc. &middot; San Diego County</p>
+  <h1>Three design directions</h1>
+  <p class="intro">Built around the Class&nbsp;A general engineering and Veriforce / SDG&amp;E side of the business, with the residential work kept as a secondary line. Same facts in all three &mdash; three different looks. Open them full screen and see which one feels right.</p>
+  <ul>
+    <li><a class="card" href="t4/"><b>ONE</b>Clean and modern<span>White and light grey, plain type, big photo tiles. Quiet and current.</span></a></li>
+    <li><a class="card" href="t7/"><b>TWO</b>Bold and graphic<span>Cobalt blue on off-white, one huge headline, a running list of services.</span></a></li>
+    <li><a class="card" href="t33/"><b>THREE</b>Warm and editorial<span>Ivory, olive and rust with a serif face. Reads like a printed portfolio.</span></a></li>
+  </ul>
+  <p class="note">Working drafts &mdash; not the live Affordable Earthworks website. Job photos are existing records and would be re-shot at full resolution for a final build.</p>
+</div>
 </body>
 </html>
