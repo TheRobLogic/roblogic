@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fight League History &mdash; Season 1 | roblogic.org</title>
+<!-- Fight League Season 1 -- a 12-lane Solari split-flap departures board. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600&family=Saira:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%2317181b'/><rect x='14' y='30' width='72' height='18' rx='3' fill='%23202227'/><rect x='14' y='52' width='72' height='18' rx='3' fill='%23202227'/><line x1='14' y1='39' x2='86' y2='39' stroke='%2317181b' stroke-width='2'/><line x1='14' y1='61' x2='86' y2='61' stroke='%2317181b' stroke-width='2'/><rect x='18' y='33' width='30' height='12' fill='%23f2efe4'/><rect x='18' y='55' width='42' height='12' fill='%23e3a93c'/></svg>">
+<style>
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --concourse:#23252a; --board:#17181b; --cell:#202227; --ivory:#f2efe4;
+    --amber:#e3a93c; --gray:#9aa0a8; --split:rgba(0,0,0,.55);
+    --pos:#5fbf77; --neg:#d9685c;
+  }
+  html { scroll-behavior:smooth; }
+  body {
+    background:linear-gradient(to bottom, #2a2d33, var(--concourse) 320px);
+    color:var(--ivory); font-family:'Saira',sans-serif; line-height:1.65;
+    overflow-x:clip;
+  }
+  ::selection { background:var(--amber); color:var(--board); }
+  a { color:var(--ivory); }
+  a:focus-visible, button:focus-visible { outline:2px solid var(--amber); outline-offset:3px; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 clamp(1rem, 3.5vw, 2.4rem) 3rem; }
+  .lbl { font-size:.72rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--gray); }
+  .mono { font-variant-numeric:tabular-nums; }
+
+  /* ---------- station masthead ---------- */
+  header.station {
+    display:flex; justify-content:space-between; align-items:center; gap:1.2rem 2.4rem; flex-wrap:wrap;
+    padding:1.8rem 0 1.4rem;
+  }
+  .enamel {
+    background:var(--board); border:3px solid var(--ivory); border-radius:6px;
+    box-shadow:inset 0 0 0 2px var(--board), inset 0 0 0 3px rgba(242,239,228,.35), 0 6px 18px rgba(0,0,0,.45);
+    padding:.7rem 1.4rem;
+  }
+  .enamel h1 {
+    font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:clamp(1.15rem, 3.6vw, 2rem);
+    letter-spacing:.1em; text-transform:uppercase; line-height:1.1;
+  }
+  .enamel .sub { font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--amber); }
+  .clockbox { text-align:right; }
+  .clock { display:inline-flex; gap:3px; font-family:'Saira Condensed',sans-serif; font-weight:600; }
+  .clock b {
+    background:var(--cell); border-radius:4px; padding:.15em .32em; font-size:clamp(1.4rem, 4vw, 2rem);
+    position:relative; min-width:1.25em; text-align:center; font-weight:600;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 2px 5px rgba(0,0,0,.5);
+  }
+  .clock b::after { content:""; position:absolute; left:0; right:0; top:50%; height:1.5px; background:var(--split); }
+  .clock .colon { align-self:center; font-size:1.5em; color:var(--gray); padding:0 .06em; }
+  .clockbox .lbl { margin-top:.3rem; }
+
+  /* ---------- the board ---------- */
+  .boardframe {
+    background:var(--board); border-radius:10px; padding:clamp(.9rem, 3vw, 1.8rem);
+    box-shadow:0 18px 44px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .boardhead { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; flex-wrap:wrap; padding:0 .2rem .8rem; }
+  .boardhead .lbl { color:var(--amber); }
+  .boardhead .note { font-size:.78rem; color:var(--gray); }
+
+  .pill {
+    display:inline-block; margin:0 0 1rem; border:2px solid var(--amber); color:var(--amber);
+    border-radius:999px; padding:.3rem 1rem; font-family:'Saira Condensed',sans-serif; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; font-size:.74rem;
+  }
+
+  /* shared subgrid tracks: every row's columns size to real flap content and stay aligned */
+  .depart { display:grid; gap:6px; grid-template-columns:auto minmax(0,1fr) auto auto; }
+  .row { display:grid; grid-template-columns:subgrid; grid-column:1 / -1; gap:8px; align-items:center; }
+  .row.head { padding-bottom:.2rem; }
+  .row.head span { font-size:.66rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); }
+
+  .field {
+    font-family:'Saira Condensed',sans-serif; font-weight:600;
+    font-size:clamp(1rem, 2.9vw, 1.5rem); letter-spacing:.06em; text-transform:uppercase;
+    display:flex; gap:2px; overflow:hidden; white-space:nowrap;
+  }
+  .field .cell {
+    background:var(--cell); border-radius:3px; padding:.08em .12em; min-width:1.02em; text-align:center;
+    position:relative; flex:0 0 auto;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 1px 3px rgba(0,0,0,.5);
+  }
+  .field .cell::after { content:""; position:absolute; left:0; right:0; top:50%; height:1.4px; background:var(--split); }
+  .field .cell.sp { background:transparent; box-shadow:none; }
+  .field .cell.sp::after { display:none; }
+  .field.status { color:var(--ivory); }
+  .row[data-state="TRADING"] .field.status,
+  .row[data-state="HOLDING"] .field.status,
+  .row[data-state="SAT OUT"] .field.status,
+  .row[data-state="AWAITING BELL"] .field.status { color:var(--amber); }
+  /* churn squash: stamped per-cell by JS while cycling */
+  .cell.churn { animation:squash .09s linear infinite; }
+  @keyframes squash { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(.62); } }
+
+  .pos { color:var(--pos); } .neg { color:var(--neg); } .flat { color:var(--ivory); }
+
+  .boardfoot { display:flex; justify-content:space-between; gap:.8rem 2rem; flex-wrap:wrap; padding:.9rem .2rem 0; }
+  .boardfoot p { font-size:.78rem; color:var(--gray); }
+
+  /* ---------- wayfinding ---------- */
+  section.way { padding:clamp(2.4rem, 5vw, 3.6rem) 0 0; }
+  h2 { font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:clamp(1.4rem, 3.6vw, 2rem); letter-spacing:.1em; text-transform:uppercase; margin:.3rem 0 1.4rem; }
+  .signs { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap:1.2rem; }
+  .sign {
+    background:var(--board); border:2px solid var(--ivory); border-radius:6px; padding:1rem 1.2rem;
+    box-shadow:inset 0 0 0 2px var(--board), inset 0 0 0 3px rgba(242,239,228,.3), 0 5px 14px rgba(0,0,0,.4);
+    display:flex; align-items:center; gap:1rem;
+  }
+  a.sign { text-decoration:none; }
+  a.sign:hover { border-color:var(--amber); }
+  .sign .arrow { font-family:'Saira Condensed',sans-serif; font-size:1.7rem; font-weight:600; color:var(--amber); }
+  .sign h3 { font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:1.1rem; letter-spacing:.12em; text-transform:uppercase; }
+  .sign p { font-size:.86rem; color:var(--gray); }
+
+  /* ---------- fight card roster + sparkline cards ---------- */
+  section.cards { padding:clamp(2.4rem, 5vw, 3.6rem) 0 0; }
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap:1rem; }
+  .fightcard, .spark-card {
+    background:var(--board); border:2px solid var(--ivory); border-radius:6px; padding:.9rem 1.1rem;
+    box-shadow:inset 0 0 0 2px var(--board), inset 0 0 0 3px rgba(242,239,228,.3), 0 5px 14px rgba(0,0,0,.4);
+  }
+  .fc-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:.3rem; }
+  .kind-badge {
+    font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em;
+    padding:.15em .55em; border-radius:3px; text-transform:uppercase;
+  }
+  .kind-math { background:#2b3d2f; color:#9adba0; }
+  .kind-ai { background:#2b3040; color:#9ac0ec; }
+  .kind-dummy { background:#3d3428; color:var(--amber); }
+  .fc-division { font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gray); }
+  .fightcard .tag { font-size:.66rem; color:var(--gray); letter-spacing:.12em; text-transform:uppercase; margin-bottom:.3rem; }
+  .fightcard h3, .spark-card h3 { font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:1.02rem; letter-spacing:.06em; text-transform:uppercase; margin:.15em 0 .3em; }
+  .fightcard p.doc { font-size:.84rem; color:#c7c9ce; }
+  .spark-card svg { display:block; width:100%; height:auto; margin:.3rem 0; }
+  .spark-card .val { font-size:.78rem; color:var(--gray); }
+
+  /* ---------- fares / standings / rules placard ---------- */
+  section.fares { padding:clamp(2.4rem, 5vw, 3.6rem) 0 0; }
+  .placard {
+    background:linear-gradient(175deg, #2b2e34, #212328); border-radius:8px; padding:clamp(1.2rem, 3.5vw, 2rem);
+    box-shadow:0 8px 22px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .farewrap, .tablewrap { overflow-x:auto; }
+  table.fare { width:100%; border-collapse:collapse; min-width:460px; }
+  table.fare.history { min-width:900px; }
+  .fare th {
+    text-align:left; font-size:.68rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gray); padding:.55rem .7rem; border-bottom:1px solid #3a3d44;
+  }
+  /* No forced white-space:nowrap here (t28's original never had it) -- the
+     Rules table's "Rule" column is full prose and must wrap; only the
+     specific short/numeric cell classes below (.z/.p) get nowrap. */
+  .fare td { padding:.55rem .7rem; border-bottom:1px solid #2e3138; }
+  table.history th, table.history td { white-space:nowrap; }
+  .fare td.z { font-family:'Saira Condensed',sans-serif; font-weight:600; letter-spacing:.08em; }
+  .fare td.p { color:var(--amber); font-weight:600; white-space:nowrap; }
+  .fare tr:last-child td { border-bottom:0; }
+  /* Safety net: any long unbreakable token (a hash, a URL) wraps mid-string
+     rather than forcing the placard wider than its container on mobile. */
+  .placard .fine, .placard p.lead, .placard p.prose { overflow-wrap:anywhere; }
+  .placard .fine { font-size:.78rem; color:var(--gray); margin-top:.8rem; }
+  .placard p.lead { font-size:.92rem; color:#d7d9dd; margin-bottom:1rem; }
+  .placard h4 { font-family:'Saira Condensed',sans-serif; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:.95rem; color:var(--ivory); margin:1.2rem 0 .5rem; }
+  .placard p.prose { font-size:.88rem; color:#c7c9ce; margin-bottom:.6rem; }
+  .archive-state { font-family:'Saira Condensed',sans-serif; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); font-size:1.15rem; margin-bottom:.5rem; }
+  .empty { color:var(--gray); font-style:italic; }
+
+  /* ---------- footer ---------- */
+  footer { text-align:center; padding:2.8rem 1rem 0; color:var(--gray); font-size:.85rem; }
+  footer .mind { font-family:'Saira Condensed',sans-serif; letter-spacing:.26em; text-transform:uppercase; color:var(--ivory); margin-bottom:.5rem; }
+
+  /* ---------- reveal (.pre stamped by JS; no-JS fully visible) ---------- */
+  .reveal.pre { opacity:0; transform:translateY(12px); transition:opacity .5s ease-out, transform .5s ease-out; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .cell.churn { animation:none; }
+    .reveal.pre { transition:none; transform:none; opacity:1; }
+  }
+
+  @media (max-width: 680px) {
+    .depart { grid-template-columns:auto auto minmax(0,1fr); }
+    .row { grid-template-rows:auto auto; }
+    .row .field.action { grid-column:1 / -1; grid-row:2; white-space:normal; flex-wrap:wrap; }
+    .row .field.status { justify-self:end; }
+    .row.head { grid-template-rows:auto; }
+    .row.head .h-action { display:none; }
+    .row.head span:last-child { justify-self:end; }
+    .field { font-size:.98rem; }
+    .clockbox { text-align:left; }
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="station">
+    <div class="enamel">
+      <p class="sub">roblogic.org</p>
+      <h1>Fight League &mdash; Season 1</h1>
+    </div>
+    <div class="clockbox">
+      <div class="clock" id="clock" role="img" aria-label="Station clock">
+        <b>0</b><b>0</b><span class="colon">:</span><b>0</b><b>0</b>
+      </div>
+      <p class="lbl">Concourse time</p>
+    </div>
+  </header>
+  <section class="boardframe" aria-label="Daily results">
+    <div class="boardhead">
+      <p class="lbl">Day-by-Day</p>
+      <p class="note">Season 1 hasn&rsquo;t traded yet.</p>
+    </div>
+    <div class="tablewrap">
+      <table class="fare history">
+        <thead><tr><th scope="col">Date</th><th scope="col" title="The Surfer">SURFER</th><th scope="col" title="The Bargain Hunter">BARGAIN</th><th scope="col" title="The News Junkie">NEWSBUG</th><th scope="col" title="Chart Robot">CHARTBOT</th><th scope="col" title="The Gap Player">GAPPER</th><th scope="col" title="Insider Shadow">SHADOW</th><th scope="col" title="Earnings Drifter">DRIFTER</th><th scope="col" title="The Sleeper">SLEEPER</th><th scope="col" title="The Reader">READER</th><th scope="col" title="The Analyst">ANALYST</th><th scope="col" title="Dummy: SPY Buy-Hold">SPY</th><th scope="col" title="Dummy: Coin-Flip">COINFLIP</th><th scope="col">Best</th><th scope="col">Worst</th></tr></thead>
+        <tbody><tr><td colspan="15" class="empty">No trading days yet &mdash; Season 1 hasn&rsquo;t opened.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="cards" aria-label="Season equity curves">
+    <p class="lbl">Season Equity</p>
+    <h2>Per-Fighter Curves</h2>
+    <div class="card-grid">
+      <div class="spark-card">
+        <h3>The Surfer</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The Surfer: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>The Bargain Hunter</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The Bargain Hunter: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>The News Junkie</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The News Junkie: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>Chart Robot</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="Chart Robot: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>The Gap Player</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The Gap Player: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>Insider Shadow</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="Insider Shadow: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>Earnings Drifter</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="Earnings Drifter: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>The Sleeper</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The Sleeper: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>The Reader</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The Reader: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>The Analyst</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="The Analyst: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>Dummy: SPY Buy-Hold</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="Dummy: SPY Buy-Hold: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div>
+      <div class="spark-card">
+        <h3>Dummy: Coin-Flip</h3>
+        <svg viewBox="0 0 180 40" width="180" height="40" role="img" aria-label="Dummy: Coin-Flip: no equity history yet"><line x1="4" y1="20.0" x2="176" y2="20.0" style="stroke:var(--gray,#9aa0a8);stroke-width:1.5" stroke-dasharray="4 3"/></svg>
+        <p class="val">$10,000.00 (seeded, no trades yet)</p>
+      </div></div>
+  </section>
+  <section class="fares" aria-label="Past seasons archive">
+    <p class="lbl">Archive</p>
+    <h2>Past Seasons</h2>
+    <div class="placard reveal">
+      <p class="archive-state">SEASON 1 IN PROGRESS</p>
+      <p class="fine">No completed seasons yet &mdash; Season 1 is the first.</p>
+    </div>
+  </section>
+  <section class="way">
+    <p class="lbl">Concourse services</p>
+    <h2>Follow the enamel</h2>
+    <div class="signs">
+      <a class="sign reveal" href="../">
+        <span class="arrow" aria-hidden="true">&#8592;</span>
+        <div><h3>The Board</h3><p>Today&rsquo;s card &mdash; all 12 lanes, live status, and the season standings placard.</p></div>
+      </a>
+      <a class="sign reveal" href="../#rules">
+        <span class="arrow" aria-hidden="true">&#8595;</span>
+        <div><h3>The Rules</h3><p>Bankroll, position limits, costs, the same-bar rule, the two dummies, and what it actually takes to win Season 1.</p></div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p class="mind">Twelve lanes, one frozen packet, no mid-season tweaks</p>
+  <p>Fight League Season 1 &mdash; a day-trading tournament eval lane on stock-agents. Paper only; nothing here is armed.</p>
+</footer>
+<script>
+
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var FLAPSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:—·';
+
+    function cellify(field) {
+      var text = field.textContent;
+      field.textContent = '';
+      var cells = [];
+      for (var i = 0; i < text.length; i++) {
+        var s = document.createElement('span');
+        var ch = text[i];
+        s.className = 'cell' + (ch === ' ' ? ' sp' : '');
+        s.textContent = ch === ' ' ? ' ' : ch;
+        field.appendChild(s);
+        cells.push({ el:s, target:ch });
+      }
+      return cells;
+    }
+
+    function churn(cells, done) {
+      if (reduce) {
+        cells.forEach(function (c) { c.el.textContent = c.target === ' ' ? ' ' : c.target; });
+        if (done) done();
+        return;
+      }
+      var pending = 0;
+      cells.forEach(function (c, idx) {
+        if (c.target === ' ') return;
+        pending++;
+        var steps = 4 + Math.floor(Math.random() * 9) + idx;
+        var n = 0;
+        c.el.classList.add('churn');
+        var iv = setInterval(function () {
+          n++;
+          if (n >= steps) {
+            clearInterval(iv);
+            c.el.textContent = c.target === ' ' ? ' ' : c.target;
+            c.el.classList.remove('churn');
+            if (--pending === 0 && done) done();
+          } else {
+            c.el.textContent = FLAPSET[(idx * 7 + n * 3) % FLAPSET.length];
+          }
+        }, 42);
+      });
+      if (pending === 0 && done) done();
+    }
+
+    function setField(field, text, done) {
+      field.textContent = text;
+      churn(cellify(field), done);
+    }
+
+    var fields = [];
+    document.querySelectorAll('[data-flap]').forEach(function (f) {
+      fields.push({ el:f, cells:cellify(f) });
+    });
+    fields.forEach(function (f, i) {
+      setTimeout(function () { churn(f.cells); }, reduce ? 0 : 120 + i * 90);
+    });
+
+    var cyclers = Array.prototype.slice.call(document.querySelectorAll('[data-cycle]'));
+    var turn = 0;
+    if (cyclers.length) {
+      setInterval(function () {
+        var f = cyclers[turn % cyclers.length]; turn++;
+        var states = f.getAttribute('data-cycle').split('|');
+        var cur = f.textContent.replace(/\s+/g, ' ').trim();
+        var next = states[(states.indexOf(cur) + 1) % states.length];
+        f.closest('.row').setAttribute('data-state', next);
+        setField(f, next);
+      }, 9000);
+    }
+
+    var clock = document.getElementById('clock');
+    function tickClock() {
+      var d = new Date();
+      var s = (d.getHours() < 10 ? '0' : '') + d.getHours() + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+      var digits = clock.querySelectorAll('b');
+      for (var i = 0; i < 4; i++) digits[i].textContent = s[i];
+    }
+    tickClock(); setInterval(tickClock, 5000);
+
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('pre'); io.observe(el); });
+  })();
+
+</script>
+</body>
+</html>

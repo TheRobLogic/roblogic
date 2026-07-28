@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fight League &mdash; Season 1 | roblogic.org</title>
+<!-- Fight League Season 1 -- a 12-lane Solari split-flap departures board. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600&family=Saira:wght@400;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%2317181b'/><rect x='14' y='30' width='72' height='18' rx='3' fill='%23202227'/><rect x='14' y='52' width='72' height='18' rx='3' fill='%23202227'/><line x1='14' y1='39' x2='86' y2='39' stroke='%2317181b' stroke-width='2'/><line x1='14' y1='61' x2='86' y2='61' stroke='%2317181b' stroke-width='2'/><rect x='18' y='33' width='30' height='12' fill='%23f2efe4'/><rect x='18' y='55' width='42' height='12' fill='%23e3a93c'/></svg>">
+<style>
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --concourse:#23252a; --board:#17181b; --cell:#202227; --ivory:#f2efe4;
+    --amber:#e3a93c; --gray:#9aa0a8; --split:rgba(0,0,0,.55);
+    --pos:#5fbf77; --neg:#d9685c;
+  }
+  html { scroll-behavior:smooth; }
+  body {
+    background:linear-gradient(to bottom, #2a2d33, var(--concourse) 320px);
+    color:var(--ivory); font-family:'Saira',sans-serif; line-height:1.65;
+    overflow-x:clip;
+  }
+  ::selection { background:var(--amber); color:var(--board); }
+  a { color:var(--ivory); }
+  a:focus-visible, button:focus-visible { outline:2px solid var(--amber); outline-offset:3px; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 clamp(1rem, 3.5vw, 2.4rem) 3rem; }
+  .lbl { font-size:.72rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--gray); }
+  .mono { font-variant-numeric:tabular-nums; }
+
+  /* ---------- station masthead ---------- */
+  header.station {
+    display:flex; justify-content:space-between; align-items:center; gap:1.2rem 2.4rem; flex-wrap:wrap;
+    padding:1.8rem 0 1.4rem;
+  }
+  .enamel {
+    background:var(--board); border:3px solid var(--ivory); border-radius:6px;
+    box-shadow:inset 0 0 0 2px var(--board), inset 0 0 0 3px rgba(242,239,228,.35), 0 6px 18px rgba(0,0,0,.45);
+    padding:.7rem 1.4rem;
+  }
+  .enamel h1 {
+    font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:clamp(1.15rem, 3.6vw, 2rem);
+    letter-spacing:.1em; text-transform:uppercase; line-height:1.1;
+  }
+  .enamel .sub { font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--amber); }
+  .clockbox { text-align:right; }
+  .clock { display:inline-flex; gap:3px; font-family:'Saira Condensed',sans-serif; font-weight:600; }
+  .clock b {
+    background:var(--cell); border-radius:4px; padding:.15em .32em; font-size:clamp(1.4rem, 4vw, 2rem);
+    position:relative; min-width:1.25em; text-align:center; font-weight:600;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 2px 5px rgba(0,0,0,.5);
+  }
+  .clock b::after { content:""; position:absolute; left:0; right:0; top:50%; height:1.5px; background:var(--split); }
+  .clock .colon { align-self:center; font-size:1.5em; color:var(--gray); padding:0 .06em; }
+  .clockbox .lbl { margin-top:.3rem; }
+
+  /* ---------- the board ---------- */
+  .boardframe {
+    background:var(--board); border-radius:10px; padding:clamp(.9rem, 3vw, 1.8rem);
+    box-shadow:0 18px 44px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .boardhead { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; flex-wrap:wrap; padding:0 .2rem .8rem; }
+  .boardhead .lbl { color:var(--amber); }
+  .boardhead .note { font-size:.78rem; color:var(--gray); }
+
+  .pill {
+    display:inline-block; margin:0 0 1rem; border:2px solid var(--amber); color:var(--amber);
+    border-radius:999px; padding:.3rem 1rem; font-family:'Saira Condensed',sans-serif; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; font-size:.74rem;
+  }
+
+  /* shared subgrid tracks: every row's columns size to real flap content and stay aligned */
+  .depart { display:grid; gap:6px; grid-template-columns:auto minmax(0,1fr) auto auto; }
+  .row { display:grid; grid-template-columns:subgrid; grid-column:1 / -1; gap:8px; align-items:center; }
+  .row.head { padding-bottom:.2rem; }
+  .row.head span { font-size:.66rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gray); }
+
+  .field {
+    font-family:'Saira Condensed',sans-serif; font-weight:600;
+    font-size:clamp(1rem, 2.9vw, 1.5rem); letter-spacing:.06em; text-transform:uppercase;
+    display:flex; gap:2px; overflow:hidden; white-space:nowrap;
+  }
+  .field .cell {
+    background:var(--cell); border-radius:3px; padding:.08em .12em; min-width:1.02em; text-align:center;
+    position:relative; flex:0 0 auto;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 1px 3px rgba(0,0,0,.5);
+  }
+  .field .cell::after { content:""; position:absolute; left:0; right:0; top:50%; height:1.4px; background:var(--split); }
+  .field .cell.sp { background:transparent; box-shadow:none; }
+  .field .cell.sp::after { display:none; }
+  .field.status { color:var(--ivory); }
+  .row[data-state="TRADING"] .field.status,
+  .row[data-state="HOLDING"] .field.status,
+  .row[data-state="SAT OUT"] .field.status,
+  .row[data-state="AWAITING BELL"] .field.status { color:var(--amber); }
+  /* churn squash: stamped per-cell by JS while cycling */
+  .cell.churn { animation:squash .09s linear infinite; }
+  @keyframes squash { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(.62); } }
+
+  .pos { color:var(--pos); } .neg { color:var(--neg); } .flat { color:var(--ivory); }
+
+  .boardfoot { display:flex; justify-content:space-between; gap:.8rem 2rem; flex-wrap:wrap; padding:.9rem .2rem 0; }
+  .boardfoot p { font-size:.78rem; color:var(--gray); }
+
+  /* ---------- wayfinding ---------- */
+  section.way { padding:clamp(2.4rem, 5vw, 3.6rem) 0 0; }
+  h2 { font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:clamp(1.4rem, 3.6vw, 2rem); letter-spacing:.1em; text-transform:uppercase; margin:.3rem 0 1.4rem; }
+  .signs { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap:1.2rem; }
+  .sign {
+    background:var(--board); border:2px solid var(--ivory); border-radius:6px; padding:1rem 1.2rem;
+    box-shadow:inset 0 0 0 2px var(--board), inset 0 0 0 3px rgba(242,239,228,.3), 0 5px 14px rgba(0,0,0,.4);
+    display:flex; align-items:center; gap:1rem;
+  }
+  a.sign { text-decoration:none; }
+  a.sign:hover { border-color:var(--amber); }
+  .sign .arrow { font-family:'Saira Condensed',sans-serif; font-size:1.7rem; font-weight:600; color:var(--amber); }
+  .sign h3 { font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:1.1rem; letter-spacing:.12em; text-transform:uppercase; }
+  .sign p { font-size:.86rem; color:var(--gray); }
+
+  /* ---------- fight card roster + sparkline cards ---------- */
+  section.cards { padding:clamp(2.4rem, 5vw, 3.6rem) 0 0; }
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap:1rem; }
+  .fightcard, .spark-card {
+    background:var(--board); border:2px solid var(--ivory); border-radius:6px; padding:.9rem 1.1rem;
+    box-shadow:inset 0 0 0 2px var(--board), inset 0 0 0 3px rgba(242,239,228,.3), 0 5px 14px rgba(0,0,0,.4);
+  }
+  .fc-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:.3rem; }
+  .kind-badge {
+    font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em;
+    padding:.15em .55em; border-radius:3px; text-transform:uppercase;
+  }
+  .kind-math { background:#2b3d2f; color:#9adba0; }
+  .kind-ai { background:#2b3040; color:#9ac0ec; }
+  .kind-dummy { background:#3d3428; color:var(--amber); }
+  .fc-division { font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gray); }
+  .fightcard .tag { font-size:.66rem; color:var(--gray); letter-spacing:.12em; text-transform:uppercase; margin-bottom:.3rem; }
+  .fightcard h3, .spark-card h3 { font-family:'Saira Condensed',sans-serif; font-weight:600; font-size:1.02rem; letter-spacing:.06em; text-transform:uppercase; margin:.15em 0 .3em; }
+  .fightcard p.doc { font-size:.84rem; color:#c7c9ce; }
+  .spark-card svg { display:block; width:100%; height:auto; margin:.3rem 0; }
+  .spark-card .val { font-size:.78rem; color:var(--gray); }
+
+  /* ---------- fares / standings / rules placard ---------- */
+  section.fares { padding:clamp(2.4rem, 5vw, 3.6rem) 0 0; }
+  .placard {
+    background:linear-gradient(175deg, #2b2e34, #212328); border-radius:8px; padding:clamp(1.2rem, 3.5vw, 2rem);
+    box-shadow:0 8px 22px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .farewrap, .tablewrap { overflow-x:auto; }
+  table.fare { width:100%; border-collapse:collapse; min-width:460px; }
+  table.fare.history { min-width:900px; }
+  .fare th {
+    text-align:left; font-size:.68rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gray); padding:.55rem .7rem; border-bottom:1px solid #3a3d44;
+  }
+  /* No forced white-space:nowrap here (t28's original never had it) -- the
+     Rules table's "Rule" column is full prose and must wrap; only the
+     specific short/numeric cell classes below (.z/.p) get nowrap. */
+  .fare td { padding:.55rem .7rem; border-bottom:1px solid #2e3138; }
+  table.history th, table.history td { white-space:nowrap; }
+  .fare td.z { font-family:'Saira Condensed',sans-serif; font-weight:600; letter-spacing:.08em; }
+  .fare td.p { color:var(--amber); font-weight:600; white-space:nowrap; }
+  .fare tr:last-child td { border-bottom:0; }
+  /* Safety net: any long unbreakable token (a hash, a URL) wraps mid-string
+     rather than forcing the placard wider than its container on mobile. */
+  .placard .fine, .placard p.lead, .placard p.prose { overflow-wrap:anywhere; }
+  .placard .fine { font-size:.78rem; color:var(--gray); margin-top:.8rem; }
+  .placard p.lead { font-size:.92rem; color:#d7d9dd; margin-bottom:1rem; }
+  .placard h4 { font-family:'Saira Condensed',sans-serif; font-weight:600; letter-spacing:.1em; text-transform:uppercase; font-size:.95rem; color:var(--ivory); margin:1.2rem 0 .5rem; }
+  .placard p.prose { font-size:.88rem; color:#c7c9ce; margin-bottom:.6rem; }
+  .archive-state { font-family:'Saira Condensed',sans-serif; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); font-size:1.15rem; margin-bottom:.5rem; }
+  .empty { color:var(--gray); font-style:italic; }
+
+  /* ---------- footer ---------- */
+  footer { text-align:center; padding:2.8rem 1rem 0; color:var(--gray); font-size:.85rem; }
+  footer .mind { font-family:'Saira Condensed',sans-serif; letter-spacing:.26em; text-transform:uppercase; color:var(--ivory); margin-bottom:.5rem; }
+
+  /* ---------- reveal (.pre stamped by JS; no-JS fully visible) ---------- */
+  .reveal.pre { opacity:0; transform:translateY(12px); transition:opacity .5s ease-out, transform .5s ease-out; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .cell.churn { animation:none; }
+    .reveal.pre { transition:none; transform:none; opacity:1; }
+  }
+
+  @media (max-width: 680px) {
+    .depart { grid-template-columns:auto auto minmax(0,1fr); }
+    .row { grid-template-rows:auto auto; }
+    .row .field.action { grid-column:1 / -1; grid-row:2; white-space:normal; flex-wrap:wrap; }
+    .row .field.status { justify-self:end; }
+    .row.head { grid-template-rows:auto; }
+    .row.head .h-action { display:none; }
+    .row.head span:last-child { justify-self:end; }
+    .field { font-size:.98rem; }
+    .clockbox { text-align:left; }
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="station">
+    <div class="enamel">
+      <p class="sub">roblogic.org</p>
+      <h1>Fight League &mdash; Season 1</h1>
+    </div>
+    <div class="clockbox">
+      <div class="clock" id="clock" role="img" aria-label="Station clock">
+        <b>0</b><b>0</b><span class="colon">:</span><b>0</b><b>0</b>
+      </div>
+      <p class="lbl">Concourse time</p>
+    </div>
+  </header>
+  <section class="boardframe" aria-label="Fight League board">
+    <div class="boardhead">
+      <p class="lbl">Today&rsquo;s Card &mdash; 12 Lanes</p>
+      <p class="note">listen for the churn &mdash; today&rsquo;s action, lane by lane.</p>
+    </div>
+    
+    <div class="depart" role="table" aria-label="Fight League lanes" aria-live="polite" id="board">
+      <div class="row head" role="row">
+        <span role="columnheader">Fighter</span>
+        <span role="columnheader" class="h-action">Today's Action</span>
+        <span role="columnheader">P&amp;L</span>
+        <span role="columnheader">Status</span>
+      </div>
+      
+      <div class="row" role="row" data-lane="surfer" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>SURFER</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="bargain_hunter" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>BARGAIN</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="news_junkie" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>NEWSBUG</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="chart_robot" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>CHARTBOT</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="gap_player" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>GAPPER</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="insider_shadow" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>SHADOW</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="earnings_drifter" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>DRIFTER</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="sleeper" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>SLEEPER</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="reader" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>READER</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="analyst" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>ANALYST</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="dummy_spy" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>SPY</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+      <div class="row" role="row" data-lane="dummy_coinflip" data-state="FLAT">
+        <p class="field fighter" role="cell" data-flap>COINFLIP</p>
+        <p class="field action" role="cell" data-flap>NO SIGNAL</p>
+        <p class="field pnl flat" role="cell" data-flap>$0.00</p>
+        <p class="field status" role="cell" data-flap>FLAT</p>
+      </div>
+    </div>
+    <div class="boardfoot">
+      <p>Same frozen morning packet, every lane, every day &mdash; decisions at open+15m, day lanes flat by the close.</p>
+      <p>Board regenerates after each session&rsquo;s close.</p>
+    </div>
+  </section>
+  <section class="fares" aria-label="Season standings">
+    <p class="lbl">Season 1 &middot; pre-season</p>
+    <h2>Standings</h2>
+    <div class="placard reveal">
+      <div class="farewrap">
+        <table class="fare">
+          <thead>
+            <tr><th scope="col">Rank</th><th scope="col">Fighter</th><th scope="col">Record</th>
+                <th scope="col">Bankroll</th><th scope="col">Return</th><th scope="col">vs SPY Dummy</th></tr>
+          </thead>
+          <tbody>
+            <tr class="standing">
+              <td class="z mono">1</td>
+              <td>Chart Robot</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">2</td>
+              <td>Dummy: Coin-Flip</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">3</td>
+              <td>Dummy: SPY Buy-Hold</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">—</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">4</td>
+              <td>Earnings Drifter</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">5</td>
+              <td>Insider Shadow</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">6</td>
+              <td>The Analyst</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">7</td>
+              <td>The Bargain Hunter</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">8</td>
+              <td>The Gap Player</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">9</td>
+              <td>The News Junkie</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">10</td>
+              <td>The Reader</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">11</td>
+              <td>The Sleeper</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr>
+            <tr class="standing">
+              <td class="z mono">12</td>
+              <td>The Surfer</td>
+              <td class="mono">0-0</td>
+              <td class="p">$10,000.00</td>
+              <td class="flat">+0.00%</td>
+              <td class="flat">+0.00pp</td>
+            </tr></tbody>
+        </table>
+      </div>
+      <p class="fine">Winner needs the highest season-end bankroll AND a &ge;2pp lead over both dummies
+        &mdash; see The Rules for the full bar. Terms locked &amp; hashed before Day 1:
+        sha256 894561a9a0d82f7a&hellip;</p>
+    </div>
+  </section>
+  <section class="cards" aria-label="Fight card roster">
+    <p class="lbl">The Roster</p>
+    <h2>Fight Card</h2>
+    <div class="card-grid">
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: SURFER</p>
+        <h3>The Surfer</h3>
+        <p class="doc">Momentum: buys names up &gt;=2% from open on &gt;=1.5x average volume; targets +2%, stops -1%; up to 3 picks/day.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: BARGAIN</p>
+        <h3>The Bargain Hunter</h3>
+        <p class="doc">Mean reversion: buys names down &gt;=2% from open that have NO same-day news signal (no falling knife with a known reason); targets +1.5%, stops -1%; up to 3 picks/day. rsi_max is NOT evaluated -- a real RSI needs a day-by-day historical close series the packet doesn&#x27;t carry (only 20d aggregates); see engine/league_fighters.py&#x27;s module docstring.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: NEWSBUG</p>
+        <h3>The News Junkie</h3>
+        <p class="doc">Buys symbols with a same-morning news_signals conviction mapped to a score &gt;=0.7 (news_mech.py has no literal 0-1 score field -- high/medium/low conviction is mapped onto one) and a bullish keyword match against the row&#x27;s own headline/theme/suggestion text, confirmed by positive momentum from open; targets +2.5%, stops -1.25%; up to 3 picks/day. keyword_match is always-on regardless of this value -- there is no code path that reads it to disable the filter.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: CHARTBOT</p>
+        <h3>Chart Robot</h3>
+        <p class="doc">Price-only technical: buys a break above the prior day&#x27;s high confirmed by &gt;=1.2x average volume, no news/fundamentals input at all; targets +2%, stops -1%; up to 3 picks/day.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: GAPPER</p>
+        <h3>The Gap Player</h3>
+        <p class="doc">Trades symbols gapping &gt;=3% at the open, following the gap direction (continuation, not fade) -- gap-UP only, Season 1 is long-only end to end; targets +2.5%, stops -1.25%; up to 3 picks/day. fade_or_follow is hardcoded to follow in code, not read as a live toggle -- flipping this value would not change behavior.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: SHADOW</p>
+        <h3>Insider Shadow</h3>
+        <p class="doc">Form 4 tape: buys symbols with a high-conviction insider BUY (&gt;=$100k) filed within the last 5 days (integrations.edgar); targets +3%, stops -1.5%; up to 2 picks/day.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">multiday</span>
+        </div>
+        <p class="tag">Lane: DRIFTER</p>
+        <h3>Earnings Drifter</h3>
+        <p class="doc">PEAD (post-earnings-announcement drift): buys symbols that beat with a &gt;=5% surprise and holds up to 5 trading days (multiday division, not flattened at close); targets +5%, stops -2.5%; up to 2 picks/day.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-math">MATH</span>
+          <span class="fc-division">overnight</span>
+        </div>
+        <p class="tag">Lane: SLEEPER</p>
+        <h3>The Sleeper</h3>
+        <p class="doc">Overnight division: buys at yesterday&#x27;s close targeting the next day&#x27;s open, ranking the packet&#x27;s own candidate shortlist by 20-day return (return_pct_20d) -- the closest real multi-day number the packet carries, since a rolling close-to-open edge needs a day-by-day close/open history the packet doesn&#x27;t have; falls back to a single SPY pick if no candidate has usable data. Up to 3 picks/day. No stop or target: the referee&#x27;s overnight division exits by selling at next day&#x27;s open only, never consulting stop_px/target_px -- lookback_days/target_pct/stop_pct are registered but not evaluated.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-ai">AI</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: READER</p>
+        <h3>The Reader</h3>
+        <p class="doc">AI lane: reads the same morning news_signals feed as News Junkie (twin-feed comparison) via local Ollama qwen3.5:9b at temperature 0; sits out on timeout/failure (scored as cash); up to 3 picks/day.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-ai">AI</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: ANALYST</p>
+        <h3>The Analyst</h3>
+        <p class="doc">AI lane: one `claude -p` subprocess call/day (subscription, $0) reviewing the full frozen morning packet; sits out on timeout/failure (scored as cash); up to 3 picks/day.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-dummy">DUMMY</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: SPY</p>
+        <h3>Dummy: SPY Buy-Hold</h3>
+        <p class="doc">Dummy control: buys SPY at open+15m, sells flat at close every trading day. No edge claimed -- one of the two floors every real fighter must beat by winner_margin_pp.</p>
+      </div>
+      <div class="fightcard">
+        <div class="fc-top">
+          <span class="kind-badge kind-dummy">DUMMY</span>
+          <span class="fc-division">day</span>
+        </div>
+        <p class="tag">Lane: COINFLIP</p>
+        <h3>Dummy: Coin-Flip</h3>
+        <p class="doc">Dummy control: date-seeded RNG draws one symbol from the S&amp;P-500 allowlist (among symbols priced that morning) each day (replayable -- same date always draws the same symbol). No edge claimed -- the other floor every real fighter must beat.</p>
+      </div></div>
+  </section>
+  <section class="way">
+    <p class="lbl">Concourse services</p>
+    <h2>Follow the enamel</h2>
+    <div class="signs">
+      <a class="sign reveal" href="history/">
+        <span class="arrow" aria-hidden="true">&#8594;</span>
+        <div><h3>History</h3><p>Every trading day, stacked &mdash; day-by-day P&amp;L, best and worst lane, season equity curves for all twelve fighters.</p></div>
+      </a>
+      <a class="sign reveal" href="#rules">
+        <span class="arrow" aria-hidden="true">&#8595;</span>
+        <div><h3>The Rules</h3><p>Bankroll, position limits, costs, the same-bar rule, the two dummies, and what it actually takes to win Season 1.</p></div>
+      </a>
+    </div>
+  </section>
+  <section class="fares" id="rules" aria-label="Season 1 rules">
+    <p class="lbl">Pre-registered &middot; locked before Day 1</p>
+    <h2>The Rules</h2>
+    <div class="placard reveal">
+      <p class="lead">Twelve lanes trade the exact same frozen morning packet every trading day &mdash;
+        same prices, same news, same insider tape &mdash; so no lane gets an information edge over
+        another. These terms were hashed and locked before the first pick was ever emitted; changing
+        any of them mid-season means starting the clock over.</p>
+      <div class="farewrap">
+        <table class="fare">
+          <thead><tr><th scope="col">Term</th><th scope="col">Rule</th></tr></thead>
+          <tbody>
+            <tr><td class="z">Bankroll</td><td>$10,000 per fighter, compounding</td></tr>
+            <tr><td class="z">Position limits</td><td>up to 4 open at once, none larger than 25% of bankroll</td></tr>
+            <tr><td class="z">Universe</td><td>S&amp;P 500 allowlist only</td></tr>
+            <tr><td class="z">Decision time</td><td>15 minutes after the opening bell</td></tr>
+            <tr><td class="z">Day lanes</td><td>flat by the closing bell every day</td></tr>
+            <tr><td class="z">Overnight / multiday lanes</td><td>may carry a position past the close (see each fighter&rsquo;s division)</td></tr>
+            <tr><td class="z">Trading costs</td><td>7.5 basis points per side, charged on every fill</td></tr>
+            <tr><td class="z">Same-bar rule</td><td>stop and target both fill on the same bar &rarr; the stop wins (conservative scoring, never the lucky read)</td></tr>
+            <tr><td class="z">Season length</td><td>8 weeks from the opening bell</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4>The Two Dummies</h4>
+      <p class="prose"><strong>Dummy: SPY Buy-Hold</strong> buys SPY at open+15m and sells flat at the
+        close, every day &mdash; no thinking involved.</p>
+      <p class="prose"><strong>Dummy: Coin-Flip</strong> draws one S&amp;P 500 symbol at random each day
+        from a date-seeded generator (replayable &mdash; the same date always draws the same symbol).</p>
+      <p class="prose">Neither dummy claims any edge. They&rsquo;re the floor every real lane has to clear.</p>
+      <h4>The Winner Bar</h4>
+      <p class="prose">Season 1&rsquo;s winner is whoever ends with the highest bankroll <strong>and</strong>
+        beats <strong>both</strong> dummies by at least 2 percentage points of total return. If nobody
+        clears that bar, the verdict is &ldquo;day-trade lane fails&rdquo; &mdash; no lane gets crowned
+        just for finishing first. No mid-season tweaks: any rule change resets the clock and starts a
+        new season.</p>
+      <p class="fine">Terms locked &amp; hashed: sha256 894561a9a0d82f7a&hellip; &mdash; recorded 2026-07-28 06:18:07</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p class="mind">Twelve lanes, one frozen packet, no mid-season tweaks</p>
+  <p>Fight League Season 1 &mdash; a day-trading tournament eval lane on stock-agents. Paper only; nothing here is armed.</p>
+</footer>
+<script>
+
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var FLAPSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:—·';
+
+    function cellify(field) {
+      var text = field.textContent;
+      field.textContent = '';
+      var cells = [];
+      for (var i = 0; i < text.length; i++) {
+        var s = document.createElement('span');
+        var ch = text[i];
+        s.className = 'cell' + (ch === ' ' ? ' sp' : '');
+        s.textContent = ch === ' ' ? ' ' : ch;
+        field.appendChild(s);
+        cells.push({ el:s, target:ch });
+      }
+      return cells;
+    }
+
+    function churn(cells, done) {
+      if (reduce) {
+        cells.forEach(function (c) { c.el.textContent = c.target === ' ' ? ' ' : c.target; });
+        if (done) done();
+        return;
+      }
+      var pending = 0;
+      cells.forEach(function (c, idx) {
+        if (c.target === ' ') return;
+        pending++;
+        var steps = 4 + Math.floor(Math.random() * 9) + idx;
+        var n = 0;
+        c.el.classList.add('churn');
+        var iv = setInterval(function () {
+          n++;
+          if (n >= steps) {
+            clearInterval(iv);
+            c.el.textContent = c.target === ' ' ? ' ' : c.target;
+            c.el.classList.remove('churn');
+            if (--pending === 0 && done) done();
+          } else {
+            c.el.textContent = FLAPSET[(idx * 7 + n * 3) % FLAPSET.length];
+          }
+        }, 42);
+      });
+      if (pending === 0 && done) done();
+    }
+
+    function setField(field, text, done) {
+      field.textContent = text;
+      churn(cellify(field), done);
+    }
+
+    var fields = [];
+    document.querySelectorAll('[data-flap]').forEach(function (f) {
+      fields.push({ el:f, cells:cellify(f) });
+    });
+    fields.forEach(function (f, i) {
+      setTimeout(function () { churn(f.cells); }, reduce ? 0 : 120 + i * 90);
+    });
+
+    var cyclers = Array.prototype.slice.call(document.querySelectorAll('[data-cycle]'));
+    var turn = 0;
+    if (cyclers.length) {
+      setInterval(function () {
+        var f = cyclers[turn % cyclers.length]; turn++;
+        var states = f.getAttribute('data-cycle').split('|');
+        var cur = f.textContent.replace(/\s+/g, ' ').trim();
+        var next = states[(states.indexOf(cur) + 1) % states.length];
+        f.closest('.row').setAttribute('data-state', next);
+        setField(f, next);
+      }, 9000);
+    }
+
+    var clock = document.getElementById('clock');
+    function tickClock() {
+      var d = new Date();
+      var s = (d.getHours() < 10 ? '0' : '') + d.getHours() + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+      var digits = clock.querySelectorAll('b');
+      for (var i = 0; i < 4; i++) digits[i].textContent = s[i];
+    }
+    tickClock(); setInterval(tickClock, 5000);
+
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('pre'); io.observe(el); });
+  })();
+
+</script>
+</body>
+</html>
