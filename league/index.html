@@ -685,6 +685,22 @@
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('pre'); io.observe(el); });
   })();
 
+
+  // visit beacon -- every hit, skip bots, fail silent
+  try {
+    const ua = navigator.userAgent.toLowerCase();
+    if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+      fetch('/beacon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          page: 'fight-league',
+          ref: document.referrer || 'direct',
+          tag: 'boxing_glove'
+        })
+      }).catch(() => {});
+    }
+  } catch (e) {}
 </script>
 </body>
 </html>
