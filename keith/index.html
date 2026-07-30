@@ -3,331 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wadhams Construction | San Diego General Building Contractor</title>
-<meta name="description" content="Wadhams Construction. San Diego general building contractor since 1983. Tenant improvements, ADA retrofits, residential and commercial builds. CSLB #441195.">
-<meta property="og:title" content="Wadhams Construction | San Diego General Building Contractor">
-<meta property="og:description" content="Licensed and bonded San Diego general building contractor since 1983. Tenant improvements, ADA retrofits, residential and commercial builds. CSLB #441195.">
+<title>Wadhams Construction | Pick Your Website</title>
+<meta name="description" content="Wadhams Construction, San Diego. Two websites, same guy, same license. CSLB #441195, active since 1983.">
+<meta property="og:title" content="Wadhams Construction | Pick Your Website">
+<meta property="og:description" content="Two websites. Same guy. Same license. CSLB #441195, active since 1983.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://roblogic.org/keith/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔨</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Anton&family=Special+Elite&family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
   --ink: #0f1113;
-  --panel: #16191c;
-  --line: rgba(242,240,235,.14);
   --text: #f2f0eb;
   --dim: #b8b4ab;
   --amber: #f5a300;
+  --paper: #f4eeDC;
+  --toner: #1b1713;
+  --marker: #c23b22;
+  --tape: rgba(214,196,148,.75);
 }
-html { scroll-behavior: smooth; }
 body {
   background: var(--ink);
-  color: var(--text);
-  font-family: 'Barlow', sans-serif;
-  font-size: 17px;
-  line-height: 1.55;
-}
-.mono { font-family: 'IBM Plex Mono', monospace; }
-
-/* ---------- hero ---------- */
-.hero {
-  position: relative;
-  min-height: 92vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  background: url('img/framing-wall.jpg') center 35% / cover no-repeat;
+  font-family: 'Barlow', sans-serif;
 }
-.hero::before {
+
+.bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .4rem 1.1rem;
+  flex-wrap: wrap;
+  padding: .8rem 1rem;
+  border-bottom: 1px solid rgba(242,240,235,.14);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-align: center;
+}
+.bar b { color: var(--text); font-weight: 500; }
+.bar .d { color: var(--amber); }
+
+.doors {
+  flex: 1;
+  display: flex;
+  position: relative;
+  min-height: 0;
+}
+
+.door {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1.1rem;
+  padding: 3rem clamp(1.2rem, 4vw, 3.5rem);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: flex-grow .35s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .door:hover, .door:focus-visible { flex-grow: 1.18; }
+}
+.door:focus-visible { outline: 3px solid var(--amber); outline-offset: -3px; }
+
+/* left door: the pro site */
+.door-pro {
+  background: url('img/framing-wall.jpg') center 30% / cover no-repeat;
+}
+.door-pro::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(100deg, rgba(15,17,19,.93) 0%, rgba(15,17,19,.72) 45%, rgba(15,17,19,.30) 100%);
+  background: rgba(15,17,19,.78);
+  transition: background .35s ease;
 }
-.topbar {
-  position: relative; z-index: 2;
-  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-  padding: 1.4rem clamp(1.2rem, 5vw, 4rem);
-  border-bottom: 1px solid var(--line);
-}
-.wordmark {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 1.05rem;
-  letter-spacing: .14em;
-  color: var(--text);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.wordmark span { color: var(--amber); }
-.topbar a.phone {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: .95rem;
-  color: var(--amber);
-  text-decoration: none;
-  letter-spacing: .04em;
-  border: 1px solid rgba(245,163,0,.5);
-  padding: .5rem .9rem;
-}
-.topbar a.phone:hover { background: rgba(245,163,0,.12); }
-.hero-body {
-  position: relative; z-index: 2;
-  flex: 1;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 3rem clamp(1.2rem, 5vw, 4rem);
-  max-width: 1200px;
-}
-.kicker {
+.door-pro:hover::before, .door-pro:focus-visible::before { background: rgba(15,17,19,.62); }
+.door-pro > * { position: relative; }
+.door-pro .kicker {
   font-family: 'IBM Plex Mono', monospace;
   color: var(--amber);
-  font-size: .85rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  margin-bottom: 1.1rem;
-}
-h1 {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(2.5rem, 7.2vw, 5.4rem);
-  line-height: .98;
-  text-transform: uppercase;
-  letter-spacing: .01em;
-  max-width: 11ch;
-}
-.hero-sub {
-  margin-top: 1.4rem;
-  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-  color: var(--dim);
-  max-width: 46ch;
-  font-weight: 500;
-}
-.hero-cta { margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn {
-  display: inline-block;
-  font-family: 'Barlow', sans-serif;
-  font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: .95rem 1.6rem;
-}
-.btn-solid { background: var(--amber); color: #171204; }
-.btn-solid:hover { background: #ffb61e; }
-.btn-ghost { border: 1px solid var(--line); color: var(--text); }
-.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
-.lic-strip {
-  position: relative; z-index: 2;
-  border-top: 1px solid var(--line);
-  background: rgba(15,17,19,.65);
-  backdrop-filter: blur(4px);
-  padding: .85rem clamp(1.2rem, 5vw, 4rem);
-  font-family: 'IBM Plex Mono', monospace;
   font-size: .8rem;
-  letter-spacing: .08em;
+  letter-spacing: .24em;
   text-transform: uppercase;
-  color: var(--dim);
-  display: flex; flex-wrap: wrap; gap: .35rem 1.1rem;
 }
-.lic-strip b { color: var(--text); font-weight: 500; }
-.lic-strip .d { color: var(--amber); }
-
-/* ---------- sections ---------- */
-section { padding: clamp(3rem, 7vw, 5.5rem) clamp(1.2rem, 5vw, 4rem); }
-.sec-head {
+.door-pro h2 {
   font-family: 'Archivo Black', sans-serif;
+  color: var(--text);
   text-transform: uppercase;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
-  margin-bottom: 2.4rem;
-  display: flex; align-items: center; gap: 1.2rem;
+  font-size: clamp(1.6rem, 3.4vw, 2.7rem);
+  line-height: 1.02;
+  max-width: 14ch;
 }
-.sec-head::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1200px; }
-.svc .num {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--amber);
-  font-size: .9rem;
-  letter-spacing: .15em;
-}
-.svc h3 {
-  font-family: 'Archivo Black', sans-serif;
-  text-transform: uppercase;
-  font-size: 1.15rem;
-  letter-spacing: .03em;
-  margin: .7rem 0 .6rem;
-}
-.svc p { color: var(--dim); font-size: 1rem; }
-
-.work { background: var(--panel); }
-.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1200px; }
-.work-grid figure { margin: 0; }
-.work-grid img {
-  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;
-  filter: saturate(.92);
-}
-.work-grid figcaption {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: .78rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+.door-pro p {
   color: var(--dim);
-  padding-top: .6rem;
-}
-
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1200px; }
-.stat .big {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(1.9rem, 4vw, 3rem);
-  color: var(--amber);
-  line-height: 1;
-}
-.stat .lbl {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: .78rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-top: .6rem;
-}
-.statement {
-  margin-top: 3rem;
-  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-size: clamp(.95rem, 1.4vw, 1.1rem);
   font-weight: 500;
-  max-width: 52ch;
-  border-left: 3px solid var(--amber);
-  padding-left: 1.4rem;
+  max-width: 34ch;
 }
+.door-pro .go {
+  margin-top: .6rem;
+  font-weight: 600;
+  font-size: .95rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(245,163,0,.55);
+  padding: .8rem 1.5rem;
+  transition: background .2s ease, color .2s ease;
+}
+.door-pro:hover .go { background: var(--amber); color: #171204; }
 
-/* ---------- contact ---------- */
-.contact { background: var(--amber); color: #171204; }
-.contact .sec-head { color: #171204; }
-.contact .sec-head::after { background: rgba(23,18,4,.25); }
-.contact-inner { max-width: 1200px; }
-.contact a.bigphone {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: clamp(2rem, 6vw, 4.2rem);
-  color: #171204;
-  text-decoration: none;
-  line-height: 1.05;
-  display: inline-block;
+/* right door: the flyer */
+.door-jamul {
+  background:
+    repeating-linear-gradient(125deg, rgba(27,23,19,.028) 0 1px, transparent 1px 5px),
+    var(--paper);
 }
-.contact a.bigphone:hover { text-decoration: underline; text-decoration-thickness: 4px; }
-.contact p { font-weight: 600; margin-top: 1rem; font-size: 1.1rem; }
-footer {
-  padding: 1.6rem clamp(1.2rem, 5vw, 4rem);
+.door-jamul::after {
+  content: '';
+  position: absolute;
+  top: -14px; left: 50%;
+  width: 120px; height: 34px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgba(27,23,19,.18);
+}
+.door-jamul .kicker {
+  font-family: 'Special Elite', monospace;
+  color: #6d655a;
+  font-size: .85rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.door-jamul h2 {
+  font-family: 'Anton', sans-serif;
+  color: var(--toner);
+  text-transform: uppercase;
+  font-size: clamp(1.7rem, 3.6vw, 2.9rem);
+  line-height: .98;
+  letter-spacing: .01em;
+  max-width: 15ch;
+  text-shadow: 1.5px 1.5px 0 rgba(27,23,19,.12);
+}
+.door-jamul .his {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--marker);
+  font-size: 1.15rem;
+  transform: rotate(-2deg);
+}
+.door-jamul .go {
+  margin-top: .6rem;
+  font-family: 'Special Elite', monospace;
+  font-size: .95rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--toner);
+  padding: .85rem 1.5rem;
+  transition: background .2s ease;
+}
+.door-jamul:hover .go { background: var(--marker); }
+
+/* center seam badge */
+.pick {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 86px; height: 86px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: .78rem;
-  letter-spacing: .06em;
-  color: var(--dim);
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.35;
+  pointer-events: none;
 }
 
-@media (max-width: 820px) {
-  .services, .work-grid { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .hero { min-height: 84vh; }
-  .hero::before { background: linear-gradient(180deg, rgba(15,17,19,.88) 0%, rgba(15,17,19,.72) 60%, rgba(15,17,19,.45) 100%); }
-  .topbar a.phone { display: none; }
+@media (max-width: 760px) {
+  .doors { flex-direction: column; }
+  .door { min-height: 46svh; padding: 3.2rem 1.4rem; }
+  .pick { width: 72px; height: 72px; font-size: .64rem; }
+  .door-jamul::after { display: none; }
 }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="topbar">
-    <a class="wordmark" href="#">WADHAMS <span>CONSTRUCTION</span></a>
-    <a class="phone" href="tel:+16194524924">(619) 452-4924</a>
-  </div>
-  <div class="hero-body">
-    <div class="kicker">San Diego · Licensed &amp; Bonded · Est. 1983</div>
-    <h1>General Building Contractor</h1>
-    <p class="hero-sub">Tenant improvements, ADA retrofits, and residential and commercial builds across San Diego. Owner operated on the same California license for 43 years.</p>
-    <div class="hero-cta">
-      <a class="btn btn-solid" href="tel:+16194524924">Call (619) 452-4924</a>
-      <a class="btn btn-ghost" href="#work">See the work</a>
-    </div>
-  </div>
-  <div class="lic-strip">
-    <span><b>CSLB LIC #441195</b></span><span class="d">◆</span>
-    <span>Class B General Building</span><span class="d">◆</span>
-    <span>Active &amp; Bonded</span><span class="d">◆</span>
-    <span>San Diego</span><span class="d">◆</span>
-    <span>Est. June 1983</span>
-  </div>
+<header class="bar">
+  <span><b>WADHAMS CONSTRUCTION</b></span><span class="d">◆</span>
+  <span>San Diego</span><span class="d">◆</span>
+  <span>CSLB #441195</span><span class="d">◆</span>
+  <span>Same guy, two websites</span>
 </header>
 
-<main>
-<section id="services" aria-label="Services">
-  <h2 class="sec-head">What We Do</h2>
-  <div class="services">
-    <div class="svc">
-      <div class="num">01</div>
-      <h3>Tenant Improvements</h3>
-      <p>Commercial interiors, storefronts, restaurants, and office buildouts. Demo through final inspection.</p>
-    </div>
-    <div class="svc">
-      <div class="num">02</div>
-      <h3>ADA Retrofits</h3>
-      <p>Path-of-travel upgrades, accessible restrooms, ramps, and compliance corrections for existing buildings.</p>
-    </div>
-    <div class="svc">
-      <div class="num">03</div>
-      <h3>Residential &amp; Commercial</h3>
-      <p>Additions, remodels, and ground-up construction for homes and commercial properties.</p>
-    </div>
-  </div>
-</section>
+<main class="doors">
+  <a class="door door-pro" href="pro/" aria-label="View the professional Wadhams Construction site">
+    <span class="kicker">Option 1</span>
+    <h2>The Professional One</h2>
+    <p>Licensed general contractor. Tenant improvements, ADA retrofits, residential and commercial.</p>
+    <span class="go">View site</span>
+  </a>
 
-<section class="work" id="work" aria-label="Recent work">
-  <h2 class="sec-head">The Work</h2>
-  <div class="work-grid">
-    <figure>
-      <img src="img/framing-floor.jpg" alt="Floor framing for a room addition on a concrete slab">
-      <figcaption>Room addition: floor framing</figcaption>
-    </figure>
-    <figure>
-      <img src="img/bar-top.jpg" alt="Finished hardwood bar top in a commercial restaurant buildout">
-      <figcaption>Restaurant buildout: bar millwork</figcaption>
-    </figure>
-    <figure>
-      <img src="img/stair-rebuild.jpg" alt="Measuring out a stair rebuild on a hillside retaining wall">
-      <figcaption>Stair rebuild: measuring out</figcaption>
-    </figure>
-    <figure>
-      <img src="img/epoxy-prep.jpg" alt="Concrete slab ground and prepped for an epoxy floor coating">
-      <figcaption>Epoxy floor: slab prep</figcaption>
-    </figure>
-    <figure>
-      <img src="img/epoxy-coat.jpg" alt="High-gloss epoxy floor coating around a brick fireplace hearth">
-      <figcaption>Epoxy floor: finished coat</figcaption>
-    </figure>
-  </div>
-</section>
+  <div class="pick" aria-hidden="true">PICK<br>ONE</div>
 
-<section id="credentials" aria-label="Credentials">
-  <h2 class="sec-head">On the Record</h2>
-  <div class="stats">
-    <div class="stat"><div class="big">43</div><div class="lbl">Years Licensed</div></div>
-    <div class="stat"><div class="big">#441195</div><div class="lbl">CSLB License · Active</div></div>
-    <div class="stat"><div class="big">$2M</div><div class="lbl">Bonding When Required</div></div>
-    <div class="stat"><div class="big">B</div><div class="lbl">General Building</div></div>
-  </div>
-  <p class="statement">Owner operated since 1983.</p>
-</section>
-
-<section class="contact" id="contact" aria-label="Contact">
-  <div class="contact-inner">
-    <h2 class="sec-head">Get a Bid</h2>
-    <a class="bigphone" href="tel:+16194524924">(619) 452-4924</a>
-    <p>Free estimates · Serving San Diego</p>
-  </div>
-</section>
+  <a class="door door-jamul" href="jamul/" aria-label="View the flyer: that piece of shit carpenter from Jamul">
+    <span class="kicker">Option 2</span>
+    <h2>That Piece of Shit Carpenter from Jamul</h2>
+    <span class="his">his words</span>
+    <span class="go">View flyer</span>
+  </a>
 </main>
-
-<footer>
-  <span>© 2026 Wadhams Construction · San Diego, CA</span>
-  <span>CSLB License #441195 · Class B General Building</span>
-</footer>
 
 </body>
 </html>

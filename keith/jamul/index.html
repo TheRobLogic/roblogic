@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>That Piece of Shit Carpenter from Jamul | Wadhams Construction</title>
+<meta name="description" content="Wadhams Construction, San Diego. Tenant improvements, ADA retrofits, residential and commercial. California License #441195, active since 1983. Free estimates.">
+<meta property="og:title" content="That Piece of Shit Carpenter from Jamul">
+<meta property="og:description" content="Also known as Wadhams Construction. California License #441195, active since 1983. Free estimates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://roblogic.org/keith/jamul/">
+<meta property="og:image" content="https://roblogic.org/keith/img/cat-ladder.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Special+Elite&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --paper: #f6f1e1;
+  --toner: #1b1713;
+  --faded: #565048;
+  --marker: #c23b22;
+  --tape: rgba(216,198,150,.8);
+}
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(0,0,0,0) 55%, rgba(0,0,0,.22) 100%),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 2px, rgba(0,0,0,0) 2px 130px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, rgba(0,0,0,0) 1px 6px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 1px, rgba(0,0,0,0) 1px 3px),
+    linear-gradient(180deg, #9c7d50, #8a6c42);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(1.6rem, 5vw, 4rem) 1rem 3.5rem;
+  overflow-x: hidden;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  color: var(--toner);
+}
+
+/* ---------- the flyer ---------- */
+.flyer {
+  position: relative;
+  width: min(660px, 96vw);
+  background:
+    repeating-linear-gradient(125deg, rgba(27,23,19,.02) 0 1px, rgba(0,0,0,0) 1px 5px),
+    var(--paper);
+  box-shadow: 0 14px 40px rgba(20,14,6,.45), 0 2px 8px rgba(20,14,6,.3);
+  transform: rotate(-.6deg);
+  padding: clamp(1.6rem, 4.5vw, 2.8rem) clamp(1.1rem, 4vw, 2.4rem) 0;
+  text-align: center;
+}
+.tape {
+  position: absolute;
+  width: 110px; height: 30px;
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgba(27,23,19,.2);
+}
+.tape.tl { top: -13px; left: -34px; transform: rotate(-38deg); }
+.tape.tr { top: -13px; right: -34px; transform: rotate(38deg); }
+
+.opener {
+  font-size: clamp(.95rem, 2.4vw, 1.1rem);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--faded);
+}
+h1 {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(2.35rem, 8.6vw, 4.1rem);
+  line-height: .96;
+  letter-spacing: .005em;
+  margin: 1rem 0 1.2rem;
+  text-shadow: 2px 2px 0 rgba(27,23,19,.12);
+}
+h1 .jamul { display: block; font-size: .62em; letter-spacing: .06em; }
+.record {
+  font-size: clamp(.95rem, 2.5vw, 1.08rem);
+  line-height: 1.7;
+  max-width: 44ch;
+  margin: 0 auto;
+}
+.record b { font-weight: 400; background: rgba(194,59,34,.14); padding: 0 .25em; }
+
+/* ---------- snapshots ---------- */
+.snaps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.1rem;
+  margin: 1.9rem 0 1.5rem;
+}
+.snap { position: relative; flex-shrink: 0; }
+.snap.wide { width: 34%; }
+.snap.tall { width: 24.5%; }
+.snap img {
+  width: 100%;
+  display: block;
+  border: 7px solid #fff;
+  border-bottom-width: 9px;
+  box-shadow: 0 3px 10px rgba(27,23,19,.28);
+}
+.snap::before {
+  content: '';
+  position: absolute;
+  top: -11px; left: 50%;
+  width: 74px; height: 22px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgba(27,23,19,.18);
+  z-index: 2;
+}
+.snap:nth-child(1) { transform: rotate(-2.2deg); }
+.snap:nth-child(2) { transform: rotate(1.6deg); }
+.snap:nth-child(3) { transform: rotate(-1.4deg); }
+.snap figcaption {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(.9rem, 2.2vw, 1.1rem);
+  color: var(--toner);
+  margin-top: .55rem;
+}
+
+/* ---------- services + phone ---------- */
+.services {
+  font-size: clamp(.95rem, 2.5vw, 1.08rem);
+  line-height: 1.75;
+}
+.ask {
+  font-family: 'Permanent Marker', cursive;
+  color: var(--marker);
+  font-size: clamp(1.25rem, 3.4vw, 1.6rem);
+  transform: rotate(-2deg);
+  display: inline-block;
+  margin-top: 1.3rem;
+}
+.arrow {
+  display: block;
+  margin: .1rem auto 0;
+  width: 54px;
+  color: var(--marker);
+}
+.bigphone {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.1rem, 7.6vw, 3.6rem);
+  color: var(--toner);
+  text-decoration: none;
+  line-height: 1.05;
+  margin: .4rem 0 1.5rem;
+  letter-spacing: .01em;
+}
+.bigphone:hover, .bigphone:focus-visible { color: var(--marker); }
+.bigphone:focus-visible, .tab a:focus-visible, .scrap a:focus-visible { outline: 3px solid var(--marker); outline-offset: 3px; }
+.freeline {
+  font-size: clamp(.92rem, 2.4vw, 1.02rem);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+}
+
+/* ---------- tear tabs ---------- */
+.cutline {
+  position: relative;
+  border-top: 2px dashed #8a8272;
+  margin: 0 calc(clamp(1.1rem, 4vw, 2.4rem) * -1);
+}
+.cutline .scissors {
+  position: absolute;
+  top: -0.72em;
+  left: 1.1rem;
+  font-size: 1.05rem;
+  color: var(--faded);
+  background: var(--paper);
+  padding: 0 .2rem;
+}
+.tabs {
+  display: flex;
+  margin: 0 calc(clamp(1.1rem, 4vw, 2.4rem) * -1);
+  align-items: flex-start;
+}
+.tab {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px dashed #8a8272;
+  height: 108px;
+}
+.tab:first-child { border-left: none; }
+.tab a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; height: 100%;
+  writing-mode: vertical-rl;
+  font-size: .6rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--toner);
+  text-decoration: none;
+  padding: .4rem 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tab a { transition: transform .15s ease; }
+  .tab a:hover { transform: translateY(4px) rotate(1.5deg); }
+}
+.tab.torn {
+  height: 34px;
+  background: linear-gradient(180deg, rgba(27,23,19,.05), rgba(0,0,0,0) 70%);
+  clip-path: polygon(0 0, 100% 0, 100% 52%, 76% 100%, 54% 58%, 32% 92%, 14% 55%, 0 74%);
+}
+.tab:nth-child(2n) a { transform: rotate(.8deg); }
+.tab:nth-child(3n) a { transform: rotate(-.9deg); }
+
+/* ---------- scrap nav below flyer ---------- */
+.scrap {
+  margin-top: 2.2rem;
+  background: #fffdf4;
+  transform: rotate(1.1deg);
+  box-shadow: 0 6px 18px rgba(20,14,6,.35);
+  padding: .85rem 1.3rem;
+  font-size: .88rem;
+  display: flex;
+  gap: .5rem 1.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.scrap a { color: var(--toner); }
+.scrap a:hover { color: var(--marker); }
+
+@media (max-width: 620px) {
+  .flyer { transform: rotate(-.3deg); }
+  .snaps { flex-direction: column; gap: 1.6rem; margin: 1.7rem 0 1.3rem; }
+  .snap.wide { width: 86%; }
+  .snap.tall { width: 62%; }
+  .tab a { font-size: .54rem; }
+  .tab:nth-child(2n of :not(.torn)) { display: none; } /* fewer tabs on small screens */
+}
+</style>
+</head>
+<body>
+
+<main class="flyer">
+  <span class="tape tl" aria-hidden="true"></span>
+  <span class="tape tr" aria-hidden="true"></span>
+
+  <p class="opener">Need work done?</p>
+  <h1>That Piece of Shit Carpenter <span class="jamul">from Jamul</span></h1>
+
+  <p class="record">Also known as <b>Wadhams Construction</b>. California License #441195, active since 1983. Licensed. Bonded. Free estimates.</p>
+
+  <div class="snaps">
+    <figure class="snap wide">
+      <img src="../img/cat-ladder.jpg" alt="White cat perched on top of an old wooden stepladder in a garage, one paw raised, with a vintage Wadhams True Gasolines sign in the background">
+      <figcaption>osha inspector</figcaption>
+    </figure>
+    <figure class="snap tall">
+      <img src="../img/cat-crate.jpg" alt="Calico cat mid-yawn sitting in a vintage wooden Coca-Cola crate full of old glass bottles">
+      <figcaption>the foreman</figcaption>
+    </figure>
+    <figure class="snap wide">
+      <img src="../img/raccoon.jpg" alt="A dead raccoon lying on dry pine needles">
+      <figcaption>the competition</figcaption>
+    </figure>
+  </div>
+
+  <p class="services">Tenant improvements. ADA retrofits.<br>Residential and commercial. San Diego.</p>
+
+  <span class="ask">ask for Keith</span>
+  <svg class="arrow" viewBox="0 0 54 34" aria-hidden="true">
+    <path d="M27 2 C 22 12, 30 20, 27 29 M27 29 l -7 -6 M27 29 l 6 -7"
+          fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <br>
+  <a class="bigphone" href="tel:+16194524924">(619)&nbsp;452-4924</a>
+  <p class="freeline">Free estimates</p>
+
+  <div class="cutline"><span class="scissors" aria-hidden="true">&#9986;</span></div>
+  <div class="tabs" aria-label="Tear-off phone number tabs">
+    <div class="tab"><a href="tel:+16194524924"><span>POS carpenter (619) 452-4924</span></a></div>
+    <div class="tab"><a href="tel:+16194524924"><span>POS carpenter (619) 452-4924</span></a></div>
+    <div class="tab torn" aria-hidden="true"></div>
+    <div class="tab"><a href="tel:+16194524924"><span>POS carpenter (619) 452-4924</span></a></div>
+    <div class="tab"><a href="tel:+16194524924"><span>POS carpenter (619) 452-4924</span></a></div>
+    <div class="tab"><a href="tel:+16194524924"><span>POS carpenter (619) 452-4924</span></a></div>
+    <div class="tab torn" aria-hidden="true"></div>
+    <div class="tab"><a href="tel:+16194524924"><span>POS carpenter (619) 452-4924</span></a></div>
+  </div>
+</main>
+
+<nav class="scrap" aria-label="Other versions of this site">
+  <a href="../pro/">the professional version</a>
+  <a href="../">pick again</a>
+</nav>
+
+</body>
+</html>
