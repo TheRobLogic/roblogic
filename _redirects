@@ -5,3 +5,6 @@
 /jordon  /abc/  301
 /jordon/  /abc/  301
 /jordon/*  /abc/:splat  301
+/lotto/tonight  /lotto/moonshot/  301
+/lotto/tonight/  /lotto/moonshot/  301
+/lotto/tonight/*  /lotto/moonshot/:splat  301
