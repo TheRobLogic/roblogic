@@ -122,6 +122,8 @@ header{text-align:center}
 .karma .k1,.karma .k2{display:block}
 .karma .k2{font-weight:700;margin-top:4px}
 .karma:hover{background:rgba(242,179,61,.14);box-shadow:0 0 28px rgba(242,179,61,.45)}
+.rg{text-align:center;margin-top:26px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.rg a{color:var(--dim)}
 @media(max-width:480px){.ball{width:36px;height:36px;font-size:14.5px}}
 @media(max-width:390px){.ball{width:33px;height:33px;font-size:13.5px}.phases{gap:8px}}
 </style></head><body>
@@ -146,5 +148,24 @@ ball on each line gets the same treatment in its own pool.</p>
 </div></div>
 <p class="dark">Not drawing tonight: <b>Mega Millions</b></p>
 <p class="karma-row"><a class="karma" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener"><span class="k1">☾ Keep Rob's karma aligned ☽</span><span class="k2">Leave a tip</span></a></p>
+<p class="rg">Play responsibly · <a href="tel:18004262537">1-800-GAMBLER</a> (or text SUPPORT to 53342) · <a href="https://www.calottery.com/play-responsibly" target="_blank" rel="noopener">calottery.com/play-responsibly</a></p>
 </div>
-</div></body></html>
+</div>
+<script>
+// visit beacon — every hit, skip bots, fail silent (same shape as /lotto/)
+try {
+  const ua = navigator.userAgent.toLowerCase();
+  if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+    fetch('/beacon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        page: 'moonshot',
+        ref: document.referrer || 'direct',
+        tag: 'crescent_moon'
+      })
+    }).catch(() => {});
+  }
+} catch (e) {}
+</script>
+</body></html>
