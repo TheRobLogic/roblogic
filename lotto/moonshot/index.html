@@ -46,11 +46,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,
   420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px}
 /* ---- splash: logo grows to full size ~2s, then the page ---- */
-.splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;
- background:radial-gradient(ellipse 60% 45% at 50% 46%,rgba(240,237,223,.10),transparent 65%),var(--space);
+.splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;pointer-events:none;
+ background:radial-gradient(ellipse 60% 45% at 50% 46%,rgba(240,237,223,.16),transparent 65%),var(--space);
  animation:splash-gone .5s ease-in 2.3s forwards}
 .splash img{width:min(76vw,520px);height:auto;
- filter:drop-shadow(0 0 70px rgba(240,237,223,.28));
  animation:splash-grow 2.05s cubic-bezier(.16,1,.3,1) both}
 @keyframes splash-grow{from{transform:scale(.05);opacity:0}10%{opacity:1}to{transform:scale(1)}}
 @keyframes splash-gone{to{opacity:0;visibility:hidden}}
