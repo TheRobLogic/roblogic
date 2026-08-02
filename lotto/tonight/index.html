@@ -2,65 +2,147 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Tonight's Profile Picks · MOCK</title>
+<title>MOONSHOT · Tonight's Profile Picks · MOCK</title>
+<link rel="icon" type="image/png" href="moonshot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500;1,700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --green:#00A651;--orange:#FF6A13;--yellow:#FFD400;--red:#D7263D;
-  --paper:#FBF6E9;--ink:#111111;--green-bright:#00A651;
-  --serif:"Lora",Georgia,serif;--sans:"Oswald",Helvetica,Arial,sans-serif;
-  --shadow-hard-l:8px 8px 0 var(--ink);--shadow-hard-s:4px 4px 0 var(--ink);
+  --space:#0B0E1A;--space-2:#131A30;--star:#E8ECFF;
+  --panel:#F5F1E4;--panel-2:#EAE4D1;--ink:#141B2E;
+  --moon-lit:#F0EDDF;--moon-dark:#1C2440;--moon-rim:rgba(232,236,255,.38);
+  --amber:#FFB000;--gold:#F2B33D;--dim:#8C94B8;
+  --green:#00A651;--red:#D7263D;--orange:#FF6A13;--yellow:#FFD400;
+  --disp:"Michroma",sans-serif;--mono:"IBM Plex Mono",Menlo,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:500;line-height:1.55}
-.tape{background:repeating-linear-gradient(-45deg,var(--ink) 0 14px,var(--yellow) 14px 28px);padding:6px}
-.tape span{display:block;background:var(--ink);color:var(--yellow);text-align:center;
- font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;padding:6px}
-.wrap{max-width:600px;margin:0 auto;padding:20px 16px 48px}
-h1{font-family:var(--serif);font-style:italic;font-weight:700;font-size:30px;margin:16px 0 2px}
-.dateline{font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.04em;margin-bottom:6px}
-.game{position:relative;border:3px solid var(--ink);background:#fff;box-shadow:var(--shadow-hard-l);margin-top:26px}
-.game .strip{border-bottom:3px solid var(--ink);padding:12px 18px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.game .strip h2{margin:0;font-family:var(--serif);font-style:italic;font-weight:700;font-size:24px;line-height:1.1}
-.game .strip .jackpot{margin-left:auto;font-family:var(--sans);font-weight:700;font-size:18px;letter-spacing:.02em;white-space:nowrap}
-.game .gmeta{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;
- padding:10px 18px;background:var(--paper);border-bottom:3px solid var(--ink);
- font-family:var(--sans);font-weight:400;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#555}
+html{background:var(--space)}
+body{background:var(--space);color:var(--star);font-family:var(--mono);line-height:1.55}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background-image:
+  radial-gradient(ellipse 90% 55% at 78% -12%,rgba(84,104,196,.26),transparent 62%),
+  radial-gradient(ellipse 70% 45% at 8% 108%,rgba(148,96,58,.17),transparent 60%),
+  radial-gradient(1.4px 1.4px at 38px 44px,var(--star) 50%,transparent 51%),
+  radial-gradient(1px 1px at 168px 128px,rgba(232,236,255,.85) 50%,transparent 51%),
+  radial-gradient(1.6px 1.6px at 288px 36px,rgba(232,236,255,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 414px 202px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(1.2px 1.2px at 522px 92px,var(--star) 50%,transparent 51%),
+  radial-gradient(1px 1px at 84px 288px,rgba(232,236,255,.75) 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 342px 342px,rgba(232,236,255,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 604px 260px,rgba(232,236,255,.65) 50%,transparent 51%),
+  radial-gradient(1px 1px at 232px 468px,rgba(232,236,255,.8) 50%,transparent 51%),
+  radial-gradient(1.3px 1.3px at 512px 428px,var(--star) 50%,transparent 51%),
+  radial-gradient(1px 1px at 58px 544px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(1px 1px at 448px 572px,rgba(232,236,255,.85) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 106px 74px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 262px 214px,rgba(232,236,255,.65) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 356px 118px,rgba(232,236,255,.75) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 188px 356px,rgba(232,236,255,.65) 50%,transparent 51%),
+  radial-gradient(1.1px 1.1px at 44px 178px,rgba(232,236,255,.8) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 318px 296px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(1.1px 1.1px at 150px 388px,rgba(232,236,255,.75) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 396px 44px,rgba(232,236,255,.7) 50%,transparent 51%);
+ background-size:auto,auto,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,
+  640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,
+  420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px}
+/* ---- splash: logo grows to full size ~2s, then the page ---- */
+.splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;
+ background:radial-gradient(ellipse 60% 45% at 50% 46%,rgba(240,237,223,.10),transparent 65%),var(--space);
+ animation:splash-gone .5s ease-in 2.3s forwards}
+.splash img{width:min(76vw,520px);height:auto;
+ filter:drop-shadow(0 0 70px rgba(240,237,223,.28));
+ animation:splash-grow 2.05s cubic-bezier(.16,1,.3,1) both}
+@keyframes splash-grow{from{transform:scale(.05);opacity:0}10%{opacity:1}to{transform:scale(1)}}
+@keyframes splash-gone{to{opacity:0;visibility:hidden}}
+.reveal{opacity:0;animation:rise .55s ease-out forwards}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap>.reveal:nth-child(1){animation-delay:2.35s}.wrap>.reveal:nth-child(2){animation-delay:2.45s}
+.wrap>.reveal:nth-child(3){animation-delay:2.55s}.wrap>.reveal:nth-child(4){animation-delay:2.65s}
+.wrap>.reveal:nth-child(5){animation-delay:2.75s}.wrap>.reveal:nth-child(6){animation-delay:2.85s}
+@media(prefers-reduced-motion:reduce){.splash{display:none}.reveal{opacity:1;animation:none}}
+/* ---- masthead ---- */
+.tape{border-top:4px solid;border-bottom:4px solid;
+ border-image:repeating-linear-gradient(-45deg,var(--amber) 0 10px,var(--space) 10px 20px) 4;
+ background:#05070F;color:var(--amber);text-align:center;
+ font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:8px 10px}
+.wrap{max-width:620px;margin:0 auto;padding:26px 16px 54px}
+.brand{font-family:var(--disp);font-weight:400;font-size:clamp(27px,7.4vw,44px);
+ letter-spacing:.08em;color:var(--star);display:flex;align-items:center;
+ text-shadow:0 0 26px rgba(132,152,255,.35)}
+.brand svg.brand-o{width:.94em;height:.94em;margin:0 .07em;
+ filter:drop-shadow(0 0 10px rgba(240,237,223,.5))}
+.subtitle{margin-top:8px;font-size:12px;font-weight:500;letter-spacing:.34em;
+ text-transform:uppercase;color:var(--gold)}
+.dateline{margin-top:4px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.phases{display:flex;align-items:center;gap:10px;margin:20px 0 4px;flex-wrap:wrap}
+.phases span{display:inline-flex;opacity:.55}
+.phases span.on{opacity:1;filter:drop-shadow(0 0 12px rgba(242,179,61,.55))}
+.phases span.on svg circle{stroke:var(--gold);stroke-width:2.5}
+/* ---- game cards: light spec-sheet panels ---- */
+.game{position:relative;border:2px solid var(--ink);border-radius:3px;background:var(--panel);
+ color:var(--ink);box-shadow:0 14px 44px rgba(2,4,12,.62),0 0 0 1px rgba(232,236,255,.07);
+ margin-top:30px;overflow:hidden}
+.game .strip{border-bottom:2px solid var(--ink);padding:13px 18px;
+ display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.game .strip h2{margin:0;font-family:var(--disp);font-weight:400;font-size:clamp(13.5px,4.1vw,17px);
+ letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+.game .strip .mission{margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+ font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.14em;
+ text-transform:uppercase;white-space:nowrap}
+.game .strip .mission svg{display:block}
+.game .gmeta{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;
+ flex-wrap:wrap;padding:9px 18px;background:var(--panel-2);border-bottom:1px solid rgba(20,27,46,.35);
+ font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#5A5647}
 .game .gmeta b{color:var(--ink);font-weight:700}
-.game .gbody{padding:18px 18px 20px;display:grid;gap:18px}
-.pick-block h4{margin:0 0 10px;font-family:var(--sans);font-weight:700;font-size:15px;
- letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:10px;line-height:1.5}
-.pick-block h4::after{content:"";flex:1;border-top:2px dashed var(--ink);opacity:.25}
+.game .gbody{padding:18px 18px 20px;display:grid;gap:18px;counter-reset:pick}
+.pick-block h4{margin:0 0 10px;font-family:var(--disp);font-weight:400;font-size:11.5px;
+ letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:10px;line-height:1.6}
+.pick-block h4::before{counter-increment:pick;content:"0" counter(pick);
+ font-family:var(--mono);font-weight:700;font-size:11px;color:var(--panel);
+ background:var(--ink);padding:2px 6px;border-radius:2px;letter-spacing:.08em}
+.pick-block h4::after{content:"";flex:1;border-top:1px solid rgba(20,27,46,.3)}
 .pick-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .ball{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
- background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:50%;
- font-family:var(--serif);font-weight:700;font-size:16px;box-shadow:2px 2px 0 var(--ink)}
-.plus{font-family:var(--sans);font-weight:700;font-size:16px;opacity:.55;padding:0 2px}
-.ball.special{color:#fff}
-.special-tag{font-family:var(--sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;padding-left:4px;font-weight:400}
-.game[data-accent="green"]  .strip{background:var(--green-bright);color:#fff}
+ background:#FFFDF4;color:var(--ink);border:2px solid var(--ink);border-radius:50%;
+ font-family:var(--mono);font-weight:700;font-size:15.5px;
+ box-shadow:inset 0 0 0 3px rgba(20,27,46,.07)}
+.plus{font-family:var(--mono);font-weight:700;font-size:15px;opacity:.5;padding:0 2px}
+.ball.special{color:#fff;box-shadow:none}
+.special-tag{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;padding-left:4px}
+.game[data-accent="green"]  .strip{background:var(--green);color:#fff}
 .game[data-accent="red"]    .strip{background:var(--red);color:#fff}
 .game[data-accent="yellow"] .strip{background:var(--yellow);color:var(--ink)}
 .game[data-accent="orange"] .strip{background:var(--orange);color:#fff}
-.game[data-accent="green"]  .ball.special{background:var(--green-bright)}
+.game[data-accent="green"]  .ball.special{background:var(--green)}
 .game[data-accent="red"]    .ball.special{background:var(--red)}
 .game[data-accent="yellow"] .ball.special{background:var(--yellow);color:var(--ink)}
 .game[data-accent="orange"] .ball.special{background:var(--orange)}
-.legend{margin-top:30px}
-.legend .box{border:3px solid var(--ink);background:#fff;box-shadow:var(--shadow-hard-s);padding:14px 16px}
-.legend h5{margin:0 0 6px;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;line-height:1.5}
-.legend p{margin:0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
-.dark,.foot{font-family:var(--sans);font-weight:400;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#555;margin-top:16px}
-@media(max-width:480px){.ball{width:36px;height:36px;font-size:15px}}
-@media(max-width:390px){.ball{width:33px;height:33px;font-size:14px}}
+.game .strip .mission svg circle{stroke:rgba(255,255,255,.55)}
+.game[data-accent="yellow"] .strip .mission svg circle{stroke:rgba(20,27,46,.55)}
+/* ---- legend + footer ---- */
+.legend{margin-top:32px}
+.legend .box{border:2px solid var(--ink);border-radius:3px;background:var(--panel);color:var(--ink);
+ box-shadow:0 10px 34px rgba(2,4,12,.55);padding:15px 17px}
+.legend h5{margin:0 0 8px;font-family:var(--disp);font-weight:400;font-size:11.5px;
+ letter-spacing:.24em;text-transform:uppercase;line-height:1.6}
+.legend p{margin:0;font-size:12.5px;line-height:1.65}
+.dark,.foot{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-top:18px}
+.dark b{color:var(--amber);font-weight:500}
+@media(max-width:480px){.ball{width:36px;height:36px;font-size:14.5px}}
+@media(max-width:390px){.ball{width:33px;height:33px;font-size:13.5px}.phases{gap:8px}}
 </style></head><body>
-<div class="tape"><span>MOCK — TONIGHT'S PROFILE PICKS · NOT PART OF THE DAILY PAGE</span></div>
+<div class="splash" aria-hidden="true"><img src="moonshot.png" alt="" width="800" height="632"></div>
+<div class="tape">MOCK — TONIGHT'S PROFILE PICKS · NOT PART OF THE DAILY PAGE</div>
 <div class="wrap">
-<h1>Tonight&rsquo;s Profile Picks</h1>
-<div class="dateline">Saturday · Aug 1, 2026 · 🌖 Waning Gibbous</div>
-<section class="game" data-accent="green"><div class="strip"><h2>Fantasy 5</h2><span class="jackpot">🌖 Sat</span></div><div class="gmeta"><span>Slice: Waning Gibbous Saturdays</span><b>171 draws</b></div><div class="gbody"><div class="pick-block"><h4>Hottest</h4><div class="pick-row"><span class="ball" title="2 · 29× in slice">2</span><span class="ball" title="4 · 29× in slice">4</span><span class="ball" title="6 · 27× in slice">6</span><span class="ball" title="11 · 34× in slice">11</span><span class="ball" title="34 · 28× in slice">34</span></div></div><div class="pick-block"><h4>Coldest</h4><div class="pick-row"><span class="ball" title="5 · 12× in slice">5</span><span class="ball" title="21 · 15× in slice">21</span><span class="ball" title="23 · 11× in slice">23</span><span class="ball" title="26 · 8× in slice">26</span><span class="ball" title="37 · 15× in slice">37</span></div></div><div class="pick-block"><h4>Balanced</h4><div class="pick-row"><span class="ball" title="2 · 29× in slice">2</span><span class="ball" title="11 · 34× in slice">11</span><span class="ball" title="23 · 11× in slice">23</span><span class="ball" title="26 · 8× in slice">26</span><span class="ball" title="28 · 23× in slice">28</span></div></div></div></section><section class="game" data-accent="red"><div class="strip"><h2>Powerball</h2><span class="jackpot">🌖 Sat</span></div><div class="gmeta"><span>Slice: Waning Gibbous Saturdays</span><b>72 draws · post-2015 era</b></div><div class="gbody"><div class="pick-block"><h4>Hottest</h4><div class="pick-row"><span class="ball" title="3 · 11× in slice">3</span><span class="ball" title="6 · 9× in slice">6</span><span class="ball" title="11 · 9× in slice">11</span><span class="ball" title="20 · 9× in slice">20</span><span class="ball" title="23 · 10× in slice">23</span><span class="plus">+</span><span class="ball special" title="19 · 8× in slice">19</span><span class="special-tag">Powerball</span></div></div><div class="pick-block"><h4>Coldest</h4><div class="pick-row"><span class="ball" title="1 · 2× in slice">1</span><span class="ball" title="31 · 2× in slice">31</span><span class="ball" title="39 · 2× in slice">39</span><span class="ball" title="50 · 2× in slice">50</span><span class="ball" title="54 · 2× in slice">54</span><span class="plus">+</span><span class="ball special" title="9 · 0× in slice">9</span><span class="special-tag">Powerball</span></div></div><div class="pick-block"><h4>Balanced</h4><div class="pick-row"><span class="ball" title="1 · 2× in slice">1</span><span class="ball" title="3 · 11× in slice">3</span><span class="ball" title="23 · 10× in slice">23</span><span class="ball" title="31 · 2× in slice">31</span><span class="ball" title="52 · 5× in slice">52</span><span class="plus">+</span><span class="ball special" title="4 · 2× in slice">4</span><span class="special-tag">Powerball</span></div></div></div></section><section class="game" data-accent="orange"><div class="strip"><h2>SuperLotto Plus</h2><span class="jackpot">🌖 Sat</span></div><div class="gmeta"><span>Slice: Waning Gibbous Saturdays</span><b>155 draws</b></div><div class="gbody"><div class="pick-block"><h4>Hottest</h4><div class="pick-row"><span class="ball" title="10 · 20× in slice">10</span><span class="ball" title="15 · 23× in slice">15</span><span class="ball" title="16 · 22× in slice">16</span><span class="ball" title="18 · 27× in slice">18</span><span class="ball" title="36 · 26× in slice">36</span><span class="plus">+</span><span class="ball special" title="10 · 14× in slice">10</span><span class="special-tag">Mega</span></div></div><div class="pick-block"><h4>Coldest</h4><div class="pick-row"><span class="ball" title="9 · 11× in slice">9</span><span class="ball" title="14 · 10× in slice">14</span><span class="ball" title="21 · 10× in slice">21</span><span class="ball" title="31 · 11× in slice">31</span><span class="ball" title="37 · 11× in slice">37</span><span class="plus">+</span><span class="ball special" title="26 · 2× in slice">26</span><span class="special-tag">Mega</span></div></div><div class="pick-block"><h4>Balanced</h4><div class="pick-row"><span class="ball" title="14 · 10× in slice">14</span><span class="ball" title="18 · 27× in slice">18</span><span class="ball" title="21 · 10× in slice">21</span><span class="ball" title="36 · 26× in slice">36</span><span class="ball" title="43 · 17× in slice">43</span><span class="plus">+</span><span class="ball special" title="9 · 5× in slice">9</span><span class="special-tag">Mega</span></div></div></div></section>
+<header class="reveal">
+<h1 class="brand" aria-label="Moonshot"><span aria-hidden="true">M<svg class="brand-o" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg>ONSHOT</span></h1>
+<div class="subtitle">Tonight's Profile Picks</div>
+<div class="dateline">Saturday · Aug 1, 2026 · Waning Gibbous</div>
+<div class="phases"><span title="New Moon"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/></svg></span><span title="Waxing Crescent"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="First Quarter"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 L20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Waxing Gibbous"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A9,18 0 0 1 20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Full Moon"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A18,18 0 0 1 20,2 Z" fill="var(--moon-lit)"/></svg></span><span class="on" title="Waning Gibbous"><svg width="44" height="44" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Last Quarter"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 L20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Waning Crescent"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 1 20,2 Z" fill="var(--moon-lit)"/></svg></span></div>
+</header>
+<div class="reveal"><section class="game" data-accent="green"><div class="strip"><h2>Fantasy 5</h2><span class="mission"><svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg> Sat</span></div><div class="gmeta"><span>Slice: Waning Gibbous Saturdays</span><b>171 draws · 5/39</b></div><div class="gbody"><div class="pick-block"><h4>Hottest</h4><div class="pick-row"><span class="ball" title="2 · 29× in slice">2</span><span class="ball" title="4 · 29× in slice">4</span><span class="ball" title="6 · 27× in slice">6</span><span class="ball" title="11 · 34× in slice">11</span><span class="ball" title="34 · 28× in slice">34</span></div></div><div class="pick-block"><h4>Coldest</h4><div class="pick-row"><span class="ball" title="5 · 12× in slice">5</span><span class="ball" title="21 · 15× in slice">21</span><span class="ball" title="23 · 11× in slice">23</span><span class="ball" title="26 · 8× in slice">26</span><span class="ball" title="37 · 15× in slice">37</span></div></div><div class="pick-block"><h4>Balanced</h4><div class="pick-row"><span class="ball" title="2 · 29× in slice">2</span><span class="ball" title="11 · 34× in slice">11</span><span class="ball" title="23 · 11× in slice">23</span><span class="ball" title="26 · 8× in slice">26</span><span class="ball" title="28 · 23× in slice">28</span></div></div></div></section></div><div class="reveal"><section class="game" data-accent="red"><div class="strip"><h2>Powerball</h2><span class="mission"><svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg> Sat</span></div><div class="gmeta"><span>Slice: Waning Gibbous Saturdays</span><b>72 draws · 5/69 +26 · post-2015 era</b></div><div class="gbody"><div class="pick-block"><h4>Hottest</h4><div class="pick-row"><span class="ball" title="3 · 11× in slice">3</span><span class="ball" title="6 · 9× in slice">6</span><span class="ball" title="11 · 9× in slice">11</span><span class="ball" title="20 · 9× in slice">20</span><span class="ball" title="23 · 10× in slice">23</span><span class="plus">+</span><span class="ball special" title="19 · 8× in slice">19</span><span class="special-tag">Powerball</span></div></div><div class="pick-block"><h4>Coldest</h4><div class="pick-row"><span class="ball" title="1 · 2× in slice">1</span><span class="ball" title="31 · 2× in slice">31</span><span class="ball" title="39 · 2× in slice">39</span><span class="ball" title="50 · 2× in slice">50</span><span class="ball" title="54 · 2× in slice">54</span><span class="plus">+</span><span class="ball special" title="9 · 0× in slice">9</span><span class="special-tag">Powerball</span></div></div><div class="pick-block"><h4>Balanced</h4><div class="pick-row"><span class="ball" title="1 · 2× in slice">1</span><span class="ball" title="3 · 11× in slice">3</span><span class="ball" title="23 · 10× in slice">23</span><span class="ball" title="31 · 2× in slice">31</span><span class="ball" title="52 · 5× in slice">52</span><span class="plus">+</span><span class="ball special" title="4 · 2× in slice">4</span><span class="special-tag">Powerball</span></div></div></div></section></div><div class="reveal"><section class="game" data-accent="orange"><div class="strip"><h2>SuperLotto Plus</h2><span class="mission"><svg width="20" height="20" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg> Sat</span></div><div class="gmeta"><span>Slice: Waning Gibbous Saturdays</span><b>155 draws · 5/47 +27</b></div><div class="gbody"><div class="pick-block"><h4>Hottest</h4><div class="pick-row"><span class="ball" title="10 · 20× in slice">10</span><span class="ball" title="15 · 23× in slice">15</span><span class="ball" title="16 · 22× in slice">16</span><span class="ball" title="18 · 27× in slice">18</span><span class="ball" title="36 · 26× in slice">36</span><span class="plus">+</span><span class="ball special" title="10 · 14× in slice">10</span><span class="special-tag">Mega</span></div></div><div class="pick-block"><h4>Coldest</h4><div class="pick-row"><span class="ball" title="9 · 11× in slice">9</span><span class="ball" title="14 · 10× in slice">14</span><span class="ball" title="21 · 10× in slice">21</span><span class="ball" title="31 · 11× in slice">31</span><span class="ball" title="37 · 11× in slice">37</span><span class="plus">+</span><span class="ball special" title="26 · 2× in slice">26</span><span class="special-tag">Mega</span></div></div><div class="pick-block"><h4>Balanced</h4><div class="pick-row"><span class="ball" title="14 · 10× in slice">14</span><span class="ball" title="18 · 27× in slice">18</span><span class="ball" title="21 · 10× in slice">21</span><span class="ball" title="36 · 26× in slice">36</span><span class="ball" title="43 · 17× in slice">43</span><span class="plus">+</span><span class="ball special" title="9 · 5× in slice">9</span><span class="special-tag">Mega</span></div></div></div></section></div>
+<div class="reveal">
 <div class="legend"><div class="box">
 <h5>How these are picked</h5>
 <p><b>Hottest</b> = the balls drawn most on nights like tonight (waning gibbous, Saturday) across the full
@@ -68,6 +150,7 @@ history. <b>Coldest</b> = drawn least on those nights. <b>Balanced</b> = the 2 h
 middle-ranked ball. Special balls use the same method in their own pool. Historical frequency on the
 slice shown in each header — descriptive, not predictive. Hold on any ball for its exact count.</p>
 </div></div>
-<p class="dark">Not drawing tonight: Mega Millions</p>
-<p class="foot">Baked Aug 1, 2026 3:27 PM PT · draws.sqlite3 (17,323 draws, 1992–present) · mock, refreshed manually</p>
+<p class="dark">Not drawing tonight: <b>Mega Millions</b></p>
+<p class="foot">Baked Aug 1, 2026 5:36 PM PT · draws.sqlite3 (17,323 draws, 1992–present) · mock, refreshed manually</p>
+</div>
 </div></body></html>
