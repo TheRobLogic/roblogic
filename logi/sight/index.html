@@ -82,16 +82,16 @@
 
   <header>
     <h1>Boardroom Sight — Hookup Schematic</h1>
-    <p class="meta">Logitech Sight table camera → Rally Bar · first-time activation · two cables, no pairing</p>
-    <p class="meta"><a href="/logi/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↑ Field card — checklist, FAQ &amp; parts</a> &nbsp;·&nbsp; <a href="/logi/schematic/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↔ TV / display schematic</a> &nbsp;·&nbsp; drawn 2026-07-22</p>
+    <p class="meta">Logitech Sight table camera → Rally Bar · first-time activation · two cables, no pairing · mic pods chain off the base</p>
+    <p class="meta"><a href="/logi/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↑ Field card — checklist, FAQ &amp; parts</a> &nbsp;·&nbsp; <a href="/logi/schematic/" style="color:var(--ink); border-bottom:1px solid var(--dim);">↔ TV / display schematic</a> &nbsp;·&nbsp; drawn 2026-07-22 · pods added 2026-08-03</p>
   </header>
 
   <!-- ============ DIAGRAM 1 — ROOM ============ -->
   <section class="blk">
     <div class="blk-head"><h2>Diagram 1 — Room</h2><span class="n">where the two cables go</span></div>
-    <p class="intro">The Sight sits mid-table and needs exactly <strong>two cables</strong>: a short <strong>power jumper</strong> to the PoE+ injector at the table, and <strong>one data run</strong> across the room to a small <strong>host dongle</strong> that plugs straight into the Rally Bar. The Sight never touches the Tap, the network, or yesterday's TV chain.</p>
+    <p class="intro">The Sight sits mid-table and needs exactly <strong>two cables</strong>: a short <strong>power jumper</strong> to the PoE+ injector at the table, and <strong>one data run</strong> across the room to a small <strong>host dongle</strong> that plugs straight into the Rally Bar. The Sight never touches the Tap, the network, or yesterday's TV chain. The <strong>two mic pods stay on the table too</strong> — they chain off the Sight's base on their own attached cables, no third run anywhere.</p>
     <div class="frame">
-      <svg viewBox="0 0 1120 610" role="img" aria-label="Room section: Sight on the board table with a short power jumper to the PoE injector and one data run through the floor and raceway up to the host dongle at the Rally Bar.">
+      <svg viewBox="0 0 1120 610" role="img" aria-label="Room section: Sight on the board table with a short power jumper to the PoE injector, one data run through the floor and raceway up to the host dongle at the Rally Bar, and two mic pods chained off the Sight's base on the tabletop.">
         <!-- plenum / ceiling -->
         <line x1="40" y1="70" x2="1080" y2="70" stroke="#111111" stroke-width="1.4"/>
         <line x1="40" y1="60" x2="1080" y2="60" stroke="#cccccc" stroke-width="1"/>
@@ -145,6 +145,14 @@
         <circle cx="561" cy="350" r="3.4" fill="#111111"/>
         <text class="t-port" x="561" y="330" text-anchor="middle">SIGHT</text>
 
+        <!-- Mic pods on table, chained off the Sight's base -->
+        <rect class="box" x="496" y="378" width="26" height="14" rx="6"/>
+        <rect class="box" x="444" y="378" width="26" height="14" rx="6"/>
+        <path class="wire-thin" style="stroke:var(--ok)" d="M522 385 L548 385"/>
+        <path class="wire-thin" style="stroke:var(--ok)" d="M470 385 L496 385"/>
+        <text class="t-port" x="452" y="358" text-anchor="middle" fill="#0d8a8a">MIC PODS ×2</text>
+        <text class="t-sub" x="452" y="371" text-anchor="middle">chain off the base</text>
+
         <!-- Tap on table (not in path) -->
         <rect class="box-dash" x="628" y="378" width="44" height="14" rx="2"/>
         <text class="t-port" x="650" y="372" text-anchor="middle">TAP</text>
@@ -179,9 +187,9 @@
   <!-- ============ DIAGRAM 2 — CONNECTIONS ============ -->
   <section class="blk">
     <div class="blk-head"><h2>Diagram 2 — Connections</h2><span class="n">every jack · every rule</span></div>
-    <p class="intro">The Sight base has <strong>three network-style jacks, but none of them are real network ports</strong>: <strong>POWER</strong> just takes power from the injector, <strong>DATA</strong> is USB dressed up in a network cable (runs to the little adapter at the bar), and <strong>MIC POD</strong> is only for optional extra mics. Power and data <strong>never share a cable</strong>.</p>
+    <p class="intro">The Sight base has <strong>three network-style jacks, but none of them are real network ports</strong>: <strong>POWER</strong> just takes power from the injector, <strong>DATA</strong> is USB dressed up in a network cable (runs to the little adapter at the bar), and <strong>MIC POD</strong> takes the little <strong>Mic Pod Dongle from the Sight's box</strong> — both pods chain off it. Power and data <strong>never share a cable</strong>.</p>
     <div class="frame">
-      <svg viewBox="0 0 1120 470" role="img" aria-label="Block diagram: wall outlet to Phihong injector to Sight POWER jack; Sight DATA jack over shielded Cat6A to the host dongle, whose two leads plug into the Rally Bar USB-A and Mic Pod ports. Tap is separate.">
+      <svg viewBox="0 0 1120 470" role="img" aria-label="Block diagram: wall outlet to Phihong injector to Sight POWER jack; Sight DATA jack over shielded Cat6A to the host dongle, whose two leads plug into the Rally Bar USB-A and Mic Pod ports; Sight MIC POD jack takes the Mic Pod Dongle with mic pod 1 and mic pod 2 chained off it. Tap is separate.">
         <!-- column captions -->
         <text class="t-tag" x="160" y="30" text-anchor="middle" fill="#666666">AT THE TABLE</text>
         <text class="t-tag" x="520" y="30" text-anchor="middle" fill="#666666">THE RUN</text>
@@ -193,9 +201,25 @@
         <text class="t-sub" x="160" y="97" text-anchor="middle">table camera · VU0067</text>
         <line x1="62" y1="108" x2="258" y2="108" stroke="#cccccc"/>
         <text class="t-port" x="64" y="134">DATA · to the bar</text><circle cx="256" cy="130" r="4" fill="#d6266f"/>
-        <text class="t-port" x="64" y="162">MIC POD · optional ×3</text><circle cx="256" cy="158" r="4" fill="none" stroke="#666666"/>
+        <text class="t-port" x="64" y="162">MIC POD · dongle → 2 pods</text><circle cx="256" cy="158" r="4" fill="#0d8a8a"/>
         <text class="t-port" x="64" y="190">POWER · PoE+ in</text><circle cx="110" cy="214" r="4" fill="#8a8a8a"/>
         <text class="t-sub" x="160" y="207" text-anchor="middle">3 RJ45 jacks — none are Ethernet</text>
+
+        <!-- MIC CHAIN: dongle + 2 pods, all fed off the Sight -->
+        <rect class="box" x="296" y="44" width="140" height="46" rx="4"/>
+        <text class="t-port" x="366" y="63" text-anchor="middle">MIC POD DONGLE</text>
+        <text class="t-sub" x="366" y="78" text-anchor="middle">came in the Sight box</text>
+        <rect class="box" x="480" y="44" width="88" height="46" rx="4"/>
+        <text class="t-port" x="524" y="70" text-anchor="middle">MIC POD 1</text>
+        <rect class="box" x="628" y="44" width="88" height="46" rx="4"/>
+        <text class="t-port" x="672" y="70" text-anchor="middle">MIC POD 2</text>
+        <path class="wire" style="stroke:var(--ok)" d="M260 158 L282 158 L282 67 L296 67"/>
+        <path class="wire" style="stroke:var(--ok)" d="M436 67 L480 67"/>
+        <path class="wire" style="stroke:var(--ok)" d="M568 67 L628 67"/>
+        <text class="t-sub" x="452" y="104" text-anchor="middle" fill="#0d8a8a">pod 1's own cable</text>
+        <text class="t-sub" x="598" y="104" text-anchor="middle" fill="#0d8a8a">pod 2 → jack on pod 1</text>
+        <text class="t-sub" x="748" y="60">powered off the Sight —</text>
+        <text class="t-sub" x="748" y="74">no injector, no wall plugs</text>
 
         <!-- injector + outlet -->
         <rect class="box-soft" x="50" y="262" width="220" height="66" rx="4"/>
@@ -218,7 +242,7 @@
         <!-- DATA run -->
         <path class="wire" style="stroke:var(--data); stroke-width:3.6" d="M260 130 L718 130"/>
         <text class="t-tag" x="490" y="118" text-anchor="middle" fill="#d6266f">SHIELDED CAT6A (S/FTP) · ≤ 20 m · PASSIVE</text>
-        <text class="t-sub" x="490" y="152" text-anchor="middle">USB in a network-cable costume — ordinary (unshielded) cable won't carry it</text>
+        <text class="t-sub" x="500" y="152" text-anchor="middle">USB in a network-cable costume — ordinary cable won't carry it</text>
 
         <!-- no-switch -->
         <rect class="box-dash" x="410" y="186" width="160" height="46" rx="3"/>
@@ -255,6 +279,7 @@
     <div class="legend">
       <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#d6266f" stroke-width="3.4"/></svg>The data run (the star)</div>
       <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#8a8a8a" stroke-width="2.6"/></svg>PoE power</div>
+      <div class="lg"><svg viewBox="0 0 44 14"><line x1="2" y1="7" x2="42" y2="7" stroke="#0d8a8a" stroke-width="2.6"/></svg>Mic pod chain — the pods' own cables</div>
       <div class="lg"><svg viewBox="0 0 44 14"><rect x="2" y="2" width="40" height="10" fill="none" stroke="#666666" stroke-width="1.4" stroke-dasharray="5 4"/></svg>Dashed = verify onsite / not in path</div>
     </div>
   </section>
@@ -267,6 +292,7 @@
       <li><b>The run.</b> Sight <b>DATA</b> jack → shielded cable → the little adapter at the bar. <b>The kit does NOT include this cable</b> — you bring it, and it has to be the heavy shielded kind: look for <b>"S/FTP" and "Cat6A" printed on the jacket, and a shiny metal tip on the plug</b>. All-plastic plug = ordinary network cable = will not work (the Cat5e cable from the Tap's box is exactly that — don't use it). The path must be one straight line to the bar, never through a network switch. Want to use the A07 wall plate? It's the low plate on the wall behind the Sight's corner — bottom jack labeled A07, black cable already in it (7/21 photo below). <b>Plug a laptop into it first:</b> if the laptop gets internet or a link light, that jack is live network — don't use it. Totally dead = perfect.
         <div class="shots"><a href="pics/img-2737.jpg" target="_blank" rel="noopener"><img src="pics/img-2737.jpg" alt="The Sight staged next to the low wall plate — bottom jack labeled A07 with a black cable plugged in" loading="lazy"></a></div></li>
       <li><b>The adapter ("host dongle").</b> Small box from the kit: network jack on one side, two short tails on the other. The run plugs into its jack; its two tails plug straight into the back of the bar — one into any <b>USB-A</b> port (all 3 are fine), one into the <b>MIC POD</b> port. Straight in, never through a USB hub.</li>
+      <li><b>The mic pods (2).</b> Nothing to buy — <b>no spare dongles, no PoE, no wall plugs.</b> The <b>Mic Pod Dongle came in the Sight's box</b> (a second small adapter: mic-pod jack on one side, network-style plug on the other), and each pod's grey ~10 ft cable is permanently attached to the pod. Plug <b>pod 1's cable into the dongle</b>, swing the little retention clip over the plug, then click the dongle into the <b>third jack on the Sight's base</b> — the one in the black rubber cutout. <b>Pod 2's cable plugs into the jack on pod 1</b> — they chain (this bar + Sight combo takes up to 3). The pods draw their power through the Sight's PoE, ride its connection to the bar, and show up alongside it under <b>Settings › Peripherals</b>. Touch the top of a pod to mute — red = muted. Note the pods can't go to the bar's own MIC POD port anymore — the Sight's host dongle lives there now; with a Sight in the room, pods always hang off the Sight.</li>
       <li><b>Watch it boot.</b> LED loops blue → lilac → white → cyan, then <b>solid cyan = ready</b>. The real go/no-go: it appears under <b>Settings › Peripherals</b> on the bar. Cyan but not listed = see the rescue list at the bottom — on 2.0.x firmware that's a known bug, not your wiring.</li>
       <li><b>Turn it on as a camera.</b> Settings › Camera › <b>RightSight 2 › Speaker View</b>. The automatic camera hand-off needs the bar's software (CollabOS) at <b>1.13 or newer</b> — it's on by itself from there, nothing extra to flip. Newest is <b>2.1.0</b> and it fixes exactly the "Sight doesn't show up" bugs, so updating is worth it. Updating happens right on the bar: Settings › Updates › Update, about 20 minutes, <b>no Teams admin needed</b>.</li>
       <li><b>Admin PIN reality.</b> Teams mode has <b>no factory default PIN</b> — if none was ever set, it prompts you to create one on the spot. If a PIN bounces you, one was set by the installer or pushed from Teams admin (1234 is only the non-Teams default). Reset = Teams admin only: Devices › this room › configuration profile with "Clear admin default password" — then the Tap lets you create a fresh one. <b>Locked out? You may not need Settings at all:</b> hand-off is on by default since 2.0.A — jump straight to the test call, and check the in-call camera icon for the Sight. Alone in the room, its LED sitting <b>orange = "inactive, one person"</b> is normal, not a fault.</li>
@@ -293,12 +319,13 @@
         <div class="shots"><a href="pics/img-6976.jpg" target="_blank" rel="noopener"><img src="pics/img-6976.jpg" alt="White logi power unit with shielded cable at the outlet" loading="lazy"></a><a href="pics/img-6977.jpg" target="_blank" rel="noopener"><img src="pics/img-6977.jpg" alt="Label on the white wall plug: Single Port Power over Ethernet, IEEE802.3at" loading="lazy"></a></div></li>
       <li><b>Black Phihong brick</b> = the Sight's power. A black power-brick the size of a big laptop charger — "PHIHONG" and "MODEL: POE90U-1BT" on the label, AC cord in one end, two network jacks on the other. Last seen lying by the equipment-leg / floor-box area in the 7/21 photos. Its output goes to the Sight's <b>POWER</b> jack (the one ringed in yellow on the base).
         <div class="shots"><a href="pics/img-0777.jpg" target="_blank" rel="noopener"><img src="pics/img-0777.jpg" alt="The black Phihong POE90U-1BT injector brick — label side" loading="lazy"></a></div></li>
-      <li><b>On the Sight's base:</b> POWER = yellow-ringed jack · DATA = the jack with the little two-tailed-adapter drawing etched next to it · the third jack (in the black rubber cutout) = mic pods / second Sight, unused today.
+      <li><b>On the Sight's base:</b> POWER = yellow-ringed jack · DATA = the jack with the little two-tailed-adapter drawing etched next to it · the third jack (in the black rubber cutout) = <b>where the Mic Pod Dongle clicks in</b> — the pods' door.
         <div class="shots"><a href="pics/img-6967.jpg" target="_blank" rel="noopener"><img src="pics/img-6967.jpg" alt="Underside of the Sight: POWER jack ringed in yellow, DATA jack with the dongle icon, mic pod jack in the rubber cutout" loading="lazy"></a></div></li>
       <li><b>Long grey cable coiled around the Sight's base, shiny metal plug tips</b> = your data-run candidate. <b>One check left: read the printing on the jacket.</b> Says <b>CAT6A</b> (with S/FTP or SSTP) → that's the run, use it. Says <b>CAT5E</b> → it's a Tap-kit spare, don't use it.
         <div class="shots"><a href="pics/img-6966.jpg" target="_blank" rel="noopener"><img src="pics/img-6966.jpg" alt="The long grey coiled cable with metal-shell plugs — read the jacket printing" loading="lazy"></a></div></li>
       <li><b>Back of the bar, from the photos:</b> HDMI-TV1 and Ethernet are plugged (correct, yesterday's fix), HDMI-TV2 empty (correct — leave it), USB-A ports and MIC POD port free and waiting for the dongle.
         <div class="shots"><a href="pics/img-6975.jpg" target="_blank" rel="noopener"><img src="pics/img-6975.jpg" alt="Back of the Rally Bar: HDMI-TV1 and Ethernet occupied, HDMI-TV2 empty" loading="lazy"></a><a href="pics/img-6974.jpg" target="_blank" rel="noopener"><img src="pics/img-6974.jpg" alt="Rally Bar port labels: POWER, MIC POD, USB-A x3" loading="lazy"></a></div></li>
+      <li><b>Not in the 7/22 photos:</b> the two <b>mic pods</b> (black pucks, grey cables permanently attached) and the <b>Mic Pod Dongle</b> — the second small adapter, still in the Sight's box if it's not already on the table. Dongle into the rubber-cutout jack · pod 1's plug into the dongle (flip the retention clip over it) · pod 2's plug into the jack on pod 1.</li>
     </ol>
   </section>
 
@@ -331,7 +358,7 @@
     <p class="conf"><b>Hard datasheet limit:</b> 20 m dongle-to-Sight, no exceptions — if you see a 40 m figure anywhere, it's wrong.</p>
   </section>
 
-  <footer>Grounded in the unit's base label + Logitech primary docs — Sight FAQ, wiring diagrams, LED guide, datasheet PDF, CollabOS changelogs (July 2026) · drawn 2026-07-22</footer>
+  <footer>Grounded in the unit's base label + Logitech primary docs — Sight FAQ, wiring diagrams, LED guide, datasheet PDF, CollabOS changelogs (July 2026) · drawn 2026-07-22 · mic pod chain added 2026-08-03 (Sight admin guide wiring diagrams + install planning)</footer>
 
 </div>
 </body>
