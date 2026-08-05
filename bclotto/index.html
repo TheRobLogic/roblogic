@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BC Lotto — BC Lottery &amp; Scratch Picks</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23B31B34'/%3E%3Ctext x='50' y='69' font-size='58' font-family='Arial,Helvetica,sans-serif' font-weight='800' text-anchor='middle' fill='%23fff'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<style>
+/* ================= TOKENS — BC Lotto / PlayNow brand (ticket #1179) =================
+   Fonts: Fort/Proxima Nova are PlayNow's real (non-licensable) faces; Inter/Montserrat
+   stand in for them (body/UI + display roles respectively).
+   Colors verified against PlayNow's own CSS (wn.css / rwd.css), fetched live 2026-08-05:
+     - crimson #B31B34 (+hover/dark #940117, +light #D03D53) = primary brand/CTAs
+     - per-game panel colors = winning-numbers/jackpot__body_* rules, verbatim
+     - Daily Grand corrected from the brief's tentative #76b900 (that hex is actually
+       Lotto Max's hover/pill accent, confirmed via `.jackpot__pill_active_lmax`) to its
+       real panel color `.jackpot__body_dgrd{background:linear-gradient(180deg,#f9b201,#e86a10)}`
+   Text-on-panel colors were re-derived by WCAG contrast math, not copied from the brief
+   verbatim: white-on-#84BD00 (Lotto Max) = 2.27:1 and white-on-#F9B201 (Daily Grand's
+   lighter gradient stop) = 1.84:1 — both fail even the large-text 3:1 floor, so both
+   panels use dark text instead (7.67:1 / 9.45:1). BC/49's white text passes (3.73:1
+   worst stop) so it's kept as specified.
+*/
+:root{
+  color-scheme:light;
+  /* brand */
+  --crimson:#B31B34;--crimson-dark:#940117;--crimson-light:#D03D53;
+  --gold:#F1C40F;--gold-deep:#F9B201;
+  --orange:#F15B25;--orange-deep:#E86A10;
+  /* per-game panel colors — keyed by id="game-<game_id>" (bc_draw_picks.py gameCard),
+     not by the data-accent rotation, since that rotation's order lives in bc_draw_picks.py
+     GAME_META (imported unmodified) and isn't ours to depend on implicitly. */
+  --g-lmax:#84BD00;
+  --g-649:#F1C40F;
+  --g-bc49-1:#F14344;--g-bc49-2:#7D0F0A;
+  --g-dgrd-1:#F9B201;--g-dgrd-2:#E86A10;
+  /* neutrals */
+  --bg-page:#F2F2F2;--surface:#FFFFFF;--charcoal:#20252B;
+  --border:#E6E6E6;--border-strong:#D9D9D9;
+  --ink:#1A1A1A;--body-text:#4A4A4A;--muted:#6B6B6B;--faint:#8A8A8A;
+  /* fonts */
+  --font-display:"Montserrat",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+  /* geometry */
+  --radius-card:12px;--radius-sm:8px;--radius-pill:999px;
+  --shadow-card:0 2px 8px rgba(0,0,0,.10);
+  --fs-view:32px;--fs-title:17px;
+  --rail-w:84px;--tb-h:130px;
+}
+
+/* ================= BONES ================= */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scrollbar-gutter:stable}
+body{
+  background:var(--bg-page);color:var(--body-text);
+  font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:var(--crimson);text-decoration:none}
+a:hover{color:var(--crimson-dark);text-decoration:underline}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.num-fig{font-family:var(--font-body);font-variant-numeric:tabular-nums}
+
+.app{display:flex;min-height:100vh}
+
+/* ---------------- masthead ---------------- */
+.topbar{
+  position:sticky;top:0;z-index:50;background:var(--charcoal);
+  border-bottom:3px solid var(--crimson);
+  box-shadow:0 2px 10px rgba(0,0,0,.18);
+}
+.topbar-inner{
+  max-width:1100px;margin:0 auto;padding:16px 40px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.brand-word{
+  margin:0;font-family:var(--font-display);font-weight:800;
+  font-size:26px;letter-spacing:.02em;line-height:1.1;text-align:center;
+  color:#fff;text-transform:uppercase;
+}
+.brand-word .hl{color:var(--crimson-light)}
+.dateline{
+  margin-top:0;text-align:center;
+  font-family:var(--font-body);font-weight:600;font-size:11.5px;color:rgba(255,255,255,.68);
+  letter-spacing:.14em;text-transform:uppercase;
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.surface-toggle{
+  display:flex;align-items:stretch;gap:4px;flex:0 0 auto;
+  background:rgba(255,255,255,.08);border-radius:var(--radius-pill);padding:4px;
+}
+.surface-btn{
+  padding:9px 22px;font-family:var(--font-body);font-size:14px;font-weight:600;
+  letter-spacing:.03em;color:rgba(255,255,255,.72);border-radius:var(--radius-pill);
+  transition:background 120ms ease,color 120ms ease;
+}
+.surface-btn:hover{color:#fff}
+.surface-btn.active{background:var(--crimson);color:#fff}
+
+/* ---------------- left rail ---------------- */
+.rail{
+  width:var(--rail-w);flex:0 0 auto;
+  position:sticky;top:var(--tb-h);height:calc(100vh - var(--tb-h));overflow-y:auto;
+  background:transparent;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;z-index:40;
+}
+.rail-nav{padding:20px 12px;display:flex;flex-direction:column;gap:4px}
+.nav-item{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  height:38px;padding:0 10px;white-space:nowrap;border-radius:var(--radius-pill);
+  color:var(--muted);background:transparent;
+  font-family:var(--font-body);font-weight:600;font-size:13px;
+  letter-spacing:.01em;font-variant-numeric:tabular-nums;
+  transition:color 120ms ease,background 120ms ease;
+}
+.nav-item:hover{color:var(--ink);background:var(--surface)}
+.nav-item.active{color:#fff;background:var(--crimson)}
+
+/* ---------------- main pane ---------------- */
+.main{flex:1 1 auto;min-width:0;background:transparent}
+body.on-draw .rail{display:none}
+.shell{max-width:1100px;margin:0 auto;padding:0 40px 80px}
+
+/* ---------------- headers ---------------- */
+.view-head{margin:36px 0 0}
+.view-title{
+  margin:0;font-family:var(--font-display);font-size:var(--fs-view);
+  font-weight:800;letter-spacing:-.01em;line-height:1.15;color:var(--ink);
+}
+.view-title .hl{color:var(--crimson)}
+.view-sub{margin:10px 0 0;font-size:15px;color:var(--body-text);max-width:64ch}
+.freshness{margin:14px 0 0;font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+noscript p{margin:40px 0}
+
+/* ---------------- scratcher price-band cards ---------------- */
+.scard{margin-top:28px;border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden}
+.scard-band{
+  background:linear-gradient(135deg,var(--orange),var(--orange-deep));color:#fff;
+  padding:16px 22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+.scard-band h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:20px;line-height:1.1;color:#fff}
+.scard-fig{margin-left:auto;font-family:var(--font-body);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;color:rgba(255,255,255,.85)}
+.scard-body{padding:4px 22px 0}
+.scard-fine{
+  font-family:var(--font-body);font-weight:400;font-size:11.5px;letter-spacing:.02em;
+  color:var(--faint);border-top:1px solid var(--border);
+  padding:12px 22px;background:var(--bg-page);line-height:1.5;
+}
+
+.rows{display:flex;flex-direction:column}
+.row{
+  display:grid;
+  grid-template-columns:minmax(210px,280px) minmax(0,1fr) minmax(140px,max-content);
+  grid-template-areas:"head detail stat";
+  gap:6px 26px;align-items:center;
+  padding:20px 0;border-bottom:1px solid var(--border);
+}
+.rows .row:last-child{border-bottom:0}
+.row:hover{background:var(--bg-page)}
+.row.is-headline{background:#FDF5F6;box-shadow:inset 4px 0 0 0 var(--crimson)}
+.row-head{grid-area:head;min-width:0;display:flex;flex-direction:column;gap:8px}
+.row-head-top{display:flex;align-items:center;gap:12px}
+.denom-bub{
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;
+  font-family:var(--font-body);font-weight:700;font-size:12.5px;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+  background:#fff;border:1.5px solid var(--border-strong);
+}
+.row-title{font-family:var(--font-body);font-weight:700;font-size:var(--fs-title);line-height:1.3;letter-spacing:-.003em;color:var(--ink);min-width:0}
+.row-flags{display:flex;flex-wrap:wrap;gap:6px}
+.flag{
+  font-family:var(--font-body);font-weight:700;font-size:10.5px;letter-spacing:.04em;
+  text-transform:uppercase;padding:4px 10px;line-height:1.5;
+  border-radius:var(--radius-pill);white-space:nowrap;
+}
+.flag.headline{background:var(--crimson);color:#fff}
+.flag.gone{background:var(--muted);color:#fff}
+.flag.legacy{background:#fff;color:var(--muted);border:1px solid var(--border-strong)}
+.flag.region{background:#EFEFEF;color:var(--faint)}
+.row-detail{grid-area:detail;font-size:14.5px;color:var(--body-text);min-width:0}
+.row-detail p{margin:0 0 4px}
+.row-detail p:last-child{margin-bottom:0}
+.row-sub{font-family:var(--font-body);font-size:12px;letter-spacing:.01em;color:var(--faint);font-variant-numeric:tabular-nums}
+.stat{grid-area:stat;text-align:right;justify-self:end}
+.stat-v{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15;white-space:nowrap}
+.stat-v.stat-none{color:var(--faint);font-weight:600}
+.stat-pm{font-size:13px;font-weight:400;color:var(--faint);margin-left:3px}
+.stat-l{margin-top:3px;font-family:var(--font-body);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+
+/* ---------------- draw surface ---------------- */
+.games-grid{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.game{border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden;scroll-margin-top:calc(var(--tb-h) + 16px)}
+.game .strip{padding:18px 20px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--charcoal);color:#fff}
+.game .strip h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:21px;line-height:1.1}
+.game .strip .jackpot{margin-left:auto;font-family:var(--font-display);font-weight:800;font-size:20px;white-space:nowrap}
+.game .gmeta{
+  display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;
+  padding:11px 20px;background:var(--bg-page);border-bottom:1px solid var(--border);
+  font-family:var(--font-body);font-weight:400;font-size:12px;letter-spacing:.02em;color:var(--muted);
+}
+.game .gmeta b{color:var(--ink);font-weight:700}
+.game .gmeta .g-cost{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.game .gbody{padding:18px 20px 20px;display:grid;gap:18px}
+.pick-block h4{
+  margin:0 0 10px;font-family:var(--font-body);font-weight:700;font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;line-height:1.5;display:flex;align-items:center;gap:10px;color:var(--muted);
+}
+.pick-block h4::after{content:"";flex:1;border-top:1px solid var(--border)}
+.pick-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.ball{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;background:#fff;color:var(--ink);
+  border:1.5px solid var(--border-strong);border-radius:50%;
+  font-family:var(--font-body);font-weight:600;font-size:14.5px;
+  font-variant-numeric:tabular-nums;
+}
+.plus{font-family:var(--font-body);font-weight:700;font-size:15px;color:var(--faint);padding:0 2px}
+.ball.special{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* per-game jackpot-strip colors — see file-top note on why id-keyed, not data-accent */
+#game-lotto-max   .strip{background:var(--g-lmax);color:var(--ink)}
+#game-lotto-649   .strip{background:var(--g-649);color:var(--ink)}
+#game-bc-49       .strip{background:linear-gradient(180deg,var(--g-bc49-1),var(--g-bc49-2));color:#fff}
+#game-daily-grand .strip{background:linear-gradient(180deg,var(--g-dgrd-1),var(--g-dgrd-2));color:var(--ink)}
+
+.game .window{
+  font-family:var(--font-body);font-weight:400;font-size:11px;letter-spacing:.02em;
+  color:var(--faint);border-top:1px solid var(--border);padding:11px 20px;background:var(--bg-page);line-height:1.5;
+}
+
+/* ---------------- legend / info drawer ---------------- */
+.legend{margin-top:24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.legend .box{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);box-shadow:var(--shadow-card);padding:16px 18px}
+.legend h5{margin:0 0 8px;font-family:var(--font-body);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--crimson);line-height:1.4}
+.legend p{margin:0;font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--body-text)}
+.fine{margin-top:20px}
+.fine .box{border-radius:var(--radius-card);background:var(--charcoal);color:#fff;padding:20px 22px}
+.fine h5{margin:0 0 10px;font-family:var(--font-body);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);line-height:1.4}
+.fine p{margin:0 0 12px;font-family:var(--font-body);font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.82)}
+.fine p:last-child{margin-bottom:0}
+.info-toggle{margin-top:24px}
+.info-toggle>summary{
+  list-style:none;cursor:pointer;width:fit-content;display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);
+  background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-pill);box-shadow:var(--shadow-card);
+  padding:10px 20px;line-height:1.2;
+}
+.info-toggle>summary::-webkit-details-marker{display:none}
+.info-toggle>summary::after{content:"+";font-family:var(--font-body);font-size:16px;line-height:1;color:var(--crimson)}
+.info-toggle[open]>summary::after{content:"\2013"}
+.info-toggle>summary:hover{border-color:var(--crimson)}
+
+/* ---------------- tip + footer ---------------- */
+.tip{
+  margin-top:48px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);
+  padding:26px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
+}
+.tip-line{font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink)}
+.tip-btn{
+  display:inline-block;font-family:var(--font-body);font-weight:700;letter-spacing:.02em;font-size:15px;
+  color:#fff;background:var(--crimson);border-radius:var(--radius-pill);padding:13px 28px;
+  white-space:nowrap;transition:background 120ms ease,transform 80ms ease;
+}
+.tip-btn:hover{background:var(--crimson-dark);transform:translateY(-1px);text-decoration:none;color:#fff}
+.tip-btn:active{transform:translateY(0)}
+.tip-note{font-family:var(--font-body);font-weight:600;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint)}
+footer{
+  margin-top:36px;padding:22px 24px;background:var(--charcoal);border-radius:var(--radius-card);
+  text-align:center;font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:.08em;font-size:12px;color:rgba(255,255,255,.66);line-height:2;
+}
+footer .num-fig{font-family:var(--font-body);font-size:11px;letter-spacing:.06em;color:var(--gold-deep)}
+.scratch-stripe{
+  height:4px;margin-top:16px;border-radius:2px;
+  background:linear-gradient(90deg,var(--crimson),var(--gold-deep),var(--crimson));
+}
+.rg-line{
+  margin-top:14px;text-align:center;font-family:var(--font-body);font-size:11px;letter-spacing:.01em;
+  color:rgba(255,255,255,.55);line-height:1.7;text-transform:none;
+}
+.rg-line a{color:rgba(255,255,255,.75);text-decoration:underline;text-underline-offset:2px}
+.rg-line a:hover{color:#fff}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:900px){
+  .shell,.topbar-inner{padding-left:26px;padding-right:26px}
+  .games-grid{grid-template-columns:1fr;gap:20px}
+  .legend{grid-template-columns:1fr 1fr}
+  :root{--fs-view:28px}
+  .row{
+    grid-template-columns:minmax(0,1fr) max-content;
+    grid-template-areas:"head stat" "detail detail";
+    align-items:start;gap:8px 20px;
+  }
+}
+@media (max-width:720px){
+  .app{flex-direction:column}
+  .rail{
+    width:auto;height:auto;flex:0 0 auto;position:static;overflow:visible;
+    border-right:0;border-bottom:1px solid var(--border);
+  }
+  .rail-nav{
+    flex-direction:row;gap:8px;padding:12px 16px;
+    overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .rail-nav::-webkit-scrollbar{display:none}
+  .nav-item{flex:0 0 auto;height:36px;padding:0 16px;background:var(--bg-page)}
+  .nav-item.active{background:var(--crimson);color:#fff}
+  .shell{padding-left:18px;padding-right:18px}
+  .topbar-inner{padding:14px 18px}
+  .brand-word{font-size:21px}
+  .view-title{font-size:24px}
+  .view-head{margin-top:24px}
+  .scard{margin-top:20px}
+  .scard-band{padding:13px 16px}
+  .scard-band h2{font-size:18px}
+  .scard-body{padding:2px 16px 0}
+  .scard-fine{padding:10px 16px}
+  .row{padding:16px 0}
+  .legend{grid-template-columns:1fr}
+  .tip{margin-top:36px;padding:20px 16px}
+  .tip-line{font-size:18px}
+  .game .strip .jackpot{font-size:17px}
+  .ball{width:32px;height:32px;font-size:13px}
+}
+@media (max-width:600px){
+  .row{grid-template-columns:1fr;grid-template-areas:"head" "detail" "stat";gap:10px}
+  .stat{text-align:left;justify-self:start}
+}
+@media (max-width:430px){
+  .brand-word{font-size:19px}
+  .dateline{font-size:10.5px;letter-spacing:.1em;white-space:normal}
+  .surface-btn{padding:10px 14px;font-size:13px}
+  .denom-bub{width:36px;height:36px;font-size:11.5px}
+  .nav-item{padding:0 12px;font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <h1 class="brand-word">BC <span class="hl">LOTTO</span></h1>
+      <div class="dateline" id="dateline">Wed · Aug 5, 2026 · 2:44 PM PT</div>
+    </div>
+    <div class="surface-toggle" id="surfaceToggle" role="group" aria-label="Game type">
+      <button class="surface-btn active" data-surface="scratchers" aria-pressed="true">Scratchers</button>
+      <button class="surface-btn" data-surface="draw" aria-pressed="false">Draw</button>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+  <nav class="rail" id="rail" aria-label="Sections">
+    <div class="rail-nav" id="railNav"></div>
+  </nav>
+
+  <div class="main">
+    <div class="shell">
+      <noscript><p>This page needs JavaScript to show today's picks.</p></noscript>
+      <main>
+        <div id="scratchersPane"></div>
+        <div id="drawPane" hidden></div>
+      </main>
+
+      <div class="tip">
+        <span class="tip-line">Did a pick pay off?</span>
+        <a class="tip-btn" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener">Send a tip</a>
+        <span class="tip-note">Cash App · $RobLogic18 · never required</span>
+      </div>
+
+      <footer>
+        <div>Rob Logic · BC Lotto · Aug 5, 2026 PT</div>
+        <div class="num-fig">BCLC/PlayNow public data</div>
+        <div class="scratch-stripe" aria-hidden="true"></div>
+        <div class="rg-line">Play responsibly · <a href="https://www.playnow.com/gamesense/" target="_blank" rel="noopener">GameSense</a> · 1-888-795-6111 · <a href="https://www.gamblingsupportbc.ca" target="_blank" rel="noopener">gamblingsupportbc.ca</a></div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="lotto-data">{"schema_version": 1, "generated_at": "2026-08-05T14:44:55-07:00", "source": "BCLC PlayNow instant-prizes API (live fetch)", "freshness_line": "BCLC data as of BC 2026-08-05 \u00b7 national 2026-08-04", "prices": ["1", "2", "3", "5", "10", "20", "30", "50", "100"], "bands": {"1": [{"game_number": "115033", "item_number": 0, "name": "$1 Nutcracker Cash III", "price": 1.0, "region": "bc", "score": 1.0702986255257732, "pool_index": 1.4965564310975987, "se": 0.4262578055718257, "n_eff": 4.883571056247927, "claim_rate": 0.4701492537313433, "cash_pool_remaining": 18000.0, "top_prize_value": 10000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "3256", "item_number": 0, "name": "$1 Gnome for the Holidays", "price": 1.0, "region": "bc", "score": 1.054289329087514, "pool_index": 1.5045454545454544, "se": 0.4502561254579405, "n_eff": 7.398982487036493, "claim_rate": 0.6, "cash_pool_remaining": 16550.0, "top_prize_value": 10000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "114043", "item_number": 0, "name": "$1 Winter Wishes II", "price": 1.0, "region": "bc", "score": 0.030450870234529304, "pool_index": 0.5694013303769402, "se": 0.5389504601424109, "n_eff": 4.81981469633421, "claim_rate": 0.5833333333333334, "cash_pool_remaining": 5350.0, "top_prize_value": 10000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}], "2": [{"game_number": "116017", "item_number": 0, "name": "$2 $50 Fever", "price": 2.0, "region": "bc", "score": 0.9127137427293421, "pool_index": 0.9518749681916387, "se": 0.03916122546229659, "n_eff": 386.31521034057977, "claim_rate": 0.37203822489854693, "cash_pool_remaining": 240800.0, "top_prize_value": 20000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115065", "item_number": 1, "name": "$2 Crossword Grey Red", "price": 2.0, "region": "bc", "score": 0.8186666054234648, "pool_index": 1.0554019637411614, "se": 0.2367353583176965, "n_eff": 5.273864364379634, "claim_rate": 0.22813688212927757, "cash_pool_remaining": 47900.0, "top_prize_value": 25000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115021", "item_number": 0, "name": "$2 Blackjack VIII", "price": 2.0, "region": "bc", "score": 0.2491558193678739, "pool_index": 0.752121212121212, "se": 0.5029653927533381, "n_eff": 7.043478260869565, "claim_rate": 0.6405228758169934, "cash_pool_remaining": 15330.0, "top_prize_value": 21000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}], "3": [{"game_number": "114052", "item_number": 2, "name": "$3 Super Crossword Purple Blue", "price": 3.0, "region": "bc", "score": 0.9406184380324825, "pool_index": 1.2688890177680237, "se": 0.3282705797355412, "n_eff": 5.888163524080674, "claim_rate": 0.38819875776397517, "cash_pool_remaining": 96825.0, "top_prize_value": 50000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115009", "item_number": 0, "name": "$3 Hidden Oasis", "price": 3.0, "region": "bc", "score": 0.11352848612779448, "pool_index": 0.5200723583868336, "se": 0.40654387225903915, "n_eff": 4.3903011025150285, "claim_rate": 0.42049808429118773, "cash_pool_remaining": 31600.0, "top_prize_value": 50000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}], "5": [{"game_number": "115006", "item_number": 0, "name": "$5 Break the Bank III", "price": 5.0, "region": "bc", "score": 1.61911605466883, "pool_index": 2.335744966671443, "se": 0.716628912002613, "n_eff": 7.43649909614113, "claim_rate": 0.7924909164311668, "cash_pool_remaining": 132950.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115064", "item_number": 0, "name": "$5 Queens", "price": 5.0, "region": "bc", "score": 1.4022479818516072, "pool_index": 2.012485829795699, "se": 0.610237847944092, "n_eff": 7.939756877203095, "claim_rate": 0.7472633612363168, "cash_pool_remaining": 144120.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114029", "item_number": 0, "name": "$5 $50 Overload", "price": 5.0, "region": "bc", "score": 1.192819849959227, "pool_index": 1.420244648111589, "se": 0.22742479815236177, "n_eff": 69.12600969706666, "claim_rate": 0.781436919903747, "cash_pool_remaining": 258900.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115016", "item_number": 0, "name": "$5 The Big Spin", "price": 5.0, "region": "bc", "score": 1.022524570470074, "pool_index": 1.0514237710221683, "se": 0.028899200552094228, "n_eff": 2995.148450712035, "claim_rate": 0.7144031793887899, "cash_pool_remaining": 270300.0, "top_prize_value": 10000.0, "top_prize_remaining": 2, "top_prize_total": 2, "legacy_run": false, "noncash": [{"label": "BIG SPIN", "remaining": 1, "total": 4}], "is_headline": false}, {"game_number": "116001", "item_number": 0, "name": "$5 The Big Spin II", "price": 5.0, "region": "bc", "score": 1.0, "pool_index": 1.0, "se": 0.0, "n_eff": 2920.1459162105534, "claim_rate": 0.0, "cash_pool_remaining": 889350.0, "top_prize_value": 10000.0, "top_prize_remaining": 2, "top_prize_total": 2, "legacy_run": false, "noncash": [{"label": "BIG SPIN", "remaining": 4, "total": 4}], "is_headline": false}, {"game_number": "116004", "item_number": 0, "name": "$5 Set for Life XII", "price": 5.0, "region": "bc", "score": 0.9909202087858131, "pool_index": 1.0586135837678488, "se": 0.0676933749820357, "n_eff": 12.937813537063942, "claim_rate": 0.05596801827527127, "cash_pool_remaining": 8420900.0, "top_prize_value": 675000.0, "top_prize_remaining": 12, "top_prize_total": 12, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116025", "item_number": 0, "name": "$5 15X Multiplier II", "price": 5.0, "region": "bc", "score": 0.9739319031798342, "pool_index": 1.0031286482381407, "se": 0.029196745058306522, "n_eff": 8.184344916918885, "claim_rate": 0.006928406466512702, "cash_pool_remaining": 286750.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116007", "item_number": 0, "name": "$5 777 III", "price": 5.0, "region": "bc", "score": 0.9173038687118087, "pool_index": 1.0344589331713079, "se": 0.11715506445949923, "n_eff": 4.198242316905337, "claim_rate": 0.05448275862068966, "cash_pool_remaining": 201727.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115035", "item_number": 2, "name": "$5 Deluxe Crossword Glamping", "price": 5.0, "region": "bc", "score": 0.5858337984001887, "pool_index": 0.8126794590411129, "se": 0.2268456606409242, "n_eff": 31.79702445246136, "claim_rate": 0.6206720977596741, "cash_pool_remaining": 131925.0, "top_prize_value": 75000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115030", "item_number": 2, "name": "$5 Bingo Multiplier IX Yellow Red", "price": 5.0, "region": "bc", "score": 0.5412726144723912, "pool_index": 0.6640286238201023, "se": 0.12275600934771115, "n_eff": 8.142724472144941, "claim_rate": 0.10929250263991552, "cash_pool_remaining": 128470.0, "top_prize_value": 75000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116016", "item_number": 0, "name": "$5 BC Riches III", "price": 5.0, "region": "bc", "score": 0.4913589577653935, "pool_index": 0.6781565002114222, "se": 0.18679754244602864, "n_eff": 9.40634325830833, "claim_rate": 0.24711186249647787, "cash_pool_remaining": 156900.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116009", "item_number": 0, "name": "$5 Lotto Max", "price": 5.0, "region": "bc", "score": 0.4052005901794483, "pool_index": 0.6693893532152668, "se": 0.2641887630358185, "n_eff": 10.119394421866101, "claim_rate": 0.413933236574746, "cash_pool_remaining": 125650.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "4013", "item_number": 0, "name": "$5 Payline Multiplier", "price": 5.0, "region": "bc", "score": 0.23266858238332594, "pool_index": 0.6787215954907152, "se": 0.44605301310738926, "n_eff": 7.469134106372632, "claim_rate": 0.5977608956417433, "cash_pool_remaining": 75050.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "116008", "item_number": 0, "name": "$5 Wild Cherries II", "price": 5.0, "region": "bc", "score": 0.2275336947977974, "pool_index": 0.6292400720389741, "se": 0.40170637724117675, "n_eff": 6.206946112042345, "claim_rate": 0.500400320256205, "cash_pool_remaining": 78460.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114064", "item_number": 0, "name": "$5 High Roller III", "price": 5.0, "region": "bc", "score": 0.0917062181618713, "pool_index": 0.5851247690078305, "se": 0.4934185508459592, "n_eff": 6.26422702111631, "claim_rate": 0.6039761431411531, "cash_pool_remaining": 58100.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115014", "item_number": 0, "name": "$5 Double Down", "price": 5.0, "region": "bc", "score": 0.0620026902917048, "pool_index": 0.6248163349757254, "se": 0.5628136446840206, "n_eff": 7.599801938414114, "claim_rate": 0.7065131056393964, "cash_pool_remaining": 50850.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114044", "item_number": 0, "name": "$5 Prospector\u2019s Gold", "price": 5.0, "region": "bc", "score": 0.051718116163554484, "pool_index": 0.6267072917736713, "se": 0.5749891756101169, "n_eff": 4.869707742942266, "claim_rate": 0.6168562564632886, "cash_pool_remaining": 53280.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116041", "item_number": 0, "name": "$5 777 IV", "price": 5.0, "region": "bc", "score": -0.04064919383373533, "pool_index": 0.4986705960585617, "se": 0.539319789892297, "n_eff": 4.024591305635011, "claim_rate": 0.5393013100436681, "cash_pool_remaining": 46391.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3277", "item_number": 0, "name": "$5 Did I Win VI", "price": 5.0, "region": "bc", "score": -0.24558782870859897, "pool_index": 0.5342528871729337, "se": 0.7798407158815327, "n_eff": 4.940472235013517, "claim_rate": 0.7502844141069397, "cash_pool_remaining": 29670.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}], "10": [{"game_number": "115060", "item_number": 0, "name": "$10 $5000 Payday", "price": 10.0, "region": "bc", "score": 1.0478829974619557, "pool_index": 1.1187701936552907, "se": 0.07088719619333507, "n_eff": 544.4500071822174, "claim_rate": 0.7323238973008558, "cash_pool_remaining": 199850.0, "top_prize_value": 5000.0, "top_prize_remaining": 13, "top_prize_total": 31, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115010", "item_number": 0, "name": "$10 Battleship III", "price": 10.0, "region": "bc", "score": 1.0400307815517253, "pool_index": 1.162310758088245, "se": 0.12227997653651969, "n_eff": 126.52332977627104, "claim_rate": 0.6541977890648342, "cash_pool_remaining": 454705.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114016", "item_number": 0, "name": "$10 Cash Wild", "price": 10.0, "region": "bc", "score": 0.9756384224540368, "pool_index": 0.9876039072470263, "se": 0.011965484792989487, "n_eff": 19934.827734956278, "claim_rate": 0.7405377779039722, "cash_pool_remaining": 625650.0, "top_prize_value": 500.0, "top_prize_remaining": 139, "top_prize_total": 605, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116014", "item_number": 0, "name": "$10 Lucky Lines 25th Anniversary", "price": 10.0, "region": "bc", "score": 0.9552256800610628, "pool_index": 1.07736809367241, "se": 0.12214241361134719, "n_eff": 25.117999159706923, "claim_rate": 0.272584240199292, "cash_pool_remaining": 493610.0, "top_prize_value": 125000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115046", "item_number": 0, "name": "$10 Luxury Crossword XXI", "price": 10.0, "region": "bc", "score": 0.8900139652306353, "pool_index": 0.939954932307797, "se": 0.04994096707716174, "n_eff": 834.658824158348, "claim_rate": 0.6755061742129269, "cash_pool_remaining": 1282550.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 2, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3246", "item_number": 0, "name": "$10 Majestic", "price": 10.0, "region": "national", "score": 0.6981118235847396, "pool_index": 1.0685658919605894, "se": 0.3704540683758498, "n_eff": 12.80378385836811, "claim_rate": 0.6373056994818653, "cash_pool_remaining": 4400000.0, "top_prize_value": 1000000.0, "top_prize_remaining": 4, "top_prize_total": 10, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115059", "item_number": 0, "name": "$10 Bingo Grand XV", "price": 10.0, "region": "bc", "score": 0.6904401760727767, "pool_index": 0.8262722205408803, "se": 0.13583204446810362, "n_eff": 24.80269729294062, "claim_rate": 0.3139493399928648, "cash_pool_remaining": 288775.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3227", "item_number": 0, "name": "$10 Holiday Riches III", "price": 10.0, "region": "national", "score": 0.6050342535664345, "pool_index": 1.1325820351342393, "se": 0.5275477815678048, "n_eff": 7.870728555388428, "claim_rate": 0.6865671641791045, "cash_pool_remaining": 612000.0, "top_prize_value": 250000.0, "top_prize_remaining": 2, "top_prize_total": 6, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "114026", "item_number": 0, "name": "$10 Wish List III", "price": 10.0, "region": "national", "score": 0.5917241541792367, "pool_index": 1.1662091575034115, "se": 0.5744850033241747, "n_eff": 7.861621246587204, "claim_rate": 0.7218045112781954, "cash_pool_remaining": 559000.0, "top_prize_value": 250000.0, "top_prize_remaining": 2, "top_prize_total": 6, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114070", "item_number": 0, "name": "$10 Treasures of the Nile", "price": 10.0, "region": "bc", "score": 0.4557808771778726, "pool_index": 0.8021811588853462, "se": 0.34640028170747367, "n_eff": 24.289843679908024, "claim_rate": 0.7445470359962532, "cash_pool_remaining": 126920.0, "top_prize_value": 125000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114014", "item_number": 0, "name": "$10 Cash Blast II", "price": 10.0, "region": "national", "score": 0.4480040229669312, "pool_index": 0.9061784897025172, "se": 0.45817446673558604, "n_eff": 7.318043866065193, "claim_rate": 0.6057142857142858, "cash_pool_remaining": 1188000.0, "top_prize_value": 500000.0, "top_prize_remaining": 2, "top_prize_total": 6, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3279", "item_number": 0, "name": "$10 Lucky Money IV", "price": 10.0, "region": "bc", "score": -0.08776972437796493, "pool_index": 0.626381209972583, "se": 0.7141509343505479, "n_eff": 7.62259540213394, "claim_rate": 0.7954010974653776, "cash_pool_remaining": 53155.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}], "20": [{"game_number": "115025", "item_number": 0, "name": "$20 Hit $1000", "price": 20.0, "region": "national", "score": 0.9774520203709836, "pool_index": 1.0616909326354171, "se": 0.08423891226443357, "n_eff": 80.25437967421371, "claim_rate": 0.36285468615649186, "cash_pool_remaining": 1037000.0, "top_prize_value": 75000.0, "top_prize_remaining": 4, "top_prize_total": 5, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115026", "item_number": 0, "name": "$20 Glitter and Gold", "price": 20.0, "region": "bc", "score": 0.9716228094508502, "pool_index": 1.0448824538791297, "se": 0.07325964442827947, "n_eff": 358.5429554642061, "claim_rate": 0.6580367987763732, "cash_pool_remaining": 1950995.0, "top_prize_value": 200000.0, "top_prize_remaining": 1, "top_prize_total": 2, "legacy_run": false, "noncash": [{"label": "CAR 1 Coupe", "remaining": 0, "total": 1}, {"label": "CAR 2 SUV", "remaining": 1, "total": 2}, {"label": "CAR 3 Premium SUV", "remaining": 0, "total": 1}], "is_headline": false}, {"game_number": "115004", "item_number": 0, "name": "$20 $20,000 Casino", "price": 20.0, "region": "national", "score": 0.9296024742983158, "pool_index": 1.0173588924387647, "se": 0.08775641814044886, "n_eff": 206.31734974890654, "claim_rate": 0.6137339055793991, "cash_pool_remaining": 1599000.0, "top_prize_value": 20000.0, "top_prize_remaining": 79, "top_prize_total": 200, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116006", "item_number": 0, "name": "$20 Crossword Extreme X", "price": 20.0, "region": "bc", "score": 0.9119960774134795, "pool_index": 0.9487535198824164, "se": 0.03675744246893691, "n_eff": 462.3417917707791, "claim_rate": 0.3844920643402982, "cash_pool_remaining": 1903470.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115002", "item_number": 0, "name": "$20 Crossword Extreme IX", "price": 20.0, "region": "bc", "score": 0.8580208533152335, "pool_index": 0.9410370178035683, "se": 0.08301616448833486, "n_eff": 380.6538130865836, "claim_rate": 0.7240119760479042, "cash_pool_remaining": 767520.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "4008", "item_number": 0, "name": "$20 Crossword Extreme VIII", "price": 20.0, "region": "bc", "score": 0.8509611694045351, "pool_index": 0.9381912141437895, "se": 0.0872300447392543, "n_eff": 380.7661673631386, "claim_rate": 0.7434108218031023, "cash_pool_remaining": 711455.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115013", "item_number": 0, "name": "$20 Bingo Supreme IV", "price": 20.0, "region": "bc", "score": 0.8428555692693576, "pool_index": 0.9315373950772371, "se": 0.08868182580787948, "n_eff": 187.9330049372589, "claim_rate": 0.5964475716492191, "cash_pool_remaining": 784550.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116019", "item_number": 0, "name": "$20 Gold III", "price": 20.0, "region": "bc", "score": 0.8363126017171905, "pool_index": 0.9174299507617698, "se": 0.0811173490445793, "n_eff": 133.6318123655518, "claim_rate": 0.4678871419340943, "cash_pool_remaining": 1414625.0, "top_prize_value": 250000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3224", "item_number": 0, "name": "$20 20X Supreme", "price": 20.0, "region": "national", "score": 0.332835070371523, "pool_index": 0.7207120883814537, "se": 0.38787701800993074, "n_eff": 12.371480426658287, "claim_rate": 0.6505050505050505, "cash_pool_remaining": 5645000.0, "top_prize_value": 2000000.0, "top_prize_remaining": 2, "top_prize_total": 10, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115056", "item_number": 0, "name": "$20 Super Gift Pack IV", "price": 20.0, "region": "bc", "score": 0.3055414435030505, "pool_index": 0.6140462974184948, "se": 0.3085048539154443, "n_eff": 7.096683304713724, "claim_rate": 0.40313778990450205, "cash_pool_remaining": 151200.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114066", "item_number": 0, "name": "$20 Super Gift Pack III", "price": 20.0, "region": "bc", "score": 0.25089493796438056, "pool_index": 0.7653457402758868, "se": 0.5144508023115062, "n_eff": 7.260737832505478, "claim_rate": 0.6577246283128636, "cash_pool_remaining": 109250.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3273", "item_number": 0, "name": "$20 Super Gift Pack II", "price": 20.0, "region": "bc", "score": 0.14597717262891685, "pool_index": 0.7622096028903075, "se": 0.6162324302613906, "n_eff": 7.410851155333404, "claim_rate": 0.7378228179143511, "cash_pool_remaining": 84250.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115027", "item_number": 0, "name": "$20 Holiday Gift Pack XIII", "price": 20.0, "region": "bc", "score": -0.13610442800867928, "pool_index": 0.45057764983973214, "se": 0.5866820778484114, "n_eff": 8.83479479201656, "claim_rate": 0.7525303643724697, "cash_pool_remaining": 71530.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 2, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114033", "item_number": 0, "name": "$20 Holiday Gift Pack XII", "price": 20.0, "region": "bc", "score": -0.2634079260631931, "pool_index": 0.35901105444529047, "se": 0.6224189805084835, "n_eff": 8.785493912683073, "claim_rate": 0.7729103726082578, "cash_pool_remaining": 52150.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 2, "legacy_run": false, "noncash": [], "is_headline": false}], "30": [{"game_number": "3242", "item_number": 0, "name": "$30 Platinum", "price": 30.0, "region": "national", "score": 0.41366074626979743, "pool_index": 0.8078376529012382, "se": 0.3941769066314408, "n_eff": 10.761875976725038, "claim_rate": 0.6257668711656442, "cash_pool_remaining": 9423000.0, "top_prize_value": 3000000.0, "top_prize_remaining": 3, "top_prize_total": 10, "legacy_run": true, "noncash": [], "is_headline": true}], "50": [{"game_number": "115001", "item_number": 0, "name": "$50 Extreme", "price": 50.0, "region": "national", "score": 0.35631857986722854, "pool_index": 0.6496766891678077, "se": 0.2933581093005792, "n_eff": 8.277215982607997, "claim_rate": 0.416, "cash_pool_remaining": 15439000.0, "top_prize_value": 5000000.0, "top_prize_remaining": 3, "top_prize_total": 8, "legacy_run": false, "noncash": [], "is_headline": true}], "100": [{"game_number": "116003", "item_number": 0, "name": "$100 Elite", "price": 100.0, "region": "national", "score": 0.9630423330566354, "pool_index": 1.0677753916912658, "se": 0.10473305863463035, "n_eff": 6.310036502851113, "claim_rate": 0.0647342995169082, "cash_pool_remaining": 56375000.0, "top_prize_value": 10000000.0, "top_prize_remaining": 5, "top_prize_total": 5, "legacy_run": false, "noncash": [], "is_headline": true}]}, "disclosures": ["This ranks games by whether their $50-and-up prizes are draining faster or slower than expected. It is not an expected-value or house-edge calculation. The prize feed shows only large prizes \u2014 for $100 Elite it covers about 28% of the real cash pool \u2014 so a true payout percentage can't be built from it.", "Claimed is not sold. Winners cash in late and some never do, which pushes this number up \u2014 worse the older the game. That is why heavily-claimed games are excluded rather than ranked.", "A score of 1.0 is normal, not bad. Every fresh game starts at exactly 1.0 by construction.", "Don't compare across ticket prices. BCLC doesn't publish payout percentages per game, so a $1 game's score and a $20 game's score aren't on the same footing.", "We can't confirm a game is still on sale. BCLC lists games here until their claim deadline, long after they leave the racks.", "Non-cash prizes (cars, BIG SPIN) are counted, not valued, and are excluded from the dollar math.", "Where BCLC publishes a game's overall odds on its product page, print them \u2014 that is the number people actually want, and it is real, sourced, and not derived from anything here.", "Show the as-of date. The prize data is refreshed daily and is typically a day behind."]}</script>
+<script type="application/json" id="draw-data">{"schema_version": 1, "generated_at": "2026-08-05T14:44:55-07:00", "source": "BCLC draw history via PlayNow API (local backfill draws.sqlite3)", "meaning": "Hot = drawn most often in the recent window. Due = longest gap since last drawn. Past draws do not change future odds: every combination is equally likely and these slips are NOT likelier to win. They optimize share-if-win \u2014 the anti-split filter favors combinations fewer other players pick, so a prize won on them would split fewer ways.", "strategies": {"hot": "Numbers drawn most often in the recent window. Other players chase hot numbers, so these carry extra split risk; the anti-split filter offsets some of it.", "due": "Numbers with the longest gap since last drawn. Popularity-corrected \u2014 favors numbers other players ignore. Not draw prediction.", "mix": "A blend of the two picks above it: whites alternate hot, due, hot\u2026 (about 3 hot + 2 due once overlaps are removed), and the special ball alternates hot/due across slips. A hedge across both signals, not a third signal."}, "games": [{"game_id": "lotto-max", "display_name": "Lotto Max", "white_count": 7, "white_pool": 50, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Fri \u00b7 Aug 7", "jackpot": 25000000.0, "ticket_cost": 5.0, "ev_per_dollar": null, "best_tonight": false, "ok": false, "hot": [], "due": [], "mix": []}, {"game_id": "lotto-649", "display_name": "Lotto 6/49", "white_count": 6, "white_pool": 49, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Wed \u00b7 Aug 5", "jackpot": 5000000.0, "ticket_cost": 3.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [3, 28, 36, 38, 42, 49], "special_number": null}, {"white_numbers": [4, 6, 19, 39, 42, 44], "special_number": null}], "due": [{"white_numbers": [30, 38, 40, 41, 46, 47], "special_number": null}, {"white_numbers": [1, 3, 11, 24, 38, 40], "special_number": null}], "mix": [{"white_numbers": [3, 28, 30, 36, 38, 40], "special_number": null}, {"white_numbers": [1, 3, 4, 6, 11, 19], "special_number": null}]}, {"game_id": "bc-49", "display_name": "BC/49", "white_count": 6, "white_pool": 49, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Wed \u00b7 Aug 5", "jackpot": 2000000.0, "ticket_cost": 2.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [5, 9, 29, 32, 44, 45], "special_number": null}, {"white_numbers": [12, 15, 33, 37, 39, 47], "special_number": null}], "due": [{"white_numbers": [9, 31, 35, 41, 42, 48], "special_number": null}, {"white_numbers": [4, 11, 18, 35, 41, 49], "special_number": null}], "mix": [{"white_numbers": [5, 9, 29, 31, 32, 35], "special_number": null}, {"white_numbers": [4, 11, 12, 15, 18, 33], "special_number": null}]}, {"game_id": "daily-grand", "display_name": "Daily Grand", "white_count": 5, "white_pool": 49, "special_ball_name": "Grand Number", "special_pool": 7, "history_window_draws": 180, "next_draw": "Thu \u00b7 Aug 6", "jackpot": 7000000.0, "ticket_cost": 3.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [1, 15, 30, 43, 48], "special_number": 5}, {"white_numbers": [1, 20, 27, 42, 48], "special_number": 4}], "due": [{"white_numbers": [12, 25, 38, 40, 41], "special_number": 4}, {"white_numbers": [15, 36, 38, 42, 49], "special_number": 2}], "mix": [{"white_numbers": [1, 12, 15, 25, 30], "special_number": 5}, {"white_numbers": [1, 15, 20, 27, 36], "special_number": 2}]}]}</script>
+<script>
+(function(){
+"use strict";
+var SCR  = JSON.parse(document.getElementById("lotto-data").textContent);
+var DRAW = JSON.parse(document.getElementById("draw-data").textContent);
+
+var GAME_ABBR = {"lotto-max":"LM","lotto-649":"6/49","bc-49":"BC49","daily-grand":"DG"};
+var ACCENT_ROT = ["green","red","yellow","orange"];
+
+var state = {surface:"scratchers"};
+
+var els = {
+  surfaceToggle:document.getElementById("surfaceToggle"),
+  railNav:document.getElementById("railNav"),
+  scratchersPane:document.getElementById("scratchersPane"),
+  drawPane:document.getElementById("drawPane")
+};
+
+/* frozen-row topbar: keep --tb-h in sync so the rail starts exactly under it */
+(function(){
+  var tb=document.querySelector(".topbar");
+  function setTbH(){document.documentElement.style.setProperty("--tb-h",tb.getBoundingClientRect().height+"px")}
+  if(window.ResizeObserver){new ResizeObserver(setTbH).observe(tb)}
+  window.addEventListener("resize",setTbH);
+  setTbH();
+})();
+
+function esc(s){
+  return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+  });
+}
+function fmtMoney(n){
+  if(n==null) return "";
+  return "$"+Math.round(n).toLocaleString("en-US");
+}
+function fmtJackpot(j){
+  if(j==null) return "";
+  if(j>=1e6){
+    var m=j/1e6;
+    var num=Number.isInteger(m)?m.toLocaleString("en-US"):m.toFixed(1);
+    return "$"+num+" Million";
+  }
+  return "$"+j.toLocaleString("en-US",{maximumFractionDigits:0});
+}
+
+/* ---------- Scratchers ---------- */
+function scratcherRow(g){
+  var flags="";
+  if(g.is_headline) flags+='<span class="flag headline">★ Best pick</span>';
+  if(g.top_prize_remaining<=0) flags+='<span class="flag gone">Top prize gone</span>';
+  if(g.legacy_run) flags+='<span class="flag legacy">Older run — may not still be on shelves</span>';
+  if(g.region==="national") flags+='<span class="flag region">National</span>';
+
+  var detail = '<p>'+fmtMoney(g.cash_pool_remaining)+' in $50+ prizes unclaimed</p>';
+  if(g.top_prize_value!=null){
+    detail += '<p>Top prize '+fmtMoney(g.top_prize_value)+': '+g.top_prize_remaining+'/'+g.top_prize_total+' left</p>';
+  }
+  if(g.noncash && g.noncash.length){
+    detail += '<p>Also (not valued): '+g.noncash.map(function(t){return t.remaining+'× '+esc(t.label);}).join(", ")+'</p>';
+  }
+  detail += '<p class="row-sub">idx '+(g.pool_index!=null?g.pool_index.toFixed(2):"n/a")
+    +' · n_eff '+g.n_eff.toFixed(1)+' · '+Math.round(g.claim_rate*100)+'% claimed</p>';
+
+  var statHtml = g.score!=null
+    ? '<div class="stat-v">'+g.score.toFixed(2)+'<span class="stat-pm">± '+(g.se!=null?g.se.toFixed(2):"?")+'</span></div><div class="stat-l">Score</div>'
+    : '<div class="stat-v stat-none">n/a</div>';
+
+  return '<article class="row'+(g.is_headline?" is-headline":"")+'">'
+    + '<div class="row-head"><div class="row-head-top"><span class="denom-bub">$'+esc(g.price)+'</span>'
+    + '<span class="row-title">'+esc(g.name)+'</span></div>'
+    + (flags?'<div class="row-flags">'+flags+'</div>':"")+'</div>'
+    + '<div class="row-detail">'+detail+'</div>'
+    + '<div class="stat">'+statHtml+'</div>'
+    + '</article>';
+}
+
+function priceSection(price){
+  var games = SCR.bands[price]||[];
+  if(!games.length) return "";
+  return '<section class="scard" id="price-'+price+'">'
+    + '<div class="scard-band"><h2>$'+price+' Scratchers</h2><span class="scard-fig">'+games.length+(games.length===1?" game":" games")+'</span></div>'
+    + '<div class="scard-body"><div class="rows">'+games.map(scratcherRow).join("")+'</div></div>'
+    + '<div class="scard-fine">Ranked within $'+price+' tickets only — scores are not comparable across ticket prices.</div>'
+    + '</section>';
+}
+
+function renderScratchers(){
+  var html = '<div class="view-head"><h1 class="view-title">Today’s <span class="hl">Scratch &amp; Win</span> Picks</h1>'
+    + '<p class="view-sub">Ranked inside each price band by how fast $50+ prizes are draining — never compared across prices. Not odds, not house edge, not EV: that data does not exist for BC.</p></div>'
+    + '<p class="freshness">'+esc(SCR.freshness_line)+'</p>'
+    + SCR.prices.map(priceSection).join("")
+    + '<details class="info-toggle"><summary>Info</summary><section class="fine"><div class="box">'
+    + '<h5>What this ranking means</h5>'
+    + SCR.disclosures.map(function(d){return '<p>'+esc(d)+'</p>';}).join("")
+    + '</div></section></details>';
+  els.scratchersPane.innerHTML = html;
+}
+
+/* ---------- Draw ---------- */
+function ballRow(slip){
+  var whites = slip.white_numbers.map(function(n){return '<span class="ball">'+n+'</span>';}).join("");
+  var special = slip.special_number!=null
+    ? '<span class="plus">+</span><span class="ball special">'+slip.special_number+'</span>' : "";
+  return '<div class="pick-row">'+whites+special+'</div>';
+}
+function pickBlock(title, slips){
+  if(!slips || !slips.length) return "";
+  return '<div class="pick-block"><h4>'+title+'</h4>'+slips.map(ballRow).join("")+'</div>';
+}
+function gameCard(g, idx){
+  if(!g.ok) return "";
+  var accent = ACCENT_ROT[idx % ACCENT_ROT.length];
+  var matrix = g.white_count+" of "+g.white_pool + (g.special_ball_name?" + "+esc(g.special_ball_name)+" of "+g.special_pool:"");
+  var jackpotHtml = g.jackpot!=null ? '<span class="jackpot">'+fmtJackpot(g.jackpot)+'</span>' : "";
+  return '<article class="game" data-accent="'+accent+'" id="game-'+esc(g.game_id)+'">'
+    + '<div class="strip"><h2>'+esc(g.display_name)+'</h2>'+jackpotHtml+'</div>'
+    + '<div class="gmeta"><span><b>Next draw</b> '+esc(g.next_draw||"TBD")+'</span>'
+    + '<span class="g-cost">$'+g.ticket_cost+' per play</span></div>'
+    + '<div class="gbody">'+pickBlock("Hot picks", g.hot)+pickBlock("Due / cold picks", g.due)+pickBlock("Mix picks", g.mix)+'</div>'
+    + '<div class="window">'+matrix+' · Read from the last '+g.history_window_draws+' draws</div>'
+    + '</article>';
+}
+function renderDraw(){
+  var html = '<div class="view-head"><h1 class="view-title">Today’s <span class="hl">Draw Game</span> Picks</h1>'
+    + '<p class="view-sub">Hot, due, and mix number slips per game. Past draws do not change future odds — see Info.</p></div>'
+    + '<div class="games-grid">'+DRAW.games.map(gameCard).join("")+'</div>'
+    + '<details class="info-toggle"><summary>Info</summary>'
+    + '<section class="legend">'
+    + '<div class="box"><h5>Hot picks</h5><p>'+esc(DRAW.strategies.hot)+'</p></div>'
+    + '<div class="box"><h5>Due / cold picks</h5><p>'+esc(DRAW.strategies.due)+'</p></div>'
+    + '<div class="box"><h5>Mix picks</h5><p>'+esc(DRAW.strategies.mix)+'</p></div>'
+    + '</section>'
+    + '<section class="fine"><div class="box"><h5>Read this part</h5><p>'+esc(DRAW.meaning)+'</p></div></section>'
+    + '</details>';
+  els.drawPane.innerHTML = html;
+}
+
+/* ---------- rail nav (anchor-scroll, rebuilt per surface) ---------- */
+function buildRail(){
+  var html="";
+  if(state.surface==="scratchers"){
+    SCR.prices.forEach(function(p){
+      if(!SCR.bands[p] || !SCR.bands[p].length) return;
+      html += '<button class="nav-item" data-target="price-'+p+'">$'+p+'</button>';
+    });
+  } else {
+    DRAW.games.forEach(function(g){
+      if(!g.ok) return;
+      html += '<button class="nav-item" data-target="game-'+esc(g.game_id)+'">'
+        + esc(GAME_ABBR[g.game_id]||g.display_name.slice(0,2).toUpperCase())+'</button>';
+    });
+  }
+  els.railNav.innerHTML = html;
+}
+els.railNav.addEventListener("click",function(e){
+  var b=e.target.closest(".nav-item"); if(!b) return;
+  var el=document.getElementById(b.dataset.target);
+  if(el) el.scrollIntoView({block:"start",behavior:"smooth"});
+});
+
+/* scroll-spy: highlight the rail item matching the section in view */
+var spyTargets=[];
+function refreshSpy(){
+  spyTargets = Array.prototype.map.call(els.railNav.querySelectorAll(".nav-item"),function(b){
+    return {btn:b, el:document.getElementById(b.dataset.target)};
+  }).filter(function(t){return t.el;});
+}
+window.addEventListener("scroll",function(){
+  if(!spyTargets.length) return;
+  var pos = window.scrollY + (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tb-h"))||150) + 20;
+  var current = spyTargets[0];
+  spyTargets.forEach(function(t){ if(t.el.offsetTop <= pos) current = t; });
+  spyTargets.forEach(function(t){ t.btn.classList.toggle("active", t===current); });
+},{passive:true});
+
+/* ---------- surface toggle ---------- */
+function setSurface(s){
+  state.surface=s;
+  document.body.classList.toggle("on-draw", s==="draw");
+  els.scratchersPane.hidden = s!=="scratchers";
+  els.drawPane.hidden = s!=="draw";
+  Array.prototype.forEach.call(els.surfaceToggle.querySelectorAll(".surface-btn"),function(b){
+    var on=b.dataset.surface===s;
+    b.classList.toggle("active",on); b.setAttribute("aria-pressed",on);
+  });
+  buildRail();
+  refreshSpy();
+  window.scrollTo({top:0});
+}
+els.surfaceToggle.addEventListener("click",function(e){
+  var b=e.target.closest(".surface-btn"); if(!b || b.style.display==="none") return;
+  if(b.dataset.surface===state.surface) return;
+  setSurface(b.dataset.surface);
+});
+
+/* ---------- boot ---------- */
+renderScratchers();
+renderDraw();
+var anyDrawOk = DRAW.games.some(function(g){return g.ok;});
+if(!anyDrawOk){
+  var drawBtn = els.surfaceToggle.querySelector('[data-surface="draw"]');
+  if(drawBtn){ drawBtn.style.display="none"; }
+}
+setSurface("scratchers");
+})();
+</script>
+</body>
+</html>
