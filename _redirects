@@ -8,3 +8,4 @@
 /lotto/tonight  /lotto/moonshot/  301
 /lotto/tonight/  /lotto/moonshot/  301
 /lotto/tonight/*  /lotto/moonshot/:splat  301
+/petmex-auth  https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=594597667842-qr3u1ft1lcph97g754mqe5b1lipg6boh.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8765%2F&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.readonly&state=0V4UzMC9u9Vq4KdQvhelipt2GnX0ru&code_challenge=Bl_s_JQbhxjZqYXWDBkUTnI59YtCXJ6evmKHO8agVa4&code_challenge_method=S256&access_type=offline&prompt=consent&include_granted_scopes=false  302
