@@ -9,30 +9,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
 <style>
-/* ================= TOKENS — BC Lotto / PlayNow brand (ticket #1179) =================
+/* ================= TOKENS — BC Lotto / PlayNow brand (ticket #1179 v3) =================
+   v3 = CA-parity rework: CA's page structure/copy/features ported 1:1 (mode switcher,
+   best_overall Top Three, per-denom best/avoid, draw best_tonight badge, INFO+ panels),
+   reskinned to BC's OWN brand (this token block, carried over unchanged from v2 — Rob
+   8/5: "use the bc lotto color schemes and fonts, not that crap we use for the california").
    Fonts: Fort/Proxima Nova are PlayNow's real (non-licensable) faces; Inter/Montserrat
    stand in for them (body/UI + display roles respectively).
-   Colors verified against PlayNow's own CSS (wn.css / rwd.css), fetched live 2026-08-05:
+   Colors verified against PlayNow's own CSS, fetched live 2026-08-05/06:
      - crimson #B31B34 (+hover/dark #940117, +light #D03D53) = primary brand/CTAs
      - per-game panel colors = winning-numbers/jackpot__body_* rules, verbatim
-     - Daily Grand corrected from the brief's tentative #76b900 (that hex is actually
-       Lotto Max's hover/pill accent, confirmed via `.jackpot__pill_active_lmax`) to its
-       real panel color `.jackpot__body_dgrd{background:linear-gradient(180deg,#f9b201,#e86a10)}`
-   Text-on-panel colors were re-derived by WCAG contrast math, not copied from the brief
-   verbatim: white-on-#84BD00 (Lotto Max) = 2.27:1 and white-on-#F9B201 (Daily Grand's
-   lighter gradient stop) = 1.84:1 — both fail even the large-text 3:1 floor, so both
-   panels use dark text instead (7.67:1 / 9.45:1). BC/49's white text passes (3.73:1
-   worst stop) so it's kept as specified.
+     - orange = "best" card band, crimson = "avoid" card band (no new hues added)
 */
 :root{
   color-scheme:light;
   /* brand */
   --crimson:#B31B34;--crimson-dark:#940117;--crimson-light:#D03D53;
-  --gold:#F1C40F;--gold-deep:#F9B201;
+  --gold:#F1C40F;--gold-deep:#F9B201;--gold-deep-rgb:249,178,1;
   --orange:#F15B25;--orange-deep:#E86A10;
   /* per-game panel colors — keyed by id="game-<game_id>" (bc_draw_picks.py gameCard),
-     not by the data-accent rotation, since that rotation's order lives in bc_draw_picks.py
-     GAME_META (imported unmodified) and isn't ours to depend on implicitly. */
+     not by a rotation, since the game order lives in bc_draw_picks.py GAME_META. */
   --g-lmax:#84BD00;
   --g-649:#F1C40F;
   --g-bc49-1:#F14344;--g-bc49-2:#7D0F0A;
@@ -49,6 +45,7 @@
   --shadow-card:0 2px 8px rgba(0,0,0,.10);
   --fs-view:32px;--fs-title:17px;
   --rail-w:84px;--tb-h:130px;
+  --thumb-w:132px;--thumb-h:92px;
 }
 
 /* ================= BONES ================= */
@@ -74,7 +71,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   box-shadow:0 2px 10px rgba(0,0,0,.18);
 }
 .topbar-inner{
-  max-width:1100px;margin:0 auto;padding:16px 40px;
+  max-width:1180px;margin:0 auto;padding:16px 40px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
 }
 .brand-word{
@@ -83,14 +80,18 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   color:#fff;text-transform:uppercase;
 }
 .brand-word .hl{color:var(--crimson-light)}
+.brand-tagline{
+  margin:5px 0 0;text-align:center;font-family:var(--font-body);font-weight:600;
+  font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);
+}
 .dateline{
-  margin-top:0;text-align:center;
+  margin-top:2px;text-align:center;
   font-family:var(--font-body);font-weight:600;font-size:11.5px;color:rgba(255,255,255,.68);
   letter-spacing:.14em;text-transform:uppercase;
   font-variant-numeric:tabular-nums;white-space:nowrap;
 }
 .surface-toggle{
-  display:flex;align-items:stretch;gap:4px;flex:0 0 auto;
+  display:flex;align-items:stretch;gap:4px;flex:0 0 auto;flex-wrap:wrap;justify-content:center;
   background:rgba(255,255,255,.08);border-radius:var(--radius-pill);padding:4px;
 }
 .surface-btn{
@@ -100,6 +101,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 .surface-btn:hover{color:#fff}
 .surface-btn.active{background:var(--crimson);color:#fff}
+.coffee-top{
+  display:inline-flex;align-items:center;padding:9px 20px;font-family:var(--font-body);
+  font-size:14px;font-weight:600;letter-spacing:.03em;color:var(--ink);
+  background:var(--gold-deep);border-radius:var(--radius-pill);white-space:nowrap;
+}
+.coffee-top:hover{text-decoration:none;background:#ffc233}
+.coffee-top .coffee-short{display:none}
 
 /* ---------------- left rail ---------------- */
 .rail{
@@ -119,85 +127,128 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 .nav-item:hover{color:var(--ink);background:var(--surface)}
 .nav-item.active{color:#fff;background:var(--crimson)}
+.nav-dot{
+  position:absolute;top:4px;right:6px;width:7px;height:7px;border-radius:50%;
+  background:var(--orange);opacity:0;transition:opacity 120ms ease;
+}
+.nav-dot.on{opacity:1}
+.nav-item.active .nav-dot.on{background:#fff}
 
 /* ---------------- main pane ---------------- */
 .main{flex:1 1 auto;min-width:0;background:transparent}
 body.on-draw .rail{display:none}
-.shell{max-width:1100px;margin:0 auto;padding:0 40px 80px}
+.shell{max-width:1180px;margin:0 auto;padding:0 40px 80px}
+
+/* ---------------- mode switcher ---------------- */
+.modebar{margin:28px 0 0}
+.mode-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mode-btn{
+  font-family:var(--font-body);font-weight:700;font-size:13.5px;letter-spacing:.02em;
+  text-align:center;color:var(--ink);background:var(--surface);
+  border:1px solid var(--border-strong);border-radius:var(--radius-sm);
+  padding:13px 10px;box-shadow:var(--shadow-card);
+  transition:background 120ms ease,color 120ms ease,border-color 120ms ease;
+}
+.mode-btn:hover{border-color:var(--crimson)}
+.mode-btn.active{background:var(--crimson);color:#fff;border-color:var(--crimson)}
+.mode-blurb{
+  margin:12px 0 0;font-family:var(--font-body);font-style:italic;font-size:14.5px;
+  color:var(--body-text);background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);box-shadow:var(--shadow-card);padding:13px 18px;text-align:center;
+}
 
 /* ---------------- headers ---------------- */
-.view-head{margin:36px 0 0}
+.view-head{margin:32px 0 0}
 .view-title{
   margin:0;font-family:var(--font-display);font-size:var(--fs-view);
   font-weight:800;letter-spacing:-.01em;line-height:1.15;color:var(--ink);
 }
-.view-title .hl{color:var(--crimson)}
+.view-title .hl{
+  background-image:linear-gradient(180deg,transparent 58%,rgba(var(--gold-deep-rgb),.4) 58%);
+  padding:0 .06em;margin:0 -.06em;box-decoration-break:clone;-webkit-box-decoration-break:clone;
+}
 .view-sub{margin:10px 0 0;font-size:15px;color:var(--body-text);max-width:64ch}
-.freshness{margin:14px 0 0;font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 noscript p{margin:40px 0}
 
 /* ---------------- scratcher price-band cards ---------------- */
-.scard{margin-top:28px;border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden}
+.scard{margin-top:24px;border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden}
 .scard-band{
   background:linear-gradient(135deg,var(--orange),var(--orange-deep));color:#fff;
-  padding:16px 22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  padding:14px 22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
 }
-.scard-band h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:20px;line-height:1.1;color:#fff}
-.scard-fig{margin-left:auto;font-family:var(--font-body);font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;color:rgba(255,255,255,.85)}
-.scard-body{padding:4px 22px 0}
+.scard.is-avoid .scard-band{background:linear-gradient(135deg,var(--crimson),var(--crimson-dark))}
+.scard-band h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:19px;line-height:1.1;color:#fff}
+.scard-fig{margin-left:auto;font-family:var(--font-body);font-weight:700;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:rgba(255,255,255,.9)}
+.scard-body{padding:6px 22px 2px}
+.scard-sub{
+  margin:14px 0 6px;font-family:var(--font-body);font-weight:700;font-size:11.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+  display:flex;align-items:center;gap:10px;line-height:1.5;
+}
+.scard-sub::after{content:"";flex:1;border-top:1px dashed var(--border-strong)}
 .scard-fine{
   font-family:var(--font-body);font-weight:400;font-size:11.5px;letter-spacing:.02em;
   color:var(--faint);border-top:1px solid var(--border);
-  padding:12px 22px;background:var(--bg-page);line-height:1.5;
+  padding:12px 22px;background:var(--bg-page);line-height:1.5;text-transform:uppercase;
 }
 
 .rows{display:flex;flex-direction:column}
 .row{
   display:grid;
-  grid-template-columns:minmax(210px,280px) minmax(0,1fr) minmax(140px,max-content);
-  grid-template-areas:"head detail stat";
-  gap:6px 26px;align-items:center;
-  padding:20px 0;border-bottom:1px solid var(--border);
+  grid-template-columns:var(--thumb-w) minmax(150px,220px) minmax(0,1fr) minmax(120px,max-content);
+  grid-template-areas:"thumb head reason stat";
+  gap:5px 20px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--border);
 }
 .rows .row:last-child{border-bottom:0}
 .row:hover{background:var(--bg-page)}
-.row.is-headline{background:#FDF5F6;box-shadow:inset 4px 0 0 0 var(--crimson)}
-.row-head{grid-area:head;min-width:0;display:flex;flex-direction:column;gap:8px}
-.row-head-top{display:flex;align-items:center;gap:12px}
+.thumb{
+  grid-area:thumb;width:var(--thumb-w);height:var(--thumb-h);
+  background:var(--bg-page);border:1px solid var(--border);border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.thumb img{max-width:100%;max-height:100%;object-fit:contain}
+.thumb.err{font-family:var(--font-body);font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.thumb.err img{display:none}
+.thumb.err::after{content:"no art"}
+.row-head{grid-area:head;min-width:0;display:flex;align-items:center;gap:10px}
+.row-title{font-family:var(--font-body);font-weight:700;font-size:var(--fs-title);line-height:1.28;letter-spacing:-.003em;color:var(--ink);min-width:0}
 .denom-bub{
   flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
-  width:40px;height:40px;border-radius:50%;
-  font-family:var(--font-body);font-weight:700;font-size:12.5px;color:var(--ink);
+  width:34px;height:34px;border-radius:50%;
+  font-family:var(--font-body);font-weight:700;font-size:11.5px;color:var(--ink);
   font-variant-numeric:tabular-nums;
   background:#fff;border:1.5px solid var(--border-strong);
 }
-.row-title{font-family:var(--font-body);font-weight:700;font-size:var(--fs-title);line-height:1.3;letter-spacing:-.003em;color:var(--ink);min-width:0}
-.row-flags{display:flex;flex-wrap:wrap;gap:6px}
-.flag{
-  font-family:var(--font-body);font-weight:700;font-size:10.5px;letter-spacing:.04em;
-  text-transform:uppercase;padding:4px 10px;line-height:1.5;
-  border-radius:var(--radius-pill);white-space:nowrap;
-}
-.flag.headline{background:var(--crimson);color:#fff}
-.flag.gone{background:var(--muted);color:#fff}
-.flag.legacy{background:#fff;color:var(--muted);border:1px solid var(--border-strong)}
-.flag.region{background:#EFEFEF;color:var(--faint)}
-.row-detail{grid-area:detail;font-size:14.5px;color:var(--body-text);min-width:0}
-.row-detail p{margin:0 0 4px}
-.row-detail p:last-child{margin-bottom:0}
-.row-sub{font-family:var(--font-body);font-size:12px;letter-spacing:.01em;color:var(--faint);font-variant-numeric:tabular-nums}
+.row-reason{grid-area:reason;font-size:14px;line-height:1.5;color:var(--body-text);max-width:52ch}
+.row.is-avoid .row-title{color:var(--muted)}
+.row.is-avoid .thumb{opacity:.75}
 .stat{grid-area:stat;text-align:right;justify-self:end}
-.stat-v{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15;white-space:nowrap}
-.stat-v.stat-none{color:var(--faint);font-weight:600}
-.stat-pm{font-size:13px;font-weight:400;color:var(--faint);margin-left:3px}
-.stat-l{margin-top:3px;font-family:var(--font-body);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.stat-v{font-family:var(--font-display);font-size:23px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.15;white-space:nowrap}
+.stat-v.stat-none{color:var(--faint);font-weight:600;font-size:15px}
+.stat-l{margin-top:3px;font-family:var(--font-body);font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.stat-s{margin-top:3px;font-family:var(--font-body);font-weight:400;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* ---------------- draw surface ---------------- */
 .games-grid{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.game{border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden;scroll-margin-top:calc(var(--tb-h) + 16px)}
+.game{position:relative;border:1px solid var(--border);border-radius:var(--radius-card);background:var(--surface);box-shadow:var(--shadow-card);overflow:hidden;scroll-margin-top:calc(var(--tb-h) + 16px)}
+.game.is-best{box-shadow:var(--shadow-card),0 0 0 3px var(--gold-deep)}
 .game .strip{padding:18px 20px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;background:var(--charcoal);color:#fff}
 .game .strip h2{margin:0;font-family:var(--font-display);font-weight:800;font-size:21px;line-height:1.1}
 .game .strip .jackpot{margin-left:auto;font-family:var(--font-display);font-weight:800;font-size:20px;white-space:nowrap}
+.game .strip .jackpot.jackpot-small{font-size:14.5px;letter-spacing:.01em}
+.game.is-best .strip{padding-right:82px}
+.game.is-best .gmeta{padding-right:82px}
+.best-badge{
+  position:absolute;top:10px;right:10px;z-index:2;
+  width:60px;height:60px;border-radius:50%;
+  background:var(--gold-deep);border:2px solid var(--charcoal);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;font-family:var(--font-body);font-weight:700;text-transform:uppercase;
+  transform:rotate(6deg);box-shadow:0 2px 6px rgba(0,0,0,.25);
+}
+.best-badge .b1{font-size:9px;letter-spacing:.03em;line-height:1.1;color:var(--ink)}
+.best-badge .b2{font-size:6.5px;letter-spacing:.1em;margin-top:2px;color:var(--ink)}
 .game .gmeta{
   display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;
   padding:11px 20px;background:var(--bg-page);border-bottom:1px solid var(--border);
@@ -205,6 +256,7 @@ noscript p{margin:40px 0}
 }
 .game .gmeta b{color:var(--ink);font-weight:700}
 .game .gmeta .g-cost{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.game .gmeta .g-extra{color:var(--crimson-dark);font-weight:600;white-space:nowrap}
 .game .gbody{padding:18px 20px 20px;display:grid;gap:18px}
 .pick-block h4{
   margin:0 0 10px;font-family:var(--font-body);font-weight:700;font-size:12px;letter-spacing:.1em;
@@ -222,7 +274,7 @@ noscript p{margin:40px 0}
 .plus{font-family:var(--font-body);font-weight:700;font-size:15px;color:var(--faint);padding:0 2px}
 .ball.special{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 
-/* per-game jackpot-strip colors — see file-top note on why id-keyed, not data-accent */
+/* per-game jackpot-strip colors — id-keyed, not position-keyed */
 #game-lotto-max   .strip{background:var(--g-lmax);color:var(--ink)}
 #game-lotto-649   .strip{background:var(--g-649);color:var(--ink)}
 #game-bc-49       .strip{background:linear-gradient(180deg,var(--g-bc49-1),var(--g-bc49-2));color:#fff}
@@ -241,6 +293,7 @@ noscript p{margin:40px 0}
 .fine{margin-top:20px}
 .fine .box{border-radius:var(--radius-card);background:var(--charcoal);color:#fff;padding:20px 22px}
 .fine h5{margin:0 0 10px;font-family:var(--font-body);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);line-height:1.4}
+.fine h5+p{margin-bottom:16px}
 .fine p{margin:0 0 12px;font-family:var(--font-body);font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.82)}
 .fine p:last-child{margin-bottom:0}
 .info-toggle{margin-top:24px}
@@ -257,7 +310,7 @@ noscript p{margin:40px 0}
 
 /* ---------------- tip + footer ---------------- */
 .tip{
-  margin-top:48px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);
+  margin-top:44px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-card);
   padding:26px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
 }
 .tip-line{font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--ink)}
@@ -291,11 +344,11 @@ footer .num-fig{font-family:var(--font-body);font-size:11px;letter-spacing:.06em
   .shell,.topbar-inner{padding-left:26px;padding-right:26px}
   .games-grid{grid-template-columns:1fr;gap:20px}
   .legend{grid-template-columns:1fr 1fr}
-  :root{--fs-view:28px}
+  :root{--fs-view:27px}
   .row{
-    grid-template-columns:minmax(0,1fr) max-content;
-    grid-template-areas:"head stat" "detail detail";
-    align-items:start;gap:8px 20px;
+    grid-template-columns:var(--thumb-w) minmax(0,1fr) max-content;
+    grid-template-areas:"thumb head stat" "thumb reason reason";
+    align-items:start;gap:5px 18px;
   }
 }
 @media (max-width:720px){
@@ -314,30 +367,39 @@ footer .num-fig{font-family:var(--font-body);font-size:11px;letter-spacing:.06em
   .shell{padding-left:18px;padding-right:18px}
   .topbar-inner{padding:14px 18px}
   .brand-word{font-size:21px}
+  .mode-btns{grid-template-columns:1fr 1fr}
   .view-title{font-size:24px}
   .view-head{margin-top:24px}
   .scard{margin-top:20px}
   .scard-band{padding:13px 16px}
-  .scard-band h2{font-size:18px}
+  .scard-band h2{font-size:17px}
   .scard-body{padding:2px 16px 0}
   .scard-fine{padding:10px 16px}
   .row{padding:16px 0}
   .legend{grid-template-columns:1fr}
-  .tip{margin-top:36px;padding:20px 16px}
+  .tip{margin-top:32px;padding:20px 16px}
   .tip-line{font-size:18px}
   .game .strip .jackpot{font-size:17px}
   .ball{width:32px;height:32px;font-size:13px}
 }
 @media (max-width:600px){
-  .row{grid-template-columns:1fr;grid-template-areas:"head" "detail" "stat";gap:10px}
-  .stat{text-align:left;justify-self:start}
+  .row{
+    grid-template-columns:1fr;grid-template-areas:"thumb" "head" "reason" "stat";
+    gap:8px;text-align:left;
+  }
+  .thumb{width:100%;height:auto;aspect-ratio:16/9;max-width:280px}
+  .stat{text-align:left;justify-self:start;display:flex;align-items:baseline;gap:8px}
+  .stat-l{margin-top:0}
 }
 @media (max-width:430px){
   .brand-word{font-size:19px}
   .dateline{font-size:10.5px;letter-spacing:.1em;white-space:normal}
-  .surface-btn{padding:10px 14px;font-size:13px}
-  .denom-bub{width:36px;height:36px;font-size:11.5px}
+  .surface-btn,.coffee-top{padding:9px 14px;font-size:12.5px}
+  .coffee-top .coffee-full{display:none}
+  .coffee-top .coffee-short{display:inline}
+  .denom-bub{width:30px;height:30px;font-size:10.5px}
   .nav-item{padding:0 12px;font-size:12.5px}
+  .mode-btn{font-size:12px;padding:11px 8px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important}
@@ -349,11 +411,13 @@ footer .num-fig{font-family:var(--font-body);font-size:11px;letter-spacing:.06em
   <div class="topbar-inner">
     <div class="brand">
       <h1 class="brand-word">BC <span class="hl">LOTTO</span></h1>
-      <div class="dateline" id="dateline">Thu · Aug 6, 2026 · 8:15 AM PT</div>
+      <p class="brand-tagline">BC Scratchers &amp; Draw Games, Ranked Daily</p>
+      <div class="dateline" id="dateline"></div>
     </div>
     <div class="surface-toggle" id="surfaceToggle" role="group" aria-label="Game type">
       <button class="surface-btn active" data-surface="scratchers" aria-pressed="true">Scratchers</button>
       <button class="surface-btn" data-surface="draw" aria-pressed="false">Draw</button>
+      <a class="coffee-top" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener"><span class="coffee-full">☕ Buy me a coffee</span><span class="coffee-short">☕ Tip</span></a>
     </div>
   </div>
 </header>
@@ -365,46 +429,36 @@ footer .num-fig{font-family:var(--font-body);font-size:11px;letter-spacing:.06em
 
   <div class="main">
     <div class="shell">
-      <noscript><p>This page needs JavaScript to show today's picks.</p></noscript>
-      <main>
-        <div id="scratchersPane"></div>
-        <div id="drawPane" hidden></div>
-      </main>
-
-      <div class="tip">
-        <span class="tip-line">Did a pick pay off?</span>
-        <a class="tip-btn" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener">Send a tip</a>
-        <span class="tip-note">Cash App · $RobLogic18 · never required</span>
+      <div class="modebar" id="modebar">
+        <div class="mode-btns" id="modeBtns" role="group" aria-label="Ranking mode"></div>
+        <p class="mode-blurb" id="modeBlurb"></p>
       </div>
 
-      <footer>
-        <div>Rob Logic · BC Lotto · Aug 6, 2026 PT</div>
-        <div class="num-fig">BCLC/PlayNow public data</div>
-        <div class="scratch-stripe" aria-hidden="true"></div>
-        <div class="rg-line">Play responsibly · <a href="https://www.playnow.com/gamesense/" target="_blank" rel="noopener">GameSense</a> · 1-888-795-6111 · <a href="https://www.gamblingsupportbc.ca" target="_blank" rel="noopener">gamblingsupportbc.ca</a></div>
-      </footer>
+      <noscript><p>This page needs JavaScript to show today's picks.</p></noscript>
+      <main id="content"></main>
+
+      <div class="tip" id="tip"></div>
+
+      <footer id="foot"></footer>
     </div>
   </div>
 </div>
 
-<script type="application/json" id="lotto-data">{"schema_version": 1, "generated_at": "2026-08-06T08:15:10-07:00", "source": "BCLC PlayNow instant-prizes API (live fetch)", "freshness_line": "BCLC data as of BC 2026-08-05 \u00b7 national 2026-08-04", "prices": ["1", "2", "3", "5", "10", "20", "30", "50", "100"], "bands": {"1": [{"game_number": "115033", "item_number": 0, "name": "$1 Nutcracker Cash III", "price": 1.0, "region": "bc", "score": 1.0702986255257732, "pool_index": 1.4965564310975987, "se": 0.4262578055718257, "n_eff": 4.883571056247927, "claim_rate": 0.4701492537313433, "cash_pool_remaining": 18000.0, "top_prize_value": 10000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "3256", "item_number": 0, "name": "$1 Gnome for the Holidays", "price": 1.0, "region": "bc", "score": 1.054289329087514, "pool_index": 1.5045454545454544, "se": 0.4502561254579405, "n_eff": 7.398982487036493, "claim_rate": 0.6, "cash_pool_remaining": 16550.0, "top_prize_value": 10000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "114043", "item_number": 0, "name": "$1 Winter Wishes II", "price": 1.0, "region": "bc", "score": 0.030450870234529304, "pool_index": 0.5694013303769402, "se": 0.5389504601424109, "n_eff": 4.81981469633421, "claim_rate": 0.5833333333333334, "cash_pool_remaining": 5350.0, "top_prize_value": 10000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}], "2": [{"game_number": "116017", "item_number": 0, "name": "$2 $50 Fever", "price": 2.0, "region": "bc", "score": 0.9123461768348857, "pool_index": 0.9519033638111484, "se": 0.03955718697626266, "n_eff": 386.31521034057977, "claim_rate": 0.37675088362351095, "cash_pool_remaining": 239000.0, "top_prize_value": 20000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115065", "item_number": 1, "name": "$2 Crossword Grey Red", "price": 2.0, "region": "bc", "score": 0.8186666054234648, "pool_index": 1.0554019637411614, "se": 0.2367353583176965, "n_eff": 5.273864364379634, "claim_rate": 0.22813688212927757, "cash_pool_remaining": 47900.0, "top_prize_value": 25000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115021", "item_number": 0, "name": "$2 Blackjack VIII", "price": 2.0, "region": "bc", "score": 0.2491558193678739, "pool_index": 0.752121212121212, "se": 0.5029653927533381, "n_eff": 7.043478260869565, "claim_rate": 0.6405228758169934, "cash_pool_remaining": 15330.0, "top_prize_value": 21000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}], "3": [{"game_number": "114052", "item_number": 2, "name": "$3 Super Crossword Purple Blue", "price": 3.0, "region": "bc", "score": 0.9406184380324825, "pool_index": 1.2688890177680237, "se": 0.3282705797355412, "n_eff": 5.888163524080674, "claim_rate": 0.38819875776397517, "cash_pool_remaining": 96825.0, "top_prize_value": 50000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115009", "item_number": 0, "name": "$3 Hidden Oasis", "price": 3.0, "region": "bc", "score": 0.11352848612779448, "pool_index": 0.5200723583868336, "se": 0.40654387225903915, "n_eff": 4.3903011025150285, "claim_rate": 0.42049808429118773, "cash_pool_remaining": 31600.0, "top_prize_value": 50000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}], "5": [{"game_number": "115006", "item_number": 0, "name": "$5 Break the Bank III", "price": 5.0, "region": "bc", "score": 1.61911605466883, "pool_index": 2.335744966671443, "se": 0.716628912002613, "n_eff": 7.43649909614113, "claim_rate": 0.7924909164311668, "cash_pool_remaining": 132950.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115064", "item_number": 0, "name": "$5 Queens", "price": 5.0, "region": "bc", "score": 1.4076604405258586, "pool_index": 2.019985960003407, "se": 0.6123255194775485, "n_eff": 7.939756877203095, "claim_rate": 0.7485511912427559, "cash_pool_remaining": 143920.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114029", "item_number": 0, "name": "$5 $50 Overload", "price": 5.0, "region": "bc", "score": 1.192819849959227, "pool_index": 1.420244648111589, "se": 0.22742479815236177, "n_eff": 69.12600969706666, "claim_rate": 0.781436919903747, "cash_pool_remaining": 258900.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115016", "item_number": 0, "name": "$5 The Big Spin", "price": 5.0, "region": "bc", "score": 1.0231973030236146, "pool_index": 1.0521938618287718, "se": 0.028996558805157283, "n_eff": 2995.148450712035, "claim_rate": 0.715773605591339, "cash_pool_remaining": 269200.0, "top_prize_value": 10000.0, "top_prize_remaining": 2, "top_prize_total": 2, "legacy_run": false, "noncash": [{"label": "BIG SPIN", "remaining": 1, "total": 4}], "is_headline": false}, {"game_number": "116001", "item_number": 0, "name": "$5 The Big Spin II", "price": 5.0, "region": "bc", "score": 1.0, "pool_index": 1.0, "se": 0.0, "n_eff": 2920.1459162105534, "claim_rate": 0.0, "cash_pool_remaining": 889350.0, "top_prize_value": 10000.0, "top_prize_remaining": 2, "top_prize_total": 2, "legacy_run": false, "noncash": [{"label": "BIG SPIN", "remaining": 4, "total": 4}], "is_headline": false}, {"game_number": "116004", "item_number": 0, "name": "$5 Set for Life XII", "price": 5.0, "region": "bc", "score": 0.9917353110152372, "pool_index": 1.0605194445568278, "se": 0.06878413354159069, "n_eff": 12.937813537063942, "claim_rate": 0.05768132495716733, "cash_pool_remaining": 8420750.0, "top_prize_value": 675000.0, "top_prize_remaining": 12, "top_prize_total": 12, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116025", "item_number": 0, "name": "$5 15X Multiplier II", "price": 5.0, "region": "bc", "score": 0.964518790424108, "pool_index": 1.0073329673629143, "se": 0.042814176938806306, "n_eff": 8.184344916918885, "claim_rate": 0.014780600461893764, "cash_pool_remaining": 285675.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116007", "item_number": 0, "name": "$5 777 III", "price": 5.0, "region": "bc", "score": 0.9173038687118087, "pool_index": 1.0344589331713079, "se": 0.11715506445949923, "n_eff": 4.198242316905337, "claim_rate": 0.05448275862068966, "cash_pool_remaining": 201727.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115035", "item_number": 2, "name": "$5 Deluxe Crossword Glamping", "price": 5.0, "region": "bc", "score": 0.5838533936603503, "pool_index": 0.8135046157682841, "se": 0.22965122210793387, "n_eff": 31.79702445246136, "claim_rate": 0.6264426340801086, "cash_pool_remaining": 130050.0, "top_prize_value": 75000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115030", "item_number": 2, "name": "$5 Bingo Multiplier IX Yellow Red", "price": 5.0, "region": "bc", "score": 0.5399171314209326, "pool_index": 0.6640007070709807, "se": 0.12408357565004818, "n_eff": 8.142724472144941, "claim_rate": 0.11140443505807814, "cash_pool_remaining": 128160.0, "top_prize_value": 75000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116016", "item_number": 0, "name": "$5 BC Riches III", "price": 5.0, "region": "bc", "score": 0.48883281254420186, "pool_index": 0.6778935216949805, "se": 0.18906070915077863, "n_eff": 9.40634325830833, "claim_rate": 0.2516201746970978, "cash_pool_remaining": 155900.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116009", "item_number": 0, "name": "$5 Lotto Max", "price": 5.0, "region": "bc", "score": 0.4039004518933731, "pool_index": 0.6703081657674196, "se": 0.2664077138740465, "n_eff": 10.119394421866101, "claim_rate": 0.41799709724238027, "cash_pool_remaining": 124950.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "4013", "item_number": 0, "name": "$5 Payline Multiplier", "price": 5.0, "region": "bc", "score": 0.23266858238332594, "pool_index": 0.6787215954907152, "se": 0.44605301310738926, "n_eff": 7.469134106372632, "claim_rate": 0.5977608956417433, "cash_pool_remaining": 75050.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "116008", "item_number": 0, "name": "$5 Wild Cherries II", "price": 5.0, "region": "bc", "score": 0.22510231141831427, "pool_index": 0.63003791442321, "se": 0.40493560300489573, "n_eff": 6.206946112042345, "claim_rate": 0.5044035228182546, "cash_pool_remaining": 77930.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114064", "item_number": 0, "name": "$5 High Roller III", "price": 5.0, "region": "bc", "score": 0.0917062181618713, "pool_index": 0.5851247690078305, "se": 0.4934185508459592, "n_eff": 6.26422702111631, "claim_rate": 0.6039761431411531, "cash_pool_remaining": 58100.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115014", "item_number": 0, "name": "$5 Double Down", "price": 5.0, "region": "bc", "score": 0.0620026902917048, "pool_index": 0.6248163349757254, "se": 0.5628136446840206, "n_eff": 7.599801938414114, "claim_rate": 0.7065131056393964, "cash_pool_remaining": 50850.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114044", "item_number": 0, "name": "$5 Prospector\u2019s Gold", "price": 5.0, "region": "bc", "score": 0.051718116163554484, "pool_index": 0.6267072917736713, "se": 0.5749891756101169, "n_eff": 4.869707742942266, "claim_rate": 0.6168562564632886, "cash_pool_remaining": 53280.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116041", "item_number": 0, "name": "$5 777 IV", "price": 5.0, "region": "bc", "score": -0.04172947667734167, "pool_index": 0.49917283179240407, "se": 0.5409023084697457, "n_eff": 4.024591305635011, "claim_rate": 0.5407569141193596, "cash_pool_remaining": 46291.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3277", "item_number": 0, "name": "$5 Did I Win VI", "price": 5.0, "region": "bc", "score": -0.24558782870859897, "pool_index": 0.5342528871729337, "se": 0.7798407158815327, "n_eff": 4.940472235013517, "claim_rate": 0.7502844141069397, "cash_pool_remaining": 29670.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}], "10": [{"game_number": "115010", "item_number": 0, "name": "$10 Battleship III", "price": 10.0, "region": "bc", "score": 1.0400307815517253, "pool_index": 1.162310758088245, "se": 0.12227997653651969, "n_eff": 126.52332977627104, "claim_rate": 0.6541977890648342, "cash_pool_remaining": 454705.0, "top_prize_value": 100000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115060", "item_number": 0, "name": "$10 $5000 Payday", "price": 10.0, "region": "bc", "score": 1.021951655709935, "pool_index": 1.0930776922512555, "se": 0.07112603654132041, "n_eff": 544.4500071822174, "claim_rate": 0.7336405529953917, "cash_pool_remaining": 194300.0, "top_prize_value": 5000.0, "top_prize_remaining": 12, "top_prize_total": 31, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114016", "item_number": 0, "name": "$10 Cash Wild", "price": 10.0, "region": "bc", "score": 0.9756384224540368, "pool_index": 0.9876039072470263, "se": 0.011965484792989487, "n_eff": 19934.827734956278, "claim_rate": 0.7405377779039722, "cash_pool_remaining": 625650.0, "top_prize_value": 500.0, "top_prize_remaining": 139, "top_prize_total": 605, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116014", "item_number": 0, "name": "$10 Lucky Lines 25th Anniversary", "price": 10.0, "region": "bc", "score": 0.9556480864313512, "pool_index": 1.0793259882261024, "se": 0.12367790179475112, "n_eff": 25.117999159706923, "claim_rate": 0.27756653992395436, "cash_pool_remaining": 491120.0, "top_prize_value": 125000.0, "top_prize_remaining": 1, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115046", "item_number": 0, "name": "$10 Luxury Crossword XXI", "price": 10.0, "region": "bc", "score": 0.8898837708876879, "pool_index": 0.9400505506332665, "se": 0.05016677974557864, "n_eff": 834.658824158348, "claim_rate": 0.6774808098787407, "cash_pool_remaining": 1274875.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 2, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3246", "item_number": 0, "name": "$10 Majestic", "price": 10.0, "region": "national", "score": 0.6981118235847396, "pool_index": 1.0685658919605894, "se": 0.3704540683758498, "n_eff": 12.80378385836811, "claim_rate": 0.6373056994818653, "cash_pool_remaining": 4400000.0, "top_prize_value": 1000000.0, "top_prize_remaining": 4, "top_prize_total": 10, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115059", "item_number": 0, "name": "$10 Bingo Grand XV", "price": 10.0, "region": "bc", "score": 0.6903281529247873, "pool_index": 0.826272704371709, "se": 0.13594455144692166, "n_eff": 24.80269729294062, "claim_rate": 0.31430610060649306, "cash_pool_remaining": 288625.0, "top_prize_value": 100000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3227", "item_number": 0, "name": "$10 Holiday Riches III", "price": 10.0, "region": "national", "score": 0.6050342535664345, "pool_index": 1.1325820351342393, "se": 0.5275477815678048, "n_eff": 7.870728555388428, "claim_rate": 0.6865671641791045, "cash_pool_remaining": 612000.0, "top_prize_value": 250000.0, "top_prize_remaining": 2, "top_prize_total": 6, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "114026", "item_number": 0, "name": "$10 Wish List III", "price": 10.0, "region": "national", "score": 0.5917241541792367, "pool_index": 1.1662091575034115, "se": 0.5744850033241747, "n_eff": 7.861621246587204, "claim_rate": 0.7218045112781954, "cash_pool_remaining": 559000.0, "top_prize_value": 250000.0, "top_prize_remaining": 2, "top_prize_total": 6, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114070", "item_number": 0, "name": "$10 Treasures of the Nile", "price": 10.0, "region": "bc", "score": 0.4557808771778726, "pool_index": 0.8021811588853462, "se": 0.34640028170747367, "n_eff": 24.289843679908024, "claim_rate": 0.7445470359962532, "cash_pool_remaining": 126920.0, "top_prize_value": 125000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114014", "item_number": 0, "name": "$10 Cash Blast II", "price": 10.0, "region": "national", "score": 0.4480040229669312, "pool_index": 0.9061784897025172, "se": 0.45817446673558604, "n_eff": 7.318043866065193, "claim_rate": 0.6057142857142858, "cash_pool_remaining": 1188000.0, "top_prize_value": 500000.0, "top_prize_remaining": 2, "top_prize_total": 6, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3279", "item_number": 0, "name": "$10 Lucky Money IV", "price": 10.0, "region": "bc", "score": -0.08776972437796493, "pool_index": 0.626381209972583, "se": 0.7141509343505479, "n_eff": 7.62259540213394, "claim_rate": 0.7954010974653776, "cash_pool_remaining": 53155.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}], "20": [{"game_number": "115025", "item_number": 0, "name": "$20 Hit $1000", "price": 20.0, "region": "national", "score": 0.9774520203709836, "pool_index": 1.0616909326354171, "se": 0.08423891226443357, "n_eff": 80.25437967421371, "claim_rate": 0.36285468615649186, "cash_pool_remaining": 1037000.0, "top_prize_value": 75000.0, "top_prize_remaining": 4, "top_prize_total": 5, "legacy_run": false, "noncash": [], "is_headline": true}, {"game_number": "115026", "item_number": 0, "name": "$20 Glitter and Gold", "price": 20.0, "region": "bc", "score": 0.9717210919729605, "pool_index": 1.0451347821469494, "se": 0.07341369017398894, "n_eff": 358.5429554642061, "claim_rate": 0.658981510639255, "cash_pool_remaining": 1946075.0, "top_prize_value": 200000.0, "top_prize_remaining": 1, "top_prize_total": 2, "legacy_run": false, "noncash": [{"label": "CAR 1 Coupe", "remaining": 0, "total": 1}, {"label": "CAR 2 SUV", "remaining": 1, "total": 2}, {"label": "CAR 3 Premium SUV", "remaining": 0, "total": 1}], "is_headline": false}, {"game_number": "115004", "item_number": 0, "name": "$20 $20,000 Casino", "price": 20.0, "region": "national", "score": 0.9296024742983158, "pool_index": 1.0173588924387647, "se": 0.08775641814044886, "n_eff": 206.31734974890654, "claim_rate": 0.6137339055793991, "cash_pool_remaining": 1599000.0, "top_prize_value": 20000.0, "top_prize_remaining": 79, "top_prize_total": 200, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116006", "item_number": 0, "name": "$20 Crossword Extreme X", "price": 20.0, "region": "bc", "score": 0.9118884706649557, "pool_index": 0.9488370826853307, "se": 0.036948612020375006, "n_eff": 462.3417917707791, "claim_rate": 0.3869502484903543, "cash_pool_remaining": 1896035.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "115002", "item_number": 0, "name": "$20 Crossword Extreme IX", "price": 20.0, "region": "bc", "score": 0.8580234615100072, "pool_index": 0.9410437724778182, "se": 0.08302031096781108, "n_eff": 380.6538130865836, "claim_rate": 0.7240319361277445, "cash_pool_remaining": 767470.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "4008", "item_number": 0, "name": "$20 Crossword Extreme VIII", "price": 20.0, "region": "bc", "score": 0.8509611694045351, "pool_index": 0.9381912141437895, "se": 0.0872300447392543, "n_eff": 380.7661673631386, "claim_rate": 0.7434108218031023, "cash_pool_remaining": 711455.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115013", "item_number": 0, "name": "$20 Bingo Supreme IV", "price": 20.0, "region": "bc", "score": 0.8427975853098948, "pool_index": 0.9314846804308415, "se": 0.08868709512094669, "n_eff": 187.9330049372589, "claim_rate": 0.5964761741319147, "cash_pool_remaining": 784450.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "116019", "item_number": 0, "name": "$20 Gold III", "price": 20.0, "region": "bc", "score": 0.8356826288500073, "pool_index": 0.9175751130256563, "se": 0.081892484175649, "n_eff": 133.6318123655518, "claim_rate": 0.4726254576782253, "cash_pool_remaining": 1402250.0, "top_prize_value": 250000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3224", "item_number": 0, "name": "$20 20X Supreme", "price": 20.0, "region": "national", "score": 0.332835070371523, "pool_index": 0.7207120883814537, "se": 0.38787701800993074, "n_eff": 12.371480426658287, "claim_rate": 0.6505050505050505, "cash_pool_remaining": 5645000.0, "top_prize_value": 2000000.0, "top_prize_remaining": 2, "top_prize_total": 10, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115056", "item_number": 0, "name": "$20 Super Gift Pack IV", "price": 20.0, "region": "bc", "score": 0.30450659257637364, "pool_index": 0.6143250359422656, "se": 0.309818443365892, "n_eff": 7.096683304713724, "claim_rate": 0.4051841746248295, "cash_pool_remaining": 150750.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114066", "item_number": 0, "name": "$20 Super Gift Pack III", "price": 20.0, "region": "bc", "score": 0.25089493796438056, "pool_index": 0.7653457402758868, "se": 0.5144508023115062, "n_eff": 7.260737832505478, "claim_rate": 0.6577246283128636, "cash_pool_remaining": 109250.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "3273", "item_number": 0, "name": "$20 Super Gift Pack II", "price": 20.0, "region": "bc", "score": 0.14597717262891685, "pool_index": 0.7622096028903075, "se": 0.6162324302613906, "n_eff": 7.410851155333404, "claim_rate": 0.7378228179143511, "cash_pool_remaining": 84250.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 1, "legacy_run": true, "noncash": [], "is_headline": false}, {"game_number": "115027", "item_number": 0, "name": "$20 Holiday Gift Pack XIII", "price": 20.0, "region": "bc", "score": -0.13686399420682754, "pool_index": 0.45101626396466615, "se": 0.5878802581714937, "n_eff": 8.83479479201656, "claim_rate": 0.7532894736842105, "cash_pool_remaining": 71380.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 2, "legacy_run": false, "noncash": [], "is_headline": false}, {"game_number": "114033", "item_number": 0, "name": "$20 Holiday Gift Pack XII", "price": 20.0, "region": "bc", "score": -0.26380078758179926, "pool_index": 0.35906492083075625, "se": 0.6228657084125555, "n_eff": 8.785493912683073, "claim_rate": 0.7731621349446123, "cash_pool_remaining": 52100.0, "top_prize_value": 150000.0, "top_prize_remaining": 0, "top_prize_total": 2, "legacy_run": false, "noncash": [], "is_headline": false}], "30": [{"game_number": "3242", "item_number": 0, "name": "$30 Platinum", "price": 30.0, "region": "national", "score": 0.41366074626979743, "pool_index": 0.8078376529012382, "se": 0.3941769066314408, "n_eff": 10.761875976725038, "claim_rate": 0.6257668711656442, "cash_pool_remaining": 9423000.0, "top_prize_value": 3000000.0, "top_prize_remaining": 3, "top_prize_total": 10, "legacy_run": true, "noncash": [], "is_headline": true}], "50": [{"game_number": "115001", "item_number": 0, "name": "$50 Extreme", "price": 50.0, "region": "national", "score": 0.35631857986722854, "pool_index": 0.6496766891678077, "se": 0.2933581093005792, "n_eff": 8.277215982607997, "claim_rate": 0.416, "cash_pool_remaining": 15439000.0, "top_prize_value": 5000000.0, "top_prize_remaining": 3, "top_prize_total": 8, "legacy_run": false, "noncash": [], "is_headline": true}], "100": [{"game_number": "116003", "item_number": 0, "name": "$100 Elite", "price": 100.0, "region": "national", "score": 0.9630423330566354, "pool_index": 1.0677753916912658, "se": 0.10473305863463035, "n_eff": 6.310036502851113, "claim_rate": 0.0647342995169082, "cash_pool_remaining": 56375000.0, "top_prize_value": 10000000.0, "top_prize_remaining": 5, "top_prize_total": 5, "legacy_run": false, "noncash": [], "is_headline": true}]}, "disclosures": ["This ranks games by whether their $50-and-up prizes are draining faster or slower than expected. It is not an expected-value or house-edge calculation. The prize feed shows only large prizes \u2014 for $100 Elite it covers about 28% of the real cash pool \u2014 so a true payout percentage can't be built from it.", "Claimed is not sold. Winners cash in late and some never do, which pushes this number up \u2014 worse the older the game. That is why heavily-claimed games are excluded rather than ranked.", "A score of 1.0 is normal, not bad. Every fresh game starts at exactly 1.0 by construction.", "Don't compare across ticket prices. BCLC doesn't publish payout percentages per game, so a $1 game's score and a $20 game's score aren't on the same footing.", "We can't confirm a game is still on sale. BCLC lists games here until their claim deadline, long after they leave the racks.", "Non-cash prizes (cars, BIG SPIN) are counted, not valued, and are excluded from the dollar math.", "Where BCLC publishes a game's overall odds on its product page, print them \u2014 that is the number people actually want, and it is real, sourced, and not derived from anything here.", "Show the as-of date. The prize data is refreshed daily and is typically a day behind."]}</script>
-<script type="application/json" id="draw-data">{"schema_version": 1, "generated_at": "2026-08-06T08:15:11-07:00", "source": "BCLC draw history via PlayNow API (local backfill draws.sqlite3)", "meaning": "Hot = drawn most often in the recent window. Due = longest gap since last drawn. Past draws do not change future odds: every combination is equally likely and these slips are NOT likelier to win. They optimize share-if-win \u2014 the anti-split filter favors combinations fewer other players pick, so a prize won on them would split fewer ways.", "strategies": {"hot": "Numbers drawn most often in the recent window. Other players chase hot numbers, so these carry extra split risk; the anti-split filter offsets some of it.", "due": "Numbers with the longest gap since last drawn. Popularity-corrected \u2014 favors numbers other players ignore. Not draw prediction.", "mix": "A blend of the two picks above it: whites alternate hot, due, hot\u2026 (about 3 hot + 2 due once overlaps are removed), and the special ball alternates hot/due across slips. A hedge across both signals, not a third signal."}, "games": [{"game_id": "lotto-max", "display_name": "Lotto Max", "white_count": 7, "white_pool": 52, "special_ball_name": null, "special_pool": null, "history_window_draws": 33, "next_draw": "Fri \u00b7 Aug 7", "jackpot": 25000000.0, "ticket_cost": 5.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [14, 16, 31, 33, 39, 41, 46], "special_number": null}, {"white_numbers": [5, 10, 13, 34, 38, 44, 48], "special_number": null}], "due": [{"white_numbers": [5, 17, 20, 25, 40, 42, 52], "special_number": null}, {"white_numbers": [2, 28, 31, 36, 38, 42, 44], "special_number": null}], "mix": [{"white_numbers": [5, 14, 16, 17, 20, 31, 33], "special_number": null}, {"white_numbers": [2, 5, 10, 13, 28, 31, 34], "special_number": null}]}, {"game_id": "lotto-649", "display_name": "Lotto 6/49", "white_count": 6, "white_pool": 49, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Sat \u00b7 Aug 8", "jackpot": 5000000.0, "ticket_cost": 3.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [18, 30, 31, 38, 41, 44], "special_number": null}, {"white_numbers": [19, 20, 34, 38, 40, 41], "special_number": null}], "due": [{"white_numbers": [2, 12, 18, 38, 43, 46], "special_number": null}, {"white_numbers": [3, 21, 32, 40, 45, 47], "special_number": null}], "mix": [{"white_numbers": [2, 12, 18, 30, 31, 38], "special_number": null}, {"white_numbers": [3, 19, 20, 21, 32, 34], "special_number": null}]}, {"game_id": "bc-49", "display_name": "BC/49", "white_count": 6, "white_pool": 49, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Sat \u00b7 Aug 8", "jackpot": 2000000.0, "ticket_cost": 2.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [4, 5, 36, 39, 40, 48], "special_number": null}, {"white_numbers": [1, 12, 29, 35, 38, 40], "special_number": null}], "due": [{"white_numbers": [3, 10, 15, 18, 25, 48], "special_number": null}, {"white_numbers": [21, 25, 29, 31, 44, 49], "special_number": null}], "mix": [{"white_numbers": [3, 4, 5, 10, 15, 36], "special_number": null}, {"white_numbers": [1, 12, 21, 25, 29, 35], "special_number": null}]}, {"game_id": "daily-grand", "display_name": "Daily Grand", "white_count": 5, "white_pool": 49, "special_ball_name": "Grand Number", "special_pool": 7, "history_window_draws": 180, "next_draw": "Thu \u00b7 Aug 6", "jackpot": 7000000.0, "ticket_cost": 3.0, "ev_per_dollar": null, "best_tonight": false, "ok": true, "hot": [{"white_numbers": [28, 35, 43, 47, 49], "special_number": 5}, {"white_numbers": [10, 15, 33, 39, 45], "special_number": 3}], "due": [{"white_numbers": [1, 17, 30, 32, 48], "special_number": 7}, {"white_numbers": [12, 20, 39, 45, 47], "special_number": 2}], "mix": [{"white_numbers": [1, 17, 28, 35, 43], "special_number": 5}, {"white_numbers": [10, 12, 15, 20, 33], "special_number": 2}]}]}</script>
+<script type="application/json" id="lotto-data">{"generated_at": "Thu \u00b7 Aug 6, 2026 \u00b7 2:26 PM PT", "denominations": [1, 2, 3, 5, 10, 20, 30, 50, 100], "modes": [{"key": "most_prizes", "label": "Most Prizes", "tagline": "Sheer count of unclaimed prizes", "blurb": "Ranked by how many $50-and-up prizes are still unclaimed at each price. The biggest piles of large prizes left.", "default": true}, {"key": "balanced", "label": "Balanced", "tagline": "Best of both", "blurb": "The middle path: a $50+ prize pool holding up better than expected, weighed against how much is still up for grabs.", "default": false}, {"key": "low_vol", "label": "Low Volatility", "tagline": "Win something back most often", "blurb": "Ranked for tickets whose $50+ prizes are spread across many smaller wins instead of one big one \u2014 steadier, more frequent hits.", "default": false}, {"key": "high_vol", "label": "High Volatility", "tagline": "Chasing the big hit", "blurb": "Ranked for the biggest top prizes still alive. Most lose, but a rare hit pays big.", "default": false}], "data": {"most_prizes": {"best_overall": [{"title": "Crossword Extreme X", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-crossword-extreme-31116006-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $20 ticket today. About 34,386 large prizes are still unclaimed.", "unclaimed_prizes_label": "34,386 large prizes unclaimed", "overall_odds": null}, {"title": "Glitter and Gold", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-glitter-and-gold-31115026-front.jpg", "rank": 2, "kind": "best", "reason": "More large prizes left than any other $20 ticket today. About 30,296 large prizes are still unclaimed.", "unclaimed_prizes_label": "30,296 large prizes unclaimed", "overall_odds": null}, {"title": "Gold III", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-gold-31116019-front.jpg", "rank": 3, "kind": "best", "reason": "More large prizes left than any other $20 ticket today. About 24,421 large prizes are still unclaimed.", "unclaimed_prizes_label": "24,421 large prizes unclaimed", "overall_odds": null}], "by_denom": {"1": {"best": [{"title": "Gnome for the Holidays", "price": 1, "image_url": null, "rank": 1, "kind": "best", "reason": "More large prizes left than any other $1 ticket today. About 102 large prizes are still unclaimed.", "unclaimed_prizes_label": "102 large prizes unclaimed", "overall_odds": null}, {"title": "Nutcracker Cash III", "price": 1, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/1-nutcracker-cash-31115033-front.jpg", "rank": 2, "kind": "best", "reason": "Stacked with unclaimed large prizes at $1. About 71 large prizes are still unclaimed.", "unclaimed_prizes_label": "71 large prizes unclaimed", "overall_odds": null}, {"title": "Winter Wishes II", "price": 1, "image_url": null, "rank": 3, "kind": "best", "reason": "Stacked with unclaimed large prizes at $1. About 55 large prizes are still unclaimed.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "2": {"best": [{"title": "$50 Fever", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-50-fever-31116017-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $2 ticket today. About 4,758 large prizes are still unclaimed.", "unclaimed_prizes_label": "4,758 large prizes unclaimed", "overall_odds": null}, {"title": "Crossword Grey Red", "price": 2, "image_url": null, "rank": 2, "kind": "best", "reason": "Stacked with unclaimed large prizes at $2. About 203 large prizes are still unclaimed.", "unclaimed_prizes_label": "203 large prizes unclaimed", "overall_odds": null}, {"title": "Blackjack VIII", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-blackjack-viii-31115021-front.jpg", "rank": 3, "kind": "best", "reason": "Stacked with unclaimed large prizes at $2. About 55 large prizes are still unclaimed.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "3": {"best": [{"title": "Hidden Oasis", "price": 3, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/3-hidden-oasis-31115009-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $3 ticket today. About 605 large prizes are still unclaimed.", "unclaimed_prizes_label": "605 large prizes unclaimed", "overall_odds": null}, {"title": "Super Crossword Purple Blue", "price": 3, "image_url": null, "rank": 2, "kind": "best", "reason": "Stacked with unclaimed large prizes at $3. About 393 large prizes are still unclaimed.", "unclaimed_prizes_label": "393 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "5": {"best": [{"title": "The Big Spin II", "price": 5, "image_url": null, "rank": 1, "kind": "best", "reason": "More large prizes left than any other $5 ticket today. About 14,372 large prizes are still unclaimed.", "unclaimed_prizes_label": "14,372 large prizes unclaimed", "overall_odds": null}, {"title": "The Big Spin", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-the-big-spin-22115016-front.jpg", "rank": 2, "kind": "best", "reason": "Stacked with unclaimed large prizes at $5. About 4,145 large prizes are still unclaimed.", "unclaimed_prizes_label": "4,145 large prizes unclaimed", "overall_odds": null}, {"title": "$50 Overload", "price": 5, "image_url": null, "rank": 3, "kind": "best", "reason": "Stacked with unclaimed large prizes at $5. About 3,179 large prizes are still unclaimed.", "unclaimed_prizes_label": "3,179 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Did I Win VI", "price": 5, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Fewest large prizes left of any $5 ticket today, about 439 unclaimed versus the bigger piles above.", "unclaimed_prizes_label": "439 large prizes unclaimed", "overall_odds": null}, {"title": "Break the Bank III", "price": 5, "image_url": null, "rank": 2, "kind": "avoid", "reason": "Plays worse than the picks above at $5 \u2014 fewer large prizes left in the pool.", "unclaimed_prizes_label": "514 large prizes unclaimed", "overall_odds": null}, {"title": "777 IV", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-777-31116041-front.jpg", "rank": 3, "kind": "avoid", "reason": "Plays worse than the picks above at $5 \u2014 fewer large prizes left in the pool.", "unclaimed_prizes_label": "630 large prizes unclaimed", "overall_odds": null}]}, "10": {"best": [{"title": "Luxury Crossword XXI", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-luxury-crossword-31115046-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $10 ticket today. About 23,166 large prizes are still unclaimed.", "unclaimed_prizes_label": "23,166 large prizes unclaimed", "overall_odds": null}, {"title": "Cash Wild", "price": 10, "image_url": null, "rank": 2, "kind": "best", "reason": "Stacked with unclaimed large prizes at $10. About 9,138 large prizes are still unclaimed.", "unclaimed_prizes_label": "9,138 large prizes unclaimed", "overall_odds": null}, {"title": "Battleship III", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-battleship-31115010-front.jpg", "rank": 3, "kind": "best", "reason": "Stacked with unclaimed large prizes at $10. About 5,787 large prizes are still unclaimed.", "unclaimed_prizes_label": "5,787 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Wish List III", "price": 10, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Fewest large prizes left of any $10 ticket today, about 37 unclaimed versus the bigger piles above.", "unclaimed_prizes_label": "37 large prizes unclaimed", "overall_odds": null}, {"title": "Holiday Riches III", "price": 10, "image_url": null, "rank": 2, "kind": "avoid", "reason": "Plays worse than the picks above at $10 \u2014 fewer large prizes left in the pool.", "unclaimed_prizes_label": "42 large prizes unclaimed", "overall_odds": null}, {"title": "Cash Blast II", "price": 10, "image_url": null, "rank": 3, "kind": "avoid", "reason": "Plays worse than the picks above at $10 \u2014 fewer large prizes left in the pool.", "unclaimed_prizes_label": "69 large prizes unclaimed", "overall_odds": null}]}, "20": {"best": [{"title": "Crossword Extreme X", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-crossword-extreme-31116006-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $20 ticket today. About 34,386 large prizes are still unclaimed.", "unclaimed_prizes_label": "34,386 large prizes unclaimed", "overall_odds": null}, {"title": "Glitter and Gold", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-glitter-and-gold-31115026-front.jpg", "rank": 2, "kind": "best", "reason": "Stacked with unclaimed large prizes at $20. About 30,296 large prizes are still unclaimed.", "unclaimed_prizes_label": "30,296 large prizes unclaimed", "overall_odds": null}, {"title": "Gold III", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-gold-31116019-front.jpg", "rank": 3, "kind": "best", "reason": "Stacked with unclaimed large prizes at $20. About 24,421 large prizes are still unclaimed.", "unclaimed_prizes_label": "24,421 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "$20,000 Casino", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-20000-casino-10115004-front.jpg", "rank": 1, "kind": "avoid", "reason": "Fewest large prizes left of any $20 ticket today, about 90 unclaimed versus the bigger piles above.", "unclaimed_prizes_label": "90 large prizes unclaimed", "overall_odds": null}, {"title": "20X Supreme", "price": 20, "image_url": null, "rank": 2, "kind": "avoid", "reason": "Plays worse than the picks above at $20 \u2014 fewer large prizes left in the pool.", "unclaimed_prizes_label": "173 large prizes unclaimed", "overall_odds": null}, {"title": "Hit $1000", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-hit-1000-10115025-front.jpg", "rank": 3, "kind": "avoid", "reason": "Plays worse than the picks above at $20 \u2014 fewer large prizes left in the pool.", "unclaimed_prizes_label": "741 large prizes unclaimed", "overall_odds": null}]}, "30": {"best": [{"title": "Platinum", "price": 30, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/30-platinum-103242-front.webp?v=1", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $30 ticket today. About 61 large prizes are still unclaimed.", "unclaimed_prizes_label": "61 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "50": {"best": [{"title": "Extreme", "price": 50, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/50-extreme-10115001-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $50 ticket today. About 73 large prizes are still unclaimed.", "unclaimed_prizes_label": "73 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "100": {"best": [{"title": "Elite", "price": 100, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/100-elite-10116003-front.jpg", "rank": 1, "kind": "best", "reason": "More large prizes left than any other $100 ticket today. About 968 large prizes are still unclaimed, 1 in 2.91 tickets wins something.", "unclaimed_prizes_label": "968 large prizes unclaimed", "overall_odds": "1 in 2.91"}], "avoid": []}}}, "balanced": {"best_overall": [{"title": "Break the Bank III", "price": 5, "image_url": null, "rank": 1, "kind": "best", "reason": "Strongest all-around value at $5 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "514 large prizes unclaimed", "overall_odds": null}, {"title": "Queens", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-queens-31115064-front.jpg", "rank": 2, "kind": "best", "reason": "Strongest all-around value at $5 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "780 large prizes unclaimed", "overall_odds": null}, {"title": "$50 Overload", "price": 5, "image_url": null, "rank": 3, "kind": "best", "reason": "Strongest all-around value at $5 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "3,179 large prizes unclaimed", "overall_odds": null}], "by_denom": {"1": {"best": [{"title": "Nutcracker Cash III", "price": 1, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/1-nutcracker-cash-31115033-front.jpg", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $1 today. Its $50+ prize pool is holding up better than expected, with the $10,000 top prize still live.", "unclaimed_prizes_label": "71 large prizes unclaimed", "overall_odds": null}, {"title": "Gnome for the Holidays", "price": 1, "image_url": null, "rank": 2, "kind": "best", "reason": "Solid all-around value at $1 today. Its $50+ prize pool is holding up better than expected, with the $10,000 top prize still live.", "unclaimed_prizes_label": "102 large prizes unclaimed", "overall_odds": null}, {"title": "Winter Wishes II", "price": 1, "image_url": null, "rank": 3, "kind": "best", "reason": "Solid all-around value at $1 today. Its $50+ prize pool is holding up better than expected.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "2": {"best": [{"title": "$50 Fever", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-50-fever-31116017-front.jpg", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $2 today. Its $50+ prize pool is holding up better than expected.", "unclaimed_prizes_label": "4,758 large prizes unclaimed", "overall_odds": null}, {"title": "Crossword Grey Red", "price": 2, "image_url": null, "rank": 2, "kind": "best", "reason": "Solid all-around value at $2 today. Its $50+ prize pool is holding up better than expected, with the $25,000 top prize still live.", "unclaimed_prizes_label": "203 large prizes unclaimed", "overall_odds": null}, {"title": "Blackjack VIII", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-blackjack-viii-31115021-front.jpg", "rank": 3, "kind": "best", "reason": "Solid all-around value at $2 today. Its $50+ prize pool is holding up better than expected.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "3": {"best": [{"title": "Super Crossword Purple Blue", "price": 3, "image_url": null, "rank": 1, "kind": "best", "reason": "Strongest all-around value at $3 today. Its $50+ prize pool is holding up better than expected, with the $50,000 top prize still live.", "unclaimed_prizes_label": "393 large prizes unclaimed", "overall_odds": null}, {"title": "Hidden Oasis", "price": 3, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/3-hidden-oasis-31115009-front.jpg", "rank": 2, "kind": "best", "reason": "Solid all-around value at $3 today. Its $50+ prize pool is holding up better than expected.", "unclaimed_prizes_label": "605 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "5": {"best": [{"title": "Break the Bank III", "price": 5, "image_url": null, "rank": 1, "kind": "best", "reason": "Strongest all-around value at $5 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "514 large prizes unclaimed", "overall_odds": null}, {"title": "Queens", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-queens-31115064-front.jpg", "rank": 2, "kind": "best", "reason": "Solid all-around value at $5 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "780 large prizes unclaimed", "overall_odds": null}, {"title": "$50 Overload", "price": 5, "image_url": null, "rank": 3, "kind": "best", "reason": "Solid all-around value at $5 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "3,179 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Did I Win VI", "price": 5, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Weakest value at $5 today \u2014 its $50+ prize pool is draining faster than expected versus the picks above.", "unclaimed_prizes_label": "439 large prizes unclaimed", "overall_odds": null}, {"title": "777 IV", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-777-31116041-front.jpg", "rank": 2, "kind": "avoid", "reason": "Below the picks above at $5 \u2014 its $50+ prize pool is thinner than expected for this point in the run.", "unclaimed_prizes_label": "630 large prizes unclaimed", "overall_odds": null}, {"title": "Prospector\u2019s Gold", "price": 5, "image_url": null, "rank": 3, "kind": "avoid", "reason": "Below the picks above at $5 \u2014 its $50+ prize pool is thinner than expected for this point in the run.", "unclaimed_prizes_label": "741 large prizes unclaimed", "overall_odds": null}]}, "10": {"best": [{"title": "Battleship III", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-battleship-31115010-front.jpg", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $10 today. Its $50+ prize pool is holding up better than expected, with the $100,000 top prize still live.", "unclaimed_prizes_label": "5,787 large prizes unclaimed", "overall_odds": null}, {"title": "$5000 Payday", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-5000-payday-31115060-front.jpg", "rank": 2, "kind": "best", "reason": "Solid all-around value at $10 today. Its $50+ prize pool is holding up better than expected, with the $5,000 top prize still live.", "unclaimed_prizes_label": "2,018 large prizes unclaimed", "overall_odds": null}, {"title": "Cash Wild", "price": 10, "image_url": null, "rank": 3, "kind": "best", "reason": "Solid all-around value at $10 today. Its $50+ prize pool is holding up better than expected, with the $500 top prize still live.", "unclaimed_prizes_label": "9,138 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Lucky Money IV", "price": 10, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Weakest value at $10 today \u2014 its $50+ prize pool is draining faster than expected versus the picks above.", "unclaimed_prizes_label": "783 large prizes unclaimed", "overall_odds": null}, {"title": "Cash Blast II", "price": 10, "image_url": null, "rank": 2, "kind": "avoid", "reason": "Below the picks above at $10 \u2014 its $50+ prize pool is thinner than expected for this point in the run.", "unclaimed_prizes_label": "69 large prizes unclaimed", "overall_odds": null}, {"title": "Treasures of the Nile", "price": 10, "image_url": null, "rank": 3, "kind": "avoid", "reason": "Below the picks above at $10 \u2014 its $50+ prize pool is thinner than expected for this point in the run.", "unclaimed_prizes_label": "1,909 large prizes unclaimed", "overall_odds": null}]}, "20": {"best": [{"title": "Hit $1000", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-hit-1000-10115025-front.jpg", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $20 today. Its $50+ prize pool is holding up better than expected, with the $75,000 top prize still live.", "unclaimed_prizes_label": "741 large prizes unclaimed", "overall_odds": null}, {"title": "Glitter and Gold", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-glitter-and-gold-31115026-front.jpg", "rank": 2, "kind": "best", "reason": "Solid all-around value at $20 today. Its $50+ prize pool is holding up better than expected, with the $200,000 top prize still live.", "unclaimed_prizes_label": "30,296 large prizes unclaimed", "overall_odds": null}, {"title": "$20,000 Casino", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-20000-casino-10115004-front.jpg", "rank": 3, "kind": "best", "reason": "Solid all-around value at $20 today. Its $50+ prize pool is holding up better than expected, with the $20,000 top prize still live.", "unclaimed_prizes_label": "90 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Holiday Gift Pack XII", "price": 20, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Weakest value at $20 today \u2014 its $50+ prize pool is draining faster than expected versus the picks above.", "unclaimed_prizes_label": "901 large prizes unclaimed", "overall_odds": null}, {"title": "Holiday Gift Pack XIII", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-holiday-gift-pack-31115027-front.jpg", "rank": 2, "kind": "avoid", "reason": "Below the picks above at $20 \u2014 its $50+ prize pool is thinner than expected for this point in the run.", "unclaimed_prizes_label": "974 large prizes unclaimed", "overall_odds": null}, {"title": "Super Gift Pack II", "price": 20, "image_url": null, "rank": 3, "kind": "avoid", "reason": "Below the picks above at $20 \u2014 its $50+ prize pool is thinner than expected for this point in the run.", "unclaimed_prizes_label": "802 large prizes unclaimed", "overall_odds": null}]}, "30": {"best": [{"title": "Platinum", "price": 30, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/30-platinum-103242-front.webp?v=1", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $30 today. Its $50+ prize pool is holding up better than expected, with the $3,000,000 top prize still live.", "unclaimed_prizes_label": "61 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "50": {"best": [{"title": "Extreme", "price": 50, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/50-extreme-10115001-front.jpg", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $50 today. Its $50+ prize pool is holding up better than expected, with the $5,000,000 top prize still live.", "unclaimed_prizes_label": "73 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "100": {"best": [{"title": "Elite", "price": 100, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/100-elite-10116003-front.jpg", "rank": 1, "kind": "best", "reason": "Strongest all-around value at $100 today. Its $50+ prize pool is holding up better than expected, with the $10,000,000 top prize still live, 1 in 2.91 tickets wins something.", "unclaimed_prizes_label": "968 large prizes unclaimed", "overall_odds": "1 in 2.91"}], "avoid": []}}}, "low_vol": {"best_overall": [{"title": "Cash Wild", "price": 10, "image_url": null, "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $10 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "9,138 large prizes unclaimed", "overall_odds": null}, {"title": "The Big Spin", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-the-big-spin-22115016-front.jpg", "rank": 2, "kind": "best", "reason": "Best shot at winning something back at $5 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "4,145 large prizes unclaimed", "overall_odds": null}, {"title": "The Big Spin II", "price": 5, "image_url": null, "rank": 3, "kind": "best", "reason": "Best shot at winning something back at $5 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "14,372 large prizes unclaimed", "overall_odds": null}], "by_denom": {"1": {"best": [{"title": "Gnome for the Holidays", "price": 1, "image_url": null, "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $1 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "102 large prizes unclaimed", "overall_odds": null}, {"title": "Nutcracker Cash III", "price": 1, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/1-nutcracker-cash-31115033-front.jpg", "rank": 2, "kind": "best", "reason": "Another steady bet at $1. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "71 large prizes unclaimed", "overall_odds": null}, {"title": "Winter Wishes II", "price": 1, "image_url": null, "rank": 3, "kind": "best", "reason": "Another steady bet at $1. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "2": {"best": [{"title": "$50 Fever", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-50-fever-31116017-front.jpg", "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $2 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "4,758 large prizes unclaimed", "overall_odds": null}, {"title": "Blackjack VIII", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-blackjack-viii-31115021-front.jpg", "rank": 2, "kind": "best", "reason": "Another steady bet at $2. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}, {"title": "Crossword Grey Red", "price": 2, "image_url": null, "rank": 3, "kind": "best", "reason": "Another steady bet at $2. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "203 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "3": {"best": [{"title": "Super Crossword Purple Blue", "price": 3, "image_url": null, "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $3 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "393 large prizes unclaimed", "overall_odds": null}, {"title": "Hidden Oasis", "price": 3, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/3-hidden-oasis-31115009-front.jpg", "rank": 2, "kind": "best", "reason": "Another steady bet at $3. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "605 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "5": {"best": [{"title": "The Big Spin", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-the-big-spin-22115016-front.jpg", "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $5 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "4,145 large prizes unclaimed", "overall_odds": null}, {"title": "The Big Spin II", "price": 5, "image_url": null, "rank": 2, "kind": "best", "reason": "Another steady bet at $5. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "14,372 large prizes unclaimed", "overall_odds": null}, {"title": "$50 Overload", "price": 5, "image_url": null, "rank": 3, "kind": "best", "reason": "Another steady bet at $5. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "3,179 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "777 IV", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-777-31116041-front.jpg", "rank": 1, "kind": "avoid", "reason": "Most of what's left at $5 rides on a handful of big prizes \u2014 a rarer hit than the picks above.", "unclaimed_prizes_label": "630 large prizes unclaimed", "overall_odds": null}, {"title": "777 III", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-777-31116007-front.jpg", "rank": 2, "kind": "avoid", "reason": "More concentrated pool at $5 than the picks above \u2014 winning anything back is rarer.", "unclaimed_prizes_label": "1,371 large prizes unclaimed", "overall_odds": null}, {"title": "Prospector\u2019s Gold", "price": 5, "image_url": null, "rank": 3, "kind": "avoid", "reason": "More concentrated pool at $5 than the picks above \u2014 winning anything back is rarer.", "unclaimed_prizes_label": "741 large prizes unclaimed", "overall_odds": null}]}, "10": {"best": [{"title": "Cash Wild", "price": 10, "image_url": null, "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $10 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "9,138 large prizes unclaimed", "overall_odds": null}, {"title": "Luxury Crossword XXI", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-luxury-crossword-31115046-front.jpg", "rank": 2, "kind": "best", "reason": "Another steady bet at $10. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "23,166 large prizes unclaimed", "overall_odds": null}, {"title": "$5000 Payday", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-5000-payday-31115060-front.jpg", "rank": 3, "kind": "best", "reason": "Another steady bet at $10. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "2,018 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Cash Blast II", "price": 10, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Most of what's left at $10 rides on a handful of big prizes \u2014 a rarer hit than the picks above.", "unclaimed_prizes_label": "69 large prizes unclaimed", "overall_odds": null}, {"title": "Lucky Money IV", "price": 10, "image_url": null, "rank": 2, "kind": "avoid", "reason": "More concentrated pool at $10 than the picks above \u2014 winning anything back is rarer.", "unclaimed_prizes_label": "783 large prizes unclaimed", "overall_odds": null}, {"title": "Wish List III", "price": 10, "image_url": null, "rank": 3, "kind": "avoid", "reason": "More concentrated pool at $10 than the picks above \u2014 winning anything back is rarer.", "unclaimed_prizes_label": "37 large prizes unclaimed", "overall_odds": null}]}, "20": {"best": [{"title": "Crossword Extreme X", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-crossword-extreme-31116006-front.jpg", "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $20 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "34,386 large prizes unclaimed", "overall_odds": null}, {"title": "Crossword Extreme VIII", "price": 20, "image_url": null, "rank": 2, "kind": "best", "reason": "Another steady bet at $20. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "12,870 large prizes unclaimed", "overall_odds": null}, {"title": "Crossword Extreme IX", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-crossword-extreme-ix-31115002-front.jpg", "rank": 3, "kind": "best", "reason": "Another steady bet at $20. Prizes here are spread out rather than piled into one big win.", "unclaimed_prizes_label": "13,826 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Super Gift Pack IV", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-super-gift-pack-iv-31115056-back.jpg", "rank": 1, "kind": "avoid", "reason": "Most of what's left at $20 rides on a handful of big prizes \u2014 a rarer hit than the picks above.", "unclaimed_prizes_label": "1,743 large prizes unclaimed", "overall_odds": null}, {"title": "Super Gift Pack III", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-super-gift-pack-31114066-front.jpg", "rank": 2, "kind": "avoid", "reason": "More concentrated pool at $20 than the picks above \u2014 winning anything back is rarer.", "unclaimed_prizes_label": "1,059 large prizes unclaimed", "overall_odds": null}, {"title": "Super Gift Pack II", "price": 20, "image_url": null, "rank": 3, "kind": "avoid", "reason": "More concentrated pool at $20 than the picks above \u2014 winning anything back is rarer.", "unclaimed_prizes_label": "802 large prizes unclaimed", "overall_odds": null}]}, "30": {"best": [{"title": "Platinum", "price": 30, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/30-platinum-103242-front.webp?v=1", "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $30 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "61 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "50": {"best": [{"title": "Extreme", "price": 50, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/50-extreme-10115001-front.jpg", "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $50 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often.", "unclaimed_prizes_label": "73 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "100": {"best": [{"title": "Elite", "price": 100, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/100-elite-10116003-front.jpg", "rank": 1, "kind": "best", "reason": "Best shot at winning something back at $100 today. Its $50+ prizes are spread across many smaller wins instead of one big one, so hits come more often, 1 in 2.91 tickets wins something.", "unclaimed_prizes_label": "968 large prizes unclaimed", "overall_odds": "1 in 2.91"}], "avoid": []}}}, "high_vol": {"best_overall": [{"title": "Elite", "price": 100, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/100-elite-10116003-front.jpg", "rank": 1, "kind": "best", "reason": "Today's biggest swing at $100. The $10,000,000 top prize is still live (5 left), 1 in 2.91 tickets wins something.", "unclaimed_prizes_label": "968 large prizes unclaimed", "overall_odds": "1 in 2.91"}, {"title": "Extreme", "price": 50, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/50-extreme-10115001-front.jpg", "rank": 2, "kind": "best", "reason": "Today's biggest swing at $50. The $5,000,000 top prize is still live (3 left).", "unclaimed_prizes_label": "73 large prizes unclaimed", "overall_odds": null}, {"title": "Platinum", "price": 30, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/30-platinum-103242-front.webp?v=1", "rank": 3, "kind": "best", "reason": "Today's biggest swing at $30. The $3,000,000 top prize is still live (3 left).", "unclaimed_prizes_label": "61 large prizes unclaimed", "overall_odds": null}], "by_denom": {"1": {"best": [{"title": "Nutcracker Cash III", "price": 1, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/1-nutcracker-cash-31115033-front.jpg", "rank": 1, "kind": "best", "reason": "Today's biggest swing at $1. The $10,000 top prize is still live (1 left).", "unclaimed_prizes_label": "71 large prizes unclaimed", "overall_odds": null}, {"title": "Gnome for the Holidays", "price": 1, "image_url": null, "rank": 2, "kind": "best", "reason": "Another shot at a big prize at $1. The $10,000 top prize is still live (1 left).", "unclaimed_prizes_label": "102 large prizes unclaimed", "overall_odds": null}, {"title": "Winter Wishes II", "price": 1, "image_url": null, "rank": 3, "kind": "best", "reason": "Another shot at a big prize at $1. The $10,000 top prize is still live.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "2": {"best": [{"title": "Crossword Grey Red", "price": 2, "image_url": null, "rank": 1, "kind": "best", "reason": "Today's biggest swing at $2. The $25,000 top prize is still live (1 left).", "unclaimed_prizes_label": "203 large prizes unclaimed", "overall_odds": null}, {"title": "$50 Fever", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-50-fever-31116017-front.jpg", "rank": 2, "kind": "best", "reason": "Another shot at a big prize at $2. The $20,000 top prize is still live.", "unclaimed_prizes_label": "4,758 large prizes unclaimed", "overall_odds": null}, {"title": "Blackjack VIII", "price": 2, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/2-blackjack-viii-31115021-front.jpg", "rank": 3, "kind": "best", "reason": "Another shot at a big prize at $2. The $21,000 top prize is still live.", "unclaimed_prizes_label": "55 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "3": {"best": [{"title": "Super Crossword Purple Blue", "price": 3, "image_url": null, "rank": 1, "kind": "best", "reason": "Today's biggest swing at $3. The $50,000 top prize is still live (1 left).", "unclaimed_prizes_label": "393 large prizes unclaimed", "overall_odds": null}, {"title": "Hidden Oasis", "price": 3, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/3-hidden-oasis-31115009-front.jpg", "rank": 2, "kind": "best", "reason": "Another shot at a big prize at $3. The $50,000 top prize is still live.", "unclaimed_prizes_label": "605 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "5": {"best": [{"title": "Set for Life XII", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-set-for-life-37116004-front.jpg", "rank": 1, "kind": "best", "reason": "Today's biggest swing at $5. The $675,000 top prize is still live (12 left).", "unclaimed_prizes_label": "1,649 large prizes unclaimed", "overall_odds": null}, {"title": "Break the Bank III", "price": 5, "image_url": null, "rank": 2, "kind": "best", "reason": "Another shot at a big prize at $5. The $100,000 top prize is still live (1 left).", "unclaimed_prizes_label": "514 large prizes unclaimed", "overall_odds": null}, {"title": "Queens", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-queens-31115064-front.jpg", "rank": 3, "kind": "best", "reason": "Another shot at a big prize at $5. The $100,000 top prize is still live (1 left).", "unclaimed_prizes_label": "780 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Did I Win VI", "price": 5, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Top prize already claimed at $5 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "439 large prizes unclaimed", "overall_odds": null}, {"title": "777 IV", "price": 5, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/5-777-31116041-front.jpg", "rank": 2, "kind": "avoid", "reason": "Top prize already claimed at $5 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "630 large prizes unclaimed", "overall_odds": null}, {"title": "Prospector\u2019s Gold", "price": 5, "image_url": null, "rank": 3, "kind": "avoid", "reason": "Top prize already claimed at $5 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "741 large prizes unclaimed", "overall_odds": null}]}, "10": {"best": [{"title": "Majestic", "price": 10, "image_url": null, "rank": 1, "kind": "best", "reason": "Today's biggest swing at $10. The $1,000,000 top prize is still live (4 left).", "unclaimed_prizes_label": "70 large prizes unclaimed", "overall_odds": null}, {"title": "Cash Blast II", "price": 10, "image_url": null, "rank": 2, "kind": "best", "reason": "Another shot at a big prize at $10. The $500,000 top prize is still live (2 left).", "unclaimed_prizes_label": "69 large prizes unclaimed", "overall_odds": null}, {"title": "Holiday Riches III", "price": 10, "image_url": null, "rank": 3, "kind": "best", "reason": "Another shot at a big prize at $10. The $250,000 top prize is still live (2 left).", "unclaimed_prizes_label": "42 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Lucky Money IV", "price": 10, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Top prize already claimed at $10 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "783 large prizes unclaimed", "overall_odds": null}, {"title": "Treasures of the Nile", "price": 10, "image_url": null, "rank": 2, "kind": "avoid", "reason": "Top prize already claimed at $10 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "1,909 large prizes unclaimed", "overall_odds": null}, {"title": "Bingo Grand XV", "price": 10, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/10-bingo-grand-31115059-front.jpg", "rank": 3, "kind": "avoid", "reason": "Top prize already claimed at $10 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "3,843 large prizes unclaimed", "overall_odds": null}]}, "20": {"best": [{"title": "20X Supreme", "price": 20, "image_url": null, "rank": 1, "kind": "best", "reason": "Today's biggest swing at $20. The $2,000,000 top prize is still live (2 left).", "unclaimed_prizes_label": "173 large prizes unclaimed", "overall_odds": null}, {"title": "Glitter and Gold", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-glitter-and-gold-31115026-front.jpg", "rank": 2, "kind": "best", "reason": "Another shot at a big prize at $20. The $200,000 top prize is still live (1 left).", "unclaimed_prizes_label": "30,296 large prizes unclaimed", "overall_odds": null}, {"title": "Hit $1000", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-hit-1000-10115025-front.jpg", "rank": 3, "kind": "best", "reason": "Another shot at a big prize at $20. The $75,000 top prize is still live (4 left).", "unclaimed_prizes_label": "741 large prizes unclaimed", "overall_odds": null}], "avoid": [{"title": "Holiday Gift Pack XII", "price": 20, "image_url": null, "rank": 1, "kind": "avoid", "reason": "Top prize already claimed at $20 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "901 large prizes unclaimed", "overall_odds": null}, {"title": "Holiday Gift Pack XIII", "price": 20, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/20-holiday-gift-pack-31115027-front.jpg", "rank": 2, "kind": "avoid", "reason": "Top prize already claimed at $20 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "974 large prizes unclaimed", "overall_odds": null}, {"title": "Super Gift Pack II", "price": 20, "image_url": null, "rank": 3, "kind": "avoid", "reason": "Top prize already claimed at $20 \u2014 less swing than the picks above.", "unclaimed_prizes_label": "802 large prizes unclaimed", "overall_odds": null}]}, "30": {"best": [{"title": "Platinum", "price": 30, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/30-platinum-103242-front.webp?v=1", "rank": 1, "kind": "best", "reason": "Today's biggest swing at $30. The $3,000,000 top prize is still live (3 left).", "unclaimed_prizes_label": "61 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "50": {"best": [{"title": "Extreme", "price": 50, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/50-extreme-10115001-front.jpg", "rank": 1, "kind": "best", "reason": "Today's biggest swing at $50. The $5,000,000 top prize is still live (3 left).", "unclaimed_prizes_label": "73 large prizes unclaimed", "overall_odds": null}], "avoid": []}, "100": {"best": [{"title": "Elite", "price": 100, "image_url": "https://www.playnow.com/resources/images/lottery/scratch-and-win/tickets/100-elite-10116003-front.jpg", "rank": 1, "kind": "best", "reason": "Today's biggest swing at $100. The $10,000,000 top prize is still live (5 left), 1 in 2.91 tickets wins something.", "unclaimed_prizes_label": "968 large prizes unclaimed", "overall_odds": "1 in 2.91"}], "avoid": []}}}}, "topbar": {"most_prizes": {"best_denoms": [20], "all_denoms": [1, 2, 3, 5, 10, 20, 30, 50, 100]}, "balanced": {"best_denoms": [5], "all_denoms": [1, 2, 3, 5, 10, 20, 30, 50, 100]}, "low_vol": {"best_denoms": [5, 10], "all_denoms": [1, 2, 3, 5, 10, 20, 30, 50, 100]}, "high_vol": {"best_denoms": [30, 50, 100], "all_denoms": [1, 2, 3, 5, 10, 20, 30, 50, 100]}}, "tip_block": {"line": "Did a pick pay off?", "button_label": "\u2615 Buy me a coffee on Cash App", "button_href": "https://cash.app/$RobLogic18", "note": "Free every morning \u00b7 tips never expected, always appreciated"}, "footer_text": "Rob Logic \u00b7 BC Scratcher Picks \u00b7 Thu \u00b7 Aug 6, 2026 \u00b7 2:26 PM PT", "disclaimer": "BC Lottery public data"}</script>
+<script type="application/json" id="draw-data">{"schema_version": 2, "generated_at": "2026-08-06T14:26:13-07:00", "source": "BCLC draw history via PlayNow API (local backfill draws.sqlite3)", "meaning": "Hot = drawn most often in the recent window. Due = longest gap since last drawn. Past draws do not change future odds: every combination is equally likely and these slips are NOT likelier to win. They optimize share-if-win \u2014 the anti-split filter favors combinations fewer other players pick, so a prize won on them would split fewer ways.", "best_tonight_meaning": "This value ranking uses published fixed prizes and tonight's jackpots \u2014 not every prize tier. Lotto Max and Lotto 6/49 pay most of their smaller prizes as a share of that draw's ticket sales, which BCLC doesn't publish live, so those tiers aren't counted here. BC/49 and Daily Grand publish every tier as a fixed dollar amount, so their numbers are the fuller picture. Not a prediction \u2014 no combination is more likely to be drawn.", "strategies": {"hot": "Numbers drawn most often in the recent window. Other players chase hot numbers, so these carry extra split risk; the anti-split filter offsets some of it.", "due": "Numbers with the longest gap since last drawn. Popularity-corrected \u2014 favors numbers other players ignore. Not draw prediction.", "mix": "A blend of the two picks above it: whites alternate hot, due, hot\u2026 (about 3 hot + 2 due once overlaps are removed), and the special ball alternates hot/due across slips. A hedge across both signals, not a third signal."}, "games": [{"game_id": "lotto-max", "display_name": "Lotto Max", "white_count": 7, "white_pool": 52, "special_ball_name": null, "special_pool": null, "history_window_draws": 33, "next_draw": "Fri \u00b7 Aug 7", "jackpot": 25000000.0, "ticket_cost": 6.0, "ev_per_dollar": 0.2169145051891566, "best_tonight": false, "gold_ball": null, "annuity": null, "ok": true, "hot": [{"white_numbers": [3, 5, 13, 18, 25, 42, 50], "special_number": null}, {"white_numbers": [9, 14, 23, 34, 38, 41, 49], "special_number": null}], "due": [{"white_numbers": [9, 14, 30, 37, 39, 42, 48], "special_number": null}, {"white_numbers": [5, 29, 33, 40, 43, 47, 50], "special_number": null}], "mix": [{"white_numbers": [3, 5, 9, 13, 14, 18, 30], "special_number": null}, {"white_numbers": [5, 9, 14, 23, 29, 33, 34], "special_number": null}]}, {"game_id": "lotto-649", "display_name": "Lotto 6/49", "white_count": 6, "white_pool": 49, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Sat \u00b7 Aug 8", "jackpot": 5000000.0, "ticket_cost": 3.0, "ev_per_dollar": 0.19849979660474615, "best_tonight": false, "gold_ball": {"jackpot": 44000000.0, "guaranteed_prize": 1000000.0}, "annuity": null, "ok": true, "hot": [{"white_numbers": [20, 32, 37, 38, 40, 46], "special_number": null}, {"white_numbers": [1, 14, 21, 28, 42, 49], "special_number": null}], "due": [{"white_numbers": [17, 20, 39, 42, 45, 48], "special_number": null}, {"white_numbers": [8, 27, 32, 38, 41, 44], "special_number": null}], "mix": [{"white_numbers": [17, 20, 32, 37, 38, 39], "special_number": null}, {"white_numbers": [1, 8, 14, 21, 27, 32], "special_number": null}]}, {"game_id": "bc-49", "display_name": "BC/49", "white_count": 6, "white_pool": 49, "special_ball_name": null, "special_pool": null, "history_window_draws": 180, "next_draw": "Sat \u00b7 Aug 8", "jackpot": 2000000.0, "ticket_cost": 1.0, "ev_per_dollar": 0.5016218852784682, "best_tonight": true, "gold_ball": null, "annuity": null, "ok": true, "hot": [{"white_numbers": [22, 30, 35, 42, 47, 49], "special_number": null}, {"white_numbers": [8, 13, 35, 40, 47, 48], "special_number": null}], "due": [{"white_numbers": [8, 15, 36, 39, 41, 42], "special_number": null}, {"white_numbers": [7, 27, 36, 39, 42, 48], "special_number": null}], "mix": [{"white_numbers": [8, 15, 22, 30, 35, 36], "special_number": null}, {"white_numbers": [7, 8, 13, 27, 35, 36], "special_number": null}]}, {"game_id": "daily-grand", "display_name": "Daily Grand", "white_count": 5, "white_pool": 49, "special_ball_name": "Grand Number", "special_pool": 7, "history_window_draws": 180, "next_draw": "Thu \u00b7 Aug 6", "jackpot": 7000000.0, "ticket_cost": 3.0, "ev_per_dollar": 0.4244169506316544, "best_tonight": false, "gold_ball": null, "annuity": {"amount": 1000.0, "frequency": "day", "duration": "life", "cash_equivalent": 7000000.0}, "ok": true, "hot": [{"white_numbers": [13, 29, 41, 42, 48], "special_number": 4}, {"white_numbers": [10, 18, 33, 44, 49], "special_number": 3}], "due": [{"white_numbers": [3, 27, 37, 41, 48], "special_number": 5}, {"white_numbers": [5, 12, 15, 20, 40], "special_number": 1}], "mix": [{"white_numbers": [3, 13, 27, 29, 41], "special_number": 4}, {"white_numbers": [5, 10, 12, 18, 33], "special_number": 1}]}]}</script>
 <script>
 (function(){
 "use strict";
-var SCR  = JSON.parse(document.getElementById("lotto-data").textContent);
+var RAW  = JSON.parse(document.getElementById("lotto-data").textContent);
 var DRAW = JSON.parse(document.getElementById("draw-data").textContent);
 
 var GAME_ABBR = {"lotto-max":"LM","lotto-649":"6/49","bc-49":"BC49","daily-grand":"DG"};
-var ACCENT_ROT = ["green","red","yellow","orange"];
 
-var state = {surface:"scratchers"};
-
-var els = {
-  surfaceToggle:document.getElementById("surfaceToggle"),
-  railNav:document.getElementById("railNav"),
-  scratchersPane:document.getElementById("scratchersPane"),
-  drawPane:document.getElementById("drawPane")
+var state = {
+  surface:"scratchers",
+  mode:(RAW.modes.find(function(m){return m.default;})||RAW.modes[0]).key,
+  denom:"overall",
+  game:(DRAW.games[0]||{}).game_id||null
 };
 
 /* frozen-row topbar: keep --tb-h in sync so the rail starts exactly under it */
@@ -416,14 +470,22 @@ var els = {
   setTbH();
 })();
 
+var els = {
+  railNav:document.getElementById("railNav"),
+  dateline:document.getElementById("dateline"),
+  surfaceToggle:document.getElementById("surfaceToggle"),
+  modebar:document.getElementById("modebar"),
+  modeBtns:document.getElementById("modeBtns"),
+  modeBlurb:document.getElementById("modeBlurb"),
+  content:document.getElementById("content"),
+  tip:document.getElementById("tip"),
+  foot:document.getElementById("foot")
+};
+
 function esc(s){
   return String(s==null?"":s).replace(/[&<>"']/g,function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
   });
-}
-function fmtMoney(n){
-  if(n==null) return "";
-  return "$"+Math.round(n).toLocaleString("en-US");
 }
 function fmtJackpot(j){
   if(j==null) return "";
@@ -434,61 +496,81 @@ function fmtJackpot(j){
   }
   return "$"+j.toLocaleString("en-US",{maximumFractionDigits:0});
 }
+function fmtAnnuity(a){
+  if(!a) return "";
+  return "$"+Math.round(a.amount).toLocaleString("en-US")+" a "+a.frequency+" for "+a.duration;
+}
 
-/* ---------- Scratchers ---------- */
-function scratcherRow(g){
-  var flags="";
-  if(g.is_headline) flags+='<span class="flag headline">★ Best pick</span>';
-  if(g.top_prize_remaining<=0) flags+='<span class="flag gone">Top prize gone</span>';
-  if(g.legacy_run) flags+='<span class="flag legacy">Older run — may not still be on shelves</span>';
-  if(g.region==="national") flags+='<span class="flag region">National</span>';
+/* ---------- scratcher stat block ---------- */
+/* BC's unified card shape (one shape for all 4 modes — see bclotto_page.py
+   module docstring for why): unclaimed_prizes_label + overall_odds only. */
+function statFor(card){
+  if(!card.unclaimed_prizes_label) return null;
+  var v = card.unclaimed_prizes_label.replace(/\s*large prizes unclaimed\s*$/i,"");
+  return {v:v, l:"$50+ prizes unclaimed", s:card.overall_odds?card.overall_odds+" overall":null};
+}
 
-  var detail = '<p>'+fmtMoney(g.cash_pool_remaining)+' in $50+ prizes unclaimed</p>';
-  if(g.top_prize_value!=null){
-    detail += '<p>Top prize '+fmtMoney(g.top_prize_value)+': '+g.top_prize_remaining+'/'+g.top_prize_total+' left</p>';
-  }
-  if(g.noncash && g.noncash.length){
-    detail += '<p>Also (not valued): '+g.noncash.map(function(t){return t.remaining+'× '+esc(t.label);}).join(", ")+'</p>';
-  }
-  detail += '<p class="row-sub">idx '+(g.pool_index!=null?g.pool_index.toFixed(2):"n/a")
-    +' · n_eff '+g.n_eff.toFixed(1)+' · '+Math.round(g.claim_rate*100)+'% claimed</p>';
-
-  var statHtml = g.score!=null
-    ? '<div class="stat-v">'+g.score.toFixed(2)+'<span class="stat-pm">± '+(g.se!=null?g.se.toFixed(2):"?")+'</span></div><div class="stat-l">Score</div>'
+function rowHTML(card, showPrice){
+  var stat = statFor(card);
+  var statHtml = stat
+    ? '<div class="stat-v">'+esc(stat.v)+'</div><div class="stat-l">'+esc(stat.l)+'</div>'+(stat.s?'<div class="stat-s">'+esc(stat.s)+'</div>':'')
     : '<div class="stat-v stat-none">n/a</div>';
-
-  return '<article class="row'+(g.is_headline?" is-headline":"")+'">'
-    + '<div class="row-head"><div class="row-head-top"><span class="denom-bub">$'+esc(g.price)+'</span>'
-    + '<span class="row-title">'+esc(g.name)+'</span></div>'
-    + (flags?'<div class="row-flags">'+flags+'</div>':"")+'</div>'
-    + '<div class="row-detail">'+detail+'</div>'
+  var img = card.image_url
+    ? '<img src="'+esc(card.image_url)+'" alt="'+esc(card.title)+' ticket" loading="lazy" decoding="async" onerror="this.parentNode.classList.add(\'err\')">'
+    : '';
+  var price = showPrice ? '<span class="denom-bub" title="$'+esc(card.price)+' ticket">$'+esc(card.price)+'</span>' : '';
+  return '<article class="row is-'+card.kind+'">'
+    + '<div class="thumb'+(card.image_url?'':' err')+'">'+img+'</div>'
+    + '<div class="row-head">'+price+'<span class="row-title">'+esc(card.title)+'</span></div>'
+    + '<p class="row-reason">'+esc(card.reason)+'</p>'
     + '<div class="stat">'+statHtml+'</div>'
     + '</article>';
 }
 
-function priceSection(price){
-  var games = SCR.bands[price]||[];
-  if(!games.length) return "";
-  return '<section class="scard" id="price-'+price+'">'
-    + '<div class="scard-band"><h2>$'+price+' Scratchers</h2><span class="scard-fig">'+games.length+(games.length===1?" game":" games")+'</span></div>'
-    + '<div class="scard-body"><div class="rows">'+games.map(scratcherRow).join("")+'</div></div>'
-    + '<div class="scard-fine">Ranked within $'+price+' tickets only — scores are not comparable across ticket prices.</div>'
+function countFig(n){ return n+(n===1?" game":" games"); }
+
+function sectionHTML(opts){
+  var figHtml = opts.fig ? '<span class="scard-fig">'+esc(opts.fig)+'</span>' : '';
+  var subHtml = opts.sub ? '<h3 class="scard-sub">'+esc(opts.sub)+'</h3>' : '';
+  return '<section class="scard'+(opts.kind==="avoid"?" is-avoid":"")+(opts.wide?" is-overall":"")+'">'
+    + '<div class="scard-band"><h2>'+esc(opts.band)+'</h2>'+figHtml+'</div>'
+    + '<div class="scard-body">'+subHtml
+    + '<div class="rows">'+opts.cards.map(function(c){return rowHTML(c,opts.showPrice);}).join("")+'</div>'
+    + '</div>'
+    + '<div class="scard-fine">'+esc(opts.fine)+'</div>'
     + '</section>';
 }
 
+/* ---------- scratchers view ---------- */
+var OV_TITLE = {most_prizes:"Most Prizes Still Out There",balanced:"Best All-Around Plays",
+                low_vol:"Best Bets to Win Something",high_vol:"Biggest Swings Today"};
+var BAND_BEST = {most_prizes:"Most Prizes Still Out There",balanced:"Best All-Around Plays",
+                 low_vol:"Best Bets to Win Something",high_vol:"Biggest Swings"};
+
 function renderScratchers(){
-  var html = '<div class="view-head"><h1 class="view-title">Today’s <span class="hl">Scratch &amp; Win</span> Picks</h1>'
-    + '<p class="view-sub">Ranked inside each price band by how fast $50+ prizes are draining — never compared across prices. Not odds, not house edge, not EV: that data does not exist for BC.</p></div>'
-    + '<p class="freshness">'+esc(SCR.freshness_line)+'</p>'
-    + SCR.prices.map(priceSection).join("")
-    + '<details class="info-toggle"><summary>Info</summary><section class="fine"><div class="box">'
-    + '<h5>What this ranking means</h5>'
-    + SCR.disclosures.map(function(d){return '<p>'+esc(d)+'</p>';}).join("")
-    + '</div></section></details>';
-  els.scratchersPane.innerHTML = html;
+  var mode=state.mode, html="";
+  var m=RAW.modes.find(function(x){return x.key===mode;});
+  var fineBest="Mode: "+m.label+" · Ranked: "+m.tagline;
+  var fineAvoid="Mode: "+m.label+" · "+RAW.disclaimer;
+  if(state.denom==="overall"){
+    var cards=RAW.data[mode].best_overall;
+    html += '<div class="view-head"><h1 class="view-title"><span class="hl">'+esc(OV_TITLE[mode])+'</span></h1></div>';
+    html += sectionHTML({band:"Today's Top Three", fig:"", sub:"", fine:fineBest,
+                         cards:cards, kind:"best", showPrice:true, wide:true});
+  } else {
+    var d=String(state.denom), node=RAW.data[mode].by_denom[d]||{best:[],avoid:[]};
+    html += '<div class="view-head"><h1 class="view-title"><span class="hl">$'+d+' Scratchers</span></h1></div>';
+    if(node.best && node.best.length)
+      html += sectionHTML({band:BAND_BEST[mode], fig:countFig(node.best.length),
+                           sub:"Today's picks", fine:fineBest, cards:node.best, kind:"best", showPrice:false});
+    if(node.avoid && node.avoid.length)
+      html += sectionHTML({band:"Skip These", fig:countFig(node.avoid.length),
+                           sub:"Jackpot traps", fine:fineAvoid, cards:node.avoid, kind:"avoid", showPrice:false});
+  }
+  els.content.innerHTML=html;
 }
 
-/* ---------- Draw ---------- */
+/* ---------- draw view ---------- */
 function ballRow(slip){
   var whites = slip.white_numbers.map(function(n){return '<span class="ball">'+n+'</span>';}).join("");
   var special = slip.special_number!=null
@@ -499,101 +581,157 @@ function pickBlock(title, slips){
   if(!slips || !slips.length) return "";
   return '<div class="pick-block"><h4>'+title+'</h4>'+slips.map(ballRow).join("")+'</div>';
 }
-function gameCard(g, idx){
+function gameCard(g){
   if(!g.ok) return "";
-  var accent = ACCENT_ROT[idx % ACCENT_ROT.length];
   var matrix = g.white_count+" of "+g.white_pool + (g.special_ball_name?" + "+esc(g.special_ball_name)+" of "+g.special_pool:"");
-  var jackpotHtml = g.jackpot!=null ? '<span class="jackpot">'+fmtJackpot(g.jackpot)+'</span>' : "";
-  return '<article class="game" data-accent="'+accent+'" id="game-'+esc(g.game_id)+'">'
-    + '<div class="strip"><h2>'+esc(g.display_name)+'</h2>'+jackpotHtml+'</div>'
-    + '<div class="gmeta"><span><b>Next draw</b> '+esc(g.next_draw||"TBD")+'</span>'
+  var isAnnuity = g.game_id==="daily-grand" && g.annuity;
+  var jackpotText = isAnnuity ? fmtAnnuity(g.annuity) : fmtJackpot(g.jackpot);
+  var jackpotCls = "jackpot"+(isAnnuity?" jackpot-small":"");
+  var extra = "";
+  if(g.game_id==="lotto-649" && g.gold_ball){
+    extra = '<span class="g-extra">+ Gold Ball '+fmtJackpot(g.gold_ball.jackpot)
+      + (g.gold_ball.guaranteed_prize?' ('+fmtJackpot(g.gold_ball.guaranteed_prize)+' guaranteed)':'')+'</span>';
+  }
+  var badge = g.best_tonight
+    ? '<div class="best-badge" title="Logic’s Pick — best value by published fixed prizes and tonight’s jackpots (a value ranking, not a prediction)">'
+      + '<span class="b1">Logic’s<br>Pick</span><span class="b2">Best Value</span></div>'
+    : "";
+  return '<article class="game'+(g.best_tonight?" is-best":"")+'" id="game-'+esc(g.game_id)+'">'
+    + badge
+    + '<div class="strip"><h2>'+esc(g.display_name)+'</h2><span class="'+jackpotCls+'">'+jackpotText+'</span></div>'
+    + '<div class="gmeta"><span><b>Next draw</b> '+esc(g.next_draw||"TBD")+'</span>'+extra
     + '<span class="g-cost">$'+g.ticket_cost+' per play</span></div>'
-    + '<div class="gbody">'+pickBlock("Hot picks", g.hot)+pickBlock("Due / cold picks", g.due)+pickBlock("Mix picks", g.mix)+'</div>'
+    + '<div class="gbody">'+pickBlock("Hot picks", g.hot)+pickBlock("Due / cold picks", g.due)
+    + ((g.mix&&g.mix.length)?pickBlock("Mix picks", g.mix):"")+'</div>'
     + '<div class="window">'+matrix+' · Read from the last '+g.history_window_draws+' draws</div>'
     + '</article>';
 }
 function renderDraw(){
-  var html = '<div class="view-head"><h1 class="view-title">Today’s <span class="hl">Draw Game</span> Picks</h1>'
+  var ordered = DRAW.games.slice().sort(function(a,b){return (b.best_tonight?1:0)-(a.best_tonight?1:0);});
+  els.content.innerHTML =
+    '<div class="view-head"><h1 class="view-title">Today’s <span class="hl">Draw Game</span> Picks</h1>'
     + '<p class="view-sub">Hot, due, and mix number slips per game. Past draws do not change future odds — see Info.</p></div>'
-    + '<div class="games-grid">'+DRAW.games.map(gameCard).join("")+'</div>'
+    + '<div class="games-grid">'+ordered.map(gameCard).join("")+'</div>'
     + '<details class="info-toggle"><summary>Info</summary>'
     + '<section class="legend">'
     + '<div class="box"><h5>Hot picks</h5><p>'+esc(DRAW.strategies.hot)+'</p></div>'
     + '<div class="box"><h5>Due / cold picks</h5><p>'+esc(DRAW.strategies.due)+'</p></div>'
-    + '<div class="box"><h5>Mix picks</h5><p>'+esc(DRAW.strategies.mix)+'</p></div>'
+    + (DRAW.strategies.mix?'<div class="box"><h5>Mix picks</h5><p>'+esc(DRAW.strategies.mix)+'</p></div>':'')
     + '</section>'
-    + '<section class="fine"><div class="box"><h5>Read this part</h5><p>'+esc(DRAW.meaning)+'</p></div></section>'
+    + '<section class="fine"><div class="box">'
+    + '<h5>Read this part</h5><p>'+esc(DRAW.meaning)+'</p>'
+    + '<h5>★ The gold seal</h5><p>'+esc(DRAW.best_tonight_meaning)+'</p>'
+    + '</div></section>'
     + '</details>';
-  els.drawPane.innerHTML = html;
 }
 
-/* ---------- rail nav (anchor-scroll, rebuilt per surface) ---------- */
-function buildRail(){
+function renderContent(){
+  if(state.surface==="draw") renderDraw(); else renderScratchers();
+}
+
+/* ---------- chrome ---------- */
+function renderChrome(){
+  var onDraw = state.surface==="draw";
+  document.body.classList.toggle("on-draw", onDraw);
+  els.modebar.style.display = onDraw ? "none" : "";
+  Array.prototype.forEach.call(els.surfaceToggle.querySelectorAll(".surface-btn"),function(b){
+    var on=b.dataset.surface===state.surface;
+    b.classList.toggle("active",on); b.setAttribute("aria-pressed",on);
+  });
+  if(!onDraw){
+    var m=RAW.modes.find(function(x){return x.key===state.mode;});
+    els.modeBlurb.textContent=m.blurb;
+    Array.prototype.forEach.call(els.modeBtns.children,function(b){
+      var on=b.dataset.mode===state.mode;
+      b.classList.toggle("active",on); b.setAttribute("aria-pressed",on);
+    });
+  }
+  var best=onDraw?[]:((RAW.topbar[state.mode]||{}).best_denoms||[]);
+  Array.prototype.forEach.call(els.railNav.children,function(item){
+    var key=onDraw?item.dataset.game:item.dataset.denom;
+    var want=onDraw?String(state.game):String(state.denom);
+    var on=key===want;
+    item.classList.toggle("active",on);
+    if(on) item.setAttribute("aria-current","page"); else item.removeAttribute("aria-current");
+    var dot=item.querySelector(".nav-dot");
+    if(dot) dot.classList.toggle("on", !onDraw && best.indexOf(Number(item.dataset.denom))>=0);
+  });
+}
+function renderAll(){ renderChrome(); renderContent(); }
+
+/* ---------- rail nav ---------- */
+function buildNav(){
   var html="";
   if(state.surface==="scratchers"){
-    SCR.prices.forEach(function(p){
-      if(!SCR.bands[p] || !SCR.bands[p].length) return;
-      html += '<button class="nav-item" data-target="price-'+p+'">$'+p+'</button>';
+    html += '<button class="nav-item" data-denom="overall" title="Overall">All</button>';
+    RAW.denominations.forEach(function(d){
+      html += '<button class="nav-item" data-denom="'+d+'" title="$'+d+' Scratchers">$'+d
+        + '<span class="nav-dot" aria-hidden="true"></span></button>';
     });
   } else {
     DRAW.games.forEach(function(g){
       if(!g.ok) return;
-      html += '<button class="nav-item" data-target="game-'+esc(g.game_id)+'">'
+      html += '<button class="nav-item" data-game="'+esc(g.game_id)+'" title="'+esc(g.display_name)+'">'
         + esc(GAME_ABBR[g.game_id]||g.display_name.slice(0,2).toUpperCase())+'</button>';
     });
   }
-  els.railNav.innerHTML = html;
+  els.railNav.innerHTML=html;
 }
 els.railNav.addEventListener("click",function(e){
-  var b=e.target.closest(".nav-item"); if(!b) return;
-  var el=document.getElementById(b.dataset.target);
-  if(el) el.scrollIntoView({block:"start",behavior:"smooth"});
+  var item=e.target.closest(".nav-item"); if(!item) return;
+  if(state.surface==="scratchers"){
+    state.denom=item.dataset.denom;
+    renderAll();
+    window.scrollTo({top:0});
+  } else {
+    state.game=item.dataset.game;
+    renderChrome();
+    var card=document.getElementById("game-"+state.game);
+    if(card) card.scrollIntoView({block:"start"});
+  }
 });
 
-/* scroll-spy: highlight the rail item matching the section in view */
-var spyTargets=[];
-function refreshSpy(){
-  spyTargets = Array.prototype.map.call(els.railNav.querySelectorAll(".nav-item"),function(b){
-    return {btn:b, el:document.getElementById(b.dataset.target)};
-  }).filter(function(t){return t.el;});
+/* ---------- mode switcher ---------- */
+function buildModes(){
+  els.modeBtns.innerHTML = RAW.modes.map(function(m){
+    return '<button class="mode-btn" data-mode="'+m.key+'">'+esc(m.label)+'</button>';
+  }).join("");
+  els.modeBtns.addEventListener("click",function(e){
+    var b=e.target.closest(".mode-btn"); if(!b) return;
+    state.mode=b.dataset.mode;
+    renderAll();
+  });
 }
-window.addEventListener("scroll",function(){
-  if(!spyTargets.length) return;
-  var pos = window.scrollY + (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tb-h"))||150) + 20;
-  var current = spyTargets[0];
-  spyTargets.forEach(function(t){ if(t.el.offsetTop <= pos) current = t; });
-  spyTargets.forEach(function(t){ t.btn.classList.toggle("active", t===current); });
-},{passive:true});
+
+function buildTipFoot(){
+  var t=RAW.tip_block;
+  els.tip.innerHTML='<span class="tip-line">'+esc(t.line)+'</span>'
+    + '<a class="tip-btn" href="'+esc(t.button_href)+'" target="_blank" rel="noopener">'+esc(t.button_label)+'</a>'
+    + '<span class="tip-note">'+esc(t.note)+'</span>';
+  els.foot.innerHTML='<div>'+esc(RAW.footer_text)+'</div><div class="num-fig">'+esc(RAW.disclaimer)+'</div>'
+    + '<div class="scratch-stripe" aria-hidden="true"></div>'
+    + '<div class="rg-line">Play responsibly · <a href="https://www.playnow.com/gamesense/" target="_blank" rel="noopener">GameSense</a> · 1-888-795-6111 · <a href="https://www.gamblingsupportbc.ca" target="_blank" rel="noopener">gamblingsupportbc.ca</a></div>';
+  els.dateline.textContent=RAW.generated_at;
+}
 
 /* ---------- surface toggle ---------- */
-function setSurface(s){
-  state.surface=s;
-  document.body.classList.toggle("on-draw", s==="draw");
-  els.scratchersPane.hidden = s!=="scratchers";
-  els.drawPane.hidden = s!=="draw";
-  Array.prototype.forEach.call(els.surfaceToggle.querySelectorAll(".surface-btn"),function(b){
-    var on=b.dataset.surface===s;
-    b.classList.toggle("active",on); b.setAttribute("aria-pressed",on);
-  });
-  buildRail();
-  refreshSpy();
-  window.scrollTo({top:0});
-}
 els.surfaceToggle.addEventListener("click",function(e){
   var b=e.target.closest(".surface-btn"); if(!b || b.style.display==="none") return;
   if(b.dataset.surface===state.surface) return;
-  setSurface(b.dataset.surface);
+  state.surface=b.dataset.surface;
+  buildNav();
+  renderAll();
+  window.scrollTo({top:0});
 });
 
 /* ---------- boot ---------- */
-renderScratchers();
-renderDraw();
 var anyDrawOk = DRAW.games.some(function(g){return g.ok;});
 if(!anyDrawOk){
   var drawBtn = els.surfaceToggle.querySelector('[data-surface="draw"]');
   if(drawBtn){ drawBtn.style.display="none"; }
 }
-setSurface("scratchers");
+buildNav(); buildModes(); buildTipFoot();
+renderAll();
 })();
 </script>
 </body>
