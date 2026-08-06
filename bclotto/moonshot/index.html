@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MOONSHOT - Tonight's BC Lotto Picks by Moon Phase</title>
+<!-- Visit beacon intentionally omitted: roblogic.org/CLAUDE.md requires asking
+     Rob before adding one to any new page (no default). CA's twin uses
+     page="moonshot"; wire page="bclotto-moonshot" here once he opts in. -->
+<link rel="icon" type="image/png" href="moonshot.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --space:#0B0E1A;--space-2:#131A30;--star:#E8ECFF;
+  --panel:#F5F1E4;--panel-2:#EAE4D1;--ink:#141B2E;
+  --moon-lit:#F0EDDF;--moon-dark:#1C2440;--moon-rim:rgba(232,236,255,.38);
+  --amber:#FFB000;--gold:#F2B33D;--dim:#8C94B8;
+  --g-lmax:#84BD00;--g-649:#F1C40F;--g-bc49-1:#F14344;--g-bc49-2:#7D0F0A;
+  --g-dgrd-1:#F9B201;--g-dgrd-2:#E86A10;
+  --disp:"Michroma",sans-serif;--mono:"IBM Plex Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--space)}
+body{background:var(--space);color:var(--star);font-family:var(--mono);line-height:1.55}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background-image:
+  radial-gradient(ellipse 90% 55% at 78% -12%,rgba(84,104,196,.26),transparent 62%),
+  radial-gradient(ellipse 70% 45% at 8% 108%,rgba(148,96,58,.17),transparent 60%),
+  radial-gradient(1.4px 1.4px at 38px 44px,var(--star) 50%,transparent 51%),
+  radial-gradient(1px 1px at 168px 128px,rgba(232,236,255,.85) 50%,transparent 51%),
+  radial-gradient(1.6px 1.6px at 288px 36px,rgba(232,236,255,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 414px 202px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(1.2px 1.2px at 522px 92px,var(--star) 50%,transparent 51%),
+  radial-gradient(1px 1px at 84px 288px,rgba(232,236,255,.75) 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 342px 342px,rgba(232,236,255,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 604px 260px,rgba(232,236,255,.65) 50%,transparent 51%),
+  radial-gradient(1px 1px at 232px 468px,rgba(232,236,255,.8) 50%,transparent 51%),
+  radial-gradient(1.3px 1.3px at 512px 428px,var(--star) 50%,transparent 51%),
+  radial-gradient(1px 1px at 58px 544px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(1px 1px at 448px 572px,rgba(232,236,255,.85) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 106px 74px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 262px 214px,rgba(232,236,255,.65) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 356px 118px,rgba(232,236,255,.75) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 188px 356px,rgba(232,236,255,.65) 50%,transparent 51%),
+  radial-gradient(1.1px 1.1px at 44px 178px,rgba(232,236,255,.8) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 318px 296px,rgba(232,236,255,.7) 50%,transparent 51%),
+  radial-gradient(1.1px 1.1px at 150px 388px,rgba(232,236,255,.75) 50%,transparent 51%),
+  radial-gradient(.9px .9px at 396px 44px,rgba(232,236,255,.7) 50%,transparent 51%);
+ background-size:auto,auto,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,
+  640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,640px 640px,
+  420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px,420px 420px}
+.splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;pointer-events:none;
+ background:radial-gradient(ellipse 60% 45% at 50% 46%,rgba(240,237,223,.16),transparent 65%),var(--space);
+ animation:splash-gone .5s ease-in 2.3s forwards}
+.splash img{width:min(76vw,520px);height:auto;
+ animation:splash-grow 2.05s cubic-bezier(.16,1,.3,1) both}
+@keyframes splash-grow{from{transform:scale(.05);opacity:0}10%{opacity:1}to{transform:scale(1)}}
+@keyframes splash-gone{to{opacity:0;visibility:hidden}}
+.reveal{opacity:0;animation:rise .55s ease-out forwards}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wrap>.reveal:nth-child(1){animation-delay:2.35s}.wrap>.reveal:nth-child(2){animation-delay:2.45s}
+.wrap>.reveal:nth-child(3){animation-delay:2.55s}.wrap>.reveal:nth-child(4){animation-delay:2.65s}
+.wrap>.reveal:nth-child(5){animation-delay:2.75s}.wrap>.reveal:nth-child(6){animation-delay:2.85s}
+@media(prefers-reduced-motion:reduce){.splash{display:none}.reveal{opacity:1;animation:none}}
+.wrap{max-width:620px;margin:0 auto;padding:26px 16px 54px}
+header{text-align:center}
+.brand{font-family:var(--disp);font-weight:400;font-size:clamp(27px,7.4vw,44px);
+ letter-spacing:.08em;color:var(--star);display:flex;align-items:center;justify-content:center;
+ text-shadow:0 0 26px rgba(132,152,255,.35)}
+.brand svg.brand-o{width:.94em;height:.94em;margin:0 .07em;
+ filter:drop-shadow(0 0 10px rgba(240,237,223,.5))}
+.subtitle{margin-top:8px;font-size:12px;font-weight:500;letter-spacing:.34em;
+ text-transform:uppercase;color:var(--gold)}
+.dateline{margin-top:4px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.phaseline{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.phases{display:flex;align-items:center;justify-content:center;gap:10px;margin:20px 0 4px;flex-wrap:wrap}
+.phases span{display:inline-flex;opacity:.55}
+.phases span.on{opacity:1;filter:drop-shadow(0 0 12px rgba(242,179,61,.55))}
+.phases span.on svg circle{stroke:var(--gold);stroke-width:2.5}
+.game{position:relative;border:2px solid var(--ink);border-radius:3px;background:var(--panel);
+ color:var(--ink);box-shadow:0 14px 44px rgba(2,4,12,.62),0 0 0 1px rgba(232,236,255,.07);
+ margin-top:30px;overflow:hidden}
+.game .strip{border-bottom:2px solid var(--ink);padding:13px 18px;
+ display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.game .strip h2{margin:0;font-family:var(--disp);font-weight:400;font-size:clamp(13.5px,4.1vw,17px);
+ letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+.game .strip .mission{margin-left:auto;display:inline-flex;align-items:center;
+ font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.07em;
+ text-transform:uppercase;white-space:nowrap}
+.game .strip .mright{margin-left:auto;display:flex;flex-direction:column;
+ align-items:flex-end;gap:1px}
+.game .strip .mright .mission{margin-left:0}
+.game .strip .jline{font-family:var(--mono);font-weight:500;font-size:9.5px;
+ letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:.9}
+.game .strip .jline.gline{font-size:8.5px;opacity:.75}
+.game .logic-tag{background:var(--gold);color:var(--ink);border-bottom:2px solid var(--ink);
+ font-family:var(--disp);font-weight:400;font-size:10px;letter-spacing:.22em;
+ text-transform:uppercase;text-align:center;padding:6px 10px}
+.game .gbody{padding:18px 18px 20px;display:grid;gap:18px}
+.pick-block h4{margin:0 0 10px;font-family:var(--disp);font-weight:400;font-size:11.5px;
+ letter-spacing:.24em;text-transform:uppercase;display:flex;align-items:center;gap:10px;line-height:1.6}
+.pick-block h4::after{content:"";flex:1;border-top:1px solid rgba(20,27,46,.3)}
+.pick-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ball{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+ background:#FFFDF4;color:var(--ink);border:2px solid var(--ink);border-radius:50%;
+ font-family:var(--mono);font-weight:700;font-size:15.5px;
+ box-shadow:inset 0 0 0 3px rgba(20,27,46,.07)}
+.plus{font-family:var(--mono);font-weight:700;font-size:15px;opacity:.5;padding:0 2px}
+.ball.special{color:#fff;box-shadow:none}
+.game[data-accent="lmax"]  .strip{background:var(--g-lmax);color:var(--ink)}
+.game[data-accent="six49"] .strip{background:var(--g-649);color:var(--ink)}
+.game[data-accent="bc49"]  .strip{background:linear-gradient(135deg,var(--g-bc49-1),var(--g-bc49-2));color:#fff}
+.game[data-accent="dgrd"]  .strip{background:linear-gradient(135deg,var(--g-dgrd-1),var(--g-dgrd-2));color:var(--ink)}
+.game[data-accent="lmax"]  .ball.special{background:var(--g-lmax);color:var(--ink)}
+.game[data-accent="six49"] .ball.special{background:var(--g-649);color:var(--ink)}
+.game[data-accent="bc49"]  .ball.special{background:var(--g-bc49-1)}
+.game[data-accent="dgrd"]  .ball.special{background:var(--g-dgrd-1);color:var(--ink)}
+.game .window{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.03em;
+ color:var(--ink);opacity:.68;border-top:1px solid rgba(20,27,46,.18);
+ padding:10px 18px;background:var(--panel-2);line-height:1.5}
+.legend{margin-top:32px}
+.legend .box{border:2px solid var(--ink);border-radius:3px;background:var(--panel);color:var(--ink);
+ box-shadow:0 10px 34px rgba(2,4,12,.55);padding:15px 17px}
+.legend h5{margin:0 0 8px;font-family:var(--disp);font-weight:400;font-size:11.5px;
+ letter-spacing:.24em;text-transform:uppercase;line-height:1.6}
+.legend p{margin:0;font-size:12.5px;line-height:1.65}
+.legend p+p{margin-top:9px}
+.karma-row{text-align:center;margin-top:30px}
+.karma{display:inline-block;padding:12px 26px;border:2px solid var(--gold);border-radius:22px;
+ color:var(--gold);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.16em;
+ text-transform:uppercase;text-align:center;background:rgba(242,179,61,.06);
+ box-shadow:0 0 18px rgba(242,179,61,.22)}
+.karma .k1,.karma .k2{display:block}
+.karma .k2{font-weight:700;margin-top:4px}
+.karma:hover{background:rgba(242,179,61,.14);box-shadow:0 0 28px rgba(242,179,61,.45)}
+.rg{text-align:center;margin-top:26px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.rg a{color:var(--dim)}
+@media(max-width:480px){.ball{width:36px;height:36px;font-size:14.5px}
+ .game .strip{flex-wrap:nowrap;gap:6px}
+ .game .strip h2{font-size:11.5px;letter-spacing:.04em;white-space:nowrap}
+ .game .strip .mission{font-size:9.5px;letter-spacing:.03em}
+ .game .strip .jline{font-size:8.5px;letter-spacing:.03em}
+ .legend h5{text-align:center;font-weight:700;white-space:nowrap;font-size:10px;letter-spacing:.14em}}
+@media(max-width:390px){.ball{width:33px;height:33px;font-size:13.5px}.phases{gap:8px}}
+@media(max-width:360px){.game .strip h2{font-size:10.5px}
+ .game .strip .mission{font-size:8.5px}
+ .game .strip .jline{font-size:8px}}
+</style></head><body>
+<div class="splash" aria-hidden="true"><img src="moonshot.png" alt="" width="800" height="632"></div>
+<div class="wrap">
+<header class="reveal">
+<h1 class="brand" aria-label="Moonshot"><span aria-hidden="true">M<svg class="brand-o" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 L20,2 Z" fill="var(--moon-lit)"/></svg>ONSHOT</span></h1>
+<div class="subtitle">Tonight's BC Lotto Picks by Moon Phase</div>
+<div class="dateline">Thursday · Aug 6, 2026</div>
+<div class="phaseline">Last Quarter</div>
+<div class="phases"><span title="New Moon"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/></svg></span><span title="Waxing Crescent"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="First Quarter"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 L20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Waxing Gibbous"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A9,18 0 0 1 20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Full Moon"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A18,18 0 0 1 20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Waning Gibbous"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg></span><span class="on" title="Last Quarter"><svg width="44" height="44" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 L20,2 Z" fill="var(--moon-lit)"/></svg></span><span title="Waning Crescent"><svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 0 20,38 A9,18 0 0 1 20,2 Z" fill="var(--moon-lit)"/></svg></span></div>
+</header>
+<div class="reveal"><section class="game" data-accent="dgrd"><div class="strip"><h2>Daily Grand</h2><span class="mright"><span class="mission">Thu Aug 6 · $3</span><span class="jline">$1,000 a day for life</span></span></div><div class="gbody"><div class="pick-block"><h4>Rising</h4><div class="pick-row"><span class="ball" title="2 · 10× in slice">2</span><span class="ball" title="4 · 11× in slice">4</span><span class="ball" title="9 · 9× in slice">9</span><span class="ball" title="11 · 12× in slice">11</span><span class="ball" title="38 · 10× in slice">38</span><span class="plus">+</span><span class="ball special" title="2 · 17× in slice">2</span></div></div><div class="pick-block"><h4>Retrograde</h4><div class="pick-row"><span class="ball" title="1 · 1× in slice">1</span><span class="ball" title="8 · 2× in slice">8</span><span class="ball" title="26 · 4× in slice">26</span><span class="ball" title="30 · 4× in slice">30</span><span class="ball" title="47 · 4× in slice">47</span><span class="plus">+</span><span class="ball special" title="4 · 3× in slice">4</span></div></div><div class="pick-block"><h4>Aligned</h4><div class="pick-row"><span class="ball" title="1 · 1× in slice">1</span><span class="ball" title="4 · 11× in slice">4</span><span class="ball" title="8 · 2× in slice">8</span><span class="ball" title="11 · 12× in slice">11</span><span class="ball" title="12 · 6× in slice">12</span><span class="plus">+</span><span class="ball special" title="6 · 9× in slice">6</span></div></div></div><div class="window">5 of 49 + Grand Number of 7 · 64 Thu Last Quarter draws since 2016</div></section></div><div class="reveal"><section class="game" data-accent="lmax"><div class="strip"><h2>Lotto Max</h2><span class="mright"><span class="mission">Fri Aug 7 · $6</span><span class="jline">Jackpot $25M</span></span></div><div class="gbody"><div class="pick-block"><h4>Rising</h4><div class="pick-row"><span class="ball" title="1 · 1× in slice">1</span><span class="ball" title="12 · 1× in slice">12</span><span class="ball" title="15 · 1× in slice">15</span><span class="ball" title="17 · 1× in slice">17</span><span class="ball" title="18 · 1× in slice">18</span><span class="ball" title="21 · 1× in slice">21</span><span class="ball" title="28 · 2× in slice">28</span></div></div><div class="pick-block"><h4>Retrograde</h4><div class="pick-row"><span class="ball" title="2 · 0× in slice">2</span><span class="ball" title="3 · 0× in slice">3</span><span class="ball" title="4 · 0× in slice">4</span><span class="ball" title="5 · 0× in slice">5</span><span class="ball" title="6 · 0× in slice">6</span><span class="ball" title="7 · 0× in slice">7</span><span class="ball" title="8 · 0× in slice">8</span></div></div><div class="pick-block"><h4>Aligned</h4><div class="pick-row"><span class="ball" title="1 · 1× in slice">1</span><span class="ball" title="2 · 0× in slice">2</span><span class="ball" title="3 · 0× in slice">3</span><span class="ball" title="14 · 0× in slice">14</span><span class="ball" title="16 · 0× in slice">16</span><span class="ball" title="19 · 0× in slice">19</span><span class="ball" title="28 · 2× in slice">28</span></div></div></div><div class="window">7 of 52 · 2 Fri Waning Crescent draws since Apr 2026</div></section></div><div class="reveal"><section class="game" data-accent="six49"><div class="strip"><h2>Lotto 6/49</h2><span class="mright"><span class="mission">Sat Aug 8 · $3</span><span class="jline">Jackpot $5M</span><span class="jline gline">+ Gold Ball $44M ($1M guaranteed)</span></span></div><div class="gbody"><div class="pick-block"><h4>Rising</h4><div class="pick-row"><span class="ball" title="4 · 36× in slice">4</span><span class="ball" title="7 · 36× in slice">7</span><span class="ball" title="21 · 40× in slice">21</span><span class="ball" title="23 · 39× in slice">23</span><span class="ball" title="35 · 38× in slice">35</span><span class="ball" title="41 · 39× in slice">41</span></div></div><div class="pick-block"><h4>Retrograde</h4><div class="pick-row"><span class="ball" title="3 · 23× in slice">3</span><span class="ball" title="5 · 24× in slice">5</span><span class="ball" title="10 · 24× in slice">10</span><span class="ball" title="12 · 22× in slice">12</span><span class="ball" title="25 · 24× in slice">25</span><span class="ball" title="32 · 24× in slice">32</span></div></div><div class="pick-block"><h4>Aligned</h4><div class="pick-row"><span class="ball" title="3 · 23× in slice">3</span><span class="ball" title="12 · 22× in slice">12</span><span class="ball" title="17 · 30× in slice">17</span><span class="ball" title="21 · 40× in slice">21</span><span class="ball" title="23 · 39× in slice">23</span><span class="ball" title="24 · 30× in slice">24</span></div></div></div><div class="window">6 of 49 · 245 Sat Waning Crescent draws since 1988</div></section></div><div class="reveal"><section class="game" data-accent="bc49"><div class="logic-tag">★ Logic’s Pick</div><div class="strip"><h2>BC/49</h2><span class="mright"><span class="mission">Sat Aug 8 · $1</span><span class="jline">Jackpot $2M</span></span></div><div class="gbody"><div class="pick-block"><h4>Rising</h4><div class="pick-row"><span class="ball" title="9 · 35× in slice">9</span><span class="ball" title="11 · 37× in slice">11</span><span class="ball" title="14 · 34× in slice">14</span><span class="ball" title="16 · 36× in slice">16</span><span class="ball" title="19 · 36× in slice">19</span><span class="ball" title="31 · 49× in slice">31</span></div></div><div class="pick-block"><h4>Retrograde</h4><div class="pick-row"><span class="ball" title="1 · 23× in slice">1</span><span class="ball" title="3 · 22× in slice">3</span><span class="ball" title="7 · 16× in slice">7</span><span class="ball" title="28 · 12× in slice">28</span><span class="ball" title="30 · 19× in slice">30</span><span class="ball" title="46 · 20× in slice">46</span></div></div><div class="pick-block"><h4>Aligned</h4><div class="pick-row"><span class="ball" title="7 · 16× in slice">7</span><span class="ball" title="11 · 37× in slice">11</span><span class="ball" title="28 · 12× in slice">28</span><span class="ball" title="31 · 49× in slice">31</span><span class="ball" title="37 · 27× in slice">37</span><span class="ball" title="41 · 27× in slice">41</span></div></div></div><div class="window">6 of 49 · 224 Sat Waning Crescent draws since 1992</div></section></div>
+<div class="reveal">
+<div class="legend"><div class="box">
+<h5>How these picks are made</h5>
+<p>For each game, we went through every drawing that ever happened on a night like its next draw
+and counted how often each ball came up. How far back that goes depends on the game and its
+current ball matrix: 6/49 since 1988, BC/49 since 1992, Lotto Max since 2009, Daily Grand since
+2016 &mdash; each card's own line below shows exactly how many draws and how far back its own
+picks are drawn from.</p>
+<p><b>Rising</b> = the balls that show up the most on these nights.</p>
+<p><b>Retrograde</b> = the ones that show up the least.</p>
+<p><b>Aligned</b> = a mix: the top two, the bottom two, and enough from the middle to fill out a
+complete ticket.</p>
+<p>Daily Grand's Grand Number gets the same treatment in its own pool of 7. Lotto Max, 6/49, and
+BC/49 draw a bonus ball too, but it's machine-drawn &mdash; not something a ticket picks &mdash; so
+it's left out of these slips.</p>
+<p><b>★ Logic’s Pick</b> = This value ranking uses published fixed prizes and tonight's jackpots — not every prize tier. Lotto Max and Lotto 6/49 pay most of their smaller prizes as a share of that draw's ticket sales, which BCLC doesn't publish live, so those tiers aren't counted here. BC/49 and Daily Grand publish every tier as a fixed dollar amount, so their numbers are the fuller picture. Not a prediction — no combination is more likely to be drawn.</p>
+</div></div>
+<p class="karma-row"><a class="karma" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener"><span class="k1">☾ Keep Rob's karma aligned ☽</span><span class="k2">Leave a tip</span></a></p>
+<p class="rg">Play responsibly · <a href="https://www.playnow.com/gamesense/" target="_blank" rel="noopener">GameSense</a> · 1-888-795-6111 · <a href="https://www.gamblingsupportbc.ca" target="_blank" rel="noopener">gamblingsupportbc.ca</a></p>
+</div>
+</div>
+</body></html>
