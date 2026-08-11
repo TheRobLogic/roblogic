@@ -2,9 +2,6 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MOONSHOT - Tonight's BC Lotto Picks by Moon Phase</title>
-<!-- Visit beacon intentionally omitted: roblogic.org/CLAUDE.md requires asking
-     Rob before adding one to any new page (no default). CA's twin uses
-     page="moonshot"; wire page="bclotto-moonshot" here once he opts in. -->
 <link rel="icon" type="image/png" href="moonshot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,4 +174,21 @@ it's left out of these slips.</p>
 <p class="rg">Play responsibly · <a href="https://www.playnow.com/gamesense/" target="_blank" rel="noopener">GameSense</a> · 1-888-795-6111 · <a href="https://www.gamblingsupportbc.ca" target="_blank" rel="noopener">gamblingsupportbc.ca</a></p>
 </div>
 </div>
+<script>
+// visit beacon — every hit, skip bots, fail silent (same shape as /lotto/moonshot/)
+try {
+  const ua = navigator.userAgent.toLowerCase();
+  if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+    fetch('/beacon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        page: 'bclotto-moonshot',
+        ref: document.referrer || 'direct',
+        tag: 'new_moon_with_face'
+      })
+    }).catch(() => {});
+  }
+} catch (e) {}
+</script>
 </body></html>

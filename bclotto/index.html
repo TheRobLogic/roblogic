@@ -1065,5 +1065,22 @@ buildNav(); buildModes(); buildTipFoot();
 renderAll();
 })();
 </script>
+<script>
+// visit beacon — every hit, skip bots, fail silent (same shape as /lotto/)
+try {
+  const ua = navigator.userAgent.toLowerCase();
+  if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+    fetch('/beacon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        page: 'bclotto',
+        ref: document.referrer || 'direct',
+        tag: 'maple_leaf'
+      })
+    }).catch(() => {});
+  }
+} catch (e) {}
+</script>
 </body>
 </html>
