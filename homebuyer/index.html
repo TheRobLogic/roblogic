@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>San Diego First-Time Homebuyer Money — Verified August 2026</title>
-<meta name="description" content="First-time homebuyer programs in San Diego with actual funding as of August 2026 — city, county, state, bank grants, and school-district employee programs, each linked to the agency that runs it.">
+<title>San Diego First-Time Homebuyer Money — August 2026</title>
+<meta name="description" content="First-time homebuyer money in San Diego for a school-district employee under 80% of area median income — what's funded, what stacks, and what to skip, with the agency source linked on every program.">
 <meta property="og:title" content="San Diego First-Time Homebuyer Money — August 2026">
-<meta property="og:description" content="What has money right now, what's conditional, what's dead, and what's marketing bait — with sources.">
+<meta property="og:description" content="What has money right now, how it stacks, and what to skip — sources linked.">
 <meta property="og:url" content="https://roblogic.org/homebuyer/">
 <meta property="og:type" content="article">
 <link rel="icon" href="/favicon-32x32.png">
@@ -35,65 +35,36 @@
   --accent: #9c2b1e;
 }
 html { scroll-behavior: smooth; }
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: 'Public Sans', sans-serif;
-  font-size: 1.0rem;
-  line-height: 1.62;
-}
+body { background: var(--paper); color: var(--ink); font-family: 'Public Sans', sans-serif; font-size: 1.0rem; line-height: 1.62; }
 .wrap { max-width: 54rem; margin: 0 auto; padding: 0 1.25rem; }
 
-/* ---------- header ---------- */
 header { border-bottom: 3px solid var(--ink); padding: 3rem 0 2rem; }
-.kicker {
-  font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem;
-}
-h1 {
-  font-family: 'Fraunces', serif; font-weight: 900;
-  font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.04; letter-spacing: -.015em;
-  margin-bottom: 1.2rem;
-}
+.kicker { font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1rem; }
+h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.04; letter-spacing: -.015em; margin-bottom: 1.2rem; }
 .dek { font-size: 1.08rem; color: var(--ink-soft); max-width: 44rem; }
 .dek strong { color: var(--ink); }
-.stamp {
-  display: inline-block; margin-top: 1.4rem;
-  border: 2px solid var(--green); color: var(--green);
-  font-family: 'IBM Plex Mono', monospace; font-size: .8rem; font-weight: 600;
-  letter-spacing: .06em; padding: .35rem .7rem; transform: rotate(-1.2deg);
-  background: var(--green-bg);
-}
+.stamp { display: inline-block; margin-top: 1.4rem; border: 2px solid var(--green); color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: .8rem; font-weight: 600; letter-spacing: .06em; padding: .35rem .7rem; transform: rotate(-1.2deg); background: var(--green-bg); }
 
-/* ---------- section furniture ---------- */
 section { padding: 2.6rem 0 .6rem; }
 .sechead { display: flex; align-items: baseline; gap: .9rem; border-bottom: 2px solid var(--ink); padding-bottom: .5rem; margin-bottom: 1.6rem; }
-.secnum {
-  font-family: 'IBM Plex Mono', monospace; font-size: .85rem; font-weight: 600;
-  color: var(--paper); background: var(--ink); padding: .15rem .5rem;
-}
+.secnum { font-family: 'IBM Plex Mono', monospace; font-size: .85rem; font-weight: 600; color: var(--paper); background: var(--ink); padding: .15rem .5rem; }
 h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(1.35rem, 3.4vw, 1.8rem); letter-spacing: -.01em; }
 .secnote { color: var(--ink-soft); margin: -0.8rem 0 1.4rem; font-size: .95rem; max-width: 46rem; }
+.body-p { max-width: 46rem; margin-bottom: .9rem; }
 
-/* ---------- program entries ---------- */
 .prog { border-bottom: 1px solid var(--rule); padding: 1.35rem 0 1.5rem; }
 .prog:last-child { border-bottom: none; }
 .prog h3 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.22rem; line-height: 1.25; margin-bottom: .15rem; }
 .admin { font-size: .86rem; color: var(--ink-soft); margin-bottom: .6rem; }
 .chips { float: right; margin: .2rem 0 .4rem .8rem; display: flex; flex-direction: column; gap: .3rem; align-items: flex-end; }
-.chip {
-  font-family: 'IBM Plex Mono', monospace; font-size: .68rem; font-weight: 600;
-  letter-spacing: .08em; text-transform: uppercase; padding: .18rem .5rem; white-space: nowrap;
-  border: 1.5px solid currentColor;
-}
+.chip { font-family: 'IBM Plex Mono', monospace; font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .18rem .5rem; white-space: nowrap; border: 1.5px solid currentColor; }
 .c-open { color: var(--green); background: var(--green-bg); }
 .c-cond { color: var(--amber); background: var(--amber-bg); }
 .c-watch { color: var(--blue); background: var(--blue-bg); }
-.c-dead { color: var(--red); background: var(--red-bg); }
 .c-geo { color: var(--gray); background: var(--gray-bg); }
 .prog p { margin-bottom: .55rem; max-width: 46rem; }
 .get { font-weight: 700; }
-.get .money { font-family: 'IBM Plex Mono', monospace; font-weight: 600; }
+.get .money, .money { font-family: 'IBM Plex Mono', monospace; font-weight: 600; }
 .catch { padding-left: .9rem; border-left: 3px solid var(--rule); color: var(--ink-soft); font-size: .95rem; }
 .catch b { color: var(--ink); }
 .src { font-size: .84rem; font-family: 'IBM Plex Mono', monospace; color: var(--ink-soft); }
@@ -101,45 +72,30 @@ h2 { font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(1.35rem,
 .src a:hover { border-bottom-color: var(--blue); }
 a { color: var(--blue); }
 
-/* ---------- the number ---------- */
-.bigline {
-  background: var(--ink); color: var(--paper); margin: 2.4rem 0 0; padding: 2rem 1.6rem;
-}
-.bigline .label { font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: #cfc6b0; margin-bottom: .4rem; }
-.bigline .num { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.6rem, 8vw, 4.2rem); line-height: 1; }
-.bigline p { margin-top: .9rem; max-width: 44rem; color: #e8e2d2; }
-.lanes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 0 0 1rem; }
-.lane { background: var(--paper-deep); padding: 1.1rem 1.1rem 1.2rem; }
-.lane h4 { font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
-.lane p { font-size: .92rem; color: var(--ink-soft); }
-.lane p b { color: var(--ink); }
+.tablewrap { overflow-x: auto; max-width: 46rem; }
+table.bands { border-collapse: collapse; margin: .4rem 0 1rem; font-size: .95rem; }
+table.bands th, table.bands td { border: 1px solid var(--rule); padding: .45rem .8rem; text-align: left; white-space: nowrap; }
+table.bands th { font-family: 'IBM Plex Mono', monospace; font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; background: var(--paper-deep); }
+table.bands td.money { font-family: 'IBM Plex Mono', monospace; }
 
-/* ---------- kill list ---------- */
-.kill .prog h3 { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 2.5px; }
-.kill .prog h3 span.keep { text-decoration: none; }
-
-/* ---------- checklist ---------- */
 ol.seq { counter-reset: step; list-style: none; max-width: 46rem; }
 ol.seq li { counter-increment: step; position: relative; padding: 0 0 1.1rem 3rem; }
-ol.seq li::before {
-  content: counter(step); position: absolute; left: 0; top: .1rem;
-  font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--accent);
-  width: 2.1rem; text-align: center; border-bottom: 2px solid var(--accent);
-}
-ol.seq b { font-weight: 700; }
+ol.seq li::before { content: counter(step); position: absolute; left: 0; top: .1rem; font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--accent); width: 2.1rem; text-align: center; border-bottom: 2px solid var(--accent); }
 .phones { background: var(--paper-deep); border: 1px solid var(--rule); padding: 1.2rem 1.4rem; margin: 1.4rem 0; max-width: 46rem; }
 .phones h4 { font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
 .phones ul { list-style: none; }
 .phones li { padding: .22rem 0; font-size: .95rem; }
 .phones .num { font-family: 'IBM Plex Mono', monospace; }
 
-/* ---------- footer ---------- */
+.deadlist { max-width: 46rem; }
+.deadlist p { margin-bottom: 1rem; }
+.deadlist s { text-decoration-color: var(--red); text-decoration-thickness: 2px; }
+.deadlist b { font-weight: 700; }
+
 footer { border-top: 3px solid var(--ink); margin-top: 3rem; padding: 1.8rem 0 3rem; font-size: .88rem; color: var(--ink-soft); }
 footer p { max-width: 46rem; margin-bottom: .6rem; }
 
-@media (max-width: 560px) {
-  .chips { float: none; flex-direction: row; flex-wrap: wrap; align-items: flex-start; margin: 0 0 .6rem; }
-}
+@media (max-width: 560px) { .chips { float: none; flex-direction: row; flex-wrap: wrap; align-items: flex-start; margin: 0 0 .6rem; } }
 </style>
 </head>
 <body>
@@ -148,323 +104,133 @@ footer p { max-width: 46rem; margin-bottom: .6rem; }
   <div class="wrap">
     <div class="kicker">San Diego · California</div>
     <h1>First-Time Homebuyer Money in San&nbsp;Diego</h1>
-    <p class="dek">Down-payment help in San Diego is scattered across a dozen agencies, and half of what a search turns up is dead or marketing. Here's what has money right now, what's conditional, what's worth watching, and what to skip — with a link to the agency that runs each one.</p>
+    <p class="dek">Arranged for one situation: <strong>first-time buyer, school-district classified employee, one-person household, income under 80% of area median ($97,950)</strong>, buying anywhere in San Diego County with the city preferred. Ordered by what that buyer should actually do, biggest money first, with the agency that runs each program linked. If that's not your situation, the programs are still real.</p>
     <div class="stamp">FUNDING STATUSES AS OF 08·17·2026 — THEY CHANGE WITHOUT NOTICE</div>
   </div>
 </header>
 
-<div class="wrap">
-  <div class="bigline">
-    <div class="label">The number that decides everything</div>
-    <div class="num">$97,950</div>
-    <p>That's 80% of Area Median Income for a one-person household in San Diego County (<a href="https://sdhc.org/wp-content/uploads/2026/05/AMIIncomeLimits-2026.pdf" style="color:#9fc4e8">SDHC's 2026 chart</a>, effective 5/1/2026). Almost every program on this page pivots on which side of it your gross income lands. Before anything else, nail down your exact gross annual income — and if you have dependents, note that household size moves every threshold up.</p>
-  </div>
-  <div class="lanes">
-    <div class="lane"><h4>Under $97,950</h4><p>Your lane: <b>WISH</b> ($32,837 matched grant), <b>NACA</b>, CalHFA's low-income rate locks, Habitat. The city's own low-income loan program is currently unfunded.</p></div>
-    <div class="lane"><h4>Roughly $92,700–$137,350</h4><p>Your lane: <b>SDHC Middle-Income</b> ($40k loan + $10k grant, funds available now), <b>MIDA</b> (round 2 pending), plus everything income-blind.</p></div>
-    <div class="lane"><h4>Any income</h4><p><b>CalHFA MyHome</b> (limit is $259,000 — a school salary clears it), <b>GSFA Platinum</b>, most bank grants, and H.O.P.E. if you teach in the right place.</p></div>
-  </div>
-</div>
-
 <main class="wrap">
 
-<section id="educators">
-  <div class="sechead"><span class="secnum">01</span><h2>If you work for a school district</h2></div>
-  <p class="secnote">Your employer gets you exactly one large grant (with narrow conditions), one lender category, and two small rebates. Every other "teacher program" you will find in a search is dead or marketing — they're in the kill list at the bottom.</p>
-  <p class="secnote"><b>If you're classified staff</b> (paraeducator, special-ed assistant, aide, office, operations): H.O.P.E.'s "certified educator" who "must teach" language excludes you, and so does Good Neighbor Next Door. Your employer lane is GSFA Platinum Select — which names district <em>staff</em>, not just teachers — plus the CSEA / Union Plus rebate below. A classified salary also usually lands under the $97,950 line, where the real money is WISH and, outside city limits, the County's 22% program.</p>
+<section id="lender">
+  <div class="sechead"><span class="secnum">01</span><h2>Pick the lender first — it gates every dollar below</h2></div>
+  <p class="body-p">Almost nothing on this page comes from an agency directly. Each program flows through its own network of approved lenders, and the networks only partly overlap: WISH runs through Federal Home Loan Bank member institutions holding 2026 allocation · CalHFA through CalHFA-approved loan officers · the County's program through SDHC's participating-lender list · GSFA through its own participating lenders · each bank grant only through that bank · NACA only through NACA. Pick a lender casually and you can lose $32,837 before you've seen a house.</p>
+  <p class="body-p">So the first calls are lender interviews, starting with the 2026 WISH members that lend statewide — Golden 1, Patelco, Mechanics Bank, Kinecta, KeyPoint, University Credit Union — and the script is six questions:</p>
+  <ol class="seq">
+    <li><b>"Do you hold 2026 WISH allocation right now?"</b> Members claim WISH funds individually and run out individually. Start with lenders that say yes.</li>
+    <li><b>"Are you CalHFA-approved?"</b> If yes, WISH and the CalHFA package can ride on one loan.</li>
+    <li><b>"Are you on SDHC's participating-lender list?"</b> That's the door to the County's 22% program — only relevant if the purchase ends up outside city limits.</li>
+    <li><b>"Are you a GSFA Platinum participating lender, and which loan types keep the Select gift after August 31?"</b></li>
+    <li><b>"Which of these can you combine on a single loan — including WISH on top of the County program — and what does the whole stack net?"</b> No agency publishes the stacking answer; the lender is the one who can give it.</li>
+    <li><b>"Do you do FHA on condos, including single-unit approvals — and with my credit score and debts, what price am I actually approved for?"</b> <a href="#afford">Section 02</a> explains why both halves matter.</li>
+  </ol>
+  <p class="body-p">For an in-city purchase, yeses on 1, 2, 4, and 6 are the ones that matter; 3 counts only for a purchase outside the city. A slightly better rate at a lender who fails these questions is smaller than a lost grant.</p>
+  <div class="phones">
+    <h4>Numbers that matter</h4>
+    <ul>
+      <li>SDHC homeownership — <span class="num">(619) 578-7788</span> · homeownership@sdhc.org — participating-lender list, program status</li>
+      <li>FHLBank SF WISH member roster — <a href="https://www.fhlbsf.com/products/community-programs-grants/wish/wish-participation">current participating institutions</a></li>
+      <li>CalHFA-approved loan officers — <a href="https://www.calhfa.ca.gov/apps/approvedlenders/">lender search</a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="afford">
+  <div class="sechead"><span class="secnum">02</span><h2>What you can afford — the number that shapes the search</h2></div>
+  <p class="body-p"><b>Your constraint is the monthly payment.</b> The grants below cover the down payment — WISH alone ($32,837) is more than twice the FHA down payment on a $400,000 condo ($14,000). What limits the purchase is the payment a lender lets you carry: roughly 45% of gross monthly income, minus existing debts.</p>
+  <div class="tablewrap">
+  <table class="bands">
+    <tr><th>Gross income</th><th>Rough price band*</th><th>FHA 3.5% down</th></tr>
+    <tr><td class="money">$75,000</td><td class="money">~$280,000–$310,000</td><td class="money">~$10,000</td></tr>
+    <tr><td class="money">$95,000</td><td class="money">~$380,000–$410,000</td><td class="money">~$14,000</td></tr>
+  </table>
+  </div>
+  <p class="secnote">*At ~6.5% and 45% debt-to-income, with modest other debts and condo taxes, insurance, and HOA included. Car payments and student loans subtract directly. Stronger credit (700+) lets some lenders stretch toward 50% debt-to-income, which adds roughly $50,000–$60,000. A pre-approval settles the real number.</p>
+  <p class="body-p">A band like that means <b>condos and townhomes</b>, which carry three things worth knowing on day one: HOA dues count in the debt math dollar-for-dollar (a $400/month HOA removes roughly $50,000 of purchase price) · an FHA loan needs the condo project on <a href="https://entp.hud.gov/idapp/html/condlook.cfm">FHA's approved list</a>, so check before falling for a unit · the deed-restricted condos in <a href="#money">section 03</a> are priced below this math, which is why they get a standing search.</p>
+  <p class="body-p">The rest of the qualifying picture: <b>credit</b> — 640 minimum for the FHA route (700 if debt-to-income runs to 50%), 680 conventional. <b>Cash you still need on hand even with every grant</b> — the $8,209 WISH match, earnest money (~1% of price), inspections, the $100 education course, and the one-year home warranty CalHFA requires on resale purchases: plan on roughly <span class="money">$13,000–$14,000</span> of your own money. <b>One caution for a public employee with student loans:</b> a taxable grant (Wells Fargo's issues a 1099) raises adjusted gross income, which raises an income-driven loan payment, which shrinks the payment room above — weigh that before taking it.</p>
+</section>
+
+<section id="money">
+  <div class="sechead"><span class="secnum">03</span><h2>Your money, biggest first</h2></div>
 
   <div class="prog">
-    <div class="chips"><span class="chip c-cond">Conditional</span><span class="chip c-open">Grant · no repayment</span></div>
-    <h3>H.O.P.E. — Housing Opportunities for Public Educators</h3>
-    <div class="admin">LISC San Diego · intake via Urban League of San Diego County · funded by Lennar under a Council District 5 development agreement</div>
-    <p class="get"><span class="money">$40,000+</span> as an outright grant. LISC's own FAQ on repayment: "No strings attached." No resale restriction, no clawback.</p>
-    <p>Requirements, verbatim from LISC's guidelines: certified educator · teaches within the boundaries of San Diego <b>City Council District 5</b> · employed by <b>San Diego Unified</b> or Poway Unified · first-time buyer · household income under 160% AMI ($146,480 for one person, per LISC's table, which governs) · counseling through the Urban League. The home can be <b>anywhere in San Diego County</b> — the district-5 rule is about where you teach, not where you buy.</p>
-    <p class="catch"><b>The gate is your school's street address.</b> SDUSD's footprint in Council District 5 is essentially the Scripps Ranch / Miramar Ranch North cluster, and Scripps Ranch itself is split between districts 5 and 6 — check your school's address in the <a href="https://www.sandiego.gov/citycouncil/cd5/communities">city's district lookup</a>, not the neighborhood name. "Certified educator" who "must teach" likely excludes classified staff; credentialed non-classroom staff (counselors, librarians, nurses) is ambiguous — ask. Funding status is published nowhere; press coverage suggests a ~$1M pool (~25 grants) with about a dozen closed by spring 2026, so it may be half spent. First-come, first-served. <b>Call before doing anything else</b>: (619) 266-6237 / housing@sdul.org. Ask whether it stacks with SDHC's Middle-Income program — neither page forbids it and nobody has answered it.</p>
-    <p class="src">Sources: <a href="https://www.lisc.org/san-diego/homebuyers/hope/faqs/">LISC HOPE FAQ</a> · <a href="https://www.lisc.org/san-diego/homebuyers/hope/program-guidelines/">program guidelines</a> · <a href="https://sdul.org/hope-program/">Urban League intake</a> · <a href="https://www.lisc.org/san-diego/homebuyers/hope/participating-lenders/">participating lenders</a></p>
+    <div class="chips"><span class="chip c-open">Funded for 2026</span></div>
+    <h3>WISH — $32,837 grant for $8,209 of your own savings</h3>
+    <div class="admin">Federal Home Loan Bank of San Francisco · through the member lender from section 01</div>
+    <p class="get">A 4-to-1 match: you bring <span class="money">$8,209</span> (savings, gift funds, or sweat equity), the program adds <span class="money">$32,837</span>. First-time buyers at or below 80% AMI — that's you. Homebuyer counseling required.</p>
+    <p class="catch">Per-lender allocation runs out even while the program is open — which is why <a href="#lender">section 01</a> comes first. A retention period applies: sell or refinance early and part of it comes back. $13M is funded for 2026; the member window runs through 3/12/2027.</p>
+    <p class="src">Source: <a href="https://www.fhlbsf.com/products/community-programs-grants/wish/">FHLBank SF — WISH</a></p>
+  </div>
+
+  <div class="prog">
+    <div class="chips"><span class="chip c-watch">Standing search</span></div>
+    <h3>Deed-restricted below-market condos — a lower price, not just help at closing</h3>
+    <div class="admin">San Diego Housing Commission · 257 units in Black Mountain Ranch, Pacific Highlands Ranch, and North Park</div>
+    <p class="get">A formula-capped purchase price on a specific unit. Because the discount lowers the price itself, it works directly on the payment limit from <a href="#afford">section 02</a>. The same formula caps your resale price later — the discount coming in is traded for capped appreciation going out.</p>
+    <p class="catch"><b>The tier trap:</b> each unit carries its own income band, 60% up to 120% AMI, and the chart runs backwards in the middle — the 80% row ($97,950) is a <em>higher</em> dollar figure than both the 90% row ($82,450) and the 100% row ($91,650), because of a federal high-cost adjustment on the lower tiers. An income in the high-$80s or low-$90s clears "80%" but is over-income for a "90%" or "100%" unit. Check the tier on each listing, don't assume. Other requirements: two years living and working in San Diego County (confirm your dates), no home owned in three years, homebuyer education. There's no waitlist: watch MLS/Zillow/Redfin for "deed restricted" in those developments with pre-approval and education certificate already in hand — the first eligible applicant wins. North Park is the central location; the rest are far north.</p>
+    <p class="src">Source: <a href="https://sdhc.org/housing-opportunities/affordable-for-sale-housing/">SDHC Affordable For-Sale Housing</a> · <a href="https://sdhc.org/wp-content/uploads/2026/05/AMIIncomeLimits-2026.pdf">AMI chart</a></p>
+  </div>
+
+  <div class="prog">
+    <div class="chips"><span class="chip c-geo">Outside city limits</span><span class="chip c-open">Funded</span></div>
+    <h3>County DCCA — 22% of the price, deferred, plus a $10,000 grant</h3>
+    <div class="admin">County of San Diego, administered by SDHC · unincorporated areas + Carlsbad, Coronado, Del Mar, Encinitas, Imperial Beach, La Mesa, Lemon Grove, Poway, San Marcos, Santee, Solana Beach, Vista</div>
+    <p class="get">A deferred second for <span class="money">22%</span> of the purchase price (3% simple, no payments until sale/refinance) plus a <span class="money">$10,000</span> closing grant. Income ≤ $97,950, price ≤ $743,000. Because that 22% comes out of the first mortgage, it cuts the monthly payment — roughly <span class="money">$550/month</span> at a $400,000 price — which makes it the one program on this page that materially raises the price band in <a href="#afford">section 02</a>. Nothing this size is funded inside the city for this income band.</p>
+    <p class="catch">Goes through SDHC's participating-lender list (<a href="#lender">section 01</a>, question 3). Tenant-occupied properties are ineligible at offer time, no exceptions. Counterintuitive trigger: paying off the first mortgage early calls this loan due. Chula Vista runs its own version — up to <span class="money">$120,000</span> — but has served roughly 15 families total since 2022, so treat it as a long shot. Whether WISH stacks on top is question 5 of the lender script.</p>
+    <p class="src">Sources: <a href="https://www.sandiegocounty.gov/content/sdc/sdhcd/home-buyers-owners/payment-assistance.html">County DCCA</a> · <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">SDHC status page (all jurisdictions)</a></p>
   </div>
 
   <div class="prog">
     <div class="chips"><span class="chip c-open">Open now</span></div>
-    <h3>GSFA Platinum "Select" — school employees are a named occupation</h3>
-    <div class="admin">Golden State Finance Authority · statewide, works in the City of San Diego · apply through a GSFA participating lender</div>
-    <p class="get">Up to <span class="money">5.5%</span> of the loan amount. The free part is the gift slice — up to 1.5% (about $9,750 on a $650k loan), non-repayable. The rest is a 15-year amortizing second mortgage with a real monthly payment.</p>
-    <p>GSFA's Select tier names "employees of a California accredited Private, Charter or Public School District … including school administration and staff" — which covers <b>classified staff as well as teachers</b>. No first-time-buyer requirement. Max first mortgage $832,750.</p>
-    <p class="catch"><b>Date to know: August 31, 2026.</b> A promo currently opens Select to all occupations and loan types; after it ends, your occupation still qualifies but the eligible loan-type list narrows — ask a participating lender which loan types survive for school employees before assuming. The gift is "subject to market conditions," so a lender can legitimately quote less than 1.5%. Get two quotes; the rate is set by the lender, not GSFA. San Diego County is excluded from GSFA's separate "Assist-to-Own" tier, so ignore that name.</p>
+    <h3>CalHFA MyHome + the low-income rate lock</h3>
+    <div class="admin">CalHFA · statewide, works everywhere above · through a CalHFA-approved lender</div>
+    <p class="get">The FHA route: <span class="money">3.5%</span> of the price as a deferred second at 1% simple (due at sale/refinance/payoff), and under 80% AMI the discounted low-income rate lock and cheaper mortgage insurance come with it. On a $400,000 condo that covers the full <span class="money">$14,000</span> down payment.</p>
+    <p class="catch">The eHome 8-hour course ($100) plus its one-on-one follow-up is the only education CalHFA accepts — details on <a href="https://www.calhfa.ca.gov/homebuyer/borrower.htm">CalHFA's borrower requirements page</a>. Skip the CalPLUS "Access"/"ZIP" add-ons unless closing cash is genuinely short: they buy extra cash with a ~0.75-point-higher rate for 30 years, which loses after year three.</p>
+    <p class="src">Sources: <a href="https://www.calhfa.ca.gov/homebuyer/programs/myhome.htm">MyHome</a> · <a href="https://www.calhfa.ca.gov/apps/rates/">live rate sheet</a></p>
+  </div>
+
+  <div class="prog">
+    <div class="chips"><span class="chip c-cond">Ask by Aug 31</span></div>
+    <h3>GSFA Platinum Select — the school-employee gift</h3>
+    <div class="admin">Golden State Finance Authority · through a GSFA participating lender</div>
+    <p class="get">Up to <span class="money">1.5%</span> of the loan as a non-repayable gift (~<span class="money">$5,900</span> at a $400,000 price). "Select" occupations explicitly include public school district "administration and staff" — classified employees qualify by name, no first-time requirement.</p>
+    <p class="catch">The occupation eligibility survives August 31, 2026, but the eligible loan-type list narrows that day — ask a participating lender this week which loan types keep the gift (question 4 of the script). The other 4% of "up to 5.5%" is a repayable 15-year second with payments from day one; at this price band the gift is the point, usually skip the rest. The gift is "subject to market conditions" — a lender can quote less, so get two quotes.</p>
     <p class="src">Source: <a href="https://www.gsfahome.org/programs/dpa/platinum.shtml">GSFA Platinum</a></p>
   </div>
 
   <div class="prog">
-    <div class="chips"><span class="chip c-cond">Small money</span></div>
-    <h3>Union rebates — pick one lane, and pick it before you talk to any agent</h3>
-    <div class="admin">CSEA / Union Plus (classified staff) · CTA / Provident CU (certificated staff) · Homes for Heroes (either)</div>
-    <p class="get">Roughly <span class="money">$3,000–$4,000</span> post-closing rebate (Union Plus: 25% of your agent's gross commission; Homes for Heroes: ~$700 per $100k of price), or a 0.125% rate discount (CTA/Provident — realistically worth under $500/yr).</p>
-    <p class="catch"><b>Sequencing trap:</b> Union Plus requires registering with its program <em>before</em> you sign with any agent — sign first and you forfeit it permanently. It and Homes for Heroes both require using their network agent, so they don't stack with each other. These are rebate checks that arrive <em>after</em> closing; they don't help you assemble cash to close. Never let a small rebate pick your lender — the SDHC and H.O.P.E. participating-lender lists are where the real money is.</p>
-    <p class="src">Sources: <a href="https://www.unionplus.org/benefits/home/real-estate-rewards">Union Plus Real Estate Rewards</a> · <a href="https://csea.com/member-benefits/real-estate-rewards-with-union-plus">CSEA</a> · <a href="https://providentcu.org/cta/cta-mortgage-loan-discount">CTA / Provident</a> · <a href="https://www.homesforheroes.com/heroes/teachers/">Homes for Heroes</a></p>
+    <div class="chips"><span class="chip c-cond">All-or-nothing</span></div>
+    <h3>NACA — the alternative to the whole stack</h3>
+    <div class="admin">Neighborhood Assistance Corporation of America · remote counseling; nearest offices Hawthorne / Upland / Sacramento</div>
+    <p class="get">No down payment, no closing costs, no mortgage insurance, and a below-market rate — <span class="money">5.75%</span> 30-year at Priority Member status, which an income under the county median ($130,900) gets automatically.</p>
+    <p class="catch">NACA is its own mortgage, so choosing it replaces everything else on this page — no WISH, no CalHFA, no DCCA, no bank grants. Once section 01's answers show what actually stacks, compare NACA's zero-cash, lower-rate loan against the best combined stack. NACA also caps the price by its own affordability math (strict on one income) and the counseling pipeline has no published timeline.</p>
+    <p class="src">Source: <a href="https://www.naca.com/purchase/">NACA</a></p>
   </div>
 </section>
 
-<section id="city">
-  <div class="sechead"><span class="secnum">02</span><h2>Open now — City of San Diego</h2></div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-open">Funds available</span><span class="chip c-cond">Income floor</span></div>
-    <h3>SDHC Middle-Income First-Time Homebuyer Program</h3>
-    <div class="admin">San Diego Housing Commission · City of San Diego only (ZIP codes beginning 921)</div>
-    <p class="get"><span class="money">$40,000</span> deferred down-payment loan (4% simple interest — no payments years 1–5, then it amortizes into a fixed monthly payment over 120 months) + <span class="money">$10,000</span> closing-cost grant.</p>
-    <p>For incomes between 80% and 150% AMI — posted as $92,700–$137,350 for one person. Max purchase price $1,250,000. Minimum 640 credit score, 3% of price from your own funds, two years' work history, no home owned in the last three years, SDHC participating lender, homebuyer education plus one-on-one counseling.</p>
-    <p class="catch"><b>Three warnings.</b> (1) The pool is one $3.75M Wells Fargo Foundation grant — roughly 75 households citywide, launched December 2025, with no published remaining balance. It can flip to "No Funding Available" without notice, exactly as the sibling low-income program already did. (2) SDHC's web page and its guidelines PDF disagree on details — income floor ($92,700 vs $97,950), credit floor (640 vs 660), minimum down (3% vs 1.5%), and whether the $10k grant is forgivable after 3 years (the forgiveness language is <em>not</em> on the live program page). Confirm every term by phone before relying on it: (619) 578-7788. (3) The $40,000 is not free money — a real second payment starts in year 6. It also cannot be combined with SDHC's other homebuyer programs, including the below-market units below.</p>
-    <p class="src">Sources: <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/middleincome/">SDHC program page</a> · <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">SDHC program list with live funding status</a> · <a href="https://sdhc.org/wp-content/uploads/2025/02/City-of-San-Diego-Middle-Income-Program-Guidelines.pdf">guidelines PDF</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-cond">Watch the MLS</span></div>
-    <h3>SDHC Affordable For-Sale Housing — deed-restricted below-market units</h3>
-    <div class="admin">San Diego Housing Commission · 257 units across six developments</div>
-    <p class="get">A below-market purchase price on a specific unit — the discount is set by each unit's deed-restriction formula. On a North Park condo the spread can plausibly run six figures, in exchange for a formula-capped resale price (you give up market appreciation).</p>
-    <p>Developments: Bella Rosa, Cristamar, Sycamore Walk (Black Mountain Ranch) · Airoso (Pacific Highlands Ranch) · La Boheme, Renaissance (North Park). Each carries its own AMI tier, 60% up to 120% — your qualifying band changes unit by unit. Must have lived <em>and</em> worked in San Diego County for 2+ years, no home owned in 3 years, homebuyer education.</p>
-    <p class="catch"><b>There is no waitlist and no notification system.</b> The only path is a standing search on MLS/Zillow/Redfin for "deed restricted" in those six developments, with your pre-approval and education certificate already in hand, because SDHC approves the first eligible applicant. Quirk worth knowing: on SDHC's chart, 80% AMI ($97,950) is a <em>higher</em> dollar figure than 100% AMI ($91,650) for one person, because the sub-80% rows carry a HUD high-housing-cost adjustment — don't eyeball the table and misjudge your tier. Mutually exclusive with the Middle-Income program above; if you're under 80% AMI this is the only city-administered path currently open at all.</p>
-    <p class="src">Source: <a href="https://sdhc.org/housing-opportunities/affordable-for-sale-housing/">SDHC Affordable For-Sale Housing</a> · <a href="https://sdhc.org/wp-content/uploads/2026/05/AMIIncomeLimits-2026.pdf">2026 AMI chart</a></p>
-  </div>
-</section>
-
-<section id="state">
-  <div class="sechead"><span class="secnum">03</span><h2>The CalHFA stack (statewide, works in the city)</h2></div>
-  <p class="secnote">CalHFA is the state's housing finance agency. Its help comes as deferred "silent second" loans stacked behind a CalHFA first mortgage — nothing is forgiven, but nothing is due monthly either. Income limit for San Diego County: $259,000, which any school salary clears. All of it requires the eHome 8-hour course ($100) plus one-on-one follow-up — the <em>only</em> online course CalHFA accepts.</p>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-open">Open now</span></div>
-    <h3>MyHome Assistance</h3>
-    <div class="admin">CalHFA · through a CalHFA-approved lender, paired with a CalHFA first mortgage</div>
-    <p class="get"><span class="money">3.5%</span> of price on FHA (3% on conventional/VA/USDA) as a deferred junior loan at 1% simple interest, due when you sell, refinance, or pay off the first. On a $700k purchase: about $24,500 — which happens to exactly cover FHA's 3.5% minimum down payment.</p>
-    <p class="catch">Credit/DTI floors bind harder than income: FHA 640 at 45% DTI (700 for 50%), conventional 680 (660 floor for the low-income rate). If you're under 80% AMI (~$105k by Fannie Mae's address-based lookup — this is a <em>different</em> 80% line than SDHC's), you get a discounted "Low Income" rate lock and cheaper mortgage insurance on the conventional side. A one-year home warranty is required on any resale property — a real out-of-pocket cost. Loans over $832,750 trigger a high-balance fee.</p>
-    <p class="src">Sources: <a href="https://www.calhfa.ca.gov/homebuyer/programs/myhome.htm">MyHome</a> · <a href="https://www.calhfa.ca.gov/apps/rates/">live rate sheet</a> · <a href="https://www.calhfa.ca.gov/homeownership/limits/income/income.pdf">income limits PDF</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-cond">Do the math</span></div>
-    <h3>MyAccess + CalPLUS Access — the stackable extra ~2.5%</h3>
-    <div class="admin">CalHFA · requires a CalPLUS Access first mortgage · MyHome comes with it, mandatory</div>
-    <p class="get">About <span class="money">$16,900</span> more (2.5% of the loan) on a $700k FHA purchase, usable for down payment <em>or</em> closing costs, on top of MyHome's $24,500 — roughly $41,400 combined. The two stack; anyone who tells you it's either/or is wrong.</p>
-    <p class="catch">The price is the rate: CalPLUS Access FHA runs 7.000% against plain CalHFA FHA at 6.250%. That 0.75-point premium costs ~$5,000/year on a $675k loan, so it breaks even a bit past year three and costs you after — only take it if you genuinely can't close without the extra cash. If you're under 80% AMI, avoid the <em>conventional</em> Access route (it forfeits the low-income rate lock); FHA gives up nothing. The related "ZIP" closing-cost program at the same rate is strictly worse than Access at the 2% tier — skip it unless a lender can show otherwise on paper.</p>
-    <p class="src">Sources: <a href="https://www.calhfa.ca.gov/homeownership/materials/files/calplus-myaccess.pdf">CalPLUS + MyAccess</a> · <a href="https://www.calhfa.ca.gov/apps/rates/">live rate sheet</a> · <a href="https://www.calhfa.ca.gov/homeownership/materials/files/tool-matrix-gov.pdf">program matrix</a></p>
-  </div>
-</section>
-
-<section id="matched">
-  <div class="sechead"><span class="secnum">04</span><h2>Matched savings — WISH &amp; MIDA</h2></div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-open">$13M funded for 2026</span><span class="chip c-cond">≤ 80% AMI</span></div>
-    <h3>WISH — Workforce Initiative Subsidy for Homeownership</h3>
-    <div class="admin">Federal Home Loan Bank of San Francisco · delivered only through participating member banks and credit unions</div>
-    <p class="get"><span class="money">$32,837</span> maximum grant at a 4-to-1 match — meaning you bring $8,209 of your own money (savings, gift funds, or sweat equity) and the program quadruples it. First-time buyers at or below 80% AMI ($97,950, one person). Homebuyer counseling required.</p>
-    <p class="catch"><b>You can't apply to FHLBank — only through a member lender that holds 2026 allocation</b>, and members run out individually even while the program is open. Ask lenders "do you hold 2026 WISH allocation?" <em>before</em> choosing one; picking the wrong lender silently forfeits $32,837. No participating member is San Diego-headquartered — the statewide members (Golden 1, Patelco, Mechanics Bank, Kinecta, KeyPoint, University CU) are the leads; neither Cal Coast nor SDCCU is on the 2026 list. There's a retention period with repayment rules if you sell or refinance early. Member enrollment window runs through 3/12/2027.</p>
-    <p class="src">Sources: <a href="https://www.fhlbsf.com/products/community-programs-grants/wish/">FHLBank SF — WISH</a> · <a href="https://www.fhlbsf.com/products/community-programs-grants/wish/wish-participation">participating members</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-watch">Round 2 pending</span><span class="chip c-cond">80–140% AMI</span></div>
-    <h3>MIDA — Middle-Income Downpayment Assistance</h3>
-    <div class="admin">Federal Home Loan Bank of San Francisco · same member-bank delivery as WISH</div>
-    <p class="get">Up to <span class="money">$40,000</span> grant against a $10,000 minimum contribution of your own, for incomes 80.01%–140% AMI — the WISH sibling for people above the $97,950 line.</p>
-    <p class="catch">Round 1's $8M for 2026 is <b>exhausted</b> — FHLBank is "no longer accepting new requests." A second $5M round "will launch soon," undated. The move: get on a member lender's list now so you're queued when it opens.</p>
-    <p class="src">Source: <a href="https://www.fhlbsf.com/products/community-programs-grants/middle-income-downpayment-assistance/">FHLBank SF — MIDA</a></p>
-  </div>
-</section>
-
-<section id="naca">
-  <div class="sechead"><span class="secnum">05</span><h2>NACA — the no-down-payment mortgage</h2></div>
-  <div class="prog">
-    <div class="chips"><span class="chip c-open">Open now</span></div>
-    <h3>NACA "Best in America" Mortgage</h3>
-    <div class="admin">Neighborhood Assistance Corporation of America · nonprofit · no San Diego office (remote counseling, or Hawthorne / Upland / Sacramento)</div>
-    <p class="get">No down payment, no closing costs, no fees, no PMI, and a below-market rate — <span class="money">5.75%</span> 30-year for "Priority Members" as of 8/17/2026 (the rate sheet is dated daily). A single school-district salary is below the San Diego MSA median of $130,900, which makes you a Priority Member — the favorable rate and the wider purchase geography.</p>
-    <p class="catch"><b>The real trade-off:</b> NACA is not on SDHC's participating-lender list, and SDHC requires its lenders — so going NACA <b>forecloses the $50,000 SDHC Middle-Income package</b>. That's the decision, not the volunteer requirement. Also: your purchase price is capped by NACA's own affordability math (which binds hard on one income in San Diego), and the advertised "21 days to close" counts from contract, not from starting the counseling pipeline, which has no published duration.</p>
-    <p class="src">Sources: <a href="https://www.naca.com/purchase/">NACA purchase program</a> · <a href="https://www.naca.com/area-eligibility/">area eligibility</a></p>
-  </div>
+<section id="beforesigning">
+  <div class="sechead"><span class="secnum">04</span><h2>Before signing anything</h2></div>
+  <ol class="seq">
+    <li><b>Decide the agent-rebate question first — it's irreversible.</b> The CSEA / Union Plus rebate (~<span class="money">$2,500</span> at this price band, paid as a check after closing) requires <a href="https://www.unionplus.org/benefits/home/real-estate-rewards">registering with the program</a> <em>before</em> signing with any agent; sign first and it's gone for good. It requires their network agent, and it can't combine with Homes for Heroes — one lane or the other, decided before the first agent conversation.</li>
+    <li><b>Geocode your current address once</b> at the <a href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">FFIEC map</a> — two minutes. If it sits in a majority-minority census tract, <a href="https://www.usbank.com/home-loans/mortgage/access-home-loan.html">U.S. Bank's Access Loan</a> ($5,000 credit + up to $12,500 deferred + they pay the mortgage insurance) qualifies on where you live <em>now</em> and works nearly anywhere you buy. If not, cross it off.</li>
+    <li><b>Get the education certificates early</b> — eHome for CalHFA, SDHC's course if the County program is in play. Certificates in hand are what make the first-come deed-restricted listings winnable.</li>
+    <li><b>Never let a rebate or a bank grant pick the lender.</b> <a href="#lender">Section 01</a>'s answers outrank every incentive below them.</li>
+  </ol>
 </section>
 
 <section id="banks">
-  <div class="sechead"><span class="secnum">06</span><h2>Bank grants tied to where you buy (or where you live now)</h2></div>
-  <p class="secnote">These exist because banks have federal reinvestment obligations in specific census tracts. Eligibility is address-by-address — run the checkers per candidate property. All of them require getting your mortgage from that bank, so the grant is only a win if the loan terms are also competitive.</p>
-
+  <div class="sechead"><span class="secnum">05</span><h2>Bank grants — check per address, take at most one</h2></div>
+  <p class="secnote">Each requires that bank's mortgage, so taking one usually means giving up the WISH/CalHFA lender — a trade that loses five figures. These matter mainly if section 01 comes up empty or a candidate address happens to hit.</p>
   <div class="prog">
-    <div class="chips"><span class="chip c-open">SD county eligible</span></div>
-    <h3>Bank of America — America's Home Grant</h3>
-    <p class="get"><span class="money">$7,500</span> lender credit toward closing costs (title, recording, rate buydown). No first-time requirement, no education requirement. San Diego County is in the footprint.</p>
-    <p class="catch">An unpublished income cap applies — BofA prints no number anywhere, so ask a loan officer for the San Diego figure before counting on it. Don't confuse this with BofA's separate $10,000 "Down Payment Grant" — that one is Bay Area counties only, no matter what the listicles say. Check any specific address in <a href="https://promotions.bankofamerica.com/homeloans/downpaymentcenter">BofA's Down Payment Center</a>.</p>
-    <p class="src">Source: <a href="https://promotions.bankofamerica.com/homeloans/downpaymentcenter">BofA Down Payment Center</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-cond">Tract-dependent</span></div>
-    <h3>Chase Homebuyer Grant</h3>
-    <p class="get"><span class="money">$5,000</span> in eligible San Diego census tracts (City Heights addresses qualify, for example). No income limit, no first-time requirement. Applied to rate buydown first, then fees, then down payment.</p>
-    <p class="catch">Eligibility is per-address, not per-neighborhood — run each candidate through <a href="https://www.chase.com/personal/mortgage/calculators-resources/homebuyer-assistance">Chase's finder</a>. Know that the finder is a third-party widget Chase itself disclaims, and it is <em>not</em> a complete list of assistance programs — it missed every CalHFA, SDHC, and GSFA program when tested. Use it for the Chase grant only.</p>
-    <p class="src">Sources: <a href="https://www.chase.com/personal/mortgage/education/financing-a-home/chase-homebuyer-grant">Chase Homebuyer Grant</a> · <a href="https://www.chase.com/personal/mortgage/calculators-resources/homebuyer-assistance">address checker</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-cond">Two income tiers</span></div>
-    <h3>Wells Fargo — Homebuyer Access Grant (+ closing credit)</h3>
-    <p class="get"><span class="money">$10,000</span> toward down payment (income up to $392,700), plus a <span class="money">$5,000</span> closing-cost credit <b>only if</b> income is at or below $104,720 — two separate income caps, not one.</p>
-    <p class="catch">Fixed-rate conventional loans only — no FHA, which is often the cheaper first-time path, so price the whole loan, not the grant. Eligibility can be satisfied by <em>either</em> your current address or the property being in an eligible area. The grant is taxable (1099-MISC) and Wells Fargo's own footnote warns it can affect income-based programs — including income-driven student-loan repayment, which is a real consideration on a school salary.</p>
-    <p class="src">Sources: <a href="https://www.wellsfargo.com/mortgage/buying-a-house/affordable-options/">Wells Fargo affordable options</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-cond">Gated on current address</span></div>
-    <h3>U.S. Bank — Access Home Loan</h3>
-    <p class="get"><span class="money">$5,000</span> non-repayable credit + up to <span class="money">$12,500</span> deferred (repayable) assistance + U.S. Bank pays the mortgage insurance.</p>
-    <p class="catch">The gate runs backwards from every other program: your <b>current residence</b> must be in a majority-minority census tract in the San Diego area — the home you buy can be almost anywhere. Two-minute check: geocode your current address at the <a href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">FFIEC map</a>; if the tract is under 50% minority population, this program is off the table and no application effort changes that. Don't count the $12,500 as free money in comparisons — it's a lien due when you sell or refinance. 640 credit, 43% DTI ceiling, $1,000 minimum of your own, education course.</p>
-    <p class="src">Sources: <a href="https://www.usbank.com/home-loans/mortgage/access-home-loan.html">U.S. Bank Access Home Loan</a> · <a href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">FFIEC geocoder</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-cond">Likely, confirm</span></div>
-    <h3>Citi — Lender Paid Assistance</h3>
-    <p class="get"><span class="money">$7,500</span> non-repayable credit toward closing costs, potentially the largest closing credit here. Works with any loan type including FHA. Requires income under 120% of area median <em>or</em> a property in a low-to-moderate-income tract, plus a course from a Citi-approved counseling agency.</p>
-    <p class="catch">Available in Citi "assessment areas" — defined by branch presence. San Diego has six Citibank branches, so it's likely in-footprint, but that final yes/no needs one phone call. Can't be combined with any other Citi incentive (including their depositor rate discounts) — ask which is worth more.</p>
-    <p class="src">Sources: <a href="https://www.citi.com/mortgage/lender-paid-assistance">Citi Lender Paid Assistance</a> · <a href="https://www.citi.com/mortgage/community-lending-homerun">Citi HomeRun (3% down, no MI)</a></p>
+    <p class="body-p"><b>Bank of America — America's Home Grant:</b> <span class="money">$7,500</span> toward closing costs or rate buydown, county-wide, no first-time requirement — <a href="https://promotions.bankofamerica.com/homeloans/downpaymentcenter">checker</a>. <b>Chase Homebuyer Grant:</b> <span class="money">$5,000</span> in eligible tracts (City Heights-type areas qualify), applied to rate buydown first — <a href="https://www.chase.com/personal/mortgage/calculators-resources/homebuyer-assistance">checker</a>. <b>Wells Fargo:</b> <span class="money">$15,000</span> total at this income ($10,000 down payment + $5,000 closing credit), and your current address can satisfy the location test — but fixed-rate conventional only (no FHA, so it forfeits the CalHFA low-income route) and it's the taxable one from <a href="#afford">section 02</a> — <a href="https://www.wellsfargo.com/mortgage/buying-a-house/affordable-options/">details</a>. <b>Citi:</b> <span class="money">$7,500</span> closing credit, likely available in San Diego (branch-area rule) — confirm with a Citi loan officer, starting from <a href="https://www.citi.com/mortgage/lender-paid-assistance">their program page</a>. <b>U.S. Bank:</b> the geocode check in <a href="#beforesigning">section 04</a>.</p>
   </div>
 </section>
 
-<section id="outside">
-  <div class="sechead"><span class="secnum">07</span><h2>Only if you buy outside city limits</h2></div>
-  <p class="secnote">These are real and mostly funded — and unavailable inside the City of San Diego. They're here because SDHC administers several of them from the same web page as the city programs, and misreading a county row as a city option is the easiest mistake on that page.</p>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-geo">Not city of SD</span><span class="chip c-open">Funded</span></div>
-    <h3>County of San Diego DCCA — the 22% second</h3>
-    <p class="get">Up to <span class="money">22%</span> of purchase price as a deferred loan (3% simple) + 4%/$10,000 closing grant, price cap $743,000, income ≤ 80% AMI. The moderate tier (80–120% AMI) is 17% with no grant. If you'd consider La Mesa, Lemon Grove, Santee, Poway, Vista, or the unincorporated county, this is the strongest deferred loan in the region.</p>
-    <p class="catch">Repayment triggers include one that surprises people: paying off your first mortgage early calls the whole loan due. Tenant-occupied properties are ineligible at offer time, no exceptions; termite clearance can't be waived; pre-1979 homes need lead clearance before close (confirm those last three with SDHC — sourced from a guidelines PDF). The two tiers cover different city lists — check yours.</p>
-    <p class="src">Sources: <a href="https://www.sandiegocounty.gov/content/sdc/sdhcd/home-buyers-owners/payment-assistance.html">County DCCA</a> · <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">SDHC status page</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-geo">Chula Vista</span><span class="chip c-open">Funded</span></div>
-    <h3>Chula Vista First-Time Homebuyer Program</h3>
-    <p class="get">Up to <span class="money">$120,000</span> (22% of price) deferred at 3% simple — the biggest cash-at-closing figure in the region. Income ≤ 80% AMI, price cap $807,500.</p>
-    <p class="catch">Throughput is tiny — roughly 15 families served total (with El Cajon) since 2022, so "Funds Available" doesn't mean fast or likely. The full amount accrues interest for up to 30 years; model the payoff before celebrating the headline number.</p>
-    <p class="src">Source: <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">SDHC (administers for Chula Vista)</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-geo">Other cities</span><span class="chip c-watch">Call to confirm</span></div>
-    <h3>Escondido HELP · El Cajon "American Dream" · Oceanside · National City</h3>
-    <p class="get">Escondido: ~5% loan (you must add 1% of your own) — new fiscal-year funding unconfirmed, (760) 839-4841. El Cajon: shared-appreciation loan with <b>conflicting published caps</b> ($150k/$100k vs $100k/$50k — assume the lower until SDHC confirms, (619) 578-7302). Oceanside and National City: program pages are behind bot-walls; nothing about current terms could be verified by anyone. Treat all four as phone calls, not plans.</p>
-    <p class="catch">On any shared-appreciation loan ("no interest!"): you repay a share of your home's price growth instead. In a rising market that routinely costs more than a 3%-simple loan of the same size. Get the equity-share formula in writing before comparing.</p>
-    <p class="src">Sources: <a href="https://www.escondido.gov/222/HOME-Program-Overview">Escondido HOME</a> · <a href="https://www.elcajon.gov/your-government/departments/community-development/housing-division/homebuyer-assistance-programs">El Cajon housing division</a></p>
-  </div>
-</section>
-
-<section id="watch">
-  <div class="sechead"><span class="secnum">08</span><h2>Watch list — real, but nothing to get today</h2></div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-watch">Portal closed</span></div>
-    <h3>CalHFA Dream For All (the 20% shared-appreciation loan)</h3>
-    <p class="get">Up to 20% of price capped at $150,000 — but the application portal is closed ("the portal is closed," per CalHFA's own FAQ), the waitlist takes no newcomers, and the May 2026 voucher release went to people who had already applied.</p>
-    <p class="catch">Two things decide whether to ever track this again. First: it requires being a <b>first-generation</b> buyer — your parents can never have owned a home (or you spent time in foster care). Settle that question once; if it fails, drop this program permanently. Second: it's a randomized lottery, and repayment is the loan <em>plus 20% of your home's appreciation</em> — in San Diego that can be the most expensive "assistance" on this page. Ignore any 2026-dated article describing it in present tense; those were written during the Feb–Mar window.</p>
-    <p class="src">Source: <a href="https://www.calhfa.ca.gov/dream/">CalHFA Dream For All</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-watch">Unfunded</span></div>
-    <h3>SDHC Low-Income First-Time Homebuyer loan (the 17% / $125,000 second)</h3>
-    <p class="get">The richest in-city program when alive — 17% of price up to $125,000 deferred at 3% simple, plus a $10,000 grant, for incomes under 80% AMI. Status today, verbatim from SDHC's page: <b>"No Funding Available."</b> No waitlist, no reopening date.</p>
-    <p class="catch">Its full terms are still published right next to the funding flag, which is exactly how buyers (and some agents) come away believing it's live. Ask SDHC to notify you if it refunds; spend zero effort otherwise.</p>
-    <p class="src">Source: <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">SDHC funding-status page</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-watch">Allocation dry</span></div>
-    <h3>Mortgage Credit Certificates (MCC) — both doors closed</h3>
-    <p class="get">A federal tax credit worth 20% of your mortgage interest every year — roughly $8,900 in year one on a typical San Diego loan, <em>uncapped</em> (the $2,000 IRS cap only applies to rates above 20%). Which is why it's worth watching: GSFA's program has been "Fully Allocated" since January 2025, and the old regional MCC's website is literally a parked domain.</p>
-    <p class="catch">If a lender promises you an MCC, make them name the issuer and produce an open allocation in writing. If it ever reopens: it's only worth your actual federal tax liability, and selling within 9 years can claw some back.</p>
-    <p class="src">Sources: <a href="https://gsfahome.org/programs/mcc.shtml">GSFA MCC status</a> · <a href="https://www.law.cornell.edu/uscode/text/26/25">26 USC §25 (the 20% cap rule)</a></p>
-  </div>
-
-  <div class="prog">
-    <div class="chips"><span class="chip c-watch">Background</span></div>
-    <h3>Habitat for Humanity San Diego · HUD Good Neighbor Next Door · Prop 37</h3>
-    <p class="get">All real, none actionable. <b>Habitat</b>: income $61,250–$97,950, affordable mortgage at ~30% of income — but "No homeownership orientations are scheduled at this time," 250 personal sweat-equity hours, and builds currently skew to National City. <b>Good Neighbor Next Door</b>: 50% off HUD homes for teachers — but you must teach in the home's locality, classified staff don't qualify, and San Diego inventory rounds to zero (checks returned no properties statewide). <b>Prop 37</b> (Nov 2026 ballot): would create 17% state seconds — for <em>newly constructed</em> homes only, which mostly aren't where first-time buyers shop, and nothing before 2027 even if it passes.</p>
-    <p class="src">Sources: <a href="https://www.sandiegohabitat.org/what-we-do/homeownership/">Habitat SD</a> · <a href="https://www.hud.gov/helping-americans/good-neighbor">HUD GNND</a> · <a href="https://www.hudhomestore.gov/">HUD Homestore</a> · <a href="https://lao.ca.gov/BallotAnalysis/Proposition?number=37&year=2026">LAO Prop 37 analysis</a></p>
-  </div>
-</section>
-
-<section id="dead" class="kill">
-  <div class="sechead"><span class="secnum">09</span><h2>Dead, defunct, or bait</h2></div>
-  <p class="secnote">Everything below still ranks in search results, gets quoted by agents, or appears in bank tools. None of it will put a dollar in your hands.</p>
-
-  <div class="prog">
-    <h3>CalHFA "School Teacher and Employee" program (STEAP) / Extra Credit Teacher program</h3>
-    <p class="catch">Discontinued effective <b>March 2, 2020</b> — CalHFA's own Program Bulletin #2020-01 says so in writing, and the program page is a 404 on CalHFA's server. It's still the top search result for "California teacher home buying program," with 2026-dated blogs describing it as live. There is no CalHFA educator benefit today, for teachers or classified staff — school employees get exactly what every other first-time buyer gets. Any lender who pitches STEAP is reading SEO spam; treat the rest of their program list accordingly.</p>
-    <p class="src">Source: <a href="https://www.calhfa.ca.gov/homeownership/bulletins/2020/2020-01.pdf">CalHFA Bulletin #2020-01 (the discontinuation notice)</a> · <a href="https://www.calhfa.ca.gov/homebuyer/programs/index.htm">current program list</a></p>
-  </div>
-
-  <div class="prog">
-    <h3>CalSTRS Home Loan Program · CalPERS Member Home Loan</h3>
-    <p class="catch">Dead since 2011–2012 and December 2010 respectively, per both systems' own publications. CalPERS explicitly warns that companies advertising "CalPERS home loans" are unaffiliated marketers — and school employees are their target audience.</p>
-    <p class="src">Sources: <a href="http://www.calstrs.com/home-loan-program-faq">CalSTRS FAQ</a> · <a href="https://news.calpers.ca.gov/what-happened-to-the-calpers-member-home-loan-program/">CalPERS newsroom</a></p>
-  </div>
-
-  <div class="prog">
-    <h3>Landed (the educator down-payment company)</h3>
-    <p class="catch">Direct-to-consumer business discontinued, down-payment program "on pause until further notice" per Landed's own page. It now only serves employer partners, and SDUSD isn't one.</p>
-    <p class="src">Source: <a href="https://landed.com/landed-management-company">Landed</a></p>
-  </div>
-
-  <div class="prog">
-    <h3><span class="keep">"</span>Teacher Next Door<span class="keep">" (teachernextdoor.us)</span></h3>
-    <p class="catch">A private real-estate brokerage, not a government program. Its advertised "grants up to $9,000" come with its own disclaimer that amounts are estimates that may be "limited, restricted, or unavailable," and no funding source is named anywhere on the site. What you actually get is a buyer's agent you didn't choose. The government programs it leans on are the dead ones above.</p>
-    <p class="src">Source: <a href="https://www.teachernextdoor.us/California-Info">their own California page</a></p>
-  </div>
-
-  <div class="prog">
-    <h3>San Diego Foundation "Access Granted" ($40,000 grant)</h3>
-    <p class="catch">"At this time, this program has run out of funding" — LISC's own page. Notable because <b>Bank of America's Down Payment Center still lists it with no caveat</b>. Rule of thumb: trust the administering organization, never a bank tool or aggregator. Ask the Urban League to flag you if it refunds.</p>
-    <p class="src">Source: <a href="https://www.lisc.org/san-diego/homebuyers/sdf-access-granted-homebuyer-program/program-guidelines/">LISC program guidelines</a></p>
-  </div>
-
-  <div class="prog">
-    <h3>SDUSD employee housing (University Heights, etc.)</h3>
-    <p class="catch">Real, big (~2,300+ units planned), and <b>rental only</b> — nothing is for sale to employees, nothing is built, and occupancy is years out. The January 2026 board action authorized negotiations, not construction. Headlines about it read like homebuying help for teachers; it isn't.</p>
-    <p class="src">Sources: <a href="https://www.sandiegounified.org/about/newscenter/all_news/board_advances_2_affordable_housing_projects">SDUSD newsroom</a> · <a href="https://voiceofsandiego.org/2026/01/26/san-diego-unified-goes-big-on-educator-workforce-housing/">Voice of San Diego</a></p>
-  </div>
-
-  <div class="prog">
-    <h3><span class="keep">"</span>Grants for women homebuyers<span class="keep">"</span></h3>
-    <p class="catch">The category doesn't exist. Government assistance can't be sex-restricted (Fair Housing Act), and no San Diego nonprofit offers a women-only purchase grant — the pages that rank for this phrase are lead-generation funnels for mortgage brokers. The characteristics that actually carry money here: income relative to $97,950, household size, first-time status, and address. Those are the levers; spend the search time there.</p>
-    <p class="src">Checked against: <a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">SDHC</a> · <a href="https://www.sdfoundation.org/news-events/sdf-news/first-time-homebuyer-programs-for-low-to-middle-income-san-diegans/">San Diego Foundation's own program roundup</a></p>
-  </div>
-
-  <div class="prog">
-    <h3>Also gone or not-for-you</h3>
-    <p class="catch"><b>San Diego Community Land Trust</b> — defunct; domain expired and in redemption. <b>UCSD Mortgage Origination Program</b> — UC ladder-rank faculty only. <b>BofA $10,000 Down Payment Grant</b> — Bay Area counties only. <b>County "Assist-to-Own"</b> — doesn't exist on the County's site. <b>SDEA / CFT member housing benefits</b> — none exist (SDEA matters only as your path to CTA membership). <b>CalVet</b> — veterans only, and its site blocks all verification; if applicable, call (866) 653-2510.</p>
-  </div>
-</section>
-
-<section id="plan">
-  <div class="sechead"><span class="secnum">10</span><h2>Order of operations</h2></div>
-  <ol class="seq">
-    <li><b>Pin down exact gross income</b> against the $97,950 line — and ask SDHC which year's AMI chart lenders are currently applying, since SDHC's own pages disagree. This one number routes everything else.</li>
-    <li><b>If you're a credentialed teacher:</b> check your school's address against the <a href="https://www.sandiego.gov/citycouncil/cd5/communities">Council District 5 map</a> and call the Urban League about H.O.P.E. today — (619) 266-6237. It's first-come and possibly half spent. <b>Classified staff:</b> skip H.O.P.E.; your calls are a GSFA Platinum lender, the Union Plus registration decision, and — if you're under the income line — WISH allocation.</li>
-    <li><b>Before talking to any agent:</b> decide on one rebate lane (Union Plus requires registering first; it and Homes for Heroes can't stack).</li>
-    <li><b>Before picking a lender:</b> if under 80% AMI, ask who holds 2026 WISH allocation. Cross-reference SDHC's participating-lender list, H.O.P.E.'s lender list, and CalHFA-approved officers — the lender who can originate your whole stack is the right one. This is also where NACA is decided: its terms are excellent, but it forecloses the SDHC package.</li>
-    <li><b>Start the education requirements early</b> — eHome ($100) for anything CalHFA; SDHC's course + counseling for SDHC programs. Certificates in hand make you fast, and the deed-restricted units go to whoever's fast.</li>
-    <li><b>Per candidate property:</b> run the address through the <a href="https://geomap.ffiec.gov/FFIECGeocMap/GeocodeMap1.aspx">FFIEC geocoder</a> (also geocode your current address once, for U.S. Bank), <a href="https://promotions.bankofamerica.com/homeloans/downpaymentcenter">BofA's checker</a>, and <a href="https://www.chase.com/personal/mortgage/calculators-resources/homebuyer-assistance">Chase's finder</a>.</li>
-    <li><b>Decide the mutual exclusions on paper, not vibes:</b> NACA vs. SDHC package · deed-restricted unit vs. Middle-Income loan · one agent-rebate program · Access rate premium vs. plain CalHFA. Run the numbers on each before choosing.</li>
-  </ol>
-  <div class="phones">
-    <h4>The call-first list</h4>
-    <ul>
-      <li>SDHC homeownership — <span class="num">(619) 578-7788</span> · homeownership@sdhc.org — Middle-Income remaining funds, which AMI chart, term conflicts</li>
-      <li>Urban League of San Diego County — <span class="num">(619) 266-6237</span> · housing@sdul.org — H.O.P.E. funding status, classified-staff eligibility</li>
-      <li>FHLBank member lenders — "Do you hold 2026 WISH allocation?" / "When does MIDA round 2 open?"</li>
-      <li>GSFA participating lender — Platinum Select loan types after Aug 31</li>
-      <li>SDHC for El Cajon — <span class="num">(619) 578-7302</span> · fthb@sdhc.org — which loan caps are current</li>
-    </ul>
+<section id="notforyou">
+  <div class="sechead"><span class="secnum">06</span><h2>Not for you, not fundable, or not real</h2></div>
+  <p class="secnote">Everything here still shows up in searches, agent conversations, and bank tools.</p>
+  <div class="deadlist">
+    <p><b>Real programs that don't fit this situation:</b> <b>H.O.P.E.</b> ($40k educator grant) requires a teaching credential and a classroom in one specific city council district — classified staff are excluded (<a href="https://www.lisc.org/san-diego/homebuyers/hope/program-guidelines/">guidelines</a>). <b>SDHC Middle-Income</b> ($40k loan + $10k grant) starts at an income floor near the 80%-AMI line; SDHC's program page and AMI chart disagree by about $5,000 on where exactly — if income is anywhere near the line, one call settles it, (619) 578-7788 (<a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/middleincome/">program page</a>); otherwise skip. <b>MIDA</b> starts above 80% AMI. The city's <b>Low-Income loan</b> (17%/$125k + $10k — the richest in-city program when funded) is flatly "No Funding Available" with no waitlist; ask SDHC to flag you if it refunds (<a href="https://sdhc.org/housing-opportunities/first-time-homebuyers/">status page</a>). <b>Dream For All</b>: portal closed, and it requires first-generation status — parents who never owned — plus a lottery (<a href="https://www.calhfa.ca.gov/dream/">CalHFA</a>). <b>Mortgage Credit Certificates</b>: no issuer has allocation (dry since 1/2025) — if a lender promises one, ask for the issuer and open allocation in writing (<a href="https://gsfahome.org/programs/mcc.shtml">GSFA status</a>). <b>Habitat</b>: no orientations currently scheduled, and its income floor is $61,250. <b>Good Neighbor Next Door</b>: teachers only, near-zero inventory. <b>Prop 37</b> (Nov ballot): new-construction only, 2027 at the earliest. <b>CalVet</b>: veterans.</p>
+    <p><b>Dead or marketing:</b> <s>CalHFA teacher programs (STEAP / Extra Credit)</s> — discontinued March 2020 by <a href="https://www.calhfa.ca.gov/homeownership/bulletins/2020/2020-01.pdf">CalHFA's own bulletin</a>, still the top search result for "California teacher home buying program"; a lender who pitches it is working from stale information. <s>CalSTRS home loans</s> (dead 2011) · <s>CalPERS home loans</s> (dead 2010, actively impersonated by marketers) · <s>Landed</s> (consumer program paused; no San Diego-area district is a partner) · <s>Teacher Next Door</s> — a private brokerage whose advertised "grants" are estimates with no named funding source (<a href="https://www.teachernextdoor.us/FAQs">their own FAQ</a>) · <s>SD Foundation "Access Granted" $40k</s> — out of funding per <a href="https://www.lisc.org/san-diego/homebuyers/sdf-access-granted-homebuyer-program/program-guidelines/">LISC</a>, though Bank of America's tool still lists it · <s>school-district employee housing projects</s> — rental, unbuilt, years away; not homebuying help · <s>San Diego Community Land Trust</s> (defunct) · <s>UCSD's mortgage program</s> (UC faculty only) · <s>BofA's $10,000 Down Payment Grant</s> (Bay Area counties only). Throughout: check the administering organization's own page before believing a bank tool or a blog.</p>
   </div>
 </section>
 
@@ -472,9 +238,8 @@ footer p { max-width: 46rem; margin-bottom: .6rem; }
 
 <footer>
   <div class="wrap">
-    <p><b>Sourcing:</b> every figure comes from the administering agency's own published pages, pulled August 17, 2026. Where an agency's documents disagree with each other, the conflict is reported instead of resolved by guessing. Where a site blocked verification entirely (Oceanside, National City, CalVet), that's stated too.</p>
-    <p>Funding statuses change without notice — several programs on this page flipped within the last year. Confirm terms with the administering agency before making decisions. This is research, not financial advice.</p>
-    <p>Verified August 17, 2026 · Rob Logic</p>
+    <p>Figures come from the administering agencies' own pages, pulled August 17, 2026. Funding statuses change without notice — confirm with the agency before acting on any of this. Not financial advice.</p>
+    <p>Rob Logic</p>
   </div>
 </footer>
 
