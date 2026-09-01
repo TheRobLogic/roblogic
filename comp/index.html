@@ -157,35 +157,46 @@ footer.page {
   font-size: 12px;
   color: var(--secondary);
 }
-@media (max-width: 639px) {
-  .scroller { overflow-x: visible; }
-  .cols { grid-template-columns: 1fr; min-width: 0; }
-  .cols > * { padding: 0; }
+@media (max-width: 679px) {
+  .cols { min-width: 0; }
+  .cols > * { padding: 0 8px; }
+  .cols > *:first-child { padding-left: 0; }
+  .cols > *:last-child { padding-right: 0; }
   .cols > *:not(:first-child) { border-left: none; }
-  .stickyhead { display: none; }
+
   .products { padding-top: 4px; }
-  .product { padding: 18px 0; }
-  .products .cols > *:not(:first-child) { border-top: 1px solid var(--hairline); }
-  .lens .cols > * + * { border-top: 1px solid var(--hairline); padding-top: 16px; margin-top: 8px; }
-  .lens .cell::before, .specrow .specval::before {
+  .products.cols { grid-template-columns: 1fr; }
+  .products.cols > * { padding: 18px 0; }
+  .products.cols > *:not(:first-child) { border-top: 1px solid var(--hairline); }
+
+  .stickyhead .cols { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .stickyhead .col { padding-top: 8px; padding-bottom: 8px; }
+
+  .lens .scroller {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .lens .cols { grid-template-columns: repeat(3, 78vw); gap: 16px; }
+  .lens .cell { scroll-snap-align: start; padding: 0; border-left: none; }
+  .lens .cell::before {
     display: block;
     font-size: 11px;
     font-weight: 600;
     color: var(--secondary);
     text-transform: uppercase;
     letter-spacing: .06em;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
   .lens .cols > :nth-child(1)::before { content: "MacBook Neo"; }
   .lens .cols > :nth-child(2)::before { content: "iPad Air 13″"; }
   .lens .cols > :nth-child(3)::before { content: "iPad Pro 13″"; }
-  .specrow .cols > :nth-child(1)::before { content: "Neo"; }
-  .specrow .cols > :nth-child(2)::before { content: "Air 13″"; }
-  .specrow .cols > :nth-child(3)::before { content: "Pro 13″"; }
-  .specrow .cols > * + * { margin-top: 12px; }
-  .speclabel { margin-bottom: 12px; }
-  .fitrow { height: auto; margin-bottom: 12px; }
-  .fitrow:empty { display: none; }
+
+  .specrow .cols { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .specval { font-size: 13px; }
+  .specval a { display: inline-block; padding: 6px 0; }
+
+  a.pill { padding: 14px 22px; }
 }
 </style>
 </head>
