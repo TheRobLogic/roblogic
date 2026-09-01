@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neo, Air, or Pro</title>
+<meta name="description" content="MacBook Neo, iPad Air 13″, and iPad Pro 13″ compared for school work, working at a school, and media at home.">
+<meta property="og:title" content="Neo, Air, or Pro">
+<meta property="og:description" content="MacBook Neo, iPad Air 13″, and iPad Pro 13″ compared for school work, working at a school, and media at home.">
+<meta property="og:url" content="https://roblogic.org/comp/">
+<meta property="og:type" content="website">
+<link rel="icon" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/favicon-180x180.png">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --text: #1d1d1f;
+  --secondary: #6e6e73;
+  --hairline: #d2d2d7;
+  --link: #0066cc;
+  --bg: #ffffff;
+}
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+header.page {
+  padding: clamp(48px, 8vw, 88px) 0 clamp(28px, 4vw, 44px);
+  text-align: center;
+}
+.eyebrow {
+  font-size: 14px;
+  color: var(--secondary);
+  letter-spacing: .01em;
+  margin-bottom: 14px;
+}
+h1 {
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1.05;
+}
+.scroller { overflow-x: auto; }
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  min-width: 620px;
+}
+.cols > * { padding: 0 clamp(14px, 2.5vw, 28px); }
+.cols > *:first-child { padding-left: 0; }
+.cols > *:last-child { padding-right: 0; }
+.cols > *:not(:first-child) { border-left: 1px solid var(--hairline); }
+.products { padding: 24px 0 8px; }
+.product { text-align: center; padding-bottom: 28px; }
+.product h2 {
+  font-size: clamp(20px, 2.6vw, 26px);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.product .kind {
+  font-size: 14px;
+  color: var(--secondary);
+  margin-top: 6px;
+}
+.product .price {
+  font-size: 15px;
+  margin-top: 14px;
+}
+.product .go { margin-top: 14px; }
+a.pill {
+  display: inline-block;
+  background: var(--link);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 7px 16px;
+  border-radius: 980px;
+}
+a.pill:hover { background: #0055b3; }
+.stickyhead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+.stickyhead .cols { min-width: 0; }
+.stickyhead .col {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.stickyhead .name {
+  font-size: clamp(12px, 1.8vw, 15px);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.stickyhead .p {
+  font-size: clamp(10px, 1.5vw, 12px);
+  color: var(--secondary);
+  margin-top: 1px;
+}
+section.lens { padding: clamp(32px, 5vw, 52px) 0; border-top: 1px solid var(--hairline); }
+section.lens:first-of-type { border-top: none; }
+section.lens h3 {
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+.cell { font-size: 15px; line-height: 1.5; }
+.cell p { margin-bottom: 10px; }
+.fitrow { height: 22px; margin-bottom: 12px; }
+.fit {
+  display: inline-block;
+  background: var(--text);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 980px;
+}
+section.specs { border-top: 1px solid var(--hairline); padding: clamp(32px, 5vw, 52px) 0 24px; }
+section.specs h3 {
+  font-size: clamp(24px, 3.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+.specrow { border-top: 1px solid var(--hairline); padding: 14px 0 18px; }
+.specrow:first-of-type { border-top: none; padding-top: 0; }
+.speclabel {
+  font-size: 12px;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 8px;
+}
+.specval { font-size: 15px; line-height: 1.45; }
+.specval a { color: var(--link); text-decoration: none; }
+.specval a:hover { text-decoration: underline; }
+footer.page {
+  border-top: 1px solid var(--hairline);
+  padding: 24px 0 56px;
+  font-size: 12px;
+  color: var(--secondary);
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="page">
+    <p class="eyebrow">Apple Certified Refurbished · September 2026</p>
+    <h1>Neo, Air, or Pro</h1>
+  </header>
+
+  <div class="scroller">
+  <div class="products cols">
+    <div class="product">
+      <h2>MacBook Neo</h2>
+      <p class="kind">13″ laptop · A18 Pro · macOS</p>
+      <p class="price">From $599 refurbished</p>
+      <p class="go"><a class="pill" href="https://www.apple.com/shop/refurbished/mac/macbook-neo">View at Apple</a></p>
+    </div>
+    <div class="product">
+      <h2>iPad Air 13″</h2>
+      <p class="kind">13″ tablet · M3 · iPadOS</p>
+      <p class="price">From $759 refurbished</p>
+      <p class="go"><a class="pill" href="https://www.apple.com/shop/refurbished/ipad">View at Apple</a></p>
+    </div>
+    <div class="product">
+      <h2>iPad Pro 13″</h2>
+      <p class="kind">13″ tablet · M4 · iPadOS</p>
+      <p class="price">From $1,169 refurbished</p>
+      <p class="go"><a class="pill" href="https://www.apple.com/shop/refurbished/ipad">View at Apple</a></p>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<div class="stickyhead">
+  <div class="wrap">
+    <div class="cols">
+      <div class="col"><p class="name">MacBook Neo</p><p class="p">from $599</p></div>
+      <div class="col"><p class="name">iPad Air 13″</p><p class="p">from $759</p></div>
+      <div class="col"><p class="name">iPad Pro 13″</p><p class="p">from $1,169</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="lens">
+    <h3>School work</h3>
+    <div class="scroller">
+    <div class="cols">
+      <div class="cell">
+        <p class="fitrow"><span class="fit">Best fit</span></p>
+        <p>Full desktop browser. Every school portal works.</p>
+        <p>The full web versions of Docs, Sheets, and Slides.</p>
+        <p>Proctored-test software installs and runs natively.</p>
+        <p>Keyboard and trackpad built in. Nothing to add.</p>
+      </div>
+      <div class="cell">
+        <p class="fitrow"></p>
+        <p>App versions of Docs, Sheets, and Slides. Close, not identical.</p>
+        <p>Proctored tests only when the instructor enables iPad support.</p>
+        <p>Split View fits a doc and a browser side by side.</p>
+        <p>Magic Keyboard sold separately, $319.</p>
+      </div>
+      <div class="cell">
+        <p class="fitrow"></p>
+        <p>Same iPadOS software limits as the Air.</p>
+        <p>Faster chip than school work will ever use.</p>
+        <p>Storage starts at 256GB.</p>
+        <p>Magic Keyboard sold separately, $349.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="lens">
+    <h3>Working at a school</h3>
+    <div class="scroller">
+    <div class="cols">
+      <div class="cell">
+        <p class="fitrow"><span class="fit">Best fit</span></p>
+        <p>Zoom can share any single window, with presenter controls.</p>
+        <p>Drives a projector or smartboard over USB-C, with power on the second port.</p>
+        <p>Works on a lap, a podium, a classroom desk.</p>
+        <p>1080p camera, standard laptop quality.</p>
+      </div>
+      <div class="cell">
+        <p class="fitrow"></p>
+        <p>Best camera of the three. 12MP, auto-framing follows you.</p>
+        <p>Zoom screen-share is whole-screen only.</p>
+        <p>The floating keyboard wants a flat surface.</p>
+        <p>Doubles as a handheld tablet between classes.</p>
+      </div>
+      <div class="cell">
+        <p class="fitrow"></p>
+        <p>Face ID sign-in. Four speakers on calls.</p>
+        <p>Same Zoom screen-share limits as the Air.</p>
+        <p>Brightest screen for a lit classroom.</p>
+        <p>Thunderbolt port drives an external display.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="lens">
+    <h3>Media at home</h3>
+    <div class="scroller">
+    <div class="cols">
+      <div class="cell">
+        <p class="fitrow"></p>
+        <p>A laptop on the couch.</p>
+        <p>500-nit screen, dual speakers.</p>
+        <p>Fine for YouTube and streaming.</p>
+        <p>Headphone jack for late nights.</p>
+      </div>
+      <div class="cell">
+        <p class="fitrow"></p>
+        <p>Pops off the keyboard into a 1.36 lb tablet.</p>
+        <p>13″ screen at 600 nits.</p>
+        <p>Stereo speakers in landscape.</p>
+        <p>The handheld option.</p>
+      </div>
+      <div class="cell">
+        <p class="fitrow"><span class="fit">Best fit</span></p>
+        <p>OLED at 120Hz, 1,000 nits. The best screen of the three by a margin.</p>
+        <p>True blacks for movies in a dark room.</p>
+        <p>Four speakers.</p>
+        <p>Also detaches, 1.28 lb.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="specs">
+    <h3>Specs</h3>
+
+    <div class="specrow">
+      <p class="speclabel">Refurbished price</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">$599 · $679 with Touch ID</p>
+        <p class="specval">$759, 128GB</p>
+        <p class="specval">$1,169, 256GB</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Keyboard</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">Included</p>
+        <p class="specval"><a href="https://www.apple.com/shop/product/mdfw4ll/a/magic-keyboard-for-ipad-air-13%E2%80%91inch-m4-us-english-white">Magic Keyboard, $319</a></p>
+        <p class="specval"><a href="https://www.apple.com/shop/product/MWR43LL/A/magic-keyboard-for-ipad-pro-13%E2%80%91inch-m4-us-english-white">Magic Keyboard, $349</a></p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Total with keyboard</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">$599–$679</p>
+        <p class="specval">$1,078</p>
+        <p class="specval">$1,518</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Display</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">13.0″ IPS, 2408×1506, 500 nits</p>
+        <p class="specval">13″ IPS, 2732×2048, 600 nits</p>
+        <p class="specval">13″ tandem OLED, 2752×2064, 1,000 nits, 120Hz</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Chip</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">A18 Pro</p>
+        <p class="specval">Apple M3</p>
+        <p class="specval">Apple M4</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Memory</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">8GB</p>
+        <p class="specval">8GB</p>
+        <p class="specval">8GB</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Storage</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">256GB or 512GB</p>
+        <p class="specval">From 128GB</p>
+        <p class="specval">From 256GB</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Sign-in</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">Touch ID ($679 config)</p>
+        <p class="specval">Touch ID</p>
+        <p class="specval">Face ID</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Camera</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">1080p FaceTime HD</p>
+        <p class="specval">12MP Center Stage, auto-framing</p>
+        <p class="specval">12MP Center Stage, auto-framing</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Speakers</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">Two</p>
+        <p class="specval">Two</p>
+        <p class="specval">Four</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Ports</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">2× USB-C (USB 3 + USB 2), headphone jack</p>
+        <p class="specval">USB-C</p>
+        <p class="specval">USB-C (Thunderbolt)</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Battery</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">Up to 16 hr video, 11 hr web</p>
+        <p class="specval">Up to 10 hr video or web</p>
+        <p class="specval">Up to 10 hr video or web</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">Weight</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">2.7 lb</p>
+        <p class="specval">1.36 lb tablet</p>
+        <p class="specval">1.28 lb tablet</p>
+      </div></div>
+    </div>
+
+    <div class="specrow">
+      <p class="speclabel">OS</p>
+      <div class="scroller"><div class="cols">
+        <p class="specval">macOS</p>
+        <p class="specval">iPadOS</p>
+        <p class="specval">iPadOS</p>
+      </div></div>
+    </div>
+
+  </section>
+
+  <footer class="page">
+    <p>Prices: Apple Certified Refurbished, September 1, 2026.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
