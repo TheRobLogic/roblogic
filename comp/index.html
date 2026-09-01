@@ -53,8 +53,9 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   min-width: 620px;
+  --colpad: clamp(14px, 2.5vw, 28px);
 }
-.cols > * { padding: 0 clamp(14px, 2.5vw, 28px); }
+.cols > * { padding: 0 var(--colpad); }
 .cols > *:first-child { padding-left: 0; }
 .cols > *:last-child { padding-right: 0; }
 .cols > *:not(:first-child) { border-left: 1px solid var(--hairline); }
@@ -132,6 +133,22 @@ section.lens h3 {
   padding: 3px 9px;
   border-radius: 980px;
 }
+section.lens .scroller { padding: 14px; margin: -14px; }
+.cell.best { position: relative; }
+.cell.best::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 2px solid #34c759;
+  border-radius: 16px;
+  pointer-events: none;
+}
+.cols > .cell.best:first-child::after { right: calc(var(--colpad) / 2); }
+.cols > .cell.best:last-child::after { left: calc(var(--colpad) / 2); }
+.cols > .cell.best:not(:first-child):not(:last-child)::after {
+  left: calc(var(--colpad) / 2);
+  right: calc(var(--colpad) / 2);
+}
 section.specs { border-top: 1px solid var(--hairline); padding: clamp(32px, 5vw, 52px) 0 24px; }
 section.specs h3 {
   font-size: clamp(24px, 3.4vw, 32px);
@@ -197,6 +214,14 @@ footer.page {
   .specval a { display: inline-block; padding: 6px 0; }
 
   a.pill { padding: 14px 22px; }
+
+  .lens .cell.best::after { content: none; }
+  .lens .cell.best {
+    border: 2px solid #34c759;
+    border-radius: 14px;
+    padding: 16px 14px;
+    margin: 4px 0;
+  }
 }
 </style>
 </head>
@@ -250,7 +275,7 @@ footer.page {
     <h3>School work</h3>
     <div class="scroller">
     <div class="cols">
-      <div class="cell">
+      <div class="cell best">
         <p class="fitrow"><span class="fit">Best fit</span></p>
         <p>Full desktop browser. Every school portal works.</p>
         <p>The full web versions of Docs, Sheets, and Slides.</p>
@@ -279,7 +304,7 @@ footer.page {
     <h3>Working at a school</h3>
     <div class="scroller">
     <div class="cols">
-      <div class="cell">
+      <div class="cell best">
         <p class="fitrow"><span class="fit">Best fit</span></p>
         <p>Zoom can share any single window, with presenter controls.</p>
         <p>Drives a projector or smartboard over USB-C, with power on the second port.</p>
@@ -322,7 +347,7 @@ footer.page {
         <p>Stereo speakers in landscape.</p>
         <p>The handheld option.</p>
       </div>
-      <div class="cell">
+      <div class="cell best">
         <p class="fitrow"><span class="fit">Best fit</span></p>
         <p>OLED at 120Hz, 1,000 nits. The best screen of the three by a margin.</p>
         <p>True blacks for movies in a dark room.</p>
