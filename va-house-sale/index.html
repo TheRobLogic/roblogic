@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selling the Meadowview House</title>
+  <meta name="description" content="A working brief for an heir in San Diego selling an inherited house in Washington County, Virginia without traveling: who owns it, how to sign from California, taxes, how to net the most, how to vet local help, and the traps.">
+  <meta property="og:title" content="Selling the Meadowview House">
+  <meta property="og:description" content="Inherited a house in Washington County, Virginia and live in California? What to do, in what order, with the Virginia Code cited.">
+  <meta property="og:url" content="https://roblogic.org/va-house-sale/">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Public+Sans:wght@400;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><rect x='14' y='20' width='72' height='6' fill='%236e1423'/><rect x='14' y='32' width='72' height='2' fill='%236e1423'/></svg>">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --paper: #ffffff; --ink: #2b2b2b; --dim: #6b6b6b;
+      --oxblood: #6e1423; --oxblood-deep: #4d0d18;
+      --rule: #cfcfcf; --well: #f2f2f2;
+      --serif: 'Spectral', Georgia, serif; --sans: 'Public Sans', Helvetica, Arial, sans-serif; --mono: 'Spline Sans Mono', Menlo, monospace;
+    }
+    body { background: var(--paper); color: var(--ink); font-family: var(--serif); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: var(--oxblood); text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+    a:hover { color: var(--oxblood-deep); }
+    :focus-visible { outline: 2px solid var(--oxblood); outline-offset: 2px; }
+    ::selection { background: var(--oxblood); color: #fff; }
+    .frame { max-width: 1160px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem); display: grid; grid-template-columns: 250px minmax(0, 72ch); gap: clamp(1.5rem, 5vw, 4rem); }
+    @media (max-width: 900px) { .frame { grid-template-columns: minmax(0, 72ch); justify-content: center; } }
+    .rail { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 2.2rem 0; }
+    @media (max-width: 900px) { .rail { display: none; } }
+    .rail .kicker { font-family: var(--sans); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.9rem; }
+    .toc { list-style: none; }
+    .toc li { margin: 0.45rem 0; }
+    .toc a { display: flex; align-items: baseline; gap: 0.5em; text-decoration: none; color: var(--ink); font-family: var(--sans); font-size: 0.8rem; }
+    .toc .num { font-family: var(--mono); font-size: 0.7rem; color: var(--oxblood); min-width: 1.6em; }
+    .toc .leader { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-0.25em); }
+    .toc a:hover .t { color: var(--oxblood); }
+    .toc li.here a { font-weight: 700; }
+    .toc li.here .t { color: var(--oxblood); }
+    article { padding: 2.2rem 0 4rem; }
+    .stamp { font-family: var(--mono); font-size: 0.68rem; color: var(--dim); letter-spacing: 0.06em; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+    .masthead h1 { font-family: var(--sans); font-weight: 700; font-size: 0.9rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--oxblood); }
+    .masthead .subject { font-family: var(--serif); font-weight: 700; font-size: clamp(1.7rem, 4.5vw, 2.5rem); line-height: 1.15; margin: 0.7rem 0 1.4rem; letter-spacing: -0.01em; }
+    .routing { display: grid; grid-template-columns: auto 1fr; column-gap: 1.4rem; row-gap: 0.3rem; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .routing dt { font-family: var(--sans); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); align-self: baseline; padding-top: 0.35em; }
+    .double-rule { border: 0; border-top: 3px solid var(--oxblood); border-bottom: 1px solid var(--oxblood); height: 6px; margin: 0 0 2.2rem; }
+    h2 { font-family: var(--serif); font-weight: 700; font-size: 1.45rem; margin: 2.8rem 0 0.9rem; display: flex; gap: 0.75rem; align-items: baseline; scroll-margin-top: 1.5rem; }
+    h2 .n { font-family: var(--mono); font-weight: 500; font-size: 1.05rem; color: var(--oxblood); }
+    h3 { font-family: var(--sans); font-weight: 700; font-size: 0.95rem; margin: 1.8rem 0 0.6rem; display: flex; gap: 0.6rem; align-items: baseline; scroll-margin-top: 1.5rem; }
+    h3 .n { font-family: var(--mono); font-weight: 400; font-size: 0.78rem; color: var(--oxblood); }
+    p { margin: 0 0 1rem; }
+    p.lede { font-size: 1.12rem; font-weight: 300; line-height: 1.6; }
+    strong { font-weight: 600; }
+    ul.plain, ol.plain { margin: 0 0 1rem 1.2rem; }
+    ul.plain li, ol.plain li { margin-bottom: 0.4rem; }
+    ol.steps { margin: 0 0 1.2rem 1.4rem; }
+    ol.steps li { margin-bottom: 0.7rem; }
+    .callout { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 0.9rem 0.2rem 1rem; margin: 1.6rem 0; }
+    .callout .label { font-family: var(--sans); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--dim); }
+    .callout.caution { border-color: var(--oxblood); }
+    .callout.caution .label { color: var(--oxblood); }
+    .callout p { margin: 0 0 0.5rem; font-size: 0.95rem; }
+    .callout p:last-child { margin-bottom: 0; }
+    .table-scroll { overflow-x: auto; margin: 1.4rem 0; }
+    table { width: 100%; min-width: 520px; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.9rem; }
+    .table-scroll table { margin: 0; }
+    caption { caption-side: top; text-align: left; font-family: var(--sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); padding-bottom: 0.5rem; }
+    thead th { font-family: var(--sans); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: left; border-bottom: 2px solid var(--ink); padding: 0.45rem 0.7rem 0.45rem 0; }
+    tbody td { border-bottom: 1px solid var(--rule); padding: 0.55rem 0.7rem 0.55rem 0; vertical-align: top; }
+    td.num, th.num { text-align: right; font-family: var(--mono); font-size: 0.85rem; white-space: nowrap; }
+    tbody tr:last-child td { border-bottom: 1px solid var(--ink); }
+    .tag { font-family: var(--sans); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--rule); padding: 0.05rem 0.35rem; white-space: nowrap; }
+    .tag.hot { color: var(--oxblood); border-color: var(--oxblood); }
+    code { font-family: var(--mono); font-size: 0.82rem; }
+    p code, li code, td code { background: var(--well); padding: 0.1rem 0.35rem; }
+    blockquote { margin: 1.4rem 0 1.4rem 1.6rem; font-style: italic; color: #444; }
+    blockquote cite { display: block; font-style: normal; font-family: var(--sans); font-size: 0.75rem; color: var(--dim); margin-top: 0.4rem; }
+    sup a { font-family: var(--sans); font-size: 0.7em; text-decoration: none; }
+    .footnotes { margin-top: 3rem; border-top: 1px solid var(--ink); padding-top: 0.8rem; font-size: 0.82rem; color: var(--dim); }
+    .footnotes .kicker { font-family: var(--sans); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .footnotes ol { margin-left: 1.2rem; }
+    .footnotes li { margin-bottom: 0.35rem; }
+    .footnotes h4 { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 1rem 0 0.4rem; color: var(--ink); }
+    .filed { margin-top: 3rem; }
+    .filed .double-rule { margin: 0 0 0.7rem; }
+    .filed .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-family: var(--mono); font-size: 0.7rem; color: var(--dim); letter-spacing: 0.05em; }
+    @media (prefers-reduced-motion: no-preference) { .toc a .t { transition: color 0.1s linear; } html { scroll-behavior: smooth; } }
+    #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--oxblood); z-index: 10; }
+    @media print { #progress, .rail { display: none; } .frame { display: block; } article { padding-top: 0.5in; } }
+  </style>
+</head>
+<body>
+  <div id="progress" aria-hidden="true"></div>
+  <div class="frame">
+    <nav class="rail" aria-label="Contents">
+      <p class="kicker">Contents</p>
+      <ol class="toc" id="toc">
+        <li><a href="#s1"><span class="num">1.</span><span class="t">The short version</span><span class="leader"></span></a></li>
+        <li><a href="#s2"><span class="num">2.</span><span class="t">What I need from you</span><span class="leader"></span></a></li>
+        <li><a href="#s3"><span class="num">3.</span><span class="t">This week, in this order</span><span class="leader"></span></a></li>
+        <li><a href="#s4"><span class="num">4.</span><span class="t">Who owns the house right now</span><span class="leader"></span></a></li>
+        <li><a href="#s5"><span class="num">5.</span><span class="t">Signing from San Diego</span><span class="leader"></span></a></li>
+        <li><a href="#s6"><span class="num">6.</span><span class="t">The house on paper</span><span class="leader"></span></a></li>
+        <li><a href="#s7"><span class="num">7.</span><span class="t">Taxes</span><span class="leader"></span></a></li>
+        <li><a href="#s8"><span class="num">8.</span><span class="t">Getting the most money</span><span class="leader"></span></a></li>
+        <li><a href="#s9"><span class="num">9.</span><span class="t">Hiring honest help</span><span class="leader"></span></a></li>
+        <li><a href="#s10"><span class="num">10.</span><span class="t">The traps</span><span class="leader"></span></a></li>
+        <li><a href="#s11"><span class="num">11.</span><span class="t">Numbers and links</span><span class="leader"></span></a></li>
+        <li><a href="#s12"><span class="num">12.</span><span class="t">Questions for the pros</span><span class="leader"></span></a></li>
+        <li><a href="#sources"><span class="num">§</span><span class="t">Sources</span><span class="leader"></span></a></li>
+      </ol>
+    </nav>
+
+    <article>
+      <div class="stamp">
+        <span>FILE: RL-2026-VA-HOUSE</span>
+        <span>STATUS: WORKING BRIEF · REV 2026-09-08</span>
+      </div>
+
+      <header class="masthead">
+        <h1>Brief</h1>
+        <p class="subject">Selling the Meadowview house from San Diego</p>
+        <dl class="routing">
+          <dt>To</dt><dd>The heir</dd>
+          <dt>From</dt><dd>Rob Logic</dd>
+          <dt>Date</dt><dd>8 September 2026</dd>
+          <dt>Re</dt><dd>Your father's house in Meadowview, Washington County, Virginia: who owns it, how to sell it without flying out, how to keep the most of the money, and who to trust</dd>
+        </dl>
+      </header>
+      <hr class="double-rule">
+
+      <p class="lede">You can sell this house from California. If you are the only heir and there was no will, Virginia says the house already became yours the day your father died, and the paperwork that proves it costs $25 to record.<sup><a href="#fn1" id="r1">1</a></sup> You can sign the deed in front of a San Diego notary.<sup><a href="#fn7" id="r7">7</a></sup> The tax bill should be close to zero if you get one document early: an appraisal of what the house was worth on the day he died.<sup><a href="#fn20" id="r20">20</a></sup> The three things that can wreck this are a surviving spouse, selling inside one year of the death, and the wrong first phone call. Every claim here cites the Virginia Code or a federal source; nothing here is legal or tax advice, and a Virginia attorney should confirm it against the facts.</p>
+
+      <h2 id="s1"><span class="n">1.</span>The short version</h2>
+      <ol class="steps">
+        <li><strong>Answer the questions in section 2.</strong> Four of them decide the whole plan: date of death, will or no will, surviving spouse or other children, and what the deed says.</li>
+        <li><strong>Order a date-of-death appraisal before anyone cleans, repairs, or removes anything.</strong> It sets your tax basis and it cannot be reconstructed after the house changes.<sup><a href="#fn21" id="r21">21</a></sup></li>
+        <li><strong>Lock the clocks down this week</strong> (section 3): forward the mail, change the locks, call every mortgage servicer, bind vacant-house insurance, enroll in the free county recording alert.</li>
+        <li><strong>Record a List of Heirs and a Real Estate Affidavit</strong> with the Circuit Court Clerk in Abingdon by mail. No probate, no bond, no trip, if you are the sole heir with no will.<sup><a href="#fn1">1</a></sup></li>
+        <li><strong>Hire a Virginia estate and real-estate attorney in or near Abingdon</strong> (section 9). They prepare the deed and run a mail-away closing.</li>
+        <li><strong>Pick the selling channel on net proceeds,</strong> not headline price: a full listing on the regional MLS, a licensed local auction, or both in sequence. Avoid unsolicited cash offers.</li>
+        <li><strong>Close by mail-away or Virginia remote online notarization</strong>, verify the wire by phone, and file the Virginia nonresident return before the California one.</li>
+      </ol>
+
+      <div class="callout caution">
+        <p class="label">The one date that matters most</p>
+        <p>Virginia gives your father's creditors one year from his death to reach the real estate. A sale by an heir inside that year is "not valid against" those creditors, and title insurers treat it as an uninsurable gap.<sup><a href="#fn4" id="r4">4</a></sup> If the anniversary is within reach, time the closing past it. If it is not, the realistic options for a sole heir are to qualify as administrator and have the creditor picture adjudicated through a debts-and-demands proceeding, or to negotiate an indemnity or escrow holdback with the title underwriter.<sup><a href="#fn5" id="r5">5</a></sup> Find the exact date of death first.</p>
+      </div>
+
+      <h2 id="s2"><span class="n">2.</span>What I need from you</h2>
+      <p>Ranked by how much each answer changes the plan.</p>
+      <div class="table-scroll" role="region" aria-label="Table 1: facts needed" tabindex="0">
+      <table>
+        <caption>Table 1: the facts that branch the plan</caption>
+        <thead><tr><th>#</th><th>Question</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td><strong>Exact date of death.</strong></td><td>Starts the one-year creditor window, the reverse-mortgage clock, the insurance vacancy clock, and fixes the appraisal date.</td></tr>
+          <tr><td class="num">2</td><td><strong>Was there a will? Has anything been filed</strong> with the Washington County Circuit Court Clerk (will lodged, will probated, anyone qualified as executor or administrator)?</td><td>Decides who has authority to sign, whether probate tax applies, and whether the disclosure exemption applies.</td></tr>
+          <tr><td class="num">3</td><td><strong>Was he married at death? Other children,</strong> including from another marriage, adopted, or non-marital?</td><td>If a surviving spouse is the mother of all his children, Virginia gives her everything and you inherit nothing.<sup><a href="#fn2" id="r2">2</a></sup> Co-heirs all have to sign.</td></tr>
+          <tr><td class="num">4</td><td><strong>What does the recorded deed say?</strong> Sole name, "joint tenants," "with right of survivorship," life estate, transfer-on-death deed, trust?</td><td>Several of those mean the house never entered the estate at all. The county tax record shows one name, which is not proof of how title is held.</td></tr>
+          <tr><td class="num">5</td><td><strong>Any mortgage, HELOC, or reverse mortgage?</strong> Is it a HECM?</td><td>A reverse mortgage gives an heir 30 days from the lender's notice, and the notice goes to the empty house.<sup><a href="#fn30" id="r30">30</a></sup></td></tr>
+          <tr><td class="num">6</td><td><strong>Was he on Medicaid at 55 or older</strong> (nursing home, assisted living, waiver services)?</td><td>Virginia's estate-recovery rule reaches property he "had any legal title or interest" in at death, including non-probate interests.<sup><a href="#fn31" id="r31">31</a></sup> A claim can consume the equity.</td></tr>
+          <tr><td class="num">7</td><td><strong>Is homeowner's insurance in force,</strong> and when did the house actually become empty?</td><td>Virginia's regulation defines vacancy at 30 days and lets carriers exclude freeze damage after four unoccupied days.<sup><a href="#fn32" id="r32">32</a></sup></td></tr>
+          <tr><td class="num">8</td><td><strong>Has anyone lived in or used the house since the death,</strong> even rent-free? Who has keys?</td><td>Rent-free occupancy converts it to personal-use property and kills the tax loss deduction.<sup><a href="#fn22" id="r22">22</a></sup> Verbal permission to occupy forfeits Virginia's fast 14-day removal hearing.</td></tr>
+          <tr><td class="num">9</td><td><strong>Was the house ever a business?</strong> The county record shows 7 bedrooms and 4.5 baths in a 1920 farmhouse, which reads like a boarding or care home.</td><td>Changes the buyer pool, the zoning conversation, and what a buyer's lender will ask.</td></tr>
+          <tr><td class="num">10</td><td><strong>Where is the septic system, when was it last pumped,</strong> and are there any Health Department repair permits or waivers on file?</td><td>Septic is the most common rural deal-killer at the buyer's inspection, and a repair waiver dies at sale.</td></tr>
+          <tr><td class="num">11</td><td><strong>Vehicles, campers, equipment, firearms, or heating-oil tank</strong> on the property?</td><td>Personal-property tax keeps accruing on titled vehicles; tanks and firearms need their own handling.</td></tr>
+          <tr><td class="num">12</td><td><strong>Anyone local you trust</strong> to hold a key and walk through with the appraiser?</td><td>You need eyes on the house once, before anyone else goes in.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="s3"><span class="n">3.</span>This week, in this order</h2>
+      <h3><span class="n">3.1</span>Before anything touches the property</h3>
+      <ol class="plain">
+        <li><strong>Order a retrospective date-of-death appraisal</strong> from a Virginia-licensed residential appraiser, effective date set to the day he died. Keep the report permanently.</li>
+        <li><strong>Photograph and video everything,</strong> inside, outside, every outbuilding. Contents, condition, meters.</li>
+        <li><strong>Let no one in</strong> except the appraiser and a locksmith until those two are done. Do not clean out, repair, list, or sign anything.</li>
+      </ol>
+      <h3><span class="n">3.2</span>The clocks already running</h3>
+      <ol class="plain">
+        <li><strong>Forward the mail</strong> to San Diego. Change the mailing address of record with the Washington County Treasurer and Commissioner of the Revenue. The next tax bill mails to the house on November 20.</li>
+        <li><strong>Change the locks.</strong> Post no-trespassing. Give keys only against a written key receipt.</li>
+        <li><strong>Call every mortgage servicer.</strong> Ask verbatim: "Is this a HECM or reverse mortgage? Has a due-and-payable notice issued, and on what date?" Send a written successor-in-interest notice.</li>
+        <li><strong>Enroll in the county's free recording alert</strong> at virginiapropertynotification.org under your father's name, your name, and the parcel. Vacant, paid-off, inherited houses are the deed-fraud target profile.<sup><a href="#fn33" id="r33">33</a></sup></li>
+        <li><strong>Bind a vacant-dwelling policy</strong> in your name or the estate's. The existing policy's named insured is deceased and the house is vacant; assume it will not pay.</li>
+        <li><strong>Report the death</strong> to Social Security if the funeral home did not, flag the three credit bureaus, and pull identity documents out of the house. Fraudulent debt in his name becomes a creditor claim that reaches the land.</li>
+        <li><strong>Winterize before the first hard freeze.</strong> The median first 32°F freeze at the Abingdon weather station is October 20. Drain the system or keep heat on at 55°F or above; Virginia's freeze exclusion applies only when neither was done.</li>
+      </ol>
+      <h3><span class="n">3.3</span>Weeks one to three: put ownership on the record</h3>
+      <ol class="plain">
+        <li>Get certified death certificates, several.</li>
+        <li>Pull the recorded deed and read the tenancy words. The deed is behind the county's paid land-records portal, so the attorney or a title company pulls it.</li>
+        <li>Order a full title examination back at least 60 years: judgments, tax liens, survivorship language, severed mineral rights, prior deeds of gift.</li>
+        <li>If there is no will, file the List of Heirs (form CC-1611) and the Real Estate Affidavit (form CC-1612) with the Clerk. If there is a will, record the will instead. Either fixes record title, entitles you to foreclosure notice if there is a loan, and puts the true owners in the land records against deed fraud.<sup><a href="#fn1">1</a></sup></li>
+        <li>Count from the date of death to the 12-month mark and diary it.</li>
+      </ol>
+      <h3><span class="n">3.4</span>Weeks two to six: the two questions that can eat the equity</h3>
+      <ol class="plain">
+        <li><strong>Resolve Medicaid.</strong> Request a written claim determination from Virginia DMAS before you contract with a buyer.</li>
+        <li><strong>Decide the selling capacity:</strong> you as heir in your own name, or the estate through a qualified personal representative. That choice drives the creditor window, the disclosure exemption, whose taxpayer number goes on the 1099-S, and whether you owe probate tax.</li>
+      </ol>
+
+      <h2 id="s4"><span class="n">4.</span>Who owns the house right now</h2>
+      <h3><span class="n">4.1</span>Check the deed first</h3>
+      <p>Some titling arrangements bypass the estate entirely. One land-records search settles it.</p>
+      <div class="table-scroll" role="region" aria-label="Table 2: deed titling" tabindex="0">
+      <table>
+        <caption>Table 2: what the deed's wording does at death</caption>
+        <thead><tr><th>If the deed reads</th><th>What happened at death</th><th>Path</th></tr></thead>
+        <tbody>
+          <tr><td>Joint with right of survivorship, co-owner died first</td><td>Survivorship already ran to your father; he owned it outright</td><td>Normal estate analysis below</td></tr>
+          <tr><td>Joint with survivorship or tenants by the entirety, co-owner still living</td><td>Title passed to the survivor at the instant of death. Not in the estate.</td><td><strong>Stop.</strong> The survivor owns it.</td></tr>
+          <tr><td>Life estate to your father, remainder to you</td><td>Life estate ended; remainder became possessory automatically</td><td>Record the death certificate; you deed as remainderman. Fastest branch.</td></tr>
+          <tr><td>Transfer-on-death deed naming you</td><td>Vests in you at death, § 64.2-632, still exposed to estate creditors under § 64.2-634</td><td>No probate needed</td></tr>
+          <tr><td>Revocable living trust</td><td>Not a probate asset</td><td>Successor trustee follows the trust</td></tr>
+          <tr><td>"Joint tenants" with no survivorship words</td><td>Virginia abolished automatic survivorship, § 55.1-134: a predeceased co-owner's half went to that person's heirs</td><td>You may own half. Attorney required.</td></tr>
+          <tr><td>Sole name, fee simple</td><td>The ordinary case</td><td>Continue below</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3><span class="n">4.2</span>The branches, if the deed is in his sole name</h3>
+      <div class="table-scroll" role="region" aria-label="Table 3: branch table" tabindex="0">
+      <table>
+        <caption>Table 3: who signs the deed and what gets filed first</caption>
+        <thead><tr><th>Situation</th><th>Who signs</th><th>File first</th><th>Timeline</th></tr></thead>
+        <tbody>
+          <tr><td><strong>No will, no spouse, you are the only child</strong></td><td>You, individually, as owner. Title vested at death, § 64.2-200(A)(2).</td><td>List of Heirs (CC-1611, § 64.2-509) plus Real Estate Affidavit (CC-1612, § 64.2-510). $25 state charge, § 58.1-1717.1, possibly a matching local $25.</td><td>Days to weeks once the year has run. Cheapest, fastest, fully remote.</td></tr>
+          <tr><td>No will, no spouse, several children</td><td>All children, each conveying an undivided share</td><td>List of Heirs naming every heir</td><td>Weeks if everyone cooperates. One holdout means a partition suit, 6 to 18 months.</td></tr>
+          <tr><td>No will, surviving spouse who is the mother of all his children</td><td>The spouse alone. She takes everything, § 64.2-200(A)(1).</td><td>Her List of Heirs</td><td>You have no interest to sell.</td></tr>
+          <tr><td>No will, surviving spouse plus at least one child who is not hers</td><td>Spouse (one third) and all children (two thirds), everyone signs</td><td>List of Heirs. The spouse also holds elective-share rights and priority claims for a family allowance ($30,000), exempt property ($25,000) and a homestead allowance ($25,000), §§ 64.2-309 to 64.2-311.</td><td>Weeks to months. Attorney required.</td></tr>
+          <tr><td>Will leaves the house to you, no power of sale</td><td>You, as devisee. The executor gets nothing over the realty, § 64.2-521.</td><td>Record the will (§ 64.2-444). Offering the will for probate is the taxable event: state probate tax of $0.10 per $100 of estate value, § 58.1-1712, about $200 on this assessment, plus a local third if adopted. Notice to heirs within 30 days, Affidavit of Notice (CC-1617) within four months, § 64.2-508.</td><td>Weeks. Recording the will may require an appearance; call first.</td></tr>
+          <tr><td>Will directs a sale or grants a power of sale</td><td>The qualified executor, § 64.2-521(A)</td><td>Probate the will and qualify. Nonresident: consent to service on the Clerk plus surety bond, § 64.2-1426, unless a Virginia co-fiduciary qualifies or the clerk waives under § 64.2-1411. Probate tax on the whole estate.</td><td>1 to 3 months to qualify, then inventory at 4 months and account at 16 months. Personal appearance may be required.</td></tr>
+          <tr><td>Someone already qualified</td><td>Depends on who and on the will</td><td>Order the full court file before doing anything</td><td>Fact-dependent</td></tr>
+          <tr><td>Less than one year since death, any branch</td><td>Same as the applicable row</td><td>Plus the one-year problem, § 64.2-534(C)</td><td>Wait to the anniversary, or qualify and run a debts-and-demands proceeding (§§ 64.2-550 to 64.2-556), or an underwriter indemnity or escrow holdback. A court-ordered sale under § 64.2-535 fits partition or disability cases, not a sole competent heir.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3><span class="n">4.3</span>Do you have to open probate at all?</h3>
+      <p>In the common case, no, and you should not want to. An intestate administrator has no power over the real estate anyway, so qualifying buys authority you already have while adding probate tax on the full estate value ($0.10 per $100 over $15,000, § 58.1-1712), a surety bond because you are a nonresident, and sixteen months of inventories and accountings before the Commissioner of Accounts.<sup><a href="#fn6" id="r6">6</a></sup> The small-estate affidavit does not reach real estate at all, § 64.2-600.</p>
+      <p>A California resident can qualify if it comes to that, § 64.2-1426(A), but must file a written consent to service of process on the Clerk, and "bond with surety shall be required in every case" unless a Virginia resident co-fiduciary qualifies at the same time.<sup><a href="#fn6">6</a></sup> The Washington County Clerk's own probate page says the executor "must personally appear to probate the will and qualify as executor." No statute requires that; it reads as local practice, and probate is absent from the Clerk's by-mail services list. The List of Heirs, the Real Estate Affidavit, and land records are all on the by-mail and e-recording lists, which is a second reason to stay on the no-qualification route.<sup><a href="#fn8" id="r8">8</a></sup></p>
+
+      <h3><span class="n">4.4</span>What a title company will want before insuring a sale by an heir</h3>
+      <ul class="plain">
+        <li>More than one year since the date of death, § 64.2-534(B), or an adjudicated creditor picture, or an indemnity the underwriter accepts.</li>
+        <li>No administration commenced and no debts-and-demands report filed.</li>
+        <li>Recorded List of Heirs and Real Estate Affidavit; every heir signing; death certificate.</li>
+        <li>Judgment and lien search on your father and on each heir.</li>
+        <li>Payoff of any mortgage or deed of trust. The lien follows the land and comes out of your proceeds.</li>
+        <li>Seller affidavit on debts, possession, and mechanics' liens.</li>
+      </ul>
+      <p>Separately from the land, § 64.2-534(A) makes an heir who sells personally liable, up to the value of the real estate with interest, to people entitled to be paid from it. Ask the attorney how long that exposure lasts.</p>
+
+      <h3><span class="n">4.5</span>Costs on the Virginia side</h3>
+      <div class="table-scroll" role="region" aria-label="Table 4: Virginia costs" tabindex="0">
+      <table>
+        <caption>Table 4: what the seller pays Virginia</caption>
+        <thead><tr><th>Item</th><th class="num">Amount</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>List of Heirs and Real Estate Affidavit, no will, no qualification</td><td class="num">$25</td><td>§ 58.1-1717.1 state; a matching local $25 may apply, § 58.1-3805</td></tr>
+          <tr><td>Recording a will without qualifying</td><td class="num">$0.10 per $100 of estate value</td><td>§ 58.1-1712 probate tax is due when the will is offered; about $200 on the current assessment, plus a local third if adopted</td></tr>
+          <tr><td>Grantor's tax on the sale deed (seller pays)</td><td class="num">$1.00 per $1,000</td><td>§ 58.1-802, $0.50 per $500</td></tr>
+          <tr><td>Regional transportation surcharges</td><td class="num">$0</td><td>Washington County is outside the Northern Virginia and Hampton Roads districts</td></tr>
+          <tr><td>State probate tax when someone qualifies</td><td class="num">$0.10 per $100 over $15,000</td><td>§ 58.1-1712, on the whole estate. Local one-third add-on not found in the county code; confirm with the Clerk.</td></tr>
+          <tr><td>Nonresident withholding at closing</td><td class="num">None</td><td>Virginia has no nonresident real-estate withholding. The settlement agent files a registration form (R-5 or R-5E) under § 58.1-317; the charge for it is capped at $10, § 55.1-1010.</td></tr>
+          <tr><td>County real estate tax, prorated at closing</td><td class="num">$869.89 per year</td><td>Treasurer's portal; halves due May 20 and November 20</td></tr>
+          <tr><td>Recording the deed</td><td class="num">Use the calculator</td><td>ccdeedcalc.courts.state.va.us gives the exact figure once the price is known</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3><span class="n">4.6</span>Disclosure: the exemption you probably do not get</h3>
+      <p>Virginia is a buyer-beware state. The seller hands over a Real Estate Board statement listing matters the buyer is told to investigate for himself: condition, lot lines, adjacent parcels, septic, flood, easements, radon and the rest of a 19-item list. The owner represents nothing on it; there is no California-style condition questionnaire. The version taking effect 1 January 2027 adds land-use and roll-back tax.<sup><a href="#fn9" id="r9">9</a></sup> Deliver it before the contract is ratified; delivered late, it gives the buyer a free termination right, § 55.1-709. The exemption for estates covers "transfers by a fiduciary in the course of the administration of a decedent's estate," § 55.1-702(A)(3). An heir selling in his own name is not a fiduciary, so plan on delivering the statement and do not let anyone tell you an inherited house is exempt. A 1920 house also carries the federal lead-paint disclosure and pamphlet, which no Virginia exemption excuses.<sup><a href="#fn10" id="r10">10</a></sup> The one disclosure that survives every exemption is prior methamphetamine manufacture, § 55.1-708.</p>
+
+      <h2 id="s5"><span class="n">5.</span>Signing from San Diego</h2>
+      <p>Nothing in the Code requires the seller to attend settlement. The normal Virginia pattern for an out-of-state seller is a mail-away closing: the settlement agent overnights the package, you sign, it goes back overnight, they record and wire.</p>
+      <ul class="plain">
+        <li><strong>A California notary works.</strong> Virginia gives an out-of-state notarial act "the same effect as if performed by a notary public of the Commonwealth," § 55.1-616(B)(1), accepts a certificate in the form of the place where it was taken, § 55.1-619, and puts any statement of representative capacity on the signer, not the notary, § 55.1-620.<sup><a href="#fn7">7</a></sup></li>
+        <li><strong>The catch is the form.</strong> California bars its notaries from completing any certificate that asks the notary to determine or certify the signer's capacity, Cal. Civ. Code § 1189(c). If the settlement agent's certificate is worded that way, the fix is the California all-purpose acknowledgment or Virginia remote online notarization, which is deemed performed in Virginia, § 47.1-13(D).</li>
+        <li><strong>Settle the notarization question in writing before the closing date,</strong> with the settlement agent and the buyer's lender, not on signing day.</li>
+        <li><strong>A power of attorney is rarely worth it here.</strong> If used, it must be recorded, so it must be notarized (§ 64.2-1603, § 55.1-600), and title underwriters typically want it property-specific, original, recent, and pre-approved before you sign it. Signing your own documents avoids the rejection risk.</li>
+        <li><strong>The Clerk e-records.</strong> Washington County accepts Simplifile and CSC, so the deed can record the day it is signed. A paper fallback is mandatory regardless, § 17.1-223(C).</li>
+        <li><strong>Who prepares the deed:</strong> a Virginia attorney. Virginia deeds carry a preparer statement on the first page, § 17.1-223(B), and the recitals about how you took title have to be right. Ask for a special warranty deed, not a general warranty.</li>
+        <li><strong>The buyer picks the settlement agent,</strong> § 55.1-1006. Your right is to have your own attorney, who then has to consent in writing before the buyer's agent charges you fees.</li>
+      </ul>
+
+      <h2 id="s6"><span class="n">6.</span>The house on paper</h2>
+      <p>From the Washington County assessment record, the county GIS, the Treasurer's portal, and FEMA, pulled 8 September 2026.<sup><a href="#fn40" id="r40">40</a></sup> The street address, parcel number, and your father's name are left off this page on purpose; they are in the working file.</p>
+      <div class="table-scroll" role="region" aria-label="Table 5: county record" tabindex="0">
+      <table>
+        <caption>Table 5: county record, 2026</caption>
+        <thead><tr><th>Field</th><th>Value</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Owner of record</td><td>One name, second-owner field blank</td><td>A tax account, not proof of how title is held. The 2005 deed image is behind the paid portal.</td></tr>
+          <tr><td>Assessed value</td><td>$202,300 (land $25,000, main structure $151,800, other structures $25,500)</td><td>Unchanged 2025 to 2026. Assessed value is not fair market value for tax basis.</td></tr>
+          <tr><td>Structure</td><td>1920 frame single-family dwelling, 2,622 heated sq ft, 13 rooms, 7 bedrooms, 4 full and 1 half bath</td><td>Stick-built, not manufactured. Crawl space on block. Forced-air heat, fuel gas, no public gas line (propane is an inference). No air conditioning.</td></tr>
+          <tr><td>Other structures</td><td>About 1,001 sq ft outbuilding plus paved area</td><td>Valued at $25,500 within the total</td></tr>
+          <tr><td>Lot</td><td>0.33 acre, rolling/sloping</td><td>Zoned V, Village District, Washington County Code chapter 66; the ordinance is on Municode</td></tr>
+          <tr><td>Water and sewer</td><td>Public water, septic sewer</td><td>The same record's summary field says "Utilities: NONE." Confirm by phone.</td></tr>
+          <tr><td>Flood</td><td>Zone X, minimal hazard, not in a special flood hazard area</td><td>FEMA National Flood Hazard Layer at the parcel coordinates</td></tr>
+          <tr><td>Road</td><td>Public, state-maintained</td><td>The lane is a VDOT secondary route in the county GIS roads layer and VDOT's own route inventory, so the private-road and easement problems do not apply</td></tr>
+          <tr><td>Real estate tax</td><td>$869.89 per year at $0.43 per $100</td><td>Portal shows $0.00 outstanding for every year 2021 through 2026. Second-half bill of $434.94 is due 20 November 2026 and mails to the house.</td></tr>
+          <tr><td>Last transfer</td><td>Deed recorded August 2005, stated consideration $30,000, from a family-name grantor</td><td>An older instrument with $0 consideration precedes it</td></tr>
+          <tr><td>Will on the parcel record</td><td>"None"</td><td>Means no will is cross-referenced on the assessment record. It does not mean there is no will.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Recent sales nearby, from the regional MLS feed as republished on Movoto. Every one is a conventional 3 to 4 bedroom house; nothing comparable in age and layout to a 7-bedroom 1920 farmhouse sold nearby in the period, which is why pricing this house needs a specialist and not a per-square-foot average.</p>
+      <div class="table-scroll" role="region" aria-label="Table 6: nearby sales" tabindex="0">
+      <table>
+        <caption>Table 6: closed sales, Meadowview and Glade Spring, March to September 2026</caption>
+        <thead><tr><th>Address</th><th>Sold</th><th class="num">Price</th><th class="num">Bd/Ba</th><th class="num">Sq ft</th></tr></thead>
+        <tbody>
+          <tr><td>12425 Prices Bridge Rd, Glade Spring</td><td>2026-09-03</td><td class="num">$485,000</td><td class="num">4/3</td><td class="num">2,834</td></tr>
+          <tr><td>30404 Lee Hwy, Glade Spring</td><td>2026-08-25</td><td class="num">$339,000</td><td class="num">4/2</td><td class="num">2,443</td></tr>
+          <tr><td>10199 Crescent Rd, Glade Spring</td><td>2026-07-31</td><td class="num">$226,000</td><td class="num">3/2</td><td class="num">1,136</td></tr>
+          <tr><td>27141 Old Saltworks Rd, Meadowview</td><td>2026-07-30</td><td class="num">$435,000</td><td class="num">3/2</td><td class="num">1,830</td></tr>
+          <tr><td>29349 Hawthorne Dr, Meadowview</td><td>2026-07-15</td><td class="num">$450,000</td><td class="num">4/3</td><td class="num">2,796</td></tr>
+          <tr><td>30146 Tobias Dr, Meadowview</td><td>2026-07-15</td><td class="num">$498,000</td><td class="num">3/3</td><td class="num">2,256</td></tr>
+          <tr><td>442 S Monte Vista Dr, Glade Spring</td><td>2026-06-09</td><td class="num">$421,000</td><td class="num">3/3</td><td class="num">2,896</td></tr>
+          <tr><td>31527 Old Saltworks Rd, Meadowview</td><td>2026-06-04</td><td class="num">$399,900</td><td class="num">3/2</td><td class="num">1,942</td></tr>
+          <tr><td>29013 Hillman Hwy, Meadowview</td><td>2026-05-02</td><td class="num">$349,000</td><td class="num">4/4</td><td class="num">2,972</td></tr>
+          <tr><td>29525 Smyth Chapel Rd, Meadowview</td><td>2026-04-23</td><td class="num">$485,000</td><td class="num">4/3</td><td class="num">3,213</td></tr>
+          <tr><td>105 S Monte Vista Dr, Glade Spring</td><td>2026-03-21</td><td class="num">$345,000</td><td class="num">3/2</td><td class="num">2,714</td></tr>
+          <tr><td>15445 Coventry Ln, Glade Spring</td><td>2026-03-17</td><td class="num">$500,000</td><td class="num">3/3</td><td class="num">4,384</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>No estimate of this house's value appears on this page. The appraisal is the number; the sales above and the assessment are context for reading it.</p>
+
+      <h2 id="s7"><span class="n">7.</span>Taxes</h2>
+      <h3><span class="n">7.1</span>Bottom line</h3>
+      <p>Your basis resets to the fair market value on the date of death, 26 U.S.C. § 1014(a)(1), and the holding period is long-term automatically, § 1223(9).<sup><a href="#fn20">20</a></sup> A house sold within months of death, net of a commission and closing costs, usually shows a small long-term capital loss. That loss is deductible, up to $3,000 a year against other income with the rest carried forward, because IRS Publication 559 treats an inherited residence held for sale as investment property "even though it was the decedent's personal residence and even if you didn't rent it out."<sup><a href="#fn22">22</a></sup> The county's assessed value does not count: Treasury Regulation § 20.2031-1(b) says property "shall not be returned at the value at which it is assessed for local tax purposes unless that value represents the fair market value."<sup><a href="#fn21">21</a></sup></p>
+      <p>No federal estate tax: the 2026 exclusion is $15,000,000.<sup><a href="#fn23" id="r23">23</a></sup> No Virginia estate or inheritance tax.<sup><a href="#fn24" id="r24">24</a></sup> No California estate tax. Virginia does not withhold anything from a nonresident seller at closing.<sup><a href="#fn25" id="r25">25</a></sup></p>
+
+      <h3><span class="n">7.2</span>Who files what</h3>
+      <div class="table-scroll" role="region" aria-label="Table 7: tax filings" tabindex="0">
+      <table>
+        <caption>Table 7: returns, common case (you sell in your own name)</caption>
+        <thead><tr><th>Return</th><th>Who</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Form 8949 and Schedule D with your Form 1040</td><td>You</td><td>Reports the sale against the stepped-up basis</td></tr>
+          <tr><td>Virginia Form 763 (nonresident) with Schedule OSC</td><td>You</td><td>Virginia-source gain. Virginia, not California, gives the credit for tax paid to the other state; California's Schedule S lists Virginia only for dual residents.<sup><a href="#fn26" id="r26">26</a></sup> File California first, attach it to the Virginia return.</td></tr>
+          <tr><td>California Form 540</td><td>You</td><td>California taxes residents on worldwide gain at ordinary rates and conforms to the federal step-up</td></tr>
+          <tr><td>Your father's final Form 1040 and Virginia Form 760 for 2026</td><td>Personal representative, or you per Pub 559 if none</td><td>Due April 15 and May 1, 2027</td></tr>
+          <tr><td>Form R-5 or R-5E</td><td>Settlement agent</td><td>Virginia's registration of a nonresident seller, § 58.1-317. Paperwork, not money.</td></tr>
+          <tr><td>If the estate sells instead: Form SS-4 for an EIN, Form 1041, Schedule K-1 to you, and Virginia Form 770 (fiduciary return, due May 1)</td><td>Personal representative</td><td>An estate reaches the 15% capital-gain bracket at about $16,250 of income, owes the 3.8% net investment income tax above $16,000, and a loss is trapped until the estate's final year, § 642(h). Selling as heir avoids all of this.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3><span class="n">7.3</span>Illustration with made-up numbers</h3>
+      <p>These figures show the mechanics only. They are not an estimate of this house.</p>
+      <div class="table-scroll" role="region" aria-label="Table 8: illustration" tabindex="0">
+      <table>
+        <caption>Table 8: appraised $150,000 at death, sold $155,000, selling costs $12,000, your other 2026 income $80,000 single</caption>
+        <thead><tr><th>Scenario</th><th>Result</th><th class="num">Federal</th><th class="num">California</th><th class="num">Virginia</th></tr></thead>
+        <tbody>
+          <tr><td>Appraisal near the sale price</td><td>$143,000 realized less $150,000 basis = $7,000 long-term loss; $3,000 deducted in 2026, $4,000 carried forward</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td></tr>
+          <tr><td>Appraisal comes in low at $130,000</td><td>$13,000 long-term gain</td><td class="num">$1,950 (15%)</td><td class="num">$1,209 (9.3% marginal)</td><td class="num">$453 before the Schedule OSC credit, $0 after</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>At the margin, about $243 of combined federal and California tax for every $1,000 the date-of-death value is understated (15% federal plus 9.3% California). That is what the appraisal buys. Virginia's tax on a gain is computed on Form 763 by applying the Virginia-source share to income, then taking the Schedule OSC credit for California tax on the same gain.</p>
+
+      <h3><span class="n">7.4</span>Tax traps</h3>
+      <ul class="plain">
+        <li><strong>No date-of-death appraisal.</strong> The basis becomes a guess, and the guess gets harder and more expensive to defend the longer you wait.</li>
+        <li><strong>1099-S taxpayer number not matching the deed.</strong> If the deed says "Estate of" but the 1099-S carries your SSN, or the reverse, the IRS matches proceeds against a return that never reported them. Fix it with the settlement agent before closing.</li>
+        <li><strong>Letting anyone live there rent-free.</strong> Converts the house to personal-use property; the loss deduction disappears.</li>
+        <li><strong>Filing California's Schedule S and skipping Virginia.</strong> Wrong on both sides. The credit lives on Virginia Form 763.</li>
+        <li><strong>Selling through the estate and leaving it open.</strong> A loss stays inside the estate until its final year.</li>
+        <li><strong>Renting it out first.</strong> Starts depreciation, adds Virginia-source rental income and a Virginia return, and turns part of any later gain into 25% recapture.</li>
+      </ul>
+      <p>Keep: the appraisal, death certificates, the settlement statement, the 1099-S, every receipt for money spent on the house after death, and your father's last returns.</p>
+
+      <h2 id="s8"><span class="n">8.</span>Getting the most money</h2>
+      <h3><span class="n">8.1</span>Channels</h3>
+      <div class="table-scroll" role="region" aria-label="Table 9: channels" tabindex="0">
+      <table>
+        <caption>Table 9: ways to sell, what they cost, what to watch</caption>
+        <thead><tr><th>Channel</th><th>Cost to you</th><th>Reach</th><th>Watch for</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Full-service listing</strong> on the regional MLS through a local brokerage (local brokers use the Tennessee/Virginia Regional MLS; confirm the MLS name with the agent)</td><td>Listing-side commission, negotiable. A 2026 agent survey puts Virginia's total around 5.5%, split evenly, when both sides are paid.<sup><a href="#fn50" id="r50">50</a></sup></td><td>Widest financed-buyer exposure</td><td>Since August 2024 buyer-agent pay is no longer advertised on the MLS; buyers ask for it inside the offer as a concession. Judge every offer on net.<sup><a href="#fn51" id="r51">51</a></sup></td></tr>
+          <tr><td><strong>Flat-fee MLS entry</strong></td><td>$99 to $1,500 depending on package</td><td>Same MLS exposure if, and only if, the provider actually enters TVRMLS</td><td>The big national "Virginia" packages default to Bright MLS, which covers Northern and Central Virginia and does not reach Washington County. Get the MLS name in writing before paying.<sup><a href="#fn52" id="r52">52</a></sup> You then do the negotiating, the showings, and the disclosure yourself from 2,300 miles away.</td></tr>
+          <tr><td><strong>Licensed real-estate auction</strong></td><td>Marketing fee, firm-specific. Where the firm charges a buyer's premium it is paid by the buyer on top of the bid; ask each firm for its fee sheet.</td><td>Southwest Virginia has an active auction culture; four licensed firms work Washington County (section 9)</td><td>Absolute auction sells at any price; reserve auction lets you decline. Three to six weeks of marketing. A good fit for an unusual house that resists comps, and a defined end date for an absentee seller.</td></tr>
+          <tr><td><strong>Unsolicited cash buyers, "we buy houses," wholesalers</strong></td><td>No commission, but published studies put the big iBuyers 9 to 14% under eventual resale, and local wholesalers lower still<sup><a href="#fn53" id="r53">53</a></sup></td><td>One buyer</td><td>"And/or assigns" clauses, tiny earnest money, long inspection windows, no proof of funds, same-day pressure. The national iBuyers probably do not buy in a town of 861 anyway.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3><span class="n">8.2</span>Timing</h3>
+      <p>Nationally and on the East Coast the strongest listing window is April through June; late-April listings have sold for about 4% over the yearly median and were the most likely to go over asking.<sup><a href="#fn54" id="r54">54</a></sup> A fall listing lands outside that window. Waiting for spring 2027 buys the better window at the cost of six or seven more months of vacancy, insurance, heat, and risk, and the one-year creditor rule may make the wait unavoidable anyway. Decide with the date of death in hand.</p>
+
+      <h3><span class="n">8.3</span>Preparation that pays</h3>
+      <ul class="plain">
+        <li><strong>Pre-listing inspections on the systems that kill rural deals:</strong> septic (pump and inspect, $300 to $650 for transaction grade), the water supply (public here, per the county, but confirm), roof, heat, termite and moisture. Fixing or disclosing first removes the buyer's retrade lever.</li>
+        <li><strong>Financed buyers set the bar.</strong> FHA, VA and USDA loans all require sound well and septic where present, no peeling paint on a pre-1978 house, and a serviceable roof. Meadowview is almost certainly USDA-eligible; check the exact address on the USDA map.</li>
+        <li><strong>Clean out, paint, mow, photograph professionally.</strong> Professionally photographed listings have sold faster and for more in every large study; whole-house paint and curb-appeal work are the highest-return prep on a modest house.</li>
+        <li><strong>Price to the market from day one.</strong> Zillow's research on overpricing found that the longer a listing sits, the further below list it finally sells, up to about 12% for the slowest. Rural comps are thin, so the agent's comparative analysis should show its adjustments for age, layout, and condition, not just square footage.</li>
+        <li><strong>Carrying costs while it sits:</strong> a vacant-dwelling policy (10 to 25% over a standard premium where an endorsement is offered), electricity for heat, water off and drained, lawn, and someone local to walk through every two weeks.</li>
+      </ul>
+
+      <h2 id="s9"><span class="n">9.</span>Hiring honest help</h2>
+      <h3><span class="n">9.1</span>Verify every license yourself before the first phone call</h3>
+      <div class="table-scroll" role="region" aria-label="Table 10: license lookups" tabindex="0">
+      <table>
+        <caption>Table 10: the official lookups</caption>
+        <thead><tr><th>Who</th><th>Where</th><th>What a clean record shows</th></tr></thead>
+        <tbody>
+          <tr><td>Real estate agents and brokers, appraisers, auctioneers</td><td>Virginia DPOR License Lookup, dpor.virginia.gov</td><td>License number, type (salesperson vs broker), status Active, expiration in the future, no disciplinary action listed. A licensed auctioneer may sell real estate at public auction with bidding open 48 hours or less without a broker license, § 54.1-2103(A)(8); listing it or negotiating a private sale needs a real estate license.</td></tr>
+          <tr><td>Attorneys</td><td>Virginia State Bar lawyer directory, vsb.org</td><td>Active, in good standing, no public discipline</td></tr>
+          <tr><td>Settlement agents and title agencies</td><td>State Corporation Commission Bureau of Insurance, scc.virginia.gov (license type Settlement Agent)</td><td>Registered under the Real Estate Settlement Agents Act with the required bond and errors-and-omissions coverage</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3><span class="n">9.2</span>Questions that separate the honest from the smooth</h3>
+      <ol class="plain">
+        <li>How many estate or absentee-owner sales have you closed in Washington County in the last two years? Give me two of those sellers as references.</li>
+        <li>Walk me through a mail-away closing and a remote-online-notarization closing you have done. Who prepared the deed?</li>
+        <li>What is your fee, in writing, and what is negotiable? What is the listing term, the cancellation terms, and is there an automatic renewal or a protection period?</li>
+        <li>Will you decline dual agency for this listing, in writing? Will you disclose any interest you, your brokerage, or a relative has in any buyer?</li>
+        <li>Full MLS entry and syndication on day one, and a written showing report every week?</li>
+        <li>How will you price it, and can I see the comparative analysis with the adjustments spelled out?</li>
+        <li>How do you handle the lockbox, showings, and the utilities on a vacant house?</li>
+        <li>Who is your errors-and-omissions carrier?</li>
+        <li>For the attorney: will you serve as Virginia co-fiduciary if I have to qualify, and at what fee? Will you get the underwriter to pre-approve any power of attorney before I sign it?</li>
+      </ol>
+
+      <h3><span class="n">9.3</span>Walk away if</h3>
+      <ul class="plain">
+        <li>They push a quick cash offer, especially one from an affiliate.</li>
+        <li>They ask you to sign a quitclaim deed "to clear up title."</li>
+        <li>They want money by wire or gift card before any service, or send wire instructions by email.</li>
+        <li>They will not put the fee in writing, or propose a net listing.</li>
+        <li>They cannot be found in the DPOR, State Bar, or SCC lookup, or the license is inactive or in someone else's name.</li>
+        <li>They offer a "consultant" or "title expert" who is not licensed as anything.</li>
+      </ul>
+
+      <h3><span class="n">9.4</span>License-verified candidates</h3>
+      <p>Nobody on these lists is a recommendation. They are the people and firms within about 30 miles whose licenses could be checked against an official register on 8 September 2026, with what the check showed. Sold-volume and review figures are not given because the sites that carry them blocked the lookup; open the Zillow and Google profiles yourself. Two Abingdon firms were left off on purpose: one because an attorney there carries a public-discipline flag in the State Bar directory and the underlying order was not retrieved, one because it has no real-estate closing practice.</p>
+      <div class="table-scroll" role="region" aria-label="Table 13: attorneys" tabindex="0">
+      <table>
+        <caption>Table 13: attorneys, Virginia State Bar directory, all Active, Plenary, In Good Standing, no public discipline, no suspensions</caption>
+        <thead><tr><th>Attorney / firm</th><th>Bar no. · licensed</th><th>Contact</th><th>What the firm's own site says</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Brian M. Ely</strong>, Ely Law Group, Abingdon</td><td>37370 · 1994</td><td>597 East Main Street · (276) 628-1119</td><td>"Specializing in real estate law": transactions, title exams, contracts, deeds; title searches by the attorneys. Estate planning listed. The only site describing a closing practice.</td></tr>
+          <tr><td><strong>Cameron S. Bell, Byrum L. Geisler, Timothy W. Gresham</strong>, PennStuart, Abingdon</td><td>47685 · 2002; 29392 · 1988; 21814 · 1982</td><td>208 East Main Street · (276) 628-5151</td><td>Estate planning for individuals and families; the real-estate page describes commercial work only.</td></tr>
+          <tr><td><strong>Mark T. Hurt</strong>, Mark Hurt Law Firm, Abingdon</td><td>36380 · 1993</td><td>159 West Main Street · (276) 623-0808</td><td>Estate planning and asset protection content; closings not stated.</td></tr>
+          <tr><td><strong>George A. Whitley</strong>, Abingdon</td><td>35089 · 1993</td><td>Bar record only; no website found</td><td>Practice not confirmed from a fetched page.</td></tr>
+          <tr><td><strong>John E. Kieffer</strong>, Bristol</td><td>14599 · 1975</td><td>Firm site blocked the lookup</td><td>Practice not confirmed from a fetched page.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>No attorney's site mentioned mail-away or remote online notarization closings, probate qualification for out-of-state heirs, or a settlement-agent registration. Those are the first three questions on the call.</p>
+
+      <div class="table-scroll" role="region" aria-label="Table 14: brokerages" tabindex="0">
+      <table>
+        <caption>Table 14: brokerages, DPOR Real Estate Firm license numbers found in the state index; active status and expiration still to be confirmed on the DPOR lookup</caption>
+        <thead><tr><th>Brokerage</th><th>Town</th><th>DPOR firm license</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Countryside Realty LLC</td><td>Meadowview</td><td>0226020731</td><td>The only brokerage licensed at a Meadowview address. No website reached.</td></tr>
+          <tr><td>Sandra McConnell Snaden (sole-owner firm)</td><td>Meadowview</td><td>0226023724; individual 0225193296, 0225229559</td><td>A licensed broker based in the property's own town.</td></tr>
+          <tr><td>Landmark Realty Agency LLC (Travis Dyson, principal broker)</td><td>Abingdon</td><td>0226028743; agent 0225223640 as published by the firm</td><td>Site names Meadowview in its service area; an undated testimonial describes selling "my late husband's family home." (276) 525-4255.</td></tr>
+          <tr><td>Robin's Nest Realty LLC</td><td>Glade Spring</td><td>0226029051</td><td>About six miles from the house. No website reached.</td></tr>
+          <tr><td>Terra Realty Group Inc</td><td>Abingdon</td><td>0226034920</td><td>No website reached.</td></tr>
+          <tr><td>Highlands Realty Inc</td><td>Bristol, Marion</td><td>0226026382, 0226033529</td><td>Firm site blocked the lookup.</td></tr>
+          <tr><td>eXp Realty LLC</td><td>Abingdon, Bristol</td><td>0226032300, 0226030952</td><td>National brokerage with local firm licenses.</td></tr>
+          <tr><td>Matt Smith Realty LLC</td><td>Abingdon, Bristol</td><td>0226032967, 0226036924</td><td>The domain mattsmithrealty.com belongs to an unrelated agent in Oregon.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="table-scroll" role="region" aria-label="Table 15: auction firms" tabindex="0">
+      <table>
+        <caption>Table 15: auction firms</caption>
+        <thead><tr><th>Firm</th><th>Licenses</th><th>Contact</th><th>Local evidence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>W. Bear Lloyd Auctions &amp; Real Estate LLC</strong>, Abingdon</td><td>DPOR real estate firm 0226034185 and 0226038569; auctioneer firm 2908001111 and auctioneer 2907004776 as published on its site. Dual-licensed: can auction or list.</td><td>15610 Porterfield Hwy, Suite 301 · (276) 608-7630</td><td>Past-sales page lists four Meadowview properties plus Glade Spring, Abingdon and Bristol sales. Also offers home cleanout. The only candidate with documented sales in the house's own town.</td></tr>
+          <tr><td><strong>R &amp; R Auctioneers &amp; Realty, Inc.</strong> (Vann Roark), Abingdon</td><td>DPOR real estate firm 0226006957; individual 0225048541; auctioneer 2905000512 and firm 2908000972 as published. Dual-licensed.</td><td>17572 Lee Highway · (276) 628-9588</td><td>"Since 1976"; specializes in settling estates, farms and land; packs and inventories household contents. Estate auction on its calendar for 12 September 2026.</td></tr>
+          <tr><td>Blue Ridge Land &amp; Auction Co. (United Country), Abingdon office</td><td>DPOR real estate firm 0226028874; auctioneer license not shown on the page fetched</td><td>629 West Main Street</td><td>Washington County auction activity not verified from a past-sales page.</td></tr>
+          <tr><td>Highlands Auction Company, Abingdon</td><td>Two licensed individual auctioneers (2907004546, 2907004547, expiring 2028); the company itself has no DPOR record and no real estate firm license</td><td>15219 Providence Road · (276) 451-0194</td><td>Can run a public auction under the 48-hour exemption; cannot list or negotiate a private sale. Established 2018.</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="table-scroll" role="region" aria-label="Table 16: appraisers" tabindex="0">
+      <table>
+        <caption>Table 16: certified residential appraisers, Active in the federal ASC national registry on 8 September 2026 (the 4001 number is the Virginia license)</caption>
+        <thead><tr><th>Appraiser</th><th>Virginia license</th><th>Base</th></tr></thead>
+        <tbody>
+          <tr><td>Bonnie Harless Nunley</td><td>4001011825</td><td>Glade Spring, the closest</td></tr>
+          <tr><td>John D. Mahaffey (The Mahaffey Agency)</td><td>4001000803</td><td>Abingdon; longest-held credential of the group</td></tr>
+          <tr><td>Janet W. Fuller (Alpha Appraisals)</td><td>4001002056</td><td>Abingdon; also Tennessee-certified</td></tr>
+          <tr><td>Christopher Chad Hagy</td><td>4001011958</td><td>Abingdon</td></tr>
+          <tr><td>Sherri Layne Anderson-Cox</td><td>4001016672</td><td>Abingdon; also Tennessee-certified</td></tr>
+          <tr><td>Pamela S. Williams</td><td>4001005911</td><td>Abingdon; a David E. Williams at the same address is inactive, confirm which</td></tr>
+          <tr><td>David Norman Leonard</td><td>4001001001</td><td>Bristol</td></tr>
+          <tr><td>Alden Eugene Hess</td><td>4001004859</td><td>Chilhowie</td></tr>
+          <tr><td>Amanda Jones Huff</td><td>4001005977</td><td>Chilhowie</td></tr>
+          <tr><td>Michael Dean Brown</td><td>4001010164</td><td>Chilhowie; also Tennessee-certified</td></tr>
+          <tr><td>Jennifer Suzanne Peake</td><td>4001011484</td><td>Saltville</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Eleven other area appraisers, including the one in Meadowview, show Inactive in the registry; match the license number, not the name. None of the eleven above advertises date-of-death work on a website, so ask directly whether the report is written as a retrospective valuation for estate and basis purposes.</p>
+      <p><strong>Cleanout and house checks.</strong> No Virginia license exists for these trades. Both dual-licensed auction firms above offer cleanout; nobody found offers a recurring vacant-house check with dated photos, which is a gap to fill with a local person or a property manager.</p>
+
+      <h2 id="s10"><span class="n">10.</span>The traps</h2>
+      <div class="table-scroll" role="region" aria-label="Table 11: traps" tabindex="0">
+      <table>
+        <caption>Table 11: the highest-severity failure modes and how each is prevented</caption>
+        <thead><tr><th>#</th><th>Failure</th><th>What is at stake</th><th>Prevention</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Sale inside one year of death, § 64.2-534(C)</td><td>Uninsurable title; the whole deal</td><td>Time the closing past the anniversary; otherwise qualify and adjudicate the debts, or negotiate an underwriter indemnity or escrow</td></tr>
+          <tr><td class="num">2</td><td>Reverse mortgage clock: 30 days from the due-and-payable notice, lender must start foreclosure within 6 months, 24 CFR 206.125</td><td>The house</td><td>Week one: ask every servicer if it is a HECM; invoke the 95%-of-appraised-value payoff; get extensions in writing</td></tr>
+          <tr><td class="num">3</td><td>Virginia Medicaid estate recovery reaching non-probate property, 12VAC30-20-141</td><td>The equity</td><td>Written DMAS claim determination before contracting. A surviving spouse or a minor or disabled child bars recovery.</td></tr>
+          <tr><td class="num">4</td><td>Non-judicial foreclosure: written notice can be as short as 14 days depending on the deed of trust's terms, with a sale 8 days after the first advertisement, §§ 55.1-321 and 55.1-322</td><td>The house in about 90 days</td><td>Record the List of Heirs or the will; recorded heirs are who gets notice. Get a written payoff or forbearance.</td></tr>
+          <tr><td class="num">5</td><td>Deed fraud on a vacant, unencumbered, absentee-owned house</td><td>Full value plus litigation</td><td>Free recording alert at virginiapropertynotification.org; re-check the land-record index monthly</td></tr>
+          <tr><td class="num">6</td><td>Wire fraud at closing; FBI counted $275 million in real-estate losses and $3.05 billion in business email compromise in 2025<sup><a href="#fn34" id="r34">34</a></sup></td><td>100% of net proceeds</td><td>Voice callback to an independently obtained number, every digit, before any disbursement; confirm receipt with your own bank</td></tr>
+          <tr><td class="num">7</td><td>Signing a deed without authority: a representative with no power of sale, or one heir signing while others hold shares</td><td>Deal collapses at or after closing</td><td>Title examination and recorded List of Heirs before signing anything; every co-owner signs or nobody does</td></tr>
+          <tr><td class="num">8</td><td>Vacancy voids the insurance: 30-day definition, and a freeze exclusion after four unoccupied days unless heat was maintained or the plumbing drained, 14VAC5-341</td><td>Uninsured total loss</td><td>Vacant-dwelling policy in week one; drain or heat before October 20</td></tr>
+          <tr><td class="num">9</td><td>Septic or well failure at the buyer's inspection, or a Health Department repair waiver that dies at sale</td><td>Retrade or dead deal after weeks under contract</td><td>Pull the Health Department file, pump and inspect before listing, disclose what it finds</td></tr>
+          <tr><td class="num">10</td><td>Squatter or a relative moves in with verbal permission</td><td>Months of eviction instead of a 14-day hearing, § 8.01-126(B)</td><td>Change the locks; nobody occupies; keys only against a receipt</td></tr>
+          <tr><td class="num">11</td><td>Listing agreement with a long term, automatic renewal, protection period, cancellation fee; dual agency consent buried in the forms</td><td>A year locked to the wrong agent, or a second commission</td><td>Read those four clauses; decline dual agency in writing; require any broker or relative interest in a buyer be disclosed</td></tr>
+          <tr><td class="num">12</td><td>Wholesaler under contract who never intended to buy</td><td>45 days lost in the selling window</td><td>Strike or consent-gate assignment; cap the inspection period; real earnest money held by the settlement agent; dated proof of funds</td></tr>
+          <tr><td class="num">13</td><td>Deed released before funds are confirmed. Virginia law permits recording before funds arrive with consent, § 55.1-1008(D)</td><td>The house, while the wire is "in process"</td><td>Written instruction: deed held in escrow until cleared funds are in hand</td></tr>
+          <tr><td class="num">14</td><td>Cleaning out or repairing before the date-of-death appraisal</td><td>Tax on phantom gain, permanently</td><td>Appraisal and photos first</td></tr>
+          <tr><td class="num">15</td><td>Identity theft of the deceased</td><td>Fraudulent debt that becomes a creditor claim on the land, § 64.2-532</td><td>Notify Social Security and the credit bureaus; remove documents from the house</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="s11"><span class="n">11.</span>Numbers and links</h2>
+      <div class="table-scroll" role="region" aria-label="Table 12: contacts" tabindex="0">
+      <table>
+        <caption>Table 12: offices and lookups</caption>
+        <thead><tr><th>Office</th><th>Contact</th><th>For</th></tr></thead>
+        <tbody>
+          <tr><td>Washington County Circuit Court Clerk, probate</td><td>(276) 676-6224, ask for Rhonda Roop · 189 East Main Street, Abingdon, VA 24210 · main line (276) 676-6226</td><td>Whether an out-of-state fiduciary can qualify by mail or video; what has been filed; the county's Real Estate Affidavit form; fees. No fax; PDF only.</td></tr>
+          <tr><td>Washington County Treasurer</td><td>(276) 676-6272 · taxes.washcova.com</td><td>Confirm the November bill and change the mailing address</td></tr>
+          <tr><td>Washington County Planning</td><td>(276) 525-1391</td><td>What the Village District allows, if a buyer wants a lodging or care-home use</td></tr>
+          <tr><td>Virginia DMAS estate recovery</td><td>dmas.virginia.gov</td><td>Written Medicaid claim determination</td></tr>
+          <tr><td>Recording alert</td><td>virginiapropertynotification.org (Washington County)</td><td>Free notice of any document recorded against the name or parcel</td></tr>
+          <tr><td>DPOR License Lookup</td><td>dpor.virginia.gov</td><td>Agents, brokers, appraisers, auctioneers</td></tr>
+          <tr><td>Virginia State Bar</td><td>vsb.org</td><td>Attorney standing</td></tr>
+          <tr><td>SCC Bureau of Insurance</td><td>scc.virginia.gov</td><td>Settlement agent registration</td></tr>
+          <tr><td>Forms</td><td>vacourts.gov: CC-1611 List of Heirs, CC-1612 Real Estate Affidavit, CC-1616 and CC-1617 notice forms</td><td>Filed by mail with the Clerk</td></tr>
+          <tr><td>Deed cost calculator</td><td>ccdeedcalc.courts.state.va.us</td><td>Exact recordation and grantor's tax once the price is known</td></tr>
+          <tr><td>USDA eligibility map</td><td>eligibility.sc.egov.usda.gov</td><td>Enter the street address live</td></tr>
+          <tr><td>FEMA flood map</td><td>msc.fema.gov</td><td>Panel 51191C0165C</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="s12"><span class="n">12.</span>Questions for the pros</h2>
+      <h3><span class="n">12.1</span>For the Virginia attorney</h3>
+      <ol class="plain">
+        <li>From the recorded deed, was this in my father's sole name, or joint, life estate, transfer-on-death, or trust? Does the estate own it at all?</li>
+        <li>Given the date of death, has the § 64.2-534 one-year period run? If not: wait, qualify and adjudicate the debts, or an underwriter indemnity, and what does each cost?</li>
+        <li>Who are the heirs under § 64.2-200 and what fraction does each own? Any risk of an unknown heir?</li>
+        <li>Do I need to qualify at all, or do I sell as heir with a recorded List of Heirs and Real Estate Affidavit?</li>
+        <li>If I must qualify, will you serve as resident co-fiduciary so I avoid the surety bond, and at what fee?</li>
+        <li>What is my personal exposure under § 64.2-534(A) and how long does it last?</li>
+        <li>Was my father on Medicaid, and how is estate recovery cleared at closing?</li>
+        <li>Am I exempt from the Residential Property Disclosure Act, or not? I believe not, selling in my own name.</li>
+        <li>Will you prepare the deed with a special warranty, and can everything be done by mail-away or RON?</li>
+        <li>Will you represent me under § 55.1-1006 so the buyer's settlement agent cannot charge me without your consent?</li>
+        <li>Your fee, flat or hourly, and an estimate.</li>
+      </ol>
+      <h3><span class="n">12.2</span>For the Clerk's office</h3>
+      <ol class="plain">
+        <li>Can an out-of-state administrator or executor qualify by mail or video, or is personal appearance required?</li>
+        <li>Has anything been filed on my father's estate? Is a will lodged for safekeeping? Can I get the whole file?</li>
+        <li>Which form do you use for the § 64.2-510 Real Estate Affidavit?</li>
+        <li>Has the county adopted the local probate tax add-on?</li>
+        <li>Do you accept e-recording through Simplifile or CSC, and deeds notarized by remote online notarization?</li>
+        <li>Current fees to record a deed, a List of Heirs, an affidavit; payment from out of state; where the recorded original is mailed.</li>
+      </ol>
+      <h3><span class="n">12.3</span>For the settlement agent, once there is a buyer</h3>
+      <ol class="plain">
+        <li>Which underwriter, and exactly what do you require to insure a sale by an heir in this posture, inside or outside the one-year window?</li>
+        <li>California-notarized deed, or RON? Whose platform?</li>
+        <li>A written estimated seller net sheet: grantor's tax, recording, commission, prorations.</li>
+        <li>Your wire-fraud verification procedure, and the phone number I should call back, taken from your license record.</li>
+        <li>Confirm in writing the deed is held until cleared funds are received.</li>
+      </ol>
+
+      <div class="callout">
+        <p class="label">Standing note</p>
+        <p>This is general legal and tax information assembled from the cited sources on 8 September 2026, not legal or tax advice. Statutes change; two of the sections cited here already have versions taking effect 1 January 2027. A Virginia attorney and a tax professional should confirm everything on this page against the actual deed, the date of death, and the family facts.</p>
+      </div>
+
+      <div class="footnotes" id="sources">
+        <p class="kicker">Sources</p>
+        <h4>Virginia Code (law.lis.virginia.gov)</h4>
+        <ol>
+          <li id="fn1">§ 64.2-509 List of Heirs; § 64.2-510 Real Estate Affidavit; § 58.1-1717.1 fee when no one qualifies. <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-509/">64.2-509</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-510/">64.2-510</a> · <a href="https://law.lis.virginia.gov/vacode/title58.1/chapter17/section58.1-1717.1/">58.1-1717.1</a> · form <a href="https://www.vacourts.gov/static/forms/circuit/cc1611.pdf">CC-1611</a> <a href="#r1">↩</a></li>
+          <li id="fn2">§ 64.2-200 course of descents: spouse takes all unless there are children not hers, then one third to the spouse. <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter2/section64.2-200/">64.2-200</a> <a href="#r2">↩</a></li>
+          <li id="fn3">§ 64.2-444 probate and recording of wills; § 64.2-521 executor's power over real estate; § 64.2-508 notice and Affidavit of Notice. <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter4/section64.2-444/">64.2-444</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-521/">64.2-521</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-508/">64.2-508</a></li>
+          <li id="fn4">§ 64.2-534 liability of heir or devisee for value of real estate; conveyance within one year not valid against creditors. <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-534/">64.2-534</a> <a href="#r4">↩</a></li>
+          <li id="fn5">§§ 64.2-550 to 64.2-556 debts and demands, show cause; § 64.2-532 real estate liable for debts; § 64.2-535 judicial sale (partition and disability contexts); §§ 64.2-309 to 64.2-311 family allowance, exempt property, homestead allowance. <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-550/">64.2-550</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter5/section64.2-532/">64.2-532</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter3/section64.2-309/">64.2-309</a> <a href="#r5">↩</a></li>
+          <li id="fn6">§ 64.2-1426 nonresident fiduciaries; § 64.2-1411 waiver of surety; § 58.1-1712 probate tax; § 64.2-1300 inventory; § 64.2-1304 accounts; § 64.2-600 small asset excludes real property. <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter14/section64.2-1426/">64.2-1426</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter14/section64.2-1411/">64.2-1411</a> · <a href="https://law.lis.virginia.gov/vacode/title58.1/chapter17/section58.1-1712/">58.1-1712</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter6/section64.2-600/">64.2-600</a> <a href="#r6">↩</a></li>
+          <li id="fn7">§ 55.1-616 notarial acts performed outside Virginia; §§ 55.1-618 to 55.1-620 what the notary certifies and the signer acknowledges; § 47.1-13 remote online notarization; § 17.1-223 deed recording requirements. <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter6/section55.1-616/">55.1-616</a> · <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter6/section55.1-620/">55.1-620</a> · <a href="https://law.lis.virginia.gov/vacode/title47.1/chapter3/section47.1-13/">47.1-13</a> · <a href="https://law.lis.virginia.gov/vacode/title17.1/chapter2/section17.1-223/">17.1-223</a> · Cal. Civ. Code <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1189">§ 1189</a> <a href="#r7">↩</a></li>
+          <li id="fn8">Washington County Circuit Court Clerk page: probate FAQ, by-mail and online services lists, e-recording vendors. <a href="https://www.washcova.com/circuit-court-clerk/">washcova.com/circuit-court-clerk</a> · <a href="https://www.vacourts.gov/courts/circuit/washington/home.html">vacourts.gov</a> <a href="#r8">↩</a></li>
+          <li id="fn9">§ 55.1-702 exemptions; § 55.1-703 disclosure statement (version effective until 1 January 2027); § 55.1-709 delivery and termination right; § 55.1-708 methamphetamine. <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter7/section55.1-702/">55.1-702</a> · <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter7/section55.1-703/">55.1-703</a> · <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter7/section55.1-709/">55.1-709</a> <a href="#r9">↩</a></li>
+          <li id="fn10">Federal lead-based paint disclosure, 42 U.S.C. § 4852d and 24 CFR part 35 / 40 CFR part 745. <a href="https://www.epa.gov/lead/real-estate-disclosures-about-potential-lead-hazards">epa.gov</a> <a href="#r10">↩</a></li>
+          <li id="fn11">§ 55.1-1006 choice of settlement agent; § 55.1-1010 fees; § 58.1-802 grantor's tax; § 58.1-317 nonresident registration; § 64.2-1602, § 64.2-1603, § 55.1-600 powers of attorney and recording. <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter10/section55.1-1006/">55.1-1006</a> · <a href="https://law.lis.virginia.gov/vacode/title58.1/chapter8/section58.1-802/">58.1-802</a> · <a href="https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-317/">58.1-317</a> · <a href="https://law.lis.virginia.gov/vacode/title64.2/chapter16/section64.2-1603/">64.2-1603</a></li>
+          <li id="fn12">§§ 55.1-321 and 55.1-322 trustee sale notice and advertisement; § 8.01-126 unlawful detainer; § 54.1-2137 listing agreement termination; § 55.1-1008 disbursement; § 55.1-134 survivorship; § 64.2-632 and § 64.2-634 transfer-on-death deeds. <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter3/section55.1-321/">55.1-321</a> · <a href="https://law.lis.virginia.gov/vacode/title8.01/chapter3/section8.01-126/">8.01-126</a> · <a href="https://law.lis.virginia.gov/vacode/title55.1/chapter1/section55.1-134/">55.1-134</a></li>
+        </ol>
+        <h4>Federal and tax</h4>
+        <ol start="20">
+          <li id="fn20">26 U.S.C. § 1014 basis of property acquired from a decedent; § 1223(9) holding period; § 1211(b) capital loss limit; § 642(h). <a href="https://www.law.cornell.edu/uscode/text/26/1014">1014</a> · <a href="https://www.law.cornell.edu/uscode/text/26/1223">1223</a> · <a href="https://www.law.cornell.edu/uscode/text/26/1211">1211</a> <a href="#r20">↩</a></li>
+          <li id="fn21">Treas. Reg. § 20.2031-1(b) valuation; IRS Publication 551, Basis of Assets. <a href="https://www.law.cornell.edu/cfr/text/26/20.2031-1">20.2031-1</a> · <a href="https://www.irs.gov/publications/p551">Pub 551</a> <a href="#r21">↩</a></li>
+          <li id="fn22">IRS Publication 559, Survivors, Executors, and Administrators: sale of inherited residence held for sale; rent-free use makes a loss nondeductible. IRS Publication 544. <a href="https://www.irs.gov/publications/p559">Pub 559</a> · <a href="https://www.irs.gov/publications/p544">Pub 544</a> <a href="#r22">↩</a></li>
+          <li id="fn23">Rev. Proc. 2025-32 inflation adjustments for 2026 (basic exclusion amount, capital-gain brackets, estate and trust brackets). <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026">irs.gov</a> <a href="#r23">↩</a></li>
+          <li id="fn24">Virginia Department of Taxation, estate and inheritance tax page. <a href="https://www.tax.virginia.gov/estate-and-inheritance-taxes">tax.virginia.gov</a> <a href="#r24">↩</a></li>
+          <li id="fn25">Virginia nonresident registration of real property sellers, Form R-5 / R-5E, § 58.1-317; Title 58.1 Chapter 3 withholding articles cover employers and pass-through entities only. <a href="https://www.tax.virginia.gov/">tax.virginia.gov</a> <a href="#r25">↩</a></li>
+          <li id="fn26">Virginia Form 763 and Schedule OSC credit for tax paid to Arizona, California, District of Columbia, or Oregon by a nonresident; California FTB Schedule S instructions listing Virginia for dual residents only. <a href="https://www.tax.virginia.gov/credit-for-taxes-paid-to-another-state">tax.virginia.gov</a> · <a href="https://www.ftb.ca.gov/forms/2025/2025-540-s-instructions.html">ftb.ca.gov</a> <a href="#r26">↩</a></li>
+          <li id="fn27">Form 1099-S reporting, Treas. Reg. § 1.6045-4; Form 1041 and Form SS-4. <a href="https://www.law.cornell.edu/cfr/text/26/1.6045-4">1.6045-4</a> · <a href="https://www.irs.gov/forms-pubs/about-form-1041">Form 1041</a></li>
+        </ol>
+        <h4>Liens, fraud, insurance, environment</h4>
+        <ol start="30">
+          <li id="fn30">24 CFR 206.125 HECM due and payable; 30-day period after notice; 95% of appraised value payoff; foreclosure within 6 months. <a href="https://www.ecfr.gov/current/title-24/subtitle-B/chapter-II/subchapter-B/part-206/subpart-C/subject-group-ECFR1e5d5d5f3b0f4c4/section-206.125">ecfr.gov</a> · Garn-St Germain heir protection, 12 U.S.C. § 1701j-3(d). <a href="#r30">↩</a></li>
+          <li id="fn31">12VAC30-20-141 Virginia Medicaid estate recovery, definition of estate. <a href="https://law.lis.virginia.gov/admincode/title12/agency30/chapter20/section141/">12VAC30-20-141</a> <a href="#r31">↩</a></li>
+          <li id="fn32">14VAC5-341-30 and 14VAC5-341-60 standard dwelling policy provisions, vacancy and freeze; § 38.2-2114. <a href="https://law.lis.virginia.gov/admincode/title14/agency5/chapter341/section30/">14VAC5-341-30</a> · <a href="https://law.lis.virginia.gov/admincode/title14/agency5/chapter341/section60/">14VAC5-341-60</a> <a href="#r32">↩</a></li>
+          <li id="fn33">Virginia 2025 deed-fraud study and the property recording notification service linked from the Clerk. <a href="https://www.virginiapropertynotification.org/">virginiapropertynotification.org</a> <a href="#r33">↩</a></li>
+          <li id="fn34">FBI Internet Crime Complaint Center, 2025 Internet Crime Report. <a href="https://www.ic3.gov/AnnualReport/Reports">ic3.gov</a> <a href="#r34">↩</a></li>
+          <li id="fn35">Virginia Department of Health onsite sewage, § 32.1-165; NOAA NCEI 1991 to 2020 normals, Abingdon 3S station, median first 32°F freeze October 20; county GIS roads and zoning layers; Washington County Code chapter 66 (Village District) on Municode. <a href="https://www.vdh.virginia.gov/environmental-health/onsite-sewage-water-services-updated/">vdh.virginia.gov</a> · <a href="https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals">ncei.noaa.gov</a> · <a href="https://library.municode.com/va/washington_county/codes/code_of_ordinances?nodeId=PTICO_CH66ZO_ARTVDI_DIV7VIDI">municode.com</a></li>
+        </ol>
+        <h4>County record and market</h4>
+        <ol start="40">
+          <li id="fn40">Washington County assessment (CAMA) record, county GIS, Treasurer's taxpayer portal, FEMA National Flood Hazard Layer, all pulled 2026-09-08. <a href="https://washington.cama.concisesystems.com/">washington.cama.concisesystems.com</a> · <a href="https://washcova.interactivegis.com/">washcova.interactivegis.com</a> · <a href="https://taxes.washcova.com/">taxes.washcova.com</a> · <a href="https://www.washcova.com/treasurer/">Treasurer</a> · <a href="https://msc.fema.gov/portal/home">msc.fema.gov</a> <a href="#r40">↩</a></li>
+          <li id="fn41">Closed sales from the regional MLS feed as republished by Movoto, Meadowview and Glade Spring sold pages, 2026-09-08. <a href="https://www.movoto.com/meadowview-va/sold/">movoto.com</a></li>
+        </ol>
+        <ol start="50">
+          <li id="fn50">Clever Real Estate agent survey, Virginia average commission, February 2026. <a href="https://listwithclever.com/average-real-estate-commission-rate/virginia/">listwithclever.com</a> <a href="#r50">↩</a></li>
+          <li id="fn51">National Association of REALTORS settlement FAQ: practice changes effective 17 August 2024. <a href="https://www.nar.realtor/the-facts/nar-settlement-faqs">nar.realtor</a> <a href="#r51">↩</a></li>
+          <li id="fn52">Tennessee/Virginia Regional MLS, jointly owned by the Northeast Tennessee and Bristol Tennessee/Virginia associations; the local association is the Southwest Virginia Association of REALTORS in Abingdon; Bright MLS Virginia coverage list. <a href="https://tvrmls.com/about/">tvrmls.com</a> · <a href="https://www.swvar.com/">swvar.com</a> · <a href="https://www.idxbroker.com/mls/regions/virginia">Bright MLS coverage</a> <a href="#r52">↩</a></li>
+          <li id="fn53">iBuyer offer studies (Opendoor about 9% and Offerpad about 14% under eventual resale, 2023 to 2025 transactions). <a href="https://listwithclever.com/ibuyer-companies/">listwithclever.com</a> <a href="#r53">↩</a></li>
+          <li id="fn54">Redfin, best time to sell, 2026; NAR staging and remodeling impact reports; Zillow Research on overpricing. <a href="https://www.redfin.com/news/best-time-to-sell-buy-home/">redfin.com</a> · <a href="https://www.nar.realtor/research-and-statistics/research-reports/profile-of-home-staging">nar.realtor</a> · <a href="https://www.zillow.com/research/overpricing-impacts-time-market-12476/">zillow.com/research</a> <a href="#r54">↩</a></li>
+        </ol>
+      </div>
+
+      <footer class="filed">
+        <hr class="double-rule">
+        <div class="row">
+          <span>RL-2026-VA-HOUSE · SELLING THE MEADOWVIEW HOUSE</span>
+          <span>WORKING BRIEF · FILED 2026-09-08 · <a href="/other/">other pages</a></span>
+        </div>
+      </footer>
+    </article>
+  </div>
+
+  <script>
+    (function () {
+      const links = new Map();
+      document.querySelectorAll('#toc a').forEach(a => links.set(a.hash.slice(1), a.parentElement));
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(li => li.classList.remove('here'));
+            const li = links.get(e.target.id);
+            if (li) li.classList.add('here');
+          }
+        });
+      }, { rootMargin: '0px 0px -70% 0px' });
+      document.querySelectorAll('h2[id], div.footnotes[id]').forEach(h => obs.observe(h));
+    })();
+    (function () {
+      const bar = document.getElementById('progress');
+      let raf = null;
+      function paint() {
+        raf = null;
+        const el = document.scrollingElement;
+        const max = el.scrollHeight - el.clientHeight;
+        bar.style.width = (max > 0 ? (el.scrollTop / max) * 100 : 0) + '%';
+      }
+      addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(paint); }, { passive: true });
+      paint();
+    })();
+  </script>
+</body>
+</html>
