@@ -23,11 +23,7 @@
     ::selection { background:var(--oxblood); color:#fff; }
     .frame { max-width:78ch; margin:0 auto; padding:0 clamp(1rem,4vw,2.5rem); }
     article { padding:2.2rem 0 4rem; }
-    .stamp { font-family:var(--mono); font-size:.68rem; color:var(--dim); letter-spacing:.06em; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1.6rem; }
-    .masthead h1 { font-family:var(--sans); font-weight:700; font-size:.9rem; letter-spacing:.34em; text-transform:uppercase; color:var(--oxblood); }
-    .masthead .subject { font-family:var(--serif); font-weight:700; font-size:clamp(1.7rem,4.5vw,2.5rem); line-height:1.15; margin:.7rem 0 1.4rem; letter-spacing:-.01em; }
-    .routing { display:grid; grid-template-columns:auto 1fr; column-gap:1.4rem; row-gap:.3rem; font-size:.95rem; margin-bottom:1.2rem; }
-    .routing dt { font-family:var(--sans); font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); align-self:baseline; padding-top:.35em; }
+    .masthead .subject { font-family:var(--serif); font-weight:700; font-size:clamp(1.7rem,4.5vw,2.5rem); line-height:1.15; margin:0 0 1.4rem; letter-spacing:-.01em; }
     .double-rule { border:0; border-top:3px solid var(--oxblood); border-bottom:1px solid var(--oxblood); height:6px; margin:0 0 2.2rem; }
     p { margin:0 0 1rem; } p.lede { font-size:1.12rem; font-weight:300; line-height:1.6; } strong { font-weight:600; }
     .when { font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--oxblood); margin:2.6rem 0 .4rem; }
@@ -74,15 +70,8 @@
 <body>
   <div class="frame">
     <article>
-      <div class="stamp"><span>FILE: RL-2026-VA-HOUSE</span><span>REV 3 · 2026-09-09</span></div>
       <header class="masthead">
-        <h1>Brief</h1>
-        <p class="subject">Selling the Meadowview house from San Diego</p>
-        <dl class="routing">
-          <dt>To</dt><dd>The heir</dd>
-          <dt>From</dt><dd>Rob Logic</dd>
-          <dt>Re</dt><dd>What to do, in order. One step at a time.</dd>
-        </dl>
+        <h1 class="subject">Selling the Meadowview house from San Diego</h1>
       </header>
       <hr class="double-rule">
 
@@ -381,7 +370,7 @@
 
       <footer class="filed">
         <hr class="double-rule">
-        <div class="row"><span>RL-2026-VA-HOUSE · SELLING THE MEADOWVIEW HOUSE</span><span>REV 3 · 2026-09-09 · <a href="/other/">other pages</a></span></div>
+        <div class="row"><span>Updated 9 September 2026</span><span><a href="/other/">other pages</a></span></div>
       </footer>
     </article>
   </div>
