@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STARSHOT · CA Lotto Picks By Sign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Righteous&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14082B; --ink2:#1D0C3A; --panel:#220F45;
+  --mag:#FF2E9A; --org:#FF8A00; --gold:#FFD23F; --cyan:#45F0E0; --lav:#B79CFF;
+  --txt:#F6EFFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--txt);font-family:'Righteous',sans-serif;overflow-x:hidden}
+.mono{font-family:'Space Mono',monospace}
+
+.cosmos{position:relative;padding:38px 16px 20px;text-align:center;
+  background:
+    radial-gradient(1px 1px at 12% 22%,#fff8 50%,transparent 51%),
+    radial-gradient(1px 1px at 78% 12%,#fff7 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 33% 64%,#fff6 50%,transparent 51%),
+    radial-gradient(1px 1px at 61% 38%,#fff8 50%,transparent 51%),
+    radial-gradient(1.5px 1.5px at 89% 58%,#fff5 50%,transparent 51%),
+    radial-gradient(1px 1px at 45% 15%,#fff7 50%,transparent 51%),
+    radial-gradient(ellipse 120% 60% at 50% 118%, #4A1663 0%, #7A1E6C 28%, #C42268 48%, #FF5A36 68%, #FF8A00 78%, transparent 92%),
+    linear-gradient(#14082B,#1D0C3A)}
+h1.wordmark{font-family:'Monoton',cursive;font-weight:400;font-size:clamp(42px,9.5vw,92px);line-height:1.05;letter-spacing:.04em;
+  background:linear-gradient(180deg,#FFD23F 0%,#FF8A00 30%,#FF2E9A 58%,#B79CFF 82%,#45F0E0 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 14px #FF2E9A66) drop-shadow(0 2px 0 #14082B)}
+.sub{font-size:12px;color:var(--txt);letter-spacing:.18em;text-transform:uppercase;margin-top:8px;text-shadow:0 1px 3px #14082B}
+.dateline{margin-top:14px;color:var(--txt);font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 3px #14082B}
+.moonline{margin-top:3px;color:var(--txt);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 3px #14082B}
+
+.pick{background:#1D0C3A;border-top:2px solid #FF2E9A44;border-bottom:2px solid #FF2E9A44}
+.hint{text-align:center;color:var(--gold);font-size:16px;letter-spacing:.12em;text-transform:uppercase;padding:14px 8px 0}
+.ring{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:8px 8px 14px}
+.zs{background:transparent;border:2px solid transparent;border-radius:14px;color:var(--lav);cursor:pointer;padding:6px 8px 4px;min-width:62px;
+  font-family:'Space Mono',monospace;display:flex;flex-direction:column;align-items:center;gap:2px}
+.zs .g{font-size:22px;line-height:1}
+.zs small{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+.zs:hover{border-color:#B79CFF55}
+.zs.on{color:var(--gold);border-color:var(--gold);background:#FFD23F14;box-shadow:0 0 14px #FFD23F55}
+
+main{max-width:980px;margin:0 auto;padding:26px 14px 40px}
+h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:var(--cyan);text-transform:uppercase}
+.h2row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:34px 0 12px}
+.h2row h2{margin:0}
+.what{background:transparent;border:0;color:var(--cyan);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;padding:4px 0}
+.what:hover{color:var(--gold)}
+.howto{background:#1D0C3A;border-radius:14px;padding:14px 18px;margin:0 0 12px;color:#D9C9F5;font-size:13.5px;line-height:1.55}
+.howto p+p{margin-top:6px}
+.howto b{color:var(--gold)}
+.tools{display:flex;justify-content:flex-end;padding:6px 0 0}
+.tools button{background:transparent;border:1px solid #B79CFF55;border-radius:99px;color:var(--lav);font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;cursor:pointer}
+.tools button:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.horo{display:none;margin:0 0 18px;background:linear-gradient(90deg,#FF2E9A22,#FF8A0022);border:2px solid var(--mag);border-radius:14px;padding:12px 16px}
+.horo .hk{color:var(--gold);font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.horo p{font-size:15px;line-height:1.5}
+
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:26px 16px;margin-top:24px}
+.card{background:var(--panel);border-radius:18px;border:2px solid #B79CFF2E;position:relative}
+.card header{padding:12px 16px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--c1),var(--c2));display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card header h3{font-size:18px;color:#14082B;letter-spacing:.04em}
+.card .mright{display:flex;flex-direction:column;align-items:flex-end;text-align:right;color:#14082B}
+.card .mission{font-family:'Space Mono',monospace;font-size:10.5px;color:#14082Bcc;white-space:nowrap}
+.card .jline{font-family:'Space Mono',monospace;font-weight:700;font-size:14px;line-height:1.1}
+.card .jline .jword{font-weight:400;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;margin-right:5px;opacity:.85}
+.card .logic-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:1;white-space:nowrap;background:var(--gold);color:#14082B;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:99px;border:2px solid #14082B;box-shadow:0 0 12px #FFD23F66}
+.card .slips{padding:12px 14px 10px}
+.sliprow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed #B79CFF22}
+.sliprow:last-child{border-bottom:0}
+.sliprow .nm{flex:0 0 108px;font-size:12.5px;letter-spacing:.08em;color:var(--cyan);text-transform:uppercase}
+.sliprow.you .nm{color:var(--gold)}
+.balls{display:flex;gap:6px;flex-wrap:wrap}
+.b{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:'Space Mono',monospace;font-weight:700;font-size:17px;background:#F6EFFF;color:#14082B}
+.b.sp{background:linear-gradient(135deg,var(--gold),var(--org));box-shadow:0 0 12px #FFD23F66}
+
+.calc{background:linear-gradient(160deg,#2A1157,#220F45);border:2px solid var(--cyan);border-radius:20px;padding:20px;box-shadow:0 0 30px #45F0E022}
+.calc .row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+.calc label{font-family:'Space Mono',monospace;font-size:10.5px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:5px}
+.calc input{background:#14082B;color:var(--txt);border:2px solid #45F0E066;border-radius:10px;padding:10px 12px;font-family:'Space Mono',monospace;font-size:14px}
+.calc button{background:linear-gradient(90deg,var(--mag),var(--org));border:0;border-radius:99px;color:#fff;font-family:'Righteous',sans-serif;font-size:15px;letter-spacing:.06em;padding:12px 26px;cursor:pointer}
+.calc button:hover{filter:brightness(1.12)}
+.calc .reset2{background:transparent;border:1px solid #B79CFF55;color:var(--lav);font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:12px 14px}
+.calc .reset2:hover{border-color:var(--cyan);color:var(--cyan);filter:none}
+#natal{margin-top:16px;display:none}
+#natal .placements{display:flex;gap:8px;flex-wrap:wrap}
+#natal .pl{background:#14082B;border:1px solid #B79CFF44;border-radius:99px;padding:6px 12px;font-family:'Space Mono',monospace;font-size:11.5px;color:var(--txt)}
+#natal .pl b{color:var(--gold)}
+#yoursign{margin-top:12px;font-size:15px}
+#yoursign b{color:var(--gold)}
+#remember{margin-top:12px;font-family:'Space Mono',monospace;font-size:10.5px;color:#7CFFB2}
+
+.legend{margin-top:34px;background:#1D0C3A;border-radius:14px;padding:16px 18px;color:#D9C9F5;font-size:13.5px;line-height:1.55}
+.legend summary{color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;font-size:13px;cursor:pointer}
+.legend[open] summary{margin-bottom:8px}
+.legend p+p{margin-top:6px}
+.legend b{color:var(--gold)}
+.tip{display:block;width:fit-content;margin:34px auto 0;text-align:center;border:2px solid var(--gold);border-radius:22px;color:var(--gold);text-decoration:none;padding:12px 26px;font-size:14px}
+.tip .k2{display:block;font-weight:700;margin-top:4px}
+.tip:hover{background:#FFD23F1A}
+.rg{margin-top:18px;text-align:center;color:#8E7BB8;font-family:'Space Mono',monospace;font-size:10px}
+.rg a{color:#8E7BB8}
+@media(max-width:480px){
+  .sliprow{flex-wrap:wrap}
+  .sliprow .nm{flex-basis:100%}
+  .b{width:40px;height:40px;font-size:16px}
+  .ring{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px 10px 12px}
+  .zs{min-width:0;padding:6px 2px 4px}
+  .zs .g{font-size:20px}
+  .zs small{font-size:8.5px}
+}
+</style>
+</head>
+<body>
+
+<div class="cosmos">
+  <h1 class="wordmark">STARSHOT</h1>
+  <div class="sub">CA Lotto Picks By Sign</div>
+  <div class="dateline">Monday · Sep 14, 2026</div>
+  <div class="moonline">Moon in Scorpio · Sun in Virgo</div>
+</div>
+
+<div class="pick">
+  <p class="hint" id="hint">Pick your sign</p>
+  <div class="ring" id="ring"><button class="zs" type="button" data-i="0"><span class="g">♈︎</span><small>Aries</small></button><button class="zs" type="button" data-i="1"><span class="g">♉︎</span><small>Taurus</small></button><button class="zs" type="button" data-i="2"><span class="g">♊︎</span><small>Gemini</small></button><button class="zs" type="button" data-i="3"><span class="g">♋︎</span><small>Cancer</small></button><button class="zs" type="button" data-i="4"><span class="g">♌︎</span><small>Leo</small></button><button class="zs" type="button" data-i="5"><span class="g">♍︎</span><small>Virgo</small></button><button class="zs" type="button" data-i="6"><span class="g">♎︎</span><small>Libra</small></button><button class="zs" type="button" data-i="7"><span class="g">♏︎</span><small>Scorpio</small></button><button class="zs" type="button" data-i="8"><span class="g">♐︎</span><small>Sagittarius</small></button><button class="zs" type="button" data-i="9"><span class="g">♑︎</span><small>Capricorn</small></button><button class="zs" type="button" data-i="10"><span class="g">♒︎</span><small>Aquarius</small></button><button class="zs" type="button" data-i="11"><span class="g">♓︎</span><small>Pisces</small></button></div>
+</div>
+
+<main>
+
+<div class="tools"><button type="button" id="reset">↺ Reset</button></div>
+<div class="horo" id="horo"><div class="hk" id="horo-k"></div><p id="horo-t"></p></div>
+<div class="games"><div class="card" data-game="FANTASY 5" style="--c1:#FFD23F;--c2:#FF8A00"><div class="logic-tag">★ Logic’s Pick</div><header><h3>FANTASY 5</h3><span class="mright"><span class="mission">Mon Sep 14 · $1</span><span class="jline"><span class="jword">Jackpot</span>$519K</span></span></header><div class="slips"></div></div><div class="card" data-game="POWERBALL" style="--c1:#FF2E9A;--c2:#FF8A00"><header><h3>POWERBALL</h3><span class="mright"><span class="mission">Mon Sep 14 · $2</span><span class="jline"><span class="jword">Jackpot</span>$251M</span></span></header><div class="slips"></div></div><div class="card" data-game="MEGA MILLIONS" style="--c1:#B79CFF;--c2:#FF2E9A"><header><h3>MEGA MILLIONS</h3><span class="mright"><span class="mission">Tue Sep 15 · $5</span><span class="jline"><span class="jword">Jackpot</span>$227M</span></span></header><div class="slips"></div></div><div class="card" data-game="SUPERLOTTO PLUS" style="--c1:#45F0E0;--c2:#B79CFF"><header><h3>SUPERLOTTO PLUS</h3><span class="mright"><span class="mission">Wed Sep 16 · $1</span><span class="jline"><span class="jword">Jackpot</span>$55M</span></span></header><div class="slips"></div></div></div>
+
+<div class="h2row"><h2>My Star Numbers</h2><button type="button" class="what" id="what">▸ What this is</button></div>
+<div class="howto" id="howto" hidden>
+  <p>Type your birthday, or any date, and hit Cast.</p>
+  <p>The page works out where the Moon, Sun, Mercury, Venus and Mars were that day, switches the picks above to your Sun sign, and adds a fourth slip, <b>Your planets</b>, built from those positions.</p>
+  <p>The date is kept on this device only. Reset clears it.</p>
+</div>
+<div class="calc">
+  <div class="row">
+    <div><label for="bd">Your date</label><input type="date" id="bd"></div>
+    <div><label for="bt">Time (optional)</label><input type="time" id="bt" value="12:00"></div>
+    <div><button id="go">Cast my numbers ✶</button></div>
+    <div><button type="button" class="reset2" id="reset2">↺ Reset</button></div>
+  </div>
+  <div id="natal">
+    <div class="placements" id="pl"></div>
+    <div id="yoursign"></div>
+    <div id="remember">✓ remembered on this device</div>
+  </div>
+</div>
+
+<details class="legend">
+  <summary>How these picks are made</summary>
+  <p>We ranked balls by how often they appeared in past draws of your game's current number set while the Sun was in your sign.</p>
+  <p><b>Zenith</b> = balls drawn most on those nights.</p>
+  <p><b>Nadir</b> = balls drawn least.</p>
+  <p><b>Equinox</b> = top two, bottom two, one from the middle.</p>
+  <p>Bonus balls: same math, their own pool.</p>
+  <p><b>Your planets</b> = one slip made straight from the sky on your date. Enter it below and it's remembered on this device.</p>
+  <p>Horoscopes are written each morning from that night's actual sky.</p>
+  <p><b>★ Logic’s Pick</b> = the game giving the most back per dollar right now.</p>
+</details>
+
+<a class="tip" href="https://cash.app/$RobLogic18" target="_blank" rel="noopener"><span class="k1">☾ Keep Rob's karma aligned ☽</span><span class="k2">Leave a tip</span></a>
+<p class="rg">Play responsibly · <a href="tel:18004262537">1-800-GAMBLER</a> (or text SUPPORT to 53342) · <a href="https://www.calottery.com/play-responsibly" target="_blank" rel="noopener">calottery.com/play-responsibly</a></p>
+
+</main>
+
+<script id="buckets" type="application/json">{"FANTASY 5":{"w":39,"s":null,"buckets":[{"hot":[9,10,13,27,28],"cold":[17,21,24,29,36],"mix":[10,12,21,28,36],"n":844,"n_sp":null,"sp":null},{"hot":[14,23,26,33,39],"cold":[1,15,21,27,38],"mix":[7,23,26,27,38],"n":848,"n_sp":null,"sp":null},{"hot":[5,27,28,35,39],"cold":[11,18,31,37,38],"mix":[5,12,18,31,39],"n":886,"n_sp":null,"sp":null},{"hot":[11,13,22,27,34],"cold":[1,14,16,25,38],"mix":[13,14,16,22,30],"n":920,"n_sp":null,"sp":null},{"hot":[2,3,4,13,34],"cold":[7,9,16,22,27],"mix":[2,7,9,34,39],"n":934,"n_sp":null,"sp":null},{"hot":[2,5,9,15,29],"cold":[11,13,22,26,33],"mix":[2,15,22,27,33],"n":872,"n_sp":null,"sp":null},{"hot":[2,11,13,25,37],"cold":[22,24,30,32,35],"mix":[2,13,24,29,32],"n":824,"n_sp":null,"sp":null},{"hot":[7,21,23,30,39],"cold":[8,12,18,20,35],"mix":[1,12,21,30,35],"n":853,"n_sp":null,"sp":null},{"hot":[1,9,10,13,25],"cold":[4,16,21,26,38],"mix":[9,10,16,26,34],"n":872,"n_sp":null,"sp":null},{"hot":[12,15,18,21,37],"cold":[10,26,28,30,31],"mix":[3,12,18,26,31],"n":851,"n_sp":null,"sp":null},{"hot":[5,11,24,30,39],"cold":[4,13,16,19,23],"mix":[5,7,11,13,19],"n":861,"n_sp":null,"sp":null},{"hot":[10,19,27,31,34],"cold":[6,8,13,20,29],"mix":[8,16,20,31,34],"n":866,"n_sp":null,"sp":null}]},"SUPERLOTTO PLUS":{"w":47,"s":27,"buckets":[{"hot":[7,12,13,21,33],"cold":[15,24,28,32,40],"mix":[21,28,33,40,46],"n":199,"n_sp":199,"sp":{"hot":19,"cold":12,"mix":13}},{"hot":[6,12,14,24,43],"cold":[10,23,29,41,47],"mix":[24,33,41,43,47],"n":212,"n_sp":212,"sp":{"hot":20,"cold":21,"mix":13}},{"hot":[4,7,8,23,42],"cold":[13,18,26,37,46],"mix":[4,7,13,16,46],"n":214,"n_sp":214,"sp":{"hot":6,"cold":19,"mix":17}},{"hot":[1,13,18,23,44],"cold":[11,42,43,46,47],"mix":[10,18,42,44,47],"n":205,"n_sp":205,"sp":{"hot":24,"cold":2,"mix":1}},{"hot":[6,12,19,36,47],"cold":[4,5,7,33,38],"mix":[7,12,21,38,47],"n":216,"n_sp":216,"sp":{"hot":12,"cold":22,"mix":19}},{"hot":[6,7,15,41,47],"cold":[1,3,19,23,29],"mix":[3,4,6,7,19],"n":215,"n_sp":215,"sp":{"hot":23,"cold":4,"mix":1}},{"hot":[2,4,8,13,33],"cold":[1,19,20,26,41],"mix":[2,7,13,19,26],"n":214,"n_sp":214,"sp":{"hot":26,"cold":12,"mix":11}},{"hot":[10,14,15,32,38],"cold":[6,17,19,23,27],"mix":[15,16,17,19,38],"n":211,"n_sp":211,"sp":{"hot":15,"cold":8,"mix":2}},{"hot":[6,7,17,19,44],"cold":[27,28,29,35,41],"mix":[7,17,27,28,45],"n":204,"n_sp":204,"sp":{"hot":20,"cold":15,"mix":3}},{"hot":[3,6,28,29,40],"cold":[2,11,12,25,31],"mix":[2,3,11,17,28],"n":197,"n_sp":197,"sp":{"hot":2,"cold":12,"mix":23}},{"hot":[20,21,33,41,45],"cold":[17,28,31,40,44],"mix":[17,24,33,40,45],"n":177,"n_sp":177,"sp":{"hot":1,"cold":15,"mix":18}},{"hot":[8,15,22,34,46],"cold":[4,7,12,14,16],"mix":[7,11,14,22,34],"n":188,"n_sp":188,"sp":{"hot":1,"cold":20,"mix":9}}]},"POWERBALL":{"w":69,"s":26,"buckets":[{"hot":[23,24,39,52,61],"cold":[13,28,34,58,67],"mix":[34,38,52,58,61],"n":116,"n_sp":116,"sp":{"hot":18,"cold":7,"mix":19}},{"hot":[20,39,56,63,69],"cold":[8,9,27,43,58],"mix":[8,12,39,43,56],"n":118,"n_sp":118,"sp":{"hot":1,"cold":16,"mix":23}},{"hot":[23,38,44,52,64],"cold":[11,15,24,47,65],"mix":[23,47,62,64,65],"n":121,"n_sp":121,"sp":{"hot":25,"cold":6,"mix":5}},{"hot":[9,10,32,61,62],"cold":[12,18,20,30,60],"mix":[9,13,30,60,62],"n":120,"n_sp":120,"sp":{"hot":4,"cold":15,"mix":6}},{"hot":[21,35,36,44,65],"cold":[13,14,26,41,52],"mix":[21,26,36,37,52],"n":122,"n_sp":122,"sp":{"hot":13,"cold":15,"mix":10}},{"hot":[11,19,20,22,67],"cold":[2,13,35,43,44],"mix":[11,13,20,44,54],"n":119,"n_sp":119,"sp":{"hot":14,"cold":6,"mix":19}},{"hot":[1,30,43,63,64],"cold":[4,5,26,35,51],"mix":[21,30,35,51,64],"n":114,"n_sp":114,"sp":{"hot":15,"cold":13,"mix":7}},{"hot":[28,48,51,53,57],"cold":[9,10,11,36,38],"mix":[11,28,36,46,48],"n":115,"n_sp":115,"sp":{"hot":23,"cold":3,"mix":9}},{"hot":[28,32,37,61,66],"cold":[11,17,22,43,49],"mix":[14,17,22,28,61],"n":114,"n_sp":114,"sp":{"hot":10,"cold":5,"mix":26}},{"hot":[3,4,12,38,39],"cold":[10,22,23,50,63],"mix":[3,10,35,38,50],"n":112,"n_sp":112,"sp":{"hot":14,"cold":16,"mix":23}},{"hot":[2,5,17,27,47],"cold":[10,22,24,45,56],"mix":[2,24,30,47,56],"n":115,"n_sp":115,"sp":{"hot":5,"cold":1,"mix":22}},{"hot":[11,28,36,50,52],"cold":[1,5,35,41,45],"mix":[1,5,28,47,50],"n":115,"n_sp":115,"sp":{"hot":6,"cold":22,"mix":3}}]},"MEGA MILLIONS":{"w":70,"s":24,"buckets":[{"hot":[8,11,22,31,42],"cold":[6,9,19,30,67],"mix":[2,6,8,11,30],"n":78,"n_sp":13,"sp":{"hot":2,"cold":3,"mix":5}},{"hot":[15,16,19,32,66],"cold":[31,50,54,59,69],"mix":[10,15,31,50,66],"n":79,"n_sp":17,"sp":{"hot":16,"cold":1,"mix":22}},{"hot":[3,14,22,34,40],"cold":[15,25,27,31,61],"mix":[14,15,22,58,61],"n":81,"n_sp":18,"sp":{"hot":12,"cold":4,"mix":5}},{"hot":[10,26,31,47,48],"cold":[9,14,23,58,65],"mix":[9,10,14,26,64],"n":81,"n_sp":18,"sp":{"hot":1,"cold":4,"mix":22}},{"hot":[1,14,26,29,51],"cold":[7,16,37,39,47],"mix":[1,14,16,37,44],"n":81,"n_sp":18,"sp":{"hot":12,"cold":3,"mix":24}},{"hot":[6,10,17,30,64],"cold":[4,5,46,60,70],"mix":[9,17,30,46,70],"n":77,"n_sp":15,"sp":{"hot":17,"cold":1,"mix":1}},{"hot":[3,18,27,36,39],"cold":[1,2,28,51,62],"mix":[1,18,27,28,58],"n":69,"n_sp":9,"sp":{"hot":19,"cold":1,"mix":7}},{"hot":[5,14,28,35,69],"cold":[7,29,40,41,67],"mix":[20,28,40,67,69],"n":74,"n_sp":8,"sp":{"hot":1,"cold":2,"mix":11}},{"hot":[7,20,37,59,61],"cold":[2,5,9,11,62],"mix":[2,7,9,21,61],"n":77,"n_sp":9,"sp":{"hot":18,"cold":1,"mix":11}},{"hot":[3,29,30,62,64],"cold":[32,50,55,65,68],"mix":[3,27,29,32,50],"n":75,"n_sp":8,"sp":{"hot":4,"cold":2,"mix":10}},{"hot":[4,14,31,38,66],"cold":[13,26,35,45,60],"mix":[1,4,31,35,45],"n":77,"n_sp":9,"sp":{"hot":1,"cold":2,"mix":8}},{"hot":[19,28,39,58,60],"cold":[5,23,44,45,51],"mix":[5,19,51,58,62],"n":77,"n_sp":8,"sp":{"hot":23,"cold":1,"mix":10}}]}}</script>
+<script id="horoscopes" type="application/json">{"Aries":"The Moon is in Scorpio, out of step with your sign, so keep your plans loose. Saturn is in your sign, which asks for patience more than luck. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Taurus":"The Moon sits straight across the sky from you in Scorpio, so someone else's mood sets the pace tonight. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Gemini":"The Moon is in Scorpio, out of step with your sign, so keep your plans loose. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Cancer":"The Moon is in Scorpio, a fellow water sign, and things come easier than usual. Mars is in your sign and you have more push than usual, so spend it on one thing. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Leo":"The Moon in Scorpio is at odds with your sign tonight, so do not force anything. Jupiter is in your sign this year, which is about as good as the sky gets for luck. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Virgo":"The Moon is in Scorpio, two signs over from you, and company helps. The Sun is in your sign, so this is your stretch of the year. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Libra":"The Moon is in Scorpio, right next door to your sign, and the small things carry the night. Mercury is moving through your sign, so say the thing plainly. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Scorpio":"The Moon is in your sign tonight, so whatever you feel, you feel all the way. Venus is in your sign, so say yes to the invitation. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Sagittarius":"The Moon is in Scorpio, right next door to your sign, and the small things carry the night. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Capricorn":"The Moon is in Scorpio, two signs over from you, and company helps. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Aquarius":"The Moon in Scorpio is at odds with your sign tonight, so do not force anything. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build.","Pisces":"The Moon is in Scorpio, a fellow water sign, and things come easier than usual. The Moon is a growing crescent, and the month is still young enough that what you start now has room to build."}</script>
+<script src="astronomy.browser.min.js"></script>
+<script>
+(function(){
+  var G = JSON.parse(document.getElementById("buckets").textContent);
+  var H = JSON.parse(document.getElementById("horoscopes").textContent);
+  var SIGNS=["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+  var DATELINE=document.querySelector(".dateline").textContent;
+  var sel=null, natal=null, natalSun=null;
+  function $(id){ return document.getElementById(id); }
+  function lon(body,t){
+    if(body==="Moon") return Astronomy.EclipticGeoMoon(t).lon;
+    if(body==="Sun")  return Astronomy.SunPosition(t).elon;
+    return Astronomy.Ecliptic(Astronomy.GeoVector(body,t,true)).elon;
+  }
+  function signOf(L){ return Math.floor(((L%360)+360)%360/30); }
+  function ball(L,pool){ return Math.floor(((L%360)+360)%360/360*pool)+1; }
+  function row(nm,balls,sp,cls){
+    var h='<div class="sliprow'+(cls?' '+cls:'')+'"><span class="nm">'+nm+'</span><span class="balls">';
+    balls.forEach(function(n){h+='<span class="b">'+n+'</span>'});
+    if(sp!=null) h+='<span class="b sp">'+sp+'</span>';
+    return h+'</span></div>';
+  }
+  function planets(p){
+    var used={}, ws=[];
+    ["Moon","Sun","Mercury","Venus","Mars"].forEach(function(b){
+      var n=ball(natal[b],p.w);
+      while(used[n]) n=(n%p.w)+1;
+      used[n]=1; ws.push(n);
+    });
+    return ws.sort(function(a,b){return a-b});
+  }
+  function render(){
+    var on = sel!==null;
+    document.querySelectorAll(".zs").forEach(function(b){ b.classList.toggle("on", on && +b.dataset.i===sel); });
+    document.querySelectorAll(".card").forEach(function(card){
+      var p=G[card.dataset.game], slips=card.querySelector(".slips");
+      if(!on){ slips.innerHTML=""; return; }
+      var bk=p.buckets[sel], h="";
+      h+=row("Zenith",bk.hot,bk.sp?bk.sp.hot:null);
+      h+=row("Nadir",bk.cold,bk.sp?bk.sp.cold:null);
+      h+=row("Equinox",bk.mix,bk.sp?bk.sp.mix:null);
+      if(natal) h+=row("Your planets",planets(p),p.s?ball(natal.Moon,p.s):null,"you");
+      slips.innerHTML=h;
+    });
+    if(natal) $("yoursign").innerHTML="Your sign is <b>"+SIGNS[natalSun]+"</b>"+(sel===natalSun?" · picks above are set to it":"");
+    var txt = on ? (H[SIGNS[sel]]||"") : "";
+    $("horo").style.display = txt ? "block" : "none";
+    if(txt){ $("horo-k").textContent = SIGNS[sel]+" · "+DATELINE; $("horo-t").textContent = txt; }
+  }
+  function select(i, save){
+    sel=i; render();
+    if(save){ try{ localStorage.setItem("starshot.sign", String(i)); }catch(e){} }
+  }
+  document.querySelectorAll(".zs").forEach(function(b){ b.addEventListener("click",function(){ select(+b.dataset.i, true); }); });
+  function cast(){
+    var bd=$("bd").value; if(!bd) return false;
+    var bt=$("bt").value||"12:00", parts=bd.split("-"), tp=bt.split(":");
+    var t=Astronomy.MakeTime(new Date(+parts[0],+parts[1]-1,+parts[2],+tp[0],+tp[1]));
+    var glyphs={Moon:"☽",Sun:"☀",Mercury:"☿",Venus:"♀",Mars:"♂"}, pl=$("pl"); pl.innerHTML="";
+    natal={};
+    Object.keys(glyphs).forEach(function(b){
+      natal[b]=lon(b,t);
+      var s=SIGNS[signOf(natal[b])], d=Math.floor(((natal[b]%360)+360)%360%30);
+      var el=document.createElement("span"); el.className="pl";
+      el.innerHTML=glyphs[b]+" "+b+": <b>"+d+"° "+s+"</b>"; pl.appendChild(el);
+    });
+    natalSun=signOf(natal.Sun);
+    $("natal").style.display="block";
+    select(natalSun, true);
+    return true;
+  }
+  $("go").addEventListener("click",function(){
+    if(cast()){ try{ localStorage.setItem("starshot.date",$("bd").value); localStorage.setItem("starshot.time",$("bt").value||"12:00"); }catch(e){} }
+  });
+  function resetSign(){                      // top button: the zodiac only
+    sel=null; render();
+    try{ localStorage.removeItem("starshot.sign"); }catch(e){}
+  }
+  function resetStar(){                      // bottom button: My Star Numbers only
+    try{ ["starshot.date","starshot.time"].forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
+    natal=null; natalSun=null; $("natal").style.display="none"; $("bd").value=""; $("bt").value="12:00"; render();
+  }
+  $("reset").addEventListener("click",resetSign);
+  $("reset2").addEventListener("click",resetStar);
+  $("what").addEventListener("click",function(){ var h=$("howto"); h.hidden=!h.hidden; this.textContent=(h.hidden?"▸":"▾")+" What this is"; });
+  try{
+    var sd=localStorage.getItem("starshot.date"), ss=localStorage.getItem("starshot.sign");
+    if(sd){ $("bd").value=sd; $("bt").value=localStorage.getItem("starshot.time")||"12:00"; cast(); }
+    else if(ss!==null && ss!==""){ select(+ss, false); }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
