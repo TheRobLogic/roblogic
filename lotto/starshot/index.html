@@ -27,10 +27,11 @@ body{background:var(--ink);color:var(--txt);font-family:'Righteous',sans-serif;o
     radial-gradient(1px 1px at 45% 15%,#fff7 50%,transparent 51%),
     radial-gradient(ellipse 120% 60% at 50% 118%, #4A1663 0%, #7A1E6C 28%, #C42268 48%, #FF5A36 68%, #FF8A00 78%, transparent 92%),
     linear-gradient(#14082B,#1D0C3A)}
-.masthead{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,30px)}
-.side{display:block;line-height:0;opacity:.45;transition:opacity .2s}
+.side{position:absolute;bottom:10px;display:block;line-height:0;opacity:.45;transition:opacity .2s}
 .side:hover{opacity:1}
-.side img,.side svg{width:clamp(36px,7vw,66px);height:auto;display:block}
+.side.sun{left:max(12px,calc(50% - 480px))}
+.side.moon{right:max(12px,calc(50% - 480px))}
+.side img,.side svg{width:clamp(34px,6vw,60px);height:auto;display:block}
 .side.sun svg{filter:drop-shadow(0 0 8px #FFD23F88)}
 h1.wordmark{font-family:'Monoton',cursive;font-weight:400;font-size:clamp(42px,9.5vw,92px);line-height:1.05;letter-spacing:.04em;
   background:linear-gradient(180deg,#FFD23F 0%,#FF8A00 30%,#FF2E9A 58%,#B79CFF 82%,#45F0E0 100%);
@@ -80,7 +81,6 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 .sliprow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed #B79CFF22}
 .sliprow:last-child{border-bottom:0}
 .sliprow .nm{flex:0 0 108px;font-size:12.5px;letter-spacing:.08em;color:var(--cyan);text-transform:uppercase}
-.sliprow.you .nm{color:var(--gold)}
 .balls{display:flex;gap:6px;flex-wrap:wrap}
 .b{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-family:'Space Mono',monospace;font-weight:700;font-size:17px;background:#F6EFFF;color:#14082B}
 .b.sp{background:linear-gradient(135deg,var(--gold),var(--org));box-shadow:0 0 12px #FFD23F66}
@@ -97,8 +97,8 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 #natal .placements{display:flex;gap:8px;flex-wrap:wrap}
 #natal .pl{background:#14082B;border:1px solid #B79CFF44;border-radius:99px;padding:6px 12px;font-family:'Space Mono',monospace;font-size:11.5px;color:var(--txt)}
 #natal .pl b{color:var(--gold)}
-#yoursign{margin-top:12px;font-size:15px}
-#yoursign b{color:var(--gold)}
+#natal .starrows{margin-top:14px}
+#natal .sliprow .nm{flex:0 0 150px;color:var(--gold)}
 #remember{margin-top:12px;font-family:'Space Mono',monospace;font-size:10.5px;color:#7CFFB2}
 
 .legend{margin-top:34px;background:#1D0C3A;border-radius:14px;padding:16px 18px;color:#D9C9F5;font-size:13.5px;line-height:1.55}
@@ -114,6 +114,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 @media(max-width:480px){
   .sliprow{flex-wrap:wrap}
   .sliprow .nm{flex-basis:100%}
+  #natal .sliprow .nm{flex-basis:100%}
   .b{width:40px;height:40px;font-size:16px}
   .ring{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px 10px 12px}
   .zs{min-width:0;padding:6px 2px 4px}
@@ -125,11 +126,9 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 <body>
 
 <div class="cosmos">
-  <div class="masthead">
-    <a class="side moon" href="../moonshot/" title="Moonshot"><img src="moonshot.png" alt="Moonshot" width="800" height="632"></a>
-    <h1 class="wordmark">STARSHOT</h1>
-    <a class="side sun" href="../" title="Logic's Lucky Lottos" aria-label="Logic's Lucky Lottos"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="13" fill="#FFD23F"/><g stroke="#FFD23F" stroke-width="4" stroke-linecap="round"><line x1="52.0" y1="32.0" x2="60.0" y2="32.0"/><line x1="46.1" y1="46.1" x2="51.8" y2="51.8"/><line x1="32.0" y1="52.0" x2="32.0" y2="60.0"/><line x1="17.9" y1="46.1" x2="12.2" y2="51.8"/><line x1="12.0" y1="32.0" x2="4.0" y2="32.0"/><line x1="17.9" y1="17.9" x2="12.2" y2="12.2"/><line x1="32.0" y1="12.0" x2="32.0" y2="4.0"/><line x1="46.1" y1="17.9" x2="51.8" y2="12.2"/></g></svg></a>
-  </div>
+  <a class="side sun" href="../" title="Logic's Lucky Lottos" aria-label="Logic's Lucky Lottos"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="13" fill="#FFD23F"/><g stroke="#FFD23F" stroke-width="4" stroke-linecap="round"><line x1="52.0" y1="32.0" x2="60.0" y2="32.0"/><line x1="46.1" y1="46.1" x2="51.8" y2="51.8"/><line x1="32.0" y1="52.0" x2="32.0" y2="60.0"/><line x1="17.9" y1="46.1" x2="12.2" y2="51.8"/><line x1="12.0" y1="32.0" x2="4.0" y2="32.0"/><line x1="17.9" y1="17.9" x2="12.2" y2="12.2"/><line x1="32.0" y1="12.0" x2="32.0" y2="4.0"/><line x1="46.1" y1="17.9" x2="51.8" y2="12.2"/></g></svg></a>
+  <h1 class="wordmark">STARSHOT</h1>
+  <a class="side moon" href="../moonshot/" title="Moonshot"><img src="moonshot.png" alt="Moonshot" width="800" height="632"></a>
   <div class="sub">CA Lotto Picks By Sign</div>
   <div class="dateline">Monday · Sep 14, 2026</div>
   <div class="moonline">Moon in Scorpio · Sun in Virgo</div>
@@ -149,7 +148,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 <div class="h2row"><h2>My Star Numbers</h2><button type="button" class="what" id="what">▸ What this is</button></div>
 <div class="howto" id="howto" hidden>
   <p>Type your birthday, or any date, and hit Cast.</p>
-  <p>The page works out where the Moon, Sun, Mercury, Venus and Mars were that day, switches the picks above to your Sun sign, and adds a fourth slip, <b>Your planets</b>, built from those positions.</p>
+  <p>The page works out where the Moon, Sun, Mercury, Venus and Mars were that day and turns each one into a ball, one slip per game.</p>
   <p>The date is kept on this device only. Reset clears it.</p>
 </div>
 <div class="calc">
@@ -161,7 +160,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   </div>
   <div id="natal">
     <div class="placements" id="pl"></div>
-    <div id="yoursign"></div>
+    <div class="starrows" id="starrows"></div>
     <div id="remember">✓ remembered on this device</div>
   </div>
 </div>
@@ -173,7 +172,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   <p><b>Nadir</b> = balls drawn least.</p>
   <p><b>Equinox</b> = top two, bottom two, one from the middle.</p>
   <p>Bonus balls: same math, their own pool.</p>
-  <p><b>Your planets</b> = one slip made straight from the sky on your date. Enter it below and it's remembered on this device.</p>
+  <p><b>My Star Numbers</b> = one slip per game made straight from the sky on your date.</p>
   <p>Horoscopes are written each morning from that night's actual sky.</p>
   <p><b>★ Logic’s Pick</b> = the game giving the most back per dollar right now.</p>
 </details>
@@ -192,7 +191,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   var H = JSON.parse(document.getElementById("horoscopes").textContent);
   var SIGNS=["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
   var DATELINE=document.querySelector(".dateline").textContent;
-  var sel=null, natal=null, natalSun=null;
+  var sel=null, natal=null;
   function $(id){ return document.getElementById(id); }
   function lon(body,t){
     if(body==="Moon") return Astronomy.EclipticGeoMoon(t).lon;
@@ -226,10 +225,8 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
       h+=row("Zenith",bk.hot,bk.sp?bk.sp.hot:null);
       h+=row("Nadir",bk.cold,bk.sp?bk.sp.cold:null);
       h+=row("Equinox",bk.mix,bk.sp?bk.sp.mix:null);
-      if(natal) h+=row("Your planets",planets(p),p.s?ball(natal.Moon,p.s):null,"you");
       slips.innerHTML=h;
     });
-    if(natal) $("yoursign").innerHTML="Your sign is <b>"+SIGNS[natalSun]+"</b>"+(sel===natalSun?" · picks above are set to it":"");
     var txt = on ? (H[SIGNS[sel]]||"") : "";
     $("horo").style.display = txt ? "block" : "none";
     if(txt){ $("horo-k").textContent = SIGNS[sel]+" · "+DATELINE; $("horo-t").textContent = txt; }
@@ -251,9 +248,13 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
       var el=document.createElement("span"); el.className="pl";
       el.innerHTML=glyphs[b]+" "+b+": <b>"+d+"° "+s+"</b>"; pl.appendChild(el);
     });
-    natalSun=signOf(natal.Sun);
+    var h="";
+    document.querySelectorAll(".card").forEach(function(card){
+      var p=G[card.dataset.game];
+      h+=row(card.dataset.game,planets(p),p.s?ball(natal.Moon,p.s):null);
+    });
+    $("starrows").innerHTML=h;
     $("natal").style.display="block";
-    select(natalSun, true);
     return true;
   }
   $("go").addEventListener("click",function(){
@@ -265,7 +266,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   }
   function resetStar(){                      // bottom button: My Star Numbers only
     try{ ["starshot.date","starshot.time"].forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
-    natal=null; natalSun=null; $("natal").style.display="none"; $("bd").value=""; $("bt").value="12:00"; render();
+    natal=null; $("natal").style.display="none"; $("starrows").innerHTML=""; $("bd").value=""; $("bt").value="12:00";
   }
   $("reset").addEventListener("click",resetSign);
   $("reset2").addEventListener("click",resetStar);
@@ -273,7 +274,7 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   try{
     var sd=localStorage.getItem("starshot.date"), ss=localStorage.getItem("starshot.sign");
     if(sd){ $("bd").value=sd; $("bt").value=localStorage.getItem("starshot.time")||"12:00"; cast(); }
-    else if(ss!==null && ss!==""){ select(+ss, false); }
+    if(ss!==null && ss!==""){ select(+ss, false); }
   }catch(e){}
 })();
 </script>
