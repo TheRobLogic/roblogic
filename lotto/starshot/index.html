@@ -27,6 +27,11 @@ body{background:var(--ink);color:var(--txt);font-family:'Righteous',sans-serif;o
     radial-gradient(1px 1px at 45% 15%,#fff7 50%,transparent 51%),
     radial-gradient(ellipse 120% 60% at 50% 118%, #4A1663 0%, #7A1E6C 28%, #C42268 48%, #FF5A36 68%, #FF8A00 78%, transparent 92%),
     linear-gradient(#14082B,#1D0C3A)}
+.masthead{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,30px)}
+.side{display:block;line-height:0;opacity:.45;transition:opacity .2s}
+.side:hover{opacity:1}
+.side img,.side svg{width:clamp(36px,7vw,66px);height:auto;display:block}
+.side.sun svg{filter:drop-shadow(0 0 8px #FFD23F88)}
 h1.wordmark{font-family:'Monoton',cursive;font-weight:400;font-size:clamp(42px,9.5vw,92px);line-height:1.05;letter-spacing:.04em;
   background:linear-gradient(180deg,#FFD23F 0%,#FF8A00 30%,#FF2E9A 58%,#B79CFF 82%,#45F0E0 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
@@ -120,7 +125,11 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 <body>
 
 <div class="cosmos">
-  <h1 class="wordmark">STARSHOT</h1>
+  <div class="masthead">
+    <a class="side moon" href="../moonshot/" title="Moonshot"><img src="moonshot.png" alt="Moonshot" width="800" height="632"></a>
+    <h1 class="wordmark">STARSHOT</h1>
+    <a class="side sun" href="../" title="Logic's Lucky Lottos" aria-label="Logic's Lucky Lottos"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="13" fill="#FFD23F"/><g stroke="#FFD23F" stroke-width="4" stroke-linecap="round"><line x1="52.0" y1="32.0" x2="60.0" y2="32.0"/><line x1="46.1" y1="46.1" x2="51.8" y2="51.8"/><line x1="32.0" y1="52.0" x2="32.0" y2="60.0"/><line x1="17.9" y1="46.1" x2="12.2" y2="51.8"/><line x1="12.0" y1="32.0" x2="4.0" y2="32.0"/><line x1="17.9" y1="17.9" x2="12.2" y2="12.2"/><line x1="32.0" y1="12.0" x2="32.0" y2="4.0"/><line x1="46.1" y1="17.9" x2="51.8" y2="12.2"/></g></svg></a>
+  </div>
   <div class="sub">CA Lotto Picks By Sign</div>
   <div class="dateline">Monday · Sep 14, 2026</div>
   <div class="moonline">Moon in Scorpio · Sun in Virgo</div>
