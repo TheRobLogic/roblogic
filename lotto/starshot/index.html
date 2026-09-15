@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STARSHOT · CA Lotto Picks By Sign</title>
 <link rel="icon" type="image/png" href="starshot.png">
+<script>try{if(sessionStorage.getItem("starshot.splash")){document.documentElement.className+=" nosplash";}else{sessionStorage.setItem("starshot.splash","1");}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Righteous&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -29,6 +30,7 @@ body{background:var(--ink);color:var(--txt);font-family:'Righteous',sans-serif;o
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .cosmos.reveal{animation-delay:2.35s}.pick.reveal{animation-delay:2.45s}main.reveal{animation-delay:2.55s}
 @media(prefers-reduced-motion:reduce){.splash{display:none}.reveal{opacity:1;animation:none}}
+.nosplash .splash{display:none}.nosplash .reveal{opacity:1;animation:none}   /* splash once per visit (sessionStorage), not on every back/forward */
 
 .cosmos{position:relative;padding:38px 16px 20px;text-align:center;
   background:
@@ -46,7 +48,7 @@ body{background:var(--ink);color:var(--txt);font-family:'Righteous',sans-serif;o
 .side.home{right:calc(100% + 14px)}
 .side.moon{left:calc(100% + 14px)}
 .side img{width:clamp(44px,5.6vw,72px);height:auto;display:block}
-.side.home img{filter:drop-shadow(0 0 10px #0008)}
+.side.home img{width:clamp(36px,4.5vw,58px);filter:drop-shadow(0 0 10px #0008)}
 h1.wordmark{font-family:'Monoton',cursive;font-weight:400;font-size:clamp(42px,9.5vw,92px);line-height:1.05;letter-spacing:.04em;
   background:linear-gradient(180deg,#FFD23F 0%,#FF8A00 30%,#FF2E9A 58%,#B79CFF 82%,#45F0E0 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
