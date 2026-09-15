@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STARSHOT · CA Lotto Picks By Sign</title>
+<link rel="icon" type="image/png" href="starshot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Righteous&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -16,6 +17,18 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--ink);color:var(--txt);font-family:'Righteous',sans-serif;overflow-x:hidden}
 .mono{font-family:'Space Mono',monospace}
+/* ---- splash: the star grows to full size ~2s, then the page (same beat as Moonshot) ---- */
+.splash{position:fixed;inset:0;z-index:50;display:grid;place-items:center;pointer-events:none;
+  background:radial-gradient(ellipse 60% 45% at 50% 46%,#FF2E9A33,transparent 65%),var(--ink);
+  animation:splash-gone .5s ease-in 2.3s forwards}
+.splash img{width:min(76vw,520px);height:auto;filter:drop-shadow(0 0 28px #FFD23F66);
+  animation:splash-grow 2.05s cubic-bezier(.16,1,.3,1) both}
+@keyframes splash-grow{from{transform:scale(.05);opacity:0}10%{opacity:1}to{transform:scale(1)}}
+@keyframes splash-gone{to{opacity:0;visibility:hidden}}
+.reveal{opacity:0;animation:rise .55s ease-out forwards}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cosmos.reveal{animation-delay:2.35s}.pick.reveal{animation-delay:2.45s}main.reveal{animation-delay:2.55s}
+@media(prefers-reduced-motion:reduce){.splash{display:none}.reveal{opacity:1;animation:none}}
 
 .cosmos{position:relative;padding:38px 16px 20px;text-align:center;
   background:
@@ -128,20 +141,21 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 </style>
 </head>
 <body>
+<div class="splash" aria-hidden="true"><img src="starshot.png" alt="" width="800" height="771"></div>
 
-<div class="cosmos">
+<div class="cosmos reveal">
   <div class="wm"><a class="side sun" href="../" title="Logic's Lucky Lottos" aria-label="Logic's Lucky Lottos"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="13" fill="#FFD23F"/><g stroke="#FFD23F" stroke-width="4" stroke-linecap="round"><line x1="52.0" y1="32.0" x2="60.0" y2="32.0"/><line x1="46.1" y1="46.1" x2="51.8" y2="51.8"/><line x1="32.0" y1="52.0" x2="32.0" y2="60.0"/><line x1="17.9" y1="46.1" x2="12.2" y2="51.8"/><line x1="12.0" y1="32.0" x2="4.0" y2="32.0"/><line x1="17.9" y1="17.9" x2="12.2" y2="12.2"/><line x1="32.0" y1="12.0" x2="32.0" y2="4.0"/><line x1="46.1" y1="17.9" x2="51.8" y2="12.2"/></g></svg></a><h1 class="wordmark">STARSHOT</h1><a class="side moon" href="../moonshot/" title="Moonshot"><img src="moonshot.png" alt="Moonshot" width="800" height="632"></a></div>
   <div class="sub">CA Lotto Picks By Sign</div>
   <div class="dateline">Monday · Sep 14, 2026</div>
   <div class="moonline">Moon in Scorpio · Sun in Virgo</div>
 </div>
 
-<div class="pick">
+<div class="pick reveal">
   <p class="hint" id="hint">Pick your sign</p>
   <div class="ring" id="ring"><button class="zs" type="button" data-i="0"><span class="g">♈︎</span><small>Aries</small></button><button class="zs" type="button" data-i="1"><span class="g">♉︎</span><small>Taurus</small></button><button class="zs" type="button" data-i="2"><span class="g">♊︎</span><small>Gemini</small></button><button class="zs" type="button" data-i="3"><span class="g">♋︎</span><small>Cancer</small></button><button class="zs" type="button" data-i="4"><span class="g">♌︎</span><small>Leo</small></button><button class="zs" type="button" data-i="5"><span class="g">♍︎</span><small>Virgo</small></button><button class="zs" type="button" data-i="6"><span class="g">♎︎</span><small>Libra</small></button><button class="zs" type="button" data-i="7"><span class="g">♏︎</span><small>Scorpio</small></button><button class="zs" type="button" data-i="8"><span class="g">♐︎</span><small>Sagittarius</small></button><button class="zs" type="button" data-i="9"><span class="g">♑︎</span><small>Capricorn</small></button><button class="zs" type="button" data-i="10"><span class="g">♒︎</span><small>Aquarius</small></button><button class="zs" type="button" data-i="11"><span class="g">♓︎</span><small>Pisces</small></button></div>
 </div>
 
-<main>
+<main class="reveal">
 
 <div class="tools"><button type="button" id="reset">↺ Reset</button></div>
 <div class="horo" id="horo"><div class="hk" id="horo-k"></div><p id="horo-t"></p></div>
