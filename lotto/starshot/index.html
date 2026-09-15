@@ -107,6 +107,20 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 .calc button:hover{filter:brightness(1.12)}
 .calc .reset2{background:transparent;border:1px solid #B79CFF55;color:var(--lav);font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:12px 14px}
 .calc .reset2:hover{border-color:var(--cyan);color:var(--cyan);filter:none}
+.datewrap{position:relative}
+.calc .datebox{display:flex;gap:6px}
+.calc .datebox input{width:150px}
+.calc .cal{background:#14082B;border:2px solid #45F0E066;border-radius:10px;color:var(--cyan);font-family:'Space Mono',monospace;font-size:17px;line-height:1;padding:0 10px;cursor:pointer}
+.calc .cal:hover{border-color:var(--cyan);filter:none}
+.calc input.bad{border-color:var(--mag);box-shadow:0 0 10px #FF2E9A66}
+.calpop{position:absolute;left:0;top:calc(100% + 8px);z-index:5;width:284px;background:#14082B;border:2px solid var(--cyan);border-radius:14px;padding:12px;box-shadow:0 12px 40px #000A}
+.calnav{display:flex;gap:8px;margin-bottom:10px}
+.calnav select{flex:1;min-width:0;background:#1D0C3A;color:var(--txt);border:2px solid #45F0E066;border-radius:10px;padding:7px 8px;font-family:'Space Mono',monospace;font-size:13px}
+.caldow,.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.caldow span{text-align:center;font-family:'Space Mono',monospace;font-size:9.5px;color:var(--lav);letter-spacing:.06em;padding-bottom:4px}
+.calc .calgrid button{height:32px;border:0;border-radius:8px;background:transparent;color:var(--txt);font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0;padding:0;cursor:pointer}
+.calc .calgrid button:hover{background:#B79CFF33;filter:none}
+.calc .calgrid button.on{background:var(--gold);color:#14082B;font-weight:700}
 #natal{margin-top:16px;display:none}
 #natal .placements{display:flex;gap:8px;flex-wrap:wrap}
 #natal .pl{background:#14082B;border:1px solid #B79CFF44;border-radius:99px;padding:6px 12px;font-family:'Space Mono',monospace;font-size:11.5px;color:var(--txt)}
@@ -169,7 +183,11 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 </div>
 <div class="calc">
   <div class="row">
-    <div><label for="bd">Your date</label><input type="date" id="bd"></div>
+    <div class="datewrap"><label for="bd">Your date</label>
+      <div class="datebox"><input type="text" id="bd" inputmode="numeric" autocomplete="off" placeholder="mm/dd/yyyy" maxlength="12"><button type="button" class="cal" id="calbtn" aria-label="Pick a date" aria-expanded="false">&#9660;</button></div>
+      <div class="calpop" id="calpop" hidden><div class="calnav"><select id="calm" aria-label="Month"></select><select id="caly" aria-label="Year"></select></div>
+        <div class="caldow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div><div class="calgrid" id="calgrid"></div></div>
+    </div>
     <div><label for="bt">Time (optional)</label><input type="time" id="bt" value="12:00"></div>
     <div><button id="go">Cast my numbers ✶</button></div>
     <div><button type="button" class="reset2" id="reset2">↺ Reset</button></div>
@@ -215,6 +233,22 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
     return Astronomy.Ecliptic(Astronomy.GeoVector(body,t,true)).elon;
   }
   function signOf(L){ return Math.floor(((L%360)+360)%360/30); }
+  var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function pad(n){ return (n<10?"0":"")+n; }
+  function fmtUS(y,m,d){ return pad(m)+"/"+pad(d)+"/"+y; }
+  function isoOf(p){ return p.y+"-"+pad(p.m)+"-"+pad(p.d); }
+  function daysIn(y,m){ return new Date(y,m,0).getDate(); }
+  function todayP(){ var n=new Date(); return {y:n.getFullYear(),m:n.getMonth()+1,d:n.getDate()}; }
+  function parseDate(s){                     // "6/15/1974", "06/15/74", "1974-06-15", "06151974", "June 15 1974"
+    s=(s||"").trim(); if(!s) return null;
+    var y,m,d,mm;
+    if((mm=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/))){ y=+mm[1]; m=+mm[2]; d=+mm[3]; }
+    else if((mm=s.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2}|\d{4})$/))){ m=+mm[1]; d=+mm[2]; y=+mm[3]; if(mm[3].length===2){ y+=(y<=todayP().y%100)?2000:1900; } }
+    else if((mm=s.match(/^(\d{2})(\d{2})(\d{4})$/))){ m=+mm[1]; d=+mm[2]; y=+mm[3]; }
+    else { var t=new Date(s); if(isNaN(t.getTime())) return null; y=t.getFullYear(); m=t.getMonth()+1; d=t.getDate(); }
+    if(y<1900||y>2100||m<1||m>12||d<1||d>daysIn(y,m)) return null;
+    return {y:y,m:m,d:d};
+  }
   function ball(L,pool){ return Math.floor(((L%360)+360)%360/360*pool)+1; }
   function row(nm,balls,sp,cls){
     var h='<div class="sliprow'+(cls?' '+cls:'')+'"><span class="nm">'+nm+'</span><span class="balls">';
@@ -253,9 +287,12 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   }
   document.querySelectorAll(".zs").forEach(function(b){ b.addEventListener("click",function(){ select(+b.dataset.i, true); }); });
   function cast(){
-    var bd=$("bd").value; if(!bd) return false;
-    var bt=$("bt").value||"12:00", parts=bd.split("-"), tp=bt.split(":");
-    var t=Astronomy.MakeTime(new Date(+parts[0],+parts[1]-1,+parts[2],+tp[0],+tp[1]));
+    var p=parseDate($("bd").value);
+    $("bd").classList.toggle("bad", !p);
+    if(!p) return false;
+    $("bd").value=fmtUS(p.y,p.m,p.d);
+    var bt=$("bt").value||"12:00", tp=bt.split(":");
+    var t=Astronomy.MakeTime(new Date(p.y,p.m-1,p.d,+tp[0],+tp[1]));
     var glyphs={Moon:"☽",Sun:"☀",Mercury:"☿",Venus:"♀",Mars:"♂"}, pl=$("pl"); pl.innerHTML="";
     natal={};
     Object.keys(glyphs).forEach(function(b){
@@ -271,27 +308,58 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
     });
     $("starrows").innerHTML=h;
     $("natal").style.display="block";
-    return true;
+    return p;
   }
   $("go").addEventListener("click",function(){
-    if(cast()){ try{ localStorage.setItem("starshot.date",$("bd").value); localStorage.setItem("starshot.time",$("bt").value||"12:00"); }catch(e){} }
+    var p=cast();
+    if(p){ try{ localStorage.setItem("starshot.date",isoOf(p)); localStorage.setItem("starshot.time",$("bt").value||"12:00"); }catch(e){} }
   });
+  $("bd").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); $("go").click(); } });
+  $("bd").addEventListener("input",function(){ this.classList.remove("bad"); });
+  // ---- calendar popover: month + year selects, day grid; picking a day fills the box (Cast still casts)
+  var cal={open:false,y:0,m:0};
+  function calGrid(){
+    var p=parseDate($("bd").value), first=new Date(cal.y,cal.m-1,1).getDay(), n=daysIn(cal.y,cal.m), h="";
+    for(var i=0;i<first;i++) h+="<span></span>";
+    for(var d=1; d<=n; d++){ var on=p&&p.y===cal.y&&p.m===cal.m&&p.d===d; h+="<button type=\"button\" data-d=\""+d+"\""+(on?" class=\"on\"":"")+">"+d+"</button>"; }
+    $("calgrid").innerHTML=h;
+  }
+  function calOpen(){
+    var p=parseDate($("bd").value)||todayP();
+    cal.y=p.y; cal.m=p.m; $("calm").value=String(p.m); $("caly").value=String(p.y); calGrid();
+    $("calpop").hidden=false; cal.open=true; $("calbtn").setAttribute("aria-expanded","true");
+  }
+  function calClose(){ $("calpop").hidden=true; cal.open=false; $("calbtn").setAttribute("aria-expanded","false"); }
+  (function(){
+    var ms=$("calm"), ys=$("caly"), now=todayP().y;
+    MONTHS.forEach(function(nm,i){ var o=document.createElement("option"); o.value=i+1; o.textContent=nm; ms.appendChild(o); });
+    for(var y=now; y>=1900; y--){ var o=document.createElement("option"); o.value=y; o.textContent=y; ys.appendChild(o); }
+    ms.addEventListener("change",function(){ cal.m=+ms.value; calGrid(); });
+    ys.addEventListener("change",function(){ cal.y=+ys.value; calGrid(); });
+  })();
+  $("calbtn").addEventListener("click",function(e){ e.stopPropagation(); if(cal.open) calClose(); else calOpen(); });
+  $("calpop").addEventListener("click",function(e){ e.stopPropagation(); });
+  $("calgrid").addEventListener("click",function(e){ var b=e.target.closest("button"); if(!b) return; $("bd").value=fmtUS(cal.y,cal.m,+b.getAttribute("data-d")); $("bd").classList.remove("bad"); calClose(); $("bd").focus(); });
+  document.addEventListener("click",function(){ if(cal.open) calClose(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&cal.open) calClose(); });
   function resetSign(){                      // top button: the zodiac only
     sel=null; render();
     try{ localStorage.removeItem("starshot.sign"); }catch(e){}
   }
   function resetStar(){                      // bottom button: My Star Numbers only
     try{ ["starshot.date","starshot.time"].forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
-    natal=null; $("natal").style.display="none"; $("starrows").innerHTML=""; $("bd").value=""; $("bt").value="12:00";
+    natal=null; $("natal").style.display="none"; $("starrows").innerHTML=""; $("bd").classList.remove("bad"); var n=todayP(); $("bd").value=fmtUS(n.y,n.m,n.d); $("bt").value="12:00";
   }
   $("reset").addEventListener("click",resetSign);
   $("reset2").addEventListener("click",resetStar);
   $("what").addEventListener("click",function(){ var h=$("howto"); h.hidden=!h.hidden; this.textContent=(h.hidden?"▸":"▾")+" What this is"; });
   try{
     var sd=localStorage.getItem("starshot.date"), ss=localStorage.getItem("starshot.sign");
-    if(sd){ $("bd").value=sd; $("bt").value=localStorage.getItem("starshot.time")||"12:00"; cast(); }
+    var q=sd?parseDate(sd):null;
+    if(q){ $("bd").value=fmtUS(q.y,q.m,q.d); $("bt").value=localStorage.getItem("starshot.time")||"12:00"; cast(); }
     if(ss!==null && ss!==""){ select(+ss, false); }
   }catch(e){}
+  if(!$("bd").value){ var n0=todayP(); $("bd").value=fmtUS(n0.y,n0.m,n0.d); }   // default = today, so the box shows how it works
 })();
 </script>
 </body>
