@@ -127,7 +127,11 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
 #natal .placements{display:flex;gap:8px;flex-wrap:wrap}
 #natal .pl{background:#14082B;border:1px solid #B79CFF44;border-radius:99px;padding:6px 12px;font-family:'Space Mono',monospace;font-size:11.5px;color:var(--txt)}
 #natal .pl b{color:var(--gold)}
-#natal .starrows{margin-top:14px}
+#natal .starrows{margin-top:2px}
+#natal .planets{margin-top:14px;background:#14082B;border:1px solid #B79CFF33;border-radius:12px;padding:10px 14px}
+#natal .planets summary{color:var(--cyan);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+#natal .planets[open] summary{margin-bottom:8px}
+#natal .planets .pdesc{color:#D9C9F5;font-size:13px;line-height:1.5;margin-bottom:10px}
 #natal .sliprow .nm{flex:0 0 150px;color:var(--gold)}
 #remember{margin-top:12px;font-family:'Space Mono',monospace;font-size:10.5px;color:#7CFFB2}
 
@@ -195,8 +199,12 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
     <div><button type="button" class="reset2" id="reset2">↺ Reset</button></div>
   </div>
   <div id="natal">
-    <div class="placements" id="pl"></div>
     <div class="starrows" id="starrows"></div>
+    <details class="planets" id="planets">
+      <summary>Your planets that day</summary>
+      <p class="pdesc">Where the Moon, Sun, Mercury, Venus and Mars sat on your date. Each one's spot on the zodiac wheel becomes a ball, in that order, and the Moon also picks the bonus ball.</p>
+      <div class="placements" id="pl"></div>
+    </details>
     <div id="remember">✓ remembered on this device</div>
   </div>
 </div>
