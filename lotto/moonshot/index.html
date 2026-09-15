@@ -62,6 +62,16 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 /* ---- masthead ---- */
 .wrap{max-width:620px;margin:0 auto;padding:26px 16px 54px}
 header{text-align:center}
+/* ---- flanking links: LL mark -> the main lotto page (left), STARSHOT star -> ../starshot/ (right) — #1293 r11 ---- */
+.wm{display:inline-block;position:relative}
+.side{position:absolute;top:50%;transform:translateY(-50%);display:block;line-height:0;opacity:.85;transition:opacity .2s}
+.side:hover{opacity:1}
+.side.home{right:calc(100% + 14px)}
+.side.star{left:calc(100% + 14px)}
+.side img{width:clamp(40px,4.4vw,56px);height:auto;display:block}
+.side.home img{filter:drop-shadow(0 0 10px rgba(0,0,0,.5))}
+.side.star img{filter:drop-shadow(0 0 10px rgba(255,210,63,.45))}
+@media(max-width:480px){.side.home{right:calc(100% + 8px)}.side.star{left:calc(100% + 8px)}}
 .brand{font-family:var(--disp);font-weight:400;font-size:clamp(27px,7.4vw,44px);
  letter-spacing:.08em;color:var(--star);display:flex;align-items:center;justify-content:center;
  text-shadow:0 0 26px rgba(132,152,255,.35)}
@@ -151,7 +161,7 @@ header{text-align:center}
 <div class="splash" aria-hidden="true"><img src="moonshot.png" alt="" width="800" height="632"></div>
 <div class="wrap">
 <header class="reveal">
-<h1 class="brand" aria-label="Moonshot"><span aria-hidden="true">M<svg class="brand-o" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg>ONSHOT</span></h1>
+<div class="wm"><a class="side home" href="../" title="Logic's Lucky Lottos" aria-label="Logic's Lucky Lottos"><img src="ll.png" alt="Logic's Lucky Lottos" width="212" height="173"></a><h1 class="brand" aria-label="Moonshot"><span aria-hidden="true">M<svg class="brand-o" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--moon-dark)" stroke="var(--moon-rim)" stroke-width="1.5"/><path d="M20,2 A18,18 0 0 1 20,38 A9,18 0 0 0 20,2 Z" fill="var(--moon-lit)"/></svg>ONSHOT</span></h1><a class="side star" href="../starshot/" title="Starshot" aria-label="Starshot"><img src="starshot.png" alt="Starshot" width="800" height="771"></a></div>
 <div class="subtitle">Tonight's CA Lotto Picks by Moon Phase</div>
 <div class="dateline">Monday · Sep 14, 2026</div>
 <div class="phaseline">Waxing Crescent</div>
