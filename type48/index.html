@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bancroft's License: What a Buyer Needs to Know</title>
+  <meta name="description" content="Buying the Bancroft's Type 48 liquor license and moving it to a new bar in central San Diego: what the license is, how a move works at ABC and the City, where it can go, and what it costs on the buyer's side.">
+  <meta property="og:title" content="The Bancroft's License: What a Buyer Needs to Know">
+  <meta property="og:description" content="What you would be buying, how a license move works, where in central San Diego it can go, and what it costs. Written for a friend who asked.">
+  <meta property="og:url" content="https://roblogic.org/type48/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fbf7ef;
+      --paper-2: #f1ebdf;
+      --ink: #1f1a17;
+      --ink-2: #5a524b;
+      --line: #d9d0c1;
+      --teal: #0f766e;
+      --teal-soft: #d9efec;
+      --orange: #c2410c;
+      --orange-soft: #fde8d8;
+      --white: #fffdf9;
+      --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --sans: 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; font-size: 17px; }
+    a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+
+    header { padding: 3rem 0 2rem; border-bottom: 3px solid var(--ink); }
+    .eyebrow { font-family: var(--sans); font-weight: 600; text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; color: var(--orange); margin-bottom: .8rem; }
+    h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.02; letter-spacing: -.01em; max-width: 16ch; }
+    .lede { font-size: 1.15rem; color: var(--ink-2); margin-top: 1.1rem; max-width: 60ch; }
+
+    nav.toc { border-bottom: 1px solid var(--line); background: var(--paper-2); }
+    nav.toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: .3rem 1.3rem; padding: .8rem 0; font-size: .92rem; font-weight: 600; }
+    nav.toc a { color: var(--ink); text-decoration: none; }
+    nav.toc a:hover { color: var(--orange); }
+
+    main { padding: 1rem 0 4rem; }
+    section { padding: 2.2rem 0 .6rem; scroll-margin-top: .5rem; }
+    section + section { border-top: 1px solid var(--line); }
+    h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(1.6rem, 4vw, 2.1rem); line-height: 1.1; margin-bottom: 1rem; }
+    h3 { font-family: var(--serif); font-weight: 700; font-size: 1.25rem; margin: 1.5rem 0 .5rem; }
+    p { margin-bottom: .9rem; max-width: 66ch; }
+    ul, ol { margin: 0 0 1rem 1.3rem; max-width: 66ch; }
+    li { margin-bottom: .4rem; }
+    strong { font-weight: 600; }
+    .note { background: var(--teal-soft); border: 1px solid #b7ddd8; padding: 1rem 1.2rem; margin: 1rem 0 1.3rem; max-width: 70ch; border-radius: 4px; }
+    .note.warm { background: var(--orange-soft); border-color: #f2c9ae; }
+    .note p:last-child, .note ul:last-child { margin-bottom: 0; }
+
+    /* steps */
+    .steps { list-style: none; margin: 1rem 0 1.5rem; padding-left: 0; max-width: 70ch; counter-reset: s; }
+    .steps li { counter-increment: s; position: relative; padding: 0 0 1.4rem 3.4rem; }
+    .steps li::before { content: counter(s); position: absolute; left: 0; top: .05rem; width: 2.3rem; height: 2.3rem; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--serif); font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; }
+    .steps li::after { content: ''; position: absolute; left: 1.1rem; top: 2.5rem; bottom: .2rem; width: 2px; background: var(--line); }
+    .steps li:last-child::after { display: none; }
+    .steps li strong.t { display: block; font-family: var(--serif); font-size: 1.15rem; margin-bottom: .2rem; }
+    .steps li p:last-child { margin-bottom: 0; }
+
+    .tbl { overflow-x: auto; margin: .6rem 0 1.4rem; border: 1px solid var(--line); background: var(--white); border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+    th { text-align: left; font-weight: 600; background: var(--paper-2); padding: .6rem .75rem; border-bottom: 2px solid var(--line); font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; }
+    td { padding: .6rem .75rem; border-top: 1px solid var(--line); vertical-align: top; }
+    td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .good td:first-child { border-left: 4px solid var(--teal); }
+    .hard td:first-child { border-left: 4px solid var(--orange); }
+
+    .qa dt { font-weight: 600; margin-top: 1rem; font-family: var(--serif); font-size: 1.1rem; }
+    .qa dd { margin: .25rem 0 0; max-width: 66ch; }
+
+    footer { border-top: 3px solid var(--ink); padding: 1.5rem 0 3rem; font-size: .9rem; color: var(--ink-2); }
+    footer ul { columns: 2; column-gap: 2rem; max-width: 100%; font-size: .86rem; }
+    @media (max-width: 640px) { footer ul { columns: 1; } body { font-size: 16px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Rob Logic · The Bancroft · San Diego</div>
+    <h1>The Bancroft's license, and what it takes to move it into the city</h1>
+    <p class="lede">You asked what you would actually be buying, how a move works, where it could go, and what it costs on your end. Here it is in one place, in plain words. Price is a conversation with Rob, not a web page.</p>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap"><ul>
+  <li><a href="#what">What it is</a></li>
+  <li><a href="#how">How a move works</a></li>
+  <li><a href="#room">Picking the room</a></li>
+  <li><a href="#pcn">The PCN</a></li>
+  <li><a href="#where">Neighborhoods</a></li>
+  <li><a href="#cost">What it costs</a></li>
+  <li><a href="#bring">What you need</a></li>
+  <li><a href="#listed">Rooms listed now</a></li>
+  <li><a href="#answers">Straight answers</a></li>
+</ul></div></nav>
+
+<main class="wrap">
+
+<section id="what">
+  <h2>What it is</h2>
+  <p>A California <strong>Type 48</strong> license: On-Sale General, Public Premises. That is the bar license. Beer, wine, and spirits by the drink, no food requirement, no one under 21 inside. It comes with a <strong>Type 58</strong> caterer's permit, which transfers along with it. The license is active, carries no conditions, and has no disciplinary history, which you can confirm yourself on ABC's license lookup.</p>
+  <p>It can be moved to any premises in <strong>San Diego County</strong>. Not out of the county.</p>
+  <div class="note">
+    <p><strong>Why a used license is the way in.</strong> San Diego County is over the state's quota for general licenses, so ABC issues new ones only through an annual lottery. In 2026 the whole county gets 9 new on-sale general licenses, the fee is $19,840, the odds are long, and a lottery license cannot be resold for two years. Transfers of existing licenses are exempt from the quota. That is what you are buying: the ability to open a bar in the city without winning a lottery.</p>
+  </div>
+  <p><strong>If your concept has a kitchen:</strong> a Type 48 can be exchanged for a <strong>Type 47</strong> (restaurant, full bar, minors allowed) for a $125 ABC fee. A 47 has to operate as a real eating place, with a kitchen and meals. The exchange also changes who decides one of the approvals below, which can matter.</p>
+</section>
+
+<section id="how">
+  <h2>How a move works</h2>
+  <p>A license is issued to a person <em>and</em> an address. There is no way to buy it and hold it while you look for a space. You name the site on the application. The good news is that ABC handles the change of owner and the change of address in <strong>one application</strong>, and premises still under construction are allowed: ABC approves the transfer and holds the certificate until the room is ready.</p>
+  <ol class="steps">
+    <li><strong class="t">Get site control</strong><p>A signed lease, or something the ABC district office will accept as a right to occupy. The application asks for the landlord, the rent, the lease expiration, and a floor plan with the licensed area outlined.</p></li>
+    <li><strong class="t">Check the room against the City rules below</strong><p>Size, zone, neighborhood, and whether the address had a bar license recently. This decides whether the City part takes a couple of weeks or a year.</p></li>
+    <li><strong class="t">Open escrow</strong><p>California requires the full purchase price to be deposited with a liquor-license escrow company before the application is filed, and the seller is paid only after ABC approves. That rule protects you: no money changes hands until ABC says yes. Escrow companies in the county that do this every week include Allison-McCloskey, Oakwood, and Warranty Escrow.</p></li>
+    <li><strong class="t">File with ABC</strong><p>One application covering both the new owner and the new address (ABC calls it a "premises and person" transfer). Fee $1,565. Every owner of the buying entity gives a personal history, fingerprints, and a financial affidavit. A notice of the transfer is recorded with the County Recorder first; the escrow company handles that.</p></li>
+    <li><strong class="t">File with the City</strong><p>Every ABC applicant in the City of San Diego also files a Zoning Use Verification ($718.43). ABC will not finish until the City has answered.</p></li>
+    <li><strong class="t">The public notice period</strong><p>A notice is posted at the door of the new site for 30 straight days. If the address is not currently licensed, neighbors within 500 feet get a mailed notice and it runs in a newspaper. The police department, the City Council, City planning, and the District Attorney are notified and can object or ask for conditions (hours, security, that kind of thing).</p></li>
+    <li><strong class="t">ABC investigates, then approves</strong><p>ABC's own figure is 55 to 65 days on average, 30 days minimum by law, and up to 95 days or more if someone objects. When it approves, escrow closes, the license is yours, and you can pour. Until then the room stays dark: there is no temporary permit for a license that is changing address.</p></li>
+  </ol>
+  <p><strong>How long, all in:</strong> roughly three to four months from a signed lease if the room is an easy one, five to seven if the neighborhood requires the extra police review described below, and a year or more if the room needs a City hearing. Finding the room is on top of that.</p>
+  <div class="note warm">
+    <p><strong>Two ABC rules that shape the paperwork.</strong> The binding purchase agreement gets signed close to the filing date; ABC will not process a transfer that fulfills an agreement more than 90 days old. And a license can never be used as collateral or to secure a promise, so "option to buy later" structures are out. Both are why the order above is: room first, then agreement, escrow, and filing together.</p>
+  </div>
+</section>
+
+<section id="room">
+  <h2>Picking the room</h2>
+  <p>The room decides almost everything about time and cost. The City of San Diego has no bar-specific alcohol ordinance; a bar is an ordinary "eating and drinking establishment" under the zoning code. What matters:</p>
+  <h3>Under 5,000 square feet, in a commercial zone</h3>
+  <p>In the CC and CR commercial zones a bar under 5,000 square feet is allowed <strong>by right</strong>: no hearing, no conditional use permit, no community group vote. Over 5,000 square feet it becomes "nightclubs and bars over 5,000 square feet," which needs a conditional use permit from the Planning Commission. The City's own estimate for those is 10 to 12 months and real ones have run longer. Stay under the line.</p>
+  <h3>A room that had a Type 48 in it recently</h3>
+  <p>If the address was licensed and operating with a Type 48 within the last 90 days, state law switches off the whole "too many licenses in this area" review (the PCN below). A recently closed bar is the fastest possible site. A room that had a restaurant license (Type 47) is second-generation too, but the 90-day exemption reads "same type," so ask the district office how they treat it; exchanging to a 47 is one clean answer.</p>
+  <h3>Live music near housing</h3>
+  <p>If the lot touches a residential lot, some zones cap hours at midnight (the Mid-City neighborhoods and Old Town, and CN neighborhood-commercial zones). Separately, a room built as a stage-and-audience venue for 25 or more can be classified as an "assembly and entertainment" use, and next to residential zoning that classification caps hours at 10 p.m. (11 on Fridays and Saturdays). Existing band bars are treated as bars with music on the side. A brand-new stage in a space that was never a venue is where that question gets raised, so take a room that has already been a music room, or get the City's read in writing before you spend on improvements.</p>
+  <h3>Downtown is the hard way</h3>
+  <p>Downtown (the Centre City district) a bar under 5,000 square feet needs no City alcohol permit, but <strong>any amplified band or DJ needs a conditional use permit</strong>, plus a paid acoustical study if there is housing on or next to the site, which downtown always is. The Gaslamp is stricter: a bar without made-to-order food during all hours needs a conditional use permit at any size, and amplified music needs another. For a live-music bar, look elsewhere.</p>
+  <h3>Zones that say no</h3>
+  <ul>
+    <li>CO office zones (alcohol is barred as a primary use, so Mission Valley's office corridors are out).</li>
+    <li>Industrial zones: the heavy IH zones do not allow bars at all, and the IS zone near the Casbah caps a new bar at 1,000 square feet. The Dot and the Casbah are grandfathered.</li>
+    <li>Old Town's OTMCR zones, and anything over 5,000 square feet in Old Town.</li>
+    <li>The CU-1 zones in Mid-City: no spirits and no live entertainment.</li>
+  </ul>
+  <h3>Three things that are easier than you think</h3>
+  <ul>
+    <li><strong>Parking.</strong> Inside the City's transit priority areas the parking minimum is zero, so converting a storefront needs no new spaces. Most of central San Diego is inside one; the Adams Avenue and South Park corners tested were not, so check the address.</li>
+    <li><strong>Community planning groups</strong> are advisory. They can talk; they cannot stop a by-right use.</li>
+    <li><strong>Noise</strong> is a rule you can plan for: 65 dB at the property line for a commercial neighbor, 40 dB after 10 p.m. for a single-family neighbor, 75 dB any hour next to industrial. After 10 p.m., music "plainly audible at fifty feet from the building" is a violation on its own. Industrial or all-commercial surroundings are the friend of a loud room.</li>
+  </ul>
+</section>
+
+<section id="pcn">
+  <h2>The PCN, explained</h2>
+  <p>ABC checks whether the new site's census tract has more bar licenses per person than the county average, or sits in a police reporting district with 20 percent more crime than the city average. If either is true, the tract is "over," and for a Type 48 the City has to find that "public convenience or necessity" (PCN) would be served before ABC can approve.</p>
+  <p>In the City of San Diego that finding is an <strong>SDPD investigation</strong>: you pay $2,728 at the City Treasurer with ABC's form 245, the police have up to 90 days, and a denial can be appealed within ten days. If the City never answers inside the 90 days, ABC decides itself and by law cannot hold the City's silence against you.</p>
+  <p>On the license-count test, most central tracts are already over. The exceptions found were <strong>City Heights</strong> (four tracts) and one tract in <strong>Barrio Logan</strong>. The crime half of the test is not published; the ABC district office gives you both numbers for any address.</p>
+  <div class="note">
+    <p><strong>Two ways around it.</strong> A room that had a Type 48 operating within the last 90 days skips the PCN entirely. And if you exchange to a Type 47, the PCN case is made to ABC directly rather than to the City, which is a lighter process.</p>
+  </div>
+</section>
+
+<section id="where">
+  <h2>Neighborhoods, for a bar under 5,000 square feet with bands</h2>
+  <p>"By right" means no City hearing. "Over" means the tract already fails the license-count test, so expect the PCN unless the room qualifies for the 90-day exemption.</p>
+  <div class="tbl"><table>
+    <tr><th>Neighborhood</th><th>City permit</th><th>License count</th><th>Notes</th></tr>
+    <tr class="good"><td><strong>City Heights</strong> (El Cajon Blvd, University Ave)</td><td>By right in the CU-2 and CU-3 zones</td><td>Under, in four tracts</td><td>The surviving band corridor: Tower Bar, Soda Bar, Til-Two, The Hideout. Midnight cap if the lot touches housing. Get the crime number from ABC.</td></tr>
+    <tr class="good"><td><strong>North Park</strong> (30th St, University, El Cajon)</td><td>By right in CC-3 zones</td><td>Over</td><td>Deepest bar density in the city and the priciest rent. 30th Street sits one lot deep against housing.</td></tr>
+    <tr class="good"><td><strong>Midway / Middletown</strong> (Kettner, Hancock, Midway Dr)</td><td>By right in CC zones; the IS zone caps new bars at 1,000 sf</td><td>Over (the most crowded tract in the sample)</td><td>Industrial neighbors give you the 75 dB noise ceiling. Redevelopment pressure on leases.</td></tr>
+    <tr><td><strong>Barrio Logan</strong></td><td>By right in CC zones only; not in the industrial or office zones</td><td>Under in one tract, at the line in another</td><td>Find commercially zoned frontage. Inside the City's Promise Zone, which qualifies for the expedite program.</td></tr>
+    <tr><td><strong>Normal Heights</strong> (Adams Ave)</td><td>By right in CU-3</td><td>Over</td><td>Midnight cap next to housing. Pub strip more than band rooms.</td></tr>
+    <tr><td><strong>Kensington / Talmadge</strong></td><td>By right</td><td>Over</td><td>Til-Two is a real band room. Attentive neighbors.</td></tr>
+    <tr><td><strong>Golden Hill / South Park</strong></td><td>By right in CC-3-4</td><td>Over</td><td>Whistle Stop is the model. Very residential-adjacent.</td></tr>
+    <tr><td><strong>Hillcrest</strong></td><td>By right</td><td>Over</td><td>Dense nightlife, club scene more than band scene.</td></tr>
+    <tr><td><strong>Bay Park / Morena</strong></td><td>By right in CC-4-2</td><td>Over</td><td>Brick by Brick is here, a proven loud room.</td></tr>
+    <tr><td><strong>Bankers Hill / Mission Hills / India St</strong></td><td>By right</td><td>Over</td><td>Small rooms with housing all around (Aero Club, Starlite).</td></tr>
+    <tr class="hard"><td><strong>Downtown</strong> (East Village, Core, Little Italy)</td><td>None for the bar under 5,000 sf; <strong>CUP for any amplified music</strong></td><td>Over</td><td>Residential towers on every side. The bay-side strip still uses older rules that require a permit at any size.</td></tr>
+    <tr class="hard"><td><strong>Gaslamp</strong></td><td><strong>CUP at any size</strong> for a no-food bar, and another for amplified music</td><td>Over (115 licenses against 3 allowed)</td><td>Two hearings before the first drink, at the highest rent in the city.</td></tr>
+    <tr class="hard"><td><strong>Old Town</strong></td><td>By right in OTCC; entertainment needs a CUP district-wide</td><td>Over</td><td>One Type 48 in the whole area.</td></tr>
+    <tr class="hard"><td><strong>Mission Valley / Grantville</strong></td><td>Office zones: not permitted</td><td>Over</td><td>Car-oriented, hotel bars.</td></tr>
+  </table></div>
+</section>
+
+<section id="cost">
+  <h2>What it costs on your side</h2>
+  <p>Beyond the license price. Current published fees; verify before you write checks.</p>
+  <div class="tbl"><table>
+    <tr><th>Item</th><th>Amount</th><th>When</th></tr>
+    <tr><td>ABC transfer application (owner and address in one)</td><td class="num">$1,565</td><td>at filing</td></tr>
+    <tr><td>ABC annual license fee, Type 48 or 47, City of San Diego</td><td class="num">$1,545 / yr</td><td>with the application, then yearly</td></tr>
+    <tr><td>ABC annual fee, Type 58 caterer's permit</td><td class="num">$290 / yr</td><td>yearly</td></tr>
+    <tr><td>Exchange to a Type 47, if you want the restaurant license</td><td class="num">$125</td><td>optional</td></tr>
+    <tr><td>City Zoning Use Verification</td><td class="num">$718.43</td><td>every applicant</td></tr>
+    <tr><td>SDPD public convenience or necessity investigation</td><td class="num">$2,728</td><td>only if the tract is over and no exemption applies</td></tr>
+    <tr><td>SDPD entertainment permit (live music open to the public)</td><td class="num">$2,369 / yr up to 99 occupancy; $3,128 for 100 to 249</td><td>yearly, plus a background check on each owner</td></tr>
+    <tr><td>Recording the transfer notice with the County</td><td class="num">about $20 to $100</td><td>escrow handles it</td></tr>
+    <tr><td>Escrow company fee, Live Scan fingerprints, ABC consultant if you use one</td><td class="num">ask</td><td>varies</td></tr>
+    <tr class="hard"><td>City conditional use permit, only if the room is over 5,000 sf or downtown with amplified music</td><td class="num">about $9,300 deposit at filing, drawn down against staff time, plus 10 months or more</td><td>avoidable by choosing the room</td></tr>
+  </table></div>
+</section>
+
+<section id="bring">
+  <h2>What you will need to have</h2>
+  <ul>
+    <li><strong>An entity</strong> (an LLC is typical) formed and in good standing. Every owner is on the application.</li>
+    <li><strong>Funds.</strong> Escrow has to hold the full price before filing, so a lender or partner has to be ready at filing, not at closing.</li>
+    <li><strong>The site:</strong> lease or accepted right to occupy, landlord contact, floor plan, and the City zoning verification.</li>
+    <li><strong>Personal history and fingerprints</strong> for each owner (ABC's forms plus Live Scan).</li>
+    <li><strong>A liquor-license escrow company</strong> and, ideally, an ABC licensing consultant. Former ABC investigators do this work for buyers and know the San Diego district office's habits. Rob can point you to one.</li>
+    <li><strong>Your ABC and bar history</strong>, if any. ABC asks.</li>
+  </ul>
+  <p>The name "The Bancroft," the artwork, and any equipment are separate conversations, sold by contract with no ABC involvement. Say what you want and it can be part of the same deal or not.</p>
+</section>
+
+<section id="listed">
+  <h2>Rooms listed right now</h2>
+  <p>Found on brokers' own sites and confirmed against ABC's address lookup on September 21, 2026. The big listing portals block automated reading, so there is more out there. Brokers who actually handle bar and restaurant rooms in these neighborhoods: Location Matters, Retail Insite, Next Wave Commercial, Pacific Coast Commercial.</p>
+  <div class="tbl"><table>
+    <tr><th>Address</th><th>Neighborhood</th><th>Size and rent</th><th>What is there</th><th>ABC at that address</th></tr>
+    <tr><td><strong>2401 Kettner Blvd</strong>, Ste B</td><td>Little Italy</td><td class="num">2,920 sf, negotiable</td><td>Built-out bar room with a rotating bar installed; listing says a Type 47 license may be available too.</td><td>Active Type 47 on file.</td></tr>
+    <tr><td><strong>940 Market St</strong></td><td>East Village</td><td class="num">about 5,000 sf, $2.00/sf MG + electric</td><td>Open floor, former bowling alley, floor drains for bar or food. Right at the 5,000 sf line, so measure it.</td><td>No license history.</td></tr>
+    <tr><td><strong>1490 Kettner Blvd</strong></td><td>Little Italy</td><td class="num">4,800 sf, negotiable</td><td>Corner, two levels, upstairs terrace; a restaurant and late-night bar for a decade.</td><td>Type 47 on file with a revocation pending. Ask about it first.</td></tr>
+    <tr><td><strong>3020 University Ave</strong></td><td>North Park</td><td class="num">not shown</td><td>Corner, alley access, half a block from the main intersection.</td><td>A Type 47 was surrendered here. True second-generation.</td></tr>
+    <tr><td><strong>3882–3888 4th Ave</strong></td><td>Hillcrest</td><td class="num">not shown</td><td>Full-service restaurant space with its own lot.</td><td>Old beer-and-wine records only, nothing active.</td></tr>
+    <tr><td><strong>3958 Fifth Ave</strong></td><td>Hillcrest</td><td class="num">2,790 sf, negotiable</td><td>Fixturized kitchen, former Lemonade. A food room.</td><td>Nothing active.</td></tr>
+  </table></div>
+  <p>Three Type 48 bars in central San Diego sold recently through Next Wave (North Park, Mission Hills, Point Loma), which is the other route: buy an operating bar with its license attached. Bars for sale with a license in place, and licenses sold on their own, are both on the market at any given time; Rob will tell you plainly how his compares.</p>
+</section>
+
+<section id="answers">
+  <h2>Straight answers</h2>
+  <dl class="qa">
+    <dt>Can I buy it now and figure out the location later?</dt>
+    <dd>No. ABC issues a license to a person and an address, and every form asks for the premises. Under construction is fine; undecided is not.</dd>
+    <dt>Can I open while ABC processes?</dt>
+    <dd>No. The temporary permit only exists when the license stays at the same address. A moved license opens when ABC approves.</dd>
+    <dt>Can I pay Rob directly and skip escrow?</dt>
+    <dd>No. State law puts the full price in escrow before filing and pays the seller after approval. It is the buyer's protection as much as anything.</dd>
+    <dt>Can I put an option on it or make a deposit and lock it up for a year?</dt>
+    <dd>Not the way people usually mean. ABC will not process a transfer fulfilling an agreement more than 90 days old, and the license cannot secure a promise. Deals are structured around signing close to filing. An ABC-experienced attorney papers this.</dd>
+    <dt>Do I need a kitchen?</dt>
+    <dd>Not for a Type 48. Only if you exchange to a 47.</dd>
+    <dt>Can it go to La Mesa, Chula Vista, National City?</dt>
+    <dd>Anywhere in San Diego County. Each city has its own zoning rules; this page covers the City of San Diego.</dd>
+    <dt>Does the name come with it?</dt>
+    <dd>Separate item, separate conversation. So is the gear.</dd>
+    <dt>Who do I call?</dt>
+    <dd>Rob, and then the ABC San Diego district office at 8620 Spectrum Center Blvd, Suite 302, (858) 300-6855, which will tell you the tract numbers for any address you are considering.</dd>
+  </dl>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Sources.</strong> Everything above comes from the state code, ABC's own pages and forms, and the City of San Diego's municipal code and bulletins, read in September 2026. This is a friend's explainer, not legal advice; confirm forms and fees with ABC and use an ABC-experienced escrow and attorney.</p>
+    <ul>
+      <li><a href="https://www.abc.ca.gov/licensing/license-fees/application-fee-schedules/">ABC application fees (2026)</a></li>
+      <li><a href="https://www.abc.ca.gov/licensing/license-fees/annual-fee-schedule/">ABC annual fees</a></li>
+      <li><a href="https://www.abc.ca.gov/licensing/transfer-or-change-a-license/premises-to-premises-transfer/">ABC: premises-to-premises transfer</a></li>
+      <li><a href="https://www.abc.ca.gov/licensing/frequently-asked-questions/">ABC FAQ</a></li>
+      <li><a href="https://www.abc.ca.gov/contact/district-offices/">ABC district offices</a></li>
+      <li><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=23958.4">B&amp;P §23958.4 (undue concentration, PCN, the 90-day exemption)</a></li>
+      <li><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=24044">B&amp;P §24044 (premises under construction)</a></li>
+      <li><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=24074">B&amp;P §24074 (escrow)</a></li>
+      <li><a href="https://www.sandiego.gov/sites/default/files/legacy/treasurer/pdf/new_public_convenience_or_necessity.pdf">City of San Diego PCN sheet</a></li>
+      <li><a href="https://www.sandiego.gov/development-services/forms-publications/information-bulletins/143">City IB-143, ABC licenses</a></li>
+      <li><a href="https://docs.sandiego.gov/municode/MuniCodeChapter14/Ch14Art01Division06.pdf">SDMC Ch. 14 Art. 1 Div. 6 (bars over 5,000 sf, assembly and entertainment)</a></li>
+      <li><a href="https://docs.sandiego.gov/municode/MuniCodeChapter15/Ch15Art06Division03.pdf">Centre City Planned District (downtown alcohol and music rules)</a></li>
+      <li><a href="https://www.sandiego.gov/police/data-transparency/alcohol-beverage-control-report">SDPD ABC report by census tract</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
