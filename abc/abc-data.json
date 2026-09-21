@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T15:00:19.717Z",
+  "updated": "2026-09-21T15:00:26.297Z",
   "count": 163,
   "licenses": [
     {
@@ -3370,12 +3370,12 @@
     },
     {
       "fileNumber": "00671831",
-      "licenseType": 2,
-      "typeLabel": "Winegrower",
+      "licenseType": 23,
+      "typeLabel": "Small Beer Manufacturer",
       "category": "wholesale",
       "status": "ACTIVE",
       "issueDate": "2026-06-29",
-      "expirationDate": "2027-06-30",
+      "expirationDate": "2027-05-31",
       "businessName": "OCEANSIDE BEVERAGE INC.",
       "dbaName": "O’SIDE BREW CO.",
       "displayName": "O’SIDE BREW CO.",
@@ -3392,12 +3392,12 @@
     },
     {
       "fileNumber": "00671831",
-      "licenseType": 23,
-      "typeLabel": "Small Beer Manufacturer",
+      "licenseType": 2,
+      "typeLabel": "Winegrower",
       "category": "wholesale",
       "status": "ACTIVE",
       "issueDate": "2026-06-29",
-      "expirationDate": "2027-05-31",
+      "expirationDate": "2027-06-30",
       "businessName": "OCEANSIDE BEVERAGE INC.",
       "dbaName": "O’SIDE BREW CO.",
       "displayName": "O’SIDE BREW CO.",
