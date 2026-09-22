@@ -69,7 +69,9 @@
     table { border-collapse: collapse; width: 100%; font-size: .93rem; }
     th { text-align: left; font-weight: 600; background: var(--paper-2); padding: .6rem .75rem; border-bottom: 2px solid var(--line); font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; }
     td { padding: .6rem .75rem; border-top: 1px solid var(--line); vertical-align: top; }
-    td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+    td.num { font-variant-numeric: tabular-nums; min-width: 9rem; }
+    #cost th:first-child, #cost td:first-child { width: 42%; }
+    #listed th:first-child, #listed td:first-child { min-width: 9rem; }
     .good td:first-child { border-left: 4px solid var(--teal); }
     .hard td:first-child { border-left: 4px solid var(--orange); }
 
@@ -202,10 +204,10 @@
     <tr><td>Exchange to a Type 47, if you want the restaurant license</td><td class="num">$125</td><td>optional</td></tr>
     <tr><td>City Zoning Use Verification</td><td class="num">$718.43</td><td>every applicant</td></tr>
     <tr><td>SDPD public convenience or necessity investigation</td><td class="num">$2,728</td><td>only if the tract is over and no exemption applies</td></tr>
-    <tr><td>SDPD entertainment permit (live music open to the public)</td><td class="num">$2,369 / yr up to 99 occupancy; $3,128 for 100 to 249</td><td>yearly, plus a background check on each owner</td></tr>
+    <tr><td>SDPD entertainment permit (live music open to the public)</td><td class="num">$2,369 / yr</td><td>yearly, for rooms up to 99 occupancy ($3,128 for 100 to 249), plus a background check on each owner</td></tr>
     <tr><td>Recording the transfer notice with the County</td><td class="num">about $20 to $100</td><td>escrow handles it</td></tr>
     <tr><td>Escrow company fee, Live Scan fingerprints, ABC consultant if you use one</td><td class="num">ask</td><td>varies</td></tr>
-    <tr class="hard"><td>City conditional use permit, only if the room is over 5,000 sf or downtown with amplified music</td><td class="num">about $9,300 deposit at filing, drawn down against staff time, plus 10 months or more</td><td>avoidable by choosing the room</td></tr>
+    <tr class="hard"><td>City conditional use permit, only if the room is over 5,000 sf or downtown with amplified music</td><td class="num">about $9,300 deposit</td><td>at filing, drawn down against City staff time, plus 10 months or more; avoidable by choosing the room</td></tr>
   </table></div>
 </section>
 
