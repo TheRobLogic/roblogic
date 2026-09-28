@@ -13,14 +13,22 @@
     padding: 2rem 1.25rem 3rem;
     background: #fff;
     color: #111;
-    font: 18px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font: 18px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   main { max-width: 36rem; margin: 0 auto; }
   h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 .5rem; }
-  ol { padding-left: 1.5rem; margin: 1.5rem 0; }
-  li { margin: 0 0 1.5rem; padding-left: .25rem; }
-  label { display: block; margin: 0 0 .4rem; }
-  textarea, input[type="text"] {
+  .q { margin: 0 0 1.6rem; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend, .q > label { display: block; padding: 0; margin: 0 0 .4rem; font-weight: 600; }
+  .choice {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    min-height: 44px;
+    cursor: pointer;
+  }
+  .choice input { flex: none; width: 1.25rem; height: 1.25rem; margin: 0; accent-color: #111; }
+  input[type="text"], textarea {
     display: block;
     width: 100%;
     box-sizing: border-box;
@@ -32,8 +40,9 @@
     color: #111;
     font: inherit;
   }
-  textarea { min-height: 3.4em; resize: vertical; }
-  textarea:focus, input[type="text"]:focus { outline: 2px solid #111; outline-offset: 1px; border-color: #111; }
+  textarea { min-height: 4.5em; resize: vertical; }
+  input[type="text"]:focus, textarea:focus { outline: 2px solid #111; outline-offset: 1px; border-color: #111; }
+  ::placeholder { color: #767676; }
   .button {
     display: inline-block;
     padding: .8rem 1.4rem;
@@ -55,24 +64,99 @@
 <body>
   <main>
     <h1>Discovery questions</h1>
-    <p>Rough answers are fine.</p>
+    <p>Most of these are one tap. Skip anything you're not sure about.</p>
 
     <form id="answers" novalidate>
-      <ol>
-        <li><label for="q1">What's the practice called, and where's the office? If there's more than one location, list them all.</label><textarea id="q1" rows="2"></textarea></li>
-        <li><label for="q2">How many people are in the practice, and how many of them would use the shared drive? Does anyone work from home or see clients by video?</label><textarea id="q2" rows="2"></textarea></li>
-        <li><label for="q3">What would go on the drive: client files and session notes, or office stuff like forms, billing and HR? Both?</label><textarea id="q3" rows="2"></textarea></li>
-        <li><label for="q4">Do you already use a notes or scheduling system like SimplePractice or TherapyNotes? What lives in there?</label><textarea id="q4" rows="2"></textarea></li>
-        <li><label for="q5">Do you bill insurance? Electronically?</label><textarea id="q5" rows="2"></textarea></li>
-        <li><label for="q6">What do you use for email today (Gmail, Outlook, something else), and what comes after the @ in your work email address?</label><textarea id="q6" rows="2"></textarea></li>
-        <li><label for="q7">What computers do people use? Practice-owned or personal, Mac or Windows?</label><textarea id="q7" rows="2"></textarea></li>
-        <li><label for="q8">Where do documents live right now, and how do you share them with each other?</label><textarea id="q8" rows="2"></textarea></li>
-        <li><label for="q9">Is there a printer now, and how do people print to it? Do you need to scan or fax too?</label><textarea id="q9" rows="2"></textarea></li>
-        <li><label for="q10">Do you have your own internet and Wi-Fi, or is it shared with the building? Who's the provider, and who set it up?</label><textarea id="q10" rows="2"></textarea></li>
-        <li><label for="q11">Has anyone done a HIPAA risk assessment or written security policies for the practice? Does your malpractice or business insurance ask for anything on that?</label><textarea id="q11" rows="2"></textarea></li>
-        <li><label for="q12">After it's set up, do you want someone on call and managing it month to month, or a one-time setup you run yourselves?</label><textarea id="q12" rows="2"></textarea></li>
-        <li><label for="q13">Any timeline, and is there something that prompted this now (a move, a new hire, insurance, something that went wrong)?</label><textarea id="q13" rows="2"></textarea></li>
-      </ol>
+      <div class="q">
+        <label for="practice">Practice name</label>
+        <input type="text" id="practice" autocomplete="organization">
+      </div>
+
+      <div class="q">
+        <label for="location">Office location(s)</label>
+        <input type="text" id="location" placeholder="City is fine">
+      </div>
+
+      <div class="q"><fieldset>
+        <legend>1. What would go on the shared drive?</legend>
+        <label class="choice"><input type="radio" name="q1" value="Office paperwork only (forms, billing, HR)">Office paperwork only (forms, billing, HR)</label>
+        <label class="choice"><input type="radio" name="q1" value="Client files or session notes">Client files or session notes</label>
+        <label class="choice"><input type="radio" name="q1" value="Both">Both</label>
+        <label class="choice"><input type="radio" name="q1" value="Not sure yet">Not sure yet</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>2. How do people print today?</legend>
+        <label class="choice"><input type="radio" name="q2" value="A printer connected to one computer">A printer connected to one computer</label>
+        <label class="choice"><input type="radio" name="q2" value="A Wi-Fi printer everyone can use">A Wi-Fi printer everyone can use</label>
+        <label class="choice"><input type="radio" name="q2" value="No printer yet">No printer yet</label>
+        <label class="choice"><input type="radio" name="q2" value="Something else">Something else</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>3. Is your internet and Wi-Fi your own, or shared with the building?</legend>
+        <label class="choice"><input type="radio" name="q3" value="Our own">Our own</label>
+        <label class="choice"><input type="radio" name="q3" value="Shared with the building">Shared with the building</label>
+        <label class="choice"><input type="radio" name="q3" value="Not sure">Not sure</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>4. How many people work in the practice?</legend>
+        <label class="choice"><input type="radio" name="q4" value="1 to 5">1 to 5</label>
+        <label class="choice"><input type="radio" name="q4" value="6 to 10">6 to 10</label>
+        <label class="choice"><input type="radio" name="q4" value="More than 10">More than 10</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>5. Does anyone work from home, even part-time?</legend>
+        <label class="choice"><input type="radio" name="q5" value="Yes">Yes</label>
+        <label class="choice"><input type="radio" name="q5" value="No">No</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>6. Are the computers owned by the practice, or personal?</legend>
+        <label class="choice"><input type="radio" name="q6" value="Practice-owned">Practice-owned</label>
+        <label class="choice"><input type="radio" name="q6" value="Personal">Personal</label>
+        <label class="choice"><input type="radio" name="q6" value="A mix">A mix</label>
+      </fieldset></div>
+
+      <div class="q">
+        <label for="q7">7. What comes after the @ in your work email address?</label>
+        <input type="text" id="q7" placeholder="For example @gmail.com" autocapitalize="off" autocorrect="off" spellcheck="false">
+      </div>
+
+      <div class="q"><fieldset>
+        <legend>8. Which system do you use for client notes and scheduling?</legend>
+        <label class="choice"><input type="radio" name="q8" value="SimplePractice">SimplePractice</label>
+        <label class="choice"><input type="radio" name="q8" value="TherapyNotes">TherapyNotes</label>
+        <label class="choice"><input type="radio" name="q8" value="Something else">Something else</label>
+        <label class="choice"><input type="radio" name="q8" value="None">None</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>9. Do you bill insurance?</legend>
+        <label class="choice"><input type="radio" name="q9" value="Yes">Yes</label>
+        <label class="choice"><input type="radio" name="q9" value="No">No</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>10. Has an insurance company or anyone else asked for HIPAA security paperwork, like a risk assessment?</legend>
+        <label class="choice"><input type="radio" name="q10" value="Yes">Yes</label>
+        <label class="choice"><input type="radio" name="q10" value="No">No</label>
+        <label class="choice"><input type="radio" name="q10" value="Not sure">Not sure</label>
+      </fieldset></div>
+
+      <div class="q"><fieldset>
+        <legend>11. After it's set up, what would you prefer?</legend>
+        <label class="choice"><input type="radio" name="q11" value="Someone managing it month to month">Someone managing it month to month</label>
+        <label class="choice"><input type="radio" name="q11" value="A one-time setup we run ourselves">A one-time setup we run ourselves</label>
+        <label class="choice"><input type="radio" name="q11" value="Not sure yet">Not sure yet</label>
+      </fieldset></div>
+
+      <div class="q">
+        <label for="q12">12. Anything else I should know?</label>
+        <textarea id="q12" rows="3" placeholder="What prompted this, timing, anything that's gone wrong"></textarea>
+      </div>
 
       <div class="trap" aria-hidden="true">
         <label for="hpx">Leave this empty</label>
@@ -103,13 +187,14 @@
   (function () {
     var ENDPOINT = 'https://n8n.roblogic.org/webhook/carol-discovery';
     var ADDRESS = ['roblogic', 'gmail.com'].join('@');
-    var DRAFT = 'carol-discovery-draft';
+    var DRAFT = 'carol-discovery-v3';
     var test = /[?&]test=1(&|$)/.test(location.search);
 
     var form = document.getElementById('answers');
     var send = document.getElementById('send');
     var status = document.getElementById('status');
-    var boxes = Array.prototype.slice.call(form.querySelectorAll('textarea'));
+    var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
+    var typed = function () { return form.querySelectorAll('.q input[type="text"], .q textarea'); };
 
     function grow(el) {
       if (el.tagName !== 'TEXTAREA') return;
@@ -120,34 +205,42 @@
     function saveDraft() {
       try {
         var draft = {};
-        boxes.forEach(function (el) { if (el.value) draft[el.id] = el.value; });
+        each(typed(), function (el) { if (el.value) draft[el.id] = el.value; });
+        each(form.querySelectorAll('input[type="radio"]:checked'), function (el) { draft[el.name] = el.value; });
         localStorage.setItem(DRAFT, JSON.stringify(draft));
       } catch (e) {}
     }
 
     function loadDraft() {
       try {
+        localStorage.removeItem('carol-discovery-draft');
         var draft = JSON.parse(localStorage.getItem(DRAFT) || '{}');
-        boxes.forEach(function (el) {
+        each(typed(), function (el) {
           if (draft[el.id]) { el.value = draft[el.id]; grow(el); }
+        });
+        each(form.querySelectorAll('input[type="radio"]'), function (el) {
+          if (draft[el.name] === el.value) el.checked = true;
         });
       } catch (e) {}
     }
 
     function collect() {
-      return Array.prototype.map.call(form.querySelectorAll('ol li'), function (li) {
-        return {
-          q: li.querySelector('label').textContent.trim(),
-          a: li.querySelector('textarea').value.trim()
-        };
+      var out = [];
+      each(form.querySelectorAll('.q'), function (block) {
+        var head = block.querySelector('legend, label');
+        var picked = block.querySelector('input[type="radio"]:checked');
+        var box = block.querySelector('input[type="text"], textarea');
+        out.push({
+          q: head.textContent.replace(/\s+/g, ' ').trim(),
+          a: picked ? picked.value : (box ? box.value.trim() : '')
+        });
       });
+      return out;
     }
 
     function answersText(answers) {
       var parts = [];
-      answers.forEach(function (x, i) {
-        if (x.a) parts.push((i + 1) + '. ' + x.q + '\n' + x.a);
-      });
+      answers.forEach(function (x) { if (x.a) parts.push(x.q + '\n' + x.a); });
       return parts.join('\n\n');
     }
 
@@ -159,6 +252,7 @@
 
     loadDraft();
     form.addEventListener('input', function (e) { grow(e.target); saveDraft(); });
+    form.addEventListener('change', saveDraft);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -200,8 +294,7 @@
           status.textContent = '';
           var text = answersText(answers);
           document.getElementById('mail').href = emailLink(text);
-          var copy = document.getElementById('copytext');
-          copy.value = text;
+          document.getElementById('copytext').value = text;
           var fallback = document.getElementById('fallback');
           fallback.hidden = false;
           fallback.scrollIntoView({ block: 'center' });
