@@ -301,18 +301,14 @@
         });
     });
 
-    // visit beacon: every hit, skip bots and test mode, fail silent
+    // visit ping to ntfy through n8n: every hit, skip bots and test mode, fail silent
     try {
       var ua = navigator.userAgent.toLowerCase();
-      if (!test && !/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
-        fetch('/beacon', {
+      if (!test && !/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot|headless/.test(ua)) {
+        fetch('https://n8n.roblogic.org/webhook/carol-visit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            page: 'Carol discovery page',
-            ref: document.referrer || 'direct',
-            tag: 'eyes'
-          })
+          body: JSON.stringify({ ref: document.referrer || 'direct' })
         }).catch(function () {});
       }
     } catch (e) {}
