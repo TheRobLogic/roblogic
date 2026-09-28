@@ -96,6 +96,8 @@
     <div id="fallback" hidden>
       <p class="problem">That didn't go through. Tap below to email your answers instead. They're already filled in.</p>
       <p><a class="button" id="mail" href="#">Email your answers</a></p>
+      <p class="note">If that doesn't open your email, copy your answers from here:</p>
+      <textarea id="copytext" rows="8" readonly></textarea>
     </div>
 
     <!--email_off-->
@@ -147,14 +149,19 @@
       });
     }
 
-    function emailLink(answers, call) {
-      var body = answers.map(function (x, i) {
-        return (i + 1) + '. ' + x.q + '\n' + x.a;
-      }).join('\n\n');
-      if (call) body += '\n\nGood days and times for a call: ' + call;
+    function answersText(answers, call) {
+      var parts = [];
+      answers.forEach(function (x, i) {
+        if (x.a) parts.push((i + 1) + '. ' + x.q + '\n' + x.a);
+      });
+      if (call) parts.push('Good days and times for a call: ' + call);
+      return parts.join('\n\n');
+    }
+
+    function emailLink(text) {
       return 'mailto:' + ADDRESS +
         '?subject=' + encodeURIComponent('Discovery answers') +
-        '&body=' + encodeURIComponent(body.replace(/\r?\n/g, '\r\n'));
+        '&body=' + encodeURIComponent(text.replace(/\r?\n/g, '\r\n'));
     }
 
     loadDraft();
@@ -200,7 +207,10 @@
           clearTimeout(timer);
           send.disabled = false;
           status.textContent = '';
-          document.getElementById('mail').href = emailLink(answers, call);
+          var text = answersText(answers, call);
+          document.getElementById('mail').href = emailLink(text);
+          var copy = document.getElementById('copytext');
+          copy.value = text;
           var fallback = document.getElementById('fallback');
           fallback.hidden = false;
           fallback.scrollIntoView({ block: 'center' });
