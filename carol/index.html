@@ -300,6 +300,22 @@
           fallback.scrollIntoView({ block: 'center' });
         });
     });
+
+    // visit beacon: every hit, skip bots and test mode, fail silent
+    try {
+      var ua = navigator.userAgent.toLowerCase();
+      if (!test && !/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+        fetch('/beacon', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: 'Carol discovery page',
+            ref: document.referrer || 'direct',
+            tag: 'eyes'
+          })
+        }).catch(function () {});
+      }
+    } catch (e) {}
   })();
   </script>
 </body>
