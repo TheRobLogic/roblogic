@@ -34,7 +34,6 @@
   }
   textarea { min-height: 3.4em; resize: vertical; }
   textarea:focus, input[type="text"]:focus { outline: 2px solid #111; outline-offset: 1px; border-color: #111; }
-  .extra { margin: 0 0 2rem; }
   .button {
     display: inline-block;
     padding: .8rem 1.4rem;
@@ -56,7 +55,7 @@
 <body>
   <main>
     <h1>Discovery questions</h1>
-    <p>Rough answers are fine. We'll fill in the rest on the call.</p>
+    <p>Rough answers are fine.</p>
 
     <form id="answers" novalidate>
       <ol>
@@ -74,11 +73,6 @@
         <li><label for="q12">After it's set up, do you want someone on call and managing it month to month, or a one-time setup you run yourselves?</label><textarea id="q12" rows="2"></textarea></li>
         <li><label for="q13">Any timeline, and is there something that prompted this now (a move, a new hire, insurance, something that went wrong)?</label><textarea id="q13" rows="2"></textarea></li>
       </ol>
-
-      <div class="extra">
-        <label for="call">Good days and times for a call</label>
-        <input type="text" id="call" autocomplete="off">
-      </div>
 
       <div class="trap" aria-hidden="true">
         <label for="hpx">Leave this empty</label>
@@ -115,7 +109,7 @@
     var form = document.getElementById('answers');
     var send = document.getElementById('send');
     var status = document.getElementById('status');
-    var boxes = Array.prototype.slice.call(form.querySelectorAll('textarea, #call'));
+    var boxes = Array.prototype.slice.call(form.querySelectorAll('textarea'));
 
     function grow(el) {
       if (el.tagName !== 'TEXTAREA') return;
@@ -149,12 +143,11 @@
       });
     }
 
-    function answersText(answers, call) {
+    function answersText(answers) {
       var parts = [];
       answers.forEach(function (x, i) {
         if (x.a) parts.push((i + 1) + '. ' + x.q + '\n' + x.a);
       });
-      if (call) parts.push('Good days and times for a call: ' + call);
       return parts.join('\n\n');
     }
 
@@ -170,8 +163,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var answers = collect();
-      var call = document.getElementById('call').value.trim();
-      if (!call && !answers.some(function (x) { return x.a; })) {
+      if (!answers.some(function (x) { return x.a; })) {
         status.textContent = 'Answer at least one question first.';
         return;
       }
@@ -188,7 +180,6 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           answers: answers,
-          call: call,
           hpx: document.getElementById('hpx').value,
           test: test
         }),
@@ -207,7 +198,7 @@
           clearTimeout(timer);
           send.disabled = false;
           status.textContent = '';
-          var text = answersText(answers, call);
+          var text = answersText(answers);
           document.getElementById('mail').href = emailLink(text);
           var copy = document.getElementById('copytext');
           copy.value = text;
