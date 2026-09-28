@@ -7,6 +7,7 @@
 <link rel="icon" href="data:,">
 <title>Discovery questions</title>
 <style>
+  [hidden] { display: none !important; }
   body {
     margin: 0;
     padding: 2rem 1.25rem 3rem;
@@ -16,42 +17,196 @@
   }
   main { max-width: 36rem; margin: 0 auto; }
   h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 .5rem; }
-  ol { padding-left: 1.5rem; margin: 1.5rem 0 2rem; }
-  li { margin: 0 0 1rem; padding-left: .25rem; }
-  .send {
+  ol { padding-left: 1.5rem; margin: 1.5rem 0; }
+  li { margin: 0 0 1.5rem; padding-left: .25rem; }
+  label { display: block; margin: 0 0 .4rem; }
+  textarea, input[type="text"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: .55rem .7rem;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    color: #111;
+    font: inherit;
+  }
+  textarea { min-height: 3.4em; resize: vertical; }
+  textarea:focus, input[type="text"]:focus { outline: 2px solid #111; outline-offset: 1px; border-color: #111; }
+  .extra { margin: 0 0 2rem; }
+  .button {
     display: inline-block;
     padding: .8rem 1.4rem;
+    border: 0;
+    border-radius: 6px;
     background: #111;
     color: #fff;
-    border-radius: 6px;
+    font: inherit;
     font-weight: 600;
     text-decoration: none;
+    cursor: pointer;
   }
+  .button:disabled { opacity: .5; cursor: default; }
   .note { color: #555; font-size: .95rem; }
+  .problem { color: #a00; }
+  .trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 </style>
 </head>
 <body>
   <main>
     <h1>Discovery questions</h1>
     <p>Rough answers are fine. We'll fill in the rest on the call.</p>
-    <ol>
-      <li>How many people are in the practice, and how many of them would use the shared drive?</li>
-      <li>One office, or more than one? Does anyone work from home or see clients by video?</li>
-      <li>What would go on the drive: client files and session notes, or office stuff like forms, billing and HR? Both?</li>
-      <li>Do you already use a notes or scheduling system like SimplePractice or TherapyNotes? What lives in there?</li>
-      <li>Do you bill insurance? Electronically?</li>
-      <li>What do you use for email and calendar today: regular Gmail, Google Workspace, Microsoft 365, something else?</li>
-      <li>What computers do people use? Practice-owned or personal, Mac or Windows?</li>
-      <li>Where do documents live right now, and how do you share them with each other?</li>
-      <li>Who set up your internet and Wi-Fi, and who's the provider? Is there a printer already, and does it do Wi-Fi?</li>
-      <li>Has anyone done a HIPAA risk assessment or written security policies for the practice? Does your malpractice or business insurance ask for anything on that?</li>
-      <li>After it's set up, do you want someone on call and managing it month to month, or a one-time setup you run yourselves?</li>
-      <li>Any timeline, and is there something that prompted this now (a move, a new hire, insurance, something that went wrong)?</li>
-    </ol>
+
+    <form id="answers" novalidate>
+      <ol>
+        <li><label for="q1">What's the practice called, and where's the office? If there's more than one location, list them all.</label><textarea id="q1" rows="2"></textarea></li>
+        <li><label for="q2">How many people are in the practice, and how many of them would use the shared drive? Does anyone work from home or see clients by video?</label><textarea id="q2" rows="2"></textarea></li>
+        <li><label for="q3">What would go on the drive: client files and session notes, or office stuff like forms, billing and HR? Both?</label><textarea id="q3" rows="2"></textarea></li>
+        <li><label for="q4">Do you already use a notes or scheduling system like SimplePractice or TherapyNotes? What lives in there?</label><textarea id="q4" rows="2"></textarea></li>
+        <li><label for="q5">Do you bill insurance? Electronically?</label><textarea id="q5" rows="2"></textarea></li>
+        <li><label for="q6">What do you use for email today (Gmail, Outlook, something else), and what comes after the @ in your work email address?</label><textarea id="q6" rows="2"></textarea></li>
+        <li><label for="q7">What computers do people use? Practice-owned or personal, Mac or Windows?</label><textarea id="q7" rows="2"></textarea></li>
+        <li><label for="q8">Where do documents live right now, and how do you share them with each other?</label><textarea id="q8" rows="2"></textarea></li>
+        <li><label for="q9">Is there a printer now, and how do people print to it? Do you need to scan or fax too?</label><textarea id="q9" rows="2"></textarea></li>
+        <li><label for="q10">Do you have your own internet and Wi-Fi, or is it shared with the building? Who's the provider, and who set it up?</label><textarea id="q10" rows="2"></textarea></li>
+        <li><label for="q11">Has anyone done a HIPAA risk assessment or written security policies for the practice? Does your malpractice or business insurance ask for anything on that?</label><textarea id="q11" rows="2"></textarea></li>
+        <li><label for="q12">After it's set up, do you want someone on call and managing it month to month, or a one-time setup you run yourselves?</label><textarea id="q12" rows="2"></textarea></li>
+        <li><label for="q13">Any timeline, and is there something that prompted this now (a move, a new hire, insurance, something that went wrong)?</label><textarea id="q13" rows="2"></textarea></li>
+      </ol>
+
+      <div class="extra">
+        <label for="call">Good days and times for a call</label>
+        <input type="text" id="call" autocomplete="off">
+      </div>
+
+      <div class="trap" aria-hidden="true">
+        <label for="hpx">Leave this empty</label>
+        <input type="text" id="hpx" tabindex="-1" autocomplete="off">
+      </div>
+
+      <p><button type="submit" class="button" id="send">Send answers</button></p>
+      <p class="note" id="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div id="sent" hidden>
+      <p><strong>Sent.</strong> Thank you.</p>
+    </div>
+
+    <div id="fallback" hidden>
+      <p class="problem">That didn't go through. Tap below to email your answers instead. They're already filled in.</p>
+      <p><a class="button" id="mail" href="#">Email your answers</a></p>
+    </div>
+
     <!--email_off-->
-    <p><a class="send" href="mailto:roblogic@gmail.com?subject=Discovery%20answers&amp;body=1.%20How%20many%20people%20are%20in%20the%20practice%2C%20and%20how%20many%20of%20them%20would%20use%20the%20shared%20drive%3F%0D%0A%0D%0A%0D%0A2.%20One%20office%2C%20or%20more%20than%20one%3F%20Does%20anyone%20work%20from%20home%20or%20see%20clients%20by%20video%3F%0D%0A%0D%0A%0D%0A3.%20What%20would%20go%20on%20the%20drive%3A%20client%20files%20and%20session%20notes%2C%20or%20office%20stuff%20like%20forms%2C%20billing%20and%20HR%3F%20Both%3F%0D%0A%0D%0A%0D%0A4.%20Do%20you%20already%20use%20a%20notes%20or%20scheduling%20system%20like%20SimplePractice%20or%20TherapyNotes%3F%20What%20lives%20in%20there%3F%0D%0A%0D%0A%0D%0A5.%20Do%20you%20bill%20insurance%3F%20Electronically%3F%0D%0A%0D%0A%0D%0A6.%20What%20do%20you%20use%20for%20email%20and%20calendar%20today%3A%20regular%20Gmail%2C%20Google%20Workspace%2C%20Microsoft%20365%2C%20something%20else%3F%0D%0A%0D%0A%0D%0A7.%20What%20computers%20do%20people%20use%3F%20Practice-owned%20or%20personal%2C%20Mac%20or%20Windows%3F%0D%0A%0D%0A%0D%0A8.%20Where%20do%20documents%20live%20right%20now%2C%20and%20how%20do%20you%20share%20them%20with%20each%20other%3F%0D%0A%0D%0A%0D%0A9.%20Who%20set%20up%20your%20internet%20and%20Wi-Fi%2C%20and%20who%27s%20the%20provider%3F%20Is%20there%20a%20printer%20already%2C%20and%20does%20it%20do%20Wi-Fi%3F%0D%0A%0D%0A%0D%0A10.%20Has%20anyone%20done%20a%20HIPAA%20risk%20assessment%20or%20written%20security%20policies%20for%20the%20practice%3F%20Does%20your%20malpractice%20or%20business%20insurance%20ask%20for%20anything%20on%20that%3F%0D%0A%0D%0A%0D%0A11.%20After%20it%27s%20set%20up%2C%20do%20you%20want%20someone%20on%20call%20and%20managing%20it%20month%20to%20month%2C%20or%20a%20one-time%20setup%20you%20run%20yourselves%3F%0D%0A%0D%0A%0D%0A12.%20Any%20timeline%2C%20and%20is%20there%20something%20that%20prompted%20this%20now%20%28a%20move%2C%20a%20new%20hire%2C%20insurance%2C%20something%20that%20went%20wrong%29%3F%0D%0A%0D%0A%0D%0A">Email your answers</a></p>
-    <p class="note">Opens an email to roblogic@gmail.com with the questions in it. Answer under each one and send.</p>
+    <p class="note">Or email <a href="mailto:roblogic@gmail.com">roblogic@gmail.com</a>.</p>
     <!--/email_off-->
   </main>
+
+  <script data-cfasync="false">
+  (function () {
+    var ENDPOINT = 'https://n8n.roblogic.org/webhook/carol-discovery';
+    var ADDRESS = ['roblogic', 'gmail.com'].join('@');
+    var DRAFT = 'carol-discovery-draft';
+    var test = /[?&]test=1(&|$)/.test(location.search);
+
+    var form = document.getElementById('answers');
+    var send = document.getElementById('send');
+    var status = document.getElementById('status');
+    var boxes = Array.prototype.slice.call(form.querySelectorAll('textarea, #call'));
+
+    function grow(el) {
+      if (el.tagName !== 'TEXTAREA') return;
+      el.style.height = 'auto';
+      el.style.height = (el.scrollHeight + 2) + 'px';
+    }
+
+    function saveDraft() {
+      try {
+        var draft = {};
+        boxes.forEach(function (el) { if (el.value) draft[el.id] = el.value; });
+        localStorage.setItem(DRAFT, JSON.stringify(draft));
+      } catch (e) {}
+    }
+
+    function loadDraft() {
+      try {
+        var draft = JSON.parse(localStorage.getItem(DRAFT) || '{}');
+        boxes.forEach(function (el) {
+          if (draft[el.id]) { el.value = draft[el.id]; grow(el); }
+        });
+      } catch (e) {}
+    }
+
+    function collect() {
+      return Array.prototype.map.call(form.querySelectorAll('ol li'), function (li) {
+        return {
+          q: li.querySelector('label').textContent.trim(),
+          a: li.querySelector('textarea').value.trim()
+        };
+      });
+    }
+
+    function emailLink(answers, call) {
+      var body = answers.map(function (x, i) {
+        return (i + 1) + '. ' + x.q + '\n' + x.a;
+      }).join('\n\n');
+      if (call) body += '\n\nGood days and times for a call: ' + call;
+      return 'mailto:' + ADDRESS +
+        '?subject=' + encodeURIComponent('Discovery answers') +
+        '&body=' + encodeURIComponent(body.replace(/\r?\n/g, '\r\n'));
+    }
+
+    loadDraft();
+    form.addEventListener('input', function (e) { grow(e.target); saveDraft(); });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var answers = collect();
+      var call = document.getElementById('call').value.trim();
+      if (!call && !answers.some(function (x) { return x.a; })) {
+        status.textContent = 'Answer at least one question first.';
+        return;
+      }
+
+      send.disabled = true;
+      status.textContent = 'Sending...';
+      document.getElementById('fallback').hidden = true;
+
+      var controller = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (controller) controller.abort(); }, 20000);
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          answers: answers,
+          call: call,
+          hpx: document.getElementById('hpx').value,
+          test: test
+        }),
+        signal: controller ? controller.signal : undefined
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (!data || data.ok !== true) throw new Error('not saved');
+          clearTimeout(timer);
+          try { localStorage.removeItem(DRAFT); } catch (e) {}
+          form.hidden = true;
+          document.getElementById('sent').hidden = false;
+          window.scrollTo(0, 0);
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          send.disabled = false;
+          status.textContent = '';
+          document.getElementById('mail').href = emailLink(answers, call);
+          var fallback = document.getElementById('fallback');
+          fallback.hidden = false;
+          fallback.scrollIntoView({ block: 'center' });
+        });
+    });
+  })();
+  </script>
 </body>
 </html>
