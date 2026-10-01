@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Last Call · The Bancroft</title>
+<meta name="description" content="The Bancroft's final tab: top 10 by money and by drinks, Feb 2021 to Aug 2026.">
+<meta property="og:title" content="Last Call · The Bancroft">
+<meta property="og:description" content="Top 10 tabs by money and by drinks. The final receipt.">
+<meta property="og:url" content="https://roblogic.org/lastcall/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DotGothic16&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --oxblood: #1a0a0a; --red: #b91c1c; --cream: #ede0cc; --gold: #c4a265;
+  --paper: #f7f2e6; --paper-edge: #ebe3d0; --ink: #26211d; --ink-soft: #6b625a; --stamp: #b91c1c;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: var(--oxblood); }
+body {
+  min-height: 100vh; color: var(--ink);
+  background: var(--oxblood) url('/bancroft/img/brocade-bg.jpg') center top / 520px repeat;
+  font: 15px/1.45 'IBM Plex Mono', ui-monospace, monospace;
+  padding: 28px 16px 64px; overflow-x: hidden;
+}
+.slot {
+  max-width: 440px; margin: 0 auto; height: 14px; border-radius: 7px;
+  background: linear-gradient(#0a0404, #2a1414); box-shadow: inset 0 3px 6px #000, 0 1px 0 #3a2020;
+}
+.feed { max-width: 420px; margin: -7px auto 0; overflow: hidden; }
+.receipt {
+  position: relative; background: var(--paper);
+  background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px);
+  background-size: 3px 3px;
+  padding: 30px 22px 34px; box-shadow: 0 18px 40px rgba(0,0,0,.55);
+  transform-origin: top center; animation: print 2.4s cubic-bezier(.25,.8,.3,1) both;
+}
+.receipt::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -12px; height: 12px;
+  background: linear-gradient(-45deg, transparent 8px, var(--paper) 0) 0 0 / 16px 12px repeat-x,
+              linear-gradient(45deg, transparent 8px, var(--paper) 0) 0 0 / 16px 12px repeat-x;
+}
+@keyframes print { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .receipt { animation: none; } }
+.head { text-align: center; }
+.logo { width: 128px; height: auto; margin: 0 auto 12px; display: block; filter: grayscale(1) contrast(1.15); mix-blend-mode: multiply; opacity: .92; }
+.bar { font-family: 'Alfa Slab One', serif; font-size: 34px; letter-spacing: .02em; line-height: 1; }
+.addr { font-size: 12px; color: var(--ink-soft); margin-top: 6px; letter-spacing: .08em; }
+.title { font-family: 'DotGothic16', monospace; font-size: 40px; letter-spacing: .06em; margin: 18px 0 2px; }
+.span { font-size: 13px; letter-spacing: .06em; }
+hr { border: 0; border-top: 2px dashed var(--ink); opacity: .55; margin: 18px 0; }
+hr.dbl { border-top: 3px double var(--ink); opacity: .8; }
+h2 { font-family: 'DotGothic16', monospace; font-weight: 400; font-size: 21px; letter-spacing: .06em; margin-bottom: 8px; }
+.ln { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.ln .l { overflow: hidden; text-overflow: ellipsis; }
+.ln .dots { flex: 1; border-bottom: 2px dotted rgba(38,33,29,.45); transform: translateY(-4px); min-width: 12px; }
+.ln .v { font-weight: 600; }
+.ln.big { font-family: 'DotGothic16', monospace; font-size: 20px; }
+.ln.sub { color: var(--ink-soft); font-size: 13px; }
+details.row summary { list-style: none; cursor: pointer; padding: 2px 0; }
+details.row summary::-webkit-details-marker { display: none; }
+details.row[open] summary { background: rgba(185,28,28,.07); }
+details.row:first-of-type .ln { font-weight: 600; }
+.aka { font-size: 12px; color: var(--ink-soft); padding: 2px 0 6px 3ch; white-space: normal; }
+.house { margin: 12px 0 4px; }
+.hname { font-family: 'DotGothic16', monospace; font-size: 22px; letter-spacing: .08em; }
+.house .ln { padding-left: 2ch; }
+.house-aka { padding: 0 0 4px 0; }
+.note { font-size: 12px; color: var(--ink-soft); margin-top: 8px; }
+.closed { text-align: center; }
+.stamp {
+  display: inline-block; margin: 6px auto 12px; padding: 6px 14px; color: var(--stamp);
+  border: 3px solid var(--stamp); border-radius: 4px; font-family: 'Alfa Slab One', serif; font-size: 22px;
+  letter-spacing: .08em; transform: rotate(-6deg); opacity: .85; mix-blend-mode: multiply;
+}
+.barcode { display: block; width: 78%; height: 46px; margin: 14px auto 6px; fill: var(--ink); }
+.ty { font-family: 'DotGothic16', monospace; font-size: 18px; letter-spacing: .1em; }
+.foot { max-width: 420px; margin: 34px auto 0; text-align: center; color: var(--cream); font-size: 12px; letter-spacing: .08em; }
+.foot span { background: rgba(26,10,10,.85); padding: 4px 10px; border-radius: 3px; }
+@media (max-width: 380px) { body { font-size: 13.5px; } .bar { font-size: 29px; } .title { font-size: 34px; } .receipt { padding: 26px 16px 30px; } }
+</style>
+</head>
+<body>
+<div class="slot"></div>
+<div class="feed"><main class="receipt">
+  <div class="head">
+    <img class="logo" src="rooster.png" alt="The Bancroft rooster">
+    <div class="bar">THE BANCROFT</div>
+    <div class="addr">SPRING VALLEY · CA</div>
+    <div class="title">LAST CALL</div>
+    <div class="span">FEB 2021 – AUG 2026</div>
+  </div>
+  <hr class="dbl">
+  <h2>TOP 10 · MONEY</h2>
+  <details class="row"><summary><div class="ln "><span class="l"> 1 OZ</span><span class="dots"></span><span class="v">$19,787</span></div></summary><p class="aka">aka Ozzy, Oswald, Ozzzzzzz +10 more · 523 tabs · 2022–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 2 RUBEN &amp; CATHY</span><span class="dots"></span><span class="v">$19,370</span></div></summary><p class="aka">aka Rubdawg, Rub/Cat, R&amp;C, Dart God +67 more · 354 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 3 ANGEL</span><span class="dots"></span><span class="v">$18,807</span></div></summary><p class="aka">aka Angle, Ang +13 more · 876 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 4 BOBBY</span><span class="dots"></span><span class="v">$14,579</span></div></summary><p class="aka">aka Bobbert, Blobby, Bobby Shifty +24 more · 362 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 5 MIKEY (GUNSMITH)</span><span class="dots"></span><span class="v">$13,777</span></div></summary><p class="aka">aka Gunsmith, Gunner, Gunny, Mikey Guns +23 more · 508 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 6 BRUCE</span><span class="dots"></span><span class="v">$13,002</span></div></summary><p class="aka">aka Brucio, Brucifer, Bruuuuucio, Bruceypoo +19 more · 403 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 7 JEFF</span><span class="dots"></span><span class="v">$12,400</span></div></summary><p class="aka">aka Jeffery, Jeffie, Geoff +17 more · 353 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 8 CALI ERIC</span><span class="dots"></span><span class="v">$12,139</span></div></summary><p class="aka">aka Eric, Caliboy, Cali +14 more · 440 tabs · 2021–2025</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 9 SHAGGY</span><span class="dots"></span><span class="v">$11,242</span></div></summary><p class="aka">aka Shag, Snaggy +7 more · 196 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l">10 ALEX</span><span class="dots"></span><span class="v">$8,245</span></div></summary><p class="aka">aka Alex P. +7 more · 359 tabs · 2022–2026</p></details>
+  <hr>
+  <h2>TOP 10 · DRINKS *</h2>
+  <details class="row"><summary><div class="ln "><span class="l"> 1 OZ</span><span class="dots"></span><span class="v">2,850</span></div></summary><p class="aka">aka Ozzy, Oswald, Ozzzzzzz +10 more · 523 tabs · 2022–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 2 ANGEL</span><span class="dots"></span><span class="v">2,048</span></div></summary><p class="aka">aka Angle, Ang +13 more · 876 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 3 JEFF</span><span class="dots"></span><span class="v">1,992</span></div></summary><p class="aka">aka Jeffery, Jeffie, Geoff +17 more · 353 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 4 RUBEN &amp; CATHY</span><span class="dots"></span><span class="v">1,949</span></div></summary><p class="aka">aka Rubdawg, Rub/Cat, R&amp;C, Dart God +67 more · 354 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 5 BOBBY</span><span class="dots"></span><span class="v">1,828</span></div></summary><p class="aka">aka Bobbert, Blobby, Bobby Shifty +24 more · 362 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 6 MIKEY (GUNSMITH)</span><span class="dots"></span><span class="v">1,727</span></div></summary><p class="aka">aka Gunsmith, Gunner, Gunny, Mikey Guns +23 more · 508 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 7 BRUCE</span><span class="dots"></span><span class="v">1,627</span></div></summary><p class="aka">aka Brucio, Brucifer, Bruuuuucio, Bruceypoo +19 more · 403 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 8 IRV</span><span class="dots"></span><span class="v">1,530</span></div></summary><p class="aka">aka Irving, Irvsy +10 more · 371 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l"> 9 SHAGGY</span><span class="dots"></span><span class="v">1,321</span></div></summary><p class="aka">aka Shag, Snaggy +7 more · 196 tabs · 2021–2026</p></details>
+<details class="row"><summary><div class="ln "><span class="l">10 ALEX</span><span class="dots"></span><span class="v">1,155</span></div></summary><p class="aka">aka Alex P. +7 more · 359 tabs · 2022–2026</p></details>
+  <hr>
+  <h2>HOUSE TABS</h2>
+  <div class="house"><div class="hname">ROB</div><p class="aka house-aka">aka Logic, Robbie, Robbity, Boss Man, Rob Is Neat</p><div class="ln "><span class="l">tabs</span><span class="dots"></span><span class="v">398</span></div><div class="ln "><span class="l">drinks *</span><span class="dots"></span><span class="v">2,219</span></div><div class="ln "><span class="l">rung</span><span class="dots"></span><span class="v">$17,979</span></div><div class="ln "><span class="l">comped</span><span class="dots"></span><span class="v">$13,884</span></div></div>
+  <div class="house"><div class="hname">ALFREDO</div><p class="aka house-aka">aka Fredo, Fredooo, Freddo, Alfreedoom</p><div class="ln "><span class="l">tabs</span><span class="dots"></span><span class="v">368</span></div><div class="ln "><span class="l">drinks *</span><span class="dots"></span><span class="v">2,547</span></div><div class="ln "><span class="l">rung</span><span class="dots"></span><span class="v">$15,178</span></div><div class="ln "><span class="l">comped</span><span class="dots"></span><span class="v">$1,523</span></div></div>
+  <hr>
+  <h2>COMPS</h2>
+  <div class="ln big"><span class="l">ON THE HOUSE</span><span class="dots"></span><span class="v">$85,740</span></div>
+<div class="ln "><span class="l">  Rob&#x27;s tabs</span><span class="dots"></span><span class="v">$13,884</span></div>
+<div class="ln "><span class="l">  Alfredo&#x27;s tabs</span><span class="dots"></span><span class="v">$1,523</span></div>
+<div class="ln "><span class="l">  everybody else</span><span class="dots"></span><span class="v">$70,333</span></div>
+  <hr>
+  <div class="ln "><span class="l">TABS RUNG</span><span class="dots"></span><span class="v">78,368</span></div>
+  <div class="ln "><span class="l">DRINKS POURED *</span><span class="dots"></span><span class="v">141,078</span></div>
+  <div class="ln big"><span class="l">TOTAL</span><span class="dots"></span><span class="v">$1,214,040</span></div>
+  <p class="note">MONEY = WHAT THE TAB RANG, BEFORE TIP.<br>* DRINKS COUNTED FROM NOV 2022, WHEN TOAST STARTED KEEPING LINE ITEMS.</p>
+  <hr class="dbl">
+  <div class="closed">
+    <div class="stamp">CLOSED</div>
+    <div>CHECK CLOSED 09/30/2026</div>
+    <svg class="barcode" viewBox="0 0 300 46" preserveAspectRatio="none" aria-hidden="true"><rect x="0" y="0" width="1" height="46"/><rect x="2" y="0" width="2" height="46"/><rect x="5" y="0" width="3" height="46"/><rect x="11" y="0" width="1" height="46"/><rect x="15" y="0" width="3" height="46"/><rect x="19" y="0" width="3" height="46"/><rect x="24" y="0" width="3" height="46"/><rect x="30" y="0" width="1" height="46"/><rect x="33" y="0" width="3" height="46"/><rect x="38" y="0" width="1" height="46"/><rect x="40" y="0" width="3" height="46"/><rect x="45" y="0" width="3" height="46"/><rect x="51" y="0" width="1" height="46"/><rect x="55" y="0" width="2" height="46"/><rect x="59" y="0" width="3" height="46"/><rect x="64" y="0" width="3" height="46"/><rect x="69" y="0" width="1" height="46"/><rect x="73" y="0" width="1" height="46"/><rect x="76" y="0" width="1" height="46"/><rect x="78" y="0" width="2" height="46"/><rect x="83" y="0" width="1" height="46"/><rect x="86" y="0" width="1" height="46"/><rect x="89" y="0" width="1" height="46"/><rect x="93" y="0" width="1" height="46"/><rect x="96" y="0" width="2" height="46"/><rect x="100" y="0" width="1" height="46"/><rect x="102" y="0" width="3" height="46"/><rect x="106" y="0" width="3" height="46"/><rect x="112" y="0" width="1" height="46"/><rect x="115" y="0" width="2" height="46"/><rect x="118" y="0" width="1" height="46"/><rect x="121" y="0" width="1" height="46"/><rect x="125" y="0" width="1" height="46"/><rect x="128" y="0" width="2" height="46"/><rect x="132" y="0" width="3" height="46"/><rect x="138" y="0" width="2" height="46"/><rect x="142" y="0" width="2" height="46"/><rect x="147" y="0" width="1" height="46"/><rect x="151" y="0" width="3" height="46"/><rect x="156" y="0" width="3" height="46"/><rect x="161" y="0" width="1" height="46"/><rect x="164" y="0" width="3" height="46"/><rect x="168" y="0" width="2" height="46"/><rect x="171" y="0" width="1" height="46"/><rect x="175" y="0" width="1" height="46"/><rect x="178" y="0" width="1" height="46"/><rect x="181" y="0" width="3" height="46"/><rect x="186" y="0" width="3" height="46"/><rect x="191" y="0" width="1" height="46"/><rect x="193" y="0" width="2" height="46"/><rect x="196" y="0" width="2" height="46"/><rect x="199" y="0" width="1" height="46"/><rect x="203" y="0" width="1" height="46"/><rect x="206" y="0" width="2" height="46"/><rect x="210" y="0" width="3" height="46"/><rect x="214" y="0" width="1" height="46"/><rect x="217" y="0" width="1" height="46"/><rect x="219" y="0" width="1" height="46"/><rect x="223" y="0" width="1" height="46"/><rect x="227" y="0" width="3" height="46"/><rect x="231" y="0" width="2" height="46"/><rect x="234" y="0" width="1" height="46"/><rect x="236" y="0" width="1" height="46"/><rect x="238" y="0" width="2" height="46"/><rect x="242" y="0" width="3" height="46"/><rect x="248" y="0" width="3" height="46"/><rect x="254" y="0" width="3" height="46"/><rect x="258" y="0" width="2" height="46"/><rect x="262" y="0" width="1" height="46"/><rect x="266" y="0" width="1" height="46"/><rect x="268" y="0" width="1" height="46"/><rect x="271" y="0" width="1" height="46"/><rect x="274" y="0" width="3" height="46"/><rect x="279" y="0" width="3" height="46"/><rect x="285" y="0" width="1" height="46"/><rect x="288" y="0" width="2" height="46"/><rect x="293" y="0" width="2" height="46"/><rect x="296" y="0" width="1" height="46"/><rect x="299" y="0" width="2" height="46"/></svg>
+    <div class="ty">THANK YOU · GOODNIGHT</div>
+  </div>
+</main></div>
+<p class="foot"><span>Rob Logic · 2026</span></p>
+</body>
+</html>
