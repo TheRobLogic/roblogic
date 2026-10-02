@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Music License Letters</title>
+<meta name="description" content="Send-off checklist for the three music license letters.">
+<meta property="og:title" content="Music License Letters">
+<meta property="og:description" content="Send-off checklist: sign, print, two emails, four certified envelopes.">
+<meta property="og:url" content="https://roblogic.org/musicletters/">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!--
+  Palette: certified-mail green #1f6b3a on manila #f4eedd, ink #1b221d, postal red #b4362a.
+  Type: Public Sans (the federal-forms sans) + IBM Plex Mono for anything that gets typed or copied.
+-->
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --paper: #f4eedd;
+  --card: #fffdf7;
+  --ink: #1b221d;
+  --soft: #5b6259;
+  --rule: #d9cfb6;
+  --green: #1f6b3a;
+  --green-wash: #e3efe4;
+  --red: #b4362a;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --sans: "Public Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.5 var(--sans);
+  padding: 0 16px 64px;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+
+/* ---------- header ---------- */
+header { padding: 28px 0 18px; border-bottom: 3px solid var(--ink); margin-bottom: 18px; position: relative; }
+.kicker { font: 600 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+h1 { font-weight: 900; font-size: clamp(34px, 9vw, 52px); line-height: .95; letter-spacing: -.02em; margin-top: 8px; max-width: 11ch; }
+.stamp {
+  position: absolute; right: 0; top: 26px;
+  font: 600 11px/1.15 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-align: center;
+  color: var(--green); border: 2px solid var(--green); border-radius: 4px; padding: 6px 8px;
+  transform: rotate(-7deg);
+}
+.stamp b { display: block; font-size: 15px; letter-spacing: .06em; }
+.lede { margin-top: 12px; color: var(--soft); font-size: 15px; }
+.progress { margin-top: 14px; display: flex; align-items: center; gap: 10px; font: 600 13px/1 var(--mono); }
+.bar { flex: 1; height: 8px; background: var(--rule); border-radius: 99px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--green); transition: width .25s ease; }
+
+/* ---------- steps ---------- */
+.step { background: var(--card); border: 1.5px solid var(--rule); border-radius: 10px; padding: 16px 16px 18px; margin-bottom: 14px; }
+.step.done { border-color: var(--green); background: var(--green-wash); }
+.step-head { display: flex; align-items: center; gap: 12px; }
+.num {
+  flex: none; width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--ink); color: var(--paper); font-weight: 900; font-size: 18px;
+}
+.step.done .num { background: var(--green); }
+h2 { font-size: 21px; font-weight: 800; line-height: 1.15; flex: 1; }
+.tag { display: inline-block; font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--red); border: 1.5px solid var(--red); border-radius: 3px; padding: 3px 5px; margin-left: 6px; vertical-align: 3px; }
+.tick { flex: none; display: flex; align-items: center; gap: 6px; font: 600 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--soft); cursor: pointer; min-height: 44px; padding-left: 6px; }
+.tick input { width: 26px; height: 26px; accent-color: var(--green); cursor: pointer; }
+.body { margin-top: 10px; }
+.body p + p, .body p + .fields, .fields + p, .body p + .env, .env + .env, .env + p, .body p + ul { margin-top: 10px; }
+.body ul { padding-left: 20px; }
+.body li + li { margin-top: 4px; }
+.file { font: 600 15px/1.4 var(--mono); background: #efe7cf; padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+
+/* copy fields */
+.fields { display: grid; gap: 8px; }
+.field { border: 1px solid var(--rule); border-radius: 8px; background: #fff; padding: 8px 10px; }
+.field-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.label { font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+.val { font: 15px/1.45 var(--mono); margin-top: 4px; overflow-wrap: anywhere; }
+.val.prose { font-family: var(--sans); font-size: 15px; }
+button.copy {
+  font: 600 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--green); background: transparent; border: 1.5px solid var(--green); border-radius: 6px;
+  padding: 8px 10px; min-height: 36px; cursor: pointer;
+}
+button.copy:active { background: var(--green); color: #fff; }
+button.copy.ok { background: var(--green); color: #fff; }
+
+/* envelopes */
+.env {
+  position: relative; background: #fff; border: 1.5px solid var(--ink); border-radius: 6px;
+  padding: 14px 14px 12px;
+}
+.env.done { opacity: .55; }
+.env-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.env-name { font: 800 13px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.postage { flex: none; width: 54px; height: 40px; border: 1.5px dashed var(--green); border-radius: 3px; display: grid; place-items: center; text-align: center; font: 600 9px/1.1 var(--mono); color: var(--green); letter-spacing: .06em; text-transform: uppercase; }
+.addr { font: 16px/1.4 var(--mono); margin: 10px 0 10px; padding-left: 14px; }
+.inside { font-size: 15px; border-top: 1px dashed var(--rule); padding-top: 8px; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.inside b { font-weight: 800; }
+.env-actions { display: flex; gap: 8px; align-items: center; }
+
+/* don'ts */
+.donts { border: 2px solid var(--red); border-radius: 10px; padding: 14px 16px; margin: 22px 0 10px; background: #fff7f5; }
+.donts h3 { font: 800 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+.donts ul { padding-left: 20px; }
+footer { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 13px/1.4 var(--mono); color: var(--soft); }
+footer button { font: 600 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; background: none; border: 1px solid var(--soft); color: var(--soft); border-radius: 6px; padding: 8px 10px; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 420px) {
+  .stamp { position: static; display: inline-block; margin-top: 12px; transform: rotate(-3deg); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Bancroft · Fri Oct 2</div>
+  <h1>Music license letters</h1>
+  <div class="stamp">Certified<b>Mail</b>4 envelopes</div>
+  <p class="lede">Six steps, in order. Tick each one when it's done. Ticks stay on this device.</p>
+  <div class="progress"><div class="bar"><i id="bar"></i></div><span id="count">0 / 6</span></div>
+</header>
+
+<main id="steps">
+
+  <section class="step" data-step="1">
+    <div class="step-head">
+      <div class="num">1</div>
+      <h2>Sign on the laptop</h2>
+      <label class="tick"><input type="checkbox" data-key="s1"> Done</label>
+    </div>
+    <div class="body">
+      <p>Open <span class="file">Desktop › Music license letters</span>. Sign and date all four PDFs, then save each one.</p>
+      <p>Put the same date on <b>1</b> and <b>2</b>.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="2">
+    <div class="step-head">
+      <div class="num">2</div>
+      <h2>Print</h2>
+      <label class="tick"><input type="checkbox" data-key="s2"> Done</label>
+    </div>
+    <div class="body">
+      <p>Print <b>1</b>, <b>2</b> and <b>4</b> once. Print <b>3</b> (BMI) <b>twice</b>.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="3">
+    <div class="step-head">
+      <div class="num">3</div>
+      <h2>Email ASCAP <span class="tag">today</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s3"> Done</label>
+    </div>
+    <div class="body">
+      <p>From <b>bancroftbar@gmail.com</b>. Attach signed <b>1</b> and <b>2</b>.</p>
+      <div class="fields">
+        <div class="field"><div class="field-top"><span class="label">To</span><button class="copy" data-copy="glcs@ascap.com">Copy</button></div><div class="val">glcs@ascap.com</div></div>
+        <div class="field"><div class="field-top"><span class="label">Cc</span><button class="copy" data-copy="dflennoy@ascap.com">Copy</button></div><div class="val">dflennoy@ascap.com</div></div>
+        <div class="field"><div class="field-top"><span class="label">Subject</span><button class="copy" data-target="ascap-subj">Copy</button></div><div class="val" id="ascap-subj">ASCAP account 500756580, The Bancroft: notice of change in operating policy and notice of termination</div></div>
+        <div class="field"><div class="field-top"><span class="label">Body</span><button class="copy" data-target="ascap-body">Copy</button></div><div class="val prose" id="ascap-body">Attn: VP of General Licensing. Attached are the licensee's notice of change in operating policy under Paragraph 4(a), with the certified 2026 Rate Schedule and Statement of Operating Policy, and its notice of termination under Paragraph 4(d). The termination notice is also being sent by certified mail.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="4">
+    <div class="step-head">
+      <div class="num">4</div>
+      <h2>Email SESAC <span class="tag">today</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s4"> Done</label>
+    </div>
+    <div class="body">
+      <p>From <b>bancroftcocktails@gmail.com</b>. Attach signed <b>4</b>.</p>
+      <div class="fields">
+        <div class="field"><div class="field-top"><span class="label">To</span><button class="copy" data-copy="reporting@sesac.com">Copy</button></div><div class="val">reporting@sesac.com</div></div>
+        <div class="field"><div class="field-top"><span class="label">Subject</span><button class="copy" data-target="sesac-subj">Copy</button></div><div class="val" id="sesac-subj">SESAC account 22655, contract 76059-1: music usage update and notice of termination</div></div>
+        <div class="field"><div class="field-top"><span class="label">Body</span><button class="copy" data-target="sesac-body">Copy</button></div><div class="val prose" id="sesac-body">Attached are a music usage update and revised License Fee Report, and a notice of termination, for account 22655. The original is also being sent by certified mail.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="5">
+    <div class="step-head">
+      <div class="num">5</div>
+      <h2>Post office: 4 envelopes</h2>
+      <label class="tick"><input type="checkbox" data-key="s5"> Done</label>
+    </div>
+    <div class="body">
+      <p>Ask for <b>Certified Mail with Return Receipt</b> on each. Take the <b>electronic</b> return receipt, so the proof comes by email.</p>
+      <p>Sender name on every envelope: <b>Bancroft Bar, LLC</b>, with a return address where you get mail.</p>
+
+      <div class="env" data-env="a">
+        <div class="env-top"><span class="env-name">A · ASCAP</span><span class="postage">Cert.<br>RR</span></div>
+        <div class="addr" id="addr-a">ASCAP<br>Attn: VP of General Licensing<br>250 West 57th Street<br>New York, NY 10107</div>
+        <div class="inside"><span>Inside: <b>1</b> + <b>2</b></span><span class="env-actions"><button class="copy" data-target="addr-a">Copy</button><label class="tick"><input type="checkbox" data-key="ea"> Sent</label></span></div>
+      </div>
+
+      <div class="env" data-env="b">
+        <div class="env-top"><span class="env-name">B · BMI</span><span class="postage">Cert.<br>RR</span></div>
+        <div class="addr" id="addr-b">BMI (Broadcast Music, LLC)<br>Attention: Vice President, Licensing<br>10 Music Square East<br>Nashville, TN 37203</div>
+        <div class="inside"><span>Inside: <b>3</b> (copy 1)</span><span class="env-actions"><button class="copy" data-target="addr-b">Copy</button><label class="tick"><input type="checkbox" data-key="eb"> Sent</label></span></div>
+      </div>
+
+      <div class="env" data-env="c">
+        <div class="env-top"><span class="env-name">C · BMI legal</span><span class="postage">Cert.<br>RR</span></div>
+        <div class="addr" id="addr-c">Broadcast Music, LLC<br>Attention: Senior Vice President and General Counsel<br>10 Music Square East<br>Nashville, TN 37203</div>
+        <div class="inside"><span>Inside: <b>3</b> (copy 2)</span><span class="env-actions"><button class="copy" data-target="addr-c">Copy</button><label class="tick"><input type="checkbox" data-key="ec"> Sent</label></span></div>
+      </div>
+
+      <div class="env" data-env="d">
+        <div class="env-top"><span class="env-name">D · SESAC</span><span class="postage">Cert.<br>RR</span></div>
+        <div class="addr" id="addr-d">SESAC LLC<br>Attention: Licensing Department<br>35 Music Square East<br>Nashville, TN 37203</div>
+        <div class="inside"><span>Inside: <b>4</b></span><span class="env-actions"><button class="copy" data-target="addr-d">Copy</button><label class="tick"><input type="checkbox" data-key="ed"> Sent</label></span></div>
+      </div>
+
+      <p>Cost per envelope: Certified Mail $5.55 + electronic return receipt $2.91 + postage (usps.com, Oct 2).</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="6">
+    <div class="step-head">
+      <div class="num">6</div>
+      <h2>Receipts</h2>
+      <label class="tick"><input type="checkbox" data-key="s6"> Done</label>
+    </div>
+    <div class="body">
+      <p>Keep all 4 receipts. Snap a photo of each and send them to Claude to file.</p>
+    </div>
+  </section>
+
+</main>
+
+<aside class="donts">
+  <h3>Don't</h3>
+  <ul>
+    <li>Call any of them. If they call: "send it in writing."</li>
+    <li>Log in to their websites or click "accept" on anything.</li>
+    <li>Pay anything.</li>
+  </ul>
+</aside>
+
+<footer>
+  <span>Bancroft Bar, LLC</span>
+  <button id="reset" type="button">Clear ticks</button>
+</footer>
+
+</div>
+<script>
+(function () {
+  var KEY = "musicletters-v1";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var boxes = document.querySelectorAll("input[data-key]");
+  function paint() {
+    var stepsDone = 0;
+    document.querySelectorAll(".step").forEach(function (sec) {
+      var box = sec.querySelector(".step-head input[data-key]");
+      var on = !!(box && box.checked);
+      sec.classList.toggle("done", on);
+      if (on) stepsDone++;
+    });
+    document.querySelectorAll(".env").forEach(function (env) {
+      var box = env.querySelector("input[data-key]");
+      env.classList.toggle("done", !!(box && box.checked));
+    });
+    document.getElementById("count").textContent = stepsDone + " / 6";
+    document.getElementById("bar").style.width = (stepsDone / 6 * 100) + "%";
+  }
+  boxes.forEach(function (b) {
+    b.checked = !!state[b.dataset.key];
+    b.addEventListener("change", function () { state[b.dataset.key] = b.checked; save(); paint(); });
+  });
+  paint();
+
+  document.getElementById("reset").addEventListener("click", function () {
+    state = {}; save();
+    boxes.forEach(function (b) { b.checked = false; });
+    paint();
+  });
+
+  function textOf(btn) {
+    if (btn.dataset.copy) return btn.dataset.copy;
+    var el = document.getElementById(btn.dataset.target);
+    if (!el) return "";
+    var html = el.innerHTML.replace(/<br\s*\/?>/gi, "\n");
+    var tmp = document.createElement("div"); tmp.innerHTML = html;
+    return tmp.textContent.trim();
+  }
+  function fallbackCopy(t) {
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var t = textOf(btn);
+      var done = function () { btn.classList.add("ok"); btn.textContent = "Copied"; setTimeout(function () { btn.classList.remove("ok"); btn.textContent = "Copy"; }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(done, function () { fallbackCopy(t); done(); });
+      } else { fallbackCopy(t); done(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
