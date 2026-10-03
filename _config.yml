@@ -1,0 +1,4 @@
+# Build settings for the GitHub Pages copy of this repo (theroblogic.github.io/roblogic).
+# Folders listed here stay in the repo but are not published on that copy.
+exclude:
+  - va-house-sale
