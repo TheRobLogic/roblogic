@@ -372,5 +372,35 @@ h2{font-size:clamp(20px,4vw,28px);letter-spacing:.06em;margin:34px 0 12px;color:
   if(!$("bd").value){ var n0=todayP(); $("bd").value=fmtUS(n0.y,n0.m,n0.d); }   // default = today, so the box shows how it works
 })();
 </script>
-<script type="application/json" id="draw-picks">{"schema_version": 1, "math_version": "2026-09-15-paper-v1", "method_prefix": "starshot-sun-sign", "generated_at": "2026-10-07T15:00:26.170768+00:00", "method_note": "Today's Sun-sign bucket; personal sign/date selections are not tracked.", "games": [{"game_id": "fantasy-5", "display_name": "Fantasy 5", "white_count": 5, "white_pool": 39, "special_pool": null, "ticket_cost": 1, "next_draw_date": "2026-10-07", "ok": true, "source_history_cutoff": "2026-10-06", "hot": [{"white_numbers": [2, 11, 13, 25, 37], "special_number": null}], "due": [{"white_numbers": [22, 24, 30, 32, 35], "special_number": null}], "mix": [{"white_numbers": [2, 13, 29, 32, 35], "special_number": null}]}, {"game_id": "superlotto-plus", "display_name": "SuperLotto Plus", "white_count": 5, "white_pool": 47, "special_pool": 27, "ticket_cost": 1, "next_draw_date": "2026-10-07", "ok": true, "source_history_cutoff": "2026-10-03", "hot": [{"white_numbers": [2, 4, 8, 13, 33], "special_number": 26}], "due": [{"white_numbers": [1, 19, 24, 26, 41], "special_number": 12}], "mix": [{"white_numbers": [2, 6, 13, 19, 41], "special_number": 11}]}, {"game_id": "powerball", "display_name": "Powerball", "white_count": 5, "white_pool": 69, "special_pool": 26, "ticket_cost": 2, "next_draw_date": "2026-10-07", "ok": true, "source_history_cutoff": "2026-10-05", "hot": [{"white_numbers": [29, 30, 43, 52, 64], "special_number": 15}], "due": [{"white_numbers": [9, 26, 28, 35, 51], "special_number": 17}], "mix": [{"white_numbers": [30, 35, 51, 59, 64], "special_number": 23}]}, {"game_id": "mega-millions", "display_name": "Mega Millions", "white_count": 5, "white_pool": 70, "special_pool": 24, "ticket_cost": 5, "next_draw_date": "2026-10-09", "ok": true, "source_history_cutoff": "2026-10-06", "hot": [{"white_numbers": [3, 18, 26, 27, 36], "special_number": 19}], "due": [{"white_numbers": [1, 2, 28, 31, 62], "special_number": 1}], "mix": [{"white_numbers": [1, 18, 25, 27, 28], "special_number": 4}]}]}</script></body>
+<script>
+// Live jackpots (#1421). The cards above are baked at 08:00; this refreshes each card's
+// next-draw chip + jackpot from the CA Lottery (same-origin hop /lotto/api/jackpots, 5-min
+// cache) once per load. Fail-soft: any error leaves the baked values exactly as they were.
+(function(){
+  var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function fmtJ(v){                          // mirrors bake_astro.fmt_jackpot: 1.5B / 485M / 163K / 900
+    if(v>=1e9) return "$"+(v/1e9).toFixed(1).replace(/\.?0+$/,"")+"B";
+    if(v>=1e6) return "$"+Math.round(v/1e6)+"M";
+    if(v>=1e3) return "$"+Math.round(v/1e3)+"K";
+    return "$"+Math.round(v);
+  }
+  fetch("https://roblogic.org/lotto/api/jackpots").then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+    if(!d || !d.games) return;
+    document.querySelectorAll(".card").forEach(function(card){
+      var g = d.games[(card.dataset.game||"").toLowerCase().replace(/\s+/g,"-")];
+      if(!g || !(g.jackpot>0) || !g.next_draw) return;
+      var mr = card.querySelector(".mright"), chip = card.querySelector(".mission"), jl = card.querySelector(".jline");
+      if(!mr) return;
+      if(!jl){ jl=document.createElement("span"); jl.className="jline"; mr.appendChild(jl); }
+      jl.innerHTML = '<span class="jword">Jackpot</span>'+fmtJ(g.jackpot);
+      if(chip){                                // "Wed Oct 7 · 2 dollars" → keep the ticket price, swap the date
+        var p=g.next_draw.split("-"), dt=new Date(+p[0],+p[1]-1,+p[2]), parts=chip.textContent.split(" · ");
+        parts[0]=DOW[dt.getDay()]+" "+MON[dt.getMonth()]+" "+dt.getDate(); chip.textContent=parts.join(" · ");
+      }
+      card.dataset.live = g.next_draw;         // verification marker: set only after a successful refresh
+    });
+  }).catch(function(){});
+})();
+</script>
+<script type="application/json" id="draw-picks">{"schema_version": 1, "math_version": "2026-09-15-paper-v1", "method_prefix": "starshot-sun-sign", "generated_at": "2026-10-07T21:48:30.265197+00:00", "method_note": "Today's Sun-sign bucket; personal sign/date selections are not tracked.", "games": [{"game_id": "fantasy-5", "display_name": "Fantasy 5", "white_count": 5, "white_pool": 39, "special_pool": null, "ticket_cost": 1, "next_draw_date": "2026-10-07", "ok": true, "source_history_cutoff": "2026-10-06", "hot": [{"white_numbers": [2, 11, 13, 25, 37], "special_number": null}], "due": [{"white_numbers": [22, 24, 30, 32, 35], "special_number": null}], "mix": [{"white_numbers": [2, 13, 29, 32, 35], "special_number": null}]}, {"game_id": "superlotto-plus", "display_name": "SuperLotto Plus", "white_count": 5, "white_pool": 47, "special_pool": 27, "ticket_cost": 1, "next_draw_date": "2026-10-07", "ok": true, "source_history_cutoff": "2026-10-03", "hot": [{"white_numbers": [2, 4, 8, 13, 33], "special_number": 26}], "due": [{"white_numbers": [1, 19, 24, 26, 41], "special_number": 12}], "mix": [{"white_numbers": [2, 6, 13, 19, 41], "special_number": 11}]}, {"game_id": "powerball", "display_name": "Powerball", "white_count": 5, "white_pool": 69, "special_pool": 26, "ticket_cost": 2, "next_draw_date": "2026-10-07", "ok": true, "source_history_cutoff": "2026-10-05", "hot": [{"white_numbers": [29, 30, 43, 52, 64], "special_number": 15}], "due": [{"white_numbers": [9, 26, 28, 35, 51], "special_number": 17}], "mix": [{"white_numbers": [30, 35, 51, 59, 64], "special_number": 23}]}, {"game_id": "mega-millions", "display_name": "Mega Millions", "white_count": 5, "white_pool": 70, "special_pool": 24, "ticket_cost": 5, "next_draw_date": "2026-10-09", "ok": true, "source_history_cutoff": "2026-10-06", "hot": [{"white_numbers": [3, 18, 26, 27, 36], "special_number": 19}], "due": [{"white_numbers": [1, 2, 28, 31, 62], "special_number": 1}], "mix": [{"white_numbers": [1, 18, 25, 27, 28], "special_number": 4}]}]}</script></body>
 </html>
