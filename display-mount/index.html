@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Portrait Display Mount</title>
+<meta name="description" content="Field checklist for mounting a Samsung QM55B-T 55-inch touch display in portrait on a display board.">
+<meta property="og:title" content="Portrait Display Mount">
+<meta property="og:description" content="Field checklist: mounting a Samsung 55-inch touch display in portrait on a display board.">
+<meta property="og:url" content="https://roblogic.org/display-mount/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='8' y='2' width='16' height='28' rx='2' fill='%231d4f91'/%3E%3Crect x='10.5' y='4.5' width='11' height='23' fill='%23f4eedd'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!--
+  Field checklist, public variant of the step-by-step build (no ask boxes). Palette and type match /musicletters/.
+  Facts checked Oct 21, 2026 against Samsung's English manual BN81-22493A-03 and the Samsung Canada product page for
+  LH55QMBTBGCXZA. "p. N" on the page is the printed page of that manual.
+  Open on purpose: the board's support (material, thickness, framing, anchorage, load) and the bracket are NOT
+  established. They stay BLOCKED until an approved mounting detail exists. Never add a ready or OK state for them.
+  Left out on purpose: fasteners, torque values, screw lengths, hole offsets, a drilling template, a method for holding
+  the display while the display-side part goes on (the page makes the technician get one in writing).
+  Samsung's C (29 to 30 mm) is the screw depth into the display, read from the p. 24 cross-section: the page asks for a
+  depth inside that window, not just under it. The struck-out screw on p. 24 has a tapered tip; it is not "too long".
+  The rear photo is Samsung's gallery photo for this SKU; its proportions match the 43-inch and its labels (DVI, HDMI OUT)
+  are not in the p. 17 port list, so it is for identification only. Port positions after turning to portrait come from
+  Samsung's rear drawings (pp. 15, 17) and agree with the photo (rear view: mirror, then rotate clockwise).
+  Images: the rear photo is from Samsung's product gallery (flattened to JPEG); the drawings are crops of Samsung's
+  manual. Credits and source links sit under each one. Nothing on this page may name a client, site, login or network.
+  Visit beacon: on by default for new roblogic.org pages (Rob, 10/21/2026); snippet at the end of the script.
+-->
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --paper: #f4eedd;
+  --card: #fffdf7;
+  --ink: #1b221d;
+  --soft: #5b6259;
+  --rule: #d9cfb6;
+  --blue: #1d4f91;
+  --blue-wash: #e4ebf5;
+  --red: #b4362a;
+  --red-wash: #fff7f5;
+  --amber: #f2b300;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --sans: "Public Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--paper); color: var(--ink); font: 17px/1.5 var(--sans); padding: 0 16px 64px; }
+.wrap { max-width: 700px; margin: 0 auto; }
+a { color: var(--blue); }
+img, svg { max-width: 100%; height: auto; }
+
+/* ---------- header ---------- */
+header { padding: 28px 0 18px; border-bottom: 3px solid var(--ink); margin-bottom: 18px; position: relative; }
+.kicker { font: 600 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+h1 { font-weight: 900; font-size: clamp(34px, 9vw, 52px); line-height: .95; letter-spacing: -.02em; margin-top: 8px; max-width: 10ch; }
+.stamp {
+  position: absolute; right: 0; top: 26px;
+  font: 600 11px/1.15 var(--mono); letter-spacing: .12em; text-transform: uppercase; text-align: center;
+  color: var(--blue); border: 2px solid var(--blue); border-radius: 4px; padding: 6px 8px;
+  transform: rotate(-7deg);
+}
+.stamp b { display: block; font-size: 15px; letter-spacing: .06em; }
+.lede { margin-top: 12px; font-size: 17px; }
+.progress { margin-top: 14px; display: flex; align-items: center; gap: 10px; font: 600 13px/1 var(--mono); }
+.bar { flex: 1; height: 8px; background: var(--rule); border-radius: 99px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--blue); transition: width .25s ease; }
+.jump { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.jump a {
+  font: 600 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+  color: var(--ink); background: var(--card); border: 1.5px solid var(--rule); border-radius: 6px;
+  padding: 0 10px; min-height: 38px; display: inline-flex; align-items: center;
+}
+.jump a:active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.btn, footer button {
+  font: 600 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink); background: #fff; border: 1.5px solid var(--ink); border-radius: 6px;
+  padding: 0 12px; min-height: 40px; cursor: pointer; white-space: nowrap;
+}
+.btn.quiet, footer button { color: var(--soft); border-color: var(--soft); background: none; }
+.hnote { margin-top: 10px; font-size: 14px; color: var(--soft); }
+
+/* ---------- status block, gate, parts ---------- */
+.alert { border: 2px solid var(--red); border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; background: var(--red-wash); font-size: 15px; }
+.alert b:first-child { color: var(--red); }
+.alert > * + * { margin-top: 8px; }
+.alert ul { padding-left: 20px; }
+.alert li + li { margin-top: 4px; }
+.gate { border: 2px solid var(--ink); border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; background: #fff; font-size: 15px; }
+.gate > * + * { margin-top: 6px; }
+.part { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 1.5px solid var(--ink); scroll-margin-top: 12px; }
+.part h3 { font: 800 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.part span { font: 600 12px/1.3 var(--mono); color: var(--soft); }
+
+/* ---------- cards and steps ---------- */
+.card { background: var(--card); border: 1.5px solid var(--rule); border-radius: 10px; padding: 16px 16px 18px; margin-bottom: 14px; }
+.card > * + * { margin-top: 12px; }
+.card h3 { font: 800 16px/1.25 var(--sans); }
+.step { background: var(--card); border: 1.5px solid var(--rule); border-radius: 10px; padding: 14px 14px 16px; margin-bottom: 12px; scroll-margin-top: 12px; }
+.step.done { border-color: var(--blue); background: var(--blue-wash); }
+.step-head { display: flex; align-items: center; gap: 12px; }
+.num { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--paper); font-weight: 900; font-size: 18px; }
+.step.done .num { background: var(--blue); }
+h2 { font-size: 20px; font-weight: 800; line-height: 1.15; flex: 1; }
+.tag { display: inline-block; font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--red); border: 1.5px solid var(--red); border-radius: 3px; padding: 3px 5px; margin-left: 6px; vertical-align: 3px; white-space: nowrap; }
+.tag.soft { color: var(--soft); border-color: var(--soft); }
+.tick { flex: none; display: flex; align-items: center; gap: 6px; font: 600 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--soft); cursor: pointer; min-height: 44px; padding-left: 6px; }
+.tick input { width: 26px; height: 26px; accent-color: var(--blue); cursor: pointer; }
+.body { margin-top: 10px; }
+.body > * + * { margin-top: 10px; }
+.body ul, .body ol, .card ul, .card ol { padding-left: 22px; }
+.body li + li, .card li + li { margin-top: 4px; }
+.note { font-size: 15px; color: var(--soft); }
+.ui { font-weight: 800; }
+.src { font: 600 11px/1 var(--mono); letter-spacing: .04em; color: var(--soft); white-space: nowrap; }
+.stop { border: 2px solid var(--red); border-radius: 8px; background: var(--red-wash); padding: 10px 12px; font-size: 15px; }
+.stop b:first-child { color: var(--red); font: 800 13px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; }
+.stop ul { margin-top: 4px; padding-left: 20px; }
+
+/* ---------- spec list ---------- */
+.specs { border: 1.5px solid var(--rule); border-radius: 10px; background: #fff; overflow: hidden; }
+.specs > div { display: grid; grid-template-columns: minmax(6.6em, 30%) 1fr; gap: 10px; padding: 9px 12px; }
+.specs > div + div { border-top: 1px solid var(--rule); }
+.specs dt { font: 600 11px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--soft); padding-top: 2px; }
+.specs dd { font-size: 16px; }
+.specs small { display: block; font-size: 13px; color: var(--soft); line-height: 1.4; margin-top: 1px; }
+
+/* ---------- figures ---------- */
+.fig { margin: 0; background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 8px; }
+.fig img, .fig svg { display: block; width: 100%; height: auto; margin: 0 auto; }
+.fig figcaption { font-size: 13px; color: var(--soft); line-height: 1.4; margin-top: 8px; }
+.fig figcaption b { color: var(--ink); }
+.fig.narrow img, .fig.narrow svg { max-width: 300px; }
+.fig.mid a.zoom { max-width: 540px; margin-left: auto; margin-right: auto; }
+.fig.tall img { width: auto; max-height: 320px; }
+.photo { position: relative; line-height: 0; }
+.photo img { width: 100%; height: auto; display: block; }
+.photo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.legend { list-style: none; padding: 0; display: grid; gap: 3px; margin-bottom: 8px; font-size: 14px; color: var(--ink); }
+.legend li { display: flex; gap: 8px; align-items: baseline; }
+.legend i { flex: none; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--amber); color: #1b221d; font: 800 12px/1 var(--sans); font-style: normal; }
+.figpair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.figpair .fig.slim { max-width: 100%; }
+.cred { font: 12px/1.4 var(--mono); }
+a.zoom { display: block; line-height: 0; }
+a.zoom:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* ---------- copy field ---------- */
+.fields { display: grid; gap: 8px; }
+.field { border: 1px solid var(--rule); border-radius: 8px; background: #fff; padding: 8px 10px; }
+.field-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.label { font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--soft); }
+.val { font: 14px/1.5 var(--mono); margin-top: 6px; overflow-wrap: anywhere; }
+button.copy { font: 600 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--blue); background: transparent; border: 1.5px solid var(--blue); border-radius: 6px; padding: 8px 10px; min-height: 36px; cursor: pointer; }
+button.copy:active, button.copy.ok { background: var(--blue); color: #fff; }
+
+/* ---------- tick lists ---------- */
+.qhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.qcount { font: 600 12px/1 var(--mono); color: var(--soft); }
+.qlist { display: grid; gap: 6px; }
+.qtr { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 2px 4px 2px 10px; }
+.qtr.done { background: var(--blue-wash); border-color: var(--blue); }
+.qtr span { font-size: 15px; line-height: 1.3; padding: 6px 0; }
+.qtr small { display: block; font-size: 13px; color: var(--soft); }
+.qtr .tick { min-height: 40px; }
+
+/* ---------- folds ---------- */
+details { border: 1.5px solid var(--rule); border-radius: 10px; background: var(--card); padding: 0 14px; margin-bottom: 12px; }
+details > summary { cursor: pointer; padding: 0; min-height: 46px; display: flex; align-items: center; font: 800 15px/1.25 var(--sans); }
+details[open] > summary { border-bottom: 1px solid var(--rule); margin-bottom: 12px; }
+details > :not(summary) { margin-bottom: 12px; }
+details ul, details ol { padding-left: 22px; }
+details li + li { margin-top: 4px; }
+.sources li { overflow-wrap: anywhere; }
+
+/* ---------- don'ts, footer ---------- */
+.donts { border: 2px solid var(--red); border-radius: 10px; padding: 14px 16px; margin: 22px 0 14px; background: var(--red-wash); }
+.donts h3 { font: 800 15px/1.2 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+.donts ul { padding-left: 20px; }
+.donts li + li { margin-top: 4px; }
+footer { margin-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 13px/1.4 var(--mono); color: var(--soft); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 460px) {
+  .stamp { position: static; display: inline-block; margin-top: 12px; transform: rotate(-3deg); }
+  .figpair { grid-template-columns: 1fr; }
+  .specs > div { grid-template-columns: 5.6em 1fr; gap: 8px; padding: 8px 10px; }
+  .specs dt { font-size: 10px; letter-spacing: .05em; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  @page { margin: 11mm; }
+  html { font-size: 10pt; }
+  body { background: #fff; padding: 0; font-size: 10pt; line-height: 1.4; color: #000; }
+  .wrap { max-width: none; }
+  header { padding: 0 0 8px; margin-bottom: 10px; }
+  h1 { font-size: 28pt; }
+  .lede { font-size: 10.5pt; }
+  .progress, .jump, .btnrow, button.copy, footer button, .tap { display: none !important; }
+  .stamp { transform: none; }
+  .step, .stop, .alert, .gate, .fig, .donts, .qtr, .field, .specs > div { break-inside: avoid; }
+  .part { break-after: avoid; margin: 14px 0 6px; }
+  .step, .card, details, .specs, .field, .qtr, .fig { background: #fff !important; border-color: #888 !important; }
+  .step.done, .qtr.done { background: #fff !important; }
+  .card, .step { padding: 8px 10px; }
+  .step { margin-bottom: 7px; }
+  h2 { font-size: 11.5pt; }
+  .num, .step.done .num { background: #fff !important; color: #000 !important; border: 2px solid #000; width: 24px; height: 24px; font-size: 11pt; }
+  .tick { color: #000; min-height: 24px; }
+  .tick input { accent-color: #000; width: 16px; height: 16px; }
+  .body { margin-top: 5px; }
+  .body > * + * { margin-top: 5px; }
+  .note, .stop, .specs small, .fig figcaption, .src { font-size: 8.5pt; }
+  .stop { padding: 5px 8px; }
+  .qtr span { padding: 2px 0; font-size: 9.5pt; }
+  .qtr .tick { min-height: 22px; }
+  .specs > div { padding: 4px 10px; }
+  .fig { padding: 6px; }
+  .fig img { max-height: 62mm; width: auto; max-width: 100%; }
+  .photo { max-width: 135mm; margin: 0 auto; }
+  .fig.narrow svg { max-width: 190px; }
+  .legend i { background: #fff; border: 1.5px solid #000; }
+  .sources a::after { content: " (" attr(href) ")"; font: 8.5pt var(--mono); word-break: break-all; }
+  a { color: #000; }
+  img { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Field checklist</div>
+  <h1>Portrait display mount</h1>
+  <div class="stamp">Samsung<b>QM55B-T</b>55 inch</div>
+  <p class="lede">Mount a Samsung 55-inch touch display (59.3 lb) in portrait on a 36 × 87½ in board. Two people. <a href="#step-1"><b>Start at step 1.</b></a></p>
+  <div class="progress"><div class="bar"><i id="bar"></i></div><span id="count"></span></div>
+  <nav class="jump" aria-label="Parts of this checklist">
+    <a href="#p1">1 What</a><a href="#p2">2 Before</a><a href="#p3">3 Checks</a><a href="#p4">4 Install</a><a href="#p5">5 Test</a><a href="#p6">6 Handoff</a>
+  </nav>
+  <div class="btnrow">
+    <button type="button" class="btn" id="print">Print</button>
+    <button type="button" class="btn quiet clear">Clear ticks</button>
+  </div>
+  <p class="hnote">Ticks are saved in this browser on this device only. They are not shared and are not a completion record. Your handoff note (Part 6) is the record.</p>
+</header>
+
+<div class="alert">
+  <b>Do not install until both of these are settled.</b> This page cannot settle them:
+  <ul>
+    <li><b>The board.</b> Material, thickness, framing behind the surface, anchorage and load capacity are unknown. It needs an approved mounting detail (<a href="#step-3">step 3</a>). <span class="tag">Blocked</span></li>
+    <li><b>The bracket.</b> None is selected (<a href="#step-2">step 2</a>). <span class="tag">Blocked</span></li>
+  </ul>
+  <p>Settled means you hold the written approved detail and the real bracket has passed <a href="#step-13">step 13</a>. Also open: the screen position, how the display is held while the bracket goes on, and the source device (Part 2).</p>
+  <p><b>A STOP anywhere:</b> stop work, make the display and tools safe, tell whoever assigned the job, and write it in the handoff note. <b>If support cannot be established, stop.</b></p>
+</div>
+
+<main id="steps">
+
+  <div class="part" id="p1"><h3>Part 1 · What you are mounting</h3><span>read first</span></div>
+
+  <div class="card">
+    <figure class="fig">
+      <a class="zoom" href="img/rear.jpg" target="_blank" rel="noopener" aria-label="Open the rear photo full size">
+      <div class="photo">
+        <img src="img/rear.jpg" width="1100" height="663" alt="Rear of a Samsung display from the product gallery, in landscape: four round mounting holes, a raised cover along the top edge, a connector area at left and a power inlet at lower right." decoding="async">
+        <svg viewBox="0 0 1100 663" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#f2b300" stroke-width="4">
+            <circle cx="439" cy="123" r="21"/><circle cx="659" cy="123" r="21"/><circle cx="439" cy="343" r="21"/><circle cx="659" cy="343" r="21"/>
+            <rect x="428" y="8" width="244" height="88" stroke-dasharray="10 6"/>
+            <rect x="70" y="222" width="252" height="336" stroke-dasharray="10 6"/>
+            <rect x="672" y="424" width="76" height="112" stroke-dasharray="10 6"/>
+          </g>
+          <g fill="#f2b300" stroke="#1b221d" stroke-width="2">
+            <circle cx="549" cy="123" r="19"/><circle cx="702" cy="52" r="19"/><circle cx="348" cy="244" r="19"/><circle cx="782" cy="470" r="19"/>
+          </g>
+          <g fill="#1b221d" font-family="Public Sans, Arial, sans-serif" font-weight="800" font-size="24" text-anchor="middle">
+            <text x="549" y="132">1</text><text x="702" y="61">2</text><text x="348" y="253">3</text><text x="782" y="479">4</text>
+          </g>
+        </svg>
+      </div>
+      </a>
+      <figcaption>
+        <ul class="legend">
+          <li><i>1</i><span>Four mounting holes (the VESA pattern)</span></li>
+          <li><i>2</i><span>Raised cover along the top edge, with the TOUCH OUT labels</span></li>
+          <li><i>3</i><span>Connector area</span></li>
+          <li><i>4</i><span>Power inlet</span></li>
+        </ul>
+        <b>Rear view, as shipped (landscape).</b> Markers added. Not to scale. Not a drilling template. It is Samsung's gallery photo, and it may show another model of the series: the holes look too far apart for a 55-inch panel (they are 200 × 200 mm), and its labels (DVI, HDMI OUT) are not in this model's port list (p. 17). Use it to find parts, not to measure. <span class="tap">Tap any picture to enlarge.</span>
+        <span class="cred">Photo: Samsung product gallery, <a href="https://www.samsung.com/ca/business/smart-signage/interactive-display/qmb-t-uhd-4k-capacitive-touch-8ms-lh55qmbtbgcxza/" target="_blank" rel="noopener">source</a>.</span>
+      </figcaption>
+    </figure>
+
+    <dl class="specs">
+      <div><dt>Model</dt><dd>LH55QMBTBGCXZA<small>Also QM55B-T. Read the label on the back.</small></dd></div>
+      <div><dt>Orientation</dt><dd>Portrait. Turn the display clockwise, as seen from the front. <span class="src">pp. 15, 18, 22</span></dd></div>
+      <div><dt>Size, portrait</dt><dd>28.92 in wide × 49.36 in tall × 2.23 in deep<small>734.6 × 1253.8 × 56.7 mm. <span class="src">product page</span></small></dd></div>
+      <div><dt>Weight</dt><dd>59.3 lb (26.9 kg), display alone <span class="src">product page</span><small>The bracket adds to this.</small></dd></div>
+      <div><dt>Mounting holes</dt><dd>VESA 200 × 200 mm (7.9 in), 4 holes <span class="src">p. 24</span></dd></div>
+      <div><dt>Display screws</dt><dd>M8, 4 of them. Screw depth into the display: 29 to 30 mm (Samsung's "C"). <span class="src">p. 24</span></dd></div>
+      <div><dt>Gap behind</dt><dd>At least 40 mm (1.6 in) between the board and the display's back <span class="src">p. 22</span></dd></div>
+      <div><dt>Room</dt><dd>Under 35 °C (95 °F) <span class="src">p. 22</span></dd></div>
+      <div><dt>People</dt><dd>At least 2 <span class="src">p. 24</span></dd></div>
+      <div><dt>Board</dt><dd>36 in wide × 87½ in tall<small>From the supplied drawing. Measure the real board.</small></dd></div>
+    </dl>
+
+    <h3>What "VESA 200 × 200" means</h3>
+    <p>VESA is the standard spacing of the four screw holes on the back of a display. <b>200 × 200</b> means the holes sit at the corners of a square, 200 mm (7.9 in) apart in both directions, center to center. A bracket made for 200 × 200 has matching holes, so it bolts to the display. That is all it tells you: not that it can carry this weight, works in portrait, or can attach to this board.</p>
+    <figure class="fig narrow">
+      <svg viewBox="0 0 240 232" role="img" aria-labelledby="vesa-t">
+        <title id="vesa-t">Four holes at the corners of a square, 200 millimeters apart in both directions.</title>
+        <defs>
+          <marker id="vesa-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="#5b6259"/></marker>
+        </defs>
+        <rect x="56" y="52" width="140" height="140" fill="none" stroke="#9aa093" stroke-dasharray="5 5"/>
+        <g fill="#1b221d"><circle cx="56" cy="52" r="9"/><circle cx="196" cy="52" r="9"/><circle cx="56" cy="192" r="9"/><circle cx="196" cy="192" r="9"/></g>
+        <line x1="60" y1="26" x2="192" y2="26" stroke="#5b6259" stroke-width="1.5" marker-start="url(#vesa-arrow)" marker-end="url(#vesa-arrow)"/>
+        <text x="126" y="17" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#1b221d">200 mm</text>
+        <line x1="24" y1="56" x2="24" y2="188" stroke="#5b6259" stroke-width="1.5" marker-start="url(#vesa-arrow)" marker-end="url(#vesa-arrow)"/>
+        <text x="14" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#1b221d" transform="rotate(-90 14 122)">200 mm</text>
+        <text x="126" y="222" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#5b6259">hole center to hole center</text>
+      </svg>
+      <figcaption><b>Not to scale. Not a drilling template.</b> It shows what "200 × 200" means, nothing more.</figcaption>
+    </figure>
+
+    <h3>Two sets of fasteners</h3>
+    <p>Most brackets come in two parts: one fixes to the board, the other fixes to the display and hangs on the first. This page calls them the <b>board-side part</b> and the <b>display-side part</b>.</p>
+    <ol>
+      <li><b>Into the display.</b> Four M8 screws hold the display-side part to the display. Samsung gives the size and the depth (<a href="#step-14">step 14</a>, <a href="#step-26">step 26</a>).</li>
+      <li><b>Into the board.</b> The fasteners that hold the board-side part to the board's support: the framing or backing behind its surface. This page does not name them. They come from the approved mounting detail (<a href="#step-3">step 3</a>, <a href="#step-23">step 23</a>).</li>
+    </ol>
+    <figure class="fig narrow">
+      <svg viewBox="0 0 360 270" role="img" aria-labelledby="stack-t">
+        <title id="stack-t">Side view. Board at left, bracket, a gap of at least 40 millimeters, then the display with its screen facing right. Marker 1 is the fasteners into the board. Marker 2 is the M8 screws into the display. Marker 3 is the gap.</title>
+        <defs>
+          <pattern id="stack-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#9aa093" stroke-width="2"/></pattern>
+          <marker id="stack-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="#1b221d"/></marker>
+        </defs>
+        <text x="30" y="14" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5b6259">board</text>
+        <text x="300" y="14" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5b6259">display</text>
+        <rect x="8" y="22" width="52" height="200" fill="url(#stack-hatch)" stroke="#1b221d" stroke-width="2"/>
+        <rect x="60" y="52" width="10" height="140" fill="#1b221d"/>
+        <g stroke="#b4362a" stroke-width="5"><line x1="62" y1="82" x2="28" y2="82"/><line x1="62" y1="162" x2="28" y2="162"/></g>
+        <g stroke="#1b221d" stroke-width="6"><line x1="70" y1="82" x2="256" y2="82"/><line x1="70" y1="162" x2="256" y2="162"/></g>
+        <rect x="254" y="62" width="9" height="120" fill="#1b221d"/>
+        <rect x="263" y="22" width="62" height="200" fill="#d6d9d2" stroke="#1b221d" stroke-width="2"/>
+        <rect x="325" y="22" width="8" height="200" fill="#1d4f91"/>
+        <g stroke="#1d4f91" stroke-width="5"><line x1="248" y1="82" x2="296" y2="82"/><line x1="248" y1="162" x2="296" y2="162"/></g>
+        <line x1="263" y1="44" x2="296" y2="44" stroke="#1b221d" stroke-width="1.5" marker-start="url(#stack-arrow)" marker-end="url(#stack-arrow)"/>
+        <text x="280" y="38" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#1b221d">C</text>
+        <line x1="62" y1="244" x2="262" y2="244" stroke="#1b221d" stroke-width="1.5" marker-start="url(#stack-arrow)" marker-end="url(#stack-arrow)"/>
+        <text x="162" y="262" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#1b221d">gap: 40 mm or more</text>
+        <g fill="#f2b300" stroke="#1b221d" stroke-width="1.5"><circle cx="36" cy="122" r="12"/><circle cx="276" cy="122" r="12"/><circle cx="162" cy="116" r="12"/></g>
+        <g fill="#1b221d" font-family="Public Sans, Arial, sans-serif" font-weight="800" font-size="15" text-anchor="middle"><text x="36" y="127">1</text><text x="276" y="127">2</text><text x="162" y="121">3</text></g>
+      </svg>
+      <figcaption><b>Not to scale. Not a drilling template.</b> 1: fasteners into the board, from the approved detail. 2: four M8 screws into the display; C is the screw depth. 3: the gap behind the display.</figcaption>
+    </figure>
+
+    <h3>Which way to turn it</h3>
+    <p>Turn the display <b>clockwise, as seen from the front</b>. Samsung's rule: rotate clockwise until the power indicator sits as in its drawing. Facing the screen, the power indicator and power button end up on the <b>left edge</b>. <span class="src">pp. 15, 18, 22</span></p>
+    <figure class="fig mid">
+      <a class="zoom" href="img/samsung-p22-portrait.png" target="_blank" rel="noopener"><img src="img/samsung-p22-portrait.png" width="797" height="488" alt="Samsung drawing: a landscape display with power indicator positions A and B on the bottom edge, an arrow turning it clockwise, and the portrait display with A and B on its left edge." loading="lazy" decoding="async"></a>
+      <figcaption>Landscape (left), turned clockwise to portrait (right). A and B are the two possible power-indicator positions. <span class="cred">Samsung drawing, p. 22, <a href="https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDCttType=UM&amp;CDSite=UNI_CO&amp;CttFileID=11358226&amp;ModelName=QM55B-T&amp;ModelType=N&amp;OriginYN=N&amp;VPath=UM%2F202604%2F20260402142154001%2FBN81-22493A-03_WEB_QMB+QMB-N+QMB-T_NA+ZB_L03_260331.0.zip" target="_blank" rel="noopener">source</a>.</span></figcaption>
+    </figure>
+  </div>
+
+  <aside class="donts">
+    <h3>Don't</h3>
+    <ul>
+      <li>Drill, cut or fasten into the board before the approved detail says where and how.</li>
+      <li>Pick screws by a length from this page. Use the bracket's screws and check their depth (<a href="#step-14">step 14</a>).</li>
+      <li>Lay the display on its front (p. 8) or stand it on an edge (p. 11).</li>
+      <li>Hold the display within 15 mm of the front (p. 11).</li>
+      <li>Work on the mount with the display on or plugged in (pp. 7, 24).</li>
+      <li>Over-tighten the screws (p. 24).</li>
+      <li>Tilt it more than 15°, or use it on a ceiling, floor or table (pp. 22, 24).</li>
+      <li>Plug in the power cord before the other cables (p. 30).</li>
+      <li>Block the gap behind the display, or close it into a tight space (pp. 7, 22).</li>
+      <li>Press hard on the screen, or touch it with gloves, nails or pens (p. 25).</li>
+    </ul>
+  </aside>
+
+  <div class="part" id="p2"><h3>Part 2 · Before the visit</h3><span>office, before you travel</span></div>
+
+  <section class="step" data-step="1" id="step-1">
+    <div class="step-head">
+      <div class="num">1</div>
+      <h2>Agree the screen position <span class="tag">To confirm</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s1"> Done</label>
+    </div>
+    <div class="body">
+      <p>With whoever assigned the job, agree the height and the left-right position, and what they are measured from (floor or board edge). In portrait the display covers 28.92 in × 49.36 in. The board is 36 in × 87½ in (drawing).</p>
+      <p class="note">Fitting inside the board's outline says nothing about support. The approved detail has to cover this position.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="2" id="step-2">
+    <div class="step-head">
+      <div class="num">2</div>
+      <h2>Choose the bracket <span class="tag">Not selected</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s2"> Done</label>
+    </div>
+    <div class="body">
+      <p>The bracket must meet every line:</p>
+      <ul>
+        <li>Holes 200 × 200 mm, for M8 screws</li>
+        <li>Rated by its maker above 26.9 kg (59.3 lb), and at least the design load the approved detail uses</li>
+        <li>Maker says it can be used in portrait</li>
+        <li>Holds the display at least 40 mm (1.6 in) off the board. Check the maker's stated depth.</li>
+        <li>Has locking or safety hardware, and the maker's instructions</li>
+        <li>Attaches the way the approved detail says</li>
+      </ul>
+      <p class="note">Samsung says to install the specified wall mount (p. 22), and is not liable when a non-VESA or non-specified mount is used (p. 24). Its product page lists WMN4070SG in the Mount field. Portrait use, load rating and depth for that mount are not confirmed. If you want it, put it to whoever approves the detail, with the maker's sheet.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="3" id="step-3">
+    <div class="step-head">
+      <div class="num">3</div>
+      <h2>Get the approved mounting detail <span class="tag">Blocked</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s3"> Done</label>
+    </div>
+    <div class="body">
+      <p>Ask the board's maker, or the person responsible for the board, for a written detail. It must say how the board-side part attaches to the board, which fasteners to use, and how much load the board can carry. It must name who approved it, the date, the bracket and the screen position it covers.</p>
+      <div class="fields">
+        <div class="field">
+          <div class="field-top"><span class="label">Request to send</span><button class="copy" data-target="req">Copy</button></div>
+          <div class="val" id="req">Request: approved mounting detail for a wall display<br>Display: Samsung LH55QMBTBGCXZA (QM55B-T), 59.3 lb (26.9 kg), 28.92 in wide x 49.36 in tall x 2.23 in deep in portrait, touch screen, VESA 200 x 200 mm, M8 x 4<br>Board: 36 in wide x 87.5 in tall. Material, thickness, framing behind the surface, anchorage and load capacity: please advise<br>Screen position: ____<br>Bracket: make ____ model ____ rated load ____ depth from board ____<br>Please send in writing: how the bracket attaches to the board, which fasteners to use, the load the board can carry, who approved it, and the date</div>
+        </div>
+      </div>
+      <p class="note">Not established: board material, thickness, framing, anchorage, load capacity. Fitting inside the outline does not make it strong enough.</p>
+      <p><b>Tick only when you hold the written detail.</b></p>
+    </div>
+  </section>
+
+  <section class="step" data-step="4" id="step-4">
+    <div class="step-head">
+      <div class="num">4</div>
+      <h2>Get the holding method in writing <span class="tag">To confirm</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s4"> Done</label>
+    </div>
+    <div class="body">
+      <p>Ask the bracket maker or Samsung, in writing, how to hold the display while the display-side part goes on. Samsung says not to lay the display on its front (p. 8) or stand it on an edge (p. 11). The lay-flat method on p. 11 is for 85-inch and larger models only. Only Samsung can approve either one, in writing.</p>
+      <p>Pack whatever support the method names. <b>Tick only when you hold a written method that lays the display on neither its front nor an edge.</b></p>
+    </div>
+  </section>
+
+  <section class="step" data-step="5" id="step-5">
+    <div class="step-head">
+      <div class="num">5</div>
+      <h2>List the bracket's hardware <span class="tag">To confirm</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s5"> Done</label>
+    </div>
+    <div class="body">
+      <p>From the bracket's instructions, write down every part it needs: the display-side M8 screws (with their length), spacers or washers, and locking hardware. Add the board-side fasteners the approved detail names.</p>
+      <p class="note">This page names no fasteners, drill sizes, torque values or screw lengths. Take them from the bracket's instructions and the approved detail.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="6" id="step-6">
+    <div class="step-head">
+      <div class="num">6</div>
+      <h2>Arrange the crew</h2>
+      <label class="tick"><input type="checkbox" data-key="s6"> Done</label>
+    </div>
+    <div class="body">
+      <p>At least two people must mount the display (Samsung, p. 24). Together they can safely lift 59.3 lb (26.9 kg) plus the bracket's parts. Both stay through <a href="#step-39">step 39</a>. Add a third person if the hooks sit above shoulder height.</p>
+      <p class="note">Samsung: an authorized installation company installs the wall mount (p. 22), and a technician installs the wall-mount hanger (p. 8). <b>Tick only when whoever assigned the job confirms your crew meets that.</b></p>
+    </div>
+  </section>
+
+  <section class="step" data-step="7" id="step-7">
+    <div class="step-head">
+      <div class="num">7</div>
+      <h2>Confirm the source device <span class="tag">To confirm</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s7"> Done</label>
+    </div>
+    <div class="body">
+      <p>What will drive the display: a PC, laptop or tablet PC, or the display's own built-in player? Touch is wired differently for each (<a href="#step-33">step 33</a>). Note what the source outputs (HDMI or DisplayPort) and whether it has a free USB port.</p>
+      <p class="note">The manual covers touch for a PC, laptop or tablet PC (pp. 26, 27), with calibration steps for Windows only. The built-in player's touch works only in the display's menus (p. 25). Any other source: touch is not covered, so confirm it before the visit.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="8" id="step-8">
+    <div class="step-head">
+      <div class="num">8</div>
+      <h2>Pack the display kit</h2>
+      <label class="tick"><input type="checkbox" data-key="s8"> Done</label>
+    </div>
+    <div class="body">
+      <div class="qlist">
+        <div class="qhead"><b>Tick each one as it is packed</b><span class="qcount"></span></div>
+        <div class="qtr"><span>Display, model LH55QMBTBGCXZA</span><label class="tick"><input type="checkbox" data-key="k8a" aria-label="Display packed"></label></div>
+        <div class="qtr"><span>Samsung power cord from the box. Use only this one (p. 7).</span><label class="tick"><input type="checkbox" data-key="k8b" aria-label="Power cord packed"></label></div>
+        <div class="qtr"><span>Remote control</span><label class="tick"><input type="checkbox" data-key="k8c" aria-label="Remote packed"></label></div>
+        <div class="qtr"><span>2 AAA batteries. They may not be in the box (p. 14).</span><label class="tick"><input type="checkbox" data-key="k8d" aria-label="Batteries packed"></label></div>
+        <div class="qtr"><span>TOUCH OUT cables. Samsung lists 2 in the box (p. 14).</span><label class="tick"><input type="checkbox" data-key="k8e" aria-label="Touch cables packed"></label></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="9" id="step-9">
+    <div class="step-head">
+      <div class="num">9</div>
+      <h2>Pack the bracket, hardware and papers</h2>
+      <label class="tick"><input type="checkbox" data-key="s9"> Done</label>
+    </div>
+    <div class="body">
+      <div class="qlist">
+        <div class="qhead"><b>Tick each one as it is packed</b><span class="qcount"></span></div>
+        <div class="qtr"><span>The bracket</span><label class="tick"><input type="checkbox" data-key="k9a" aria-label="Bracket packed"></label></div>
+        <div class="qtr"><span>The bracket's instructions and the maker's rating sheet</span><label class="tick"><input type="checkbox" data-key="k9b" aria-label="Instructions packed"></label></div>
+        <div class="qtr"><span>Display-side M8 screws, spacers or washers, as the maker supplies them</span><label class="tick"><input type="checkbox" data-key="k9c" aria-label="Display-side hardware packed"></label></div>
+        <div class="qtr"><span>Locking or safety hardware</span><label class="tick"><input type="checkbox" data-key="k9d" aria-label="Locking hardware packed"></label></div>
+        <div class="qtr"><span>Board-side fasteners named in the approved detail</span><label class="tick"><input type="checkbox" data-key="k9e" aria-label="Board-side fasteners packed"></label></div>
+        <div class="qtr"><span>The approved mounting detail</span><label class="tick"><input type="checkbox" data-key="k9f" aria-label="Approved detail packed"></label></div>
+        <div class="qtr"><span>The written holding method, and the support it names</span><label class="tick"><input type="checkbox" data-key="k9g" aria-label="Holding method packed"></label></div>
+        <div class="qtr"><span>The board drawing</span><label class="tick"><input type="checkbox" data-key="k9h" aria-label="Board drawing packed"></label></div>
+      </div>
+      <p class="note">Paper or on the phone, as you prefer.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="10" id="step-10">
+    <div class="step-head">
+      <div class="num">10</div>
+      <h2>Pack tools and cables</h2>
+      <label class="tick"><input type="checkbox" data-key="s10"> Done</label>
+    </div>
+    <div class="body">
+      <div class="qlist">
+        <div class="qhead"><b>Tick each one as it is packed</b><span class="qcount"></span></div>
+        <div class="qtr"><span>Tape measure</span><label class="tick"><input type="checkbox" data-key="k10a" aria-label="Tape measure packed"></label></div>
+        <div class="qtr"><span>Level</span><label class="tick"><input type="checkbox" data-key="k10b" aria-label="Level packed"></label></div>
+        <div class="qtr"><span>Marker or pencil, and masking tape</span><label class="tick"><input type="checkbox" data-key="k10c" aria-label="Marker and tape packed"></label></div>
+        <div class="qtr"><span>Calipers, to measure screw depth (the window is only 1 mm wide)</span><label class="tick"><input type="checkbox" data-key="k10d" aria-label="Calipers packed"></label></div>
+        <div class="qtr"><span>Driver or drill and bits, as the approved detail and bracket call for</span><label class="tick"><input type="checkbox" data-key="k10e" aria-label="Driver packed"></label></div>
+        <div class="qtr"><span>Torque tool, only if the maker gives a torque value<small>Don't guess one.</small></span><label class="tick"><input type="checkbox" data-key="k10f" aria-label="Torque tool packed or not needed"></label></div>
+        <div class="qtr"><span>Step stool or platform, if the hooks sit above shoulder height</span><label class="tick"><input type="checkbox" data-key="k10g" aria-label="Step stool packed or not needed"></label></div>
+        <div class="qtr"><span>Eye protection and a drop cloth, if the detail has you drill</span><label class="tick"><input type="checkbox" data-key="k10h" aria-label="Eye protection packed or not needed"></label></div>
+        <div class="qtr"><span>Video cable, HDMI or DisplayPort, long enough for the source<small>Samsung recommends authorized HDMI cables (p. 30).</small></span><label class="tick"><input type="checkbox" data-key="k10i" aria-label="Video cable packed"></label></div>
+        <div class="qtr"><span>Cable ties or straps, and label tape</span><label class="tick"><input type="checkbox" data-key="k10j" aria-label="Cable ties packed"></label></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="part" id="p3"><h3>Part 3 · Onsite checks</h3><span>before anything is drilled or lifted</span></div>
+
+  <section class="step" data-step="11" id="step-11">
+    <div class="step-head">
+      <div class="num">11</div>
+      <h2>Check the display</h2>
+      <label class="tick"><input type="checkbox" data-key="s11"> Done</label>
+    </div>
+    <div class="body">
+      <p>Read the label on the back: it should say LH55QMBTBGCXZA or QM55B-T. Write down the serial number. Look the display over for damage.</p>
+      <p class="note">Two people. Hold the display as the step 4 method says, or leave it in its packaging. Never face down, never on an edge (pp. 8, 11). <b>Photo:</b> the label.</p>
+      <div class="stop"><b>STOP if</b>
+        <ul>
+          <li>the model is different. The weight, hole pattern and screw depth on this page are for this model only.</li>
+          <li>the display was dropped, knocked or is visibly damaged. Don't power it up. Contact Samsung (p. 9).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="12" id="step-12">
+    <div class="step-head">
+      <div class="num">12</div>
+      <h2>Check the board against the approved detail</h2>
+      <label class="tick"><input type="checkbox" data-key="s12"> Done</label>
+    </div>
+    <div class="body">
+      <p>Material, thickness, framing behind the surface, how the board is anchored, and the load it can carry must all match the approved detail. Measure the board: the drawing says 36 in wide × 87½ in tall. Check with your level that the board is vertical.</p>
+      <p class="note">Samsung: install the wall mount on a solid wall perpendicular to the floor. For any other area, contact the nearest agency. A slanted wall may let the display fall (p. 24).</p>
+      <div class="stop"><b>STOP if</b>
+        <ul>
+          <li>there is no approved detail</li>
+          <li>anything about the board is unknown, or differs from the detail</li>
+          <li>the board is loose or damaged, or could tip or pull away with the display's weight on it</li>
+          <li>the board is not a solid, vertical surface, or you can't confirm it is (p. 24)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="13" id="step-13">
+    <div class="step-head">
+      <div class="num">13</div>
+      <h2>Check the real bracket</h2>
+      <label class="tick"><input type="checkbox" data-key="s13"> Done</label>
+    </div>
+    <div class="body">
+      <p>Go down the list in <a href="#step-2">step 2</a> again, with the real bracket and the maker's sheet in your hands. Check it against the display and against the approved detail. Take the depth from the maker's own drawing.</p>
+      <p class="note"><b>Photo:</b> the bracket's label or box (make, model, rating).</p>
+      <div class="stop"><b>STOP if</b> any line is missing, unconfirmed or fails.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="14" id="step-14">
+    <div class="step-head">
+      <div class="num">14</div>
+      <h2>Check the display-side screws, on the bench</h2>
+      <label class="tick"><input type="checkbox" data-key="s14"> Done</label>
+    </div>
+    <div class="body">
+      <p>In Samsung's drawing, <b>C</b> runs from the display's back face to the tip of the screw. It is how far the screw goes into the display: <b>29 to 30 mm</b> for this model. It is not the screw's length.</p>
+      <figure class="fig">
+        <a class="zoom" href="img/samsung-p24-screw-depth.png" target="_blank" rel="noopener"><img src="img/samsung-p24-screw-depth.png" width="717" height="491" alt="Samsung cross-section: an M8 screw passes through the wall mount bracket into the display, with the screw depth into the display marked C. Below, a screw threaded to the end beside a struck-out screw with a plain, tapered tip." loading="lazy" decoding="async"></a>
+        <figcaption>The bracket (Wall mount bracket) sits on the back of the display (LFD). C is the screw depth. Below, left: a screw threaded to the end. Right, struck out: a plain, tapered length at the tip, which Samsung dimensions. <span class="cred">Samsung drawing, p. 24, <a href="https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDCttType=UM&amp;CDSite=UNI_CO&amp;CttFileID=11358226&amp;ModelName=QM55B-T&amp;ModelType=N&amp;OriginYN=N&amp;VPath=UM%2F202604%2F20260402142154001%2FBN81-22493A-03_WEB_QMB+QMB-N+QMB-T_NA+ZB_L03_260331.0.zip" target="_blank" rel="noopener">source</a>.</span></figcaption>
+      </figure>
+      <p><b>Measure it:</b> put a screw through the bracket's plate, spacer and washer, in the order they go on the display. Measure how far it sticks out past the last part. That is the screw depth. It must be 29 to 30 mm, with M8 screws threaded right to the end, like Samsung's left drawing. Use the screws and spacers that come with the bracket.</p>
+      <p class="note">Samsung: don't use screws longer than the standard length or that don't meet the VESA screw spec. Screws that are too long can damage the inside of the display (p. 24).</p>
+      <div class="stop"><b>STOP if</b> the depth is under 29 mm or over 30 mm, or the screws are not M8, or have a plain unthreaded length at the tip. Only Samsung can approve a different screw for this model, in writing. The bracket's instructions don't count.</div>
+      <details>
+        <summary>Samsung's full drawings, with the hole spacing A and B</summary>
+        <figure class="fig">
+          <a class="zoom" href="img/samsung-p24-vesa.png" target="_blank" rel="noopener"><img src="img/samsung-p24-vesa.png" width="1233" height="491" alt="Samsung drawing: the four holes on the back of a display with their spacing A and B, and a cross-section of an M8 screw through the wall mount bracket into the display with the screw depth marked C." loading="lazy" decoding="async"></a>
+          <figcaption>A and B are the hole spacing, 200 × 200 mm for this model. <span class="cred">Samsung drawing, p. 24.</span></figcaption>
+        </figure>
+        <figure class="fig">
+          <a class="zoom" href="img/samsung-p23-parts.png" target="_blank" rel="noopener"><img src="img/samsung-p23-parts.png" width="722" height="667" alt="Samsung exploded drawing of a wall mount: two rails with screws going into the back of a display. Detail circles show the small parts marked A." loading="lazy" decoding="async"></a>
+          <figcaption>A mount fitted to a display. A marks small parts that come in the mount's package, and may not be supplied with every mount type. For reference only: the mount's own instructions rule. <span class="cred">Samsung drawing, p. 23.</span></figcaption>
+        </figure>
+      </details>
+    </div>
+  </section>
+
+  <section class="step" data-step="15" id="step-15">
+    <div class="step-head">
+      <div class="num">15</div>
+      <h2>Measure the display and dry-fit its part</h2>
+      <label class="tick"><input type="checkbox" data-key="s15"> Done</label>
+    </div>
+    <div class="body">
+      <p>Measure the four holes on the back of the display: the spacing both ways (expect 200 mm), and the distance from the hole pattern to each edge. Record the edge distances as the display will hang: portrait, seen from the front, power-indicator edge on the left. Write them down for the handoff note.</p>
+      <p>Then hold the display-side part of the bracket against the back, without screws. It must sit flat and clear the raised cover, the connectors and the power inlet.</p>
+      <p class="note">Don't assume the hole pattern is centered: Samsung's rear drawings and photo show it off-center. Neither Samsung source gives the distances to the edges. Two people. Hold the display as the step 4 method says, or leave it in its packaging. Never face down, never on an edge (pp. 8, 11).</p>
+      <div class="stop"><b>STOP if</b> the spacing is not 200 × 200 mm, or the display-side part does not sit flat and clear.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="16" id="step-16">
+    <div class="step-head">
+      <div class="num">16</div>
+      <h2>Confirm which way the display turns</h2>
+      <label class="tick"><input type="checkbox" data-key="s16"> Done</label>
+    </div>
+    <div class="body">
+      <p>Clockwise, as seen from the front. Facing the screen, the power indicator and power button end up on the left edge (pp. 15, 18, 22). Settle this before the board-side part goes up.</p>
+      <p>Check from the back: with the display in landscape and the raised cover at the top, the top of the bracket points to your right.</p>
+      <p class="note">The hole pattern is square, so it looks the same turned any way. It won't tell you which way is up. The power indicator does.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="17" id="step-17">
+    <div class="step-head">
+      <div class="num">17</div>
+      <h2>Mark the position on the board</h2>
+      <label class="tick"><input type="checkbox" data-key="s17"> Done</label>
+    </div>
+    <div class="body">
+      <p>Mark the agreed position with masking tape: the outline of the display, in portrait. Nothing is drilled. Check it matches the position in the approved detail.</p>
+      <div class="stop"><b>STOP if</b> the position needs an attachment point where the approved detail does not allow one.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="18" id="step-18">
+    <div class="step-head">
+      <div class="num">18</div>
+      <h2>Check the space around the display</h2>
+      <label class="tick"><input type="checkbox" data-key="s18"> Done</label>
+    </div>
+    <div class="body">
+      <ul>
+        <li>Not a ceiling, floor or table (p. 22)</li>
+        <li>Not in a kitchen, near heat, or in direct sun (pp. 7, 8)</li>
+        <li>Room under 35 °C (95 °F) (p. 22)</li>
+        <li>Room for a gap of at least 40 mm (1.6 in) between the board and the display's back (p. 22). From the maker's drawing (<a href="#step-13">step 13</a>), the bracket must hold the display's rear-most point, the raised cover included, that far off the board. You measure the real gap in <a href="#step-31">step 31</a>.</li>
+      </ul>
+      <div class="stop"><b>STOP if</b>
+        <ul>
+          <li>the display would sit in a recess, cabinet or enclosure. It then needs more room (see <a href="#recess">Recessed or enclosed?</a> below). If you can't give it, stop.</li>
+          <li>the place is dusty, wet, full of chemicals, or very hot or cold. Samsung says to contact its service center before installing (p. 8).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="19" id="step-19">
+    <div class="step-head">
+      <div class="num">19</div>
+      <h2>Plan power and cable routing</h2>
+      <label class="tick"><input type="checkbox" data-key="s19"> Done</label>
+    </div>
+    <div class="body">
+      <ul>
+        <li>A power outlet within reach of the Samsung cord, with nothing blocking it (p. 7). If the cord's plug has a ground pin, use a grounded outlet (p. 6).</li>
+        <li>A path for the video cable and the touch cable, to the source</li>
+        <li>The supplied TOUCH OUT cable reaches the source's USB port</li>
+        <li>Cables may cross the gap behind the display. Don't coil or bundle them in it.</li>
+        <li>Find the ports on the real unit, turned to portrait.</li>
+      </ul>
+      <p class="note">Expected from Samsung's rear drawings (pp. 15, 17), turned clockwise and seen from the front: the raised TOUCH OUT cover on the right-hand edge, the connector area along the lower part, the power inlet toward the upper left. Check it on the unit.</p>
+      <div class="stop"><b>STOP if</b> the outlet or a cable is out of reach, or the bracket leaves no room to get your hands to the ports once the display is hung and the maker doesn't say how to connect them.</div>
+    </div>
+  </section>
+
+  <details id="recess">
+    <summary>Recessed or enclosed? The extra room Samsung asks for</summary>
+    <p>Samsung gives separate numbers when the display sits in an indented (recessed) wall. Portrait, as drawn: <b>A</b> behind the display 40 mm (1.6 in). <b>B</b> above it 70 mm (2.8 in). <b>C</b> below it 50 mm (2 in). <b>D</b> each side 50 mm (2 in). <b>E</b> air temperature under 35 °C (95 °F). <span class="src">p. 22</span></p>
+    <p>For an enclosure, keep the inside temperature at 40 °C (104 °F) or below (p. 105). Only use approved cabinets (p. 8). Don't install in a poorly ventilated space such as a bookcase or closet (p. 7). For further details, contact Samsung's service center (p. 22).</p>
+    <div class="figpair">
+      <figure class="fig slim tall">
+        <a class="zoom" href="img/samsung-p22-wall.png" target="_blank" rel="noopener"><img src="img/samsung-p22-wall.png" width="172" height="631" alt="Samsung side-view drawing of a display on a flat wall. A marks the gap behind the display. B marks where air temperature is measured." loading="lazy" decoding="async"></a>
+        <figcaption>Flat wall: A is the gap, 40 mm or more.</figcaption>
+      </figure>
+      <figure class="fig slim">
+        <a class="zoom" href="img/samsung-p22-recess.png" target="_blank" rel="noopener"><img src="img/samsung-p22-recess.png" width="630" height="631" alt="Samsung drawings of a portrait display in a recess, front and side. B above, C below, D at each side, A behind, E the temperature point." loading="lazy" decoding="async"></a>
+        <figcaption>Recess: A behind, B above, C below, D at the sides.</figcaption>
+      </figure>
+    </div>
+    <p class="cred">Samsung drawings, p. 22, <a href="https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDCttType=UM&amp;CDSite=UNI_CO&amp;CttFileID=11358226&amp;ModelName=QM55B-T&amp;ModelType=N&amp;OriginYN=N&amp;VPath=UM%2F202604%2F20260402142154001%2FBN81-22493A-03_WEB_QMB+QMB-N+QMB-T_NA+ZB_L03_260331.0.zip" target="_blank" rel="noopener">source</a>. Cropped.</p>
+  </details>
+
+  <div class="part" id="p4"><h3>Part 4 · Install</h3><span>two people from here on</span></div>
+
+  <div class="gate">
+    <p><b>Gate.</b> Start Part 4 only when every box in Parts 2 and 3 is ticked and no STOP applies.</p>
+    <p>If something here stops you: switch the display off, keep it supported or back in its box, tell whoever assigned the job, and write it in the handoff note.</p>
+  </div>
+
+  <section class="step" data-step="20" id="step-20">
+    <div class="step-head">
+      <div class="num">20</div>
+      <h2>Switch everything off and unplug</h2>
+      <label class="tick"><input type="checkbox" data-key="s20"> Done</label>
+    </div>
+    <div class="body">
+      <p>Display off. Power cord out of the wall and out of the display. No other cable on the display. Keep the display in its box, or covered, away from the drilling.</p>
+      <p class="note">Samsung: don't install the mount while the display is on (p. 24). Before moving the display, unplug the power cord and all other cables (p. 7).</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="21" id="step-21">
+    <div class="step-head">
+      <div class="num">21</div>
+      <h2>Dry-fit the bracket and mark it</h2>
+      <label class="tick"><input type="checkbox" data-key="s21"> Done</label>
+    </div>
+    <div class="body">
+      <p>Hold the board-side part of the bracket at the taped position, as its instructions show. Use the distances from <a href="#step-15">step 15</a> and the bracket's instructions to place it so the display lands on the taped outline. Check it with your level. Mark the attachment points. Don't drill yet.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="22" id="step-22">
+    <div class="step-head">
+      <div class="num">22</div>
+      <h2>Check every mark against the approved detail</h2>
+      <label class="tick"><input type="checkbox" data-key="s22"> Done</label>
+    </div>
+    <div class="body">
+      <p>Each attachment point must land on the support the approved detail names.</p>
+      <div class="stop"><b>STOP if</b> any mark misses it.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="23" id="step-23">
+    <div class="step-head">
+      <div class="num">23</div>
+      <h2>Fix the bracket to the board <span class="tag">No undo</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s23"> Done</label>
+    </div>
+    <div class="body">
+      <p>This is the point of no return: the board gets drilled. Use the fasteners and the method in the approved detail and the bracket's instructions.</p>
+      <p class="note">This page names no fasteners, drill sizes or torque values. Don't improvise any.</p>
+      <p class="note"><b>Photo:</b> the board-side fasteners.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="24" id="step-24">
+    <div class="step-head">
+      <div class="num">24</div>
+      <h2>Check the board-side bracket is solid</h2>
+      <label class="tick"><input type="checkbox" data-key="s24"> Done</label>
+    </div>
+    <div class="body">
+      <p>Level, tight, and no movement when you push it by hand. Use the maker's test if it gives one.</p>
+      <div class="stop"><b>STOP if</b> the bracket moves, or the board flexes or cracks.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="25" id="step-25">
+    <div class="step-head">
+      <div class="num">25</div>
+      <h2>Run the cables, unplugged</h2>
+      <label class="tick"><input type="checkbox" data-key="s25"> Done</label>
+    </div>
+    <div class="body">
+      <p>Lay the power, video and touch cables to the display position. Leave slack. Label both ends. Nothing is plugged into the display yet, and the power cord stays out of the wall.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="26" id="step-26">
+    <div class="step-head">
+      <div class="num">26</div>
+      <h2>Fit the display-side hardware</h2>
+      <label class="tick"><input type="checkbox" data-key="s26"> Done</label>
+    </div>
+    <div class="body">
+      <p>Hold the display as your written method says. Fit the display-side part so that, hung, the power indicator is on the left edge seen from the front. Check from the back: with the display in landscape and the raised cover at the top, the top of the bracket points to your right.</p>
+      <p>Fit the four M8 screws, with the bracket's own spacers or washers, into the four holes, as the bracket's instructions show. Tighten as the instructions say, to their torque value if they give one. Don't over-tighten.</p>
+      <p>Check all four screws are in, and the parts sit flat and clear the raised cover, the connectors and the power inlet on the back.</p>
+      <p class="note">Samsung: screws that are too tight can damage the display or let it fall (p. 24). <b>Photo:</b> the screws and spacers in place.</p>
+      <div class="stop"><b>STOP if</b> you have no written holding method, or it has you lay the display on its front or stand it on an edge. Samsung says not to do either (pp. 8, 11). Only Samsung can approve that, in writing.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="27" id="step-27">
+    <div class="step-head">
+      <div class="num">27</div>
+      <h2>Lift it, with two people</h2>
+      <label class="tick"><input type="checkbox" data-key="s27"> Done</label>
+    </div>
+    <div class="body">
+      <p>Clear the path to the board first. Lift together. Don't hold the display within 15 mm (0.6 in) of the front (p. 11), and never lift it by the screen. Don't drop it (p. 8). If the hooks are above shoulder height, use a third person or a stable platform.</p>
+      <div class="stop"><b>STOP if</b> the display is dropped or knocked. Switch it off, don't power it up, and contact Samsung (p. 9).</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="28" id="step-28">
+    <div class="step-head">
+      <div class="num">28</div>
+      <h2>Hang it and engage every lock</h2>
+      <label class="tick"><input type="checkbox" data-key="s28"> Done</label>
+    </div>
+    <div class="body">
+      <p>Hang the display on the bracket as its instructions show. Engage every lock and safety fitting.</p>
+      <p class="note"><b>Photo:</b> the locks engaged.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="29" id="step-29">
+    <div class="step-head">
+      <div class="num">29</div>
+      <h2>Check it is hooked on and steady</h2>
+      <label class="tick"><input type="checkbox" data-key="s29"> Done</label>
+    </div>
+    <div class="body">
+      <p>Both people keep their hands on the display. Use the maker's test if it gives one. If not, as general practice (not Samsung's): with your hands at least 15 mm back from the front edge (p. 11), give the top and bottom edges a gentle pull outward and a gentle push side to side.</p>
+      <div class="stop"><b>STOP if</b> it shifts, tilts or unhooks, or a lock won't engage. Don't let go. Re-hang it as the instructions show, or lift it off with both people.</div>
+    </div>
+  </section>
+
+  <section class="step" data-step="30" id="step-30">
+    <div class="step-head">
+      <div class="num">30</div>
+      <h2>Plug the video and touch cables into the display</h2>
+      <label class="tick"><input type="checkbox" data-key="s30"> Done</label>
+    </div>
+    <div class="body">
+      <p>One person keeps a hand on the display. The other plugs in. Video first, then the touch cable (p. 27). The power cord stays out until <a href="#step-34">step 34</a>.</p>
+      <ul>
+        <li>Video: HDMI or DisplayPort into the display. Built-in player: skip this.</li>
+        <li>PC source: the TOUCH OUT cable goes into <b>TOUCH OUT PC</b>.</li>
+        <li>Built-in player: the TOUCH OUT cable goes between <b>TOUCH OUT SCREEN</b> and the display's own <b>USB 1</b> or <b>USB 2</b>.</li>
+      </ul>
+      <p class="note">Match the labels on the unit. The wiring is explained in <a href="#step-33">step 33</a>.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="31" id="step-31">
+    <div class="step-head">
+      <div class="num">31</div>
+      <h2>Check strain relief and the gap, then let go</h2>
+      <label class="tick"><input type="checkbox" data-key="s31"> Done</label>
+    </div>
+    <div class="body">
+      <ul>
+        <li>No weight, pull or sharp bend on any plug</li>
+        <li>Nothing pinched between the display and the board</li>
+        <li>Gap at least 40 mm (1.6 in) from the board to the display's rear-most point. Measure it.</li>
+        <li>Every lock still engaged</li>
+      </ul>
+      <p>Only now take your hands off.</p>
+      <p class="note"><b>Photos:</b> the side view showing the gap, the cables with their strain relief, and the whole display from the front.</p>
+    </div>
+  </section>
+
+  <div class="part" id="p5"><h3>Part 5 · Setup and test</h3><span>cables, orientation, picture, touch</span></div>
+
+  <section class="step" data-step="32" id="step-32">
+    <div class="step-head">
+      <div class="num">32</div>
+      <h2>Connect the video cable at the source</h2>
+      <label class="tick"><input type="checkbox" data-key="s32"> Done</label>
+    </div>
+    <div class="body">
+      <p>HDMI or DisplayPort, into the source device. The power cord is still out. Built-in player: skip this step.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="33" id="step-33">
+    <div class="step-head">
+      <div class="num">33</div>
+      <h2>Connect the touch cable at the source</h2>
+      <label class="tick"><input type="checkbox" data-key="s33"> Done</label>
+    </div>
+    <div class="body">
+      <p>HDMI and DisplayPort do not carry touch. <b>Touch needs its own USB cable.</b> Video first, then touch (p. 27).</p>
+      <ul>
+        <li><b>PC, laptop or tablet PC:</b> the other end of the TOUCH OUT cable goes into a USB port on the PC (pp. 26, 27).</li>
+        <li><b>Built-in player, no PC:</b> the cable is already between TOUCH OUT SCREEN and the display's USB 1 or USB 2. Touch then works only in the display's on-screen menu and the admin menu, not in apps (p. 25).</li>
+      </ul>
+      <figure class="fig">
+        <a class="zoom" href="img/samsung-p26-touch.png" target="_blank" rel="noopener"><img src="img/samsung-p26-touch.png" width="1193" height="349" alt="Samsung drawing: the TOUCH OUT PC port on the display, a USB cable running to a USB port." loading="lazy" decoding="async"></a>
+        <figcaption>PC source: TOUCH OUT PC on the display to a USB port on the PC. <span class="cred">Samsung drawing, p. 26, <a href="https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDCttType=UM&amp;CDSite=UNI_CO&amp;CttFileID=11358226&amp;ModelName=QM55B-T&amp;ModelType=N&amp;OriginYN=N&amp;VPath=UM%2F202604%2F20260402142154001%2FBN81-22493A-03_WEB_QMB+QMB-N+QMB-T_NA+ZB_L03_260331.0.zip" target="_blank" rel="noopener">source</a>.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="step" data-step="34" id="step-34">
+    <div class="step-head">
+      <div class="num">34</div>
+      <h2>Plug in the power cord, last of all</h2>
+      <label class="tick"><input type="checkbox" data-key="s34"> Done</label>
+    </div>
+    <div class="body">
+      <p>Display end first, then the wall outlet. Samsung: don't connect the power cord until every other connection is made, or the display may be damaged (p. 30). Check the cord has no strain on it. Then switch the display on with the remote.</p>
+      <p class="note">The display should pick up the source by itself. Blank screen: switch it off and on again (p. 26).</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="35" id="step-35">
+    <div class="step-head">
+      <div class="num">35</div>
+      <h2>Set portrait, in one place only</h2>
+      <label class="tick"><input type="checkbox" data-key="s35"> Done</label>
+    </div>
+    <div class="body">
+      <p>Turn the picture in one place only. Doing both turns it twice.</p>
+      <ul>
+        <li><b>PC, laptop or tablet PC:</b> turn it in the PC's display settings. Leave the display's own setting alone.</li>
+        <li><b>Built-in player:</b> the Player has its own Content Orientation setting (p. 51).</li>
+        <li><b>Any other source that can't turn its own picture:</b> in the display's menu, with the remote: <span class="ui">OnScreen Display › Display Orientation › Source Content Orientation › Portrait</span>. Then <span class="ui">Aspect Ratio</span>: full screen or original (p. 70). A landscape picture turned by the display can't both fill a portrait screen and keep its shape.</li>
+      </ul>
+      <p>The menu itself can be turned with <span class="ui">Onscreen Menu Orientation</span> (p. 70).</p>
+      <p class="note">Samsung's product page says the display can recognize its own rotation (Auto Level). The manual doesn't describe it. If the picture is already upright, change nothing. If it is upright but shrunk or stretched, undo the display's Source Content Orientation and turn it at the source instead. The manual doesn't say whether touch stays lined up when the display does the turning: you test that in <a href="#step-38">step 38</a>.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="36" id="step-36">
+    <div class="step-head">
+      <div class="num">36</div>
+      <h2>Calibrate touch <span class="tag soft">Windows PC</span></h2>
+      <label class="tick"><input type="checkbox" data-key="s36"> Done</label>
+    </div>
+    <div class="body">
+      <p>Do this after the orientation is set, not before and not during. Samsung: don't change the orientation until calibration is finished (p. 29).</p>
+      <ol>
+        <li>Open Tablet PC Settings. On the Display tab, tap <span class="ui">Setup</span>, then tap the page that shows on the display to mark it as the touch screen.</li>
+        <li>Pick the display, tap <span class="ui">Calibrate</span>, and tap each crosshair as it appears.</li>
+        <li>Save when asked.</li>
+      </ol>
+      <p class="note">Samsung's steps cover Windows 7, 8 and 10. With more than one screen, set this display as the main display. You may need to calibrate again after changing Picture Size (p. 28). Not a Windows PC? The manual has no calibration steps for it: go on to the test.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="37" id="step-37">
+    <div class="step-head">
+      <div class="num">37</div>
+      <h2>Check the picture over the whole screen</h2>
+      <label class="tick"><input type="checkbox" data-key="s37"> Done</label>
+    </div>
+    <div class="body">
+      <p>All four edges visible. Nothing cut off. Fills the screen, not squashed or stretched. Right way up for portrait.</p>
+      <p class="note">A rotation warning on the screen means the display is at the wrong angle (p. 71).</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="38" id="step-38">
+    <div class="step-head">
+      <div class="num">38</div>
+      <h2>Test touch over the whole screen</h2>
+      <label class="tick"><input type="checkbox" data-key="s38"> Done</label>
+    </div>
+    <div class="body">
+      <p>Use a fingertip. No gloves, nails or pens, and don't press hard (p. 25). Tap the four corners and the center. Then drag a line down the full height and across the full width.</p>
+      <p><b>The response must land under your finger every time.</b></p>
+      <details>
+        <summary>Touch not working, or landing in the wrong place?</summary>
+        <ul>
+          <li>Unplug the touch cable and plug it back in. The video cable goes in first (p. 27).</li>
+          <li>PC source: is the cable in TOUCH OUT PC and in a USB port on the PC? (p. 102)</li>
+          <li>Wrong place: calibrate again (<a href="#step-36">step 36</a>).</li>
+          <li>With the remote: <span class="ui">System › Touch Control › Touch Control</span>, set to On (p. 19).</li>
+          <li>Dirty screen: unplug the power cord, wipe with a soft, dry cloth, and use no spray or cleaner (p. 12). Plug the power back in last. Keep direct sunlight off the screen (p. 102).</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <section class="step" data-step="39" id="step-39">
+    <div class="step-head">
+      <div class="num">39</div>
+      <h2>Check the mount again after touching</h2>
+      <label class="tick"><input type="checkbox" data-key="s39"> Done</label>
+    </div>
+    <div class="body">
+      <p>Tap and drag as in step 38 and watch the display. It must not move, rock or creak on the bracket. Check the locks are still engaged.</p>
+      <div class="stop"><b>STOP if</b> the display moves when it is touched. Support it, and lift it off with both people.</div>
+    </div>
+  </section>
+
+  <div class="part" id="p6"><h3>Part 6 · Handoff</h3><span>checks, photos, note</span></div>
+
+  <section class="step" data-step="40" id="step-40">
+    <div class="step-head">
+      <div class="num">40</div>
+      <h2>Run the completion checks</h2>
+      <label class="tick"><input type="checkbox" data-key="s40"> Done</label>
+    </div>
+    <div class="body">
+      <div class="qlist">
+        <div class="qhead"><b>Tick each one that is true</b><span class="qcount"></span></div>
+        <div class="qtr"><span>Display locked on the bracket, every lock engaged</span><label class="tick"><input type="checkbox" data-key="k40a" aria-label="Display locked"></label></div>
+        <div class="qtr"><span>Gap behind the display at least 40 mm (1.6 in), nothing blocking it</span><label class="tick"><input type="checkbox" data-key="k40b" aria-label="Gap clear"></label></div>
+        <div class="qtr"><span>Cables have strain relief and are not pinched</span><label class="tick"><input type="checkbox" data-key="k40c" aria-label="Cables relieved"></label></div>
+        <div class="qtr"><span>Picture right way up over the whole screen</span><label class="tick"><input type="checkbox" data-key="k40d" aria-label="Picture good"></label></div>
+        <div class="qtr"><span>Touch works over the whole screen and the display stays put</span><label class="tick"><input type="checkbox" data-key="k40e" aria-label="Touch good"></label></div>
+      </div>
+      <p class="note">If any line is not true, the install is not done. Fix it, or write it under open items and tell whoever assigned the job before you leave.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="41" id="step-41">
+    <div class="step-head">
+      <div class="num">41</div>
+      <h2>Check the photos</h2>
+      <label class="tick"><input type="checkbox" data-key="s41"> Done</label>
+    </div>
+    <div class="body">
+      <div class="qlist">
+        <div class="qhead"><b>Tick each photo you have</b><span class="qcount"></span></div>
+        <div class="qtr"><span>Model label and serial<small>Step 11</small></span><label class="tick"><input type="checkbox" data-key="k41a" aria-label="Model label photo"></label></div>
+        <div class="qtr"><span>Bracket label or box: make, model, rating<small>Step 13</small></span><label class="tick"><input type="checkbox" data-key="k41b" aria-label="Bracket label photo"></label></div>
+        <div class="qtr"><span>Board-side fasteners<small>Step 23</small></span><label class="tick"><input type="checkbox" data-key="k41c" aria-label="Board-side fasteners photo"></label></div>
+        <div class="qtr"><span>Display-side screws and spacers in place<small>Step 26</small></span><label class="tick"><input type="checkbox" data-key="k41d" aria-label="Display-side screws photo"></label></div>
+        <div class="qtr"><span>Locks engaged<small>Step 28</small></span><label class="tick"><input type="checkbox" data-key="k41e" aria-label="Locks photo"></label></div>
+        <div class="qtr"><span>Side view showing the gap<small>Step 31</small></span><label class="tick"><input type="checkbox" data-key="k41f" aria-label="Gap photo"></label></div>
+        <div class="qtr"><span>Cables and strain relief<small>Step 31</small></span><label class="tick"><input type="checkbox" data-key="k41g" aria-label="Cable photo"></label></div>
+        <div class="qtr"><span>Whole display on the board, from the front<small>Step 31</small></span><label class="tick"><input type="checkbox" data-key="k41h" aria-label="Front photo"></label></div>
+      </div>
+      <p class="note">Photos stay with you. This page never collects or shows them. Keep client screens, logins and network details out of the frame.</p>
+    </div>
+  </section>
+
+  <section class="step" data-step="42" id="step-42">
+    <div class="step-head">
+      <div class="num">42</div>
+      <h2>Fill in the handoff note</h2>
+      <label class="tick"><input type="checkbox" data-key="s42"> Done</label>
+    </div>
+    <div class="body">
+      <p>Copy the note, paste it into a message, and fill in the blanks. List anything open, including every STOP you hit and every item still unconfirmed.</p>
+      <div class="fields">
+        <div class="field">
+          <div class="field-top"><span class="label">Handoff note</span><button class="copy" data-target="note">Copy</button></div>
+          <div class="val" id="note">Display install handoff<br>Display: Samsung LH55QMBTBGCXZA, serial ____<br>Installers: ____ (authorized installer: yes / no; no is a STOP)<br>Bracket: make ____ model ____ rated load ____ portrait OK per maker: yes / no<br>Board: material ____ thickness ____ support ____ approved detail ref ____ approved by ____ date ____<br>Holding method used: ____ (from ____)<br>Fasteners used: as the approved detail ____<br>Display-side screws: M8 x 4, screw depth ____ mm (must be 29 to 30)<br>Holes measured: ____ x ____ mm. Pattern to edges (portrait, seen from the front, indicator edge left): top ____ bottom ____ left ____ right ____<br>Screen position: ____ (measured from ____)<br>Gap behind display: ____ mm (minimum 40)<br>Source: ____ by HDMI / DisplayPort<br>Touch: PC USB / built-in player<br>Portrait set at: source / display menu<br>Picture check: pass / fail<br>Touch check (corners, center, drag): pass / fail<br>Display steady after touch test: yes / no<br>Photos attached: ____ of 8<br>STOPs hit and open items: ____<br>Installed by / date: ____</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="43" id="step-43">
+    <div class="step-head">
+      <div class="num">43</div>
+      <h2>Send the note and photos</h2>
+      <label class="tick"><input type="checkbox" data-key="s43"> Done</label>
+    </div>
+    <div class="body">
+      <p>Send both to whoever assigned the job. This page keeps no record.</p>
+    </div>
+  </section>
+
+</main>
+
+<details class="sources">
+  <summary>Sources</summary>
+  <p>"p. N" is the printed page in Samsung's English manual BN81-22493A-03.</p>
+  <ul>
+    <li>Samsung Canada product page for LH55QMBTBGCXZA (model, weight, size, VESA, mount, Auto Level): <a href="https://www.samsung.com/ca/business/smart-signage/interactive-display/qmb-t-uhd-4k-capacitive-touch-8ms-lh55qmbtbgcxza/" target="_blank" rel="noopener">samsung.com</a></li>
+    <li>Samsung manual package, a ZIP with the English PDF inside. Pages used: 6, 7, 8, 9, 11, 12, 14, 15, 17, 18, 19, 22 to 30, 51, 70, 71, 102, 105. <a href="https://org.downloadcenter.samsung.com/downloadfile/ContentsFile.aspx?CDCttType=UM&amp;CDSite=UNI_CO&amp;CttFileID=11358226&amp;ModelName=QM55B-T&amp;ModelType=N&amp;OriginYN=N&amp;VPath=UM%2F202604%2F20260402142154001%2FBN81-22493A-03_WEB_QMB+QMB-N+QMB-T_NA+ZB_L03_260331.0.zip" target="_blank" rel="noopener">download</a></li>
+    <li>Rear photo: Samsung's product gallery, on the page above.</li>
+    <li>The drawings are Samsung's, cropped from the manual. The two schematics and the markers on the rear photo are ours, and are labeled not to scale.</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Not covered, not confirmed</summary>
+  <ul>
+    <li>The board's material, thickness, framing, anchorage and load capacity. An approved mounting detail is needed.</li>
+    <li>The bracket: model, load rating, depth, portrait approval. None is selected.</li>
+    <li>Fasteners, torque values, screw lengths, hole offsets and a drilling template. None is given on purpose.</li>
+    <li>Where the four holes sit relative to the display's edges. Neither source gives it. You measure it in step 15.</li>
+    <li>How to hold the display while the display-side part goes on. Step 4 makes you get it in writing.</li>
+    <li>Touch in apps without a PC, laptop or tablet PC. Calibration steps in the manual are for Windows only.</li>
+    <li>Port positions on the unit once it is turned to portrait. The ones in step 19 are read from Samsung's rear drawings. Check them on the real display.</li>
+    <li>Samsung's Auto Level feature, which the product page mentions and the manual does not.</li>
+  </ul>
+</details>
+
+<footer>
+  <span>Field checklist · written Oct 21, 2026</span>
+  <button type="button" class="clear">Clear ticks</button>
+</footer>
+
+</div>
+<script>
+(function () {
+  var TICKS = "display-mount-checklist-v1";   // tick boxes on this device only
+  var STEPS = document.querySelectorAll(".step").length;
+
+  function load(k) { try { return JSON.parse(localStorage.getItem(k) || "{}") || {}; } catch (e) { return {}; } }
+  function store(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  var state = load(TICKS);
+
+  /* ---------- ticks: steps drive the progress bar; tick lists only restyle and count ---------- */
+  var boxes = document.querySelectorAll("input[data-key]");
+  function paint() {
+    var stepsDone = 0;
+    document.querySelectorAll(".step").forEach(function (sec) {
+      var box = sec.querySelector(".step-head input[data-key]");
+      var on = !!(box && box.checked);
+      sec.classList.toggle("done", on);
+      if (on) stepsDone++;
+    });
+    document.querySelectorAll(".qtr").forEach(function (el) {
+      var box = el.querySelector("input[data-key]");
+      el.classList.toggle("done", !!(box && box.checked));
+    });
+    document.querySelectorAll(".qlist").forEach(function (list) {
+      var all = list.querySelectorAll(".qtr input[data-key]");
+      var on = list.querySelectorAll(".qtr input[data-key]:checked");
+      var c = list.querySelector(".qcount");
+      if (c) c.textContent = on.length + " of " + all.length;
+    });
+    document.getElementById("count").textContent = stepsDone + " / " + STEPS;
+    document.getElementById("bar").style.width = (STEPS ? stepsDone / STEPS * 100 : 0) + "%";
+  }
+  boxes.forEach(function (b) {
+    b.checked = !!state[b.dataset.key];
+    b.addEventListener("change", function () { state[b.dataset.key] = b.checked; store(TICKS, state); paint(); });
+  });
+  paint();
+  document.querySelectorAll(".clear").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      if (!window.confirm("Clear every tick on this device?")) return;
+      state = {}; store(TICKS, state);
+      boxes.forEach(function (b) { b.checked = false; });
+      paint();
+    });
+  });
+
+  /* ---------- a link that points at a closed fold opens it ---------- */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var t = document.getElementById(a.getAttribute("href").slice(1));
+    if (t && t.tagName === "DETAILS") t.open = true;
+  });
+
+  /* ---------- print: open every fold first, close them again after ---------- */
+  var pr = document.getElementById("print");
+  if (pr) pr.addEventListener("click", function () { window.print(); });
+  var opened = [];
+  window.addEventListener("beforeprint", function () {
+    document.querySelectorAll("details").forEach(function (d) { if (!d.open) { d.open = true; opened.push(d); } });
+  });
+  window.addEventListener("afterprint", function () {
+    opened.forEach(function (d) { d.open = false; });
+    opened = [];
+  });
+
+  /* ---------- copy buttons: data-copy="literal" or data-target="element id" ---------- */
+  function textOf(btn) {
+    if (btn.dataset.copy) return btn.dataset.copy;
+    var el = document.getElementById(btn.dataset.target);
+    if (!el) return "";
+    var tmp = document.createElement("div");
+    tmp.innerHTML = el.innerHTML.replace(/<br\s*\/?>/gi, "\n").replace(/<\/li>/gi, "\n").replace(/<\/p>/gi, "\n\n");
+    return tmp.textContent.replace(/\n{3,}/g, "\n\n").trim();
+  }
+  function fallbackCopy(t) {
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var t = textOf(btn);
+      var label = btn.textContent;
+      var done = function () { btn.classList.add("ok"); btn.textContent = "Copied"; setTimeout(function () { btn.classList.remove("ok"); btn.textContent = label; }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(done, function () { fallbackCopy(t); done(); });
+      } else { fallbackCopy(t); done(); }
+    });
+  });
+})();
+
+// visit beacon: every hit, skip bots, fail silent
+try {
+  const ua = navigator.userAgent.toLowerCase();
+  if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+    fetch('/beacon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        page: 'display-mount',
+        ref: document.referrer || 'direct',
+        tag: 'tv'
+      })
+    }).catch(() => {});
+  }
+} catch (e) {}
+</script>
+</body>
+</html>
