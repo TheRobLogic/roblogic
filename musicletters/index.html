@@ -69,6 +69,11 @@ h1 { font-weight: 900; font-size: clamp(34px, 9vw, 52px); line-height: .95; lett
   background: var(--ink); color: var(--paper); font-weight: 900; font-size: 18px;
 }
 .step.done .num { background: var(--green); }
+.step.done .step-head { cursor: pointer; }
+.step.done h2 { color: var(--soft); }
+.step.done h2::after { content: " \25B8"; font-weight: 400; }
+.step.done.open h2::after { content: " \25BE"; }
+.step.done:not(.open) > :not(.step-head) { display: none; }
 h2 { font-size: 21px; font-weight: 800; line-height: 1.15; flex: 1; }
 .tag { display: inline-block; font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--red); border: 1.5px solid var(--red); border-radius: 3px; padding: 3px 5px; margin-left: 6px; vertical-align: 3px; }
 .tick { flex: none; display: flex; align-items: center; gap: 6px; font: 600 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--soft); cursor: pointer; min-height: 44px; padding-left: 6px; }
@@ -268,6 +273,7 @@ footer button { font: 600 12px/1 var(--mono); text-transform: uppercase; letter-
     var stepsDone = 0;
     document.querySelectorAll(".step").forEach(function (sec) {
       var box = sec.querySelector(".step-head input[data-key]");
+      if (box && sec.dataset.done === "1") { box.checked = true; box.disabled = true; }
       var on = !!(box && box.checked);
       sec.classList.toggle("done", on);
       if (on) stepsDone++;
@@ -281,10 +287,17 @@ footer button { font: 600 12px/1 var(--mono); text-transform: uppercase; letter-
   }
   boxes.forEach(function (b) {
     b.checked = !!state[b.dataset.key];
-    b.addEventListener("change", function () { state[b.dataset.key] = b.checked; save(); paint(); });
+    b.addEventListener("change", function () { state[b.dataset.key] = b.checked; save(); var sec = b.closest(".step"); if (sec && b.checked) sec.classList.remove("open"); paint(); });
   });
   paint();
-
+  /* a done step collapses to its title; tap the title to open it again */
+  document.querySelectorAll(".step-head").forEach(function (h) {
+    h.addEventListener("click", function (e) {
+      if (e.target.closest(".tick, a, button")) return;
+      var sec = h.closest(".step");
+      if (sec && sec.classList.contains("done")) sec.classList.toggle("open");
+    });
+  });
   document.getElementById("reset").addEventListener("click", function () {
     state = {}; save();
     boxes.forEach(function (b) { b.checked = false; });
