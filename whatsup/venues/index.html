@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>San Diego Shows</title>
+<style>
+body{font-family:-apple-system,system-ui,sans-serif;max-width:760px;margin:0 auto;padding:16px;background:#fff;color:#111;line-height:1.45}
+h1{font-size:1.4em;margin:.2em 0} h1 a{color:#0645ad;text-decoration:none} h2{font-size:1.15em;margin:1.2em 0 .3em;border-bottom:1px solid #ddd}
+h3{font-size:1em;margin:0 0 .3em;color:#333} ul{list-style:none;padding:0;margin:0}
+.day{padding:.6em .7em;margin:.5em 0;border:1px solid #999;border-radius:4px;background:#fff}
+.day:nth-of-type(even){background:#eef0f3}
+li{padding:.25em 0;border-bottom:1px solid #d8d8d8} li:last-child{border-bottom:0}
+li.top{background:#fff3b0;border-left:4px solid #e0a800;padding-left:.5em}
+details{margin:.3em 0} summary{color:#666;cursor:pointer}
+details.later>summary{font-size:1.15em;font-weight:bold;color:#111;margin:1.2em 0 .3em;border-bottom:1px solid #ddd} a{color:#0645ad} .meta{color:#888;font-size:.85em;margin-top:2em}
+.src{color:#999;font-size:.8em}
+.tips{margin:2em 0 1em;display:flex;gap:2.5em;justify-content:center} .tips svg{width:88px;height:88px;display:block}
+.hits{display:flex;justify-content:center;gap:3px;margin:0 0 2em;min-height:2em} .hits span{display:inline-block;min-width:1.1em;padding:.1em .2em;font:bold 1.5em/1.3 "Courier New",Courier,monospace;color:#39ff14;background:#000;border:1px solid #666;border-radius:2px;text-align:center}
+</style></head><body>
+<h1><a href="../">San Diego Shows</a> | San Diego Venues</h1>
+
+<section class="day"><ul><li><a href="https://www.710bc.com" target="_blank" rel="noopener">710 Beach Club</a></li><li><a href="https://thebansheebar.com" target="_blank" rel="noopener">Banshee Bar</a></li><li><a href="https://bellyup.com" target="_blank" rel="noopener">Belly Up</a></li><li><a href="https://blackcatbar.wordpress.com" target="_blank" rel="noopener">Black Cat Bar</a></li><li><a href="https://blindladyalehouse.com" target="_blank" rel="noopener">Blind Lady Ale House</a></li><li><a href="https://www.casbahmusic.com" target="_blank" rel="noopener">Casbah</a></li><li><a href="https://info6594074.wixsite.com/thechecafe" target="_blank" rel="noopener">Che Cafe</a></li><li><a href="https://theholdingcompanyob.com" target="_blank" rel="noopener">The Holding Company</a></li><li><a href="https://www.kensingtonclub1935.com" target="_blank" rel="noopener">Kensington Club</a></li><li><a href="https://theloft.ucsd.edu" target="_blank" rel="noopener">The Loft</a></li><li><a href="https://mcguffieslive.com" target="_blank" rel="noopener">McGuffie&#x27;s Live</a></li><li><a href="https://www.pourhouseoceanside.com" target="_blank" rel="noopener">Pour House</a></li><li><a href="https://sodabarmusic.com" target="_blank" rel="noopener">Soda Bar</a></li><li><a href="https://www.somasandiego.com" target="_blank" rel="noopener">SOMA</a></li><li><a href="https://www.thetowerbar.com" target="_blank" rel="noopener">Tower Bar</a></li><li><a href="https://sandiego.houseofblues.com" target="_blank" rel="noopener">Voodoo Room</a></li><li><a href="https://whistlestopbar.com" target="_blank" rel="noopener">Whistle Stop</a></li></ul></section>
+<script>
+try {
+  const ua = navigator.userAgent.toLowerCase();
+  if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(ua)) {
+    fetch('/beacon', {method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({page: 'whatsup-venues', ref: document.referrer || 'direct', tag: 'guitar'})}).catch(() => {});
+  }
+} catch (e) {}
+</script>
+</body></html>
