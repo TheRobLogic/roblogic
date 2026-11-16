@@ -85,7 +85,15 @@ details.later>summary{font-size:1.15em;font-weight:bold;color:#111;margin:1.2em 
 <script>
 try {
   if (!/bot|crawler|spider|preview|facebookexternal|slackbot|twitterbot|linkedinbot|whatsapp|discordbot/.test(navigator.userAgent.toLowerCase())) {
-    fetch('/whatsup/api/hits').then(r => r.json()).then(d => {
+    // Rob 2026-11-15: his own looks don't count. Open /whatsup/?rob once per device to set the flag (?count undoes it).
+    const q = new URLSearchParams(location.search); let mine = false;
+    try {
+      if (q.has('rob')) localStorage.setItem('whatsup-nocount', '1');
+      if (q.has('count')) localStorage.removeItem('whatsup-nocount');
+      if (q.has('rob') || q.has('count')) history.replaceState(null, '', location.pathname);
+      mine = localStorage.getItem('whatsup-nocount') === '1';
+    } catch (e) {}
+    fetch('/whatsup/api/hits' + (mine ? '?peek=1' : '')).then(r => r.json()).then(d => {
       if (!Number.isFinite(d.hits)) return;
       document.getElementById('hits').innerHTML = String(d.hits).padStart(6, '0').split('').map(c => '<span>' + c + '</span>').join('');
     }).catch(() => {});
